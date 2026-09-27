@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,8 @@ enum AlertStyle { banner, takeover }
 
 /// Which alert wins when several are waiting: lower shows first.
 abstract final class LivePriority {
+  /// The user's own live game ("Your game is still on", "Move it here?").
+  static const liveGame = 5;
   static const roundJoin = 10;
   static const matchFound = 20;
   static const rematch = 30;
@@ -128,5 +131,9 @@ class LiveHub extends Notifier<LiveState> {
 
 final liveHubProvider = NotifierProvider<LiveHub, LiveState>(LiveHub.new);
 
-/// The time source for countdowns; tests replace it.
-final liveClockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
+/// The time source for countdowns; tests replace it. `clock` is the system clock, except under a
+/// test's fake time.
+final liveClockProvider = Provider<DateTime Function()>(
+  (ref) =>
+      () => clock.now(),
+);

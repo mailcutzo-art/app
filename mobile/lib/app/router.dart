@@ -11,6 +11,9 @@ import '../core/config/app_config.dart';
 import '../features/arena/arena_screen.dart';
 import '../features/auth/sign_in_screen.dart';
 import '../features/battle/battle_screen.dart';
+import '../features/battle/match/match_screen.dart';
+import '../features/battle/match/review_screen.dart';
+import '../features/battle/search_screen.dart';
 import '../features/debug/debug_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/learn/learn_screen.dart';
@@ -48,6 +51,32 @@ abstract final class Routes {
 
   /// A practice session, full screen above the tabs: `/practice/:sessionId`.
   static String practiceSession(String sessionId) => '$practice/$sessionId';
+
+  /// The matchmaking screen, full screen above the tabs. The search goes on when the user leaves
+  /// it; the "Searching" pill brings them back.
+  static const battleSearch = '/battle/search';
+
+  /// A live match (VS, questions, then its result), full screen above the tabs.
+  static String battleMatch(String matchId) => '/battle/match/${Uri.encodeComponent(matchId)}';
+
+  /// The answers of a finished match, on top of its result.
+  static String battleReview(String matchId) => '${battleMatch(matchId)}/review';
+
+  /// The Battle tab with a subject (and chapter) preselected, e.g. from a coach tip.
+  static String battleWith({String? subject, String? chapter}) {
+    final query = {'subject': ?subject, 'chapter': ?chapter};
+    return Uri(path: battle, queryParameters: query.isEmpty ? null : query).toString();
+  }
+
+  /// Whether [path] is a match screen, optionally a given match's.
+  static bool isBattleMatch(String path, [String? matchId]) {
+    const prefix = '/battle/match/';
+    if (!path.startsWith(prefix)) return false;
+    if (matchId == null) return true;
+    final rest = path.substring(prefix.length);
+    final id = Uri.decodeComponent(rest.split('/').first);
+    return id == matchId;
+  }
 
   /// Screens that only exist to get the user somewhere else. Being on one never
   /// counts as a destination to come back to.
@@ -103,6 +132,10 @@ RouteDecision decideRoute({
       return (redirect: null, pending: null);
   }
 }
+
+/// The path of the top-most screen, pushed or not, e.g. `/battle/search`.
+String currentPath(GoRouter router) =>
+    router.routerDelegate.currentConfiguration.isEmpty ? '' : router.state.uri.path;
 
 /// Kept for callers that only care about the session.
 String? authRedirect(AsyncValue<Session> session, String location) =>
@@ -221,6 +254,18 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '${Routes.practice}/:sessionId',
         builder: (_, state) => PracticeScreen(sessionId: state.pathParameters['sessionId']!),
+      ),
+      // Battles run full screen above the tabs; the search keeps going when its screen closes.
+      GoRoute(path: Routes.battleSearch, builder: (_, _) => const SearchScreen()),
+      GoRoute(
+        path: '/battle/match/:matchId',
+        builder: (_, state) => MatchScreen(matchId: state.pathParameters['matchId']!),
+        routes: [
+          GoRoute(
+            path: 'review',
+            builder: (_, state) => ReviewScreen(matchId: state.pathParameters['matchId']!),
+          ),
+        ],
       ),
       GoRoute(path: '/j/:code', redirect: (_, state) => DeepLinks.join(state)),
       GoRoute(path: '/t/:id', redirect: (_, state) => DeepLinks.tournament(state)),

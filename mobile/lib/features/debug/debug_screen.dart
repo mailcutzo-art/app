@@ -92,7 +92,7 @@ class _DebugScreenState extends ConsumerState<DebugScreen> {
             const SizedBox(height: AppSpacing.xl),
             ToggleRow(
               title: 'Demo data',
-              subtitle: 'Sample questions for Learn and practice, no server needed',
+              subtitle: 'Sample data for Learn, practice and battles, no server needed',
               icon: AppIcons.sparkles,
               value: ref.watch(demoDataProvider),
               margin: EdgeInsets.zero,

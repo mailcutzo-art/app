@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/features/learn/data/learn_models.dart';
 import 'package:quiz_app/features/learn/tip_actions.dart';
 import 'package:quiz_app/features/practice/data/practice_models.dart';
@@ -101,10 +100,10 @@ void main() {
       );
     });
 
-    test('battle opens the Battle tab', () {
+    test('battle opens the Battle tab on the tip\'s subject and chapter', () {
       expect(
         tipDestination(_tip(TipAction.battle, {'subject': 'physics', 'chapter': 'kinematics'})),
-        const TipOpens(Routes.battle),
+        const TipOpens('/battle?subject=physics&chapter=kinematics'),
       );
     });
 
