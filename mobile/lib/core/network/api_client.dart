@@ -1,17 +1,33 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/env.dart';
 import '../auth/token_store.dart';
+import '../device/app_build.dart';
 import 'app_failure.dart';
+import 'server_signals.dart';
 
 /// Marks a request that must not carry or refresh the access token.
 const skipAuth = 'skip_auth';
 
-/// Called when the refresh token is rejected: the session is over.
-typedef SessionExpiredCallback = void Function();
+/// Why a session ended without the user asking.
+@immutable
+class SessionEnd {
+  const SessionEnd({this.reason, this.ban});
+
+  /// The server's revoke reason (`signed_out`, `session_limit`, `refresh_reuse`, …), if known.
+  final String? reason;
+
+  /// Set when the account is suspended: `reason`, `until` and `appeal` from the server.
+  final Map<String, Object?>? ban;
+}
+
+/// Called when the session is over: the refresh token was rejected, the
+/// session was revoked, or the account was suspended.
+typedef SessionExpiredCallback = void Function(SessionEnd end);
 
 /// Thin wrapper over Dio that returns decoded JSON or throws [AppFailure].
 class ApiClient {
@@ -96,14 +112,24 @@ class AuthInterceptor extends QueuedInterceptor {
   @override
   Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     final options = err.requestOptions;
-    final unauthorized = err.response?.statusCode == 401;
-    if (!unauthorized || options.extra[skipAuth] == true || options.extra['retried'] == true) {
+    final status = err.response?.statusCode;
+    if (status == 403 && options.extra[skipAuth] != true) {
+      final failure = failureFromDio(err);
+      if (failure is ForbiddenFailure && failure.code == 'ACCOUNT_BANNED') {
+        await tokens.clear();
+        onSessionExpired(SessionEnd(ban: failure.details));
+      }
+      return handler.next(err);
+    }
+    if (status != 401 || options.extra[skipAuth] == true || options.extra['retried'] == true) {
       return handler.next(err);
     }
     final sentWith = options.headers['Authorization'];
     try {
       // Another request may already have refreshed while this one waited.
-      if (sentWith == 'Bearer ${tokens.accessToken}') await _refresh();
+      if (sentWith == 'Bearer ${tokens.accessToken}') {
+        await _refresh(revokedBecause: _revokeReason(err.response));
+      }
       options
         ..headers['Authorization'] = 'Bearer ${tokens.accessToken}'
         ..extra['retried'] = true;
@@ -116,7 +142,9 @@ class AuthInterceptor extends QueuedInterceptor {
     }
   }
 
-  Future<void> _refresh() async {
+  /// [revokedBecause] is the reason the server gave for revoking the session,
+  /// passed on if the refresh confirms that the session is over.
+  Future<void> _refresh({String? revokedBecause}) async {
     final refreshToken = await tokens.readRefreshToken();
     if (refreshToken == null) throw const UnauthorizedFailure();
     try {
@@ -142,11 +170,62 @@ class AuthInterceptor extends QueuedInterceptor {
       final failure = failureFromDio(e);
       if (failure is UnauthorizedFailure || failure is ForbiddenFailure) {
         await tokens.clear();
-        onSessionExpired();
+        final banned = failure is ForbiddenFailure && failure.code == 'ACCOUNT_BANNED';
+        onSessionExpired(
+          banned
+              ? SessionEnd(ban: failure.details)
+              : SessionEnd(reason: revokedBecause ?? failure.code),
+        );
         throw const UnauthorizedFailure();
       }
       throw failure;
     }
+  }
+
+  static String? _revokeReason(Response<Object?>? response) => switch (response?.data) {
+    {'error': {'code': 'SESSION_REVOKED', 'details': {'reason': final String reason}}} => reason,
+    _ => null,
+  };
+}
+
+/// Sends this app's build number with every request, so the server can
+/// answer 426 when the build is too old to keep playing.
+class BuildHeaderInterceptor extends Interceptor {
+  BuildHeaderInterceptor(this.build);
+
+  final Future<int> Function() build;
+
+  @override
+  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    try {
+      final number = await build();
+      if (number > 0) options.headers['X-App-Build'] = '$number';
+    } on Object {
+      // Unknown build (e.g. in tests): send nothing rather than a wrong number.
+    }
+    handler.next(options);
+  }
+}
+
+/// Reports app-wide conditions seen on any response: this build is too old
+/// (426) or the service is in maintenance (503 `MAINTENANCE`).
+class ServerSignalInterceptor extends Interceptor {
+  ServerSignalInterceptor({required this.onUpdateRequired, required this.onMaintenance});
+
+  final void Function() onUpdateRequired;
+  final void Function() onMaintenance;
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    switch (failureFromDio(err)) {
+      case UpgradeRequiredFailure():
+        onUpdateRequired();
+      case MaintenanceFailure():
+        onMaintenance();
+      default:
+        break;
+    }
+    handler.next(err);
   }
 }
 
@@ -158,17 +237,24 @@ BaseOptions _baseOptions(String baseUrl) => BaseOptions(
   contentType: Headers.jsonContentType,
 );
 
-/// Fires when the server rejects the refresh token. The session controller
-/// listens and signs the user out.
+/// Fires when the session ends without the user asking (refresh token
+/// rejected, session revoked, account suspended). The session controller
+/// listens, reads [SessionExpiredSignal.last], and signs the user out.
 final sessionExpiredProvider = NotifierProvider<SessionExpiredSignal, int>(
   SessionExpiredSignal.new,
 );
 
 class SessionExpiredSignal extends Notifier<int> {
+  /// Why the most recent end happened.
+  SessionEnd last = const SessionEnd();
+
   @override
   int build() => 0;
 
-  void fire() => state++;
+  void fire([SessionEnd end = const SessionEnd()]) {
+    last = end;
+    state++;
+  }
 }
 
 final apiClientProvider = Provider<ApiClient>((ref) {
@@ -177,14 +263,22 @@ final apiClientProvider = Provider<ApiClient>((ref) {
   final options = _baseOptions(env.apiBaseUrl);
   final plain = Dio(options);
   final dio = Dio(options);
-  dio.interceptors.add(
-    AuthInterceptor(
-      tokens: tokens,
-      refreshDio: plain,
-      retryDio: plain,
-      onSessionExpired: () => ref.read(sessionExpiredProvider.notifier).fire(),
-    ),
-  );
+  dio.interceptors
+    ..add(BuildHeaderInterceptor(() => ref.read(appBuildProvider.future)))
+    ..add(
+      ServerSignalInterceptor(
+        onUpdateRequired: () => ref.read(serverSignalsProvider.notifier).updateRequired(),
+        onMaintenance: () => ref.read(serverSignalsProvider.notifier).maintenance(),
+      ),
+    )
+    ..add(
+      AuthInterceptor(
+        tokens: tokens,
+        refreshDio: plain,
+        retryDio: plain,
+        onSessionExpired: (end) => ref.read(sessionExpiredProvider.notifier).fire(end),
+      ),
+    );
   ref.onDispose(() {
     dio.close();
     plain.close();

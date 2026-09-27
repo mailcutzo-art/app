@@ -33,6 +33,35 @@ final class SignedIn extends Session {
   bool get needsOnboarding => !user.onboardingCompleted;
 }
 
+/// The account is suspended. Only the Suspended screen (with Sign out) is
+/// reachable.
+final class Suspended extends Session {
+  const Suspended({this.reason, this.until, this.appeal});
+
+  factory Suspended.fromDetails(Map<String, Object?> details) => Suspended(
+    reason: details['reason'] is String ? details['reason']! as String : null,
+    until: details['until'] is String ? DateTime.tryParse(details['until']! as String) : null,
+    appeal: details['appeal'] is String ? details['appeal']! as String : null,
+  );
+
+  /// `cheating`, `abuse`, `offensive_name` or `other`.
+  final String? reason;
+
+  /// When a temporary suspension ends; null when it's permanent or unknown.
+  final DateTime? until;
+
+  /// Where to appeal (an email address or a web page).
+  final String? appeal;
+}
+
+/// What to tell a user whose session ended without them asking.
+String signedOutMessage(String? reason) => switch (reason) {
+  'signed_out' => 'You were signed out from another device.',
+  'session_limit' => 'You signed in on too many devices, so this one was signed out.',
+  'refresh_reuse' => 'For your safety, please sign in again.',
+  _ => 'Your session has ended. Please sign in again.',
+};
+
 /// Owns the signed-in state. Restores a stored session on start, signs in
 /// with Google (or dev login), keeps the user fresh, and signs out.
 class SessionController extends AsyncNotifier<Session> {
@@ -43,8 +72,12 @@ class SessionController extends AsyncNotifier<Session> {
   @override
   Future<Session> build() async {
     ref.listen(sessionExpiredProvider, (_, _) {
+      final end = ref.read(sessionExpiredProvider.notifier).last;
       _clearSnapshot();
-      state = const AsyncData(SignedOut(message: 'Your session has ended. Please sign in again.'));
+      final ban = end.ban;
+      state = AsyncData(
+        ban != null ? Suspended.fromDetails(ban) : SignedOut(message: signedOutMessage(end.reason)),
+      );
     });
 
     if (!await _repo.hasStoredSession()) return const SignedOut();
@@ -56,6 +89,11 @@ class SessionController extends AsyncNotifier<Session> {
       await ref.read(tokenStoreProvider).clear();
       await _clearSnapshot();
       return const SignedOut();
+    } on ForbiddenFailure catch (failure) {
+      if (failure.code != 'ACCOUNT_BANNED') rethrow;
+      await ref.read(tokenStoreProvider).clear();
+      await _clearSnapshot();
+      return Suspended.fromDetails(failure.details);
     } on AppFailure catch (failure) {
       // Offline or server trouble: keep the user in with their cached profile.
       final cached = await _readSnapshot();
@@ -85,6 +123,14 @@ class SessionController extends AsyncNotifier<Session> {
     state = AsyncData(SignedIn(me));
   }
 
+  /// Leaves the Suspended screen. The server session is already over.
+  Future<void> leaveSuspended() async {
+    await ref.read(tokenStoreProvider).clear();
+    await ref.read(googleAuthProvider).signOut();
+    await _clearSnapshot();
+    state = const AsyncData(SignedOut());
+  }
+
   Future<void> signOut() async {
     await _repo.signOut();
     await ref.read(googleAuthProvider).signOut();
@@ -93,7 +139,16 @@ class SessionController extends AsyncNotifier<Session> {
   }
 
   Future<void> _signIn(Future<Me> Function() request) async {
-    final me = await request();
+    final Me me;
+    try {
+      me = await request();
+    } on ForbiddenFailure catch (failure) {
+      // A suspended account gets the Suspended screen (reason, end date,
+      // appeal), not a one-line error on the sign-in screen.
+      if (failure.code != 'ACCOUNT_BANNED') rethrow;
+      state = AsyncData(Suspended.fromDetails(failure.details));
+      return;
+    }
     await _saveSnapshot(me);
     state = AsyncData(SignedIn(me));
   }
@@ -131,8 +186,18 @@ final currentUserIdProvider = Provider<String?>(
 );
 
 /// The signed-in user; only valid below the auth gate.
-final meProvider = Provider<Me>((ref) {
-  final session = ref.watch(sessionProvider).value;
-  if (session is SignedIn) return session.user;
-  throw StateError('meProvider read while signed out');
-});
+final meProvider = NotifierProvider<MeController, Me>(MeController.new);
+
+class MeController extends Notifier<Me> {
+  Me? _last;
+
+  @override
+  Me build() {
+    final session = ref.watch(sessionProvider).value;
+    if (session is SignedIn) return _last = session.user;
+    // Signing out: screens below the gate still rebuild while the router
+    // animates them away. They keep the last user for those frames.
+    if (_last case final last?) return last;
+    throw StateError('meProvider read while signed out');
+  }
+}

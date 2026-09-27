@@ -12,6 +12,7 @@ import 'package:quiz_app/app/env.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/auth/session.dart';
 import 'package:quiz_app/core/auth/user.dart';
+import 'package:quiz_app/core/config/app_config.dart';
 import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/core/network/connectivity.dart';
 import 'package:quiz_app/core/storage/prefs.dart';
@@ -42,6 +43,9 @@ class FakeSessionController extends SessionController {
 
   @override
   Future<Session> build() async => initial;
+
+  @override
+  Future<void> signOut() async => state = const AsyncData(SignedOut());
 }
 
 /// Onboarding API stand-in: every well-formed handle is available.
@@ -59,13 +63,29 @@ Future<SharedPreferences> testPrefs([Map<String, Object> values = const {}]) {
   return SharedPreferences.getInstance();
 }
 
+/// Config stand-in: a fixed answer, no network.
+class FakeConfigController extends ConfigController {
+  FakeConfigController([this.config = const AppConfig()]);
+
+  final AppConfig config;
+
+  @override
+  Future<AppConfig> build() async => config;
+
+  @override
+  Future<void> recheck() async {}
+}
+
 /// Everything the app reads at startup, faked. [learn] defaults to the
-/// sample data and [online] to a device that stays online.
+/// sample data, [online] to a device that stays online, and [config] and
+/// [build] to an open app on a current build.
 List<Override> testOverrides({
   required Session session,
   required SharedPreferences prefs,
   LearnRepository? learn,
   Stream<bool>? online,
+  AppConfig config = const AppConfig(),
+  int build = 1,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(() => FakeSessionController(session)),
@@ -73,6 +93,8 @@ List<Override> testOverrides({
   sharedPrefsProvider.overrideWithValue(prefs),
   learnRepositoryProvider.overrideWithValue(learn ?? FakeLearnRepository.seeded()),
   connectivityProvider.overrideWith((ref) => online ?? Stream.value(true)),
+  configProvider.overrideWith(() => FakeConfigController(config)),
+  appBuildProvider.overrideWith((ref) async => build),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.

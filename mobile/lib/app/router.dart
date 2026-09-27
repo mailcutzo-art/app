@@ -1,8 +1,13 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/auth/session.dart';
+import '../core/config/app_config.dart';
 import '../features/arena/arena_screen.dart';
 import '../features/auth/sign_in_screen.dart';
 import '../features/battle/battle_screen.dart';
@@ -15,12 +20,18 @@ import '../features/practice/practice_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/social/social_screen.dart';
 import '../features/splash/splash_screen.dart';
+import '../features/system/maintenance_screen.dart';
+import '../features/system/suspended_screen.dart';
+import '../features/system/update_required_screen.dart';
 import 'shell.dart';
 
 abstract final class Routes {
   static const splash = '/splash';
   static const signIn = '/sign-in';
   static const onboarding = '/onboarding';
+  static const update = '/update';
+  static const maintenance = '/maintenance';
+  static const suspended = '/suspended';
   static const home = '/home';
   static const learn = '/learn';
   static const battle = '/battle';
@@ -37,49 +48,183 @@ abstract final class Routes {
 
   /// A practice session, full screen above the tabs: `/practice/:sessionId`.
   static String practiceSession(String sessionId) => '$practice/$sessionId';
+
+  /// Screens that only exist to get the user somewhere else. Being on one never
+  /// counts as a destination to come back to.
+  static const gates = {splash, signIn, onboarding, update, maintenance, suspended};
 }
 
-/// Where the auth state requires the user to be, or null to stay put.
-/// Pure, so the whole gate is unit-testable.
-String? authRedirect(AsyncValue<Session> session, String location) {
+/// Where the router should send the user, and the destination to resume once
+/// the gates are passed (a deep link or notification opened while signed out,
+/// still loading, or before onboarding).
+typedef RouteDecision = ({String? redirect, String? pending});
+
+/// The whole navigation gate as one pure function, so it is unit-testable:
+/// app gates (update, maintenance) first, then the session, and finally the
+/// pending destination once the user is fully signed in.
+RouteDecision decideRoute({
+  required AppGate gate,
+  required AsyncValue<Session> session,
+  required String location,
+  String? pending,
+}) {
+  final path = Uri.parse(location).path;
+  final isDestination = !Routes.gates.contains(path) && path != Routes.debug;
+  final remember = isDestination ? location : pending;
+
+  switch (gate) {
+    case AppGate.updateRequired:
+      return (redirect: path == Routes.update ? null : Routes.update, pending: remember);
+    case AppGate.maintenance:
+      const allowed = {Routes.maintenance, Routes.debug};
+      return (redirect: allowed.contains(path) ? null : Routes.maintenance, pending: remember);
+    case AppGate.open:
+      break;
+  }
+
   final value = session.value;
   if (value == null) {
     // Still restoring, or restore failed with nothing cached: the splash
     // screen shows progress or a retry.
-    return location == Routes.splash ? null : Routes.splash;
+    return (redirect: path == Routes.splash ? null : Routes.splash, pending: remember);
   }
   switch (value) {
+    case Suspended():
+      // Nothing else is reachable, and nothing is worth remembering.
+      const allowed = {Routes.suspended, Routes.debug};
+      return (redirect: allowed.contains(path) ? null : Routes.suspended, pending: null);
     case SignedOut():
       const open = {Routes.signIn, Routes.debug};
-      return open.contains(location) ? null : Routes.signIn;
+      return (redirect: open.contains(path) ? null : Routes.signIn, pending: remember);
     case SignedIn(needsOnboarding: true):
-      return location == Routes.onboarding ? null : Routes.onboarding;
+      return (redirect: path == Routes.onboarding ? null : Routes.onboarding, pending: remember);
     case SignedIn():
-      const gates = {Routes.splash, Routes.signIn, Routes.onboarding};
-      return gates.contains(location) ? Routes.home : null;
+      if (Routes.gates.contains(path)) return (redirect: pending ?? Routes.home, pending: null);
+      return (redirect: null, pending: null);
   }
 }
 
-final routerProvider = Provider<GoRouter>((ref) {
-  final session = ValueNotifier<AsyncValue<Session>>(ref.read(sessionProvider));
-  ref
-    ..listen(sessionProvider, (_, next) => session.value = next)
-    ..onDispose(session.dispose);
+/// Kept for callers that only care about the session.
+String? authRedirect(AsyncValue<Session> session, String location) =>
+    decideRoute(gate: AppGate.open, session: session, location: location).redirect;
 
-  return GoRouter(
+/// The destination to open once sign-in and onboarding are done. A plain
+/// holder rather than reactive state: only the router's redirect reads and
+/// writes it. It is saved for 30 minutes, so an invite link survives the app
+/// being closed during sign-in or onboarding.
+class PendingDestination {
+  PendingDestination({this._prefs, this._clock = DateTime.now}) {
+    _location = _load();
+  }
+
+  static const key = 'router.pending';
+  static const ttl = Duration(minutes: 30);
+
+  final SharedPreferences? _prefs;
+  final DateTime Function() _clock;
+  String? _location;
+
+  String? get location => _location;
+
+  set location(String? value) {
+    if (value == _location) return;
+    _location = value;
+    final prefs = _prefs;
+    if (prefs == null) return;
+    if (value == null) {
+      unawaited(prefs.remove(key));
+    } else {
+      unawaited(
+        prefs.setString(
+          key,
+          jsonEncode({'location': value, 'at': _clock().toUtc().toIso8601String()}),
+        ),
+      );
+    }
+  }
+
+  String? _load() {
+    try {
+      final raw = _prefs?.getString(key);
+      if (raw == null) return null;
+      final saved = jsonDecode(raw);
+      if (saved case {'location': final String location, 'at': final String at}) {
+        final savedAt = DateTime.tryParse(at);
+        if (savedAt != null && _clock().difference(savedAt) < ttl) return location;
+      }
+    } on FormatException {
+      // Ignore an unreadable entry.
+    }
+    return null;
+  }
+}
+
+final pendingDestinationProvider = Provider<PendingDestination>((ref) {
+  SharedPreferences? prefs;
+  try {
+    prefs = ref.read(sharedPrefsProvider);
+  } on Object {
+    prefs = null; // Not provided (tests): keep it in memory only.
+  }
+  return PendingDestination(prefs: prefs);
+});
+
+/// Links shared outside the app. Each maps onto the tab that handles it; the
+/// tab reads the query parameter when its feature is available.
+abstract final class DeepLinks {
+  /// `/j/K7M2QX`: join a friend or group room by code.
+  static String? join(GoRouterState state) =>
+      '${Routes.battle}?join=${Uri.encodeQueryComponent(state.pathParameters['code'] ?? '')}';
+
+  /// `/t/<id>`: a tournament.
+  static String? tournament(GoRouterState state) =>
+      '${Routes.arena}?t=${Uri.encodeQueryComponent(state.pathParameters['id'] ?? '')}';
+
+  /// `/u/<handle>`: a player's profile.
+  static String? user(GoRouterState state) =>
+      '${Routes.social}?u=${Uri.encodeQueryComponent(state.pathParameters['handle'] ?? '')}';
+}
+
+final routerProvider = Provider<GoRouter>((ref) {
+  final refresh = ValueNotifier<int>(0);
+  void bump() => refresh.value++;
+  ref
+    ..listen(sessionProvider, (_, _) => bump())
+    ..listen(appGateProvider, (_, _) => bump())
+    ..onDispose(refresh.dispose);
+
+  final router = GoRouter(
     initialLocation: Routes.home,
-    refreshListenable: session,
-    redirect: (context, state) => authRedirect(session.value, state.matchedLocation),
+    refreshListenable: refresh,
+    redirect: (context, state) {
+      final pending = ref.read(pendingDestinationProvider);
+      final decision = decideRoute(
+        gate: ref.read(appGateProvider),
+        session: ref.read(sessionProvider),
+        location: state.uri.toString(),
+        pending: pending.location,
+      );
+      pending.location = decision.pending;
+      return decision.redirect;
+    },
+    // Unknown or stale links land on Home instead of an error page.
+    onException: (context, state, router) => router.go(Routes.home),
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashScreen()),
       GoRoute(path: Routes.signIn, builder: (_, _) => const SignInScreen()),
       GoRoute(path: Routes.onboarding, builder: (_, _) => const OnboardingScreen()),
+      GoRoute(path: Routes.update, builder: (_, _) => const UpdateRequiredScreen()),
+      GoRoute(path: Routes.maintenance, builder: (_, _) => const MaintenanceScreen()),
+      GoRoute(path: Routes.suspended, builder: (_, _) => const SuspendedScreen()),
       GoRoute(path: Routes.profile, builder: (_, _) => const ProfileScreen()),
       GoRoute(path: Routes.debug, builder: (_, _) => const DebugScreen()),
       GoRoute(
         path: '${Routes.practice}/:sessionId',
         builder: (_, state) => PracticeScreen(sessionId: state.pathParameters['sessionId']!),
       ),
+      GoRoute(path: '/j/:code', redirect: (_, state) => DeepLinks.join(state)),
+      GoRoute(path: '/t/:id', redirect: (_, state) => DeepLinks.tournament(state)),
+      GoRoute(path: '/u/:handle', redirect: (_, state) => DeepLinks.user(state)),
       StatefulShellRoute(
         builder: (context, state, shell) => AppShell(shell: shell),
         navigatorContainerBuilder: (context, shell, children) =>
@@ -116,4 +261,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
+  ref.onDispose(router.dispose);
+  return router;
 });
