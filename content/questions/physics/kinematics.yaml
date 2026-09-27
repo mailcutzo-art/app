@@ -2,121 +2,1088 @@ subject: physics
 chapter:
   slug: kinematics
   name: Motion in a Straight Line
-  order: 1
+  order: 2
+  classes: [11]
   topics:
-    - slug: speed-velocity
-      name: Speed and velocity
-    - slug: equations-of-motion
-      name: Equations of motion
+    - slug: position-displacement
+      name: Position, path length and displacement
+    - slug: average-speed-velocity
+      name: Average speed and average velocity
+    - slug: instantaneous-velocity
+      name: Instantaneous velocity and speed
+    - slug: acceleration
+      name: Acceleration
+    - slug: motion-graphs
+      name: Position–time and velocity–time graphs
+    - slug: kinematic-equations
+      name: Kinematic equations for uniform acceleration
+    - slug: free-fall
+      name: Free fall and vertical motion under gravity
+    - slug: non-uniform-acceleration
+      name: Non-uniform acceleration (calculus methods)
+    - slug: relative-velocity
+      name: Relative velocity in one dimension
+    - slug: stopping-reaction
+      name: Stopping distance and reaction time
 questions:
+
   - id: phy-kin-001
-    topic: speed-velocity
-    category: concept
-    difficulty: 1
+    topic: position-displacement
+    subtopic: Distance and displacement on a curved path
+    concept: Half lap of a circle gives distance πR and displacement 2R
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
     battle: true
-    stem: A runner completes one full lap of a circular track and stops at the start. What is the runner's displacement?
+    formula: distance = πR, |displacement| = 2R
+    tags: [distance, displacement, circular-path]
+    stem: An athlete runs along a circular track of radius 21 m from one end of a diameter to the other end. What are the distance covered and the magnitude of displacement?
     options:
-      - Zero
-      - Equal to the circumference
-      - Equal to the diameter
-      - Equal to the radius
-    answer: 0
-    explanation: Displacement is the straight-line change in position. The runner ends where they started, so the displacement is zero even though the distance covered is one full circumference.
+      - 66 m and zero
+      - 66 m and 42 m
+      - 42 m and 66 m
+      - 132 m and 42 m
+    answer: 1
+    explanation: "Distance is the length of the path actually followed, here half the circumference: πR = (22/7) × 21 = 66 m. Displacement is the straight line from start to finish, which is the diameter 2R = 42 m. Swapping the two values is the usual slip; zero displacement would need the athlete to return to the start."
 
   - id: phy-kin-002
-    topic: speed-velocity
-    category: numerical
-    difficulty: 2
-    battle: true
-    stem: A car covers 60 km at 30 km h^{-1} and the next 60 km at 60 km h^{-1}. What is its average speed for the whole trip?
+    topic: position-displacement
+    subtopic: Path length versus displacement
+    concept: Magnitude of displacement can never exceed the path length
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [distance, displacement, trap]
+    stem: Which one of the following statements about a particle moving along a straight line is correct?
     options:
-      - 45 km h^{-1}
-      - 50 km h^{-1}
-      - 40 km h^{-1}
-      - 35 km h^{-1}
-    answer: 2
-    explanation: Average speed = total distance ÷ total time = 120 km ÷ (2 h + 1 h) = 40 km h^{-1}. It is less than the simple mean of 45 km h^{-1} because more time is spent at the lower speed.
+      - The magnitude of its displacement can never be greater than the path length covered
+      - Its path length can be negative when it moves along the negative x direction
+      - Its displacement is always equal to its path length
+      - Its path length can be zero even when its displacement is not zero
+    answer: 0
+    explanation: Path length is the total length of the route followed; it is a positive scalar that never decreases. Displacement is the change in position (x_2 − x_1) and can be positive, negative or zero. Because the straight line between two points is the shortest route, |displacement| ≤ path length, with equality only when the particle never turns back. A non-zero displacement needs some path to be covered, so the path length cannot be zero, and path length is never negative.
 
   - id: phy-kin-003
-    topic: speed-velocity
+    topic: position-displacement
+    subtopic: Frame of reference and origin
+    concept: Displacement does not depend on the choice of origin
     category: concept
-    difficulty: 2
-    battle: true
-    stem: What does the slope of a position–time graph give at any instant?
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [frame-of-reference, displacement, origin]
+    stem: |-
+      Assertion (A): The displacement of a particle between two instants does not depend on where the origin of the x-axis is chosen.
+      Reason (R): Displacement is the difference of two position coordinates measured from the same origin, so shifting the origin changes both coordinates by the same amount.
     options:
-      - Acceleration
-      - Instantaneous velocity
-      - Displacement
-      - Distance travelled
-    answer: 1
-    explanation: The slope of a position–time graph is dx/dt, the velocity at that instant. The slope of a velocity–time graph gives the acceleration.
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: If the origin is shifted by d, every position coordinate changes from x to x − d. The displacement Δx = (x_2 − d) − (x_1 − d) = x_2 − x_1 is unchanged. Positions depend on the choice of origin, but differences of positions do not; this is exactly what R states, so R correctly explains A.
 
   - id: phy-kin-004
-    topic: speed-velocity
-    category: factual
-    difficulty: 1
+    topic: position-displacement
+    subtopic: Displacement with change of direction
+    concept: Signed displacement and path length for back-and-forth motion on the x-axis
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
     battle: true
-    stem: What is the SI unit of velocity?
+    formula: Δx = x_{final} − x_{initial}
+    tags: [displacement, path-length, sign-convention]
+    stem: A car moves along the x-axis from x = +40 m to x = −20 m and then back to x = +10 m. What are its displacement and path length?
     options:
-      - m s^{-2}
-      - km h^{-1}
-      - m s
-      - m s^{-1}
-    answer: 3
-    explanation: Velocity is displacement per unit time, so its SI unit is the metre per second (m s^{-1}). The unit m s^{-2} belongs to acceleration, and km h^{-1} is not an SI unit.
+      - −10 m and 70 m
+      - −30 m and 30 m
+      - −30 m and 90 m
+      - +30 m and 90 m
+    answer: 2
+    explanation: "Displacement depends only on the end points: Δx = (+10) − (+40) = −30 m, the minus sign showing it points along −x. Path length adds every stretch: 40 − (−20) = 60 m going left, then 10 − (−20) = 30 m going right, total 90 m. Taking the magnitude of displacement as the path length ignores the turn-back."
 
   - id: phy-kin-005
-    topic: equations-of-motion
+    topic: average-speed-velocity
+    subtopic: Average speed over equal distances
+    concept: Equal distances at two speeds give the harmonic mean
     category: numerical
+    format: direct
     difficulty: 2
+    time: 40
+    ncert: false
     battle: true
-    stem: A car starts from rest and accelerates uniformly at 2 m s^{-2}. How far does it travel in 5 s?
+    formula: v_{avg} = 2v_1v_2/(v_1 + v_2)
+    tags: [average-speed, harmonic-mean, trap]
+    stem: A bus covers the first half of a journey at 40 km h^{-1} and the second half of the distance at 60 km h^{-1}. What is its average speed?
     options:
-      - 10 m
-      - 25 m
-      - 50 m
-      - 100 m
-    answer: 1
-    explanation: Starting from rest (u = 0), s = ut + ½at^2 = ½ × 2 × 5^2 = 25 m.
+      - 52 km h^{-1}
+      - 45 km h^{-1}
+      - 50 km h^{-1}
+      - 48 km h^{-1}
+    answer: 3
+    explanation: For two equal distances d, the total time is d/40 + d/60 = d/24, so the average speed is 2d ÷ (d/24) = 48 km h^{-1}. Equivalently v_{avg} = 2v_1v_2/(v_1 + v_2) = 4800/100 = 48 km h^{-1}. The simple mean 50 km h^{-1} is wrong because the bus spends more time at the lower speed.
 
   - id: phy-kin-006
-    topic: equations-of-motion
-    category: numerical
+    topic: average-speed-velocity
+    subtopic: Average speed over equal distances and equal times
+    concept: Equal-time halves give the arithmetic mean, not the geometric mean
+    category: concept
+    format: statement-pair
     difficulty: 3
-    battle: true
-    stem: A ball is thrown straight up at 20 m s^{-1}. Taking g = 10 m s^{-2}, how high does it rise?
+    time: 55
+    ncert: false
+    battle: false
+    tags: [average-speed, arithmetic-mean, harmonic-mean]
+    stem: |-
+      Statement I: If a body covers two equal distances at speeds v_1 and v_2, its average speed is 2v_1v_2/(v_1 + v_2).
+      Statement II: If a body moves for two equal time intervals at speeds v_1 and v_2, its average speed is √(v_1v_2).
     options:
-      - 10 m
-      - 40 m
-      - 2 m
-      - 20 m
-    answer: 3
-    explanation: At the highest point v = 0, so v^2 = u^2 − 2gh gives h = u^2/2g = 400/20 = 20 m.
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Equal distances d: total time = d/v_1 + d/v_2, so v_{avg} = 2d ÷ (d/v_1 + d/v_2) = 2v_1v_2/(v_1 + v_2), the harmonic mean; Statement I is correct. Equal times t: total distance = v_1t + v_2t, so v_{avg} = (v_1 + v_2)/2, the arithmetic mean, not the geometric mean √(v_1v_2); Statement II is incorrect."
 
   - id: phy-kin-007
-    topic: equations-of-motion
-    category: concept
-    difficulty: 2
-    battle: true
-    stem: What does the velocity–time graph of a body accelerating uniformly from rest look like?
+    topic: average-speed-velocity
+    subtopic: Round trip
+    concept: Round trip gives zero average velocity but non-zero average speed
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [average-speed, average-velocity, round-trip]
+    stem: A man walks 2 km along a straight road to a shop at 4 km h^{-1}, and immediately walks back home along the same road at 6 km h^{-1}. What are his average speed and the magnitude of his average velocity for the whole trip?
     options:
-      - A straight line through the origin
-      - A horizontal line
-      - A parabola
-      - A curve that levels off
-    answer: 0
-    explanation: From rest with constant acceleration, v = at, so velocity grows in proportion to time. The graph is a straight line through the origin, and its slope is the acceleration.
+      - 5 km h^{-1} and 1 km h^{-1}
+      - 4.8 km h^{-1} and zero
+      - 4.8 km h^{-1} and 4.8 km h^{-1}
+      - 5 km h^{-1} and zero
+    answer: 1
+    explanation: Time out = 2/4 = 0.5 h; time back = 2/6 = 1/3 h; total = 5/6 h. Average speed = total path ÷ total time = 4 km ÷ (5/6) h = 4.8 km h^{-1}. He ends where he started, so the displacement and hence the average velocity are zero. The mean of the speeds (5 km h^{-1}) ignores the unequal times.
 
   - id: phy-kin-008
-    topic: equations-of-motion
+    topic: average-speed-velocity
+    subtopic: Required speed for a target average speed
+    concept: An average of twice the first-half speed would need infinite speed in the second half
     category: application
-    difficulty: 3
-    battle: true
-    stem: Two stones are dropped from the same height, one 1 s after the other. Ignoring air resistance, what happens to the gap between them as they fall?
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [average-speed, trap, harmonic-mean]
+    stem: A car covers the first half of a certain distance at 20 km h^{-1}. At what speed must it cover the second half so that its average speed for the whole distance is 40 km h^{-1}?
     options:
-      - It stays the same
-      - It shrinks
-      - It grows
-      - It grows, then shrinks
+      - No finite speed is enough
+      - 120 km h^{-1}
+      - 60 km h^{-1}
+      - 80 km h^{-1}
+    answer: 0
+    explanation: Let each half be d. To average 40 km h^{-1} over 2d the total time must be 2d/40 = d/20. But the first half alone already takes d/20 at 20 km h^{-1}. The second half would have to take zero time, i.e. infinite speed. The tempting answer 60 km h^{-1} comes from treating the average as the arithmetic mean of the two speeds.
+
+  - id: phy-kin-009
+    topic: average-speed-velocity
+    subtopic: Average velocity from a position function
+    concept: Average velocity equals Δx/Δt computed from x(t) at the two instants
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: v_{avg} = [x(t_2) − x(t_1)]/(t_2 − t_1)
+    tags: [average-velocity, position-function]
+    stem: The position of a particle is x = 5 + 2t + 3t^2, where x is in metres and t in seconds. What is its average velocity between t = 1 s and t = 3 s?
+    options:
+      - 20 m s^{-1}
+      - 14 m s^{-1}
+      - 19 m s^{-1}
+      - 8 m s^{-1}
+    answer: 1
+    explanation: x(1) = 5 + 2 + 3 = 10 m and x(3) = 5 + 6 + 27 = 38 m. Average velocity = (38 − 10)/(3 − 1) = 14 m s^{-1}. 20 m s^{-1} and 8 m s^{-1} are the instantaneous velocities (v = 2 + 6t) at t = 3 s and t = 1 s, and 19 m s^{-1} wrongly divides x(3) by the interval.
+
+  - id: phy-kin-010
+    topic: average-speed-velocity
+    subtopic: Average speed versus average velocity
+    concept: Average speed is at least the magnitude of average velocity
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [average-speed, average-velocity, trap]
+    stem: |-
+      Consider the following statements for motion along a straight line over a time interval.
+      I. The average speed is always greater than or equal to the magnitude of the average velocity.
+      II. The average velocity can be zero while the average speed is not zero.
+      III. The average speed can be zero while the average velocity is not zero.
+      IV. If the body never reverses its direction, the average speed equals the magnitude of the average velocity.
+      Which of the statements are correct?
+    options:
+      - I and II only
+      - II and III only
+      - I, III and IV only
+      - I, II and IV only
+    answer: 3
+    explanation: Average speed = path length/time and |average velocity| = |displacement|/time. Since path length ≥ |displacement|, statement I holds, with equality when there is no reversal (IV). A round trip gives zero displacement but a non-zero path (II). Zero average speed means zero path length, which forces zero displacement, so III is false.
+
+  - id: phy-kin-011
+    topic: instantaneous-velocity
+    subtopic: Velocity from a position function
+    concept: Instantaneous velocity is the time derivative of position
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: v = dx/dt
+    tags: [instantaneous-velocity, differentiation]
+    stem: The position of a particle moving along the x-axis is x = 2t^3 − 6t^2 + 5, with x in metres and t in seconds. What is its velocity at t = 3 s?
+    options:
+      - 5 m s^{-1}
+      - 24 m s^{-1}
+      - 54 m s^{-1}
+      - 18 m s^{-1}
+    answer: 3
+    explanation: v = dx/dt = 6t^2 − 12t. At t = 3 s, v = 54 − 36 = 18 m s^{-1}. 5 m s^{-1} is just the value of x(3) = 5 m read as a velocity, 54 m s^{-1} keeps only the first term, and 24 is the numerical value of the acceleration (a = 12t − 12) at t = 3 s.
+
+  - id: phy-kin-012
+    topic: instantaneous-velocity
+    subtopic: Measuring instantaneous speed
+    concept: A speedometer shows instantaneous speed
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [speedometer, instantaneous-speed]
+    stem: The reading of a car's speedometer at any moment gives the car's
+    options:
+      - average speed since the start of the trip
+      - instantaneous velocity, including its direction
+      - instantaneous speed
+      - total distance covered so far
     answer: 2
-    explanation: Both stones have the same acceleration g, but the first is always faster by g × 1 s ≈ 10 m s^{-1}. With a constant relative velocity, the gap keeps growing steadily.
+    explanation: A speedometer shows how fast the car is moving at that instant, i.e. the magnitude of instantaneous velocity. It does not show direction, so it is not a velocity reading. The distance covered is shown by the odometer, and the average speed has to be calculated from distance and time.
+
+  - id: phy-kin-013
+    topic: instantaneous-velocity
+    subtopic: Instantaneous speed and velocity
+    concept: Instantaneous speed always equals the magnitude of instantaneous velocity
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [instantaneous-speed, instantaneous-velocity, ncert-line]
+    stem: |-
+      Assertion (A): Instantaneous speed is always equal to the magnitude of instantaneous velocity, although average speed can exceed the magnitude of average velocity.
+      Reason (R): Over an infinitesimally small time interval, the magnitude of the displacement equals the path length.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Over a finite interval a body may turn back, so path length can exceed |displacement| and average speed can exceed |average velocity|. As Δt → 0 the body has no time to turn back, the tiny displacement and tiny path length become equal, and hence instantaneous speed = |instantaneous velocity|. R is exactly the reason for A.
+
+  - id: phy-kin-014
+    topic: instantaneous-velocity
+    subtopic: Slope of the tangent on an x–t graph
+    concept: Instantaneous velocity equals the slope of the tangent to the x–t curve
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: v = slope of tangent = Δx/Δt along the tangent
+    tags: [x-t-graph, tangent, instantaneous-velocity]
+    stem: On the curved x–t graph of a particle, the tangent drawn at the point corresponding to t = 4 s passes through the points (2 s, 0 m) and (6 s, 12 m). What is the instantaneous velocity of the particle at t = 4 s?
+    options:
+      - 6 m s^{-1}
+      - 1.5 m s^{-1}
+      - 2 m s^{-1}
+      - 3 m s^{-1}
+    answer: 3
+    explanation: The instantaneous velocity is the slope of the tangent at that instant. Slope = (12 − 0)/(6 − 2) = 3 m s^{-1}. Dividing 12 m by 6 s (2 m s^{-1}) or by 2 s (6 m s^{-1}) uses a single coordinate instead of the change in both coordinates along the tangent.
+
+  - id: phy-kin-015
+    topic: acceleration
+    subtopic: Sign of acceleration
+    concept: Velocity and acceleration in the same direction means speeding up
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [sign-convention, speeding-up, trap]
+    stem: A car is moving in the −x direction and its acceleration is also in the −x direction. What is happening to the car?
+    options:
+      - It is moving with constant speed
+      - It is speeding up
+      - It is slowing down
+      - It is about to reverse its direction
+    answer: 1
+    explanation: Negative acceleration does not by itself mean slowing down. A body speeds up when velocity and acceleration have the same sign and slows down when they have opposite signs. Here both are negative, so the car's speed increases in the −x direction.
+
+  - id: phy-kin-016
+    topic: acceleration
+    subtopic: Average acceleration during a rebound
+    concept: Average acceleration uses the vector change of velocity, so a reversal adds the speeds
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: a_{avg} = (v − u)/Δt
+    tags: [average-acceleration, rebound, sign-convention, trap]
+    stem: A ball moving at 12 m s^{-1} strikes a wall head-on and rebounds along the same line at 8 m s^{-1}. The contact lasts 0.04 s. What is the average acceleration of the ball during the contact?
+    options:
+      - 500 m s^{-2}, directed away from the wall
+      - 100 m s^{-2}, directed towards the wall
+      - 100 m s^{-2}, directed away from the wall
+      - 500 m s^{-2}, directed towards the wall
+    answer: 0
+    explanation: Take the direction away from the wall as positive. Initial velocity u = −12 m s^{-1}, final velocity v = +8 m s^{-1}. a_{avg} = (v − u)/Δt = (8 − (−12))/0.04 = 20/0.04 = 500 m s^{-2}, positive, i.e. away from the wall. Using the difference of speeds (12 − 8 = 4) gives the wrong value 100 m s^{-2}.
+
+  - id: phy-kin-017
+    topic: acceleration
+    subtopic: Dimensions of acceleration
+    concept: Acceleration has dimensions [M^0 L T^{-2}]
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [dimensions, units]
+    stem: What are the dimensions of acceleration?
+    options:
+      - "[M^1 L^1 T^{-2}]"
+      - "[M^0 L^2 T^{-2}]"
+      - "[M^0 L^1 T^{-2}]"
+      - "[M^0 L^1 T^{-1}]"
+    answer: 2
+    explanation: Acceleration = change in velocity ÷ time = (L T^{-1}) ÷ T = L T^{-2}, so its dimensions are [M^0 L^1 T^{-2}] and its SI unit is m s^{-2}. [M^0 L^1 T^{-1}] is velocity and [M^1 L^1 T^{-2}] is force.
+
+  - id: phy-kin-018
+    topic: acceleration
+    subtopic: Average acceleration with unit conversion
+    concept: Convert km h^{-1} to m s^{-1} before using a = Δv/Δt
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: a = (v − u)/t; 1 km h^{-1} = 5/18 m s^{-1}
+    tags: [average-acceleration, unit-conversion]
+    stem: A car speeds up uniformly from 36 km h^{-1} to 72 km h^{-1} in 5 s. What is its acceleration?
+    options:
+      - 4 m s^{-2}
+      - 2 m s^{-2}
+      - 7.2 m s^{-2}
+      - 1 m s^{-2}
+    answer: 1
+    explanation: 36 km h^{-1} = 10 m s^{-1} and 72 km h^{-1} = 20 m s^{-1}. a = (20 − 10)/5 = 2 m s^{-2}. The value 7.2 comes from dividing 36 km h^{-1} by 5 s without converting units.
+
+  - id: phy-kin-019
+    topic: acceleration
+    subtopic: Velocity and acceleration are independent
+    concept: Zero velocity with non-zero acceleration and vice versa are both possible
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [velocity-acceleration, trap]
+    stem: |-
+      For a body moving along a straight line, consider:
+      I. It can have zero velocity at an instant while its acceleration is not zero.
+      II. It can have a non-zero velocity while its acceleration is zero.
+      III. If it moves with constant speed without reversing direction, its acceleration is zero.
+      IV. A negative acceleration always means that the body is slowing down.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I and IV only
+      - I, II and III only
+      - II, III and IV only
+    answer: 2
+    explanation: "I: a ball at the top of its flight has v = 0 but a = g. II: uniform motion has v ≠ 0 and a = 0. III: in a straight line, constant speed without reversal means constant velocity, so a = 0. IV is false: if the velocity is also negative, a negative acceleration makes the body speed up. Only the sign relative to the velocity decides slowing down."
+
+  - id: phy-kin-020
+    topic: motion-graphs
+    subtopic: Area under a v–t graph
+    concept: Distance from a trapezium-shaped v–t graph
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: displacement = area under v–t graph
+    tags: [v-t-graph, area, trapezium]
+    stem: A car starts from rest, accelerates uniformly to 10 m s^{-1} in 5 s, moves at this speed for 10 s and then decelerates uniformly to rest in 5 s. Using its velocity–time graph, find the total distance covered.
+    options:
+      - 100 m
+      - 150 m
+      - 200 m
+      - 125 m
+    answer: 1
+    explanation: The v–t graph is a trapezium. Area = ½ × 5 × 10 + 10 × 10 + ½ × 5 × 10 = 25 + 100 + 25 = 150 m. The value 200 m treats the whole 20 s as if the car moved at 10 m s^{-1} throughout, ignoring the triangular parts.
+
+  - id: phy-kin-021
+    topic: motion-graphs
+    subtopic: Shape of the x–t graph
+    concept: Uniform acceleration from rest gives an upward-opening parabola on the x–t graph
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [x-t-graph, parabola, uniform-acceleration]
+    stem: A body starts from rest at the origin and moves with constant positive acceleration. Its position–time graph is
+    options:
+      - a straight line through the origin
+      - a straight line parallel to the time axis
+      - a curve through the origin that becomes flatter with time
+      - a parabola through the origin that gets steeper with time
+    answer: 3
+    explanation: "With u = 0, x = ½at^2, so x varies as t^2: a parabola starting at the origin with zero slope. The slope (velocity) keeps increasing, so the curve gets steeper. A straight line would mean constant velocity, and a flattening curve would mean the body is slowing down."
+
+  - id: phy-kin-022
+    topic: motion-graphs
+    subtopic: Area under an a–t graph
+    concept: Area under the a–t graph gives the change in velocity
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    formula: Δv = area under a–t graph
+    tags: [a-t-graph, area, change-in-velocity]
+    stem: A particle moving along the x-axis has a velocity of 2 m s^{-1} at t = 0. Its acceleration–time graph shows a = 4 m s^{-2} from t = 0 to t = 3 s and a = 0 after that. What is its velocity at t = 5 s?
+    options:
+      - 20 m s^{-1}
+      - 14 m s^{-1}
+      - 22 m s^{-1}
+      - 12 m s^{-1}
+    answer: 1
+    explanation: The area under the a–t graph equals the change in velocity. Area = 4 × 3 = 12 m s^{-1}, so v = 2 + 12 = 14 m s^{-1}, and it stays at 14 m s^{-1} after t = 3 s because a = 0. 12 m s^{-1} forgets the initial velocity, and 22 m s^{-1} wrongly continues the acceleration up to 5 s.
+
+  - id: phy-kin-023
+    topic: motion-graphs
+    subtopic: Physically impossible graphs
+    concept: An x–t graph cannot have a vertical segment
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [impossible-graph, x-t-graph, ncert-exercise]
+    stem: Which of the following cannot represent a real one-dimensional motion?
+    options:
+      - A position–time graph that is a horizontal straight line
+      - A velocity–time graph whose slope changes suddenly
+      - A position–time graph with a vertical straight segment
+      - A velocity–time graph that crosses the time axis
+    answer: 2
+    explanation: A vertical segment on an x–t graph means a change of position in zero time, i.e. infinite velocity, which is impossible. A horizontal x–t line is a body at rest, a v–t line crossing the time axis is a body reversing direction, and a sudden change of slope on a v–t graph is just a sudden change of acceleration (for example, brakes applied).
+
+  - id: phy-kin-024
+    topic: motion-graphs
+    subtopic: Reading slopes on an x–t graph
+    concept: The steepest segment of an x–t graph has the largest speed
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    diagram: "Position–time graph: horizontal axis t (s) from 0 to 7, vertical axis x (m) from 0 to 8. Three straight segments joined end to end: O (0 s, 0 m) to A (2 s, 6 m); A (2 s, 6 m) to B (5 s, 6 m), a horizontal segment; B (5 s, 6 m) to C (6 s, 0 m), sloping down. Points O, A, B, C labelled with their coordinates."
+    tags: [x-t-graph, slope, speed]
+    stem: The figure shows the position–time graph of a particle made of three straight segments OA, AB and BC. In which segment is the particle's speed the greatest?
+    options:
+      - OA
+      - Speeds in OA and BC are equal
+      - AB
+      - BC
+    answer: 3
+    explanation: "Speed is the magnitude of the slope. OA: 6/2 = 3 m s^{-1}. AB: horizontal, so 0 (at rest). BC: |0 − 6|/(6 − 5) = 6 m s^{-1}. The negative slope of BC only shows motion towards the origin; its magnitude is the largest, so the speed is greatest in BC."
+
+  - id: phy-kin-025
+    topic: motion-graphs
+    subtopic: Distance and displacement from a v–t graph
+    concept: Areas below the time axis count negative for displacement but positive for distance
+    category: application
+    format: graph
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [v-t-graph, distance, displacement, trap]
+    stem: The velocity–time graph of a particle is a straight line from +10 m s^{-1} at t = 0 to −10 m s^{-1} at t = 4 s. For these 4 s, what are the displacement and the distance covered?
+    options:
+      - Displacement zero, distance 20 m
+      - Displacement zero, distance zero
+      - Displacement 10 m, distance 20 m
+      - Displacement 20 m, distance 20 m
+    answer: 0
+    explanation: The line crosses v = 0 at t = 2 s. The triangle above the axis has area ½ × 2 × 10 = +10 m and the triangle below has area −10 m. Displacement = sum of signed areas = 0. Distance = sum of magnitudes = 20 m. Adding signed areas for distance (zero) is the common mistake.
+
+  - id: phy-kin-026
+    topic: motion-graphs
+    subtopic: Identifying motion from graph shapes
+    concept: Matching x–t and v–t graph shapes with kinds of motion
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [x-t-graph, v-t-graph, graph-shapes]
+    stem: |-
+      Match List I (graph) with List II (motion).
+      List I
+      P. x–t graph: straight line inclined to the time axis
+      Q. x–t graph: straight line parallel to the time axis
+      R. v–t graph: straight line with a constant non-zero slope
+      S. v–t graph: a curve whose slope keeps changing
+      List II
+      1. Body at rest
+      2. Motion with constant non-zero velocity
+      3. Motion with constant non-zero acceleration
+      4. Motion with changing acceleration
+    options:
+      - P-2, Q-1, R-3, S-4
+      - P-2, Q-4, R-3, S-1
+      - P-3, Q-1, R-2, S-4
+      - P-1, Q-2, R-4, S-3
+    answer: 0
+    explanation: "An inclined straight x–t line has constant slope, i.e. constant velocity (P-2). A horizontal x–t line means x does not change: rest (Q-1). A straight v–t line has constant slope, i.e. constant acceleration (R-3). A curved v–t graph has a changing slope, i.e. changing acceleration (S-4)."
+
+  - id: phy-kin-027
+    topic: motion-graphs
+    subtopic: Accelerate–decelerate problem
+    concept: Triangular v–t graph with given acceleration, retardation and total time
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    formula: v_{max} = αβt/(α + β); s = ½v_{max}t
+    tags: [v-t-graph, alpha-beta, multi-concept]
+    stem: A car starts from rest with a uniform acceleration of 2 m s^{-2}, then immediately decelerates uniformly at 4 m s^{-2} until it stops. The whole journey takes 12 s. What distance does it cover?
+    options:
+      - 192 m
+      - 144 m
+      - 96 m
+      - 48 m
+    answer: 2
+    explanation: If the peak speed is v, the time to accelerate is v/2 and the time to decelerate is v/4. So v/2 + v/4 = 12 gives v = 16 m s^{-1}. The v–t graph is a triangle of base 12 s and height 16 m s^{-1}, so distance = ½ × 12 × 16 = 96 m. 192 m forgets the ½ in the triangle's area.
+
+  - id: phy-kin-028
+    topic: kinematic-equations
+    subtopic: Distance covered in the nth second
+    concept: Displacement in the nth second is u + a(2n − 1)/2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: s_n = u + (a/2)(2n − 1)
+    tags: [nth-second, uniform-acceleration]
+    stem: A body moving with an initial velocity of 4 m s^{-1} has a uniform acceleration of 2 m s^{-2}. How far does it travel during the 5th second?
+    options:
+      - 11 m
+      - 14 m
+      - 45 m
+      - 13 m
+    answer: 3
+    explanation: "s_n = u + (a/2)(2n − 1) = 4 + 1 × 9 = 13 m. Check: s(5) − s(4) = (20 + 25) − (16 + 16) = 45 − 32 = 13 m. 45 m is the distance in all 5 s, and 14 m is the speed at t = 5 s."
+
+  - id: phy-kin-029
+    topic: kinematic-equations
+    subtopic: Validity of the kinematic equations
+    concept: The kinematic equations hold only for constant acceleration
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [kinematic-equations, validity, ncert-line]
+    stem: |-
+      Assertion (A): The equation v^2 = u^2 + 2as cannot be used for a body whose acceleration changes with time.
+      Reason (R): The kinematic equations of motion are derived on the assumption that the acceleration is constant.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: v = u + at, s = ut + ½at^2 and v^2 = u^2 + 2as are all obtained by integrating with a constant, as NCERT states for uniformly accelerated motion. When a varies, one must use a = dv/dt or a = v dv/dx and integrate. So A is true because of R.
+
+  - id: phy-kin-030
+    topic: kinematic-equations
+    subtopic: Using v² = u² + 2as
+    concept: Finding uniform acceleration from speeds and distance
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: v^2 = u^2 + 2as
+    tags: [third-equation, retardation]
+    stem: A train moving at 20 m s^{-1} brakes uniformly and its speed falls to 10 m s^{-1} over a distance of 150 m. What is its acceleration?
+    options:
+      - −2 m s^{-2}
+      - +1 m s^{-2}
+      - −0.5 m s^{-2}
+      - −1 m s^{-2}
+    answer: 3
+    explanation: v^2 = u^2 + 2as gives a = (v^2 − u^2)/2s = (100 − 400)/300 = −1 m s^{-2}. The negative sign shows the acceleration is opposite to the velocity (retardation). Using (v − u)/s instead of the correct formula gives other wrong values.
+
+  - id: phy-kin-031
+    topic: kinematic-equations
+    subtopic: Penetration of a bullet
+    concept: Remaining penetration after losing half the speed, using v² ∝ distance
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: v^2 = u^2 − 2as
+    tags: [bullet, retardation, v-squared]
+    stem: A bullet fired into a fixed wooden block loses half of its speed after penetrating 3 cm. Assuming uniform retardation, how much farther will it penetrate before coming to rest?
+    options:
+      - 3 cm
+      - 1.5 cm
+      - 1 cm
+      - 2 cm
+    answer: 2
+    explanation: "From v^2 = u^2 − 2as: u^2 − u^2/4 = 2a × 3, so 3u^2/4 = 6a. To stop from u/2: (u/2)^2 = 2ax, so u^2/4 = 2ax. Dividing, x = 3 × (1/4)/(3/4) = 1 cm. Losing half the speed uses up three-quarters of the kinetic energy, so only a small extra penetration remains; 3 cm assumes speed falls linearly with distance."
+
+  - id: phy-kin-032
+    topic: kinematic-equations
+    subtopic: Catching up
+    concept: Car starting from rest catching a truck moving at constant velocity
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: s = ut + ½at^2
+    tags: [chase, uniform-acceleration, multi-concept]
+    stem: A car starts from rest with a uniform acceleration of 2 m s^{-2} at the instant a truck moving at a constant 10 m s^{-1} passes it in the same direction. When does the car catch up with the truck, and what is the car's speed then?
+    options:
+      - 20 s, 40 m s^{-1}
+      - 5 s, 10 m s^{-1}
+      - 10 s, 10 m s^{-1}
+      - 10 s, 20 m s^{-1}
+    answer: 3
+    explanation: Distances are equal when ½ × 2 × t^2 = 10t, i.e. t^2 = 10t, so t = 10 s. The car's speed then is v = at = 20 m s^{-1}, twice the truck's speed, because both covered 100 m in 10 s and the car's average speed (0 + 20)/2 must equal 10. At t = 5 s the speeds are equal; that is when the gap is largest, not when they meet.
+
+  - id: phy-kin-033
+    topic: kinematic-equations
+    subtopic: Velocity at the midpoint of a path
+    concept: Velocity at the mid-point of distance is the root-mean-square of the end velocities
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: v_{mid} = √((u^2 + v^2)/2)
+    tags: [midpoint-velocity, v-squared, trap]
+    stem: A body with uniform acceleration passes point A at 10 m s^{-1} and point B at 70 m s^{-1}. What is its velocity at the midpoint of AB?
+    options:
+      - 60 m s^{-1}
+      - 35 m s^{-1}
+      - 50 m s^{-1}
+      - 40 m s^{-1}
+    answer: 2
+    explanation: "Let AB = 2d. From A to the midpoint: v_m^2 = 10^2 + 2ad; from the midpoint to B: 70^2 = v_m^2 + 2ad. Eliminating 2ad, v_m^2 = (100 + 4900)/2 = 2500, so v_m = 50 m s^{-1}. 40 m s^{-1} is the velocity at the middle instant of time, (u + v)/2, which is reached before the body reaches the midpoint of the distance."
+
+  - id: phy-kin-034
+    topic: kinematic-equations
+    subtopic: Graphical derivation of s = ut + ½at²
+    concept: The ½at² term is the triangular area above the rectangle of height u
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [derivation, v-t-graph, ncert-line]
+    stem: In the graphical derivation of s = ut + ½at^2 from the v–t graph of a uniformly accelerated body, the term ½at^2 represents
+    options:
+      - the area of the triangle lying above the rectangle of height u
+      - the area of the rectangle of height u and width t
+      - the intercept of the line on the velocity axis
+      - the slope of the velocity–time line
+    answer: 0
+    explanation: The area under the v–t line from 0 to t is a rectangle (height u, width t, area ut) plus a triangle of base t and height (v − u) = at, whose area is ½ × t × at = ½at^2. The slope gives a and the intercept gives u, neither of which is a displacement.
+
+  - id: phy-kin-035
+    topic: free-fall
+    subtopic: Speed after falling a height
+    concept: Speed on reaching the ground after a drop is √(2gh)
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    formula: v = √(2gh)
+    tags: [free-fall, drop]
+    stem: A stone is dropped from the top of a 45 m high cliff. With what speed does it hit the ground? (g = 10 m s^{-2})
+    options:
+      - 15 m s^{-1}
+      - 30 m s^{-1}
+      - 45 m s^{-1}
+      - 20 m s^{-1}
+    answer: 1
+    explanation: Dropped means u = 0. v^2 = 2gh = 2 × 10 × 45 = 900, so v = 30 m s^{-1}. It takes t = v/g = 3 s. 45 m s^{-1} simply copies the height, and 20 m s^{-1} would be the speed after falling only 20 m.
+
+  - id: phy-kin-036
+    topic: free-fall
+    subtopic: Galileo's law of odd numbers
+    concept: "Distances in successive equal intervals from rest are in the ratio 1 : 3 : 5"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [galileo, odd-numbers, ncert-line]
+    stem: For a body falling freely from rest, the distances covered in the 1st, 2nd and 3rd seconds are in the ratio
+    options:
+      - "1 : 4 : 9"
+      - "1 : 3 : 5"
+      - "1 : 1 : 1"
+      - "1 : 2 : 3"
+    answer: 1
+    explanation: "Distances fallen in 1, 2, 3 s are proportional to 1, 4, 9 (s ∝ t^2). The distances in the individual seconds are the differences 1, 4 − 1 = 3 and 9 − 4 = 5, i.e. 1 : 3 : 5. This is Galileo's law of odd numbers quoted in NCERT. 1 : 4 : 9 is the ratio of total distances, not distances in each second."
+
+  - id: phy-kin-037
+    topic: free-fall
+    subtopic: Ball thrown up from a height
+    concept: Time to reach the ground when thrown upward from a building, using one signed equation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: y = ut − ½gt^2 (upward positive)
+    tags: [thrown-up, building, quadratic]
+    stem: A ball is thrown vertically upward at 20 m s^{-1} from the top of a building 25 m high. How long after being thrown does it hit the ground? (g = 10 m s^{-2})
+    options:
+      - 2.2 s
+      - 4 s
+      - 6 s
+      - 5 s
+    answer: 3
+    explanation: "Take upward as positive with origin at the top. The ball lands at y = −25 m: −25 = 20t − 5t^2, i.e. t^2 − 4t − 5 = 0, so t = 5 s (the root −1 s is rejected). 4 s = 2u/g is only the time to come back to the top of the building, and 2.2 s is the time for a ball simply dropped from 25 m."
+
+  - id: phy-kin-038
+    topic: free-fall
+    subtopic: Highest point of vertical motion
+    concept: At the highest point velocity is zero but acceleration is still g downward
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [highest-point, acceleration-due-to-gravity, trap]
+    stem: A ball thrown vertically upward is at its highest point. Which statement is correct?
+    options:
+      - Its velocity is zero and its acceleration is g upward
+      - Its velocity is maximum and its acceleration is zero
+      - Its velocity is zero and its acceleration is g downward
+      - Its velocity and acceleration are both zero
+    answer: 2
+    explanation: Gravity acts throughout the flight, so the acceleration is g downward everywhere, including the top. At the top the velocity is momentarily zero as it changes from upward to downward. If the acceleration were also zero there, the ball would stay at the top for ever.
+
+  - id: phy-kin-039
+    topic: free-fall
+    subtopic: Object released from a rising balloon
+    concept: A packet released from a rising balloon starts with the balloon's upward velocity
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: y = ut − ½gt^2
+    tags: [balloon, initial-velocity, trap]
+    stem: A balloon is rising vertically at a steady 10 m s^{-1}. When it is 40 m above the ground, a packet is released from it. How long does the packet take to reach the ground? (g = 10 m s^{-2})
+    options:
+      - 4 s
+      - 2 s
+      - 5 s
+      - 2.8 s
+    answer: 0
+    explanation: At release the packet shares the balloon's velocity, 10 m s^{-1} upward. With upward positive and origin at the release point, −40 = 10t − 5t^2, i.e. t^2 − 2t − 8 = 0, so t = 4 s. Treating the packet as simply dropped gives √(2 × 40/10) = 2.8 s, which ignores its initial upward velocity.
+
+  - id: phy-kin-040
+    topic: free-fall
+    subtopic: Same height at two instants
+    concept: If a vertically thrown body is at height h at t₁ and t₂, then h = ½g t₁t₂
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: h = ½g t_1t_2; u = ½g(t_1 + t_2)
+    tags: [two-instants, vertical-throw, multi-concept]
+    stem: A ball thrown vertically upward from the ground is at a height h at t = 1 s on the way up and again at t = 3 s on the way down. What is h? (g = 10 m s^{-2})
+    options:
+      - 15 m
+      - 10 m
+      - 30 m
+      - 20 m
+    answer: 0
+    explanation: h = ut − 5t^2 has roots t = 1 s and t = 3 s, so 5t^2 − ut + h = 0 gives t_1 + t_2 = u/5 and t_1t_2 = h/5. Hence u = 20 m s^{-1} and h = 5 × 1 × 3 = 15 m. 20 m is the maximum height u^2/2g, reached at t = 2 s, midway between the two instants.
+
+  - id: phy-kin-041
+    topic: non-uniform-acceleration
+    subtopic: Acceleration proportional to time
+    concept: Integrating a = kt to find velocity
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: v = ∫a dt
+    tags: [integration, variable-acceleration]
+    stem: A particle starts from rest and its acceleration is a = 6t m s^{-2}, where t is in seconds. What is its velocity at t = 2 s?
+    options:
+      - 24 m s^{-1}
+      - 6 m s^{-1}
+      - 8 m s^{-1}
+      - 12 m s^{-1}
+    answer: 3
+    explanation: v = ∫_0^t 6t dt = 3t^2 (u = 0). At t = 2 s, v = 12 m s^{-1}. Using v = at with a = 12 m s^{-2} (the value at t = 2 s) gives 24 m s^{-1}, which wrongly treats the final acceleration as if it acted throughout. 8 m s^{-1} is actually the displacement x = t^3 = 8 m.
+
+  - id: phy-kin-042
+    topic: non-uniform-acceleration
+    subtopic: Velocity given as a function of position
+    concept: v = k√x gives a constant acceleration k²/2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: a = v dv/dx
+    tags: [v-dv-dx, velocity-position, multi-concept]
+    stem: The velocity of a particle varies with its position as v = 4√x, where v is in m s^{-1} and x in metres. What is its acceleration?
+    options:
+      - 4 m s^{-2}, constant
+      - 8 m s^{-2}, constant
+      - 16 m s^{-2}, constant
+      - It increases in proportion to √x
+    answer: 1
+    explanation: a = v dv/dx = 4√x × (4 × 1/(2√x)) = 8 m s^{-2}, independent of x. Alternatively v^2 = 16x, compared with v^2 = 2ax (from rest at x = 0), gives 2a = 16, a = 8 m s^{-2}. 16 m s^{-2} forgets the factor 2 in v^2 = 2ax.
+
+  - id: phy-kin-043
+    topic: non-uniform-acceleration
+    subtopic: Maximum velocity
+    concept: Velocity is maximum when acceleration becomes zero
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: a = dv/dt = 0 at maximum velocity
+    tags: [maximum-velocity, differentiation]
+    stem: The position of a particle is x = 9t^2 − t^3, where x is in metres and t in seconds. What is the maximum velocity of the particle in the positive x direction?
+    options:
+      - 18 m s^{-1}
+      - 27 m s^{-1}
+      - 81 m s^{-1}
+      - 54 m s^{-1}
+    answer: 1
+    explanation: v = dx/dt = 18t − 3t^2 and a = dv/dt = 18 − 6t. Velocity is maximum when a = 0, i.e. t = 3 s, giving v = 54 − 27 = 27 m s^{-1}. 54 m s^{-1} is the position x(3) = 81 − 27 = 54 m, not a velocity.
+
+  - id: phy-kin-044
+    topic: non-uniform-acceleration
+    subtopic: Power-law motion
+    concept: x ∝ t² means constant acceleration but v ∝ t² does not
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [power-law, differentiation]
+    stem: |-
+      Statement I: If x ∝ t^2, the acceleration is constant.
+      Statement II: If v ∝ t^2, the acceleration is constant.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "If x = kt^2, then v = 2kt and a = 2k, a constant: Statement I is correct. If v = kt^2, then a = dv/dt = 2kt, which grows with time: Statement II is incorrect. Constant acceleration needs x ∝ t^2 or v ∝ t, not v ∝ t^2."
+
+  - id: phy-kin-045
+    topic: relative-velocity
+    subtopic: Trains crossing each other
+    concept: Crossing time = sum of lengths ÷ relative speed (opposite directions add)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: t = (L_1 + L_2)/(v_1 + v_2)
+    tags: [trains, relative-speed, crossing]
+    stem: Two trains 120 m and 80 m long move on parallel tracks in opposite directions at 15 m s^{-1} and 25 m s^{-1}. How long do they take to cross each other completely?
+    options:
+      - 20 s
+      - 8 s
+      - 5 s
+      - 10 s
+    answer: 2
+    explanation: In opposite directions the relative speed is 15 + 25 = 40 m s^{-1}. To cross completely, the relative distance is the sum of the lengths, 200 m. t = 200/40 = 5 s. 20 s uses the difference of speeds, which applies to trains moving in the same direction.
+
+  - id: phy-kin-046
+    topic: relative-velocity
+    subtopic: Relative motion under gravity
+    concept: Two freely falling bodies have zero relative acceleration, so their relative velocity is constant
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [free-fall, relative-acceleration]
+    stem: Ball A is dropped from a tall tower and ball B is dropped from the same point 1 s later. While both are falling, which statement is correct? (g = 10 m s^{-2})
+    options:
+      - A is at rest relative to B
+      - A moves downward relative to B at a constant 10 m s^{-1}
+      - A's velocity relative to B keeps decreasing
+      - A's velocity relative to B keeps increasing
+    answer: 1
+    explanation: Both have acceleration g, so the relative acceleration is zero and the relative velocity stays constant. When B is released, A has already gained g × 1 s = 10 m s^{-1}, so A moves away from B, downward, at a steady 10 m s^{-1} and the gap grows linearly with time.
+
+  - id: phy-kin-047
+    topic: relative-velocity
+    subtopic: Meeting of two bodies from their x–t equations
+    concept: Two bodies meet when their position functions are equal
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [meeting-point, x-t-equation, relative-velocity]
+    stem: The positions of two cars on a straight road are x_A = 10 + 5t and x_B = 40 − 10t, with x in metres and t in seconds. When and where do they meet?
+    options:
+      - At t = 2 s at x = 20 m
+      - At t = 2 s at x = 30 m
+      - At t = 3 s at x = 25 m
+      - At t = 6 s at x = 40 m
+    answer: 0
+    explanation: "They meet when x_A = x_B: 10 + 5t = 40 − 10t, so 15t = 30 and t = 2 s; then x = 10 + 10 = 20 m. Equivalently the initial gap of 30 m closes at the relative speed 5 − (−10) = 15 m s^{-1}. Using the difference of the speeds (5 m s^{-1}) instead of the relative velocity gives 6 s."
+
+  - id: phy-kin-048
+    topic: relative-velocity
+    subtopic: Walking on a moving escalator
+    concept: Speeds add on an escalator, giving t = t₁t₂/(t₁ + t₂)
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: t = t_1t_2/(t_1 + t_2)
+    tags: [escalator, relative-velocity, multi-concept]
+    stem: A girl walks up a stationary escalator in 60 s. When she stands still on the moving escalator, it carries her up in 40 s. How long will she take if she walks up the moving escalator at her usual pace?
+    options:
+      - 100 s
+      - 50 s
+      - 20 s
+      - 24 s
+    answer: 3
+    explanation: Let the length be L. Her speed relative to the steps is L/60 and the escalator's speed is L/40. Walking on the moving escalator, her speed relative to the ground is L/60 + L/40 = L/24, so she takes 24 s. Adding or averaging the times (100 s, 50 s) is wrong because speeds, not times, add.
+
+  - id: phy-kin-049
+    topic: stopping-reaction
+    subtopic: Braking distance and initial speed
+    concept: Braking distance is proportional to the square of the initial speed
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: d = u^2/2a
+    tags: [stopping-distance, proportionality]
+    stem: A car moving at 36 km h^{-1} can be stopped in 10 m by applying the brakes. With the same deceleration, what is the stopping distance at 72 km h^{-1}?
+    options:
+      - 80 m
+      - 30 m
+      - 20 m
+      - 40 m
+    answer: 3
+    explanation: "From 0 = u^2 − 2ad, the braking distance d = u^2/2a ∝ u^2. Doubling the speed makes the braking distance four times larger: 4 × 10 = 40 m. Assuming d ∝ u gives 20 m, which underestimates the danger of speeding."
+
+  - id: phy-kin-050
+    topic: stopping-reaction
+    subtopic: Measuring reaction time with a falling ruler
+    concept: Reaction time from the distance a dropped ruler falls, t = √(2d/g)
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: d = ½gt^2
+    tags: [reaction-time, ruler-drop, free-fall]
+    stem: To measure reaction time, a friend holds a ruler vertically and releases it without warning; you catch it between your fingers after it has fallen 19.6 cm. What is your reaction time? (g = 9.8 m s^{-2})
+    options:
+      - 0.2 s
+      - 0.04 s
+      - 0.14 s
+      - 0.02 s
+    answer: 0
+    explanation: "The ruler falls freely from rest during your reaction time: d = ½gt^2, so t = √(2d/g) = √(2 × 0.196/9.8) = √0.04 = 0.2 s. 0.04 s is t^2, not t, and 0.14 s drops the factor 2 in d = ½gt^2."

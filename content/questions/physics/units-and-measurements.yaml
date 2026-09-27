@@ -1,0 +1,1083 @@
+subject: physics
+chapter:
+  slug: units-and-measurements
+  name: Units and Measurements
+  order: 1
+  classes: [11]
+  topics:
+    - slug: si-units
+      name: SI base, derived and supplementary units
+    - slug: unit-conversion
+      name: Systems of units and unit conversion
+    - slug: measuring-length-mass-time
+      name: Measurement of length, mass and time
+    - slug: significant-figures
+      name: Significant figures and rounding off
+    - slug: sig-fig-arithmetic
+      name: Arithmetic with significant figures
+    - slug: errors-measurement
+      name: Accuracy, precision and errors in measurement
+    - slug: error-propagation
+      name: Combination of errors
+    - slug: dimensions
+      name: Dimensions and dimensional formulae
+    - slug: dimensional-consistency
+      name: Dimensional consistency of equations
+    - slug: dimensional-derivation
+      name: Deducing relations by dimensional analysis
+questions:
+  - id: phy-units-001
+    topic: si-units
+    subtopic: Base quantities
+    concept: Force is a derived quantity, not an SI base quantity
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [base-quantities, ncert-line]
+    stem: Which of the following is NOT one of the seven SI base quantities?
+    options:
+      - Electric current
+      - Luminous intensity
+      - Amount of substance
+      - Force
+    answer: 3
+    explanation: "The seven SI base quantities are length, mass, time, electric current, thermodynamic temperature, amount of substance and luminous intensity. Force is a derived quantity: its unit, the newton, equals kg m s^{-2}. Students often pick luminous intensity or amount of substance because they seem unusual, but both are base quantities (units candela and mole)."
+
+  - id: phy-units-002
+    topic: si-units
+    subtopic: Base units
+    concept: SI unit of luminous intensity is the candela
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [base-units, ncert-line]
+    stem: What is the SI unit of luminous intensity?
+    options:
+      - Candela
+      - Lumen
+      - Lux
+      - Watt per steradian
+    answer: 0
+    explanation: Luminous intensity is an SI base quantity and its base unit is the candela (cd). The lumen is the unit of luminous flux and the lux is the unit of illuminance; both are derived units. Watt per steradian measures radiant intensity, a purely radiometric quantity.
+
+  - id: phy-units-003
+    topic: si-units
+    subtopic: Supplementary units
+    concept: Solid angle of a complete sphere at its centre is 4π sr
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: ΔΩ = ΔA/r^2
+    tags: [steradian, solid-angle]
+    stem: What solid angle does the whole surface of a sphere subtend at its centre?
+    options:
+      - 2π sr
+      - π sr
+      - 4π rad
+      - 4π sr
+    answer: 3
+    explanation: Solid angle ΔΩ = ΔA/r^2. For the whole sphere ΔA = 4πr^2, so Ω = 4πr^2/r^2 = 4π steradian. The value 2π belongs to a full circle measured as a plane angle, and the radian is the unit of plane angle, not solid angle.
+
+  - id: phy-units-004
+    topic: si-units
+    subtopic: Derived units in base units
+    concept: Joule expressed in SI base units
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [derived-units, joule]
+    stem: The joule, expressed in SI base units, is
+    options:
+      - kg m s^{-2}
+      - kg m^2 s^{-3}
+      - kg m^{-1} s^{-2}
+      - kg m^2 s^{-2}
+    answer: 3
+    explanation: Work = force × distance, so 1 J = 1 N × 1 m = (kg m s^{-2}) × m = kg m^2 s^{-2}. The combination kg m s^{-2} is the newton, kg m^2 s^{-3} is the watt (joule per second) and kg m^{-1} s^{-2} is the pascal.
+
+  - id: phy-units-005
+    topic: si-units
+    subtopic: Rules for writing SI units
+    concept: Correct way of writing SI unit symbols
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [unit-symbols, trap]
+    stem: Which of the following is written correctly according to SI conventions?
+    options:
+      - The mass of the bag is 20 kgs.
+      - The length of the rod is 5 m.
+      - The temperature of the room is 300 °K.
+      - The force on the block is 12 Newtons.
+    answer: 1
+    explanation: SI unit symbols are never pluralised and never followed by a full stop inside a sentence, so "5 m" is correct. "kgs" wrongly pluralises kg; the kelvin is written K without a degree sign; and a unit named after a person is written in lower case when spelt out (newton) with the symbol N, so "12 Newtons" breaks two rules.
+
+  - id: phy-units-006
+    topic: si-units
+    subtopic: Derived units of electromagnetic quantities
+    concept: Match magnetic and electric quantities with SI units
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: false
+    tags: [derived-units, electromagnetic-units]
+    stem: |-
+      Match List I with List II.
+      List I
+      P. Magnetic flux
+      Q. Capacitance
+      R. Inductance
+      S. Magnetic field
+      List II
+      1. henry
+      2. tesla
+      3. weber
+      4. farad
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-1, Q-4, R-3, S-2
+    answer: 2
+    explanation: "Magnetic flux is measured in weber (Wb), capacitance in farad (F), self or mutual inductance in henry (H), and magnetic field (flux density) in tesla (T = Wb m^{-2}). A common slip is to swap weber and tesla: the tesla is flux per unit area, the weber is the total flux."
+
+  - id: phy-units-007
+    topic: si-units
+    subtopic: Supplementary units
+    concept: Radian as ratio of arc length to radius
+    category: numerical
+    format: diagram
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    formula: θ = arc/radius
+    diagram: A circular sector with centre O. Two straight radii of length 2.5 cm each run from O to points A and B on the circle; label each radius "r = 2.5 cm". The curved arc AB is drawn in bold and labelled "arc AB = 7.5 cm". The angle at O between OA and OB is marked with a small arc and labelled "θ = ?".
+    tags: [radian, plane-angle]
+    stem: In the figure, the arc AB of a circle of radius 2.5 cm has length 7.5 cm. What is the angle θ subtended by the arc at the centre O?
+    options:
+      - 0.33 rad
+      - 3°
+      - 18.75 rad
+      - 3 rad
+    answer: 3
+    explanation: The plane angle in radians is dθ = ds/r = arc length ÷ radius = 7.5 cm ÷ 2.5 cm = 3 rad. Taking radius ÷ arc gives 0.33, and multiplying the two gives 18.75, which is not even dimensionless. The ratio gives radians directly, not degrees (3 rad ≈ 172°).
+
+  - id: phy-units-008
+    topic: unit-conversion
+    subtopic: CGS and SI units
+    concept: 1 newton equals 10^5 dyne
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    tags: [cgs, dyne]
+    stem: How many dynes make one newton?
+    options:
+      - 10^3
+      - 10^5
+      - 10^7
+      - 10^{-5}
+    answer: 1
+    explanation: 1 N = 1 kg m s^{-2} = (10^3 g)(10^2 cm) s^{-2} = 10^5 g cm s^{-2} = 10^5 dyne. The factor 10^7 is the joule-to-erg conversion, where the length factor enters twice.
+
+  - id: phy-units-009
+    topic: unit-conversion
+    subtopic: Numerical value and size of unit
+    concept: Changing unit of length changes numerical value of an area by square factor
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: n_1u_1 = n_2u_2
+    tags: [n1u1-n2u2, area, trap]
+    stem: An area of 3 m^2 is expressed in cm^2. What is its numerical value?
+    options:
+      - 3 × 10^2
+      - 3 × 10^6
+      - 3 × 10^4
+      - 3 × 10^{-4}
+    answer: 2
+    explanation: 1 m = 100 cm, so 1 m^2 = (100 cm)^2 = 10^4 cm^2 and 3 m^2 = 3 × 10^4 cm^2. The trap is using only the linear factor 100, which gives 300. Because the new unit is smaller, the numerical value becomes larger (n_1u_1 = n_2u_2).
+
+  - id: phy-units-010
+    topic: unit-conversion
+    subtopic: Converting constants between systems
+    concept: Value of G in CGS units
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    formula: n_2 = n_1 [M_1/M_2]^a [L_1/L_2]^b [T_1/T_2]^c
+    tags: [gravitational-constant, cgs]
+    stem: The gravitational constant is G = 6.67 × 10^{-11} N m^2 kg^{-2}. What is its value in CGS units (dyne cm^2 g^{-2})?
+    options:
+      - 6.67 × 10^{-14}
+      - 6.67 × 10^{-8}
+      - 6.67 × 10^{-5}
+      - 6.67 × 10^{-9}
+    answer: 1
+    explanation: "[G] = [M^{-1} L^3 T^{-2}]. Converting: n_2 = 6.67 × 10^{-11} × (1 kg/1 g)^{-1} × (1 m/1 cm)^3 = 6.67 × 10^{-11} × 10^{-3} × 10^6 = 6.67 × 10^{-8}. Equivalently, N → 10^5 dyne, m^2 → 10^4 cm^2 and kg^{-2} → 10^{-6} g^{-2}. Getting 10^{-14} comes from converting mass the wrong way."
+
+  - id: phy-units-011
+    topic: unit-conversion
+    subtopic: Astronomical units of length
+    concept: Light year is a unit of distance about 9.46 × 10^15 m
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [light-year, trap, ncert-line]
+    stem: A light year is
+    options:
+      - a unit of distance, about 9.46 × 10^{15} m
+      - a unit of time equal to one year
+      - a unit of distance, about 1.5 × 10^{11} m
+      - a unit of speed equal to the speed of light
+    answer: 0
+    explanation: "One light year is the distance light travels in vacuum in one year: 3 × 10^8 m s^{-1} × 3.15 × 10^7 s ≈ 9.46 × 10^{15} m. Despite the word \"year\" it measures distance, not time. The value 1.5 × 10^{11} m is the astronomical unit (mean Earth–Sun distance)."
+
+  - id: phy-units-012
+    topic: unit-conversion
+    subtopic: New system of units
+    concept: Converting energy to a system with arbitrary units of mass, length and time
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 125
+    ncert: false
+    battle: false
+    formula: n_2 = n_1 (M_1/M_2)(L_1/L_2)^2 (T_1/T_2)^{-2}
+    tags: [new-unit-system, energy, multi-concept]
+    stem: In a new system, the unit of mass is 10 kg, the unit of length is 1 km and the unit of time is 1 minute. What is the numerical value of 1 J in this system?
+    options:
+      - 3.6 × 10^{-4}
+      - 6.0 × 10^{-6}
+      - 2.8 × 10^3
+      - 1.0 × 10^{-7}
+    answer: 0
+    explanation: "[Energy] = [M L^2 T^{-2}], so one new unit of energy = 10 kg × (1000 m)^2 ÷ (60 s)^2 = 10^7/3600 J ≈ 2778 J. Hence 1 J = 1/2778 ≈ 3.6 × 10^{-4} new units. Forgetting to square the time gives 6.0 × 10^{-6}; ignoring time altogether gives 10^{-7}; 2.8 × 10^3 is the size of the new unit in joules, not the value of 1 J."
+
+  - id: phy-units-013
+    topic: significant-figures
+    subtopic: Counting significant figures
+    concept: Leading zeros are not significant, trailing zeros after decimal are
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [counting-sig-figs, trap]
+    stem: How many significant figures are there in 0.007020?
+    options:
+      - "3"
+      - "6"
+      - "7"
+      - "4"
+    answer: 3
+    explanation: "Leading zeros (the three zeros before 7) only locate the decimal point and are not significant. The zero between 7 and 2 is significant, and the trailing zero after the decimal point is significant too. So 7, 0, 2, 0 are significant: 4 figures. Answering 3 misses the final zero; 6 or 7 counts the leading zeros."
+
+  - id: phy-units-014
+    topic: significant-figures
+    subtopic: Scientific notation and trailing zeros
+    concept: Scientific notation removes the ambiguity of trailing zeros
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [scientific-notation, trailing-zeros]
+    stem: |-
+      Assertion (A): Writing a length as 4.700 × 10^3 m tells the reader that it has four significant figures, whereas writing 4700 m does not.
+      Reason (R): Trailing zeros in a number without a decimal point are ambiguous, but in scientific notation all digits of the base number are significant.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: In 4700 m the two final zeros may only locate the decimal point, so the number of significant figures could be 2, 3 or 4. In 4.700 × 10^3 m every digit of 4.700 is significant and the power of ten carries the size, so it clearly has four. R is exactly why A is true.
+
+  - id: phy-units-015
+    topic: significant-figures
+    subtopic: Rounding off
+    concept: Rounding rule when the dropped digit is exactly 5 and preceding digit is even
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: true
+    tags: [rounding-off, trap]
+    stem: Using the NCERT rounding rules, what is 2.745 rounded off to three significant figures?
+    options:
+      - "2.75"
+      - "2.7"
+      - "2.74"
+      - "2.745"
+    answer: 2
+    explanation: When the digit to be dropped is exactly 5, the preceding digit is left unchanged if it is even and raised by 1 if it is odd. Here the preceding digit is 4 (even), so 2.745 → 2.74. By the same rule 2.735 → 2.74. The everyday "round 5 up" habit gives 2.75, which is the trap.
+
+  - id: phy-units-016
+    topic: significant-figures
+    subtopic: Order of magnitude
+    concept: Order of magnitude with coefficient greater than 5
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    tags: [order-of-magnitude]
+    stem: Following the rule used in NCERT, what is the order of magnitude of 0.00072?
+    options:
+      - 10^{-4}
+      - 10^{-3}
+      - 10^{-5}
+      - 10^{-2}
+    answer: 1
+    explanation: "Write the number as a × 10^b: 0.00072 = 7.2 × 10^{-4}. Since a = 7.2 is greater than 5, it rounds to 10, giving 10 × 10^{-4} = 10^{-3}. So the order of magnitude is 10^{-3}. Choosing 10^{-4} ignores the rule for a > 5."
+
+  - id: phy-units-017
+    topic: significant-figures
+    subtopic: Change of units
+    concept: Changing units does not change the number of significant figures
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [change-of-units, ncert-line]
+    stem: A length is recorded as 2.308 cm. How many significant figures does it have when written as 0.02308 m?
+    options:
+      - "4"
+      - "5"
+      - "6"
+      - "3"
+    answer: 0
+    explanation: A change of unit only moves the decimal point; it cannot change the precision of the measurement. 2.308 cm = 23.08 mm = 0.02308 m, and each form has four significant figures (2, 3, 0, 8). The zeros before 2 in 0.02308 are leading zeros and are not significant.
+
+  - id: phy-units-018
+    topic: sig-fig-arithmetic
+    subtopic: Addition with significant figures
+    concept: Sum retains the least number of decimal places
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [addition-rule]
+    stem: What is 436.32 g + 227.2 g + 0.301 g, reported with the correct significant figures?
+    options:
+      - 663.8 g
+      - 663.821 g
+      - 663.82 g
+      - 664 g
+    answer: 0
+    explanation: In addition the result keeps as many decimal places as the term with the fewest decimal places. 227.2 has only one decimal place, so 663.821 g is rounded to 663.8 g. Keeping three decimals overstates the precision; 664 g throws away a decimal place that is justified.
+
+  - id: phy-units-019
+    topic: sig-fig-arithmetic
+    subtopic: Division with significant figures
+    concept: Quotient keeps least number of significant figures
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [multiplication-division-rule, density]
+    stem: A body of mass 4.237 g has a volume of 2.51 cm^3. Its density, with correct significant figures, is
+    options:
+      - 1.688 g cm^{-3}
+      - 1.6880 g cm^{-3}
+      - 1.7 g cm^{-3}
+      - 1.69 g cm^{-3}
+    answer: 3
+    explanation: 4.237 ÷ 2.51 = 1.688… . In division the result may have only as many significant figures as the least precise factor. 2.51 has three significant figures, so the density is 1.69 g cm^{-3}. Four figures (1.688) is more precise than the volume allows; 1.7 throws away a justified figure.
+
+  - id: phy-units-020
+    topic: sig-fig-arithmetic
+    subtopic: Addition with mixed precision
+    concept: Adding small precise masses to a coarsely measured mass
+    category: application
+    format: case
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [addition-rule, ncert-exercise]
+    stem: A box is weighed as 2.3 kg. Two gold pieces of masses 20.15 g and 20.17 g are then placed in it. What is the total mass of the box, reported with correct significant figures?
+    options:
+      - 2.34 kg
+      - 2.3 kg
+      - 2.340 kg
+      - 2.3403 kg
+    answer: 1
+    explanation: "Convert to one unit: 2.3 kg + 0.02015 kg + 0.02017 kg = 2.34032 kg. The box's mass is known only to one decimal place in kilograms, so the sum must also be rounded to one decimal place: 2.3 kg. The gold pieces are measured far more precisely, but the total cannot be more precise than its least precise term."
+
+  - id: phy-units-021
+    topic: sig-fig-arithmetic
+    subtopic: Multiplication with significant figures
+    concept: Product of two lengths each with four significant figures
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    tags: [multiplication-division-rule, area]
+    stem: The sides of a rectangular sheet are measured as 4.234 m and 1.005 m. What is its area, with correct significant figures?
+    options:
+      - 4.26 m^2
+      - 4.2552 m^2
+      - 4.255 m^2
+      - 4.25517 m^2
+    answer: 2
+    explanation: "Area = 4.234 × 1.005 = 4.25517 m^2. Both factors have four significant figures, so the product is rounded to four: 4.255 m^2. Note that 1.005 has four significant figures because the zeros lie between non-zero digits. Keeping more digits claims precision the measurements do not have."
+
+  - id: phy-units-022
+    topic: errors-measurement
+    subtopic: Accuracy and precision
+    concept: Definitions of accuracy and precision
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [accuracy, precision, confused-pair]
+    stem: |-
+      Statement I: The accuracy of a measurement tells how close the measured value is to the true value of the quantity.
+      Statement II: The precision of a measurement tells to what resolution or limit the quantity is measured.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Both statements are the standard definitions. Accuracy is closeness to the true value; precision is the resolution (limit) of the measurement, which also shows as the closeness of repeated readings to one another. A measurement can be precise but inaccurate, for example when a finely graduated instrument has a zero error.
+
+  - id: phy-units-023
+    topic: errors-measurement
+    subtopic: Accuracy and precision
+    concept: Coarse instrument can be more accurate while fine instrument is more precise
+    category: application
+    format: case
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [accuracy, precision, ncert-example, trap]
+    stem: The true length of a rod is 3.678 cm. Instrument A (resolution 0.1 cm) reads 3.5 cm; instrument B (resolution 0.01 cm) reads 3.38 cm. Which conclusion is correct?
+    options:
+      - A is more accurate, B is more precise
+      - A is more precise, B is more accurate
+      - B is both more accurate and more precise
+      - A is both more accurate and more precise
+    answer: 0
+    explanation: "Accuracy compares a reading with the true value: A is off by 0.178 cm, B by 0.298 cm, so A is more accurate. Precision depends on resolution: B resolves 0.01 cm against 0.1 cm for A, so B is more precise. The trap is assuming a finer instrument must also be more accurate."
+
+  - id: phy-units-024
+    topic: errors-measurement
+    subtopic: Systematic and random errors
+    concept: Repeating observations reduces random but not systematic error
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [systematic-error, random-error, trap]
+    stem: Which type of error can NOT be reduced by taking the mean of a large number of readings?
+    options:
+      - Random error
+      - Error due to unpredictable fluctuations
+      - Systematic error
+      - Error that is equally likely to be positive or negative
+    answer: 2
+    explanation: Random errors are irregular and scatter readings on both sides of the true value, so averaging many readings reduces them. A systematic error shifts every reading in the same direction (for example a zero error), so the mean carries the same shift. It must be removed by better instruments, technique or corrections.
+
+  - id: phy-units-025
+    topic: errors-measurement
+    subtopic: Mean absolute error
+    concept: Mean absolute error from a set of repeated readings
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: Δa_{mean} = (|Δa_1| + |Δa_2| + … + |Δa_n|)/n
+    tags: [mean-absolute-error]
+    stem: The time for 10 oscillations of a pendulum is measured five times as 5.2 s, 5.4 s, 5.3 s, 5.1 s and 5.5 s. What is the mean absolute error?
+    options:
+      - 0.60 s
+      - 0.40 s
+      - 0.24 s
+      - 0.12 s
+    answer: 3
+    explanation: Mean = (5.2 + 5.4 + 5.3 + 5.1 + 5.5)/5 = 5.3 s. Absolute errors are 0.1, 0.1, 0, 0.2 and 0.2 s. Their mean is 0.6/5 = 0.12 s. The sum 0.60 s forgets to divide by the number of readings, and 0.40 s is the spread (largest − smallest), which is not the mean absolute error.
+
+  - id: phy-units-026
+    topic: errors-measurement
+    subtopic: Percentage error and least count
+    concept: Percentage error from least count of a scale
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [least-count, percentage-error]
+    stem: A length of 25.0 cm is measured with a scale of least count 0.1 cm. What is the percentage error in the measurement?
+    options:
+      - 0.1%
+      - 4%
+      - 0.04%
+      - 0.4%
+    answer: 3
+    explanation: The maximum error equals the least count, 0.1 cm. Percentage error = (0.1/25.0) × 100 = 0.4%. The answer 0.1% simply repeats the least count, and 4% or 0.04% come from a slipped power of ten.
+
+  - id: phy-units-027
+    topic: errors-measurement
+    subtopic: Types of systematic error
+    concept: Classifying instrumental, personal, technique and random errors
+    category: application
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [systematic-error, random-error, classification]
+    stem: |-
+      Match each source of error in List I with its type in List II.
+      List I
+      P. A screw gauge whose zero does not coincide
+      Q. Reading a scale with the eye not in line with the mark
+      R. Measuring body temperature by placing a thermometer under the armpit
+      S. Unpredictable fluctuations in supply voltage during readings
+      List II
+      1. Personal error
+      2. Random error
+      3. Instrumental error
+      4. Error from imperfect experimental technique
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-1, R-2, S-4
+      - P-4, Q-1, R-3, S-2
+    answer: 0
+    explanation: "A zero error is a defect of the instrument (instrumental, systematic). Reading with the eye at an angle is parallax, a personal error. Measuring at the armpit always reads lower than the true body temperature: a systematic error of technique. Supply fluctuations change unpredictably from reading to reading, so they cause random error."
+
+  - id: phy-units-028
+    topic: error-propagation
+    subtopic: Error in a difference
+    concept: Absolute errors add when quantities are subtracted
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ΔZ = ΔA + ΔB
+    tags: [sum-difference-rule, ncert-example]
+    stem: Two temperatures are t_1 = 20.0 ± 0.5 °C and t_2 = 50.0 ± 0.5 °C. The temperature difference t_2 − t_1 is
+    options:
+      - 30.0 ± 0.0 °C
+      - 30.0 ± 1.0 °C
+      - 30.0 ± 0.5 °C
+      - 30.0 ± 0.25 °C
+    answer: 1
+    explanation: For Z = A − B the maximum absolute error is ΔZ = ΔA + ΔB, because the errors may act in opposite directions. So ΔZ = 0.5 + 0.5 = 1.0 °C and the difference is 30.0 ± 1.0 °C. Errors never cancel on subtraction, so ± 0.0 is the classic trap.
+
+  - id: phy-units-029
+    topic: error-propagation
+    subtopic: Error in a quotient
+    concept: Relative errors add for division (R = V/I)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ΔR/R = ΔV/V + ΔI/I
+    tags: [product-quotient-rule, ncert-example]
+    stem: In an experiment V = (100 ± 5) V and I = (10 ± 0.2) A. What is the percentage error in R = V/I?
+    options:
+      - 3%
+      - 5%
+      - 2.5%
+      - 7%
+    answer: 3
+    explanation: "For a quotient the relative errors add: ΔR/R = ΔV/V + ΔI/I = 5/100 + 0.2/10 = 0.05 + 0.02 = 0.07, i.e. 7%. Subtracting the relative errors (5% − 2%) gives the wrong 3%."
+
+  - id: phy-units-030
+    topic: error-propagation
+    subtopic: Error in a power
+    concept: Kinetic energy error from mass and speed errors
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: ΔK/K = Δm/m + 2Δv/v
+    tags: [power-rule, kinetic-energy]
+    stem: The mass and speed of a body are measured with errors of 2% and 3% respectively. What is the maximum percentage error in its kinetic energy?
+    options:
+      - 5%
+      - 8%
+      - 11%
+      - 7%
+    answer: 1
+    explanation: K = ½mv^2, so ΔK/K = Δm/m + 2Δv/v = 2% + 2 × 3% = 8%. The factor ½ is exact and carries no error. Adding 2% + 3% = 5% forgets the square on v; 2 × 2% + 3% = 7% puts the power on the wrong quantity.
+
+  - id: phy-units-031
+    topic: error-propagation
+    subtopic: General power law
+    concept: Relative error of Z = A^4 B^{1/3}/(C D^{3/2})
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔZ/Z = pΔA/A + qΔB/B + rΔC/C
+    tags: [power-rule, ncert-exercise]
+    stem: A quantity is given by Z = A^4 B^{1/3}/(C D^{3/2}). Its maximum relative error ΔZ/Z is
+    options:
+      - 4ΔA/A + (1/3)ΔB/B − ΔC/C − (3/2)ΔD/D
+      - 4ΔA/A + (1/3)ΔB/B + ΔC/C + (3/2)ΔD/D
+      - ΔA/A + ΔB/B + ΔC/C + ΔD/D
+      - 4ΔA + (1/3)ΔB + ΔC + (3/2)ΔD
+    answer: 1
+    explanation: "For Z = A^p B^q/(C^r D^s), each relative error is multiplied by the magnitude of its power and all terms ADD, whether the quantity is in the numerator or the denominator: ΔZ/Z = 4ΔA/A + (1/3)ΔB/B + ΔC/C + (3/2)ΔD/D. Subtracting the denominator terms is the classic sign trap; absolute errors cannot be added directly for a product."
+
+  - id: phy-units-032
+    topic: error-propagation
+    subtopic: Error in g from a pendulum
+    concept: Percentage error in g using time for many oscillations
+    category: application
+    format: case
+    difficulty: 4
+    time: 130
+    ncert: false
+    battle: false
+    formula: g = 4π^2 L/T^2, Δg/g = ΔL/L + 2ΔT/T
+    tags: [pendulum, power-rule, least-count, multi-concept]
+    stem: A student measures a pendulum length of 100.0 cm with a scale of least count 0.1 cm, and the time for 20 oscillations as 40.0 s with a stopwatch of least count 0.1 s. What is the maximum percentage error in g = 4π^2L/T^2?
+    options:
+      - 0.6%
+      - 0.35%
+      - 10.1%
+      - 0.25%
+    answer: 0
+    explanation: "ΔL/L = 0.1/100.0 = 0.1%. The time error applies to the total time: Δt/t = 0.1/40.0 = 0.25%, and ΔT/T = Δt/t because T = t/20. Then Δg/g = ΔL/L + 2ΔT/T = 0.1% + 0.5% = 0.6%. Forgetting the factor 2 gives 0.35%; applying the 0.1 s error to a single 2 s period gives about 10%, which is why timing many oscillations is better."
+
+  - id: phy-units-033
+    topic: error-propagation
+    subtopic: Resistors in series
+    concept: Absolute errors add for resistors in series
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [sum-difference-rule, ncert-example]
+    stem: Two resistors R_1 = (100 ± 3) Ω and R_2 = (200 ± 4) Ω are connected in series. The equivalent resistance is
+    options:
+      - (300 ± 1) Ω
+      - (300 ± 5) Ω
+      - (300 ± 7) Ω
+      - (300 ± 3.5) Ω
+    answer: 2
+    explanation: "In series R = R_1 + R_2 = 300 Ω. For a sum the absolute errors add: ΔR = 3 + 4 = 7 Ω. Taking the difference (1 Ω) or the average (3.5 Ω) of the errors underestimates the maximum error."
+
+  - id: phy-units-034
+    topic: dimensions
+    subtopic: Dimensional formulae in mechanics
+    concept: Dimensional formula of force
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [force, dimensional-formula]
+    stem: What is the dimensional formula of force?
+    options:
+      - "[M L^2 T^{-2}]"
+      - "[M L T^{-2}]"
+      - "[M L T^{-1}]"
+      - "[M L^{-1} T^{-2}]"
+    answer: 1
+    explanation: Force = mass × acceleration, and [acceleration] = [L T^{-2}], so [F] = [M L T^{-2}]. [M L^2 T^{-2}] is energy, [M L T^{-1}] is momentum and [M L^{-1} T^{-2}] is pressure.
+
+  - id: phy-units-035
+    topic: dimensions
+    subtopic: Dimensional formulae of constants
+    concept: Dimensional formula of the gravitational constant
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: F = G m_1 m_2/r^2
+    tags: [gravitational-constant, dimensional-formula]
+    stem: What is the dimensional formula of the universal gravitational constant G?
+    options:
+      - "[M L^3 T^{-2}]"
+      - "[M^{-1} L^2 T^{-2}]"
+      - "[M^{-2} L^3 T^{-2}]"
+      - "[M^{-1} L^3 T^{-2}]"
+    answer: 3
+    explanation: From F = Gm_1m_2/r^2, G = Fr^2/(m_1m_2). So [G] = [M L T^{-2}][L^2]/[M^2] = [M^{-1} L^3 T^{-2}]. Forgetting that m_1m_2 carries M^2 gives [M L^3 T^{-2}] or other wrong mass powers.
+
+  - id: phy-units-036
+    topic: dimensions
+    subtopic: Dimensionless quantities
+    concept: Identify dimensionless quantities
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: false
+    tags: [dimensionless, trap]
+    stem: |-
+      Which of the following quantities are dimensionless?
+      I. Strain
+      II. Plane angle
+      III. Refractive index
+      IV. Specific heat capacity
+    options:
+      - I and III only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: Strain is a ratio of two lengths, a plane angle is arc ÷ radius, and refractive index is a ratio of two speeds, so all three are dimensionless. Specific heat capacity has dimensions [L^2 T^{-2} K^{-1}] (J kg^{-1} K^{-1}). Leaving out the angle is a common slip because it has a unit (radian) even though it has no dimensions.
+
+  - id: phy-units-037
+    topic: dimensions
+    subtopic: Dimensional formulae in mechanics
+    concept: Dimensional formula of surface tension
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [surface-tension, dimensional-formula]
+    stem: Surface tension is force per unit length. Its dimensional formula is
+    options:
+      - "[M L T^{-2}]"
+      - "[M L^{-1} T^{-2}]"
+      - "[M T^{-2}]"
+      - "[M L^2 T^{-2}]"
+    answer: 2
+    explanation: "[Surface tension] = [force]/[length] = [M L T^{-2}]/[L] = [M T^{-2}]. Dividing by area instead of length would give [M L^{-1} T^{-2}], which is pressure."
+
+  - id: phy-units-038
+    topic: dimensions
+    subtopic: Combinations of electromagnetic constants
+    concept: 1/√(μ0ε0) has the dimensions of speed
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: true
+    tags: [permittivity, permeability, multi-concept]
+    stem: What are the dimensions of 1/√(μ_0ε_0), where μ_0 and ε_0 are the permeability and permittivity of free space?
+    options:
+      - "[L^2 T^{-2}]"
+      - "[L^{-1} T]"
+      - "[M L T^{-2}]"
+      - "[L T^{-1}]"
+    answer: 3
+    explanation: 1/√(μ_0ε_0) equals c, the speed of light in vacuum, so its dimensions are [L T^{-1}]. [L^2 T^{-2}] would be 1/(μ_0ε_0) without the square root, and [L^{-1} T] would be √(μ_0ε_0).
+
+  - id: phy-units-039
+    topic: dimensions
+    subtopic: Dimensional formulae in mechanics
+    concept: Coefficient of viscosity from Newton's law of viscosity
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    formula: F = ηA (dv/dx)
+    tags: [viscosity, dimensional-formula]
+    stem: The viscous force between fluid layers is F = ηA (dv/dx), where A is area and dv/dx is velocity gradient. The dimensional formula of η is
+    options:
+      - "[M L T^{-1}]"
+      - "[M L^{-2} T^{-1}]"
+      - "[M L^{-1} T^{-1}]"
+      - "[M L^{-1} T^{-2}]"
+    answer: 2
+    explanation: η = F/[A (dv/dx)]. [dv/dx] = [L T^{-1}]/[L] = [T^{-1}], so [A dv/dx] = [L^2 T^{-1}]. Then [η] = [M L T^{-2}]/[L^2 T^{-1}] = [M L^{-1} T^{-1}]. [M L^{-1} T^{-2}] is pressure, obtained if the velocity gradient is ignored.
+
+  - id: phy-units-040
+    topic: dimensions
+    subtopic: Quantities with same dimensions
+    concept: Momentum and angular momentum have different dimensions
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [same-dimensions, confused-pair]
+    stem: Which pair of physical quantities does NOT have the same dimensions?
+    options:
+      - Work and torque
+      - Impulse and linear momentum
+      - Linear momentum and angular momentum
+      - Stress and Young's modulus
+    answer: 2
+    explanation: "Angular momentum = r × p, so it has an extra length: [M L^2 T^{-1}] against [M L T^{-1}] for linear momentum. Work and torque are both [M L^2 T^{-2}], impulse equals change of momentum [M L T^{-1}], and stress and Young's modulus are both [M L^{-1} T^{-2}] because strain is dimensionless."
+
+  - id: phy-units-041
+    topic: dimensional-consistency
+    subtopic: Dimensionally correct but wrong equations
+    concept: Dimensional analysis cannot check dimensionless factors
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [homogeneity, limitations, trap]
+    stem: |-
+      Assertion (A): The equation s = ut + at^2 is dimensionally correct although the correct relation is s = ut + ½at^2.
+      Reason (R): The method of dimensions cannot check the value of dimensionless constants in an equation.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Every term in s = ut + at^2 has dimensions [L]: [ut] = [L T^{-1}][T] and [at^2] = [L T^{-2}][T^2]. The equation passes the dimensional test, yet it is wrong by the factor ½. This happens precisely because pure numbers like ½ have no dimensions, which is what R states."
+
+  - id: phy-units-042
+    topic: dimensional-consistency
+    subtopic: Dimensions of constants in an equation
+    concept: Dimensions of b in F = at + bt^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: true
+    tags: [homogeneity, constants]
+    stem: A force varies with time as F = at + bt^2. What are the dimensions of b?
+    options:
+      - "[M L T^{-3}]"
+      - "[M L T^{-2}]"
+      - "[M L T^{-4}]"
+      - "[M L T^{-1}]"
+    answer: 2
+    explanation: By the principle of homogeneity each term must have the dimensions of force. So [b][T^2] = [M L T^{-2}], giving [b] = [M L T^{-4}]. [M L T^{-3}] is the dimension of a (from [a][T] = [F]).
+
+  - id: phy-units-043
+    topic: dimensional-consistency
+    subtopic: Arguments of trigonometric functions
+    concept: Wave number k in A sin(ωt − kx) has dimensions of inverse length
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [trig-argument, wave-equation]
+    stem: A wave is described by y = A sin(ωt − kx), where x is a distance and t is time. What are the dimensions of k?
+    options:
+      - "[L]"
+      - "[L^{-1}]"
+      - "[T^{-1}]"
+      - "[L T^{-1}]"
+    answer: 1
+    explanation: The argument of a sine must be dimensionless, so kx must be a pure number. With [x] = [L], [k] = [L^{-1}]. Similarly [ω] = [T^{-1}], and the ratio ω/k has dimensions [L T^{-1}], the wave speed.
+
+  - id: phy-units-044
+    topic: dimensional-consistency
+    subtopic: Constants in gas equations
+    concept: Dimensions of a in the van der Waals equation
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 125
+    ncert: false
+    battle: false
+    formula: (P + a/V^2)(V − b) = RT
+    tags: [van-der-waals, homogeneity, multi-concept]
+    stem: In the van der Waals equation (P + a/V^2)(V − b) = RT, where P is pressure and V is volume, the dimensions of a are
+    options:
+      - "[M L^{-1} T^{-2}]"
+      - "[M L^{-7} T^{-2}]"
+      - "[L^3]"
+      - "[M L^5 T^{-2}]"
+    answer: 3
+    explanation: "Only like quantities can be added, so a/V^2 must be a pressure: [a] = [P][V^2] = [M L^{-1} T^{-2}][L^6] = [M L^5 T^{-2}]. Multiplying by V^{-2} instead gives [M L^{-7} T^{-2}]. [L^3] is the dimension of b, which must be a volume."
+
+  - id: phy-units-045
+    topic: dimensional-consistency
+    subtopic: Checking equations
+    concept: Identifying dimensionally wrong formulas for periodic displacement
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [homogeneity, trig-argument, ncert-exercise]
+    stem: |-
+      A book with printing errors gives four formulas for the displacement y of a particle in periodic motion (a = amplitude, v = speed, T = period, t = time):
+      I. y = a sin(2πt/T)
+      II. y = a sin(vt)
+      III. y = (a/T) sin(t/a)
+      IV. y = a√2 [sin(2πt/T) + cos(2πt/T)]
+      Which formulas are dimensionally WRONG?
+    options:
+      - II and III only
+      - I and IV only
+      - III only
+      - II, III and IV only
+    answer: 0
+    explanation: The argument of a sine must be dimensionless and y must have dimensions of length. In I and IV, t/T is dimensionless and the prefactor is a length, so they are fine (the √2 is just a number). In II, vt is a length, not a pure number. In III, t/a has dimensions [T L^{-1}], and a/T is not a length. So II and III are wrong.
+
+  - id: phy-units-046
+    topic: dimensional-derivation
+    subtopic: Deriving the period of a simple pendulum
+    concept: Exponents of l and g in the period of a pendulum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: T = k l^a g^b
+    tags: [pendulum, deducing-relations, ncert-example]
+    stem: Assume the period of a simple pendulum depends on its length l and the acceleration due to gravity g as T = k l^a g^b, where k is dimensionless. What are a and b?
+    options:
+      - a = −½, b = ½
+      - a = ½, b = −½
+      - a = 1, b = −1
+      - a = ½, b = ½
+    answer: 1
+    explanation: "[T] = [L]^a [L T^{-2}]^b = [L^{a+b} T^{-2b}]. Comparing powers: for T, −2b = 1 so b = −½; for L, a + b = 0 so a = ½. Hence T = k√(l/g); experiment gives k = 2π, which dimensions alone cannot supply."
+
+  - id: phy-units-047
+    topic: dimensional-derivation
+    subtopic: Limitations of dimensional analysis
+    concept: Relations with sums of terms cannot be derived dimensionally
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [limitations]
+    stem: Which of the following relations can NOT be derived by the method of dimensions alone?
+    options:
+      - s = ut + ½at^2
+      - T = 2π√(l/g)
+      - F = 6πηrv
+      - v = √(T/μ) for a stretched string
+    answer: 0
+    explanation: Dimensional analysis can find a product-of-powers relation up to a numerical constant, as in the pendulum period, Stokes' law or wave speed on a string (the constants 2π and 6π then come from experiment or theory). It cannot build a relation that is a sum of different terms, such as s = ut + ½at^2, because it only matches powers of one product.
+
+  - id: phy-units-048
+    topic: dimensional-derivation
+    subtopic: Deriving Stokes' law
+    concept: Viscous drag depends linearly on η, r and v
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    formula: F = k η^a r^b v^c
+    tags: [stokes-law, deducing-relations]
+    stem: The drag force on a small sphere moving slowly through a viscous fluid is taken as F = k η^a r^b v^c, where η is the coefficient of viscosity [M L^{-1} T^{-1}], r the radius and v the speed. The values of a, b and c are
+    options:
+      - 1, 2, 1
+      - 1, 1, 1
+      - 1, 1, 2
+      - 2, 1, 1
+    answer: 1
+    explanation: "[M L T^{-2}] = [M L^{-1} T^{-1}]^a [L]^b [L T^{-1}]^c. Mass: a = 1. Time: −a − c = −2, so c = 1. Length: −a + b + c = 1, so b = 1. Thus F = kηrv, which is Stokes' law with k = 6π."
+
+  - id: phy-units-049
+    topic: dimensional-derivation
+    subtopic: Log-log graphs of power laws
+    concept: Slope of log T versus log l for a pendulum
+    category: application
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [log-log-graph, pendulum]
+    stem: For a simple pendulum at a fixed place, a graph is plotted with log T (period) on the y-axis and log l (length) on the x-axis. What does the graph look like?
+    options:
+      - A straight line of slope 2
+      - A parabola through the origin
+      - A straight line of slope ½
+      - A straight line of slope −½
+    answer: 2
+    explanation: T = 2π√(l/g) gives log T = ½ log l + log(2π/√g). This is a straight line of slope ½ with a constant intercept. On a log-log plot any power law y = kx^n becomes a straight line whose slope is the exponent n. Slope 2 would be the graph with the axes swapped (log l against log T), and −½ is the exponent of g, not l.
+
+  - id: phy-units-050
+    topic: dimensional-derivation
+    subtopic: Percentage change from power laws
+    concept: Increase in period when pendulum length increases by 44%
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: true
+    tags: [pendulum, proportional-reasoning]
+    stem: The length of a simple pendulum is increased by 44%. By what percentage does its period increase?
+    options:
+      - 22%
+      - 20%
+      - 44%
+      - 12%
+    answer: 1
+    explanation: T ∝ √l, so T_2/T_1 = √(1.44) = 1.2, an increase of exactly 20%. Halving 44% to get 22% uses the small-change approximation, which is not accurate for such a large change. The period does not rise in proportion to length.
