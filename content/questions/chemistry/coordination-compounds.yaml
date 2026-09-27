@@ -7705,3 +7705,514 @@ questions:
       - "Weak field ligands cannot form octahedral complexes"
     answer: 0
     explanation: "When Δ_o > P, electrons pair in t_{2g} and the complex is low spin; ligands that do this (CN^−, CO, en) are strong field ligands. Weak field ligands (halides, H_2O) give Δ_o < P and high spin complexes. Charge does not decide it: neutral CO is the strongest ligand."
+  - id: che-coord-376
+    topic: crystal-field-theory
+    subtopic: Electron distribution in octahedral fields
+    concept: Octahedral d8 ions have a single arrangement, t2g6 eg2, whatever the ligand
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [d8, high-spin, trap]
+    stem: |-
+      Assertion (A): Octahedral nickel(II) complexes exist in high-spin and low-spin forms depending on the ligand.
+      Reason (R): Ni^{2+} has eight 3d electrons.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 3
+    explanation: "An octahedral d^8 ion always has the arrangement t_{2g}^6 e_g^2 with two unpaired electrons, whatever the ligand, so separate high-spin and low-spin forms do not exist. R is true, and it is exactly why A is false."
+  - id: che-coord-377
+    topic: crystal-field-theory
+    subtopic: Factors affecting the splitting
+    concept: Geometry, metal charge and ligand strength together decide the splitting of cobalt complexes
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [factors-affecting-delta]
+    stem: |-
+      Arrange the following in increasing order of crystal field splitting energy:
+      I. [Co(H_2O)_6]^{3+}
+      II. [CoCl_4]^{2−}
+      III. [Co(CN)_6]^{3−}
+      IV. [Co(H_2O)_6]^{2+}
+    options:
+      - "IV < II < I < III"
+      - "II < I < IV < III"
+      - "II < IV < I < III"
+      - "II < IV < III < I"
+    answer: 2
+    explanation: "The tetrahedral chloride complex has the smallest splitting (weak ligand and Δ_t ≈ 4/9 Δ_o). Of the aqua ions, higher-charged Co^{3+} gives the larger Δ_o, and replacing water by strong-field CN^− raises Δ_o further: II < IV < I < III."
+  - id: che-coord-378
+    topic: crystal-field-theory
+    subtopic: Crystal field stabilisation energy
+    concept: CFSE of octahedral d8 (t2g6 eg2) is −1.2Δo
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: CFSE = (−0.4x + 0.6y)Δ_o for t_{2g}^x e_g^y
+    tags: [cfse, d8]
+    stem: Ignoring pairing energy, what is the CFSE of [Ni(H_2O)_6]^{2+}?
+    options:
+      - "−0.6Δ_o"
+      - "−1.2Δ_o"
+      - "−2.4Δ_o"
+      - "0"
+    answer: 1
+    explanation: "Ni^{2+} is d^8, which is t_{2g}^6 e_g^2 in any octahedral field: CFSE = 6(−0.4Δ_o) + 2(+0.6Δ_o) = −2.4Δ_o + 1.2Δ_o = −1.2Δ_o."
+  - id: che-coord-379
+    topic: crystal-field-theory
+    subtopic: High spin and low spin
+    concept: t2g3 eg1 is high-spin d4, as in [Cr(H2O)6]2+
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [high-spin, d4]
+    stem: Which of the following complexes has the configuration t_{2g}^3 e_g^1?
+    options:
+      - "[Cr(CN)_6]^{4−}"
+      - "[Cr(NH_3)_6]^{3+}"
+      - "[Cr(H_2O)_6]^{2+}"
+      - "[Mn(CN)_6]^{3−}"
+    answer: 2
+    explanation: "t_{2g}^3 e_g^1 is a high-spin d^4 arrangement, which fits Cr^{2+} (d^4) with weak-field water. [Cr(CN)_6]^{4−} and [Mn(CN)_6]^{3−} are low-spin d^4 (t_{2g}^4), and Cr^{3+} in [Cr(NH_3)_6]^{3+} is d^3 (t_{2g}^3)."
+  - id: che-coord-380
+    topic: crystal-field-theory
+    subtopic: Tetrahedral splitting
+    concept: Finding Δo from Δt using Δo = (9/4)Δt
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: Δ_t = (4/9)Δ_o
+    tags: [tetrahedral-splitting]
+    stem: A tetrahedral complex has Δ_t = 6000 cm^{-1}. What is Δ_o for the octahedral complex with the same metal, ligands and metal–ligand distance?
+    options:
+      - "2667 cm^{-1}"
+      - "13500 cm^{-1}"
+      - "6000 cm^{-1}"
+      - "10000 cm^{-1}"
+    answer: 1
+    explanation: "Δ_o = (9/4)Δ_t = 2.25 × 6000 = 13500 cm^{-1}. Multiplying by 4/9 instead gives 2667 cm^{-1}, which would wrongly make the octahedral splitting the smaller one."
+  - id: che-coord-381
+    topic: crystal-field-theory
+    subtopic: CFT compared with VBT
+    concept: CFT explains colour through d–d transitions; VBT cannot
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [cft-vs-vbt]
+    stem: Which of the following is explained by crystal field theory but not by valence bond theory?
+    options:
+      - "The geometry of [Ni(CN)_4]^{2−}"
+      - "The colour of [Ti(H_2O)_6]^{3+}"
+      - "The existence of cis and trans isomers"
+      - "The number of ions a complex gives in solution"
+    answer: 1
+    explanation: "CFT attributes colour to d–d transitions between the split levels, as in violet [Ti(H_2O)_6]^{3+}; VBT cannot explain colour. Geometry is handled by both theories, while isomer counts and ionisation follow from Werner's picture."
+  - id: che-coord-382
+    topic: crystal-field-theory
+    subtopic: Crystal field stabilisation energy
+    concept: Low-spin d5 (t2g5) has CFSE −2.0Δo
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: CFSE = (−0.4x + 0.6y)Δ_o for t_{2g}^x e_g^y
+    tags: [cfse]
+    stem: Ignoring pairing energy, which complex has a CFSE of −2.0Δ_o?
+    options:
+      - "[FeF_6]^{3−}"
+      - "[Fe(H_2O)_6]^{2+}"
+      - "[Fe(CN)_6]^{3−}"
+      - "[Fe(CN)_6]^{4−}"
+    answer: 2
+    explanation: "Low-spin Fe^{3+} in [Fe(CN)_6]^{3−} is t_{2g}^5: 5 × (−0.4Δ_o) = −2.0Δ_o. High-spin [FeF_6]^{3−} (t_{2g}^3 e_g^2) has 0, high-spin [Fe(H_2O)_6]^{2+} −0.4Δ_o and low-spin [Fe(CN)_6]^{4−} −2.4Δ_o."
+  - id: che-coord-383
+    topic: crystal-field-theory
+    subtopic: Limitations of CFT
+    concept: The point-charge model cannot explain why neutral CO splits more than anionic ligands
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [cft-limitations]
+    stem: Which observation cannot be explained by the point-charge model of crystal field theory?
+    options:
+      - "The d orbitals split in an octahedral field"
+      - "Tetrahedral splitting is smaller than octahedral splitting"
+      - "Weak field ligands give high spin complexes"
+      - "Neutral CO produces a larger splitting than anionic F^−"
+    answer: 3
+    explanation: "If ligands acted only as point charges, anions like F^− should split the d orbitals most, yet neutral CO produces the largest splitting of all. NCERT cites this, together with CFT's neglect of covalent bonding, as a limitation; the other observations fit the model."
+  - id: che-coord-384
+    topic: colour-of-complexes
+    subtopic: Effect of ligand on colour
+    concept: Different ligands on the same Fe2+ ion give different splittings and colours
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [ligand-effect-on-colour, ncert-exercise]
+    stem: Dilute solutions of [Fe(CN)_6]^{4−} and [Fe(H_2O)_6]^{2+} have different colours. What is the main reason?
+    options:
+      - "Iron has different oxidation states in the two ions"
+      - "The ligands produce different crystal field splittings, so different wavelengths are absorbed"
+      - "Only one of the two ions contains d electrons"
+      - "The counter ions absorb different wavelengths"
+    answer: 1
+    explanation: "Both contain Fe^{2+} (d^6), but CN^− is a strong field ligand and H_2O a weak one, so Δ_o, and with it the wavelength absorbed in the d–d transition, differs; the transmitted complementary colours differ accordingly."
+  - id: che-coord-385
+    topic: colour-of-complexes
+    subtopic: d–d transitions and complementary colour
+    concept: CFT attributes colour to d–d transitions; absorbing green makes a complex look red
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [d-d-transition, complementary-colour, ncert-line]
+    stem: |-
+      Statement I: Crystal field theory attributes the colour of coordination compounds to d–d transitions of electrons.
+      Statement II: If green light is absorbed by a complex, the complex appears red.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 0
+    explanation: "NCERT: CFT attributes colour to the d–d transition of electrons, and the observed colour is complementary to the colour absorbed; its own example is that a complex absorbing green light appears red. Both statements are correct."
+  - id: che-coord-386
+    topic: colour-of-complexes
+    subtopic: Comparing ligand strength from spectra
+    concept: The complex absorbing at shorter wavelength has the stronger field ligand
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [absorption-wavelength, spectrochemical-series]
+    stem: Two octahedral complexes of the same metal ion differ only in their ligands, L1 and L2. The L1 complex absorbs most strongly at 600 nm and the L2 complex at 450 nm. Which conclusion is correct?
+    options:
+      - "L2 is the stronger field ligand, and its complex has the larger Δ_o"
+      - "L1 is the stronger field ligand, and its complex has the larger Δ_o"
+      - "Both ligands produce the same Δ_o, because the metal is the same"
+      - "The L2 complex must be tetrahedral"
+    answer: 0
+    explanation: "The absorbed energy E = hc/λ is larger at 450 nm than at 600 nm, so the L2 complex has the larger Δ_o and L2 is the stronger field ligand. With the same metal ion, the difference comes from the ligands' positions in the spectrochemical series."
+  - id: che-coord-387
+    topic: colour-of-complexes
+    subtopic: Colourless complexes
+    concept: d0 and d10 ions (Sc3+, Cu+, Zn2+) form colourless complexes
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [d0-d10, colourless]
+    stem: |-
+      Which of the following are expected to be colourless?
+      I. [Sc(H_2O)_6]^{3+}
+      II. [Cu(CN)_4]^{3−}
+      III. [Ti(H_2O)_6]^{3+}
+      IV. [Zn(NH_3)_4]^{2+}
+    options:
+      - "I and III only"
+      - "II and IV only"
+      - "I, III and IV only"
+      - "I, II and IV only"
+    answer: 3
+    explanation: "d–d transitions need a partly filled d subshell. Sc^{3+} (d^0), Cu^+ (d^{10}) and Zn^{2+} (d^{10}) have none, so their complexes are colourless, while Ti^{3+} (d^1) in [Ti(H_2O)_6]^{3+} is violet."
+  - id: che-coord-388
+    topic: colour-of-complexes
+    subtopic: Complementary colour
+    concept: A complex that absorbs yellow light appears violet
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [complementary-colour]
+    stem: A complex absorbs light mainly in the yellow region of the visible spectrum. What colour will it appear?
+    options:
+      - "Yellow"
+      - "Violet"
+      - "Green"
+      - "Red"
+    answer: 1
+    explanation: "The observed colour is complementary to the absorbed one, so yellow absorption gives violet, as in [CoCl(NH_3)_5]^{2+}, which absorbs at 535 nm. Appearing yellow would mean yellow light was transmitted, not absorbed."
+  - id: che-coord-389
+    topic: metal-carbonyls
+    subtopic: Back-bonding and C–O bond length
+    concept: The C–O bond in a metal carbonyl is longer than in free CO
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [back-bonding, bond-length]
+    stem: How does the C–O bond in [Cr(CO)_6] compare with that in free carbon monoxide?
+    options:
+      - "It is shorter, because the metal withdraws electrons from CO"
+      - "It is identical, because CO bonds only through carbon"
+      - "It becomes a triple bond in the complex but is a double bond in free CO"
+      - "It is longer, because metal electrons are donated into the π^{*} orbitals of CO"
+    answer: 3
+    explanation: "Back-donation from filled metal d orbitals into the empty π^{*} orbitals of CO lowers the C–O bond order, so the bond in the complex is longer and weaker than in free CO, while the M–C bond gains partial double-bond character."
+  - id: che-coord-390
+    topic: metal-carbonyls
+    subtopic: Synergic bonding
+    concept: σ donation and π back-donation reinforce each other and strengthen the M–C bond
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [synergic-bonding]
+    stem: |-
+      Assertion (A): The metal–carbon bond in metal carbonyls is stronger than a simple σ bond.
+      Reason (R): σ donation from CO and π back-donation from the metal reinforce each other (synergic bonding).
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "The M–C bond gains π character from back-donation on top of the σ bond, and each component strengthens the other; NCERT describes this synergic effect as strengthening the bond between CO and the metal. R explains A."
+  - id: che-coord-391
+    topic: metal-carbonyls
+    subtopic: Bridging carbonyls
+    concept: Octacarbonyldicobalt has 6 terminal and 2 bridging CO, i.e. 10 Co–C bonds
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [bridging-co, metal-carbonyls]
+    stem: In the NCERT structure of [Co_2(CO)_8], two CO groups bridge the Co–Co bond. How many Co–C bonds are present in all?
+    options:
+      - "10"
+      - "8"
+      - "12"
+      - "6"
+    answer: 0
+    explanation: "Six terminal CO groups form one Co–C bond each (6), and each of the two bridging CO groups is bonded to both cobalt atoms (2 × 2 = 4), giving 10 Co–C bonds. Counting each CO once gives the tempting but wrong answer 8."
+  - id: che-coord-392
+    topic: metal-carbonyls
+    subtopic: Classifying carbonyls
+    concept: "[Fe(CO)5] is a mononuclear homoleptic carbonyl"
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [metal-carbonyls]
+    stem: Pentacarbonyliron(0), [Fe(CO)_5], is an example of a
+    options:
+      - "dinuclear carbonyl with a metal–metal bond"
+      - "carbonyl with bridging CO groups"
+      - "mononuclear, homoleptic carbonyl"
+      - "heteroleptic carbonyl"
+    answer: 2
+    explanation: "[Fe(CO)_5] contains one metal atom and only CO ligands, so it is a mononuclear homoleptic carbonyl with a trigonal bipyramidal shape. Metal–metal bonds and bridging CO groups occur in dinuclear carbonyls such as [Mn_2(CO)_{10}] and [Co_2(CO)_8]."
+  - id: che-coord-393
+    topic: applications
+    subtopic: Extraction of metals
+    concept: Silver dissolves as [Ag(CN)2]− in the cyanide process
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [metallurgy, cyanide-complex]
+    stem: In the extraction of silver by the cyanide process, silver passes into solution as which complex ion?
+    options:
+      - "[Ag(NH_3)_2]^+"
+      - "[Ag(S_2O_3)_2]^{3−}"
+      - "[Ag(CN)_2]^−"
+      - "[Ag(CN)_4]^{3−}"
+    answer: 2
+    explanation: "NCERT notes that the extraction of silver, like that of gold, relies on complex formation; silver dissolves as the linear dicyanidoargentate(I) ion [Ag(CN)_2]^−, from which the metal is later recovered with zinc."
+  - id: che-coord-394
+    topic: applications
+    subtopic: Chelating agents in medicine and analysis
+    concept: EDTA for lead, D-penicillamine for copper, desferrioxime B for iron, DMG for nickel
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [chelate-therapy, analytical-chemistry]
+    stem: |-
+      Match the chelating agent in List I with its use in List II.
+      List I
+      P. EDTA
+      Q. D-penicillamine
+      R. Desferrioxime B
+      S. Dimethylglyoxime
+      List II
+      1. Treatment of lead poisoning
+      2. Removal of excess copper
+      3. Removal of excess iron
+      4. Detection of nickel
+    options:
+      - "P-1, Q-2, R-3, S-4"
+      - "P-2, Q-1, R-3, S-4"
+      - "P-1, Q-3, R-2, S-4"
+      - "P-4, Q-2, R-3, S-1"
+    answer: 0
+    explanation: "NCERT: EDTA is used for lead poisoning, D-penicillamine removes excess copper and desferrioxime B excess iron, while dimethylglyoxime is an analytical reagent that detects nickel."
+  - id: che-coord-395
+    topic: applications
+    subtopic: Gravimetric estimation of nickel
+    concept: One Ni per [Ni(dmg)2] unit converts precipitate mass to nickel mass
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [gravimetric-analysis, dmg, stoichiometry]
+    stem: Nickel in a sample is precipitated completely as the red chelate [Ni(dmg)_2] (molar mass 288.9 g mol^{-1}). If 2.889 g of precipitate is obtained, what mass of nickel was present? (Ni = 58.7 g mol^{-1})
+    options:
+      - "1.174 g"
+      - "0.294 g"
+      - "2.889 g"
+      - "0.587 g"
+    answer: 3
+    explanation: "2.889 g ÷ 288.9 g mol^{-1} = 0.0100 mol of complex, and each unit contains one Ni atom, so the nickel present is 0.0100 × 58.7 = 0.587 g. 1.174 g assumes two Ni per complex, confusing the 1:2 metal-to-ligand ratio."
+  - id: che-coord-396
+    topic: applications
+    subtopic: Uses of coordination compounds
+    concept: EDTA titration, cyanide electroplating and nickel carbonyl purification rely on complexes; boiling does not
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [applications]
+    stem: |-
+      Which of the following processes make use of complex formation?
+      I. Estimation of the hardness of water with EDTA
+      II. Electroplating of silver from [Ag(CN)_2]^− solution
+      III. Purification of nickel through [Ni(CO)_4]
+      IV. Removal of temporary hardness by boiling
+    options:
+      - "I and II only"
+      - "II, III and IV only"
+      - "I, II and III only"
+      - "I, III and IV only"
+    answer: 2
+    explanation: "EDTA titration of hardness, electroplating from cyanide complexes and the purification of nickel via its carbonyl all depend on complex formation. Boiling removes temporary hardness by precipitating carbonate and involves no coordination compound."
+  - id: che-coord-397
+    topic: applications
+    subtopic: Coordination compounds in medicine
+    concept: cis-Platin is square planar cis-diamminedichloridoplatinum(II)
+    category: application
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [cisplatin, medicine]
+    stem: Which statement about the anticancer drug cis-platin is correct?
+    options:
+      - "It is an octahedral cobalt(III) complex"
+      - "It is the trans isomer of [PtCl_2(NH_3)_2]"
+      - "Its IUPAC name is cis-diamminedichloridoplatinum(IV)"
+      - "It is cis-diamminedichloridoplatinum(II), a square planar complex that inhibits the growth of tumours"
+    answer: 3
+    explanation: "cis-Platin is cis-[PtCl_2(NH_3)_2]: the complex is neutral with two Cl^−, so platinum is +2, and the geometry is square planar. NCERT notes that it and related platinum compounds inhibit the growth of tumours."
+  - id: che-coord-398
+    topic: applications
+    subtopic: Estimation of hardness of water
+    concept: Volume of EDTA needed for a sample of known hardness in ppm
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: moles of M^{2+} = molarity of EDTA × volume of EDTA
+    tags: [edta-titration, hardness]
+    stem: A water sample has hardness equivalent to 200 ppm of CaCO_3 (M = 100 g mol^{-1}). What volume of 0.010 M Na_2EDTA is needed to titrate 50.0 mL of it, if EDTA binds the metal ions 1:1?
+    options:
+      - "20.0 mL"
+      - "5.0 mL"
+      - "100 mL"
+      - "10.0 mL"
+    answer: 3
+    explanation: "200 ppm means 200 mg of CaCO_3 per litre, so 50.0 mL contains 10.0 mg = 1.0 × 10^{-4} mol. With 1:1 binding, V = 1.0 × 10^{-4} mol ÷ 0.010 mol L^{-1} = 0.010 L = 10.0 mL."
+  - id: che-coord-399
+    topic: applications
+    subtopic: Electroplating
+    concept: A cyanide complex keeps free Ag+ low, so silver deposits slowly and evenly
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [electroplating]
+    stem: Silver plating from a solution of [Ag(CN)_2]^− gives a smoother coat than plating from AgNO_3 solution. What is the main reason?
+    options:
+      - "The complex keeps the concentration of free Ag^+ low, so silver deposits slowly and evenly"
+      - "Cyanide makes metallic silver more reactive"
+      - "The complex ion is negatively charged and so moves to the cathode faster"
+      - "Each complex ion carries more silver than an Ag^+ ion"
+    answer: 0
+    explanation: "In [Ag(CN)_2]^− solution only a small concentration of free Ag^+ is present at any moment, so the metal is released and deposited gradually, giving a smooth, even coat. NCERT records that plating from [Ag(CN)_2]^− and [Au(CN)_2]^− is smoother than from simple metal ions."
+  - id: che-coord-400
+    topic: applications
+    subtopic: Extraction of metals
+    concept: Oxygen is needed to dissolve gold as [Au(CN)2]−
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [metallurgy, ncert-line]
+    stem: In the cyanide leaching of gold, which substance besides water and cyanide must be present for gold to dissolve as [Au(CN)_2]^−?
+    options:
+      - "Oxygen"
+      - "Hydrogen"
+      - "Carbon dioxide"
+      - "Nitrogen"
+    answer: 0
+    explanation: "NCERT: gold combines with cyanide in the presence of oxygen and water; oxygen oxidises Au(0) to Au(I), which is held in solution as [Au(CN)_2]^−. Zinc later reduces it back to the metal."
