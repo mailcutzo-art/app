@@ -4690,3 +4690,465 @@ questions:
       - becomes zero
     answer: 2
     explanation: E = E° − 0.059 log([Fe^{2+}]/[Fe^{3+}]) depends only on the ratio, which dilution does not change.
+  - id: che-elec-235
+    topic: gibbs-energy-emf
+    subtopic: K less than 1
+    concept: Implications of K < 1 for a cell reaction
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [equilibrium-constant, spontaneity, trap]
+    stem: |-
+      For a cell reaction with K < 1 at 298 K, which statements are correct?
+      I. E°_cell is negative.
+      II. ΔG° is positive.
+      III. The reaction is not spontaneous under standard conditions.
+      IV. The reaction cannot proceed at all under any composition.
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: log K < 0 means E° < 0 and ΔG° > 0, so the reaction is non-spontaneous under standard conditions. With a very small Q it can still proceed forward to reach equilibrium, so IV is wrong.
+  - id: che-elec-236
+    topic: gibbs-energy-emf
+    subtopic: ΔG° from E°
+    concept: ΔG° for Zn reducing Ag+
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔG° = −nFE°
+    tags: [gibbs-energy]
+    stem: "Calculate ΔG° for Zn(s) + 2Ag^+(aq) → Zn^{2+}(aq) + 2Ag(s). (E°: Zn^{2+}/Zn = −0.76 V, Ag^+/Ag = +0.80 V, F = 96500 C mol^{−1})"
+    options:
+      - −150.5 kJ mol^{−1}
+      - −301.1 kJ mol^{−1}
+      - −8.1 kJ mol^{−1}
+      - −602.2 kJ mol^{−1}
+    answer: 1
+    explanation: E° = 0.80 − (−0.76) = 1.56 V; ΔG° = −2 × 96500 × 1.56 ≈ −301.1 kJ mol^{−1}. Using n = 1 gives −150.5 kJ; doubling E° for 2Ag^+ is a common error.
+  - id: che-elec-237
+    topic: gibbs-energy-emf
+    subtopic: Extensive vs intensive
+    concept: Halving the equation halves ΔG° but not E°
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [intensive-property, trap]
+    stem: |-
+      Assertion (A): E° for Zn + 2Ag^+ → Zn^{2+} + 2Ag is the same as for ½Zn + Ag^+ → ½Zn^{2+} + Ag.
+      Reason (R): ΔG° is the same for both equations.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: E° is intensive and does not depend on how the equation is written. ΔG° = −nFE° is extensive; halving the equation halves n and ΔG°, so R is false.
+  - id: che-elec-238
+    topic: gibbs-energy-emf
+    subtopic: Equilibrium constant from E°
+    concept: Equilibrium constant of the Daniell cell reaction
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: log K = nE°/0.059
+    tags: [equilibrium-constant, daniell-cell]
+    stem: The equilibrium constant at 298 K for Zn(s) + Cu^{2+}(aq) ⇌ Zn^{2+}(aq) + Cu(s), E° = 1.10 V, is about
+    options:
+      - 2 × 10^{37}
+      - 4 × 10^{18}
+      - 2 × 10^{−37}
+      - 1.1 × 10^{2}
+    answer: 0
+    explanation: log K = 2 × 1.10/0.059 ≈ 37.3, so K ≈ 2 × 10^{37}; the reaction goes essentially to completion.
+  - id: che-elec-239
+    topic: gibbs-energy-emf
+    subtopic: E° and K
+    concept: Matching E° and n with K
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [equilibrium-constant, match]
+    stem: |-
+      Match each cell reaction at 298 K (List I) with its equilibrium constant (List II).
+      List I
+      P. E° = +0.059 V, n = 1
+      Q. E° = 0 V, n = 2
+      R. E° = −0.059 V, n = 1
+      S. E° = +0.059 V, n = 2
+      List II
+      1. 1
+      2. 10
+      3. 100
+      4. 0.1
+    options:
+      - P-2, Q-1, R-4, S-3
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-4, R-1, S-3
+      - P-2, Q-1, R-3, S-4
+    answer: 0
+    explanation: log K = nE°/0.059 gives 1 (K = 10) for P, 0 (K = 1) for Q, −1 (K = 0.1) for R and 2 (K = 100) for S.
+  - id: che-elec-240
+    topic: gibbs-energy-emf
+    subtopic: Combining half-cell potentials
+    concept: ΔG° values are additive but E° values are not
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [latimer, trap]
+    stem: |-
+      Statement I: ΔG° for Fe^{3+} + 3e^− → Fe equals the sum of ΔG° for Fe^{3+} + e^− → Fe^{2+} and Fe^{2+} + 2e^− → Fe.
+      Statement II: E° for Fe^{3+} + 3e^− → Fe equals the sum of E° for the two steps.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Gibbs energy is a state function and extensive, so ΔG° values add. Potentials must be weighted by n (nE° values add), so E° of the overall step is not the simple sum.
+  - id: che-elec-241
+    topic: gibbs-energy-emf
+    subtopic: ΔG° and K relation
+    concept: K from ΔG° using ΔG° = −2.303RT log K
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: ΔG° = −2.303RT log K
+    tags: [equilibrium-constant]
+    stem: A cell reaction has ΔG° = −11.4 kJ mol^{−1} at 298 K. Its equilibrium constant is about (R = 8.314 J K^{−1} mol^{−1})
+    options:
+      - "10"
+      - "100"
+      - "0.01"
+      - "1000"
+    answer: 1
+    explanation: log K = −ΔG°/(2.303RT) = 11 400/(2.303 × 8.314 × 298) ≈ 11 400/5706 ≈ 2.0, so K ≈ 100.
+  - id: che-elec-242
+    topic: gibbs-energy-emf
+    subtopic: E° from ΔG°
+    concept: E° from ΔG° for a two-electron reaction
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: E° = −ΔG°/(nF)
+    tags: [gibbs-energy]
+    stem: For a two-electron cell reaction, ΔG° = −43.4 kJ mol^{−1}. E°_cell is about (F = 96500 C mol^{−1})
+    options:
+      - 0.45 V
+      - 0.225 V
+      - 0.11 V
+      - −0.225 V
+    answer: 1
+    explanation: E° = −ΔG°/(nF) = 43 400/(2 × 96500) ≈ 0.225 V. Using n = 1 gives 0.45 V.
+  - id: che-elec-243
+    topic: gibbs-energy-emf
+    subtopic: Spontaneity
+    concept: Negative E° means the reverse reaction is spontaneous
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [spontaneity]
+    stem: A student calculates E°_cell = −0.20 V for a reaction written as A + B^+ → A^+ + B. What can be concluded under standard conditions?
+    options:
+      - The forward reaction is spontaneous
+      - The reverse reaction is spontaneous
+      - The system is at equilibrium
+      - ΔG° for the forward reaction is negative
+    answer: 1
+    explanation: A negative E° gives positive ΔG° for the forward reaction, so the reverse reaction (A^+ + B → A + B^+) has positive E° and is spontaneous.
+  - id: che-elec-244
+    topic: gibbs-energy-emf
+    subtopic: Units
+    concept: F × E has units of J mol^-1
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [units]
+    stem: In ΔG° = −nFE°, the product F × E° (F in C mol^{−1}, E° in V) has the unit
+    options:
+      - J mol^{−1}
+      - C V^{−1}
+      - W mol^{−1}
+      - A s mol
+    answer: 0
+    explanation: 1 C × 1 V = 1 J, so C mol^{−1} × V = J mol^{−1}, an energy per mole, as required for ΔG°.
+  - id: che-elec-245
+    topic: gibbs-energy-emf
+    subtopic: Equilibrium constant from E°
+    concept: K for a reaction with small positive E°
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [equilibrium-constant, multi-concept]
+    stem: "Using E°(Ag^+/Ag) = 0.80 V and E°(Fe^{3+}/Fe^{2+}) = 0.77 V, the equilibrium constant at 298 K for Fe^{2+} + Ag^+ ⇌ Fe^{3+} + Ag is about"
+    options:
+      - "0.31"
+      - "3.2"
+      - "32"
+      - "1.0 × 10^{26}"
+    answer: 1
+    explanation: E° = 0.80 − 0.77 = 0.03 V and n = 1, so log K = 0.03/0.059 ≈ 0.51 and K ≈ 3.2. A small E° means an equilibrium mixture with comparable amounts of reactants and products.
+  - id: che-elec-246
+    topic: conductance
+    subtopic: Conductance vs conductivity
+    concept: Conductance depends on cell geometry but conductivity does not
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [cell-constant, confused-pair]
+    stem: |-
+      Statement I: The measured conductance of a solution depends on the cell constant of the cell used.
+      Statement II: The conductivity of a solution depends on the cell constant of the cell used.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: G = κ/G*, so conductance changes with electrode spacing and area, but κ is a characteristic of the solution at a given concentration and temperature.
+  - id: che-elec-247
+    topic: conductance
+    subtopic: Cell constant
+    concept: Properties of the cell constant
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [cell-constant]
+    stem: |-
+      Which statements about the cell constant are correct?
+      I. It has units of cm^{−1} or m^{−1}.
+      II. It depends on the distance between electrodes and their area.
+      III. It depends on the nature of the electrolyte filled in the cell.
+      IV. It is usually found using a KCl solution of known conductivity.
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: G* = l/A is a geometric property of the cell, found by calibration with standard KCl. It does not depend on the electrolyte, so III is wrong.
+  - id: che-elec-248
+    topic: conductance
+    subtopic: Cell constant
+    concept: Two-step calibration and measurement with a conductivity cell
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [cell-constant, multi-concept]
+    stem: A cell filled with 0.01 M KCl (κ = 1.41 × 10^{−3} S cm^{−1}) has a resistance of 1500 Ω. Filled with a solution X, its resistance is 2000 Ω. The conductivity of X is about
+    options:
+      - 1.88 × 10^{−3} S cm^{−1}
+      - 1.06 × 10^{−3} S cm^{−1}
+      - 2.12 S cm^{−1}
+      - 7.1 × 10^{−4} S cm^{−1}
+    answer: 1
+    explanation: G* = κR = 1.41 × 10^{−3} × 1500 = 2.115 cm^{−1}; κ(X) = G*/R = 2.115/2000 ≈ 1.06 × 10^{−3} S cm^{−1}. Scaling the wrong way gives 1.88 × 10^{−3}.
+  - id: che-elec-249
+    topic: conductance
+    subtopic: Effect of temperature
+    concept: Metallic conductivity falls with rising temperature due to lattice vibrations
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [temperature, electronic-conduction]
+    stem: |-
+      Assertion (A): The electrical conductivity of copper decreases as temperature rises.
+      Reason (R): At higher temperature the vibrations of the metal kernels increase and hinder the flow of electrons.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Greater thermal vibration of the positive ions scatters conduction electrons more, raising resistance. R explains A.
+  - id: che-elec-250
+    topic: conductance
+    subtopic: Types of conductors
+    concept: Molten ionic compounds conduct electrolytically
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [electrolytic-conduction]
+    stem: Which of the following conducts electricity by movement of ions?
+    options:
+      - Copper wire
+      - Graphite rod
+      - Molten NaCl
+      - Solid NaCl
+    answer: 2
+    explanation: In molten NaCl, Na^+ and Cl^− are free to move and carry current. Metals and graphite conduct through electrons, while ions in solid NaCl are fixed in the lattice.
+  - id: che-elec-251
+    topic: conductance
+    subtopic: Conductivity values
+    concept: Orders of magnitude of conductivity of different materials
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [match, conductivity, ncert-line]
+    stem: |-
+      Match the material (List I) with its approximate conductivity at 298 K (List II).
+      List I
+      P. Copper
+      Q. Pure water
+      R. 0.1 M KCl solution
+      S. Glass
+      List II
+      1. 1.29 S m^{−1}
+      2. 3.5 × 10^{−5} S m^{−1}
+      3. 5.9 × 10^7 S m^{−1}
+      4. 10^{−16} S m^{−1}
+    options:
+      - P-3, Q-1, R-2, S-4
+      - P-3, Q-2, R-1, S-4
+      - P-1, Q-2, R-3, S-4
+      - P-3, Q-4, R-1, S-2
+    answer: 1
+    explanation: Metals like copper have very high conductivity (~10^7 S m^{−1}), a 0.1 M KCl solution about 1.29 S m^{−1}, pure water only ~3.5 × 10^{−5} S m^{−1} and glass is an insulator (~10^{−16} S m^{−1}).
+  - id: che-elec-252
+    topic: conductance
+    subtopic: Effect of temperature
+    concept: Why electrolytic conductivity rises with temperature
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [temperature]
+    stem: The conductivity of an electrolytic solution increases with temperature mainly because
+    options:
+      - the number of free electrons increases
+      - the viscosity of the solvent falls and ions move faster
+      - the cell constant increases
+      - the ions become larger
+    answer: 1
+    explanation: At higher temperature the solvent is less viscous and ion–solvent and ion–ion interactions weaken, so ionic mobility increases.
+  - id: che-elec-253
+    topic: conductance
+    subtopic: Concepts
+    concept: Identifying a false statement about conductance quantities
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [conductivity, trap]
+    stem: Which statement about conductance and conductivity is incorrect?
+    options:
+      - Conductivity is the conductance of a unit cube of the solution
+      - The SI unit of resistivity is Ω m
+      - Conductance is the reciprocal of resistance
+      - The conductivity of an electrolyte increases on dilution
+    answer: 3
+    explanation: Dilution lowers the number of ions per unit volume, so conductivity decreases; it is molar conductivity that increases on dilution.
+  - id: che-elec-254
+    topic: conductance
+    subtopic: Comparing solutions
+    concept: In the same cell, conductivity is inversely proportional to resistance
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [conductivity]
+    stem: In the same conductivity cell, solution A shows 100 Ω and solution B shows 400 Ω. The ratio κ_A/κ_B is
+    options:
+      - "1/4"
+      - "4"
+      - "16"
+      - "1/16"
+    answer: 1
+    explanation: With the same cell constant, κ = G*/R, so κ_A/κ_B = R_B/R_A = 400/100 = 4.
+  - id: che-elec-255
+    topic: conductance
+    subtopic: Measurement
+    concept: DC measurement causes electrolysis and polarisation
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [measurement]
+    stem: A student measures the resistance of a CuSO_4 solution with a DC ohmmeter and sees the reading drift steadily while a deposit forms on one electrode. The best explanation is
+    options:
+      - the cell constant changes with current
+      - DC causes electrolysis, changing the solution and polarising the electrodes
+      - CuSO_4 is a non-electrolyte
+      - the temperature of the solution drops sharply
+    answer: 1
+    explanation: DC electrolyses the solution (Cu deposits, O_2 forms), altering concentration and producing back-emf at the electrodes. An AC source is used to avoid this.
+  - id: che-elec-256
+    topic: conductance
+    subtopic: Nature of solvent
+    concept: Higher solvent viscosity lowers conductivity
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [factors, solvent]
+    stem: The same electrolyte is dissolved at equal concentration in two solvents of similar polarity. Its conductivity will be lower in the solvent that
+    options:
+      - has lower viscosity
+      - has higher viscosity
+      - is at a higher temperature
+      - has a smaller cell constant
+    answer: 1
+    explanation: Ions move more slowly through a more viscous medium, reducing conductivity; NCERT lists solvent viscosity among the factors affecting conductivity.
