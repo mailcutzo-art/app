@@ -9475,3 +9475,428 @@ questions:
       - 10.2 eV
     answer: 0
     explanation: E = hcν̄ = 1.988 × 10^{-25} × 2.7419 × 10^6 m^{-1} ≈ 5.45 × 10^{-19} J ≈ 3.4 eV. This equals 13.6/2^2 eV; 10.2 eV is the 1 → 2 excitation energy.
+
+  - id: che-atom-451
+    topic: bohr-model
+    subtopic: Kinetic and potential energy
+    concept: Potential energy in n = 2 of H is 2E_2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: true
+    formula: PE = 2E_n
+    tags: [bohr-energy]
+    stem: The potential energy of the electron in the n = 2 orbit of a hydrogen atom is
+    options:
+      - "−3.4 eV"
+      - +3.4 eV
+      - "−13.6 eV"
+      - "−6.8 eV"
+    answer: 3
+    explanation: E_2 = −13.6/4 = −3.4 eV, and in a Bohr orbit PE = 2E = −6.8 eV while KE = −E = +3.4 eV. Quoting the total energy −3.4 eV is the common slip.
+
+  - id: che-atom-452
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: Energy gap between n = 2 and 3 in Li^{2+}
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: ΔE = 13.6 Z^2(1/n_1^2 − 1/n_2^2) eV
+    tags: [hydrogen-like, transition-energy]
+    stem: What is the energy difference between the n = 2 and n = 3 levels of Li^{2+} (Z = 3)?
+    options:
+      - 1.89 eV
+      - 5.67 eV
+      - 30.6 eV
+      - 17.0 eV
+    answer: 3
+    explanation: ΔE = 13.6 × 9 × (1/4 − 1/9) = 13.6 × 9 × 5/36 = 17.0 eV, nine times hydrogen's 1.89 eV. Multiplying by Z instead of Z^2 gives 5.67 eV.
+
+  - id: che-atom-453
+    topic: bohr-model
+    subtopic: Angular momentum quantisation
+    concept: Bohr angular momentum depends on n only, not Z
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 40
+    ncert: true
+    battle: true
+    formula: mvr = nh/2π
+    tags: [angular-momentum, hydrogen-like, trap]
+    stem: The angular momentum of the electron in the second orbit of He^+ is
+    options:
+      - h/2π
+      - 2h/π
+      - 4h/2π
+      - h/π
+    answer: 3
+    explanation: mvr = nh/2π depends only on n. For n = 2 it is 2h/2π = h/π, whatever the nuclear charge. Scaling with Z gives the wrong options.
+
+  - id: che-atom-454
+    topic: bohr-model
+    subtopic: Scope of Bohr model
+    concept: Bohr's theory explains spectra of one-electron species only
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [bohr-limitations, hydrogen-like]
+    stem: Which of the following can Bohr's theory explain satisfactorily?
+    options:
+      - The splitting of spectral lines in a magnetic field
+      - The line spectrum of Li^{2+}
+      - The spectrum of the helium atom
+      - The ability of atoms to form molecules by chemical bonds
+    answer: 1
+    explanation: Li^{2+} has one electron, so Bohr's formulas with Z = 3 apply. The Zeeman effect, the spectrum of two-electron helium and chemical bonding are all beyond the model.
+
+  - id: che-atom-455
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: He^+ first orbit is half, not double, the H radius
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [hydrogen-like, bohr-radius, trap]
+    stem: |-
+      Assertion (A): The radius of the first Bohr orbit of He^+ is twice that of the first Bohr orbit of hydrogen.
+      Reason (R): The radius of a Bohr orbit is proportional to n^2/Z.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "Since r ∝ n^2/Z, for n = 1 He^+ (Z = 2) has half the radius of H: 26.45 pm. The larger nuclear charge pulls the electron closer, so A is false while R is true."
+
+  - id: che-atom-456
+    topic: bohr-model
+    subtopic: Radius of orbits
+    concept: Radius ratio of n = 3 and n = 2 is 9:4
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    formula: r ∝ n^2
+    tags: [bohr-radius, proportionality]
+    stem: In a hydrogen atom, the ratio of the radius of the third orbit to that of the second orbit is
+    options:
+      - "3:2"
+      - "4:9"
+      - "9:4"
+      - "27:8"
+    answer: 2
+    explanation: r ∝ n^2, so r_3:r_2 = 9:4. 3:2 would follow if r ∝ n.
+
+  - id: che-atom-457
+    topic: bohr-model
+    subtopic: Ionisation from excited states
+    concept: Ionising H from n = 3 needs 1.51 eV
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    formula: IE_n = 13.6/n^2 eV
+    tags: [ionisation-energy]
+    stem: What is the minimum energy needed to ionise a hydrogen atom whose electron is in the n = 3 level?
+    options:
+      - 12.09 eV
+      - 13.6 eV
+      - 4.53 eV
+      - 1.51 eV
+    answer: 3
+    explanation: IE from level n is 13.6/n^2 eV = 13.6/9 ≈ 1.51 eV. 12.09 eV is the energy to excite from n = 1 to n = 3.
+
+  - id: che-atom-458
+    topic: bohr-model
+    subtopic: Velocity of electron
+    concept: Electron speed against 1/n is a straight line through the origin
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, bohr-velocity]
+    stem: For hydrogen, the speed of the electron in the nth Bohr orbit (y-axis) is plotted against 1/n (x-axis). The graph is
+    options:
+      - a rectangular hyperbola
+      - a straight line through the origin with slope 2.18 × 10^6 m s^{-1}
+      - a parabola
+      - a horizontal straight line
+    answer: 1
+    explanation: "v_n = 2.18 × 10^6 × (1/n) m s^{-1} for hydrogen, so v is proportional to 1/n: a straight line through the origin. A plot of v against n would be a hyperbola."
+
+  - id: che-atom-459
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: E_4 of He^+ equals E_2 of H
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: E ∝ Z^2/n^2
+    tags: [hydrogen-like, bohr-energy]
+    stem: The energy of the n = 2 level of hydrogen is −3.4 eV. What is the energy of the n = 4 level of He^+?
+    options:
+      - "−0.85 eV"
+      - "−13.6 eV"
+      - "−6.8 eV"
+      - "−3.4 eV"
+    answer: 3
+    explanation: E ∝ Z^2/n^2. For He^+ in n = 4, Z^2/n^2 = 4/16 = 1/4, the same as hydrogen in n = 2, so E = −3.4 eV. −0.85 eV is hydrogen's own n = 4 level.
+
+  - id: che-atom-460
+    topic: bohr-model
+    subtopic: Trends with n
+    concept: How r, E, v and L vary with n
+    category: concept
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [proportionality, bohr-radius, bohr-energy, bohr-velocity]
+    stem: |-
+      For the hydrogen atom, match each quantity (List I) with how it depends on n (List II).
+      List I: P. Radius of orbit; Q. Energy of electron; R. Speed of electron; S. Angular momentum
+      List II: 1. ∝ n; 2. ∝ 1/n; 3. ∝ n^2; 4. ∝ −1/n^2
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-2, R-4, S-1
+    answer: 1
+    explanation: r ∝ n^2, E ∝ −1/n^2, v ∝ 1/n and L = nh/2π ∝ n. So P-3, Q-4, R-2, S-1.
+
+  - id: che-atom-461
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength
+    concept: de Broglie wavelength of a thermal neutron
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: λ = h/mv
+    tags: [de-broglie, neutron]
+    stem: A neutron (m = 1.675 × 10^{-27} kg) moves at 2.0 × 10^3 m s^{-1}. Its de Broglie wavelength is about (h = 6.626 × 10^{-34} J s)
+    options:
+      - 1.98 × 10^{-7} m
+      - 3.35 × 10^{-24} m
+      - 1.98 × 10^{-13} m
+      - 1.98 × 10^{-10} m
+    answer: 3
+    explanation: λ = 6.626 × 10^{-34} ÷ (1.675 × 10^{-27} × 2.0 × 10^3) = 6.626 × 10^{-34} ÷ 3.35 × 10^{-24} ≈ 1.98 × 10^{-10} m, about 0.2 nm; 3.35 × 10^{-24} is the momentum.
+
+  - id: che-atom-462
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength
+    concept: At equal speed the heaviest particle has the shortest λ
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [de-broglie, alpha-particle]
+    stem: An electron, a proton, a neutron and an α-particle all move with the same speed. Which has the shortest de Broglie wavelength?
+    options:
+      - Electron
+      - Proton
+      - Neutron
+      - α-particle
+    answer: 3
+    explanation: At equal speed λ = h/mv ∝ 1/m, so the heaviest particle, the α-particle (about 4 u), has the shortest wavelength. The electron has the longest.
+
+  - id: che-atom-463
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength and kinetic energy
+    concept: Doubling momentum quadruples KE and halves λ
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [de-broglie, proportionality]
+    stem: The momentum of an electron is doubled. Which statement is correct?
+    options:
+      - Its de Broglie wavelength doubles and its kinetic energy doubles
+      - Its de Broglie wavelength halves and its kinetic energy doubles
+      - Its de Broglie wavelength is unchanged and its kinetic energy doubles
+      - Its de Broglie wavelength halves and its kinetic energy becomes four times
+    answer: 3
+    explanation: λ = h/p, so λ halves. KE = p^2/2m, so KE becomes four times. Assuming KE ∝ p is the usual mistake.
+
+  - id: che-atom-464
+    topic: dual-nature-uncertainty
+    subtopic: Heisenberg uncertainty principle
+    concept: Minimum Δp from Δx
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: Δp ≥ h/(4πΔx)
+    tags: [uncertainty]
+    stem: If the position of an electron is known within 0.1 Å (10^{-11} m), the minimum uncertainty in its momentum is about (h = 6.626 × 10^{-34} J s)
+    options:
+      - 6.6 × 10^{-23} kg m s^{-1}
+      - 5.3 × 10^{-45} kg m s^{-1}
+      - 5.3 × 10^{-24} kg m s^{-1}
+      - 5.3 × 10^{-22} kg m s^{-1}
+    answer: 2
+    explanation: Δp = h/(4πΔx) = 6.626 × 10^{-34} ÷ (12.57 × 10^{-11}) ≈ 5.3 × 10^{-24} kg m s^{-1}. Omitting 4π gives 6.6 × 10^{-23}.
+
+  - id: che-atom-465
+    topic: dual-nature-uncertainty
+    subtopic: Evidence for wave nature
+    concept: Electron diffraction is due to wave nature, not mass
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [electron-diffraction, de-broglie]
+    stem: |-
+      Assertion (A): A beam of electrons can be diffracted by a crystal.
+      Reason (R): Electrons have a definite mass.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Both are true, but diffraction happens because electrons have a wavelength (λ = h/mv) comparable to the spacing of atoms in a crystal. Having mass is a particle property and does not explain diffraction.
+
+  - id: che-atom-466
+    topic: dual-nature-uncertainty
+    subtopic: Heisenberg uncertainty principle
+    concept: Testing a claimed simultaneous measurement against Δx·Δv ≥ h/4πm
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Δx·Δv ≥ h/(4πm)
+    tags: [uncertainty, multi-concept]
+    stem: A student claims to have measured an electron's position to within 1 pm (10^{-12} m) and its speed to within 1 m s^{-1} at the same time. Is this possible? (h/4πm_e ≈ 5.8 × 10^{-5} m^2 s^{-1})
+    options:
+      - Yes, because both uncertainties are small
+      - Yes, because the product is larger than h/4πm
+      - Only if a very sensitive microscope is used
+      - No, because Δx·Δv = 10^{-12} m^2 s^{-1}, far below the minimum 5.8 × 10^{-5} m^2 s^{-1}
+    answer: 3
+    explanation: Δx·Δv must be at least h/4πm ≈ 5.8 × 10^{-5} m^2 s^{-1} for an electron. The claimed product is 10^{-12} m^2 s^{-1}, which violates the principle; no instrument can achieve it.
+
+  - id: che-atom-467
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength and kinetic energy
+    concept: At equal KE, λ_e/λ_p = √(m_p/m_e)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: λ = h/√(2mK)
+    tags: [de-broglie, proportionality, trap]
+    stem: An electron and a proton have equal kinetic energies. The ratio of the de Broglie wavelength of the electron to that of the proton is about (m_p/m_e = 1836)
+    options:
+      - "1836"
+      - "1/1836"
+      - "1/42.8"
+      - "42.8"
+    answer: 3
+    explanation: At equal K, λ ∝ 1/√m, so λ_e/λ_p = √(m_p/m_e) = √1836 ≈ 42.8. The value 1836 applies at equal speed, not equal kinetic energy.
+
+  - id: che-atom-468
+    topic: dual-nature-uncertainty
+    subtopic: Dual behaviour
+    concept: Wave–particle duality of light and electrons
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [dual-nature, de-broglie]
+    stem: |-
+      Which statements are correct?
+      I. Light shows both wave-like and particle-like behaviour.
+      II. Electrons show both particle-like and wave-like behaviour.
+      III. Accelerating an electron through a higher voltage increases its de Broglie wavelength.
+      IV. The wave nature of a moving cricket ball can be detected with sensitive instruments.
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, II and IV only
+    answer: 0
+    explanation: Duality applies to both radiation and matter. A higher voltage gives the electron more momentum and a shorter wavelength (III false), and a cricket ball's wavelength is far too small to detect (IV false).
+
+  - id: che-atom-469
+    topic: dual-nature-uncertainty
+    subtopic: Heisenberg uncertainty principle
+    concept: The principle holds for macroscopic objects too
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [uncertainty, trap]
+    stem: |-
+      Statement I: The uncertainty principle can be written as Δx × Δp_x ≥ h/4π.
+      Statement II: For a moving car, the product Δx × Δp can be smaller than h/4π because the car is macroscopic.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The principle applies to all objects; for a car the minimum uncertainties are simply negligible, not violated. So Statement II is false.
+
+  - id: che-atom-470
+    topic: dual-nature-uncertainty
+    subtopic: Heisenberg uncertainty principle
+    concept: Δx equal to λ gives Δv = v/4π
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: Δv ≥ h/(4πmΔx), λ = h/mv
+    tags: [uncertainty, de-broglie, multi-concept]
+    stem: The uncertainty in the position of a moving electron equals its de Broglie wavelength. The minimum uncertainty in its velocity is
+    options:
+      - v/2π
+      - v
+      - 4πv
+      - v/4π
+    answer: 3
+    explanation: Δv = h/(4πmΔx) with Δx = λ = h/mv gives Δv = h/(4πm × h/mv) = v/4π. Forgetting the 4π gives Δv = v.
