@@ -1,0 +1,122 @@
+subject: maths
+chapter:
+  slug: sequences-series
+  name: Sequences and Series
+  order: 1
+  topics:
+    - slug: arithmetic-progression
+      name: Arithmetic progressions
+    - slug: geometric-progression
+      name: Geometric progressions
+questions:
+  - id: mat-seq-001
+    topic: arithmetic-progression
+    category: numerical
+    difficulty: 1
+    battle: true
+    stem: What is the 10th term of the AP 3, 7, 11, …?
+    options:
+      - "39"
+      - "43"
+      - "40"
+      - "35"
+    answer: 0
+    explanation: a_n = a + (n − 1)d, so a_{10} = 3 + 9 × 4 = 39.
+
+  - id: mat-seq-002
+    topic: arithmetic-progression
+    category: numerical
+    difficulty: 1
+    battle: true
+    stem: What is the sum of the first 20 natural numbers?
+    options:
+      - "200"
+      - "220"
+      - "190"
+      - "210"
+    answer: 3
+    explanation: The sum of the first n natural numbers is n(n + 1)/2, so the answer is 20 × 21/2 = 210.
+
+  - id: mat-seq-003
+    topic: arithmetic-progression
+    category: factual
+    difficulty: 1
+    battle: true
+    stem: Which formula gives the sum of the first n terms of an AP with first term a and common difference d?
+    options:
+      - (n/2)[a + (n − 1)d]
+      - (n/2)[2a + (n − 1)d]
+      - n[2a + (n − 1)d]
+      - (n/2)[2a + nd]
+    answer: 1
+    explanation: Pairing the first and last terms gives n/2 pairs, each adding up to a + l = 2a + (n − 1)d. So S_n = (n/2)[2a + (n − 1)d].
+
+  - id: mat-seq-004
+    topic: arithmetic-progression
+    category: application
+    difficulty: 2
+    battle: true
+    stem: The three angles of a triangle are in AP. What is the middle angle?
+    options:
+      - 45°
+      - 30°
+      - 60°
+      - 90°
+    answer: 2
+    explanation: Write the angles as b − d, b and b + d. They add up to 180°, so 3b = 180° and the middle angle b = 60°, whatever d is.
+
+  - id: mat-seq-005
+    topic: geometric-progression
+    category: numerical
+    difficulty: 2
+    battle: true
+    stem: What is the 6th term of the GP 2, 6, 18, …?
+    options:
+      - "162"
+      - "1458"
+      - "243"
+      - "486"
+    answer: 3
+    explanation: a_n = ar^{n−1}, so a_6 = 2 × 3^5 = 2 × 243 = 486.
+
+  - id: mat-seq-006
+    topic: geometric-progression
+    category: numerical
+    difficulty: 2
+    battle: true
+    stem: What is the sum of the infinite GP 1 + 1/2 + 1/4 + …?
+    options:
+      - "1"
+      - "2"
+      - 3/2
+      - It has no finite sum
+    answer: 1
+    explanation: For |r| < 1, the sum to infinity is a/(1 − r) = 1/(1 − 1/2) = 2.
+
+  - id: mat-seq-007
+    topic: geometric-progression
+    category: concept
+    difficulty: 2
+    battle: true
+    stem: If a, b and c are consecutive terms of a GP, which relation holds?
+    options:
+      - b^2 = ac
+      - 2b = a + c
+      - b = ac
+      - a^2 = bc
+    answer: 0
+    explanation: In a GP each term is the previous one times r, so b/a = c/b and b^2 = ac. In other words, b is the geometric mean of a and c; 2b = a + c is the condition for an AP.
+
+  - id: mat-seq-008
+    topic: geometric-progression
+    category: application
+    difficulty: 3
+    battle: true
+    stem: A ball dropped from 10 m bounces back to half its previous height each time. What total distance does it travel before coming to rest?
+    options:
+      - 20 m
+      - 40 m
+      - 30 m
+      - 15 m
+    answer: 2
+    explanation: It falls 10 m, then every bounce goes up and back down, so the total is 10 + 2(5 + 2.5 + …) = 10 + 2 × 5/(1 − 1/2) = 10 + 20 = 30 m.

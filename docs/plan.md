@@ -17,8 +17,9 @@
 | No opponent found | After **15 s**, the search widens to other chapters in the same subject, and questions are split between both chapters. After **45 s**, the app offers **Keep searching**, **Invite a friend**, or a clearly labelled **Practice Bot** game (unrated, no coins). |
 | Scheduled events | **Only tournaments are scheduled.** There are no scheduled live quizzes, **no PIN/QR rooms** and no teacher accounts. |
 | Private play | **Play with Friend** (1v1) and **Group Battle** (2–8 players), joined by invite, link or 6-character code. |
-| Starter content | **NEET + JEE**: Physics, Chemistry, Biology, Maths. That's 4–5 chapters × ~20 questions per subject (~350 MCQs with explanations), because battles run per chapter. Also Fun & Learn passages and Guess-the-Word terms. There's no Current Affairs. |
+| Content for now | **A small test set only** for NEET + JEE (Physics, Chemistry, Biology, Maths): 2 chapters per subject with 8 questions each, plus one Fun & Learn passage and five Guess-the-Word terms per subject. It exercises every feature; the real bank is imported later. There's no Current Affairs. |
 | Existing bank | None. I build a CSV/JSON importer and an admin panel. |
+| Answer tracking and tips | Every question references **subject → chapter → topic** and has a **difficulty** and a **category** (concept, numerical, factual, application). Every answer stores the option picked, whether it was right, the **time taken** and, in multiplayer games, whether it was **fast, slow or even** compared with the opponents. Students see **short plain-language tips** ("Focus on Projectile motion", "Practise more Physics numericals"), not charts. |
 
 ### Assumptions (the user can veto these when approving the plan)
 - **Android first:**
@@ -73,7 +74,7 @@ Admin panel (SQLAdmin; Google OAuth, admin role, optional IP allowlist) is serve
 mobile/             Flutter app (lib/app, lib/core, lib/features/*), test/ (unit, widget, golden), integration_test/
 mobile/packages/design_system/   Flutter package: tokens, theme, icons, motion, widgets + golden tests; example/ = catalog app (web-buildable)
 backend/            pyproject (uv), alembic/, app/ (main_api.py, main_rt.py, main_worker.py, modules), tests/, scripts/
-content/            starter content YAML (goals, subjects, chapters, questions, passages, words) + JSON schema
+content/            test content YAML (goals, subjects, chapters, topics, questions, passages, words) + validator
 infra/              docker-compose.yml (api, rt, worker, postgres, redis, caddy), Caddyfile, .env.example
 docs/               protocol.md, matchmaking.md, tournaments.md, economy.md, security.md, design-system.md, content-format.md
 .github/workflows/  backend.yml (ruff, mypy, pytest with PG+Redis services), mobile.yml (analyze, test + goldens, build APK artifact)
@@ -277,11 +278,14 @@ docs/               protocol.md, matchmaking.md, tournaments.md, economy.md, sec
   - Force-update when `build < min_build`.
   - A debug settings screen for the base URL and dev login.
 
-## Phase 3 — Learn, practice and starter content
+## Phase 3 — Learn, practice and test content
 **Content model**
-- **Hierarchy:** goals → subjects (many-to-many; Physics and Chemistry are shared) → chapters → questions.
+- **Hierarchy:** goals (exams) → subjects (many-to-many; Physics and Chemistry are shared) → chapters → **topics** → questions. Every question belongs to one topic, so it always knows its chapter and subject too. Topics are the "module" level that tips talk about.
 - **Question fields:**
   - Type: `mcq_single` or `passage_mcq`.
+  - `subject_id`, `chapter_id` and `topic_id` (passage questions may have no topic).
+  - **Category:** concept, numerical, factual or application.
+  - **Exams:** the exams it suits. Empty means every exam that includes the subject.
   - A rich stem (JSON AST) plus `stem_text` for search.
   - An explanation.
   - Difficulty 1–5, plus a `p_correct` calibrated nightly.
@@ -295,17 +299,20 @@ docs/               protocol.md, matchmaking.md, tournaments.md, economy.md, sec
   - Image questions are practice-only in v1.
 - **Related tables:** `passages` holds Fun & Learn texts with 3–6 questions each. `word_puzzles` holds a 3–12-letter answer, a clue and a difficulty.
 
-**Starter content** (`content/*.yaml`, loaded by `scripts/seed.py`)
-- About 350 MCQs, each with an explanation.
-- About 8 passages and about 80 words.
+**Test content** (`content/*.yaml`, loaded by `scripts/seed.py`; format in `docs/content-format.md`)
+- For now only a small test set, at the user's request:
+  - 2 chapters per subject, each with 2 topics and 8 questions, 64 questions in all.
+  - One passage (3 questions) and 5 words per subject.
+- Every chapter has at least 7 battle questions, enough for one Quick Battle. So matchmaking, widening to the second chapter, practice and tips can all be tested. A chapter needs 7 battle questions to be offered for battles; the real bank should have 15+ so players rarely see repeats.
 - Questions suitable for battles are short and conceptual. Long numericals are `battle_pool=none`.
-- The seed validator checks:
-  - 4 options, exactly 1 correct;
-  - no duplicate stems or options, and near-duplicates flagged above 0.9 similarity;
-  - the explanation is present;
-  - the chapter exists;
-  - the AST is valid and the LaTeX renders;
-  - every chapter offered for battles has at least 15 battle-eligible questions.
+- `content/tools/validate.py` runs in CI and checks:
+  - 4 distinct options and exactly 1 answer;
+  - a valid topic, category and exams list;
+  - unique ids and stems, and an explanation on every question;
+  - markup, and stem lengths (battle stems at most 180 characters);
+  - enough battle questions per chapter;
+  - at least 2 categories per chapter, and answer positions spread out.
+- The importer adds near-duplicate detection (similarity above 0.9) for the real bank.
 
 **Importer**
 - `scripts/import_questions.py`, plus an admin upload, both taking CSV or JSON in a documented format.
@@ -323,8 +330,51 @@ docs/               protocol.md, matchmaking.md, tournaments.md, economy.md, sec
 **Practice sessions**
 - The server returns the question set **with answer keys**, for shared and none-pool questions only (never reserved ones). This allows instant feedback and offline play.
 - Sessions are cached in drift.
-- Answers upload in batches through the sync queue, deduplicated on `(user_id, client_answer_id)`.
+- Answers upload in batches through the sync queue, deduplicated on `(user_id, client_answer_id)`. Each answer carries the option picked, the outcome, the time taken and how often the pick changed.
 - Fetching is rate-limited to 30 sessions an hour, to stop scraping.
+
+**Answer records** (the data behind tips)
+
+Every answer in every mode writes one `question_attempts` row:
+
+| Field | Meaning |
+|---|---|
+| `user_id`, `question_id` | Who answered what |
+| `subject_id`, `chapter_id`, `topic_id`, `category`, `difficulty` | Copied from the question when answered, so grouping needs no joins and history stays stable if content is reorganised |
+| `mode` | practice, challenge, review, bookmarks, fun_learn, quick_battle, bot, friend, group or tournament |
+| `session_id`, `position` | The practice session or match, and the question number in it |
+| `selected_option` | The option picked, as its index in the authored question (not the shuffled screen order). Empty if none |
+| `outcome` | correct, wrong, skipped or timeout |
+| `time_ms` | Time from the question appearing to the answer. Live games use the server's latency-adjusted time. Practice uses the phone's measurement, capped at 10 minutes. A timeout records the full limit |
+| `time_limit_ms` | The limit, or empty for untimed practice |
+| `speed` | **fast, slow or even** compared with the other players (below). Empty when there's nothing fair to compare with |
+| `speed_basis` | `opponents` (live game) or `typical` (practice, compared with the question's typical time) |
+| `peer_time_ms` | The time it was compared with: the opponent's time, the group's median, or the question's typical time |
+| `answer_changes` | How often the pick changed before submitting (Self Challenge) |
+| `first_try` | Whether this was the user's first attempt at this question |
+| `points` | Battle points, when there are any |
+| `answered_at`, `ist_day` | When, and the IST day for streaks and missions |
+| `client_answer_id` | Offline de-duplication, unique per user |
+
+**Fast, slow or even in multiplayer games** (computed by the server when the match settles)
+- **Who counts as an opponent:** other human players who were connected when the question opened. Bots, disconnected players and late joiners are left out.
+- **What's compared:** the user's time against the opponent's time in a 1v1, or against the median time of those who answered in a group battle.
+- **Rules:**
+  - The user answered more than 250 ms sooner: **fast**.
+  - More than 250 ms later: **slow**.
+  - Within 250 ms: **even**. That's inside the network-latency allowance, so it doesn't count either way.
+  - The user answered and no opponent did: **fast**. The user timed out while an opponent answered: **slow**. Nobody answered: empty.
+- Correctness is stored separately, so tips can tell "slow but right" (knows it, needs speed) from "fast but wrong" (rushing).
+- The reveal after each question shows it too ("You were 1.2 s faster").
+
+**Typical-time comparison in solo practice**
+- `question_stats` keeps each question's attempts, correct answers and **typical time**: the median time of correct answers across all users, updated nightly.
+- Once a question has at least 20 timed correct answers, practice answers are compared with it: under 0.75× the typical time is fast, over 1.25× is slow, and anything between is even.
+
+**Running totals** (updated in the same transaction as the answers, for newly inserted rows only)
+- `user_topic_stats`, `user_chapter_stats` and `user_category_stats` (per subject and category) keep attempts, correct answers, total time, time on correct answers, fast/slow/even counts and the last attempt time.
+- `user_daily_stats` (per IST day and subject) feeds streaks, missions and "this week" comparisons.
+- 30-day figures for tips are read straight from `question_attempts`, indexed by user and time. That's only a few thousand rows per user.
 
 **Practice modes**
 - **Chapter practice:**
@@ -719,13 +769,30 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 - A streak day needs at least 10 answers or 1 finished battle in the IST day. The streak is evaluated lazily, and a freeze is used automatically.
 - About 15 achievements, stored in a table and checked by the outbox consumer.
 
-**Coach** (rule-based, with a single card)
-- **Unlock:** after 20 answers. Before that it reads "N more to unlock".
-- **Accuracy:** per chapter, smoothed as `(c+2)/(n+4)`.
-- **Strengths:** chapters with at least 10 attempts and accuracy of 0.75 or better (top 3).
-- **Weak spots:** at least 5 attempts and accuracy of 0.5 or less, or 15 or more points below your average (bottom 3).
-- **Next step, in order:** reviews due, then the weakest chapter, then an unstarted chapter, then a rated battle in your strongest subject.
-- **Caching:** 10 minutes. The card uses stable keys, which fixes the duplicate card.
+**Coach tips** (plain language, no charts)
+
+Students aren't analytics-focused, so instead of graphs the app gives **short instructions, each with one button**. A rule-based engine reads the answer records from the last 30 days (all time for topics with little recent data). Accuracy is smoothed as `(c+2)/(n+4)` so a couple of answers can't swing it.
+
+| Signal (minimum data) | Tip | Button |
+|---|---|---|
+| Topic accuracy ≤ 50%, or 15+ points below the user's average (≥ 5 answers) | "Focus on **Projectile motion**. You got 4 of 11 right." | Practise 10 |
+| Slow in ≥ 60% of compared answers in a topic or chapter (≥ 5 compared, ≥ 3 slow) | "You're often slower than your opponents in **Kinematics**. Try a timed set." | Timed practice |
+| Slower than typical on a category in a subject (≥ 8 compared) | "Practise more **Physics numericals**. You take about 40% longer than other students." | 10 numericals |
+| Fast but wrong on ≥ 40% of a topic's answers (≥ 6 answers) | "You answer **Chemical bonding** quickly but often miss. Read all four options first." | Practise 10 |
+| Review items due | "5 questions are waiting for review." | Review |
+| A chapter in the user's exam never tried | "You haven't tried **Gravitation** yet. Start with 10 easy questions." | Start |
+| Easy questions ≥ 85% right in a chapter (≥ 10) | "You've got the basics of **Genetics**. Try medium questions." | Practise medium |
+| Topic accuracy ≥ 80% (≥ 10 answers) | "You're strong in **Laws of Motion**. Test it in a rated battle." | Battle |
+
+- **Order:** accuracy problems first, then speed, then reviews, then new chapters, then level-ups and strengths. At most one tip per topic, and never more than 5.
+- **Where tips appear:**
+  - The Home Coach card shows the top tip.
+  - "Your tips", opened from the card, lists up to 5.
+  - Each practice and battle result screen shows one relevant line.
+  - The Learn chapter list shows a small **Strong** or **Needs work** word per chapter. That's the only "analytics" on screen, and it's a word, not a chart.
+- **Unlock:** after 20 answers. Before that the card says "Answer N more questions to get tips".
+- **Stability:** tips are cached for 10 minutes and keyed by rule and target, so the list doesn't jump around. This also fixes the duplicated Coach card from the old app. A tip the user acts on is hidden for 24 h, and a dismissed tip for 7 days (`user_tips`).
+- **Wording:** each tip is a template with the numbers filled in: one short sentence saying what to do and why.
 
 **Home** (ref 1 style)
 - **Data:** one `GET /v1/home` call returns each section with its own status, cached in drift.
@@ -735,7 +802,7 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 - **Battle tiles:** Play 1v1, Play with Friend and Group Battle.
 - **Continue practice.**
 - **Today's Missions.**
-- **Coach.**
+- **Coach tip** (the top tip).
 - **Leaderboard preview,** with a DotMatrixChart of weekly activity.
 
 ## Phase 7 — Social, notifications, profile and settings
@@ -857,14 +924,16 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
   - `push_tokens`.
   - `user_settings`.
 - **Content:**
-  - `exam_tracks`, `subjects`, `track_subjects`, `chapters`.
-  - `questions` (UQ subject+seq; partial indexes on published battle pools; GIN trigram and full-text indexes).
+  - `exam_tracks`, `subjects`, `track_subjects`, `chapters`, `topics`.
+  - `questions` (subject, chapter, topic, category, exams, difficulty; UQ subject+seq; partial indexes on published battle pools; GIN trigram and full-text indexes).
+  - `question_stats` (attempts, correct, typical time; nightly).
   - `question_options` (partial UQ on is_correct).
   - `passages`, `word_puzzles`, `question_reports`.
 - **Practice:**
   - `practice_sessions`.
-  - `question_attempts` (**partitioned monthly**, UQ user+client_answer_id).
-  - `bookmarks`, `review_items`, `user_chapter_stats`, `user_seen` (bitmaps).
+  - `question_attempts` (**partitioned monthly**; option, outcome, time, limit, speed, peer time, mode, position, first try; de-duplicated on user+client_answer_id).
+  - `user_topic_stats`, `user_chapter_stats`, `user_category_stats`, `user_daily_stats`, `user_tips`.
+  - `bookmarks`, `review_items`, `user_seen` (bitmaps).
 - **Realtime:**
   - `matches` (kind: quick_rated, quick_casual, bot, friend, group, tournament; source chapters; status; end_reason; settled_at).
   - `match_participants` (is_bot).
@@ -938,6 +1007,7 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
     - An 8-bot group game: host migration, late join, a kick, and the code-guess limit.
     - A **64-bot Swiss tournament** with byes, no-shows, a withdrawal and refund, prize payout, and killing the worker between steps.
   - **Property tests** (hypothesis) on pairing, and golden files for tie-breaks.
+  - **Answer records and tips:** fast/slow/even labels (1v1, group median, the 250 ms tie band, timeouts, disconnected and bot opponents), typical-time comparison, running totals that ignore duplicate uploads, and each tip rule at and just below its thresholds.
   - **Glickman reference:** 1500/200/0.06 vs 1400/30 (win), 1550/100 (loss) and 1700/300 (loss) must give 1464.06 / 151.52 / 0.05999.
   - **Concurrency:** 200 debits at once never go negative, and idempotent replays have no effect.
   - **Time:** frozen-clock tests across IST midnight.

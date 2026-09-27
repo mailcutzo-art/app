@@ -15,6 +15,8 @@ Live quiz battles, Swiss tournaments and practice for NEET and JEE aspirants.
   a catalog app and golden screenshots of mock screens
   (`mobile/packages/design_system/example/test/goldens/`).
 - **Phase 2 (foundations):** backend core in progress.
+- **Content:** a small test question set for NEET and JEE ([`content/`](content/), format in
+  [`docs/content-format.md`](docs/content-format.md)), validated in CI. The real bank comes later.
 
 ## Working on the mobile app
 

@@ -1,0 +1,122 @@
+subject: maths
+chapter:
+  slug: trigonometry
+  name: Trigonometric Functions
+  order: 2
+  topics:
+    - slug: trig-ratios
+      name: Trigonometric ratios
+    - slug: identities
+      name: Identities and formulas
+questions:
+  - id: mat-trig-001
+    topic: trig-ratios
+    category: factual
+    difficulty: 1
+    battle: true
+    stem: What is the value of sin 30°?
+    options:
+      - √3/2
+      - 1/√2
+      - 1/2
+      - "1"
+    answer: 2
+    explanation: sin 30° = 1/2 is a standard value worth memorising, along with cos 30° = √3/2 and sin 45° = 1/√2.
+
+  - id: mat-trig-002
+    topic: trig-ratios
+    category: numerical
+    difficulty: 1
+    battle: true
+    stem: What is 60° in radians?
+    options:
+      - π/3
+      - π/6
+      - π/4
+      - 2π/3
+    answer: 0
+    explanation: To convert degrees to radians, multiply by π/180. So 60° = 60 × π/180 = π/3.
+
+  - id: mat-trig-003
+    topic: trig-ratios
+    category: concept
+    difficulty: 2
+    battle: true
+    stem: In which quadrant are both sin θ and cos θ negative?
+    options:
+      - First
+      - Second
+      - Fourth
+      - Third
+    answer: 3
+    explanation: In the third quadrant (180° to 270°) both coordinates of a point on the unit circle are negative, so sin θ and cos θ are negative while tan θ is positive.
+
+  - id: mat-trig-004
+    topic: trig-ratios
+    category: numerical
+    difficulty: 2
+    battle: true
+    stem: What is the value of cos 120°?
+    options:
+      - 1/2
+      - −1/2
+      - −√3/2
+      - √3/2
+    answer: 1
+    explanation: cos 120° = cos(180° − 60°) = −cos 60° = −1/2, since cosine is negative in the second quadrant.
+
+  - id: mat-trig-005
+    topic: identities
+    category: factual
+    difficulty: 1
+    battle: true
+    stem: Which identity holds for every angle θ?
+    options:
+      - sin^2 θ + cos^2 θ = 1
+      - sin θ + cos θ = 1
+      - 1 + tan^2 θ = cos^2 θ
+      - sin^2 θ − cos^2 θ = 1
+    answer: 0
+    explanation: The point (cos θ, sin θ) on the unit circle is always 1 unit from the origin, so sin^2 θ + cos^2 θ = 1. The related identity is 1 + tan^2 θ = sec^2 θ.
+
+  - id: mat-trig-006
+    topic: identities
+    category: numerical
+    difficulty: 2
+    battle: true
+    stem: If sin θ = 3/5 and θ is acute, what is cos θ?
+    options:
+      - 3/4
+      - 5/4
+      - 4/5
+      - 2/5
+    answer: 2
+    explanation: cos θ = √(1 − sin^2 θ) = √(1 − 9/25) = √(16/25) = 4/5, taking the positive root because θ is acute.
+
+  - id: mat-trig-007
+    topic: identities
+    category: application
+    difficulty: 3
+    battle: true
+    stem: What is the exact value of sin 15°?
+    options:
+      - (√6 + √2)/4
+      - (√6 − √2)/4
+      - (√3 − 1)/2
+      - 1/4
+    answer: 1
+    explanation: Use sin(A − B) = sin A cos B − cos A sin B with A = 45° and B = 30°, giving (1/√2)(√3/2) − (1/√2)(1/2) = (√3 − 1)/(2√2) = (√6 − √2)/4.
+
+  - id: mat-trig-008
+    topic: identities
+    category: application
+    difficulty: 3
+    battle: true
+    stem: What is the maximum value of sin θ + cos θ?
+    options:
+      - "1"
+      - "2"
+      - 1/√2
+      - √2
+    answer: 3
+    explanation: sin θ + cos θ = √2 sin(θ + 45°), and sine is at most 1, so the maximum is √2, reached at θ = 45°.

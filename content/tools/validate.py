@@ -11,21 +11,37 @@ from __future__ import annotations
 
 import re
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
+from enum import StrEnum
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Literal
 
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 ROOT = Path(__file__).resolve().parents[1]
-MIN_BATTLE_PER_CHAPTER = 15
+# A chapter can host a Quick Battle (7 questions) once it has this many battle questions. Real
+# banks should have 15+ per chapter so players rarely see repeats.
+MIN_BATTLE_PER_CHAPTER = 7
 MAX_ANSWER_SHARE = 0.45
+MIN_QUESTIONS_PER_TOPIC = 2
+MIN_CATEGORIES_PER_CHAPTER = 2
 LATEX = re.compile(r"\\[a-zA-Z]+|\$")
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 WORD = re.compile(r"^[A-Z]{3,12}$")
 
 Text = Annotated[str, Field(min_length=1)]
+Slug = Annotated[str, Field(pattern=SLUG.pattern, max_length=48)]
+Exam = Literal["neet", "jee"]
+
+
+class Category(StrEnum):
+    """What kind of thinking a question tests; drives the "practice more numericals" style tips."""
+
+    CONCEPT = "concept"
+    NUMERICAL = "numerical"
+    FACTUAL = "factual"
+    APPLICATION = "application"
 
 
 def _normalize(text: str) -> str:
@@ -48,17 +64,16 @@ def _markup_problem(text: str) -> str | None:
     return None
 
 
-class Question(BaseModel):
+class _QuestionBase(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     id: Text
-    difficulty: int = Field(ge=1, le=5)
+    category: Category
     stem: Annotated[str, Field(min_length=10, max_length=300)]
     options: list[Annotated[str, Field(min_length=1, max_length=120)]]
     answer: int = Field(ge=0, le=3)
     explanation: Annotated[str, Field(min_length=10, max_length=1200)]
     tags: list[str] = []
-    battle: bool = False
 
     @field_validator("options")
     @classmethod
@@ -70,8 +85,30 @@ class Question(BaseModel):
         return options
 
 
-class PassageQuestion(Question):
+class Question(_QuestionBase):
+    topic: Slug
+    exams: list[Exam] | None = Field(default=None, min_length=1)
+    difficulty: int = Field(ge=1, le=5)
     battle: bool = False
+
+    @field_validator("exams")
+    @classmethod
+    def _distinct_exams(cls, exams: list[str] | None) -> list[str] | None:
+        if exams is not None and len(set(exams)) != len(exams):
+            raise ValueError("exams must not repeat")
+        return exams
+
+
+class PassageQuestion(_QuestionBase):
+    # Falls back to the passage's difficulty when omitted.
+    difficulty: int | None = Field(default=None, ge=1, le=5)
+
+
+class Topic(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    slug: Slug
+    name: Annotated[str, Field(min_length=2, max_length=60)]
 
 
 class Chapter(BaseModel):
@@ -80,6 +117,7 @@ class Chapter(BaseModel):
     slug: Text
     name: Text
     order: int = Field(ge=1)
+    topics: list[Topic] = Field(min_length=2, max_length=8)
 
 
 class ChapterFile(BaseModel):
@@ -95,6 +133,7 @@ class Passage(BaseModel):
 
     id: Text
     title: Text
+    chapter: Slug | None = None
     difficulty: int = Field(ge=1, le=5)
     body: Annotated[str, Field(min_length=300, max_length=2400)]
     questions: list[PassageQuestion] = Field(min_length=3, max_length=5)
@@ -135,16 +174,64 @@ def _load(path: Path) -> object:
         return yaml.safe_load(f)
 
 
+def _check_chapter(data: ChapterFile, where: str, exams_for_subject: set[str]) -> list[str]:
+    """Rules about one chapter as a whole: topics, categories, battle pool and answer spread."""
+    problems: list[str] = []
+    chapter = data.chapter
+    questions = data.questions
+
+    topic_slugs = [t.slug for t in chapter.topics]
+    if len(set(topic_slugs)) != len(topic_slugs):
+        problems.append(f"{where}: topic slugs repeat")
+    if len({_normalize(t.name) for t in chapter.topics}) != len(chapter.topics):
+        problems.append(f"{where}: topic names repeat")
+
+    per_topic = Counter(q.topic for q in questions)
+    for q in questions:
+        if q.topic not in topic_slugs:
+            problems.append(f"{where}: {q.id} has unknown topic {q.topic!r}")
+        if q.exams and not set(q.exams) <= exams_for_subject:
+            problems.append(
+                f"{where}: {q.id} lists exams {q.exams} but {data.subject} is only in "
+                f"{sorted(exams_for_subject)}"
+            )
+    for slug in topic_slugs:
+        if per_topic[slug] < MIN_QUESTIONS_PER_TOPIC:
+            problems.append(
+                f"{where}: topic {slug} has {per_topic[slug]} questions "
+                f"(need {MIN_QUESTIONS_PER_TOPIC})"
+            )
+
+    categories = {q.category for q in questions}
+    if len(categories) < MIN_CATEGORIES_PER_CHAPTER:
+        problems.append(f"{where}: uses only {sorted(categories)}; mix question categories")
+
+    battle = sum(q.battle for q in questions)
+    if battle < MIN_BATTLE_PER_CHAPTER:
+        problems.append(f"{where}: only {battle} battle questions (need {MIN_BATTLE_PER_CHAPTER})")
+    answers = Counter(q.answer for q in questions)
+    if questions and max(answers.values()) / len(questions) > MAX_ANSWER_SHARE:
+        problems.append(f"{where}: answers cluster on one position {dict(answers)}")
+    return problems
+
+
 def main() -> int:
     problems: list[str] = []
     catalog = _load(ROOT / "catalog.yaml")
     subjects = {s["slug"] for s in catalog["subjects"]}  # type: ignore[index]
+    exams_by_subject: dict[str, set[str]] = defaultdict(set)
+    for goal in catalog["goals"]:  # type: ignore[index]
+        for subject in goal["subjects"]:
+            exams_by_subject[subject].add(goal["slug"])
 
     ids: dict[str, str] = {}
     stems: dict[str, str] = {}
     totals: Counter[str] = Counter()
+    categories: Counter[str] = Counter()
+    chapters: dict[str, dict[str, str]] = defaultdict(dict)  # subject -> slug -> file
+    orders: dict[str, dict[int, str]] = defaultdict(dict)
 
-    def check_question(q: Question, where: str) -> None:
+    def check_question(q: _QuestionBase, where: str) -> None:
         if q.id in ids:
             problems.append(f"{where}: duplicate id {q.id} (also in {ids[q.id]})")
         ids[q.id] = where
@@ -156,6 +243,7 @@ def main() -> int:
             issue = _markup_problem(field_text)
             if issue:
                 problems.append(f"{where}: {q.id}: {issue}")
+        categories[q.category.value] += 1
 
     for path in sorted((ROOT / "questions").glob("*/*.yaml")):
         where = str(path.relative_to(ROOT))
@@ -164,28 +252,35 @@ def main() -> int:
         except ValidationError as e:
             problems.append(f"{where}: {e}")
             continue
-        if data.subject not in subjects:
-            problems.append(f"{where}: unknown subject {data.subject}")
-        if data.subject != path.parent.name:
-            problems.append(f"{where}: subject {data.subject} doesn't match folder")
-        if not SLUG.match(data.chapter.slug):
-            problems.append(f"{where}: bad chapter slug {data.chapter.slug}")
-        prefix = f"{data.subject[:3]}-"
+        subject, chapter = data.subject, data.chapter
+        if subject not in subjects:
+            problems.append(f"{where}: unknown subject {subject}")
+        if subject != path.parent.name:
+            problems.append(f"{where}: subject {subject} doesn't match folder")
+        if not SLUG.match(chapter.slug):
+            problems.append(f"{where}: bad chapter slug {chapter.slug}")
+        if chapter.slug != path.stem:
+            problems.append(f"{where}: file should be named {chapter.slug}.yaml")
+        if chapter.slug in chapters[subject]:
+            problems.append(
+                f"{where}: chapter {chapter.slug} also in {chapters[subject][chapter.slug]}"
+            )
+        chapters[subject][chapter.slug] = where
+        if chapter.order in orders[subject]:
+            problems.append(
+                f"{where}: order {chapter.order} also used by {orders[subject][chapter.order]}"
+            )
+        orders[subject][chapter.order] = where
+
+        prefix = f"{subject[:3]}-"
         for q in data.questions:
             check_question(q, where)
             if not re.match(rf"^{prefix}[a-z0-9]+-\d{{3}}$", q.id):
                 problems.append(f"{where}: id {q.id} should look like {prefix}<chap>-<nnn>")
             if q.battle and len(q.stem) > 180:
                 problems.append(f"{where}: {q.id} is too long for a battle question")
-        battle = sum(q.battle for q in data.questions)
-        if battle < MIN_BATTLE_PER_CHAPTER:
-            problems.append(
-                f"{where}: only {battle} battle questions (need {MIN_BATTLE_PER_CHAPTER})"
-            )
-        answers = Counter(q.answer for q in data.questions)
-        if data.questions and max(answers.values()) / len(data.questions) > MAX_ANSWER_SHARE:
-            problems.append(f"{where}: answers cluster on one position {dict(answers)}")
-        totals[data.subject] += len(data.questions)
+        problems.extend(_check_chapter(data, where, exams_by_subject[subject]))
+        totals[subject] += len(data.questions)
 
     for path in sorted((ROOT / "passages").glob("*.yaml")):
         where = str(path.relative_to(ROOT))
@@ -194,7 +289,14 @@ def main() -> int:
         except ValidationError as e:
             problems.append(f"{where}: {e}")
             continue
+        if passages.subject not in subjects:
+            problems.append(f"{where}: unknown subject {passages.subject}")
         for passage in passages.passages:
+            if passage.chapter and passage.chapter not in chapters[passages.subject]:
+                problems.append(
+                    f"{where}: {passage.id} names chapter {passage.chapter!r}, which isn't a "
+                    f"{passages.subject} chapter"
+                )
             for q in passage.questions:
                 check_question(q, where)
 
@@ -207,6 +309,8 @@ def main() -> int:
         except ValidationError as e:
             problems.append(f"{where}: {e}")
             continue
+        if words.subject not in subjects:
+            problems.append(f"{where}: unknown subject {words.subject}")
         for w in words.words:
             if w.id in word_ids:
                 problems.append(f"{where}: duplicate word id {w.id}")
@@ -218,7 +322,10 @@ def main() -> int:
     for problem in problems:
         print(f"✗ {problem}")
     summary = ", ".join(f"{s}: {n}" for s, n in sorted(totals.items())) or "no questions"
+    mix = ", ".join(f"{c}: {n}" for c, n in sorted(categories.items()))
     print(f"{len(ids)} questions checked ({summary}); {len(words_seen)} words.")
+    if mix:
+        print(f"Categories: {mix}.")
     return 1 if problems else 0
 
 

@@ -1,0 +1,51 @@
+subject: maths
+passages:
+  - id: mat-passage-01
+    title: Compound interest is a geometric progression
+    chapter: sequences-series
+    difficulty: 2
+    body: >-
+      Suppose you save ₹1000 in a bank that adds 10% interest at the end of every year, and you
+      never withdraw anything. After one year you have ₹1100. In the second year the interest is
+      10% of ₹1100, not of the original ₹1000, so you end the year with ₹1210. Each year the amount
+      is multiplied by 1.1.
+
+      The yearly balances 1000, 1100, 1210, 1331, … form a geometric progression with common ratio
+      1.1. In general, a sum P growing at r% a year becomes P(1 + r/100)^n after n years. This is
+      called compound interest, because interest is earned on earlier interest.
+
+      Simple interest works differently. The interest is always worked out on the original amount,
+      so ₹1000 at 10% simple interest grows by exactly ₹100 every year. Those balances, 1000, 1100,
+      1200, 1300, …, form an arithmetic progression with common difference 100.
+    questions:
+      - id: mat-passage-01-q1
+        category: factual
+        difficulty: 1
+        stem: What is the common ratio of the yearly balances under 10% compound interest?
+        options:
+          - "0.1"
+          - "10"
+          - "1.1"
+          - "1.01"
+        answer: 2
+        explanation: Each year the balance is multiplied by 1 + 10/100 = 1.1, so that is the common ratio of the geometric progression.
+      - id: mat-passage-01-q2
+        category: numerical
+        stem: Using the passage's formula, what does ₹2000 become after 2 years at 10% compound interest?
+        options:
+          - ₹2420
+          - ₹2400
+          - ₹2200
+          - ₹2662
+        answer: 0
+        explanation: P(1 + r/100)^n = 2000 × 1.1^2 = 2000 × 1.21 = ₹2420. Simple interest would give only ₹2400.
+      - id: mat-passage-01-q3
+        category: concept
+        stem: What kind of progression do the yearly balances under simple interest form?
+        options:
+          - Geometric progression
+          - Arithmetic progression
+          - Harmonic progression
+          - No regular pattern
+        answer: 1
+        explanation: Simple interest adds the same amount every year, so the balances go up by a common difference, forming an arithmetic progression.
