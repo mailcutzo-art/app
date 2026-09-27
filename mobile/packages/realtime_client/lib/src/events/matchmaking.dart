@@ -85,7 +85,8 @@ final class MmTimeoutEvent extends ServerEvent {
 
   final int waitedS;
 
-  /// Some of `keep`, `bot`, `invite`, `cancel`. `bot` is never offered for rated play.
+  /// Some of `keep`, `bot`, `invite`, `cancel`. `bot` is offered to everyone; the bot game itself
+  /// is always unrated and coin-free.
   final List<String> options;
 }
 

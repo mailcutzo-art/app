@@ -410,6 +410,13 @@ class LiveController {
       _router.go(route);
       return;
     }
+    // Browsing elsewhere: one tap within the ready window, so nobody is dropped into a game
+    // mid-scroll (docs/user-flows.md §3). Missing it puts the opponent back at the front of the
+    // queue and doesn't count against the player.
+    final foundAt = event.ts;
+    final waited = foundAt == null
+        ? Duration.zero
+        : Duration(milliseconds: (_serverNow - foundAt).clamp(0, readyWindow.inMilliseconds));
     final subject = intro.request?.subjectLabel;
     _hub.show(
       LiveAlert(
@@ -424,11 +431,14 @@ class LiveController {
         tone: PastelTone.sky,
         style: AlertStyle.takeover,
         priority: LivePriority.matchFound,
-        autoRunAfter: const Duration(seconds: 2),
+        expiresAt: _ref.read(liveClockProvider)().add(readyWindow - waited),
         primary: LiveAction('Play now', route: route),
       ),
     );
   }
+
+  /// How long a found Quick Battle waits for both players to get ready (docs/protocol.md).
+  static const readyWindow = Duration(seconds: 10);
 
   void _afterMatchEvent(LiveMatch match, ServerEvent event) {
     if (event is! RematchStatusEvent) return;

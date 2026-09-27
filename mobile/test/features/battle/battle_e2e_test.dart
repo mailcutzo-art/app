@@ -209,11 +209,18 @@ void main() {
     expect(location(container), Routes.battleSearch);
     expect(find.textContaining('Searching ·'), findsNothing);
 
-    // Off the search screen again when Riya is found: the takeover opens the match by itself.
+    // Off the search screen again when Riya is found: the takeover waits for one tap (within
+    // the 10 s ready window), so nobody is dropped into a game mid-scroll.
     container.read(routerProvider).go(Routes.home);
     await pumpUntil(tester, find.text('Match found!'));
     expect(find.text('You vs Riya · Physics'), findsOneWidget);
     await advance(tester, const Duration(milliseconds: 2500));
+    expect(location(container), Routes.home, reason: 'not opened without a tap');
+    expect(find.text('Match found!'), findsOneWidget);
+    expect(find.textContaining(RegExp(r'^0:0[5-8]$')), findsOneWidget, reason: 'counting down');
+
+    await tester.tap(find.text('Play now'));
+    await advance(tester, const Duration(milliseconds: 500));
     expect(location(container), Routes.battleMatch(server.currentMatch!.id));
     expect(find.text('Match found!'), findsNothing);
   });
