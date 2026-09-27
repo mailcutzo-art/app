@@ -5759,3 +5759,637 @@ questions:
       - −0.465 °C
     answer: 1
     explanation: "Moles = 3.1/62 = 0.05; m = 0.05/0.1 = 0.5 mol kg^{-1}. ΔT_f = 1.86 × 0.5 = 0.93 K, so the solution freezes at −0.93 °C."
+
+  - id: che-sol-272
+    topic: depression-freezing-point
+    subtopic: Antifreeze
+    concept: Freezing point of radiator coolant with ethylene glycol
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔT_f = K_f m
+    tags: [kf, antifreeze]
+    stem: 620 g of ethylene glycol (M = 62 g mol^{-1}) is added to 4 kg of water in a car radiator. Down to what temperature will the coolant stay unfrozen? (K_f = 1.86 K kg mol^{-1})
+    options:
+      - −1.86 °C
+      - −9.30 °C
+      - −4.65 °C
+      - −2.33 °C
+    answer: 2
+    explanation: "Moles of glycol = 620/62 = 10 mol; m = 10/4 = 2.5 mol kg^{-1}. ΔT_f = 1.86 × 2.5 = 4.65 K, so the coolant freezes at −4.65 °C. Forgetting to divide by 4 kg gives −18.6 °C, and taking 1 kg with 5 mol gives −9.30 °C."
+
+  - id: che-sol-273
+    topic: depression-freezing-point
+    subtopic: Everyday applications
+    concept: Ice–salt freezing mixture reaches below 0 °C
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [freezing-point, freezing-mixture]
+    stem: In traditional ice-cream making, the container of cream is packed in a mixture of crushed ice and common salt rather than ice alone. This is done because
+    options:
+      - salt raises the melting point of ice so it lasts longer
+      - the brine formed has a freezing point well below 0 °C, so the ice–salt mixture can cool the cream below 0 °C
+      - salt reacts with ice and releases heat
+      - salt increases the vapour pressure of ice
+    answer: 1
+    explanation: "Salt dissolves in the thin film of water on ice, forming brine with a depressed freezing point. Ice keeps melting, absorbing heat, and the mixture settles well below 0 °C, enough to freeze the cream."
+
+  - id: che-sol-274
+    topic: depression-freezing-point
+    subtopic: Comparing solvents
+    concept: Same molality gives ΔT_f ratio equal to ratio of K_f values
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: ΔT_f ∝ K_f at fixed m
+    tags: [kf, comparison]
+    stem: The same molality of a non-electrolyte is used in benzene (K_f = 5.12) and in water (K_f = 1.86). The ratio ΔT_f(benzene)/ΔT_f(water) is about
+    options:
+      - "0.36"
+      - "1.00"
+      - "3.58"
+      - "2.75"
+    answer: 3
+    explanation: "At equal molality ΔT_f is proportional to K_f, so the ratio is 5.12/1.86 ≈ 2.75. 0.36 is the inverse, and 3.58 is K_f/K_b for water."
+
+  - id: che-sol-275
+    topic: depression-freezing-point
+    subtopic: Cryoscopic constant
+    concept: K_f depends only on the solvent
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [kf, trap]
+    stem: |-
+      Assertion (A): The molal depression constant of water depends on the solute dissolved in it.
+      Reason (R): K_f = R M_1 T_f^2/(1000 Δ_{fus}H), where the symbols refer to the solvent.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "R is the correct expression, and every term in it (M_1, T_f, Δ_{fus}H) belongs to the solvent. So K_f is a property of the solvent alone and A is false."
+
+  - id: che-sol-276
+    topic: depression-freezing-point
+    subtopic: Cryoscopic constant
+    concept: Calculating K_f of water from its enthalpy of fusion
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: K_f = R M_1 T_f^2/(1000 Δ_{fus}H)
+    tags: [kf, thermodynamics, multi-concept]
+    stem: Ice melts at 273 K with Δ_{fus}H = 6.01 kJ mol^{-1}. Using K_f = R M_1 T_f^2/(1000 Δ_{fus}H) with M_1 = 18 g mol^{-1} and R = 8.314 J K^{-1} mol^{-1}, K_f of water is about
+    options:
+      - 0.186 K kg mol^{-1}
+      - 0.52 K kg mol^{-1}
+      - 18.6 K kg mol^{-1}
+      - 1.86 K kg mol^{-1}
+    answer: 3
+    explanation: "K_f = (8.314 × 18 × 273^2)/(1000 × 6010) = (149.7 × 74529)/(6.01 × 10^6) ≈ 1.86 K kg mol^{-1}. 0.52 is K_b of water."
+
+  - id: che-sol-277
+    topic: depression-freezing-point
+    subtopic: Molecular formula from ΔT_f
+    concept: Atomicity of sulphur in benzene from freezing point depression
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: M_2 = (K_f × w_2 × 1000)/(ΔT_f × w_1)
+    tags: [kf, molar-mass, multi-concept]
+    stem: 1.0 g of sulphur dissolved in 50 g of benzene lowers its freezing point by 0.40 K. If K_f of benzene is 5.12 K kg mol^{-1} and the atomic mass of S is 32, the molecular formula of sulphur in benzene is
+    options:
+      - S_2
+      - S_4
+      - S_6
+      - S_8
+    answer: 3
+    explanation: "M = (5.12 × 1.0 × 1000)/(0.40 × 50) = 5120/20 = 256 g mol^{-1}. 256/32 = 8, so sulphur exists as S_8 molecules."
+
+  - id: che-sol-278
+    topic: depression-freezing-point
+    subtopic: Freezing of solutions
+    concept: Pure solvent separates on freezing and ΔT_f is colligative
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [freezing-point]
+    stem: Which statement about the freezing of an aqueous solution of a non-volatile non-electrolyte is INCORRECT?
+    options:
+      - The solid that separates first is pure ice
+      - As ice separates, the remaining solution becomes more concentrated
+      - The depression of freezing point depends on the chemical nature of the solute
+      - The freezing point of the solution is below 0 °C
+    answer: 2
+    explanation: "ΔT_f = K_f m depends only on the molality of solute particles, not on their chemical nature. The other statements are correct: pure ice separates, which concentrates the remaining solution and lowers its freezing point further."
+
+  - id: che-sol-279
+    topic: depression-freezing-point
+    subtopic: Calculating depression
+    concept: ΔT_f from moles of solute and mass of water
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: ΔT_f = K_f m
+    tags: [kf]
+    stem: 0.02 mol of a non-electrolyte is dissolved in 200 g of water. The depression of freezing point is (K_f = 1.86 K kg mol^{-1})
+    options:
+      - 0.186 K
+      - 0.0372 K
+      - 0.372 K
+      - 1.86 K
+    answer: 0
+    explanation: "m = 0.02/0.200 = 0.1 mol kg^{-1}. ΔT_f = 1.86 × 0.1 = 0.186 K. Using 0.02 as the molality gives 0.0372 K."
+
+  - id: che-sol-280
+    topic: depression-freezing-point
+    subtopic: Antifreeze
+    concept: Per gram, the solute with smaller molar mass is a better antifreeze
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [antifreeze, comparison]
+    stem: Per gram added to the same mass of water, which lowers the freezing point more, ethylene glycol (M = 62) or glycerol (M = 92)?
+    options:
+      - Glycerol, because it has more OH groups
+      - Both equally, because both are alcohols
+      - Neither, as alcohols raise the freezing point
+      - Ethylene glycol, because 1 g of it contains more moles
+    answer: 3
+    explanation: "ΔT_f depends on moles of solute particles. 1 g glycol = 1/62 mol, more than 1 g glycerol = 1/92 mol, so ethylene glycol gives the larger depression. The number of OH groups is irrelevant to a colligative property."
+
+  - id: che-sol-281
+    topic: depression-freezing-point
+    subtopic: ΔT_f graph
+    concept: Slope of ΔT_f versus molality is iK_f
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [kf, graph, vant-hoff-factor]
+    stem: ΔT_f is plotted against molality for dilute aqueous glucose and for dilute aqueous NaCl (fully dissociated). How do the two straight lines compare?
+    options:
+      - Both lines have the same slope of 1.86 K kg mol^{-1}
+      - The NaCl line has about twice the slope of the glucose line
+      - The NaCl line has half the slope of the glucose line
+      - The NaCl line is curved and the glucose line is straight
+    answer: 1
+    explanation: "ΔT_f = iK_f m. Glucose has i = 1 (slope 1.86) and fully dissociated NaCl has i = 2 (slope 3.72), so the NaCl line is about twice as steep."
+
+  - id: che-sol-282
+    topic: osmotic-pressure
+    subtopic: Hypertonic and hypotonic solutions
+    concept: The solution with higher osmotic pressure is hypertonic
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [hypertonic]
+    stem: Of two solutions separated by a semipermeable membrane, the one with the higher osmotic pressure is called
+    options:
+      - hypotonic
+      - isotonic
+      - hypertonic
+      - ideal
+    answer: 2
+    explanation: "A solution with higher osmotic pressure than another is hypertonic, and the more dilute one is hypotonic. Solutions with equal osmotic pressure are isotonic."
+
+  - id: che-sol-283
+    topic: osmotic-pressure
+    subtopic: Calculating osmotic pressure
+    concept: Osmotic pressure of a sucrose solution in bar
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: π = (w_2/M_2)RT/V
+    tags: [osmotic-pressure, sucrose]
+    stem: 3.42 g of sucrose (M = 342 g mol^{-1}) is dissolved in water to make 500 mL of solution at 300 K. Its osmotic pressure is (R = 0.083 L bar K^{-1} mol^{-1})
+    options:
+      - 0.249 bar
+      - 4.98 bar
+      - 0.498 bar
+      - 2.49 bar
+    answer: 2
+    explanation: "Moles = 3.42/342 = 0.01 mol in 0.5 L, so C = 0.02 M. π = 0.02 × 0.083 × 300 = 0.498 bar. Forgetting the 0.5 L volume gives 0.249 bar."
+
+  - id: che-sol-284
+    topic: osmotic-pressure
+    subtopic: Molar mass of macromolecules
+    concept: Osmotic pressure gives a measurable value where ΔT_f is tiny
+    category: application
+    format: statements
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [osmotic-pressure, macromolecules, multi-concept]
+    stem: A 1.0 × 10^{-3} molal aqueous solution of a protein has ΔT_f ≈ 1.9 × 10^{-3} K, while its osmotic pressure at 300 K is about 0.025 atm (≈ 19 mm of Hg column). Which conclusion is correct?
+    options:
+      - Freezing point depression is the better method because 1.9 × 10^{-3} K is easy to measure
+      - Both methods are equally sensitive for macromolecules
+      - Osmotic pressure is better because it gives a readily measurable value for such a dilute solution
+      - Neither property can be used because proteins are electrolytes
+    answer: 2
+    explanation: "A depression of about 0.002 K is very hard to measure accurately, whereas a pressure equivalent to about 19 mm of mercury (much more of a water column) is easy to read. That is why osmotic pressure is preferred for macromolecules."
+
+  - id: che-sol-285
+    topic: osmotic-pressure
+    subtopic: van't Hoff equation
+    concept: Moles of solute from osmotic pressure
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: n = πV/RT
+    tags: [osmotic-pressure]
+    stem: 2 L of a solution of a non-electrolyte has an osmotic pressure of 0.821 atm at 300 K. How many moles of solute does it contain? (R = 0.0821 L atm K^{-1} mol^{-1})
+    options:
+      - 0.0667 mol
+      - 0.0333 mol
+      - 0.133 mol
+      - 0.667 mol
+    answer: 0
+    explanation: "n = πV/RT = (0.821 × 2)/(0.0821 × 300) = 1.642/24.63 ≈ 0.0667 mol. Forgetting the 2 L gives 0.0333 mol."
+
+  - id: che-sol-286
+    topic: osmotic-pressure
+    subtopic: Mixing solutions
+    concept: Osmotic pressure of a mixture of two solutions
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: π_mix = (π_1V_1 + π_2V_2)/(V_1 + V_2)
+    tags: [osmotic-pressure, mixing]
+    stem: 200 mL of a non-electrolyte solution with osmotic pressure 2 atm is mixed with 300 mL of another non-electrolyte solution with osmotic pressure 3 atm at the same temperature. The osmotic pressure of the mixture is
+    options:
+      - 2.5 atm
+      - 5.0 atm
+      - 2.6 atm
+      - 2.4 atm
+    answer: 2
+    explanation: "π ∝ moles per volume, so πV ∝ moles. Total = 2 × 0.2 + 3 × 0.3 = 1.3 (atm L); dividing by 0.5 L gives 2.6 atm. The simple average 2.5 atm ignores the unequal volumes."
+
+  - id: che-sol-287
+    topic: osmotic-pressure
+    subtopic: Osmosis in daily life
+    concept: Raisins swell in water by endosmosis
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [osmosis]
+    stem: Dry raisins placed in plain water swell up after some time. This is because
+    options:
+      - water enters the raisins by osmosis
+      - sugar leaves the raisins by osmosis
+      - the raisins absorb air from the water
+      - water evaporates from the raisins
+    answer: 0
+    explanation: "The cell sap of raisins is concentrated in sugar. Water moves from the plain water into the cells through their membranes by osmosis, so the raisins swell."
+
+  - id: che-sol-288
+    topic: osmotic-pressure
+    subtopic: Reverse osmosis
+    concept: Reverse osmosis needs pressure larger than the osmotic pressure
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [reverse-osmosis, trap]
+    stem: |-
+      Statement I: Reverse osmosis occurs when a pressure smaller than the osmotic pressure is applied on the solution side.
+      Statement II: In reverse osmosis, pure solvent flows out of the solution through the semipermeable membrane.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "Reverse osmosis requires a pressure larger than the osmotic pressure; a smaller pressure only slows ordinary osmosis. When it occurs, pure solvent is forced out of the solution, so Statement II is correct."
+
+  - id: che-sol-289
+    topic: osmotic-pressure
+    subtopic: Isotonic solutions
+    concept: Properties of isotonic solutions
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [isotonic]
+    stem: |-
+      Consider the statements about isotonic solutions.
+      I. They have the same osmotic pressure at a given temperature.
+      II. No net osmosis occurs when they are separated by a semipermeable membrane.
+      III. They must contain the same solute.
+      IV. 0.9% (w/V) NaCl solution is isotonic with the fluid inside blood cells.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - I, II and IV only
+      - II, III and IV only
+    answer: 2
+    explanation: "Isotonic solutions have equal osmotic pressure, so there is no net flow of solvent between them. Different solutes can be isotonic if their particle concentrations match (e.g. 5% glucose and 0.9% saline are both nearly isotonic with blood), so III is wrong."
+
+  - id: che-sol-290
+    topic: osmotic-pressure
+    subtopic: Semipermeable membranes
+    concept: Cellophane is a synthetic semipermeable membrane
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [spm, ncert-line]
+    stem: Which of the following can act as a synthetic semipermeable membrane?
+    options:
+      - Filter paper
+      - Cellophane
+      - Glass wool
+      - Aluminium foil
+    answer: 1
+    explanation: "NCERT mentions membranes of animal or vegetable origin such as pig's bladder or parchment, and synthetic ones such as cellophane. Filter paper and glass wool let solutes through, and aluminium foil blocks everything."
+
+  - id: che-sol-291
+    topic: osmotic-pressure
+    subtopic: Comparing osmotic pressures
+    concept: Ordering osmotic pressure by effective particle concentration iC
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: π = iCRT
+    tags: [osmotic-pressure, vant-hoff-factor, ordering, multi-concept]
+    stem: "Arrange in increasing order of osmotic pressure at the same temperature (complete dissociation of electrolytes): 0.1 M glucose, 0.1 M NaCl, 0.1 M Na_2SO_4, 0.04 M AlCl_3"
+    options:
+      - Glucose < NaCl < AlCl_3 < Na_2SO_4
+      - Glucose < AlCl_3 < NaCl < Na_2SO_4
+      - AlCl_3 < glucose < NaCl < Na_2SO_4
+      - Na_2SO_4 < NaCl < AlCl_3 < glucose
+    answer: 1
+    explanation: "Effective particle concentrations iC are glucose 0.1, AlCl_3 4 × 0.04 = 0.16, NaCl 0.2 and Na_2SO_4 0.3 M. π ∝ iC, so glucose < AlCl_3 < NaCl < Na_2SO_4. Judging AlCl_3 by i = 4 alone puts it wrongly at the top."
+
+  - id: che-sol-292
+    topic: vant-hoff-factor
+    subtopic: Partial dissociation
+    concept: i for partially dissociated Na3PO4
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: i = 1 + (n − 1)α
+    tags: [vant-hoff-factor, dissociation]
+    stem: Na_3PO_4 is 50% dissociated in a solution. Its van't Hoff factor is
+    options:
+      - "2.0"
+      - "4.0"
+      - "2.5"
+      - "1.5"
+    answer: 2
+    explanation: "Na_3PO_4 → 3Na^+ + PO_4^{3−} gives n = 4. i = 1 + (n − 1)α = 1 + 3 × 0.5 = 2.5."
+
+  - id: che-sol-293
+    topic: vant-hoff-factor
+    subtopic: Colligative properties of electrolytes
+    concept: ΔT_f of potassium ferricyanide with i = 4
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: ΔT_f = iK_f m
+    tags: [vant-hoff-factor, kf]
+    stem: What is the depression in freezing point of a 0.01 m aqueous solution of K_3[Fe(CN)_6], assuming complete dissociation? (K_f = 1.86 K kg mol^{-1})
+    options:
+      - 0.0186 K
+      - 0.0744 K
+      - 0.0558 K
+      - 0.0930 K
+    answer: 1
+    explanation: "K_3[Fe(CN)_6] → 3K^+ + [Fe(CN)_6]^{3−}, so i = 4. ΔT_f = 4 × 1.86 × 0.01 = 0.0744 K. Counting the six CN^− separately would be wrong because the complex ion stays intact."
+
+  - id: che-sol-294
+    topic: vant-hoff-factor
+    subtopic: Abnormal molar masses
+    concept: Complete dimerisation doubles the observed molar mass
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [association, abnormal-molar-mass]
+    stem: If a solute of molar mass M completely dimerises in a solvent, the molar mass found from a colligative property is
+    options:
+      - M/2
+      - M
+      - 2M
+      - 4M
+    answer: 2
+    explanation: "Complete dimerisation halves the number of particles, so i = 0.5 and the observed molar mass = M/i = 2M."
+
+  - id: che-sol-295
+    topic: vant-hoff-factor
+    subtopic: Weak electrolytes
+    concept: Degree of dissociation of acetic acid from ΔT_f in water
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: i = ΔT_f(obs)/(K_f m); α = i − 1
+    tags: [vant-hoff-factor, weak-electrolyte, multi-concept]
+    stem: A 0.1 m aqueous solution of acetic acid freezes at −0.1934 °C. What is the degree of dissociation of acetic acid? (K_f = 1.86 K kg mol^{-1})
+    options:
+      - "0.04"
+      - "0.96"
+      - "0.40"
+      - "1.04"
+    answer: 0
+    explanation: "Expected ΔT_f = 1.86 × 0.1 = 0.186 K. i = 0.1934/0.186 = 1.04. For CH_3COOH ⇌ CH_3COO^− + H^+, i = 1 + α, so α = 0.04. 1.04 is i itself."
+
+  - id: che-sol-296
+    topic: vant-hoff-factor
+    subtopic: Association
+    concept: Association gives i < 1 and abnormally high molar mass
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [association, abnormal-molar-mass]
+    stem: |-
+      Statement I: The van't Hoff factor of a solute that associates in solution is less than 1.
+      Statement II: Association of solute molecules makes the molar mass found from colligative properties higher than the true value.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Association reduces the number of particles, so i < 1 and the colligative effect is smaller than expected. Since molar mass is inversely related to the colligative effect, the observed molar mass is higher. Both statements are correct."
+
+  - id: che-sol-297
+    topic: vant-hoff-factor
+    subtopic: Comparing electrolytes
+    concept: Highest boiling point from largest i × m
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔT_b = iK_b m
+    tags: [vant-hoff-factor, kb, comparison, multi-concept]
+    stem: Assuming complete dissociation, which aqueous solution has the highest boiling point?
+    options:
+      - 0.2 m NaCl
+      - 0.3 m glucose
+      - 0.1 m Al_2(SO_4)_3
+      - 0.15 m K_2SO_4
+    answer: 2
+    explanation: "Compare i × m: NaCl 2 × 0.2 = 0.4, glucose 0.3, Al_2(SO_4)_3 5 × 0.1 = 0.5 and K_2SO_4 3 × 0.15 = 0.45. Al_2(SO_4)_3 gives the most particles and the highest boiling point, despite having the lowest molality."
+
+  - id: che-sol-298
+    topic: vant-hoff-factor
+    subtopic: Effects of dissociation
+    concept: Dissociation raises i and colligative effects but lowers observed molar mass
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [dissociation, abnormal-molar-mass]
+    stem: |-
+      When a solute dissociates in solution, which of the following increase compared with the non-dissociating case?
+      I. The van't Hoff factor
+      II. The depression of freezing point
+      III. The molar mass calculated from colligative data
+      IV. The osmotic pressure
+    options:
+      - I, II and IV only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "Dissociation increases the number of particles, raising i, ΔT_f and π. The calculated molar mass is inversely related to the colligative effect, so it decreases, and III is wrong."
+
+  - id: che-sol-299
+    topic: vant-hoff-factor
+    subtopic: Abnormal molar masses
+    concept: NaCl gives an observed molar mass near 30 because it dissociates
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [abnormal-molar-mass, dissociation]
+    stem: |-
+      Assertion (A): The molar mass of NaCl found by freezing point depression of a dilute aqueous solution is close to 30 g mol^{-1} instead of 58.5 g mol^{-1}.
+      Reason (R): NaCl dissociates into Na^+ and Cl^− ions in water.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Dissociation doubles the number of particles (i ≈ 2), so ΔT_f is about twice the expected value and the calculated molar mass is about 58.5/2 ≈ 29 g mol^{-1}. R explains A."
+
+  - id: che-sol-300
+    topic: vant-hoff-factor
+    subtopic: Finding i from osmotic pressure
+    concept: Identifying the electrolyte from its van't Hoff factor
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: i = π/(CRT)
+    tags: [vant-hoff-factor, osmotic-pressure]
+    stem: A 0.1 M aqueous solution of a fully dissociated salt has an osmotic pressure of 4.92 atm at 300 K. Which salt could it be? (R = 0.0821 L atm K^{-1} mol^{-1})
+    options:
+      - CaCl_2
+      - AlCl_3
+      - Glucose
+      - KCl
+    answer: 3
+    explanation: "Expected π for i = 1 is 0.1 × 0.0821 × 300 = 2.46 atm. i = 4.92/2.46 = 2, which fits a 1:1 salt such as KCl. CaCl_2 (i = 3) would give 7.39 atm, and glucose is not a salt."
+
+  - id: che-sol-301
+    topic: vant-hoff-factor
+    subtopic: Degree of association
+    concept: General formula for degree of association
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: α = (1 − i)/(1 − 1/n)
+    tags: [association, formula]
+    stem: If n molecules of a solute associate to form one larger molecule, the degree of association α is related to i by
+    options:
+      - α = (i − 1)/(n − 1)
+      - α = (1 − i)/(1 − 1/n)
+      - α = i/n
+      - α = (1 − i)/(n − 1)
+    answer: 1
+    explanation: "For nA ⇌ A_n, particles = (1 − α) + α/n, so i = 1 − α(1 − 1/n) and α = (1 − i)/(1 − 1/n). The first option is the formula for dissociation."
