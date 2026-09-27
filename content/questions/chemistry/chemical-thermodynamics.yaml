@@ -5236,7 +5236,7 @@ questions:
     stem: |-
       Match List I with List II.
       List I: P. Entropy  Q. Viscosity  R. Molar enthalpy  S. Heat capacity
-      List II: 1. Intensive, a property of the fluid itself  2. Extensive state function  3. Intensive, a per-mole quantity  4. Extensive, not a state function in the usual sense but depends on sample size
+      List II: 1. Intensive, a property of the fluid itself  2. Extensive state function  3. Intensive, a per-mole quantity  4. Extensive, measured as heat absorbed per kelvin
     options:
       - P-2, Q-3, R-1, S-4
       - P-2, Q-1, R-3, S-4
@@ -6255,4 +6255,1016 @@ questions:
       - +592.3 kJ mol^{-1}
     answer: 1
     explanation: ΔH = ΔcH(rhombic) − ΔcH(monoclinic) = −296.0 + 296.3 = +0.3 kJ mol^{-1}. Monoclinic sulphur has slightly higher enthalpy, so rhombic is the stable form at room temperature.
+
+  - id: che-thermo-301
+    topic: thermo-terms
+    subtopic: Path functions
+    concept: Work is a path function
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [path-function]
+    stem: Which of the following is a path function?
+    options:
+      - Enthalpy
+      - Work
+      - Pressure
+      - Entropy
+    answer: 1
+    explanation: Work depends on how the change is carried out, so it is a path function. Enthalpy, pressure and entropy depend only on the state of the system.
+
+  - id: che-thermo-302
+    topic: thermo-terms
+    subtopic: Limitations of thermodynamics
+    concept: Thermodynamics predicts feasibility but not rate
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [limitations]
+    stem: Chemical thermodynamics can predict
+    options:
+      - How fast a reaction will occur
+      - The mechanism of a reaction
+      - Whether a reaction is feasible under given conditions
+      - The time needed to reach equilibrium
+    answer: 2
+    explanation: Thermodynamics deals with initial and final states, so it tells whether a change is feasible and how far it can go. Rate, mechanism and time belong to chemical kinetics.
+
+  - id: che-thermo-303
+    topic: thermo-terms
+    subtopic: Adiabatic wall
+    concept: An adiabatic wall permits no heat exchange
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [adiabatic]
+    stem: A system separated from its surroundings by an adiabatic wall cannot exchange
+    options:
+      - Work
+      - Heat
+      - Volume
+      - Pressure
+    answer: 1
+    explanation: An adiabatic wall is thermally insulating, so no heat passes through it. Work can still be done on or by the system, for example by stirring or compressing.
+
+  - id: che-thermo-304
+    topic: thermo-terms
+    subtopic: Standard conditions for data
+    concept: Thermochemical data are usually tabulated at 298 K and 1 bar
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [standard-state]
+    stem: Standard enthalpy data in NCERT tables are usually given for which conditions?
+    options:
+      - 273 K and 1 atm
+      - 298 K and 1 bar
+      - 0 K and 1 bar
+      - 373 K and 1 atm
+    answer: 1
+    explanation: Standard states are defined at 1 bar, and tables normally list data at 298 K. The standard state itself does not fix temperature; 273 K and 1 atm are STP conditions for gases.
+
+  - id: che-thermo-305
+    topic: thermo-terms
+    subtopic: Defining the state of a gas
+    concept: For a fixed amount of ideal gas, two variables fix the state
+    category: application
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [state-variables, ideal-gas]
+    stem: |-
+      Statement I: For a fixed amount of an ideal gas, specifying p and T fixes its volume.
+      Statement II: Knowing the history of how the gas reached its present p and T is necessary to find its internal energy.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The ideal gas equation pV = nRT fixes V once n, p and T are known. Internal energy is a state function, so it depends only on the present state, not on the history.
+
+  - id: che-thermo-306
+    topic: first-law
+    subtopic: Zero ΔU
+    concept: ΔU = 0 when heat absorbed equals work done by system
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [first-law]
+    stem: A system absorbs 10 kJ of heat and does 10 kJ of work on the surroundings. Its internal energy
+    options:
+      - Increases by 20 kJ
+      - Decreases by 20 kJ
+      - Does not change
+      - Increases by 10 kJ
+    answer: 2
+    explanation: q = +10 kJ and w = −10 kJ, so ΔU = 0. All the heat absorbed is used to do work.
+
+  - id: che-thermo-307
+    topic: first-law
+    subtopic: Finding work from q and ΔU
+    concept: w = ΔU − q
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [first-law]
+    stem: A gas absorbs 2.0 kJ of heat and its internal energy increases by 1.5 kJ. What is w?
+    options:
+      - "+3.5 kJ"
+      - +0.5 kJ
+      - "−0.5 kJ"
+      - −3.5 kJ
+    answer: 2
+    explanation: w = ΔU − q = 1.5 − 2.0 = −0.5 kJ. The negative sign shows the gas did 0.5 kJ of work on the surroundings.
+
+  - id: che-thermo-308
+    topic: first-law
+    subtopic: q and w as path functions
+    concept: q and w individually are path functions but their sum is not
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [state-function, path-function]
+    stem: |-
+      Assertion (A): q and w depend on the path, but q + w is independent of the path.
+      Reason (R): q + w equals ΔU, and U is a state function.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Different paths between two states give different q and w, but by the first law their sum equals ΔU, which depends only on the end states. R explains A.
+
+  - id: che-thermo-309
+    topic: first-law
+    subtopic: Electrical work
+    concept: Electrical work done on a system increases its internal energy
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [electrical-work, adiabatic]
+    stem: An electric heater inside a thermally insulated, rigid container of water is run at 50 W for 60 s. What is ΔU of the water and heater system?
+    options:
+      - "+50 J"
+      - "+3000 J, all as heat from outside"
+      - +3000 J
+      - Zero, because the container is insulated
+    answer: 2
+    explanation: Electrical work done on the system = 50 W × 60 s = 3000 J. The container is insulated (q = 0) and rigid (no pV work), so ΔU = w = +3000 J. This is adiabatic electrical work, not heat from outside.
+
+  - id: che-thermo-310
+    topic: pv-work
+    subtopic: Irreversible expansion work
+    concept: Work for expansion from 1 L to 3 L at 1 bar
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [irreversible-work]
+    stem: A gas expands from 1 L to 3 L against a constant external pressure of 1 bar. The work done is (1 L bar = 100 J)
+    options:
+      - "−300 J"
+      - −200 J
+      - "+200 J"
+      - −100 J
+    answer: 1
+    explanation: w = −p_{ext}ΔV = −1 bar × 2 L = −2 L bar = −200 J.
+
+  - id: che-thermo-311
+    topic: pv-work
+    subtopic: Reversible expansion doubling volume
+    concept: Reversible isothermal doubling of volume for 2 mol gas
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [reversible-work]
+    stem: Two moles of an ideal gas at 300 K double their volume reversibly and isothermally. What is w? (R = 8.314 J K^{-1} mol^{-1}, ln 2 = 0.693)
+    options:
+      - "−1.73 kJ"
+      - −3.46 kJ
+      - "−6.91 kJ"
+      - +3.46 kJ
+    answer: 1
+    explanation: w = −nRT ln 2 = −2 × 8.314 × 300 × 0.693 ≈ −3457 J ≈ −3.46 kJ.
+
+  - id: che-thermo-312
+    topic: pv-work
+    subtopic: Why p_{ext} is used
+    concept: Work is calculated from external pressure, not internal gas pressure
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [irreversible-work, trap]
+    stem: Which statement about pressure–volume work is correct?
+    options:
+      - "Work is always −p_{gas}ΔV, where p_{gas} is the pressure of the gas"
+      - For an irreversible expansion work is −p_{ext}ΔV, using the external opposing pressure
+      - "Work done in expansion is positive in the IUPAC convention"
+      - Work is independent of the external pressure
+    answer: 1
+    explanation: Work is done against the opposing external pressure, so w = −p_{ext}ΔV for an irreversible change. Only in a reversible change does p_{ext} essentially equal p_{gas}. Expansion work is negative.
+
+  - id: che-thermo-313
+    topic: pv-work
+    subtopic: Large-scale expansion work
+    concept: Converting work from L atm to kJ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [unit-conversion]
+    stem: A gas expands by 10 L against a constant external pressure of 5 atm. What is the work done? (1 L atm = 101.3 J)
+    options:
+      - "−50 J"
+      - "−506.5 J"
+      - −5.07 kJ
+      - +5.07 kJ
+    answer: 2
+    explanation: w = −5 atm × 10 L = −50 L atm = −50 × 101.3 J ≈ −5065 J ≈ −5.07 kJ.
+
+  - id: che-thermo-314
+    topic: pv-work
+    subtopic: Compression on p–V graph
+    concept: Single-step compression requires more work than reversible compression
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [pv-diagram, compression]
+    stem: An ideal gas is compressed isothermally from V_2 to V_1 (a) in one step by a constant external pressure equal to the final pressure p_1, and (b) reversibly. On a p–V graph, which is correct?
+    options:
+      - "Path (a) is a horizontal line at the initial pressure p_2, so it needs less work"
+      - Path (a) is a horizontal line at p_1 lying above the isotherm, so it needs more work than (b)
+      - "Both paths enclose equal areas under them"
+      - Path (b) needs more work because it follows a curve
+    answer: 1
+    explanation: In single-step compression the external pressure is the final (highest) pressure p_1 throughout, so the rectangle under the line p = p_1 is larger than the area under the isotherm. Reversible compression needs the minimum work.
+
+  - id: che-thermo-315
+    topic: enthalpy
+    subtopic: ΔH–ΔU for formation of CO
+    concept: For C(s) + ½O_2(g) → CO(g), ΔH − ΔU = +½RT
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [delta-h-delta-u]
+    stem: For C(graphite) + ½O_2(g) → CO(g), the value of ΔH − ΔU is
+    options:
+      - "−½RT"
+      - Zero
+      - +½RT
+      - +RT
+    answer: 2
+    explanation: "Only gases count: Δn_g = 1 − 0.5 = +0.5, so ΔH − ΔU = +½RT. Counting graphite as a gas would wrongly give −½RT."
+
+  - id: che-thermo-316
+    topic: enthalpy
+    subtopic: ΔU from ΔH for formation of water
+    concept: ΔU of 2H_2 + O_2 → 2H_2O(l)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [delta-h-delta-u]
+    stem: For 2H_2(g) + O_2(g) → 2H_2O(l) at 298 K, ΔH = −571.6 kJ. What is ΔU? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - "−579.0 kJ"
+      - "−566.6 kJ"
+      - −564.2 kJ
+      - −571.6 kJ
+    answer: 2
+    explanation: Δn_g = 0 − 3 = −3, so ΔU = ΔH − Δn_gRT = −571.6 + 3 × 8.314 × 298/1000 = −571.6 + 7.43 = −564.2 kJ.
+
+  - id: che-thermo-317
+    topic: enthalpy
+    subtopic: ΔH < ΔU
+    concept: Identifying the reaction for which ΔH < ΔU
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [delta-h-delta-u]
+    stem: For which reaction is ΔH less than ΔU at the same temperature?
+    options:
+      - "CaCO_3(s) → CaO(s) + CO_2(g)"
+      - 2NH_3(g) → N_2(g) + 3H_2(g)
+      - N_2(g) + 3H_2(g) → 2NH_3(g)
+      - H_2(g) + Cl_2(g) → 2HCl(g)
+    answer: 2
+    explanation: ΔH < ΔU when Δn_g is negative. Ammonia synthesis has Δn_g = 2 − 4 = −2. The decompositions increase gas moles and H_2 + Cl_2 has Δn_g = 0.
+
+  - id: che-thermo-318
+    topic: enthalpy
+    subtopic: Molar enthalpy
+    concept: Molar enthalpy is intensive although enthalpy is extensive
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [extensive, intensive]
+    stem: |-
+      Statement I: Enthalpy is an extensive property.
+      Statement II: Molar enthalpy H_m = H/n is also an extensive property.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Enthalpy scales with the amount of matter, so it is extensive. Dividing by the number of moles gives a quantity independent of the amount, so molar enthalpy is intensive.
+
+  - id: che-thermo-319
+    topic: enthalpy
+    subtopic: Δn_gRT magnitude
+    concept: ΔH − ΔU for Δn_g = +2 at 400 K
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [delta-h-delta-u]
+    stem: A gas-phase reaction at 400 K has Δn_g = +2. What is ΔH − ΔU? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - "3.33 kJ"
+      - "−6.65 kJ"
+      - 6.65 kJ
+      - 0.80 kJ
+    answer: 2
+    explanation: ΔH − ΔU = Δn_gRT = 2 × 8.314 × 400 = 6651 J ≈ 6.65 kJ.
+
+  - id: che-thermo-320
+    topic: heat-capacity-calorimetry
+    subtopic: C_v of monoatomic gas
+    concept: C_v = 3/2 R ≈ 12.5 J K^{-1} mol^{-1}
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [heat-capacity, monoatomic]
+    stem: The molar heat capacity at constant volume of argon (an ideal monoatomic gas) is about
+    options:
+      - "8.3 J K^{-1} mol^{-1}"
+      - 20.8 J K^{-1} mol^{-1}
+      - 12.5 J K^{-1} mol^{-1}
+      - 29.1 J K^{-1} mol^{-1}
+    answer: 2
+    explanation: For a monoatomic ideal gas C_v = 3/2 R = 1.5 × 8.314 ≈ 12.5 J K^{-1} mol^{-1}. The value 20.8 is C_p for a monoatomic gas (or C_v for a diatomic one).
+
+  - id: che-thermo-321
+    topic: heat-capacity-calorimetry
+    subtopic: Heating at constant volume
+    concept: Final temperature of gas heated at constant volume
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [heat-capacity, isochoric]
+    stem: 1.0 kJ of heat is supplied at constant volume to 2 mol of a gas with C_v = 20 J K^{-1} mol^{-1}, initially at 300 K. What is the final temperature?
+    options:
+      - 350 K
+      - 325 K
+      - 310 K
+      - 400 K
+    answer: 1
+    explanation: ΔT = q_v/(nC_v) = 1000/(2 × 20) = 25 K, so T = 325 K. Using one mole gives 350 K.
+
+  - id: che-thermo-322
+    topic: heat-capacity-calorimetry
+    subtopic: Heat capacity extensive, specific heat intensive
+    concept: Heat capacity is extensive; specific heat capacity is intensive
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [heat-capacity, intensive]
+    stem: A 2 kg block and a 1 kg block of the same metal are compared. Which statement is correct?
+    options:
+      - "Both have the same heat capacity"
+      - They have the same specific heat capacity, but the 2 kg block has twice the heat capacity
+      - "The 2 kg block has twice the specific heat capacity"
+      - The 1 kg block has twice the heat capacity
+    answer: 1
+    explanation: Specific heat capacity is a property of the material (intensive), so it is the same. Heat capacity C = mc is extensive, so the 2 kg block has twice the heat capacity.
+
+  - id: che-thermo-323
+    topic: heat-capacity-calorimetry
+    subtopic: Neutralisation in calorimeter
+    concept: Heat released for 50 mL 1 M acid + 50 mL 1 M base
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [neutralisation, calorimetry]
+    stem: 50 mL of 1.0 M HCl and 50 mL of 1.0 M NaOH are mixed in a calorimeter. Taking ΔneutH = −57 kJ mol^{-1}, the total mass as 100 g and specific heat as 4.2 J g^{-1} K^{-1}, what temperature rise is expected (ignore the calorimeter)?
+    options:
+      - "13.6 K"
+      - "3.4 K"
+      - 6.8 K
+      - 1.4 K
+    answer: 2
+    explanation: Moles of water formed = 0.050 mol, so heat = 0.050 × 57 000 = 2850 J. ΔT = 2850/(100 × 4.2) ≈ 6.8 K.
+
+  - id: che-thermo-324
+    topic: heat-capacity-calorimetry
+    subtopic: Why q_p > q_v for gases
+    concept: For the same ΔT of a gas, heat at constant pressure exceeds heat at constant volume by nRΔT
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [heat-capacity]
+    stem: How much more heat is needed to raise 1 mol of an ideal gas by 10 K at constant pressure than at constant volume? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - "8.3 J"
+      - "0 J"
+      - 83.1 J
+      - 831 J
+    answer: 2
+    explanation: q_p − q_v = n(C_p − C_v)ΔT = nRΔT = 1 × 8.314 × 10 ≈ 83.1 J. This extra heat does the expansion work.
+
+  - id: che-thermo-325
+    topic: reaction-enthalpies
+    subtopic: ΔcH of graphite equals ΔfH of CO_2
+    concept: Standard enthalpy of combustion of graphite equals standard enthalpy of formation of CO_2
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [combustion, enthalpy-of-formation]
+    stem: |-
+      Assertion (A): The standard enthalpy of combustion of graphite is equal to the standard enthalpy of formation of CO_2(g).
+      Reason (R): Both refer to the same reaction, C(graphite) + O_2(g) → CO_2(g), with one mole of CO_2 formed from elements in their reference states.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Complete combustion of one mole of graphite and formation of one mole of CO_2 from its elements are the same equation, so both are −393.5 kJ mol^{-1}. R explains A.
+
+  - id: che-thermo-326
+    topic: reaction-enthalpies
+    subtopic: Neutralisation of dibasic acid
+    concept: One mole of H_2SO_4 neutralised by NaOH releases about 114 kJ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [neutralisation]
+    stem: How much heat is released when 1 mol of H_2SO_4 is completely neutralised by NaOH in dilute solution? (ΔneutH = −57.1 kJ per mol of water)
+    options:
+      - "57.1 kJ"
+      - "28.6 kJ"
+      - 114.2 kJ
+      - 171.3 kJ
+    answer: 2
+    explanation: H_2SO_4 provides 2 mol of H^+, forming 2 mol of water, so heat = 2 × 57.1 = 114.2 kJ.
+
+  - id: che-thermo-327
+    topic: reaction-enthalpies
+    subtopic: Enthalpy of atomisation of metals
+    concept: Enthalpy of atomisation of a metal equals its enthalpy of sublimation
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [atomisation, sublimation]
+    stem: For Na(s) → Na(g), the enthalpy change is both the enthalpy of atomisation of sodium and its enthalpy of
+    options:
+      - Ionisation
+      - Fusion
+      - Sublimation
+      - Formation of Na^+(g)
+    answer: 2
+    explanation: Solid sodium is a monatomic metal; converting it directly to gaseous atoms is sublimation, which is also its atomisation. NCERT notes this for sodium (108.4 kJ mol^{-1}).
+
+  - id: che-thermo-328
+    topic: reaction-enthalpies
+    subtopic: Methane combustion value
+    concept: ΔcH° of methane is about −890 kJ mol^{-1}
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [combustion]
+    stem: The standard enthalpy of combustion of methane at 298 K is about
+    options:
+      - "−74.8 kJ mol^{-1}"
+      - "−393.5 kJ mol^{-1}"
+      - −890 kJ mol^{-1}
+      - −2808 kJ mol^{-1}
+    answer: 2
+    explanation: CH_4 + 2O_2 → CO_2 + 2H_2O(l) has ΔcH° ≈ −890 kJ mol^{-1}. The value −74.8 is ΔfH° of methane and −2808 is ΔcH° of glucose.
+
+  - id: che-thermo-329
+    topic: reaction-enthalpies
+    subtopic: Enthalpy of sublimation of ice
+    concept: ΔsubH of ice from fusion and vaporisation at 273 K
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [sublimation]
+    stem: At 273 K, ΔfusH of ice is 6.01 kJ mol^{-1} and ΔvapH of water is 45.07 kJ mol^{-1}. What is ΔsubH of ice at 273 K?
+    options:
+      - "39.06 kJ mol^{-1}"
+      - "45.07 kJ mol^{-1}"
+      - 51.08 kJ mol^{-1}
+      - 6.01 kJ mol^{-1}
+    answer: 2
+    explanation: Sublimation = fusion + vaporisation at the same temperature, so ΔsubH = 6.01 + 45.07 = 51.08 kJ mol^{-1}. Note the vaporisation value at 273 K is higher than at 373 K.
+
+  - id: che-thermo-330
+    topic: hess-law
+    subtopic: Formation of NO_2
+    concept: ΔH for N_2 + 2O_2 → 2NO_2 from two steps
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [hess-law]
+    stem: Given N_2(g) + O_2(g) → 2NO(g), ΔH = +180.5 kJ and 2NO(g) + O_2(g) → 2NO_2(g), ΔH = −114.1 kJ. What is ΔH for N_2(g) + 2O_2(g) → 2NO_2(g)?
+    options:
+      - "+294.6 kJ"
+      - "−66.4 kJ"
+      - +66.4 kJ
+      - +33.2 kJ
+    answer: 2
+    explanation: Adding the two equations gives the target, so ΔH = 180.5 + (−114.1) = +66.4 kJ. The value +33.2 kJ is per mole of NO_2.
+
+  - id: che-thermo-331
+    topic: hess-law
+    subtopic: ΔfH of ethanol from combustion data
+    concept: ΔfH of C_2H_5OH from ΔcH values
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [hess-law, combustion]
+    stem: ΔcH° (kJ mol^{-1}) of C(graphite) = −393.5, H_2(g) = −285.8 and C_2H_5OH(l) = −1366.8. What is ΔfH° of C_2H_5OH(l)?
+    options:
+      - "+277.6 kJ mol^{-1}"
+      - "−1644.4 kJ mol^{-1}"
+      - −277.6 kJ mol^{-1}
+      - −420.5 kJ mol^{-1}
+    answer: 2
+    explanation: 2C + 3H_2 + ½O_2 → C_2H_5OH. ΔfH° = 2(−393.5) + 3(−285.8) − (−1366.8) = −787.0 − 857.4 + 1366.8 = −277.6 kJ mol^{-1}. O_2 has zero combustion enthalpy.
+
+  - id: che-thermo-332
+    topic: hess-law
+    subtopic: Enthalpy of hydrogenation from ΔfH
+    concept: Hydrogenation of propene from formation enthalpies
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [enthalpy-of-formation, hydrogenation]
+    stem: ΔfH° of propene(g) = +20.4 and propane(g) = −103.8 kJ mol^{-1}. What is ΔH° for propene + H_2 → propane?
+    options:
+      - "+124.2 kJ mol^{-1}"
+      - "−83.4 kJ mol^{-1}"
+      - −124.2 kJ mol^{-1}
+      - +83.4 kJ mol^{-1}
+    answer: 2
+    explanation: ΔH° = ΔfH°(propane) − ΔfH°(propene) − 0 = −103.8 − 20.4 = −124.2 kJ mol^{-1}. H_2 is an element in its reference state.
+
+  - id: che-thermo-333
+    topic: hess-law
+    subtopic: Symbolic Hess's law
+    concept: Combining A → B and 2B → C
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [hess-law]
+    stem: If A → B has ΔH = x and 2B → C has ΔH = y, what is ΔH for 2A → C?
+    options:
+      - "x + y"
+      - "x + 2y"
+      - 2x + y
+      - 2x − y
+    answer: 2
+    explanation: Double the first equation (2A → 2B, ΔH = 2x) and add the second (2B → C, ΔH = y). The target 2A → C has ΔH = 2x + y.
+
+  - id: che-thermo-334
+    topic: hess-law
+    subtopic: Applicability of Hess's law
+    concept: Hess's law applies to physical changes and to reactions
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [hess-law, phase-change]
+    stem: |-
+      Statement I: Hess's law applies only to chemical reactions and not to physical changes such as phase transitions.
+      Statement II: The enthalpy of sublimation can be obtained by adding the enthalpies of fusion and vaporisation at the same temperature.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: Enthalpy is a state function for any process, so Hess's law applies to physical changes too; Statement II is an example of exactly that. Statement I is therefore incorrect.
+
+  - id: che-thermo-335
+    topic: bond-enthalpy
+    subtopic: Hydration of ethene
+    concept: ΔH of C_2H_4 + H_2O → C_2H_5OH (all gas) from bond enthalpies
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [bond-enthalpy]
+    stem: Estimate ΔH for C_2H_4(g) + H_2O(g) → C_2H_5OH(g) using bond enthalpies (kJ mol^{-1}) C=C 615, O–H 463, C–C 348, C–H 414, C–O 360.
+    options:
+      - "+44 kJ mol^{-1}"
+      - "−507 kJ mol^{-1}"
+      - −44 kJ mol^{-1}
+      - −122 kJ mol^{-1}
+    answer: 2
+    explanation: Broken - C=C and one O–H = 615 + 463 = 1078 kJ. Formed - C–C, one new C–H and C–O = 348 + 414 + 360 = 1122 kJ. ΔH = 1078 − 1122 = −44 kJ mol^{-1}.
+
+  - id: che-thermo-336
+    topic: bond-enthalpy
+    subtopic: Decomposition of HI
+    concept: Endothermic decomposition of HI from bond enthalpies
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [bond-enthalpy]
+    stem: Bond enthalpies are H–I 299, H–H 436 and I–I 151 kJ mol^{-1}. What is ΔH for 2HI(g) → H_2(g) + I_2(g)?
+    options:
+      - "−11 kJ"
+      - "+288 kJ"
+      - +11 kJ
+      - −137 kJ
+    answer: 2
+    explanation: Bonds broken = 2 × 299 = 598 kJ; bonds formed = 436 + 151 = 587 kJ. ΔH = 598 − 587 = +11 kJ, slightly endothermic.
+
+  - id: che-thermo-337
+    topic: bond-enthalpy
+    subtopic: Strongest bond
+    concept: N≡N has the highest bond enthalpy among common diatomics
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [bond-enthalpy]
+    stem: Which bond has the highest bond dissociation enthalpy?
+    options:
+      - "H–H"
+      - "O=O"
+      - N≡N
+      - F–F
+    answer: 2
+    explanation: The triple bond in N_2 (about 946 kJ mol^{-1}) is far stronger than O=O (498), H–H (436) or F–F (158).
+
+  - id: che-thermo-338
+    topic: bond-enthalpy
+    subtopic: H–F formation
+    concept: ΔH of H_2 + F_2 → 2HF from bond enthalpies
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [bond-enthalpy]
+    stem: With bond enthalpies H–H 436, F–F 158 and H–F 565 kJ mol^{-1}, ΔH for H_2(g) + F_2(g) → 2HF(g) is
+    options:
+      - "+536 kJ"
+      - "−29 kJ"
+      - −536 kJ
+      - −268 kJ
+    answer: 2
+    explanation: Bonds broken = 436 + 158 = 594 kJ; bonds formed = 2 × 565 = 1130 kJ. ΔH = 594 − 1130 = −536 kJ. The weak F–F bond and strong H–F bond make this very exothermic.
+
+  - id: che-thermo-339
+    topic: bond-enthalpy
+    subtopic: Bond dissociation vs mean bond enthalpy
+    concept: For polyatomic molecules, bond dissociation enthalpies of successive bonds differ
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [mean-bond-enthalpy]
+    stem: Which statement about bond enthalpies in H_2O is correct?
+    options:
+      - "Both O–H bonds require exactly the same energy to break one after the other"
+      - "The enthalpy of atomisation of H_2O equals the energy to break only the first O–H bond"
+      - The two successive O–H dissociation enthalpies differ, so a mean O–H bond enthalpy is used
+      - Bond enthalpy in H_2O is negative since water is stable
+    answer: 2
+    explanation: H_2O → H + OH and OH → O + H have different enthalpies (about 502 and 427 kJ mol^{-1}), because the environment of the second bond differs. Their average, about 464 kJ mol^{-1}, is the mean O–H bond enthalpy.
+
+  - id: che-thermo-340
+    topic: lattice-born-haber
+    subtopic: Lattice enthalpy of NaCl value
+    concept: NCERT value of lattice enthalpy of NaCl
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [lattice-enthalpy, ncert-line]
+    stem: According to NCERT, the lattice enthalpy of NaCl is about
+    options:
+      - "+411 kJ mol^{-1}"
+      - "+496 kJ mol^{-1}"
+      - +788 kJ mol^{-1}
+      - +3800 kJ mol^{-1}
+    answer: 2
+    explanation: NCERT gives ΔlatticeH° of NaCl as +788 kJ mol^{-1}. 411 kJ mol^{-1} is the magnitude of its enthalpy of formation, 496 is the ionisation enthalpy of Na, and about 3800 is for MgO.
+
+  - id: che-thermo-341
+    topic: lattice-born-haber
+    subtopic: Basis of Born–Haber cycle
+    concept: Born–Haber cycle is an application of Hess's law
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [born-haber, hess-law]
+    stem: The Born–Haber cycle is an application of
+    options:
+      - The third law of thermodynamics
+      - Le Chatelier's principle
+      - Hess's law
+      - The second law of thermodynamics
+    answer: 2
+    explanation: The cycle adds the enthalpy changes of several steps that together equal the enthalpy of formation, relying on Hess's law (enthalpy is a state function).
+
+  - id: che-thermo-342
+    topic: lattice-born-haber
+    subtopic: Group 2 oxides
+    concept: Lattice enthalpy decreases down group 2 oxides
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [lattice-enthalpy, trend]
+    stem: Arrange the oxides in decreasing order of lattice enthalpy - BaO, MgO, CaO, SrO.
+    options:
+      - "BaO > SrO > CaO > MgO"
+      - "CaO > MgO > SrO > BaO"
+      - MgO > CaO > SrO > BaO
+      - MgO > SrO > CaO > BaO
+    answer: 2
+    explanation: All have 2+ and 2− ions, so size decides. The cation grows from Mg^{2+} to Ba^{2+}, increasing interionic distance and lowering lattice enthalpy.
+
+  - id: che-thermo-343
+    topic: lattice-born-haber
+    subtopic: Hydration enthalpy trend
+    concept: Magnitude of hydration enthalpy is largest for smallest ion
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [hydration, trend]
+    stem: Which is the correct order of magnitude of hydration enthalpy of the alkali metal ions?
+    options:
+      - "K^+ > Na^+ > Li^+"
+      - "Na^+ > Li^+ > K^+"
+      - Li^+ > Na^+ > K^+
+      - All are equal
+    answer: 2
+    explanation: A smaller ion has a higher charge density and attracts water molecules more strongly, so Li^+ has the largest (most negative) hydration enthalpy, followed by Na^+ and K^+.
+
+  - id: che-thermo-344
+    topic: lattice-born-haber
+    subtopic: Born–Haber with unknown sublimation
+    concept: Solving for sublimation enthalpy in a Born–Haber cycle
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [born-haber, sublimation]
+    stem: For KF, ΔfH° = −567, ΔiH(K) = +419, ½ΔbondH(F_2) = +79, ΔegH(F) = −328 and lattice enthalpy (KF(s) → K^+(g) + F^−(g)) = +826 kJ mol^{-1}. What is ΔsubH of potassium?
+    options:
+      - "+170 kJ mol^{-1}"
+      - "−89 kJ mol^{-1}"
+      - +89 kJ mol^{-1}
+      - +259 kJ mol^{-1}
+    answer: 2
+    explanation: −567 = ΔsubH + 419 + 79 − 328 − 826 = ΔsubH − 656. So ΔsubH = −567 + 656 = +89 kJ mol^{-1}, positive as sublimation always is.
+
+  - id: che-thermo-345
+    topic: entropy
+    subtopic: Dissolving a gas in water
+    concept: Dissolving a gas in a liquid decreases entropy
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [entropy-change, trap]
+    stem: What is the sign of ΔS when CO_2 gas dissolves in water at constant temperature?
+    options:
+      - Positive, since dissolution always increases entropy
+      - Zero
+      - Negative
+      - Positive, since the solution is disordered
+    answer: 2
+    explanation: Gas molecules lose a great deal of freedom when they are confined in the liquid, so ΔS is negative. Dissolution raises entropy for solids dissolving, not for gases.
+
+  - id: che-thermo-346
+    topic: entropy
+    subtopic: Third law and absolute entropy
+    concept: Third law allows calculation of absolute entropy
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [third-law, standard-entropy]
+    stem: |-
+      Assertion (A): Absolute values of entropy of substances can be determined, unlike absolute values of enthalpy.
+      Reason (R): The entropy of a perfectly crystalline substance at 0 K is zero, which provides a reference point.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The third law fixes S = 0 for a perfect crystal at 0 K, so the entropy at any temperature can be found by adding heat-capacity and phase-change contributions from 0 K. No such natural zero exists for enthalpy. R explains A.
+
+  - id: che-thermo-347
+    topic: entropy
+    subtopic: Entropy of noble gases
+    concept: Standard entropy increases with atomic mass for monoatomic gases
+    category: factual
+    format: ordering
+    difficulty: 4
+    time: 45
+    ncert: false
+    battle: false
+    tags: [standard-entropy]
+    stem: Arrange He(g), Ne(g) and Ar(g) in increasing order of standard molar entropy at 298 K.
+    options:
+      - "Ar < Ne < He"
+      - "Ne < He < Ar"
+      - He < Ne < Ar
+      - All three are equal
+    answer: 2
+    explanation: For monoatomic gases, heavier atoms have more closely spaced translational energy levels and hence more accessible microstates. S° is about 126 (He), 146 (Ne) and 155 (Ar) J K^{-1} mol^{-1}.
+
+  - id: che-thermo-348
+    topic: entropy
+    subtopic: Entropy of surroundings in freezing
+    concept: ΔS_{surr} during freezing at 0 °C
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [surroundings-entropy, phase-change]
+    stem: One mole of water freezes at 273 K, releasing 6.01 kJ to the surroundings. What are ΔS_{sys} and ΔS_{surr}?
+    options:
+      - "+22.0 and −22.0 J K^{-1}"
+      - "−22.0 and −22.0 J K^{-1}"
+      - −22.0 and +22.0 J K^{-1}
+      - Zero and zero
+    answer: 2
+    explanation: ΔS_{sys} = −6010/273 = −22.0 J K^{-1} and the surroundings gain 6010 J, so ΔS_{surr} = +22.0 J K^{-1}. The total is zero because this is an equilibrium process at the melting point.
+
+  - id: che-thermo-349
+    topic: gibbs-spontaneity
+    subtopic: Gibbs equation calculation
+    concept: ΔG when both ΔH and −TΔS are negative
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [gibbs-energy]
+    stem: For a reaction ΔH = −100 kJ mol^{-1} and ΔS = +50 J K^{-1} mol^{-1}. What is ΔG at 400 K?
+    options:
+      - "−80 kJ mol^{-1}"
+      - "+100 kJ mol^{-1}"
+      - −120 kJ mol^{-1}
+      - −100 kJ mol^{-1}
+    answer: 2
+    explanation: TΔS = 400 × 50 = 20 000 J = 20 kJ. ΔG = −100 − 20 = −120 kJ mol^{-1}.
+
+  - id: che-thermo-350
+    topic: gibbs-spontaneity
+    subtopic: Finding ΔS from ΔG
+    concept: ΔS = (ΔH − ΔG)/T
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [gibbs-energy]
+    stem: At 300 K a reaction has ΔH = −50 kJ mol^{-1} and ΔG = −35 kJ mol^{-1}. What is ΔS?
+    options:
+      - "+50 J K^{-1} mol^{-1}"
+      - "−0.05 J K^{-1} mol^{-1}"
+      - −50 J K^{-1} mol^{-1}
+      - −283 J K^{-1} mol^{-1}
+    answer: 2
+    explanation: ΔS = (ΔH − ΔG)/T = (−50 + 35) × 1000/300 = −15 000/300 = −50 J K^{-1} mol^{-1}.
 
