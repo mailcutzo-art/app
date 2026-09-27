@@ -677,7 +677,7 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
   - A draw is worth 0.5 points.
 
 **Pairing** (`swiss_pairing.py`, a pure function)
-- Round 1 is a fold pairing by seed.
+- Round 1 pairs the top half against the bottom half by seed (1 v n/2+1, 2 v n/2+2, …), the same shape later rounds aim for inside each score group.
 - **Later rounds:**
   - Use networkx `max_weight_matching(maxcardinality=True)` on a sparse graph where edges connect players whose points differ by at most 1.5, widening if needed.
   - It runs in a thread with a 20 s budget and falls back to a greedy pairing.
