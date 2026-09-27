@@ -8533,3 +8533,1073 @@ questions:
     answer: 0
     explanation: η = 0.4, so heat input = 2/0.4 = 5 kW and heat rejected = 5 − 2 = 3 kW.
 
+  - id: phy-thermo-401
+    topic: zeroth-law
+    subtopic: Steady state vs equilibrium
+    concept: A rod carrying steady heat flow is in steady state, not thermal equilibrium
+    category: concept
+    format: case
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [thermal-equilibrium, steady-state, trap]
+    stem: A metal rod has one end in boiling water and the other in melting ice. After a long time the temperature at each point of the rod stops changing. The rod is
+    options:
+      - in thermal equilibrium, since its temperatures no longer change
+      - in a steady state but not in thermal equilibrium, since heat keeps flowing through it
+      - in thermal equilibrium at 50 °C throughout
+      - neither, since its temperature keeps rising
+    answer: 1
+    explanation: Constant temperatures alone do not mean equilibrium. Heat still flows from the hot end to the cold end and the temperature varies along the rod, so this is a steady state, not thermal equilibrium.
+
+  - id: phy-thermo-402
+    topic: zeroth-law
+    subtopic: Ordering temperatures from heat flow
+    concept: Heat flows from higher to lower temperature
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [heat-flow, temperature]
+    stem: When put in contact, heat flows from body A to body B, and from body C to body A. Arrange their temperatures in decreasing order.
+    options:
+      - A > B > C
+      - C > A > B
+      - B > A > C
+      - C > B > A
+    answer: 1
+    explanation: Heat flows from hotter to colder, so T_A > T_B and T_C > T_A. Hence C > A > B.
+
+  - id: phy-thermo-403
+    topic: zeroth-law
+    subtopic: Statement of the zeroth law
+    concept: Correct wording of the zeroth law
+    category: factual
+    format: statements
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [zeroth-law, ncert-line]
+    stem: Which of the following is the zeroth law of thermodynamics?
+    options:
+      - Energy can neither be created nor destroyed
+      - Heat cannot flow by itself from a cold body to a hot body
+      - Absolute zero cannot be reached in a finite number of steps
+      - Two systems each in thermal equilibrium with a third are in thermal equilibrium with each other
+    answer: 3
+    explanation: The zeroth law concerns thermal equilibrium and transitivity. The first option is the first law and the second is the Clausius form of the second law.
+
+  - id: phy-thermo-404
+    topic: heat-work-internal-energy
+    subtopic: Units of work
+    concept: 1 L atm ≈ 101.3 J
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    formula: 1 L atm = 10^{-3} m^3 × 1.013 × 10^5 Pa
+    tags: [units, work-done]
+    stem: The work unit litre-atmosphere (L atm) is equal to about
+    options:
+      - 1.013 J
+      - 101.3 J
+      - 1013 J
+      - 10.13 J
+    answer: 1
+    explanation: 1 L atm = 10^{-3} m^3 × 1.013 × 10^5 Pa = 101.3 J.
+
+  - id: phy-thermo-405
+    topic: heat-work-internal-energy
+    subtopic: Energy transfer in insulated compression
+    concept: In insulated compression energy enters only as work
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [work, adiabatic]
+    stem: A gas in a thermally insulated cylinder is compressed by pushing in a piston. Energy is transferred to the gas as
+    options:
+      - heat only
+      - both heat and work
+      - neither heat nor work
+      - work only
+    answer: 3
+    explanation: Insulation prevents heat flow, so the only energy transfer is the work done by the piston, which raises the internal energy of the gas.
+
+  - id: phy-thermo-406
+    topic: heat-work-internal-energy
+    subtopic: Properties of ideal gas internal energy
+    concept: U ∝ nT, independent of pressure at fixed T
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [internal-energy, ideal-gas]
+    stem: |-
+      For an ideal gas, consider:
+      I. For a fixed amount, U is proportional to the absolute temperature.
+      II. At the same temperature, doubling the number of moles doubles U.
+      III. U changes in an isothermal expansion.
+      IV. At 300 K, a given amount has the same U whether it is at 1 atm or 2 atm.
+      Which are correct?
+    options:
+      - I and III only
+      - I, II and IV only
+      - II and III only
+      - I, II, III and IV
+    answer: 1
+    explanation: U = nC_vT, so it is proportional to T and to n (I, II) and independent of pressure at a given T (IV). In an isothermal process U does not change, so III is false.
+
+  - id: phy-thermo-407
+    topic: first-law
+    subtopic: Heating a liquid in an open vessel
+    concept: For liquids, work against atmosphere is negligible, so ΔU ≈ Q
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [first-law, liquids]
+    stem: Water in an open vessel is heated from 20 °C to 80 °C by supplying heat Q. The increase in its internal energy is
+    options:
+      - zero, because the pressure stays constant
+      - about 0.6Q, as for a monatomic gas
+      - nearly equal to Q, because the work done against the atmosphere is negligible
+      - much less than Q, because most of the heat does work
+    answer: 2
+    explanation: Water expands very little on heating, so PΔV is tiny compared with Q. Thus ΔU ≈ Q. The 3/5 fraction applies only to a monatomic ideal gas at constant pressure.
+
+  - id: phy-thermo-408
+    topic: first-law
+    subtopic: Irreversible expansion against constant external pressure
+    concept: W = P_extΔV in irreversible expansion
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: ΔU = Q − P_extΔV
+    tags: [first-law, irreversible, unit-conversion]
+    stem: A gas expands from 1 L to 3 L against a constant external pressure of 1 atm (1.013 × 10^5 Pa) while absorbing 500 J of heat. The change in its internal energy is about
+    options:
+      - 703 J
+      - 500 J
+      - 400 J
+      - 297 J
+    answer: 3
+    explanation: W = P_extΔV = 1.013 × 10^5 × 2 × 10^{-3} ≈ 203 J, so ΔU = 500 − 203 ≈ 297 J. 703 J adds the work instead of subtracting it.
+
+  - id: phy-thermo-409
+    topic: first-law
+    subtopic: Same volumes, different final states
+    concept: ΔU differs when final states differ, even with the same volumes
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [state-function, adiabatic, isothermal, trap]
+    stem: |-
+      Statement I: When an ideal gas is compressed from the same initial state to the same final volume, once isothermally and once adiabatically, ΔU is the same in both cases.
+      Statement II: The change in internal energy depends only on the initial and final states.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: Statement II is true, but the two final states are different; the isothermal one is at the original temperature (ΔU = 0) while the adiabatic one is hotter (ΔU > 0). Same final volume is not the same final state.
+
+  - id: phy-thermo-410
+    topic: first-law
+    subtopic: Free expansion of a real gas
+    concept: Real gas cools slightly in free expansion as KE turns into intermolecular PE
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [free-expansion, real-gas, multi-concept]
+    stem: |-
+      Assertion (A): When a real gas expands freely into vacuum in an insulated vessel, its temperature usually falls slightly.
+      Reason (R): Its internal energy stays constant, but some molecular kinetic energy is used to increase the potential energy against intermolecular attraction.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Q = 0 and W = 0, so U is unchanged. As molecules move apart, attractive potential energy rises at the cost of kinetic energy, so the temperature drops a little. For an ideal gas there is no such effect.
+
+  - id: phy-thermo-411
+    topic: first-law
+    subtopic: Two successive processes
+    concept: Add ΔU over successive steps
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: ΔU = ΔQ − ΔW
+    tags: [first-law]
+    stem: A gas absorbs 1000 J and does 600 J of work. It then loses 200 J of heat at constant volume. The net change in its internal energy is
+    options:
+      - 400 J
+      - 200 J
+      - 1400 J
+      - −200 J
+    answer: 1
+    explanation: Step 1 gives ΔU = 1000 − 600 = 400 J; step 2 gives ΔU = −200 J (no work at constant volume). Net ΔU = 200 J.
+
+  - id: phy-thermo-412
+    topic: specific-heats
+    subtopic: Solids and liquids
+    concept: C_p ≈ C_v for solids and liquids due to small expansion
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: false
+    tags: [specific-heat, solids]
+    stem: For solids and liquids the specific heats at constant pressure and constant volume are nearly equal because
+    options:
+      - their molecules do not move
+      - they have no internal energy
+      - they absorb no heat at constant volume
+      - their thermal expansion is very small, so the work done on heating is negligible
+    answer: 3
+    explanation: C_p exceeds C_v by the work done in expansion. Solids and liquids expand very little, so this work, and the difference, is tiny. For gases it is large (R per mole).
+
+  - id: phy-thermo-413
+    topic: specific-heats
+    subtopic: Specific heat per gram
+    concept: c_v = C_v/M for helium
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: c_v = C_v/M
+    tags: [specific-heat, monatomic]
+    stem: The specific heat at constant volume of helium (monatomic, M = 4 g mol^{-1}) is about (R = 8.31 J mol^{-1} K^{-1})
+    options:
+      - 12.5 J g^{-1} K^{-1}
+      - 5.19 J g^{-1} K^{-1}
+      - 3.12 J g^{-1} K^{-1}
+      - 2.08 J g^{-1} K^{-1}
+    answer: 2
+    explanation: C_v = 1.5R = 12.5 J mol^{-1} K^{-1}, and per gram c_v = 12.5/4 ≈ 3.12 J g^{-1} K^{-1}. 12.5 is the molar value and 5.19 is c_p.
+
+  - id: phy-thermo-414
+    topic: specific-heats
+    subtopic: Origin of Mayer's relation
+    concept: Extra heat at constant P per mole per kelvin is PΔV = R
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [mayer-relation]
+    stem: When one mole of an ideal gas is heated by 1 K at constant pressure instead of at constant volume, the extra heat needed equals
+    options:
+      - the increase in internal energy
+      - the work PΔV done in expansion, which equals R
+      - zero, since ΔU is the same
+      - γR
+    answer: 1
+    explanation: ΔU is the same in both cases (it depends only on ΔT). At constant pressure the gas also does work PΔV = RΔT = R for 1 mol and 1 K, so C_p − C_v = R.
+
+  - id: phy-thermo-415
+    topic: specific-heats
+    subtopic: Values of C_p and C_v
+    concept: C_p = 5R/2, 7R/2, 4R; C_v = 3R/2 for monatomic
+    category: factual
+    format: match
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [specific-heat, gamma]
+    stem: |-
+      Match List I with List II for ideal gases with rigid molecules.
+      List I: P. C_p of a monatomic gas  Q. C_p of a diatomic gas  R. C_p of a non-linear polyatomic gas  S. C_v of a monatomic gas
+      List II: 1. 4R  2. 5R/2  3. 7R/2  4. 3R/2
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-2, Q-1, R-3, S-4
+      - P-3, Q-2, R-1, S-4
+      - P-2, Q-3, R-1, S-4
+    answer: 3
+    explanation: C_v is 3R/2, 5R/2 and 3R for the three types, and C_p = C_v + R gives 5R/2, 7R/2 and 4R.
+
+  - id: phy-thermo-416
+    topic: state-variables
+    subtopic: History does not matter
+    concept: Internal energy depends on the state, not how it was reached
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [state-function]
+    stem: A gas reaches the same equilibrium state (P, V, T) through two different histories. Its internal energy
+    options:
+      - is larger for the history involving more heat
+      - is larger for the history involving more work
+      - cannot be compared
+      - is the same in both cases
+    answer: 3
+    explanation: Internal energy is a state variable, fixed by the present equilibrium state regardless of how the system got there.
+
+  - id: phy-thermo-417
+    topic: state-variables
+    subtopic: Combining identical systems
+    concept: Temperature is intensive and does not add
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [intensive, trap]
+    stem: |-
+      Statement I: Temperature is an intensive variable.
+      Statement II: When two identical samples of gas at 300 K are combined, the temperature of the combined sample is 600 K.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Intensive variables do not add when systems are combined; the combined sample stays at 300 K. Volume and internal energy would double.
+
+  - id: phy-thermo-418
+    topic: isothermal-process
+    subtopic: Real examples
+    concept: Melting of ice at 0 °C is an isothermal process
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: false
+    battle: true
+    tags: [isothermal, real-life]
+    stem: Which of the following is an example of a nearly isothermal process?
+    options:
+      - Sudden bursting of a tyre
+      - Melting of ice at 0 °C under atmospheric pressure
+      - Compression of air in a diesel engine
+      - Rapid expansion of gas from a cylinder
+    answer: 1
+    explanation: During melting at constant pressure the temperature stays at 0 °C while heat is absorbed. The other examples are rapid, nearly adiabatic processes.
+
+  - id: phy-thermo-419
+    topic: isothermal-process
+    subtopic: Work for different volume ratios
+    concept: ln 4 = 2 ln 2 so work doubles
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: W = nRT ln(V_2/V_1)
+    tags: [isothermal, work-done]
+    stem: An ideal gas does work W in expanding isothermally from V to 2V. At the same temperature, the work it does in expanding isothermally from 2V to 8V is
+    options:
+      - 3W
+      - 4W
+      - 6W
+      - 2W
+    answer: 3
+    explanation: The volume ratio is 4, and ln 4 = 2 ln 2, so the work is 2W. It depends on the ratio of volumes, not the change in volume.
+
+  - id: phy-thermo-420
+    topic: isothermal-process
+    subtopic: Isothermal relations
+    concept: dU = 0, dQ = dW, PV constant; heat capacity is infinite
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [isothermal, trap]
+    stem: |-
+      For an isothermal process of an ideal gas, consider:
+      I. dU = 0
+      II. dQ = dW
+      III. PV = constant
+      IV. dT = 0, so the heat capacity is zero
+      Which are correct?
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: I, II and III follow from constant T. IV is wrong; with dT = 0 but dQ ≠ 0, the heat capacity is infinite, not zero.
+
+  - id: phy-thermo-421
+    topic: isothermal-process
+    subtopic: Crossing isotherms
+    concept: Isobaric expansion crosses isotherms of rising temperature
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [isothermal, isobaric, pv-diagram]
+    stem: Several isotherms of an ideal gas are drawn on a P–V diagram. A horizontal line representing an isobaric expansion, moving to larger V, crosses isotherms of
+    options:
+      - steadily increasing temperature
+      - steadily decreasing temperature
+      - the same temperature
+      - first higher and then lower temperature
+    answer: 0
+    explanation: At constant P, T ∝ V, so as the gas expands it meets isotherms of higher and higher temperature, which lie farther from the origin.
+
+  - id: phy-thermo-422
+    topic: adiabatic-process
+    subtopic: Adiabatics of different gases
+    concept: Gas with larger γ has steeper adiabatic
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    formula: dP/dV = −γP/V
+    tags: [adiabatic, gamma, pv-diagram]
+    stem: Adiabatic curves for helium, nitrogen and carbon dioxide (non-linear polyatomic model, γ = 4/3) are drawn through the same point on a P–V diagram. The steepest curve belongs to
+    options:
+      - nitrogen
+      - carbon dioxide
+      - helium
+      - all three equally
+    answer: 2
+    explanation: The adiabatic slope is −γP/V, so the steepest curve has the largest γ. Helium, with γ = 5/3, is steeper than nitrogen (7/5) and the polyatomic gas (4/3).
+
+  - id: phy-thermo-423
+    topic: adiabatic-process
+    subtopic: Temperature when pressure doubles
+    concept: T_2/T_1 = 2^{(γ−1)/γ}
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    formula: T ∝ P^{(γ−1)/γ}
+    tags: [adiabatic, temperature-pressure]
+    stem: A monatomic ideal gas is compressed adiabatically until its pressure doubles. The ratio of its final to initial absolute temperature is
+    options:
+      - 2^{3/5}
+      - 2^{2/5}
+      - 2^{5/3}
+      - "2"
+    answer: 1
+    explanation: T ∝ P^{(γ−1)/γ} = P^{2/5} for γ = 5/3, so T_2/T_1 = 2^{2/5} ≈ 1.32.
+
+  - id: phy-thermo-424
+    topic: adiabatic-process
+    subtopic: Relations in adiabatic compression
+    concept: Q = 0, W_on = ΔU, T^γP^{1−γ} constant; adiabatic is steeper
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [adiabatic, relations]
+    stem: |-
+      For a reversible adiabatic compression of an ideal gas, consider:
+      I. No heat is exchanged.
+      II. The work done on the gas equals its increase in internal energy.
+      III. T^γ P^{1−γ} remains constant.
+      IV. Its P–V curve is less steep than the isotherm through the same point.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: I, II and III are correct. The adiabatic is steeper than the isotherm (slope γ times larger), so IV is false.
+
+  - id: phy-thermo-425
+    topic: adiabatic-process
+    subtopic: Work from ΔU
+    concept: In adiabatic process W = −ΔU
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    formula: ΔW = −ΔU
+    tags: [adiabatic, first-law]
+    stem: In an adiabatic process the internal energy of a gas decreases by 300 J. The work involved is
+    options:
+      - 300 J done on the gas
+      - zero
+      - 600 J done by the gas
+      - 300 J done by the gas
+    answer: 3
+    explanation: With ΔQ = 0, ΔW = −ΔU = +300 J, meaning the gas does 300 J of work (it expands and cools).
+
+  - id: phy-thermo-426
+    topic: adiabatic-process
+    subtopic: Adiabatic compression then cooling
+    concept: Over a two-step return to initial temperature, heat out = work in
+    category: application
+    format: case
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [adiabatic, isochoric, first-law, multi-concept]
+    stem: A gas in an insulated cylinder is compressed quickly by a piston, which is then clamped. The insulation is removed and the gas cools at constant volume back to room temperature. Taking both steps together,
+    options:
+      - no heat is exchanged overall
+      - the internal energy has increased overall
+      - the heat given out equals the work done on the gas
+      - the heat given out is less than the work done on the gas
+    answer: 2
+    explanation: The gas returns to its original temperature, so for an ideal gas the overall ΔU = 0. The work done on it in the compression must therefore all leave as heat during cooling.
+
+  - id: phy-thermo-427
+    topic: processes-pv-diagrams
+    subtopic: Maximum temperature on a straight-line process
+    concept: T ∝ PV is maximum at the midpoint of a symmetric falling line
+    category: numerical
+    format: graph
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: T = PV/(nR)
+    tags: [pv-diagram, maximum, multi-concept]
+    stem: An ideal gas goes from A (V_0, 3P_0) to B (3V_0, P_0) along a straight line on the P–V diagram. If T_A is its temperature at A, the maximum temperature reached during the process is
+    options:
+      - (4/3)T_A
+      - T_A
+      - 2T_A
+      - (3/2)T_A
+    answer: 0
+    explanation: On the line P = 4P_0 − P_0V/V_0, so PV = 4P_0V − P_0V^2/V_0, which is maximum at V = 2V_0, where PV = 4P_0V_0. At A, PV = 3P_0V_0, so T_max = (4/3)T_A. T_A = T_B, but the temperature is higher in between.
+
+  - id: phy-thermo-428
+    topic: processes-pv-diagrams
+    subtopic: Checking process facts
+    concept: Heat is exchanged in an isochoric process
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [processes, trap]
+    stem: Which statement about processes of an ideal gas is INCORRECT?
+    options:
+      - In an isobaric process the V–T graph is a straight line through the origin
+      - In an isochoric process no heat is exchanged
+      - In an isothermal process ΔU = 0
+      - In an adiabatic process no heat is exchanged
+    answer: 1
+    explanation: In an isochoric process no work is done, but heat is exchanged and equals ΔU. Zero heat exchange defines the adiabatic process.
+
+  - id: phy-thermo-429
+    topic: processes-pv-diagrams
+    subtopic: Isothermal–isobaric–isochoric cycle
+    concept: Net work = nRT ln 2 − P_BV for the cycle
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    formula: W_iso = nRT ln(V_2/V_1), W_p = PΔV
+    tags: [cyclic-process, multi-concept]
+    stem: One mole of an ideal gas at 400 K expands isothermally from V to 2V (A → B), is compressed at constant pressure back to V (B → C) and is then heated at constant volume back to A. The net work done per cycle is about (R = 8.31 J mol^{-1} K^{-1}, ln 2 = 0.693)
+    options:
+      - 2304 J
+      - 1662 J
+      - 3966 J
+      - 642 J
+    answer: 3
+    explanation: W_{AB} = R × 400 × 0.693 ≈ 2304 J. At B, P_BV = R(400)/2 = 200R, so W_{BC} = −P_BV ≈ −1662 J. W_{CA} = 0. Net ≈ 642 J.
+
+  - id: phy-thermo-430
+    topic: processes-pv-diagrams
+    subtopic: Fraction of heat into internal energy
+    concept: ΔU/Q = C_v/C for each process
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    formula: ΔU/Q = C_v/C
+    tags: [energy-fraction, specific-heat, multi-concept]
+    stem: |-
+      For a monatomic ideal gas, match the process (List I) with the fraction ΔU/Q of the heat supplied that goes into internal energy (List II).
+      List I: P. Isobaric  Q. Isochoric  R. Isothermal  S. Process with P ∝ V
+      List II: 1. 0  2. 1  3. 3/5  4. 3/4
+    options:
+      - P-2, Q-3, R-1, S-4
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-1, R-2, S-4
+      - P-4, Q-2, R-1, S-3
+    answer: 1
+    explanation: ΔU/Q = C_v/C. Isobaric gives (3/2)/(5/2) = 3/5; isochoric gives 1; isothermal gives 0 since ΔU = 0; for P ∝ V, C = 2R so the fraction is 1.5R/2R = 3/4.
+
+  - id: phy-thermo-431
+    topic: processes-pv-diagrams
+    subtopic: Isochores on a P–T graph
+    concept: P–T slope nR/V is larger for smaller volume
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: P = (nR/V)T
+    tags: [isochoric, pt-graph]
+    stem: For a fixed mass of ideal gas, two isochoric lines are drawn on a P–T graph. Line 1 (volume V_1) is steeper than line 2 (volume V_2). Then
+    options:
+      - V_1 > V_2
+      - V_1 < V_2
+      - V_1 = V_2
+      - the volumes cannot be compared
+    answer: 1
+    explanation: P = (nR/V)T, so the slope of an isochore is nR/V. A steeper line means a smaller volume.
+
+  - id: phy-thermo-432
+    topic: processes-pv-diagrams
+    subtopic: Expansion with P ∝ V
+    concept: Along P ∝ V, T ∝ V^2 so expansion heats the gas
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [process-relation, pv-diagram]
+    stem: |-
+      Assertion (A): When an ideal gas expands along a path on which P ∝ V, its temperature rises.
+      Reason (R): For such a path, T ∝ PV ∝ V^2.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: With P = kV, T = PV/(nR) = kV^2/(nR), which increases as V increases. R explains A.
+
+  - id: phy-thermo-433
+    topic: second-law-reversibility
+    subtopic: Checking a refrigerator claim
+    concept: A COP above T_2/(T_1 − T_2) violates the second law
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [second-law, refrigerator, cop]
+    stem: A company claims a refrigerator that keeps its interior at 250 K in a 300 K room with a coefficient of performance of 8. This claim
+    options:
+      - is valid, since COP can exceed 1
+      - violates the first law
+      - violates the second law, since the maximum COP is 5
+      - is valid only if the refrigerant is an ideal gas
+    answer: 2
+    explanation: The ideal (Carnot) COP is 250/(300 − 250) = 5. Any claim above 5 would effectively move heat from cold to hot with less work than the second law permits.
+
+  - id: phy-thermo-434
+    topic: second-law-reversibility
+    subtopic: Statements of the second law
+    concept: Kelvin–Planck and Clausius statements and their equivalence
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [second-law, kelvin-planck, clausius]
+    stem: |-
+      Consider:
+      I. No process is possible whose sole result is absorption of heat from a reservoir and its complete conversion into work.
+      II. No process is possible whose sole result is transfer of heat from a colder body to a hotter body.
+      III. If statement II were false, a perfect engine could be built by combining such a device with an ordinary engine.
+      IV. The second law can be derived from the first law.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: I and II are the Kelvin–Planck and Clausius statements, and III expresses their equivalence. The second law is independent of the first, so IV is false.
+
+  - id: phy-thermo-435
+    topic: second-law-reversibility
+    subtopic: Consequence for engines
+    concept: Engine efficiency is always less than 1
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [second-law, efficiency]
+    stem: According to the second law of thermodynamics, the efficiency of any heat engine working in cycles is always
+    options:
+      - less than 1
+      - exactly 1
+      - greater than 1
+      - equal to its coefficient of performance
+    answer: 0
+    explanation: Some heat must always be rejected to a sink, so W < Q_1 and η = W/Q_1 < 1.
+
+  - id: phy-thermo-436
+    topic: second-law-reversibility
+    subtopic: Equivalence of statements
+    concept: A perfect refrigerator plus an engine makes a perfect engine
+    category: application
+    format: case
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [second-law, kelvin-planck, clausius, multi-concept]
+    stem: An engine takes 1000 J from a hot reservoir, does 300 J of work and rejects 700 J to a cold reservoir. Suppose a "perfect" refrigerator returned this 700 J to the hot reservoir with no work input. The net effect of the combination would be
+    options:
+      - 1000 J of heat converted entirely into work
+      - 300 J of heat from the hot reservoir converted entirely into work, violating the Kelvin–Planck statement
+      - no net effect on either reservoir
+      - a violation of the first law
+    answer: 1
+    explanation: The cold reservoir has no net change, and the hot reservoir loses 1000 − 700 = 300 J, all of which becomes work. That violates Kelvin–Planck, showing that a Clausius violation implies a Kelvin–Planck violation. Energy is still conserved.
+
+  - id: phy-thermo-437
+    topic: heat-engines
+    subtopic: Ocean thermal energy
+    concept: Small temperature difference gives low maximum efficiency
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: η_max = 1 − T_2/T_1
+    tags: [heat-engine, carnot, real-life]
+    stem: An engine uses warm surface sea water at 300 K as source and deep water at 280 K as sink. Its maximum possible efficiency is about
+    options:
+      - 93%
+      - 20%
+      - 6.7%
+      - 1.3%
+    answer: 2
+    explanation: η_max = 1 − 280/300 = 20/300 ≈ 6.7%. The small temperature difference makes such plants inherently inefficient.
+
+  - id: phy-thermo-438
+    topic: heat-engines
+    subtopic: Fuel consumption
+    concept: Fuel mass = (P/η)t / heat of combustion
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    formula: m = Pt/(ηH)
+    tags: [heat-engine, power, multi-concept]
+    stem: A car engine of efficiency 25% delivers 30 kW. Petrol has heat of combustion 4.5 × 10^7 J kg^{-1}. The mass of petrol burnt in one hour is about
+    options:
+      - 2.4 kg
+      - 7.2 kg
+      - 38.4 kg
+      - 9.6 kg
+    answer: 3
+    explanation: Heat input rate = 30/0.25 = 120 kW, so in 3600 s it is 4.32 × 10^8 J. Mass = 4.32 × 10^8/4.5 × 10^7 = 9.6 kg. 2.4 kg ignores the efficiency.
+
+  - id: phy-thermo-439
+    topic: heat-engines
+    subtopic: Examples of heat engines
+    concept: Steam, petrol and diesel engines are heat engines; an electric motor is not
+    category: factual
+    format: multi-statement
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [heat-engine, examples]
+    stem: |-
+      Which of the following are heat engines?
+      I. Steam engine
+      II. Petrol engine
+      III. Electric motor
+      IV. Diesel engine
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: Steam, petrol and diesel engines convert heat into work using a working substance. An electric motor converts electrical energy into mechanical work and is not a heat engine.
+
+  - id: phy-thermo-440
+    topic: heat-engines
+    subtopic: Reversible vs irreversible engines
+    concept: Reversible engine is more efficient than irreversible between same reservoirs
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [heat-engine, carnot-theorem]
+    stem: Engines A (reversible) and B (irreversible) work between the same two reservoirs. Their efficiencies satisfy
+    options:
+      - η_A > η_B
+      - η_A < η_B
+      - η_A = η_B
+      - a relation that depends on the working substance
+    answer: 0
+    explanation: By Carnot's theorem, no engine between two reservoirs is more efficient than a reversible one; irreversibilities always lower efficiency.
+
+  - id: phy-thermo-441
+    topic: heat-engines
+    subtopic: Heat rejected per unit work
+    concept: Q_2/W = 1/η − 1 is larger for lower η
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    formula: Q_2/W = 1/η − 1
+    tags: [heat-engine, efficiency, carnot]
+    stem: |-
+      Assertion (A): A real engine rejects more heat per joule of work than a Carnot engine working between the same reservoirs.
+      Reason (R): A real engine has lower efficiency than a Carnot engine between the same reservoirs.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Q_2/W = (Q_1 − W)/W = 1/η − 1, which increases as η decreases. The lower efficiency of the real engine directly means more heat rejected per unit work; R explains A.
+
+  - id: phy-thermo-442
+    topic: refrigerators
+    subtopic: Refrigerators in summer
+    concept: Larger temperature difference lowers COP
+    category: application
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [refrigerator, cop, real-life]
+    stem: A refrigerator uses more electrical energy on hot summer days mainly because
+    options:
+      - heat can no longer flow out of it
+      - its refrigerant stops evaporating
+      - the larger temperature difference lowers its coefficient of performance
+      - its compressor runs at a lower speed
+    answer: 2
+    explanation: β = Q_2/W falls as T_1 − T_2 increases. With hotter surroundings more work is needed to remove the same heat (and more heat leaks in).
+
+  - id: phy-thermo-443
+    topic: refrigerators
+    subtopic: Power to freeze water in a given time
+    concept: P = mL/(βt)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: P = mL/(βt)
+    tags: [refrigerator, latent-heat, power, multi-concept]
+    stem: A refrigerator of coefficient of performance 4 freezes 2 kg of water at 0 °C into ice at 0 °C in 20 minutes. Latent heat of fusion is 3.36 × 10^5 J kg^{-1}. Its average power consumption is
+    options:
+      - 560 W
+      - 140 W
+      - 700 W
+      - 35 W
+    answer: 1
+    explanation: Q_2 = 2 × 3.36 × 10^5 = 6.72 × 10^5 J and W = Q_2/4 = 1.68 × 10^5 J. Over 1200 s the power is 140 W. 560 W forgets to divide by β.
+
+  - id: phy-thermo-444
+    topic: refrigerators
+    subtopic: Air conditioner and heat pump
+    concept: Same device can cool or heat; heat pump delivers more heat than work
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [heat-pump, air-conditioner]
+    stem: |-
+      Statement I: An air conditioner and a heat pump can be the same device working in opposite directions.
+      Statement II: A heat pump used for heating delivers more heat to the room than the electrical energy it consumes.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Reversing the flow direction lets the same machine cool a room in summer or heat it in winter. As a heat pump it delivers Q_1 = Q_2 + W > W. Both statements are correct.
+
+  - id: phy-thermo-445
+    topic: refrigerators
+    subtopic: Parts of a refrigerator
+    concept: Functions of evaporator, compressor, condenser and expansion valve
+    category: factual
+    format: match
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [refrigerator, parts]
+    stem: |-
+      Match the part of a refrigerator (List I) with its function (List II).
+      List I: P. Evaporator coils inside  Q. Compressor  R. Condenser coils at the back  S. Expansion valve
+      List II: 1. Releases heat to the room  2. Absorbs heat from the food compartment  3. Lowers the pressure and temperature of the refrigerant  4. Raises the pressure and temperature of the vapour
+    options:
+      - P-1, Q-4, R-2, S-3
+      - P-2, Q-3, R-1, S-4
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-4, R-1, S-2
+    answer: 2
+    explanation: The refrigerant evaporates inside, absorbing heat (P-2); the compressor heats and pressurises the vapour (Q-4); it condenses at the back, releasing heat (R-1); the expansion valve drops its pressure and temperature (S-3).
+
+  - id: phy-thermo-446
+    topic: carnot-engine
+    subtopic: Work from isothermal expansion step
+    concept: Q_1 = nRT_1 ln(V_B/V_A), W = ηQ_1
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Q_1 = nRT_1 ln(V_B/V_A)
+    tags: [carnot, isothermal, multi-concept]
+    stem: In a Carnot engine using 1 mol of ideal gas, the gas doubles its volume during the isothermal expansion at 500 K. The sink is at 300 K. The net work done per cycle is about (R = 8.31 J mol^{-1} K^{-1}, ln 2 = 0.693)
+    options:
+      - 2880 J
+      - 1728 J
+      - 691 J
+      - 1152 J
+    answer: 3
+    explanation: Q_1 = RT_1 ln 2 = 8.31 × 500 × 0.693 ≈ 2880 J. η = 1 − 300/500 = 0.4, so W = 0.4 × 2880 ≈ 1152 J. 1728 J is the heat rejected.
+
+  - id: phy-thermo-447
+    topic: carnot-engine
+    subtopic: Heat in each step
+    concept: No heat is exchanged in the adiabatic steps
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [carnot, cycle-steps, trap]
+    stem: Which statement about the Carnot cycle is INCORRECT?
+    options:
+      - In the isothermal expansion the gas does work equal to the heat absorbed
+      - In the adiabatic expansion the temperature falls from T_1 to T_2
+      - The adiabatic compression rejects heat to the sink
+      - The heat rejected in isothermal compression equals the work done on the gas in that step
+    answer: 2
+    explanation: The adiabatic steps involve no heat exchange; heat is rejected only during the isothermal compression at T_2. The other statements follow from ΔU = 0 in isothermal steps.
+
+  - id: phy-thermo-448
+    topic: carnot-engine
+    subtopic: Area of the Carnot cycle
+    concept: Enclosed area = Q_1 − Q_2
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 25
+    ncert: true
+    battle: true
+    tags: [carnot, pv-diagram]
+    stem: The area enclosed by the Carnot cycle on a P–V diagram represents
+    options:
+      - the heat Q_1 absorbed
+      - the net work Q_1 − Q_2
+      - the heat Q_2 rejected
+      - the sum Q_1 + Q_2
+    answer: 1
+    explanation: The enclosed area is the net work done per cycle, which by energy conservation equals Q_1 − Q_2.
+
+  - id: phy-thermo-449
+    topic: carnot-engine
+    subtopic: Role of the working substance
+    concept: Carnot efficiency is independent of the working substance
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [carnot, carnot-theorem, trap]
+    stem: |-
+      Assertion (A): The efficiency of a Carnot engine can be increased by choosing a better working substance.
+      Reason (R): The efficiency of a Carnot engine depends only on the temperatures of the source and sink.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: R is Carnot's theorem, and it shows A is false; the working substance does not affect the efficiency 1 − T_2/T_1.
+
+  - id: phy-thermo-450
+    topic: carnot-engine
+    subtopic: Doubling the source temperature
+    concept: η_new = 1 − (1 − η)/2 when T_1 is doubled
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    formula: η = 1 − T_2/T_1
+    tags: [carnot, efficiency]
+    stem: A Carnot engine has efficiency 40%. If the absolute temperature of the source is doubled with the sink unchanged, the new efficiency is
+    options:
+      - 80%
+      - 60%
+      - 55%
+      - 70%
+    answer: 3
+    explanation: T_2/T_1 = 0.6. Doubling T_1 makes T_2/T_1 = 0.3, so η = 70%. Doubling the efficiency to 80% is a common error.
+
