@@ -8977,3 +8977,851 @@ questions:
       - Amplitude of oscillation
     answer: 3
     explanation: "Every particle executes SHM with the same amplitude A and frequency. Displacement, velocity and phase, however, differ from point to point at any instant, because the phase kx − ωt varies with x."
+
+  - id: phy-wav-423
+    topic: speed-on-string
+    subtopic: Hanging-mass set-up
+    concept: Effects of load, diameter and length on v = √(Mg/μ)
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: v = √(Mg/μ)
+    tags: [tension, diameter]
+    stem: |-
+      A wire is stretched by a hanging load M. Consider:
+      I. Quadrupling M doubles the wave speed.
+      II. Replacing the wire by one of the same material with twice the diameter halves the wave speed.
+      III. The wave speed does not depend on the length of the wire.
+      IV. Doubling the length of the wire doubles the wave speed.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I and IV only
+    answer: 1
+    explanation: "v = √(Mg/μ) ∝ √M (I true). μ ∝ d^2, so doubling d makes μ four times and halves v (II true). For a given μ, length does not enter (III true, IV false)."
+
+  - id: phy-wav-424
+    topic: speed-on-string
+    subtopic: Keeping speed constant
+    concept: Doubling both T and μ keeps v unchanged
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [proportionality]
+    stem: Which change leaves the speed of transverse waves on a string unchanged?
+    options:
+      - Doubling both the tension and the linear mass density
+      - Doubling the tension only
+      - Halving the linear mass density only
+      - Doubling the tension and halving the linear mass density
+    answer: 0
+    explanation: "v = √(T/μ) depends on the ratio T/μ. Doubling both keeps the ratio and the speed. The other changes multiply v by √2, √2 and 2."
+
+  - id: phy-wav-425
+    topic: speed-on-string
+    subtopic: Speeds in different set-ups
+    concept: Computing v from tension, stress or rope data
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [match, multi-concept]
+    stem: |-
+      Match each string in List I with its transverse wave speed in List II (g = 10 m s^{-2}).
+      List I: P. T = 16 N, μ = 0.01 kg m^{-1}  Q. μ = 0.05 kg m^{-1}, supporting a 2 kg hanging mass  R. Steel wire under stress 8 × 10^7 N m^{-2}, density 8000 kg m^{-3}  S. 10 m rope of mass 1 kg under 90 N
+      List II: 1. 20 m s^{-1}  2. 30 m s^{-1}  3. 40 m s^{-1}  4. 100 m s^{-1}
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-1, R-2, S-4
+      - P-3, Q-1, R-4, S-2
+    answer: 3
+    explanation: "P: √(16/0.01) = 40. Q: √(20/0.05) = 20. R: √(8 × 10^7/8000) = √10^4 = 100. S: μ = 0.1 kg m^{-1}, √(90/0.1) = 30 (all m s^{-1})."
+
+  - id: phy-wav-426
+    topic: speed-on-string
+    subtopic: Heavy wire with a load
+    concept: Tension at top and bottom of a heavy hanging wire differ
+    category: application
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: λ ∝ v ∝ √T
+    tags: [variable-tension, multi-concept]
+    stem: A uniform wire of mass 3 kg hangs vertically and supports a 1 kg block at its lower end. A wave of fixed frequency travels along it. The ratio of its wavelength near the top to that near the bottom is
+    options:
+      - "1"
+      - "2"
+      - "4"
+      - "√2"
+    answer: 1
+    explanation: "Tension at the top supports block and wire, (1 + 3)g = 4g; at the bottom only the block, 1g. v ∝ √T gives a speed ratio of 2, and with the same frequency λ ∝ v, so λ_{top}/λ_{bottom} = 2."
+
+  - id: phy-wav-427
+    topic: speed-on-string
+    subtopic: Travel time of a pulse
+    concept: t = L/v
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: t = L/v
+    tags: [pulse, time]
+    stem: A transverse pulse travels at 100 m s^{-1} along a 25 m long stretched wire. It reaches the far end in
+    options:
+      - 4 s
+      - 2.5 s
+      - 0.25 s
+      - 0.4 s
+    answer: 2
+    explanation: "t = L/v = 25/100 = 0.25 s. Inverting the ratio gives 4 s."
+
+  - id: phy-wav-428
+    topic: speed-on-string
+    subtopic: Linearising travel time
+    concept: t = L√(μ/T), so t ∝ 1/√T
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: t = L√(μ/T)
+    tags: [graph, tension]
+    stem: The time t taken by a pulse to travel along a string of fixed length and linear density is measured for several tensions T. Which plot gives a straight line through the origin?
+    options:
+      - t against T
+      - t against √T
+      - t^2 against T
+      - t against 1/√T
+    answer: 3
+    explanation: "t = L/v = L√(μ/T), so t ∝ 1/√T: a plot of t against 1/√T is a straight line through the origin (slope L√μ)."
+
+  - id: phy-wav-429
+    topic: speed-on-string
+    subtopic: Transverse vs longitudinal in a wire
+    concept: Transverse speed depends on tension, and is far below the longitudinal speed √(Y/ρ)
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [youngs-modulus, confused-pair]
+    stem: |-
+      Statement I: The speed of transverse waves on a stretched wire is directly determined by the Young's modulus of its material, whatever the tension.
+      Statement II: Transverse waves on a stretched wire travel faster than longitudinal waves in the same wire.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 1
+    explanation: "Transverse speed is √(T/μ) = √(stress/ρ), set by the tension (Y matters only through the strain that produces it). Since stress is far smaller than Y, √(stress/ρ) is much less than the longitudinal speed √(Y/ρ). Both statements are false."
+
+  - id: phy-wav-430
+    topic: speed-on-string
+    subtopic: Joined wires of different diameter
+    concept: λ ∝ v ∝ 1/d across a junction of the same material
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: v ∝ 1/d
+    tags: [junction, diameter]
+    stem: "Two wires of the same material, diameters 1 mm and 2 mm, are joined end to end under the same tension. A wave passes from the thin wire into the thick one. The ratio of wavelengths λ_{thin} : λ_{thick} is"
+    options:
+      - "2 : 1"
+      - "1 : 2"
+      - "4 : 1"
+      - "√2 : 1"
+    answer: 0
+    explanation: "μ ∝ d^2, so v = √(T/μ) ∝ 1/d. The frequency is unchanged at the junction, so λ ∝ v: λ_{thin}/λ_{thick} = 2/1."
+
+  - id: phy-wav-431
+    topic: speed-on-string
+    subtopic: Doubling the speed
+    concept: Halving the diameter quarters μ and doubles v
+    category: application
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [diameter, proportionality]
+    stem: Which change would exactly double the speed of transverse waves on a string?
+    options:
+      - Doubling the tension
+      - Halving the linear mass density
+      - Doubling the length while keeping the same total mass and tension
+      - Replacing it with a string of the same material and half the diameter, at the same tension
+    answer: 3
+    explanation: "Half the diameter gives one-fourth the μ, so v = √(T/μ) doubles. The other three changes multiply T/μ by 2, so v rises only by √2."
+
+  - id: phy-wav-432
+    topic: speed-on-string
+    subtopic: Tension from a standing pattern
+    concept: Node spacing gives λ, then T = μ(fλ)^2
+    category: application
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: T = μ(fλ)^2
+    tags: [standing-waves, tension, multi-concept]
+    stem: A string of linear density 5 × 10^{-3} kg m^{-1} is driven at 120 Hz, and a standing wave forms with adjacent nodes 25 cm apart. The tension in the string is
+    options:
+      - 18 N
+      - 4.5 N
+      - 72 N
+      - 0.3 N
+    answer: 0
+    explanation: "Node spacing λ/2 = 0.25 m, so λ = 0.5 m and v = fλ = 60 m s^{-1}. T = μv^2 = 0.005 × 3600 = 18 N. Taking λ = 0.25 m gives 4.5 N."
+
+  - id: phy-wav-433
+    topic: speed-of-sound
+    subtopic: Dependences of sound speed
+    concept: v ∝ √T, independent of P at fixed T, v ∝ 1/√M, v = √(Y/ρ) in a rod
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [factors]
+    stem: |-
+      Consider:
+      I. In an ideal gas, v ∝ √T.
+      II. In an ideal gas at constant temperature, v is independent of pressure.
+      III. At the same temperature, v ∝ √M for gases with the same γ.
+      IV. For longitudinal waves in a thin solid rod, v = √(Y/ρ).
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: "v = √(γRT/M): proportional to √T and to 1/√M (so III is wrong), and independent of pressure at fixed T. In a thin rod the longitudinal speed is √(Y/ρ)."
+
+  - id: phy-wav-434
+    topic: speed-of-sound
+    subtopic: Non-dispersive air
+    concept: All audible frequencies travel at the same speed in air
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [dispersion, frequency]
+    stem: Music from a distant band still sounds in tune, with high and low notes arriving together. Which statement explains this?
+    options:
+      - High-frequency sound travels faster in air than low-frequency sound
+      - Low-frequency sound travels faster in air than high-frequency sound
+      - Air amplifies all notes equally
+      - Sound of all audible frequencies travels with the same speed in air
+    answer: 3
+    explanation: "The speed of sound in air depends on the medium (γ, P/ρ or T), not on frequency. Notes played together therefore arrive together."
+
+  - id: phy-wav-435
+    topic: speed-of-sound
+    subtopic: Sound at altitude
+    concept: Lower speed at altitude comes from lower temperature, not lower pressure
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [altitude, temperature, trap]
+    stem: |-
+      Assertion (A): On a typical day, sound travels more slowly high up in the troposphere than at sea level.
+      Reason (R): Atmospheric pressure is lower at high altitudes.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "The air is colder higher up, and v ∝ √T, so sound is slower (A true). Pressure is indeed lower (R true), but pressure alone does not affect v at a given temperature, so R does not explain A."
+
+  - id: phy-wav-436
+    topic: speed-of-sound
+    subtopic: Typical speeds
+    concept: Approximate speeds in air, water, steel and hydrogen
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [match, typical-values]
+    stem: |-
+      Match the medium in List I with the approximate speed of sound in List II.
+      List I: P. Air at 0 °C  Q. Water  R. Steel  S. Hydrogen at 0 °C
+      List II: 1. 1270 m s^{-1}  2. 5000 m s^{-1}  3. 331 m s^{-1}  4. 1500 m s^{-1}
+    options:
+      - P-3, Q-1, R-2, S-4
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 2
+    explanation: "Air at 0 °C ≈ 331, water ≈ 1500, steel ≈ 5000 and hydrogen at 0 °C ≈ 1270 m s^{-1}; hydrogen's low molar mass makes it fastest among gases."
+
+  - id: phy-wav-437
+    topic: speed-of-sound
+    subtopic: Echo time and temperature
+    concept: Echo time ∝ 1/v ∝ 1/√T
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: t ∝ 1/√T
+    tags: [echo, temperature, multi-concept]
+    stem: An echo from a fixed cliff returns in 1.1 s when the air is at 0 °C. At what air temperature would it return in 1.0 s?
+    options:
+      - 30 °C
+      - 27 °C
+      - 330 °C
+      - 57 °C
+    answer: 3
+    explanation: "t ∝ 1/v ∝ 1/√T, so T_2 = T_1 (t_1/t_2)^2 = 273 × 1.21 ≈ 330 K ≈ 57 °C. Forgetting to convert back from kelvin gives 330 °C."
+
+  - id: phy-wav-438
+    topic: speed-of-sound
+    subtopic: Finding γ
+    concept: γ = ρv^2/P identifies atomicity
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: γ = ρv^2/P
+    tags: [gamma, atomicity]
+    stem: Sound travels at 1000 m s^{-1} in a gas of density 0.14 kg m^{-3} at a pressure of 10^5 Pa. The gas is most likely
+    options:
+      - monatomic
+      - diatomic
+      - triatomic, non-linear
+      - a gas with γ = 1
+    answer: 1
+    explanation: "γ = ρv^2/P = 0.14 × 10^6/10^5 = 1.4, the value for a diatomic gas (monatomic gases have γ = 5/3)."
+
+  - id: phy-wav-439
+    topic: speed-of-sound
+    subtopic: Humidity and pressure
+    concept: Moist air carries sound faster; pressure at fixed T has no effect
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [humidity, pressure]
+    stem: |-
+      Statement I: At the same temperature and pressure, sound travels faster in moist air than in dry air.
+      Statement II: Raising the pressure of air at constant temperature increases the speed of sound in it.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Water vapour lowers the density of air, raising v (I correct). At constant temperature P/ρ is fixed, so pressure has no effect on v (II incorrect)."
+
+  - id: phy-wav-440
+    topic: speed-of-sound
+    subtopic: Speed vs Celsius temperature
+    concept: Near room temperature v ≈ 331 + 0.6t, a nearly straight line with intercept 331 m s^{-1}
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, temperature]
+    stem: The speed of sound in air is plotted against the Celsius temperature t for 0 °C ≤ t ≤ 40 °C. The graph is
+    options:
+      - nearly a straight line with an intercept of about 331 m s^{-1} at 0 °C
+      - a straight line through the origin
+      - a horizontal line
+      - a curve decreasing with temperature
+    answer: 0
+    explanation: "v = 331√(1 + t/273) ≈ 331(1 + t/546), i.e. about 331 + 0.61t m s^{-1}. Over a small range this is almost linear with a large positive intercept, not a line through the origin."
+
+  - id: phy-wav-441
+    topic: speed-of-sound
+    subtopic: Comparing gases
+    concept: v ∝ √(γ/M) comparisons at a common temperature
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [gases, multi-concept]
+    stem: |-
+      At the same temperature, consider:
+      I. Sound is faster in helium than in air.
+      II. Sound in hydrogen is four times as fast as in oxygen.
+      III. Sound is faster in nitrogen than in oxygen.
+      IV. Sound is slower in carbon dioxide than in air.
+      Which are correct?
+    options:
+      - I and II only
+      - II and III only
+      - I, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: "v ∝ √(γ/M). He (low M, high γ) beats air; H_2 vs O_2 (same γ) gives √16 = 4; N_2 (28) is lighter than O_2 (32); CO_2 is heavier (44) with lower γ than air. All four are correct."
+
+  - id: phy-wav-442
+    topic: speed-of-sound
+    subtopic: Wavelength of a note
+    concept: λ = v/f for a 1 kHz tone
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: λ = v/f
+    tags: [wavelength]
+    stem: The wavelength of a 1 kHz sound in air, where sound travels at 340 m s^{-1}, is
+    options:
+      - 34 cm
+      - 3.4 m
+      - 3.4 cm
+      - 2.9 m
+    answer: 0
+    explanation: "λ = 340/1000 = 0.34 m = 34 cm."
+
+  - id: phy-wav-443
+    topic: speed-of-sound
+    subtopic: Why Newton was wrong
+    concept: Rapid compressions and poor thermal conduction make the process adiabatic
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 50
+    ncert: true
+    battle: false
+    tags: [laplace-correction]
+    stem: Which statement correctly explains why Newton's isothermal assumption for sound in air fails?
+    options:
+      - Air is a good conductor of heat, so temperatures equalise instantly
+      - Compressions and rarefactions are too rapid, and air conducts heat too poorly, for heat to flow in and out
+      - Sound waves in air are transverse, so no compression occurs
+      - The pressure of air stays constant during the passage of sound
+    answer: 1
+    explanation: "Compressed regions warm up and rarefied ones cool, but these alternate hundreds of times per second and air is a poor conductor. No heat is exchanged, so the process is adiabatic and B = γP."
+
+  - id: phy-wav-444
+    topic: superposition
+    subtopic: Intensity for equal waves at various phases
+    concept: I = 4I_0 cos^2(φ/2)
+    category: numerical
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: I = 4I_0 cos^2(φ/2)
+    tags: [intensity]
+    stem: |-
+      Two coherent waves, each of intensity I_0, superpose. Consider:
+      I. For φ = 0 the intensity is 4I_0.
+      II. For φ = π the intensity is zero.
+      III. For φ = π/2 the intensity is 2I_0.
+      IV. For φ = 2π/3 the intensity is 3I_0.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "I = 4I_0 cos^2(φ/2): 4I_0 at 0, zero at π, 2I_0 at π/2, and 4I_0 cos^2 60° = I_0 at 2π/3 (not 3I_0)."
+
+  - id: phy-wav-445
+    topic: superposition
+    subtopic: Energy in an interference pattern
+    concept: Averaged over the pattern, intensity equals I_1 + I_2
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [energy, interference]
+    stem: Which statement about the energy in a steady interference pattern of two coherent sound sources is correct?
+    options:
+      - Energy is created at maxima and destroyed at minima
+      - The intensity at every point equals I_1 + I_2
+      - The intensity at maxima equals I_1 + I_2 and at minima zero, always
+      - Averaged over the whole pattern, the intensity equals I_1 + I_2
+    answer: 3
+    explanation: "The interference term 2√(I_1I_2) cos φ averages to zero over the pattern, so the mean intensity is I_1 + I_2; energy is only redistributed. Minima are zero only for equal intensities, and maxima exceed I_1 + I_2."
+
+  - id: phy-wav-446
+    topic: superposition
+    subtopic: Speakers in antiphase
+    concept: Sources in antiphase give a minimum where the path difference is zero
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [loudspeakers, phase]
+    stem: Two identical loudspeakers are connected with reversed polarity, so they vibrate in antiphase at the same frequency. A listener stands on the perpendicular bisector of the line joining them, equidistant from both. The listener hears
+    options:
+      - a minimum of sound
+      - a maximum of sound
+      - beats at the source frequency
+      - sound of double the frequency
+    answer: 0
+    explanation: "Equal paths add no phase difference, so the waves arrive with the original phase difference of π and interfere destructively. For in-phase speakers the same point would be a maximum."
+
+  - id: phy-wav-447
+    topic: superposition
+    subtopic: Resultants of wave pairs
+    concept: Adding sin/cos pairs with various phases and amplitudes
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [match, resultant-amplitude]
+    stem: |-
+      Match each pair of waves at a point (List I) with the resultant amplitude (List II).
+      List I: P. a sin ωt and a cos ωt  Q. a sin ωt and −a sin ωt  R. a sin ωt and a sin(ωt + π/3)  S. 2a sin ωt and −a sin ωt
+      List II: 1. a  2. zero  3. √2 a  4. √3 a
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-2, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+    answer: 2
+    explanation: "P: phase π/2, √(a^2 + a^2) = √2 a. Q: antiphase, zero. R: 2a cos(π/6) = √3 a. S: 2a − a = a."
+
+  - id: phy-wav-448
+    topic: superposition
+    subtopic: Identical upright pulses
+    concept: Identical upright pulses at full overlap give double height
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [pulses]
+    stem: Two identical upright triangular pulses, each of height h, travel towards each other on a string. At the instant of complete overlap the string shows
+    options:
+      - a flat line
+      - two separate triangles of height h
+      - a triangle of height h/2
+      - a single triangle of height 2h
+    answer: 3
+    explanation: "Displacements add point by point, so the overlapping identical pulses form one triangle of height 2h. A flat string occurs only for an upright and an inverted pulse."
+
+  - id: phy-wav-449
+    topic: superposition
+    subtopic: Quadrature superposition
+    concept: At φ = π/2 coherent intensities add
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: I = I_1 + I_2 + 2√(I_1I_2) cos φ
+    tags: [intensity]
+    stem: Two coherent waves of intensities 4I and I meet at a point with phase difference π/2. The resultant intensity is
+    options:
+      - 9I
+      - 5I
+      - 3I
+      - I
+    answer: 1
+    explanation: "cos(π/2) = 0, so the interference term vanishes and I = 4I + I = 5I. 9I and I are the maximum and minimum possible."
+
+  - id: phy-wav-450
+    topic: superposition
+    subtopic: Cancellation everywhere vs nodes
+    concept: Co-directional antiphase waves cancel everywhere; counter-propagating waves give nodes
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [destructive-interference, standing-waves]
+    stem: |-
+      Statement I: For two waves of equal amplitude and frequency to cancel everywhere on a string at all times, they must travel in opposite directions.
+      Statement II: Two identical waves travelling in opposite directions produce points that remain at rest at all times.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "Complete cancellation everywhere needs waves in the SAME direction with phase difference π (Statement I is false). Waves in opposite directions form a standing wave with permanent nodes (Statement II is true)."
+
+  - id: phy-wav-451
+    topic: superposition
+    subtopic: Conditions for total cancellation
+    concept: Equal amplitude, equal frequency and phase difference π
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [destructive-interference]
+    stem: In which case can two waves meeting at a point produce zero resultant displacement at all times?
+    options:
+      - Equal amplitudes, equal frequencies, phase difference π
+      - Unequal amplitudes, equal frequencies, phase difference π
+      - Equal amplitudes, slightly different frequencies
+      - Equal amplitudes, equal frequencies, phase difference π/2
+    answer: 0
+    explanation: "Permanent cancellation needs y_1 = −y_2 at all times: equal amplitudes, the same frequency and opposite phase. Unequal amplitudes leave |A_1 − A_2|; different frequencies produce beats."
+
+  - id: phy-wav-452
+    topic: superposition
+    subtopic: Ranking resultant amplitudes
+    concept: 2a cos(φ/2) decreases as φ goes from 0 to π
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: A_r = 2a cos(φ/2)
+    tags: [ordering, resultant-amplitude]
+    stem: "Two waves of equal amplitude a superpose. Arrange in decreasing order of resultant amplitude the phase differences P: π, Q: π/2, R: π/3, S: 2π/3."
+    options:
+      - P > S > Q > R
+      - R > S > Q > P
+      - R > Q > S > P
+      - Q > R > S > P
+    answer: 2
+    explanation: "A_r = 2a cos(φ/2): π/3 gives √3 a, π/2 gives √2 a, 2π/3 gives a, π gives zero. So R > Q > S > P."
+
+  - id: phy-wav-453
+    topic: superposition
+    subtopic: Amplitudes from extremes
+    concept: A_1 + A_2 and A_1 − A_2 give the individual amplitudes
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [resultant-amplitude]
+    stem: Two waves give a resultant amplitude of 10 cm when in phase and 2 cm when in opposite phase. Their individual amplitudes are
+    options:
+      - 6 cm and 4 cm
+      - 5 cm and 5 cm
+      - 8 cm and 2 cm
+      - 7 cm and 3 cm
+    answer: 0
+    explanation: "A_1 + A_2 = 10 and A_1 − A_2 = 2 give A_1 = 6 cm and A_2 = 4 cm."
+
+  - id: phy-wav-454
+    topic: reflection
+    subtopic: Echo facts
+    concept: Echo distance, laws of reflection, SONAR and weakening of echoes
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [echo, sonar]
+    stem: |-
+      Consider:
+      I. A distinct echo in air at room temperature needs the reflector to be at least about 17 m away.
+      II. Sound obeys the laws of reflection at a large hard surface.
+      III. SONAR measures distances using echoes of ultrasound.
+      IV. An echo is fainter than the original sound because of spreading and absorption.
+      Which are correct?
+    options:
+      - I and II only
+      - II and III only
+      - I, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: "A 0.1 s delay at ≈ 344 m s^{-1} needs d ≈ 17 m; sound reflects like light from large surfaces; SONAR uses ultrasonic echoes; energy spreads and is partly absorbed, weakening the echo. All four are correct."
+
+  - id: phy-wav-455
+    topic: reflection
+    subtopic: Pipe ends and string ends
+    concept: A closed pipe end behaves like a fixed string end for displacement
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [analogy, boundary-conditions]
+    stem: Which statement correctly relates boundaries in pipes and strings?
+    options:
+      - The open end of a pipe behaves like a fixed end of a string for displacement
+      - The closed end of a pipe behaves like a fixed end of a string for displacement
+      - Both ends of an open pipe are displacement nodes
+      - A closed end reflects the displacement wave without phase change
+    answer: 1
+    explanation: "At a closed end air cannot move, just as a fixed string end cannot move: both are displacement nodes, and the displacement wave reflects with phase change π. Open ends behave like free string ends (antinodes)."
+
+  - id: phy-wav-456
+    topic: reflection
+    subtopic: Standing wave in front of a wall
+    concept: A reflecting wall sets up loud and quiet points λ/2 apart
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [standing-waves, reflection, multi-concept]
+    stem: A 680 Hz sound is directed at a large rigid wall (v = 340 m s^{-1}). A microphone moved towards the wall finds positions of minimum loudness. The separation of adjacent minima is
+    options:
+      - 0.5 m
+      - 1 m
+      - 0.125 m
+      - 0.25 m
+    answer: 3
+    explanation: "Incident and reflected waves form a standing wave; pressure (or displacement) nodes are λ/2 apart. λ = 340/680 = 0.5 m, so minima are 0.25 m apart."
+
+  - id: phy-wav-457
+    topic: reflection
+    subtopic: Medical ultrasound
+    concept: Depth = v t/2 in tissue
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: d = vt/2
+    tags: [ultrasound, echo]
+    stem: In an ultrasound scan, the echo from an organ boundary returns 20 μs after the pulse is sent. If sound travels at 1540 m s^{-1} in tissue, the boundary lies at a depth of
+    options:
+      - 1.54 cm
+      - 3.08 cm
+      - 0.77 cm
+      - 15.4 cm
+    answer: 0
+    explanation: "2d = vt = 1540 × 20 × 10^{-6} = 0.0308 m, so d = 1.54 cm. Forgetting the round trip gives 3.08 cm."
+
+  - id: phy-wav-458
+    topic: reflection
+    subtopic: Nature of boundaries
+    concept: Fixed/free string ends and open/closed pipe ends as nodes or antinodes
+    category: concept
+    format: match
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [match, boundary-conditions]
+    stem: |-
+      Match the boundary (List I) with its nature (List II).
+      List I: P. Fixed end of a string  Q. Free end of a string  R. Open end of a pipe  S. Closed end of a pipe
+      List II: 1. Pressure node  2. Displacement antinode  3. Pressure antinode  4. Displacement node
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-4, Q-1, R-2, S-3
+    answer: 2
+    explanation: "A fixed end cannot move (displacement node) and a free end moves most (displacement antinode). An open pipe end stays at atmospheric pressure (pressure node); a closed end has the largest pressure swing (pressure antinode)."
+
+  - id: phy-wav-459
+    topic: reflection
+    subtopic: Reflection from a wall
+    concept: Reflection keeps frequency; a rigid wall is a pressure antinode
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [frequency, pressure]
+    stem: |-
+      Statement I: When sound reflects from a stationary rigid wall, its frequency increases.
+      Statement II: At a rigid wall, the reflected and incident sound waves produce a pressure antinode.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "Reflection from a stationary wall does not change frequency (Statement I false). The wall is a displacement node, which is a pressure antinode (Statement II true)."
+
+  - id: phy-wav-460
+    topic: reflection
+    subtopic: Moving away from a cliff
+    concept: Moving d farther adds 2d/v to the echo time
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: Δt = 2Δd/v
+    tags: [echo]
+    stem: A person hears the echo of a shout from a cliff after 2 s. After walking 170 m directly away from the cliff, the echo time becomes (v = 340 m s^{-1})
+    options:
+      - 2.5 s
+      - 3 s
+      - 4 s
+      - 2 s
+    answer: 1
+    explanation: "The round trip grows by 2 × 170 = 340 m, adding 340/340 = 1 s. The new echo time is 3 s; forgetting the round trip gives 2.5 s."
+
+  - id: phy-wav-461
+    topic: reflection
+    subtopic: Node at a fixed end
+    concept: At a fixed end incident and reflected waves are in antiphase, forming a node
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 50
+    ncert: true
+    battle: false
+    tags: [rigid-boundary, standing-waves]
+    stem: |-
+      Assertion (A): A wave reflected at the fixed end of a string forms, with the incident wave, a standing wave having a node at the fixed end.
+      Reason (R): At the fixed end, the incident and reflected waves are always in phase.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: "The fixed end is always a node (A true). This happens because the reflected wave is inverted, so at the fixed end the two waves are in antiphase and cancel; R is false."
