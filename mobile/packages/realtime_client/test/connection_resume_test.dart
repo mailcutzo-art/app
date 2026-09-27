@@ -159,18 +159,77 @@ void main() {
     });
   });
 
-  test('a refused sync is not repeated', () {
+  test('a sync answered with NOT_FOUND forgets the channel', () {
     fakeAsync((async) {
       final h = Harness(async)..open();
       h.push(snapshot(5));
       h.push(progress(7));
-      final syncId = h.lastIdOf('sync');
+      final answer = Outcome(h.connection.submitAnswer('M1', 1, 'a', 100));
+      h.flush();
 
-      h.push(frame('error', {'ref': syncId, 'code': 'NOT_FOUND'}));
+      h.push(frame('error', {'ref': h.lastIdOf('sync'), 'code': 'NOT_FOUND'}));
       h.elapse(const Duration(seconds: 10));
 
+      expect(syncs(h), hasLength(1), reason: 'no more re-sends');
+      expect(h.connection.resumeList, isEmpty, reason: 'no longer tracked or resumed');
+      expect(answer.realtimeError.code, RealtimeErrorCode.cancelled);
+      reconnect(h);
+      expect(resumeOf(h), isEmpty);
+      h.push(progress(20));
+      expect(h.events.last.seq, 20, reason: 'late events pass through untracked');
+      expect(syncs(h), hasLength(1));
+      h.dispose();
+    });
+  });
+
+  test('another sync error only stops the re-sends; the next gap starts over', () {
+    fakeAsync((async) {
+      final h = Harness(async)..open();
+      h.push(snapshot(5));
+      h.push(progress(7));
+
+      h.push(frame('error', {'ref': h.lastIdOf('sync'), 'code': 'UNAVAILABLE', 'retryable': true}));
+      h.elapse(const Duration(seconds: 10));
       expect(syncs(h), hasLength(1));
       expect(h.logs, contains(startsWith('sync for m:M1 failed')));
+      expect(h.connection.resumeList, const [ResumeEntry('m:M1', 5)]);
+
+      h.push(progress(8));
+      expect(syncs(h), hasLength(2));
+      h.dispose();
+    });
+  });
+
+  test('a snapshot older than what was applied is dropped', () {
+    fakeAsync((async) {
+      final h = Harness(async)..open();
+      h.push(snapshot(10));
+      h.push(progress(11));
+      h.push(progress(12));
+      h.events.clear();
+
+      h.push(snapshot(11));
+      expect(h.events, isEmpty);
+      expect(h.connection.lastSeq('m:M1'), 12);
+
+      h.push(snapshot(12));
+      expect(h.events.single, isA<MatchSnapshotEvent>(), reason: 'the same seq replaces');
+      h.dispose();
+    });
+  });
+
+  test('per-player messages carry no seq and never open a gap', () {
+    fakeAsync((async) {
+      final h = Harness(async)..open();
+      h.push(snapshot(10));
+      h.events.clear();
+
+      h.push(frame('ans.ack', {'ref': 'c9', 'q': 1, 'status': 'accepted', 'dup': false}, 'm:M1'));
+      h.push(frame('match.settled', {'match_id': 'M1', 'missions': <Object?>[]}, 'm:M1'));
+      h.push(progress(11));
+
+      expect(h.events.map((e) => e.type), ['ans.ack', 'match.settled', 'q.progress']);
+      expect(syncs(h), isEmpty);
       h.dispose();
     });
   });

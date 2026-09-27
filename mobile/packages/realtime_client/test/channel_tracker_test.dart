@@ -47,15 +47,30 @@ void main() {
     expect(matchEvent(7), SeqDecision.apply);
   });
 
-  test('a snapshot resets the seq, forwards or backwards', () {
+  test('a snapshot moves the seq forward, even over a gap', () {
     snapshot('m:M1', 5);
-    matchEvent(7);
+    expect(matchEvent(7), SeqDecision.gap);
 
     expect(snapshot('m:M1', 40), SeqDecision.apply);
     expect(tracker.lastSeq('m:M1'), 40);
     expect(matchEvent(41), SeqDecision.apply);
+  });
 
-    expect(snapshot('m:M1', 12), SeqDecision.apply);
+  test('a snapshot at the last applied seq replaces the state', () {
+    snapshot('m:M1', 5);
+    matchEvent(6);
+
+    expect(snapshot('m:M1', 6), SeqDecision.apply);
+    expect(tracker.lastSeq('m:M1'), 6);
+  });
+
+  test('a snapshot older than the last applied seq is a duplicate', () {
+    snapshot('m:M1', 5);
+    for (var seq = 6; seq <= 12; seq++) {
+      matchEvent(seq);
+    }
+
+    expect(snapshot('m:M1', 11), SeqDecision.duplicate);
     expect(tracker.lastSeq('m:M1'), 12);
     expect(matchEvent(13), SeqDecision.apply);
   });
@@ -63,8 +78,9 @@ void main() {
   test('room.state is the snapshot of a room channel', () {
     expect(accept('room.state', 'r:R1', 9, _roomState), SeqDecision.apply);
     expect(tracker.lastSeq('r:R1'), 9);
-    expect(accept('room.state', 'r:R1', 3, _roomState), SeqDecision.apply);
-    expect(tracker.lastSeq('r:R1'), 3);
+    expect(accept('room.state', 'r:R1', 9, _roomState), SeqDecision.apply);
+    expect(accept('room.state', 'r:R1', 3, _roomState), SeqDecision.duplicate);
+    expect(tracker.lastSeq('r:R1'), 9);
   });
 
   test('a new channel starts at 0: seq 1 applies, a later seq is a gap', () {

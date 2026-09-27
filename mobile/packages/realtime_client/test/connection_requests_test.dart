@@ -301,9 +301,26 @@ void main() {
           everyElement({'match_id': 'M1', 'q': 1, 'opt': 'a', 'el_ms': 900}),
         );
 
-        h.push(frame('ans.ack', {'ref': id, 'q': 1, 'status': 'dup'}, 'm:M1'));
+        h.push(frame('ans.ack', {'ref': id, 'q': 1, 'status': 'accepted', 'dup': true}, 'm:M1'));
         h.elapse(const Duration(seconds: 6));
         expect(h.socket.sentOfType('ans.submit'), hasLength(3));
+        h.dispose();
+      });
+    });
+
+    test('an older server\'s status "dup" still counts as acknowledged', () {
+      fakeAsync((async) {
+        final h = Harness(async)..open();
+        final answer = Outcome(h.connection.submitAnswer('M1', 1, 'a', 900));
+        h.flush();
+
+        h.push(
+          frame('ans.ack', {'ref': h.lastIdOf('ans.submit'), 'q': 1, 'status': 'dup'}, 'm:M1'),
+        );
+
+        expect(answer.value.status, AnswerStatus.dup);
+        expect(answer.value.dup, isTrue);
+        expect(h.connection.pendingAnswers, 0);
         h.dispose();
       });
     });
@@ -332,8 +349,9 @@ void main() {
         h.flush();
         expect(second.sentIds, ['c1', 'c7', 'c2', 'c3', 'c4', 'c5', 'c6', 'c8']);
 
-        h.push(frame('ans.ack', {'ref': id, 'q': 2, 'status': 'dup'}, 'm:M1'));
-        expect(answer.value.status, AnswerStatus.dup);
+        h.push(frame('ans.ack', {'ref': id, 'q': 2, 'status': 'late', 'dup': true}, 'm:M1'));
+        expect(answer.value.status, AnswerStatus.late, reason: 'the first verdict, repeated');
+        expect(answer.value.dup, isTrue);
         h.dispose();
       });
     });

@@ -13,15 +13,7 @@ export 'src/envelope.dart'
 export 'src/errors.dart' show RealtimeError, RealtimeErrorCode;
 export 'src/events.dart';
 export 'src/match_state.dart'
-    show
-        EmoteState,
-        MatchEnd,
-        MatchPlayer,
-        MatchState,
-        MyAnswer,
-        Rematch,
-        reduceMatch,
-        selectAnswer;
+    show EmoteState, MatchPlayer, MatchState, MyAnswer, Rematch, reduceMatch, selectAnswer;
 export 'src/realtime_clock.dart' show RealtimeClock, SystemRealtimeClock;
 export 'src/server_clock.dart' show ClockSample, ServerClock;
 export 'src/socket.dart' show RealtimeSocket, WebSocketConnector;

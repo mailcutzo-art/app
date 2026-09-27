@@ -57,13 +57,14 @@ final class TRoundEvent extends ServerEvent {
   final int? endsAt;
 }
 
-/// `t.check_in`: the check-in window opened. Opening the connection during the window checks the
-/// player in.
+/// `t.check_in`: the check-in window opened. The app shows **Check in** and **Can't make it**;
+/// checking in is always a deliberate tap.
 final class TCheckInEvent extends ServerEvent {
   TCheckInEvent._(
     super.envelope, {
     required this.tournamentId,
     required this.title,
+    required this.startsAt,
     required this.closesAt,
   });
 
@@ -73,6 +74,7 @@ final class TCheckInEvent extends ServerEvent {
       envelope,
       tournamentId: d.string('tournament_id'),
       title: d.optString('title'),
+      startsAt: d.optTimestamp('starts_at'),
       closesAt: d.optTimestamp('closes_at'),
     );
   }
@@ -80,8 +82,40 @@ final class TCheckInEvent extends ServerEvent {
   final String tournamentId;
   final String? title;
 
+  /// Server ms when the tournament starts.
+  final int? startsAt;
+
   /// Server ms when check-in closes.
   final int? closesAt;
+}
+
+/// `t.at_risk`: 30 minutes before the start, too few players have registered ("3 more players
+/// needed. Invite friends").
+final class TAtRiskEvent extends ServerEvent {
+  TAtRiskEvent._(
+    super.envelope, {
+    required this.tournamentId,
+    required this.players,
+    required this.needed,
+  });
+
+  factory TAtRiskEvent.fromEnvelope(Envelope envelope) {
+    final d = _payload(envelope);
+    return TAtRiskEvent._(
+      envelope,
+      tournamentId: d.string('tournament_id'),
+      players: d.optInt('players'),
+      needed: d.optInt('needed'),
+    );
+  }
+
+  final String tournamentId;
+
+  /// Players registered so far.
+  final int? players;
+
+  /// How many more are needed.
+  final int? needed;
 }
 
 /// `t.checked_in`: the player is checked in.

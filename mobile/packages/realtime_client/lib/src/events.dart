@@ -66,6 +66,7 @@ const Map<String, ServerEvent Function(Envelope)> _decoders = {
   // Section 1, 3 and 4: connection, heartbeat, clock, replies.
   'welcome': WelcomeEvent.fromEnvelope,
   'ping': PingEvent.fromEnvelope,
+  'hb': HbEvent.fromEnvelope,
   'clock.pong': ClockPongEvent.fromEnvelope,
   'ack': AckEvent.fromEnvelope,
   'error': ErrorEvent.fromEnvelope,
@@ -99,6 +100,7 @@ const Map<String, ServerEvent Function(Envelope)> _decoders = {
   't.standings': TStandingsEvent.fromEnvelope,
   't.round': TRoundEvent.fromEnvelope,
   't.check_in': TCheckInEvent.fromEnvelope,
+  't.at_risk': TAtRiskEvent.fromEnvelope,
   't.checked_in': TCheckedInEvent.fromEnvelope,
   't.pairing': TPairingEvent.fromEnvelope,
   't.bye': TByeEvent.fromEnvelope,

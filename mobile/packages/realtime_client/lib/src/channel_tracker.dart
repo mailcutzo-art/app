@@ -36,8 +36,10 @@ final class ResumeEntry {
 /// Keeps the last applied `seq` per resumable channel (`m:*` and `r:*`), docs/protocol.md
 /// section 10.
 ///
-/// - Events on other channels, or without a seq, always apply.
-/// - Snapshots (`match.snapshot`, `room.state`) always apply and reset the channel to their seq.
+/// - Events on other channels, or without a seq, always apply. Per-player messages (`ans.ack`,
+///   `match.settled`) come without a seq, so they never cause gaps.
+/// - A snapshot (`match.snapshot`, `room.state`) applies and resets the channel to its seq, unless
+///   its seq is lower than the last one applied: a stale snapshot is a duplicate.
 /// - A channel seen for the first time starts at 0, so its first event must be seq 1 or a
 ///   snapshot; anything else is a gap and gets a `sync` from 0.
 /// - Forgotten channels drop out of the resume list. Late events on them still apply, untracked,
@@ -63,6 +65,8 @@ final class ChannelTracker {
   SeqDecision acceptSeq(String? channel, int? seq, {bool snapshot = false}) {
     if (channel == null || seq == null || !isResumable(channel)) return SeqDecision.apply;
     if (snapshot) {
+      final last = _lastSeq[channel];
+      if (last != null && seq < last) return SeqDecision.duplicate;
       _forgotten.remove(channel);
       _lastSeq[channel] = seq;
       return SeqDecision.apply;

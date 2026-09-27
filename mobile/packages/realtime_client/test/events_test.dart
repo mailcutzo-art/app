@@ -34,12 +34,19 @@ void main() {
       expect(welcome.active.last.raw['ticket_id'], 'T1');
     });
 
-    test('ping and clock.pong', () {
+    test('ping, hb and clock.pong', () {
       expect(event('ping', {'n': 7}), isA<PingEvent>().having((e) => e.n, 'n', 7));
+      expect(event('hb', {'s': 5}, 'u'), isA<HbEvent>().having((e) => e.s, 's', 5));
       expect(
         event('clock.pong', {'c0': 100, 's': 1790000000123}),
         isA<ClockPongEvent>().having((e) => e.c0, 'c0', 100).having((e) => e.s, 's', 1790000000123),
       );
+    });
+
+    test('welcome without hb_s leaves the interval to the fallback', () {
+      final welcome = event('welcome', welcomeData(hbS: null)) as WelcomeEvent;
+
+      expect(welcome.hbS, isNull);
     });
 
     test('ack and error', () {
@@ -175,9 +182,15 @@ void main() {
       expect(found.matchId, 'M1');
       expect(found.matchChannel, 'm:M1');
       expect(found.channel, 'u');
-      expect(found.opponent.uid, 'u2');
-      expect(found.opponent.name, 'Player u2');
-      expect(found.opponent.raw['avatar'], 'fox');
+      final opponent = found.opponent;
+      expect(opponent.uid, 'u2');
+      expect(opponent.handle, 'player_u2');
+      expect(opponent.displayName, 'Player u2');
+      expect(opponent.avatar!.tone, 'sky');
+      expect(opponent.avatar!.symbol, 'atom');
+      expect(opponent.level, 4);
+      expect(opponent.isBot, isFalse);
+      expect(opponent.raw['avatar'], {'tone': 'sky', 'symbol': 'atom'});
       expect(
         [for (final s in found.sources) (s.chapter, s.count)],
         [('kinematics', 4), ('laws-of-motion', 3)],
@@ -214,16 +227,25 @@ void main() {
       expect(found.sources.single.name, 'Motion in a Straight Line');
     });
 
-    test('cards also accept the REST user-card fields', () {
+    test('cards accept id instead of uid, and need little else', () {
       final found = event('mm.found', {
         'match_id': 'M1',
         'opponent': {'id': 'u2', 'handle': 'rahul_07', 'display_name': 'Rahul'},
       }) as MmFoundEvent;
 
       expect(found.opponent.uid, 'u2');
-      expect(found.opponent.name, 'Rahul');
+      expect(found.opponent.handle, 'rahul_07');
+      expect(found.opponent.displayName, 'Rahul');
+      expect(found.opponent.avatar, isNull);
+      expect(found.opponent.level, isNull);
       expect(found.opponent.rating, isNull);
-      expect(found.opponent.raw['handle'], 'rahul_07');
+
+      final bot = event('mm.found', {
+        'match_id': 'B1',
+        'opponent': {'uid': 'bot:B1', 'display_name': 'Practice Bot', 'is_bot': true},
+        'bot': true,
+      }) as MmFoundEvent;
+      expect(bot.opponent.isBot, isTrue);
     });
 
     test('mm.requeued, mm.cancelled refunds and mm.status crowd numbers', () {
@@ -253,7 +275,9 @@ void main() {
           phase: 'q_open',
           q: 2,
           scores: {'u1': 132},
+          correct: {'u1': 1},
           connected: {'u2': false},
+          graceUntil: {'u2': 1790000031000},
           answered: {'u1'},
           withQuestion: true,
           reveal: script.revealData(
@@ -278,8 +302,14 @@ void main() {
       expect(snapshot.total, 7);
       expect(snapshot.limitMs, 15000);
       expect(
-        [for (final p in snapshot.players) (p.uid, p.presence, p.score, p.answered)],
-        [('u1', Presence.connected, 132, true), ('u2', Presence.reconnecting, 0, false)],
+        [
+          for (final p in snapshot.players)
+            (p.uid, p.presence, p.score, p.correct, p.answered, p.graceUntil),
+        ],
+        [
+          ('u1', Presence.connected, 132, 1, true, null),
+          ('u2', Presence.reconnecting, 0, 0, false, 1790000031000),
+        ],
       );
       expect(snapshot.question!.q, 2);
       expect(snapshot.question!.options, hasLength(4));
@@ -290,6 +320,32 @@ void main() {
         [for (final m in snapshot.mine) (m.q, m.status)],
         [(1, AnswerStatus.accepted), (2, AnswerStatus.late)],
       );
+      expect(snapshot.end, isNull);
+      expect(snapshot.settled, isFalse);
+    });
+
+    test('match.snapshot of a finished match carries the end and whether it is settled', () {
+      final snapshot = decodeFrame(
+        script.snapshot(
+          phase: 'finished',
+          q: 7,
+          end: script.endData(
+            result: 'win',
+            reason: 'opponent_forfeit',
+            totals: {'u1': (500, 4), 'u2': (300, 2)},
+          ),
+          settled: true,
+        ),
+      ) as MatchSnapshotEvent;
+
+      expect(snapshot.end!.result, MatchResult.win);
+      expect(snapshot.end!.reason, MatchEndReason.opponentForfeit);
+      expect(snapshot.end!.totals['u2'], const PlayerTotals(points: 300, correct: 2));
+      expect(snapshot.end!.ranking, [
+        ['u1'],
+        ['u2'],
+      ]);
+      expect(snapshot.settled, isTrue);
     });
 
     test('match.snapshot accepts a presence string for connected', () {
@@ -342,11 +398,34 @@ void main() {
 
       expect(statusOf('accepted'), AnswerStatus.accepted);
       expect(statusOf('late'), AnswerStatus.late);
-      expect(statusOf('dup'), AnswerStatus.dup);
       expect(statusOf('too_early'), AnswerStatus.tooEarly);
       expect(statusOf('invalid'), AnswerStatus.invalid);
       expect(statusOf('wrong_phase'), AnswerStatus.wrongPhase);
       expect(statusOf('shiny_new_status'), AnswerStatus.unknown);
+      expect(
+        [
+          for (final s in AnswerStatus.values)
+            if (s.isVerdict) s,
+        ],
+        [
+          AnswerStatus.accepted,
+          AnswerStatus.late,
+          AnswerStatus.tooEarly,
+          AnswerStatus.invalid,
+          AnswerStatus.wrongPhase,
+        ],
+      );
+    });
+
+    test('ans.ack repeats the first verdict with dup, and reads the legacy status "dup"', () {
+      final first = decodeFrame(script.ansAck('c9', 1, 'late')) as AnsAckEvent;
+      final repeat = decodeFrame(script.ansAck('c9', 1, 'late', dup: true)) as AnsAckEvent;
+      final legacy = event('ans.ack', {'ref': 'c9', 'q': 1, 'status': 'dup'}) as AnsAckEvent;
+
+      expect((first.status, first.dup), (AnswerStatus.late, false));
+      expect((repeat.status, repeat.dup), (AnswerStatus.late, true));
+      expect((legacy.status, legacy.dup), (AnswerStatus.dup, true));
+      expect(first.seq, isNull, reason: 'per-player replies carry no seq');
     });
 
     test('q.reveal', () {
@@ -411,12 +490,16 @@ void main() {
 
     test('match.settled, rated and unrated', () {
       final rated = decodeFrame(script.settled()) as MatchSettledEvent;
+      expect(rated.matchId, 'M1');
+      expect(rated.channel, 'm:M1');
+      expect(rated.seq, isNull, reason: 'sent to one player, never logged');
       expect(rated.settlement.rating!.scope, 'physics');
       expect(rated.settlement.rating!.before, '1502?');
       expect(rated.settlement.rating!.after, '1518?');
       expect(rated.settlement.rating!.delta, 16);
       expect(rated.settlement.coins!.balance, 245);
       expect(rated.settlement.xp!.forNext, 250);
+      expect(rated.settlement.resetsAt, script.t0 + 86400000);
       expect(rated.settlement.missions.single.id, 'win-3');
 
       final unrated = event('match.settled', {
@@ -425,6 +508,7 @@ void main() {
         'xp': {'delta': 10, 'level': 4, 'into_level': 130, 'for_next': 250},
         'missions': <Object?>[],
       }) as MatchSettledEvent;
+      expect(unrated.matchId, isNull);
       expect(unrated.settlement.rating, isNull);
       expect(unrated.settlement.coins!.delta, 0);
       expect(unrated.settlement.rank, isNull);
@@ -437,7 +521,7 @@ void main() {
       final settled = event('match.settled', {
         'rating': {'scope': 'physics', 'before': '1502', 'after': '1518', 'delta': 16},
         'rank': {'board': 'rating:physics', 'before': 47, 'after': 42},
-        'coins': {'delta': 10, 'balance': 245, 'capped': true, 'resets_at': 1790050000000},
+        'coins': {'delta': 10, 'balance': 245, 'capped': true},
         'xp': {
           'delta': 30,
           'level': 5,
@@ -446,6 +530,7 @@ void main() {
           'level_up': true,
           'capped': false,
         },
+        'resets_at': 1790050000000,
         'missions': [
           {'id': 'win-3', 'title': 'Win 3 battles', 'progress': 3, 'target': 3, 'done': true},
         ],
@@ -464,7 +549,7 @@ void main() {
       expect(s.rank, isA<RankMoved>().having((r) => r.change, 'change', 5));
       expect((s.rank! as RankMoved).board, 'rating:physics');
       expect(s.coins!.capped, isTrue);
-      expect(s.coins!.resetsAt, 1790050000000);
+      expect(s.resetsAt, 1790050000000);
       expect(s.xp!.levelUp, isTrue);
       expect(s.xp!.capped, isFalse);
       expect(s.missions.single.title, 'Win 3 battles');
@@ -493,9 +578,9 @@ void main() {
       );
       expect(settled.settlement.xp!.levelUp, isFalse);
       expect(
-        settled.settlement.xp!.resetsAt,
+        settled.settlement.resetsAt,
         DateTime.utc(2026, 9, 28).millisecondsSinceEpoch,
-        reason: 'ISO 8601 timestamps are accepted too',
+        reason: 'the earlier spot inside xp, and ISO 8601, are still read',
       );
     });
 
@@ -570,7 +655,7 @@ void main() {
           'locked': false,
           'settings': {'subject': 'physics', 'count': 10},
           'members': [
-            {...card('u1'), 'ready': true, 'connected': true, 'role': 'host'},
+            {...card('u1'), 'ready': true, 'connected': true, 'away': true, 'role': 'host'},
             {...card('u2'), 'ready': false, 'connected': false, 'role': 'member'},
           ],
         },
@@ -580,8 +665,8 @@ void main() {
       expect(state.code, 'K7M2QX');
       expect(state.settings['count'], 10);
       expect(
-        [for (final m in state.members) (m.uid, m.ready, m.connected, m.role)],
-        [('u1', true, true, 'host'), ('u2', false, false, 'member')],
+        [for (final m in state.members) (m.uid, m.ready, m.connected, m.away, m.role)],
+        [('u1', true, true, true, 'host'), ('u2', false, false, false, 'member')],
       );
       expect(state.rematch, isNull);
 
@@ -706,15 +791,24 @@ void main() {
       expect(bye, isA<TPairingEvent>().having((e) => e.matchChannel, 'matchChannel', isNull));
     });
 
-    test('t.check_in, t.checked_in, t.bye, t.finished, t.cancelled', () {
+    test('t.check_in, t.at_risk, t.checked_in, t.bye, t.finished, t.cancelled', () {
       final checkIn = event('t.check_in', {
         'tournament_id': 'T1',
         'title': 'Physics Sunday Cup',
+        'starts_at': 1790000900000,
         'closes_at': 1790000600000,
       }, 'u') as TCheckInEvent;
       expect(checkIn.tournamentId, 'T1');
       expect(checkIn.title, 'Physics Sunday Cup');
+      expect(checkIn.startsAt, 1790000900000);
       expect(checkIn.closesAt, 1790000600000);
+
+      final atRisk = event('t.at_risk', {
+        'tournament_id': 'T1',
+        'players': 5,
+        'needed': 3,
+      }, 'u') as TAtRiskEvent;
+      expect((atRisk.tournamentId, atRisk.players, atRisk.needed), ('T1', 5, 3));
 
       expect(
         event('t.checked_in', {'tournament_id': 'T1'}),
@@ -751,7 +845,23 @@ void main() {
 
   group('required fields', () {
     final missing = <String, (String, Map<String, Object?>)>{
-      'welcome without hb_s': ('welcome', {'user_id': 'u1', 'server_ms': 1}),
+      'welcome without server_ms': ('welcome', {'user_id': 'u1', 'hb_s': 10}),
+      'hb without s': ('hb', {}),
+      'ans.ack with a non-boolean dup': (
+        'ans.ack',
+        {'ref': 'c1', 'q': 1, 'status': 'accepted', 'dup': 'yes'},
+      ),
+      'match.snapshot with an end without a result': (
+        'match.snapshot',
+        {
+          'match_id': 'M1',
+          'phase': 'finished',
+          'q': 7,
+          'total': 7,
+          'players': <Object?>[],
+          'end': {'reason': 'normal'},
+        },
+      ),
       'clock.pong without s': ('clock.pong', {'c0': 1}),
       'ack without ref': ('ack', {}),
       'error without code': ('error', {'ref': 'c1'}),
@@ -867,14 +977,14 @@ void main() {
     expect(
       knownServerMessageTypes,
       unorderedEquals([
-        'welcome', 'ping', 'clock.pong', 'ack', 'error', //
+        'welcome', 'ping', 'hb', 'clock.pong', 'ack', 'error', //
         'mm.queued', 'mm.status', 'mm.timeout', 'mm.cancelled', 'mm.requeued', 'mm.found',
         'match.snapshot', 'match.phase', 'q.show', 'q.progress', 'ans.ack', 'q.reveal',
         'opp.conn', 'emote', 'match.end', 'match.settled', 'rematch.status',
         'room.state', 'room.started', 'room.kicked', 'room.closed',
         'invite.received', 'invite.updated',
-        't.standings', 't.round', 't.check_in', 't.checked_in', 't.pairing', 't.bye',
-        't.finished', 't.cancelled',
+        't.standings', 't.round', 't.check_in', 't.at_risk', 't.checked_in', 't.pairing',
+        't.bye', 't.finished', 't.cancelled',
         'notify',
       ]),
     );

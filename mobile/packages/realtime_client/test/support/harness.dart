@@ -65,7 +65,8 @@ final class Harness {
   /// When set, ticket requests never complete.
   bool hangTickets = false;
 
-  int hbS;
+  /// `welcome.hb_s`; `null` leaves it out.
+  int? hbS;
   bool autoWelcome;
   bool autoClockPong;
   List<Map<String, Object?>> active;

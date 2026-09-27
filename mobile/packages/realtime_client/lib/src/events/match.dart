@@ -1,7 +1,8 @@
 part of '../events.dart';
 
-/// `match.snapshot`: the whole match state (section 6). The first frame on a match channel, and
-/// the answer to a resume the log can no longer replay. Its `seq` is the channel's current seq.
+/// `match.snapshot`: the whole match state, built for the receiving player (section 6). The first
+/// frame on a match channel, and the answer to a resume the log can no longer replay. Its `seq`
+/// is the channel's current seq.
 final class MatchSnapshotEvent extends ServerEvent {
   MatchSnapshotEvent._(
     super.envelope, {
@@ -16,12 +17,15 @@ final class MatchSnapshotEvent extends ServerEvent {
     required this.question,
     required this.reveal,
     required this.mine,
+    required this.end,
+    required this.settled,
   });
 
   factory MatchSnapshotEvent.fromEnvelope(Envelope envelope) {
     final d = _payload(envelope);
     final question = d.optObject('question');
     final reveal = d.optObject('reveal');
+    final end = d.optObject('end');
     return MatchSnapshotEvent._(
       envelope,
       matchId: d.string('match_id'),
@@ -35,6 +39,8 @@ final class MatchSnapshotEvent extends ServerEvent {
       question: question == null ? null : _readShownQuestion(question),
       reveal: reveal == null ? null : _readReveal(reveal),
       mine: d.optObjects('mine', _readMine) ?? const [],
+      end: end == null ? null : _readOutcome(end),
+      settled: d.optBool('settled') ?? false,
     );
   }
 
@@ -59,6 +65,13 @@ final class MatchSnapshotEvent extends ServerEvent {
 
   /// My answers so far.
   final List<MineEntry> mine;
+
+  /// How the match ended (the `match.end` payload), or `null` while it is running.
+  final MatchOutcome? end;
+
+  /// Whether the server has committed the result. If so and `match.settled` never arrived, the app
+  /// reads it over REST.
+  final bool settled;
 }
 
 /// `match.phase {phase, q, ends_at}`.
@@ -105,22 +118,36 @@ final class QProgressEvent extends ServerEvent {
 
 /// `ans.ack {ref, q, status}`: the natural reply to `ans.submit`.
 final class AnsAckEvent extends ServerEvent {
-  AnsAckEvent._(super.envelope, {required this.ref, required this.q, required this.status});
+  AnsAckEvent._(
+    super.envelope, {
+    required this.ref,
+    required this.q,
+    required this.status,
+    required this.dup,
+  });
 
   factory AnsAckEvent.fromEnvelope(Envelope envelope) {
     final d = _payload(envelope);
+    final status = AnswerStatus.parse(d.string('status'));
     return AnsAckEvent._(
       envelope,
       ref: d.string('ref'),
       q: d.integer('q'),
-      status: AnswerStatus.parse(d.string('status')),
+      status: status,
+      dup: d.optBool('dup') ?? status == AnswerStatus.dup,
     );
   }
 
   /// The id of the `ans.submit` this acknowledges.
   final String ref;
   final int q;
+
+  /// The verdict. A repeat gets the first answer's verdict again, with [dup] set. From older
+  /// servers it can be [AnswerStatus.dup], which carries no verdict.
   final AnswerStatus status;
+
+  /// Whether the server already had this answer (a resend after a reconnect, or a second tap).
+  final bool dup;
 }
 
 /// `q.reveal`: the correct option, everyone's picks and points, and the totals.
@@ -176,54 +203,38 @@ final class EmoteEvent extends ServerEvent {
 
 /// `match.end {result, reason, totals, ranking}`. [result] is from my point of view.
 final class MatchEndEvent extends ServerEvent {
-  MatchEndEvent._(
-    super.envelope, {
-    required this.result,
-    required this.reason,
-    required this.totals,
-    required this.ranking,
-  });
+  MatchEndEvent._(super.envelope, this.outcome);
 
-  factory MatchEndEvent.fromEnvelope(Envelope envelope) {
-    final d = _payload(envelope);
-    return MatchEndEvent._(
-      envelope,
-      result: MatchResult.parse(d.string('result')),
-      reason: MatchEndReason.parse(d.string('reason')),
-      totals: d.optObjectMap('totals', _readTotals) ?? const {},
-      ranking: _readRanking(d),
-    );
-  }
+  factory MatchEndEvent.fromEnvelope(Envelope envelope) =>
+      MatchEndEvent._(envelope, _readOutcome(_payload(envelope)));
 
-  final MatchResult result;
-  final MatchEndReason reason;
-  final Map<String, PlayerTotals> totals;
+  final MatchOutcome outcome;
+
+  MatchResult get result => outcome.result;
+  MatchEndReason get reason => outcome.reason;
+  Map<String, PlayerTotals> get totals => outcome.totals;
 
   /// Places from first to last. Each place lists the uids that share it.
-  final List<List<String>> ranking;
-}
-
-/// `ranking: [["<uid>"], …]`. A bare uid is read as a place of its own.
-List<List<String>> _readRanking(JsonObject d) {
-  final places = d.optList('ranking') ?? const [];
-  return List.unmodifiable([
-    for (final place in places)
-      switch (place) {
-        final String uid => List<String>.unmodifiable([uid]),
-        final List<Object?> uids when uids.every((uid) => uid is String) =>
-          List<String>.unmodifiable(uids.cast<String>()),
-        _ => throw const FormatException('match.end: "ranking" must be a list of uid lists'),
-      },
-  ]);
+  List<List<String>> get ranking => outcome.ranking;
 }
 
 /// `match.settled`: the committed rating, rank, coins, XP, missions, streak, achievements and tip.
+///
+/// Sent to each player alone, on `m:<match_id>` without a `seq`.
 final class MatchSettledEvent extends ServerEvent {
-  MatchSettledEvent._(super.envelope, this.settlement);
+  MatchSettledEvent._(super.envelope, {required this.matchId, required this.settlement});
 
-  factory MatchSettledEvent.fromEnvelope(Envelope envelope) =>
-      MatchSettledEvent._(envelope, _readSettlement(_payload(envelope)));
+  factory MatchSettledEvent.fromEnvelope(Envelope envelope) {
+    final d = _payload(envelope);
+    return MatchSettledEvent._(
+      envelope,
+      matchId: d.optString('match_id'),
+      settlement: _readSettlement(d),
+    );
+  }
 
+  /// The settled match, when the payload names it.
+  final String? matchId;
   final Settlement settlement;
 }
 

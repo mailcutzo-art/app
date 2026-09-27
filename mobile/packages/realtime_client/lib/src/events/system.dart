@@ -18,7 +18,7 @@ final class WelcomeEvent extends ServerEvent {
       connId: d.optString('conn_id'),
       userId: d.string('user_id'),
       serverMs: d.integer('server_ms'),
-      hbS: d.integer('hb_s'),
+      hbS: d.optInt('hb_s'),
       active: d.optObjects('active', _readActive) ?? const [],
     );
   }
@@ -29,8 +29,9 @@ final class WelcomeEvent extends ServerEvent {
   /// Server time when the welcome was sent. Seeds the clock until the first sync finishes.
   final int serverMs;
 
-  /// The heartbeat interval in seconds.
-  final int hbS;
+  /// The heartbeat interval in seconds: 30 when idle, 10 while queued or in a room, 5 in a match.
+  /// `hb` announces changes.
+  final int? hbS;
 
   /// Anything the user is in right now. After a cold start the app uses it to jump back into the
   /// game.
@@ -45,6 +46,16 @@ final class PingEvent extends ServerEvent {
       PingEvent._(envelope, _payload(envelope).integer('n'));
 
   final int n;
+}
+
+/// `hb {s}`: the server's heartbeat interval changed to [s] seconds (section 3).
+final class HbEvent extends ServerEvent {
+  HbEvent._(super.envelope, this.s);
+
+  factory HbEvent.fromEnvelope(Envelope envelope) =>
+      HbEvent._(envelope, _payload(envelope).integer('s'));
+
+  final int s;
 }
 
 /// `clock.pong {c0, s}` (section 3).

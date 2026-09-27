@@ -11,6 +11,7 @@ final class RealtimeConfig {
     this.restartJitter = const Duration(seconds: 2),
     this.rateLimitWait = const Duration(seconds: 10),
     this.matchHeartbeat = const Duration(seconds: 5),
+    this.idleHeartbeat = const Duration(seconds: 30),
     this.answerResendAfter = const Duration(seconds: 2),
     this.requestTimeout = const Duration(seconds: 10),
     this.clockResyncEvery = const Duration(seconds: 60),
@@ -48,9 +49,12 @@ final class RealtimeConfig {
   /// After close code 4429 (rate limited), wait this long.
   final Duration rateLimitWait;
 
-  /// The server's heartbeat interval during a match. With an `inMatch` lease the watchdog uses it
-  /// in `2 × hb + 2 s` when it is shorter than `welcome.hb_s`.
+  /// The heartbeat interval the watchdog assumes while an `inMatch` lease is held, if the server
+  /// announced none (no `hb`, and no `welcome.hb_s`).
   final Duration matchHeartbeat;
+
+  /// The heartbeat interval the watchdog assumes otherwise, if the server announced none.
+  final Duration idleHeartbeat;
 
   /// Resend an unacknowledged answer after this long.
   final Duration answerResendAfter;

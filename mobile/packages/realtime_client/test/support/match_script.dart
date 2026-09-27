@@ -1,7 +1,8 @@
 import 'frames.dart';
 
 /// Builds the frames of one 1v1 match on `m:<matchId>`, numbering `seq` like the server's match
-/// log. Snapshots carry the current seq; every other event takes the next one.
+/// log. Snapshots carry the current seq; every other shared event takes the next one. Per-player
+/// messages (`ans.ack`, `match.settled`) carry no seq.
 final class MatchScript {
   MatchScript({
     this.matchId = 'M1',
@@ -43,11 +44,15 @@ final class MatchScript {
     int q = 0,
     int? endsAt,
     Map<String, int> scores = const {},
+    Map<String, int> correct = const {},
     Map<String, bool> connected = const {},
+    Map<String, int> graceUntil = const {},
     Set<String> answered = const {},
     bool withQuestion = false,
     Map<String, Object?>? reveal,
     List<Map<String, Object?>> mine = const [],
+    Map<String, Object?>? end,
+    bool settled = false,
   }) => frame(
     'match.snapshot',
     {
@@ -63,13 +68,17 @@ final class MatchScript {
           {
             ...card(uid),
             'connected': connected[uid] ?? true,
+            'grace_until': graceUntil[uid],
             'score': scores[uid] ?? 0,
+            'correct': correct[uid] ?? 0,
             'answered': answered.contains(uid),
           },
       ],
       'question': withQuestion ? showData(q) : null,
       'reveal': reveal,
       'mine': mine,
+      'end': end,
+      'settled': settled,
     },
     channel,
     seq,
@@ -97,9 +106,10 @@ final class MatchScript {
   Map<String, Object?> progress(int q, List<String> answered) =>
       _next('q.progress', {'q': q, 'answered': answered});
 
-  /// `ans.ack` is a direct reply to one player, so it carries no seq here.
-  Map<String, Object?> ansAck(String ref, int q, String status) =>
-      frame('ans.ack', {'ref': ref, 'q': q, 'status': status}, channel);
+  /// `ans.ack` goes to one player only, without a seq. [status] is the verdict; a repeat sends
+  /// the first verdict again with [dup].
+  Map<String, Object?> ansAck(String ref, int q, String status, {bool dup = false}) =>
+      frame('ans.ack', {'ref': ref, 'q': q, 'status': status, 'dup': dup}, channel);
 
   /// A reveal payload. [picks] maps uid → (option, points, time, speed); a `null` option means no
   /// answer.
@@ -138,12 +148,13 @@ final class MatchScript {
 
   Map<String, Object?> emote(String uid, String e) => _next('emote', {'uid': uid, 'e': e});
 
-  Map<String, Object?> end({
+  /// The `match.end` payload, also used as a snapshot's `end`.
+  Map<String, Object?> endData({
     required String result,
     String reason = 'normal',
     required Map<String, (int, int)> totals,
     List<List<String>>? ranking,
-  }) => _next('match.end', {
+  }) => {
     'result': result,
     'reason': reason,
     'totals': {
@@ -156,14 +167,25 @@ final class MatchScript {
           [me],
           [them],
         ],
-  });
+  };
 
-  Map<String, Object?> settled() => _next('match.settled', {
+  Map<String, Object?> end({
+    required String result,
+    String reason = 'normal',
+    required Map<String, (int, int)> totals,
+    List<List<String>>? ranking,
+  }) =>
+      _next('match.end', endData(result: result, reason: reason, totals: totals, ranking: ranking));
+
+  /// `match.settled` goes to one player only, without a seq.
+  Map<String, Object?> settled({String? matchId}) => frame('match.settled', {
+    'match_id': matchId ?? this.matchId,
     'rating': {'scope': 'physics', 'before': '1502?', 'after': '1518?', 'delta': 16},
-    'coins': {'delta': 10, 'balance': 245},
-    'xp': {'delta': 30, 'level': 4, 'into_level': 120, 'for_next': 250},
+    'coins': {'delta': 10, 'balance': 245, 'capped': false},
+    'xp': {'delta': 30, 'level': 4, 'into_level': 120, 'for_next': 250, 'level_up': false},
+    'resets_at': t0 + 86400000,
     'missions': [
-      {'id': 'win-3', 'progress': 2, 'target': 3, 'done': false},
+      {'id': 'win-3', 'title': 'Win 3 battles', 'progress': 2, 'target': 3, 'done': false},
     ],
-  });
+  }, channel);
 }

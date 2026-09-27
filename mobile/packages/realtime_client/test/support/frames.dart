@@ -23,18 +23,20 @@ ServerEvent event(
   int? ts,
 ]) => decodeFrame(frame(type, data, ch, seq, ts));
 
-/// A player card as the server sends it.
+/// A player card as the server sends it (docs/protocol.md section 2).
 Map<String, Object?> card(String uid) => {
   'uid': uid,
-  'name': 'Player $uid',
-  'avatar': 'fox',
+  'handle': 'player_$uid',
+  'display_name': 'Player $uid',
+  'avatar': {'tone': 'sky', 'symbol': 'atom'},
   'level': 4,
+  'is_bot': false,
 };
 
-/// The payload of `welcome`.
+/// The payload of `welcome`. A `null` [hbS] leaves `hb_s` out.
 Map<String, Object?> welcomeData({
   String userId = 'u1',
   int serverMs = 1790000000000,
-  int hbS = 10,
+  int? hbS = 10,
   List<Map<String, Object?>> active = const [],
-}) => {'conn_id': 'k9', 'user_id': userId, 'server_ms': serverMs, 'hb_s': hbS, 'active': active};
+}) => {'conn_id': 'k9', 'user_id': userId, 'server_ms': serverMs, 'hb_s': ?hbS, 'active': active};

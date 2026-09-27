@@ -31,10 +31,13 @@ enum AnswerStatus {
   pending('pending'),
   accepted('accepted'),
   late('late'),
-  dup('dup'),
   tooEarly('too_early'),
   invalid('invalid'),
   wrongPhase('wrong_phase'),
+
+  /// Only from older servers, which sent `status: "dup"` instead of repeating the verdict. It
+  /// means the server already had the answer, with no verdict given.
+  dup('dup'),
   unknown('?');
 
   const AnswerStatus(this.wire);
@@ -42,6 +45,11 @@ enum AnswerStatus {
   final String wire;
 
   static AnswerStatus parse(String wire) => _parse(values, wire, (v) => v.wire, unknown);
+
+  /// Whether this is a verdict from the server: accepted, late, too early, invalid or wrong
+  /// phase. A verdict never changes once given.
+  bool get isVerdict =>
+      this == accepted || this == late || this == tooEarly || this == invalid || this == wrongPhase;
 }
 
 /// Speed labels in `q.reveal` (section 7). Bot games have none.
@@ -166,16 +174,36 @@ T _parse<T>(List<T> values, String wire, String Function(T value) wireOf, T fall
 
 // Value types shared by several messages.
 
-/// A player card (`mm.found.opponent`, `match.snapshot.players[]`, `room.state.members[]`, …).
+/// A player card: `{uid, handle, display_name, avatar {tone, symbol}, level, is_bot}`
+/// (`mm.found.opponent`, `match.snapshot.players[]`, `room.state.members[]`, …).
 ///
-/// Only the user id is required. It is read from `uid`, or from `id` as in the REST user card;
-/// the name from `name` or `display_name`. The whole card stays in [raw] for the UI (handle,
-/// avatar, level, …).
+/// Only the user id is required. It is read from `uid`, or from `id` as in the REST user card.
+/// The whole card also stays in [raw].
 final class PlayerCard {
-  const PlayerCard({required this.uid, this.name, this.rating, this.record, this.raw = const {}});
+  const PlayerCard({
+    required this.uid,
+    this.handle,
+    this.displayName,
+    this.avatar,
+    this.level,
+    this.isBot = false,
+    this.rating,
+    this.record,
+    this.raw = const {},
+  });
 
   final String uid;
-  final String? name;
+
+  /// The unique handle, for example `rahul_07`.
+  final String? handle;
+
+  /// The name to show, for example `Rahul`.
+  final String? displayName;
+  final PlayerAvatar? avatar;
+  final int? level;
+
+  /// Whether this is the Practice Bot.
+  final bool isBot;
 
   /// The player's rating, when the card carries one (`mm.found.opponent.rating`).
   final PlayerRating? rating;
@@ -193,11 +221,18 @@ final class PlayerCard {
 PlayerCard _readCard(JsonObject json) {
   final uid = json.optString('uid') ?? json.optString('id');
   if (uid == null) throw FormatException('${json.context}: missing required field "uid"');
+  final avatar = json.optObject('avatar');
   final rating = json.optObject('rating');
   final record = json.optObject('record');
   return PlayerCard(
     uid: uid,
-    name: json.optString('name') ?? json.optString('display_name'),
+    handle: json.optString('handle'),
+    displayName: json.optString('display_name') ?? json.optString('name'),
+    avatar: avatar == null
+        ? null
+        : PlayerAvatar(tone: avatar.optString('tone'), symbol: avatar.optString('symbol')),
+    level: json.optInt('level'),
+    isBot: json.optBool('is_bot') ?? false,
     rating: rating == null
         ? null
         : PlayerRating(
@@ -214,6 +249,14 @@ PlayerCard _readCard(JsonObject json) {
           ),
     raw: json.map,
   );
+}
+
+/// A player's avatar: a colour tone and a symbol, for example `sky` and `atom`.
+final class PlayerAvatar {
+  const PlayerAvatar({this.tone, this.symbol});
+
+  final String? tone;
+  final String? symbol;
 }
 
 /// A rating as the app shows it: `—` before any rated game, `1523?` while provisional.
@@ -585,21 +628,13 @@ String _displayString(JsonObject json, String key) {
 
 /// `match.settled.coins`.
 final class CoinsChange {
-  const CoinsChange({
-    required this.delta,
-    required this.balance,
-    this.capped = false,
-    this.resetsAt,
-  });
+  const CoinsChange({required this.delta, required this.balance, this.capped = false});
 
   final int delta;
   final int balance;
 
-  /// Whether a daily earning cap limited [delta].
+  /// Whether a daily earning cap limited [delta]. [Settlement.resetsAt] says when it resets.
   final bool capped;
-
-  /// When the cap resets (server ms).
-  final int? resetsAt;
 }
 
 /// `match.settled.xp`.
@@ -611,7 +646,6 @@ final class XpChange {
     required this.forNext,
     this.levelUp = false,
     this.capped = false,
-    this.resetsAt,
   });
 
   final int delta;
@@ -622,11 +656,8 @@ final class XpChange {
   /// Whether this game took the player to [level]: time for the celebration.
   final bool levelUp;
 
-  /// Whether a daily earning cap limited [delta].
+  /// Whether a daily earning cap limited [delta]. [Settlement.resetsAt] says when it resets.
   final bool capped;
-
-  /// When the cap resets (server ms).
-  final int? resetsAt;
 }
 
 /// One entry of `match.settled.missions`.
@@ -716,6 +747,7 @@ final class Settlement {
     this.rank,
     this.coins,
     this.xp,
+    this.resetsAt,
     this.missions = const [],
     this.streak,
     this.achievements = const [],
@@ -729,6 +761,9 @@ final class Settlement {
   final RankUpdate? rank;
   final CoinsChange? coins;
   final XpChange? xp;
+
+  /// When the daily coin and XP caps reset (server ms).
+  final int? resetsAt;
   final List<MissionProgress> missions;
   final StreakUpdate? streak;
   final List<Achievement> achievements;
@@ -751,7 +786,6 @@ Settlement _readSettlement(JsonObject json) {
             delta: coins.integer('delta'),
             balance: coins.integer('balance'),
             capped: coins.optBool('capped') ?? false,
-            resetsAt: coins.optTimestamp('resets_at'),
           ),
     xp: xp == null
         ? null
@@ -762,8 +796,12 @@ Settlement _readSettlement(JsonObject json) {
             forNext: xp.integer('for_next'),
             levelUp: xp.optBool('level_up') ?? false,
             capped: xp.optBool('capped') ?? false,
-            resetsAt: xp.optTimestamp('resets_at'),
           ),
+    // Top level in the spec; earlier drafts put it inside `coins` or `xp`.
+    resetsAt:
+        json.optTimestamp('resets_at') ??
+        coins?.optTimestamp('resets_at') ??
+        xp?.optTimestamp('resets_at'),
     missions:
         json.optObjects(
           'missions',
@@ -802,6 +840,7 @@ final class RoomMember {
     required this.ready,
     required this.connected,
     required this.role,
+    this.away = false,
   });
 
   final PlayerCard card;
@@ -811,6 +850,9 @@ final class RoomMember {
   /// `host` or `member`, as sent.
   final String role;
 
+  /// Whether the member's app is in the background ("Waiting for Aarav to come back").
+  final bool away;
+
   String get uid => card.uid;
 }
 
@@ -819,7 +861,47 @@ RoomMember _readMember(JsonObject json) => RoomMember(
   ready: json.optBool('ready') ?? false,
   connected: json.optBool('connected') ?? true,
   role: json.optString('role') ?? 'member',
+  away: json.optBool('away') ?? false,
 );
+
+/// How a match ended: the `match.end` payload, also embedded in `match.snapshot.end`.
+final class MatchOutcome {
+  const MatchOutcome({
+    required this.result,
+    required this.reason,
+    this.totals = const {},
+    this.ranking = const [],
+  });
+
+  /// From the receiving player's point of view.
+  final MatchResult result;
+  final MatchEndReason reason;
+  final Map<String, PlayerTotals> totals;
+
+  /// Places from first to last. Each place lists the uids that share it.
+  final List<List<String>> ranking;
+}
+
+MatchOutcome _readOutcome(JsonObject json) => MatchOutcome(
+  result: MatchResult.parse(json.string('result')),
+  reason: MatchEndReason.parse(json.string('reason')),
+  totals: json.optObjectMap('totals', _readTotals) ?? const {},
+  ranking: _readRanking(json),
+);
+
+/// `ranking: [["<uid>"], …]`. A bare uid is read as a place of its own.
+List<List<String>> _readRanking(JsonObject json) {
+  final places = json.optList('ranking') ?? const [];
+  return List.unmodifiable([
+    for (final place in places)
+      switch (place) {
+        final String uid => List<String>.unmodifiable([uid]),
+        final List<Object?> uids when uids.every((uid) => uid is String) =>
+          List<String>.unmodifiable(uids.cast<String>()),
+        _ => throw FormatException('${json.context}: "ranking" must be a list of uid lists'),
+      },
+  ]);
+}
 
 /// A rematch on offer in a room lobby (`room.state.rematch`).
 final class RoomRematch {

@@ -44,8 +44,11 @@ after the last `release`, so short trips between screens reuse it.
 - **Screens.** A screen that needs the socket (Battle tab, room lobby, arena) takes its own lease
   in `initState` and releases it in `dispose`.
 - **Live match.** Take a lease with `inMatch: true` for the whole match (VS screen to result).
-  While it is held, reconnects back off at most 2 s, the watchdog expects the 5 s in-match
-  heartbeat, and the clock re-syncs every minute.
+  While it is held, reconnects back off at most 2 s and the clock re-syncs every minute.
+- **Heartbeat.** The watchdog reconnects after `2 × hb + 2` s without a frame, where hb is what
+  the server announced: `welcome.hb_s`, then each `hb {s}` (30 s idle, 10 s queued or in a room,
+  5 s in a match). Only if the server announces nothing does it assume 5 s with a match lease,
+  and 30 s otherwise.
 - **Lifecycle.** Call `rt.setAppForeground(bool)` from the app lifecycle observer. Going to the
   background keeps the match lease, so the server's grace rules apply.
 
@@ -61,7 +64,15 @@ rt.submitAnswer(matchId, q, optionId, elapsedMs); // resent until ans.ack, never
 
 // Hide the question until match.isQuestionRevealed(rt.serverClock.nowServerMs()).
 // Drive the ring from match.question!.remainingMs(rt.serverClock.nowServerMs()).
+
+// After match.end, show "Results syncing…" until match.settlement arrives. Read
+// GET /v1/matches/{id} when match.needsSettlementFetch(rt.serverClock.nowServerMs()) is true
+// (20 s without match.settled, or a snapshot saying it's settled), or when the socket drops
+// while waiting.
 ```
+
+`ans.ack` always carries the verdict. A resend gets the first verdict again with `dup: true`, so
+a lost ack costs nothing. Per-player messages (`ans.ack`, `match.settled`) carry no `seq`.
 
 Other requests use `request`:
 
@@ -77,8 +88,10 @@ final ready = await rt.request('match.ready', {'match_id': id});
 **Resume.**
 - `mm.found`, `room.started` and `t.pairing` start tracking their match channel. After a drop,
   `hello.resume` carries every tracked channel, and replays and snapshots are applied in order.
+  A snapshot older than what was already applied is dropped.
 - After a cold start, look at `rt.welcome!.active` and call `rt.syncChannel(entry.channel!)` for
-  the game to reopen.
+  the game to reopen. The server answers `sync` from 0 with a snapshot.
+- A `sync` answered with `NOT_FOUND` means the channel is gone; the connection forgets it.
 - When the result screen closes, call `rt.forgetChannel('m:$matchId')`.
 
 **Terminal states** need a decision from the app:

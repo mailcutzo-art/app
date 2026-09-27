@@ -45,8 +45,7 @@ final class RealtimeLease {
   final String reason;
 
   /// Whether a live match needs the connection. While any such lease is held, reconnects back off
-  /// at most 2 s, the heartbeat watchdog uses the in-match heartbeat, and the clock re-syncs every
-  /// minute.
+  /// at most 2 s and the clock re-syncs every minute.
   final bool inMatch;
 
   bool _released = false;
@@ -148,6 +147,9 @@ final class RealtimeConnection {
   Timer? _helloTimer;
   Timer? _watchdog;
   int _lastFrameMs = 0;
+
+  /// The heartbeat interval the server announced on this connection, in seconds.
+  int? _heartbeatS;
   Timer? _clockResyncTimer;
   Timer? _clockPingTimer;
   int? _clockPingC0;
@@ -171,7 +173,7 @@ final class RealtimeConnection {
   Stream<ConnState> get states => _stateController.stream;
 
   /// Server events in order, after duplicate and gap filtering. Connection plumbing (`welcome`,
-  /// `ping`, `clock.pong`) is not included. [UnknownEvent]s are, and consumers ignore them.
+  /// `ping`, `hb`, `clock.pong`) is not included. [UnknownEvent]s are, and consumers ignore them.
   Stream<ServerEvent> get events => _eventController.stream;
 
   /// The last `welcome`. Its `active` list says which games to jump back into.
@@ -195,12 +197,20 @@ final class RealtimeConnection {
   /// Answers still waiting for their `ans.ack`.
   int get pendingAnswers => _outbox.length;
 
+  /// The server's heartbeat interval: the latest `hb.s`, or `welcome.hb_s` until one arrives.
+  /// `null` when the server hasn't said.
+  Duration? get heartbeatInterval {
+    final seconds = _heartbeatS;
+    return seconds == null ? null : Duration(seconds: seconds);
+  }
+
   /// How long the watchdog waits for a frame before it reconnects: `2 × hb + 2 s`, where hb is
-  /// `welcome.hb_s`, or the in-match heartbeat while an `inMatch` lease is held.
+  /// [heartbeatInterval]. If the server hasn't announced one, hb is assumed to be
+  /// [RealtimeConfig.matchHeartbeat] while an `inMatch` lease is held, and
+  /// [RealtimeConfig.idleHeartbeat] otherwise.
   Duration get heartbeatTimeout {
-    var heartbeatMs = max(1, _welcome?.hbS ?? 10) * 1000;
-    if (inMatch) heartbeatMs = min(heartbeatMs, config.matchHeartbeat.inMilliseconds);
-    return Duration(milliseconds: 2 * heartbeatMs + 2000);
+    final interval = heartbeatInterval ?? (inMatch ? config.matchHeartbeat : config.idleHeartbeat);
+    return interval * 2 + const Duration(seconds: 2);
   }
 
   /// Asks for the connection. It opens (if it isn't already) and stays open until every lease is
@@ -499,7 +509,7 @@ final class RealtimeConnection {
       'build': build,
       'platform': platform,
       'resume': [for (final entry in _tracker.resumeList()) entry.toJson()],
-      if (_takeover) 'takeover': true,
+      'takeover': _takeover,
     });
     _helloTimer = _clock.timer(config.helloTimeout, () {
       _helloTimer = null;
@@ -521,6 +531,7 @@ final class RealtimeConnection {
     _ticketRejections = 0;
     _takeover = false;
     _welcome = welcome;
+    _heartbeatS = _validHeartbeat(welcome.hbS);
     serverClock.seed(welcome.serverMs);
     _setState(Open(welcome));
     _armWatchdog();
@@ -553,6 +564,15 @@ final class RealtimeConnection {
     switch (event) {
       case PingEvent(:final n):
         _sendOn(link, 'pong', {'n': n});
+      case HbEvent(:final s):
+        final seconds = _validHeartbeat(s);
+        if (seconds == null) {
+          _log('Ignored hb with s = $s');
+        } else if (seconds != _heartbeatS) {
+          _log('Heartbeat is now $seconds s');
+          _heartbeatS = seconds;
+          if (link.welcomed) _armWatchdog();
+        }
       case ClockPongEvent():
         _onClockPong(event);
       case WelcomeEvent():
@@ -563,6 +583,9 @@ final class RealtimeConnection {
         _followChannels(event);
     }
   }
+
+  /// A usable heartbeat interval in seconds, or `null`.
+  static int? _validHeartbeat(int? seconds) => seconds != null && seconds > 0 ? seconds : null;
 
   /// Completes requests and answers that [event] replies to.
   void _correlate(ServerEvent event) {
@@ -661,12 +684,18 @@ final class RealtimeConnection {
     _syncRefs[id] = channel;
   }
 
-  /// The server refused a `sync`: stop re-sending it. The next gap event starts over.
+  /// The server refused a `sync`. `NOT_FOUND` means the user can no longer see the channel, so it
+  /// is forgotten. Other errors only stop the re-sends; the next gap event starts over.
   bool _syncRejected(String ref, ErrorEvent error) {
     final channel = _syncRefs.remove(ref);
     if (channel == null) return false;
-    _log('sync for $channel failed: ${error.code} ${error.message}');
-    _gapTimers.remove(channel)?.cancel();
+    if (error.code == RealtimeErrorCode.notFound) {
+      _log('$channel is gone (sync: NOT_FOUND); forgetting it');
+      forgetChannel(channel);
+    } else {
+      _log('sync for $channel failed: ${error.code} ${error.message}');
+      _gapTimers.remove(channel)?.cancel();
+    }
     return true;
   }
 

@@ -22,8 +22,8 @@ Map<String, Object?> summary(MatchState s) => {
   'standings': [for (final g in s.standings) (g.uid, g.place)],
   'totals': [for (final e in s.totals.entries) (e.key, e.value.points, e.value.correct)],
   'emote': (s.lastEmote?.uid, s.lastEmote?.emote, s.lastEmote?.serial),
-  'end': (s.end?.result, s.end?.reason),
-  'settled': s.settlement?.coins?.balance,
+  'end': (s.end?.result, s.end?.reason, s.endedAt),
+  'settled': (s.settlement?.coins?.balance, s.settledOnServer),
   'rematch': (s.rematch, s.rematchFailure),
 };
 
@@ -73,7 +73,7 @@ void main() {
       expect(state.total, 7);
       expect(state.limitMs, 15000);
       expect(state.players.keys, [me, them]);
-      expect(state.opponentsOf(me).single.card.name, 'Player u2');
+      expect(state.opponentsOf(me).single.card.displayName, 'Player u2');
       expect(state.question, isNull);
       expect(state.totalsOf(me), PlayerTotals.zero);
 
@@ -197,6 +197,7 @@ void main() {
           q: 4,
           endsAt: s.deadlineAt(4),
           scores: {me: 252, them: 145},
+          correct: {me: 2, them: 1},
           answered: {me, them},
           withQuestion: true,
           reveal: s.revealData(
@@ -240,12 +241,12 @@ void main() {
       );
       expect(state.currentReveal!.players[me]!.speed, Speed.even);
 
-      // Q5: the 2 s resend races the first ack; the `dup` keeps the verdict.
+      // Q5: the 2 s resend races the first ack; the repeat carries the same verdict, with dup.
       p
         ..frame(s.show(5))
         ..select(5, s.correctOption(5))
         ..frame(s.ansAck('c3', 5, 'accepted'));
-      state = p.frame(s.ansAck('c3', 5, 'dup'));
+      state = p.frame(s.ansAck('c3', 5, 'accepted', dup: true));
       expect(state.myAnswer!.status, AnswerStatus.accepted);
       p.frame(
         s.reveal(
@@ -289,8 +290,9 @@ void main() {
       expect(state.myAnswer, isNull);
       expect(state.currentReveal!.players[me]!.opt, isNull);
 
-      // match.end {result: win}, then match.settled.
-      state = p.frame(s.end(result: 'win', totals: {me: (531, 4), them: (417, 3)}));
+      // match.end {result: win}, then match.settled (to me alone, without a seq).
+      final endFrame = s.end(result: 'win', totals: {me: (531, 4), them: (417, 3)});
+      state = p.frame(endFrame);
       expect(state.phase, MatchPhase.finished);
       expect(state.isOver, isTrue);
       expect(state.end!.result, MatchResult.win);
@@ -300,9 +302,16 @@ void main() {
         [them],
       ]);
       expect(state.awaitingSettlement, isTrue, reason: 'shows "Results syncing…"');
+      final endedAt = endFrame['ts']! as int;
+      expect(state.endedAt, endedAt);
+      expect(state.settledOnServer, isFalse);
+      expect(state.needsSettlementFetch(endedAt + 19999), isFalse);
+      expect(state.needsSettlementFetch(endedAt + 20000), isTrue, reason: 'REST after 20 s');
 
       state = p.frame(s.settled());
       expect(state.awaitingSettlement, isFalse);
+      expect(state.settledOnServer, isTrue);
+      expect(state.needsSettlementFetch(endedAt + 60000), isFalse);
       expect(state.settlement!.rating!.after, '1518?');
       expect(state.settlement!.coins!.balance, 245);
       expect(state.settlement!.xp!.delta, 30);
@@ -330,9 +339,67 @@ void main() {
       p
         ..frame(other.snapshot(phase: 'q_open', q: 3))
         ..frame(other.show(1))
-        ..frame(frame('rematch.status', {'match_id': 'M2', 'state': 'offered', 'by': them}, 'u'));
+        ..frame(frame('rematch.status', {'match_id': 'M2', 'state': 'offered', 'by': them}, 'u'))
+        ..frame(other.settled());
 
       expect(p.state, same(before));
+    });
+
+    test("a settlement naming another match never lands, even on this match's channel", () {
+      final before = p.state;
+
+      p.frame(s.settled(matchId: 'M2'));
+      expect(p.state, same(before));
+
+      // Without match_id, the channel decides.
+      final unnamed = s.settled()['d']! as Map<String, Object?>;
+      p.frame(frame('match.settled', {...unnamed}..remove('match_id'), 'm:M2'));
+      expect(p.state, same(before));
+      p.frame(frame('match.settled', {...unnamed}..remove('match_id'), 'm:M1'));
+      expect(p.state.settlement, isNotNull);
+    });
+
+    test('a snapshot of a finished match restores the end and the settlement flag', () {
+      final state = p.frame(
+        s.snapshot(
+          phase: 'q_reveal',
+          q: 7,
+          scores: {me: 400, them: 200},
+          end: s.endData(result: 'loss', reason: 'forfeit', totals: {me: (400, 3), them: (620, 5)}),
+          settled: true,
+        ),
+      );
+
+      expect(state.phase, MatchPhase.finished, reason: 'the end decides the phase');
+      expect(state.isOver, isTrue);
+      expect(state.end!.result, MatchResult.loss);
+      expect(state.end!.reason, MatchEndReason.forfeit);
+      expect(state.endsAt, isNull);
+      expect(state.totalsOf(them), const PlayerTotals(points: 620, correct: 5));
+      expect(state.settledOnServer, isTrue);
+      expect(state.endedAt, isNull);
+      expect(state.needsSettlementFetch(0), isTrue, reason: 'settled, but match.settled is gone');
+    });
+
+    test('a snapshot with an unsettled end asks for REST at once: the app was away', () {
+      final state = p.frame(
+        s.snapshot(
+          phase: 'aborted',
+          end: s.endData(result: 'draw', reason: 'aborted', totals: {}),
+        ),
+      );
+
+      expect(state.phase, MatchPhase.aborted);
+      expect(state.totalsOf(me), PlayerTotals.zero);
+      expect(state.settledOnServer, isFalse);
+      expect(state.needsSettlementFetch(0), isTrue);
+    });
+
+    test('a running match never needs a settlement fetch', () {
+      p.frame(s.show(1));
+
+      expect(p.state.needsSettlementFetch(s.t0 + 3600000), isFalse);
+      expect(p.state.settledOnServer, isFalse);
     });
 
     test('ignores events that are not about a match', () {
@@ -382,14 +449,27 @@ void main() {
       expect(selectAnswer(p.state, q: 1, opt: s.option(1, 3)).myAnswer!.opt, s.option(1, 2));
     });
 
-    test('a dup without an earlier verdict counts as locked in', () {
+    test('a repeated ack carries the verdict, even when the first ack was lost', () {
+      p
+        ..frame(s.show(1))
+        ..select(1, s.option(1, 1))
+        ..frame(s.ansAck('c1', 1, 'late', dup: true));
+
+      expect(p.state.myAnswer, MyAnswer(q: 1, opt: s.option(1, 1), status: AnswerStatus.late));
+    });
+
+    test('a legacy status "dup" keeps the verdict, or counts as locked in without one', () {
       p
         ..frame(s.show(1))
         ..select(1, s.option(1, 1))
         ..frame(s.ansAck('c1', 1, 'dup'));
-
       expect(p.state.myAnswer!.status, AnswerStatus.dup);
       expect(p.state.myAnswer!.opt, s.option(1, 1));
+
+      p
+        ..frame(s.ansAck('c1', 1, 'accepted'))
+        ..frame(s.ansAck('c1', 1, 'dup'));
+      expect(p.state.myAnswer!.status, AnswerStatus.accepted);
     });
 
     test('knows I answered when the server says so, even without a local pick', () {

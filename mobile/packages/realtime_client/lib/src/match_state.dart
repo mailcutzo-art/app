@@ -78,18 +78,6 @@ enum Rematch {
   failed,
 }
 
-/// How the match ended (`match.end`).
-final class MatchEnd {
-  const MatchEnd({required this.result, required this.reason, this.ranking = const []});
-
-  /// From my point of view.
-  final MatchResult result;
-  final MatchEndReason reason;
-
-  /// Places from first to last; each lists the uids sharing it.
-  final List<List<String>> ranking;
-}
-
 /// Immutable UI state of one match, built by [reduceMatch] from server events.
 ///
 /// A `match.snapshot` replaces it entirely, which is how resume works.
@@ -111,7 +99,9 @@ final class MatchState {
     this.totals = const {},
     this.lastEmote,
     this.end,
+    this.endedAt,
     this.settlement,
+    this.settledOnServer = false,
     this.rematch = Rematch.none,
     this.rematchFailure,
   });
@@ -156,11 +146,18 @@ final class MatchState {
   final Map<String, PlayerTotals> totals;
   final EmoteState? lastEmote;
 
-  /// Set by `match.end`.
-  final MatchEnd? end;
+  /// How the match ended: from `match.end`, or from a snapshot's `end` after a resume.
+  final MatchOutcome? end;
+
+  /// Server ms of the `match.end` event, or `null` if the end came from a snapshot.
+  final int? endedAt;
 
   /// Set by `match.settled`. Until then a finished match shows "Results syncing…".
   final Settlement? settlement;
+
+  /// Whether the server has committed the result (a snapshot said `settled: true`, or
+  /// `match.settled` arrived). See [needsSettlementFetch].
+  final bool settledOnServer;
 
   /// The casual rematch, after `match.end`.
   final Rematch rematch;
@@ -187,6 +184,21 @@ final class MatchState {
   /// Finished, but `match.settled` hasn't arrived yet.
   bool get awaitingSettlement => phase == MatchPhase.finished && settlement == null;
 
+  /// Whether the app should read the result over REST (`GET /v1/matches/{id}`) because
+  /// `match.settled` hasn't arrived: a snapshot said the server has settled the match, or the
+  /// match ended at least [waitMs] ago at the synced server time [serverNowMs].
+  ///
+  /// An end known only from a snapshot has no [endedAt]; it counts as old, since the app was away
+  /// while waiting. Also fetch when the connection drops while waiting (docs/protocol.md
+  /// section 6).
+  bool needsSettlementFetch(int serverNowMs, {int waitMs = 20000}) {
+    if (settlement != null) return false;
+    if (settledOnServer) return true;
+    if (end == null) return false;
+    final endedAt = this.endedAt;
+    return endedAt == null || serverNowMs - endedAt >= waitMs;
+  }
+
   PlayerTotals totalsOf(String uid) => totals[uid] ?? PlayerTotals.zero;
 
   Iterable<MatchPlayer> opponentsOf(String me) => players.values.where((p) => p.uid != me);
@@ -210,7 +222,9 @@ final class MatchState {
     Map<String, PlayerTotals>? totals,
     Object? lastEmote = _keep,
     Object? end = _keep,
+    Object? endedAt = _keep,
     Object? settlement = _keep,
+    bool? settledOnServer,
     Rematch? rematch,
     Object? rematchFailure = _keep,
   }) => MatchState(
@@ -229,8 +243,10 @@ final class MatchState {
     standings: standings == null ? this.standings : List.unmodifiable(standings),
     totals: totals == null ? this.totals : Map.unmodifiable(totals),
     lastEmote: identical(lastEmote, _keep) ? this.lastEmote : lastEmote as EmoteState?,
-    end: identical(end, _keep) ? this.end : end as MatchEnd?,
+    end: identical(end, _keep) ? this.end : end as MatchOutcome?,
+    endedAt: identical(endedAt, _keep) ? this.endedAt : endedAt as int?,
     settlement: identical(settlement, _keep) ? this.settlement : settlement as Settlement?,
+    settledOnServer: settledOnServer ?? this.settledOnServer,
     rematch: rematch ?? this.rematch,
     rematchFailure: identical(rematchFailure, _keep)
         ? this.rematchFailure
@@ -243,9 +259,9 @@ const Object _keep = Object();
 /// Applies one server event to [state]. Pure and deterministic: the same events always give the
 /// same state. [me] is the signed-in user's uid.
 ///
-/// Events for another match (by channel, or by `match_id` for snapshots) and events that aren't
-/// about matches leave [state] unchanged. Feed it the connection's filtered event stream, so
-/// events arrive once and in order.
+/// Events for another match (by `match_id` when the payload has one, otherwise by channel) and
+/// events that aren't about matches leave [state] unchanged. Feed it the connection's filtered
+/// event stream, so events arrive once and in order.
 MatchState reduceMatch(MatchState state, ServerEvent event, {required String me}) {
   if (!_belongsTo(state, event)) return state;
   return switch (event) {
@@ -265,7 +281,10 @@ MatchState reduceMatch(MatchState state, ServerEvent event, {required String me}
       ),
     ),
     MatchEndEvent() => _end(state, event),
-    MatchSettledEvent(:final settlement) => state._copy(settlement: settlement),
+    MatchSettledEvent(:final settlement) => state._copy(
+      settlement: settlement,
+      settledOnServer: true,
+    ),
     RematchStatusEvent() => _rematch(state, event, me),
     _ => state,
   };
@@ -292,7 +311,9 @@ bool _belongsTo(MatchState state, ServerEvent event) {
   final matchId = state.matchId;
   if (matchId == null) return true;
   switch (event) {
-    case MatchSnapshotEvent(matchId: final id) || RematchStatusEvent(matchId: final id):
+    case MatchSnapshotEvent(matchId: final id) ||
+        RematchStatusEvent(matchId: final id) ||
+        MatchSettledEvent(matchId: final String id):
       return id == matchId;
     default:
       final channel = event.channel;
@@ -311,11 +332,15 @@ MatchState _snapshot(MatchSnapshotEvent snapshot, String me) {
   if (question != null && meAnswered && !mine.containsKey(question.q)) {
     mine[question.q] = MyAnswer(q: question.q, opt: null, status: AnswerStatus.unknown);
   }
+  final end = snapshot.end;
+  final phase = end == null || snapshot.phase.isOver ? snapshot.phase : _phaseAfter(end.reason);
   return MatchState(
     matchId: snapshot.matchId,
     kind: snapshot.kind,
-    phase: snapshot.phase,
-    endsAt: snapshot.endsAt ?? (snapshot.phase == MatchPhase.qOpen ? question?.deadlineAt : null),
+    phase: phase,
+    endsAt: end != null
+        ? null
+        : snapshot.endsAt ?? (phase == MatchPhase.qOpen ? question?.deadlineAt : null),
     q: snapshot.q,
     total: snapshot.total,
     limitMs: snapshot.limitMs ?? question?.limitMs,
@@ -335,15 +360,25 @@ MatchState _snapshot(MatchSnapshotEvent snapshot, String me) {
     }),
     reveal: snapshot.reveal,
     standings: snapshot.reveal?.standings ?? const [],
-    totals: Map.unmodifiable({
-      for (final player in snapshot.players)
-        player.uid: PlayerTotals(
-          points: player.score,
-          correct: player.correct ?? revealTotals[player.uid]?.correct ?? 0,
-        ),
-    }),
+    totals: end != null && end.totals.isNotEmpty
+        ? end.totals
+        : Map.unmodifiable({
+            for (final player in snapshot.players)
+              player.uid: PlayerTotals(
+                points: player.score,
+                correct: player.correct ?? revealTotals[player.uid]?.correct ?? 0,
+              ),
+          }),
+    end: end,
+    settledOnServer: snapshot.settled,
   );
 }
+
+MatchPhase _phaseAfter(MatchEndReason reason) => switch (reason) {
+  MatchEndReason.aborted => MatchPhase.aborted,
+  MatchEndReason.voided => MatchPhase.voided,
+  _ => MatchPhase.finished,
+};
 
 MatchState _show(MatchState state, ShownQuestion question) {
   if (question.q < state.q) return state;
@@ -372,12 +407,9 @@ MatchState _progress(MatchState state, QProgressEvent progress, String me) {
 
 MatchState _ack(MatchState state, AnsAckEvent ack) {
   final current = state.mine[ack.q];
-  // A `dup` confirms an earlier send. Keep that send's verdict if it already arrived.
-  final keepVerdict =
-      ack.status == AnswerStatus.dup &&
-      current != null &&
-      current.status != AnswerStatus.pending &&
-      current.status != AnswerStatus.unknown;
+  // The status is the verdict, also on a repeat (`dup: true`). Only an older server's
+  // `status: "dup"` carries none: then keep the verdict we have, if any.
+  final keepVerdict = ack.status == AnswerStatus.dup && current != null && current.status.isVerdict;
   final status = keepVerdict ? current.status : ack.status;
   return state._copy(
     mine: {
@@ -436,12 +468,9 @@ MatchState _presence(MatchState state, OppConnEvent event) {
 }
 
 MatchState _end(MatchState state, MatchEndEvent event) => state._copy(
-  phase: switch (event.reason) {
-    MatchEndReason.aborted => MatchPhase.aborted,
-    MatchEndReason.voided => MatchPhase.voided,
-    _ => MatchPhase.finished,
-  },
+  phase: _phaseAfter(event.reason),
   endsAt: null,
-  end: MatchEnd(result: event.result, reason: event.reason, ranking: event.ranking),
+  end: event.outcome,
+  endedAt: event.ts,
   totals: event.totals.isEmpty ? null : event.totals,
 );

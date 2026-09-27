@@ -46,6 +46,7 @@ void main() {
             'build': 57,
             'platform': 'android',
             'resume': <Object?>[],
+            'takeover': false,
           },
         });
         final open = h.state as Open;
@@ -246,11 +247,17 @@ void main() {
       });
     });
 
-    test('uses the in-match heartbeat while a match lease is held', () {
+    test('hb announces a new interval, and the watchdog follows it', () {
       fakeAsync((async) {
-        final h = Harness(async, autoClockPong: false)..open(inMatch: true);
+        final h = Harness(async, hbS: 30, autoClockPong: false)..open();
         final first = h.socket;
+        expect(h.connection.heartbeatInterval, const Duration(seconds: 30));
+        expect(h.connection.heartbeatTimeout, const Duration(seconds: 62));
+
+        h.elapse(const Duration(seconds: 40));
+        h.push(frame('hb', {'s': 5}, 'u'));
         expect(h.connection.heartbeatTimeout, const Duration(seconds: 12));
+        expect(h.events, isEmpty, reason: 'hb is connection plumbing');
 
         h.elapseMs(11999);
         expect(first.isClosed, isFalse);
@@ -260,20 +267,60 @@ void main() {
       });
     });
 
-    test('switches the watchdog when a match lease comes and goes', () {
+    test('the latest announcement wins, whatever the leases say', () {
       fakeAsync((async) {
-        final h = Harness(async, autoClockPong: false)..open();
+        final h = Harness(async, autoClockPong: false)..open(inMatch: true);
         final first = h.socket;
+        expect(h.connection.heartbeatTimeout, const Duration(seconds: 22), reason: 'hb_s is 10');
+
+        h.push(frame('hb', {'s': 5}, 'u'));
+        expect(h.connection.heartbeatTimeout, const Duration(seconds: 12));
+        h.elapse(const Duration(seconds: 10));
+        h.push(frame('hb', {'s': 10}, 'u'));
+        h.push(frame('hb', {'s': 0}, 'u'));
+        expect(h.connection.heartbeatTimeout, const Duration(seconds: 22), reason: '0 is ignored');
+
+        h.elapseMs(21999);
+        expect(first.isClosed, isFalse);
+        h.elapseMs(1);
+        expect(first.closedByClient, isTrue);
+        h.dispose();
+      });
+    });
+
+    test('assumes the in-match heartbeat only when the server announces none', () {
+      fakeAsync((async) {
+        final h = Harness(async, hbS: null, autoClockPong: false)..open();
+        final first = h.socket;
+        expect(h.connection.heartbeatInterval, isNull);
+        expect(h.connection.heartbeatTimeout, const Duration(seconds: 62), reason: 'idle: 30 s');
 
         h.elapse(const Duration(seconds: 5));
         final match = h.connection.acquire('match:M1', inMatch: true);
+        expect(h.connection.heartbeatTimeout, const Duration(seconds: 12));
         h.elapseMs(6999);
         expect(first.isClosed, isFalse);
         match.release();
-        h.elapse(const Duration(seconds: 10));
-        expect(first.isClosed, isFalse, reason: 'back to 22 s without the match lease');
+        h.elapse(const Duration(seconds: 50));
+        expect(first.isClosed, isFalse, reason: 'back to 62 s without the match lease');
         h.elapse(const Duration(seconds: 1));
         expect(first.closedByClient, isTrue);
+        h.dispose();
+      });
+    });
+
+    test('each connection starts again from its welcome', () {
+      fakeAsync((async) {
+        final h = Harness(async, hbS: 30)..open();
+        h.push(frame('hb', {'s': 5}, 'u'));
+        expect(h.connection.heartbeatInterval, const Duration(seconds: 5));
+
+        h.socket.closeFromServer(1013);
+        h.flush();
+        h.elapse(h.retryIn);
+
+        expect(h.state, isA<Open>());
+        expect(h.connection.heartbeatInterval, const Duration(seconds: 30));
         h.dispose();
       });
     });
@@ -472,7 +519,7 @@ void main() {
         final reason = (h.state as Terminal).reason;
         expect(reason, const TerminalReason.liveElsewhere('M3'));
         expect(reason, isA<LiveElsewhere>().having((r) => r.matchId, 'matchId', 'M3'));
-        expect(h.socket.sentOfType('hello').single['d'], isNot(contains('takeover')));
+        expect(h.socket.sentOfType('hello').single['d'], containsPair('takeover', false));
         h.elapse(const Duration(minutes: 1));
         expect(h.connector.attempts, 1, reason: 'no retry until the user decides');
 
@@ -485,7 +532,7 @@ void main() {
         h.socket.closeFromServer(1013);
         h.flush();
         h.elapse(h.retryIn);
-        expect(h.socket.sentOfType('hello').single['d'], isNot(contains('takeover')));
+        expect(h.socket.sentOfType('hello').single['d'], containsPair('takeover', false));
         h.dispose();
       });
     });
@@ -499,7 +546,7 @@ void main() {
         h.flush();
         h.elapse(h.retryIn);
 
-        expect(h.socket.sentOfType('hello').single['d'], isNot(contains('takeover')));
+        expect(h.socket.sentOfType('hello').single['d'], containsPair('takeover', false));
         h.dispose();
       });
     });

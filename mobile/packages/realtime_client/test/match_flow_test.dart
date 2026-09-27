@@ -11,7 +11,7 @@ const me = 'u1';
 const them = 'u2';
 
 /// A fake `rt` server for one match: keeps the match log for replays, and answers `mm.join`,
-/// `match.ready` and `ans.submit` (with `dup` for repeats, like `answer.lua`).
+/// `match.ready` and `ans.submit` (a repeat gets the first verdict again, with `dup: true`).
 final class MatchServer {
   MatchServer(this.h, this.script) {
     h.onMessage = _onMessage;
@@ -31,13 +31,18 @@ final class MatchServer {
 
   /// Swallows the next `ans.ack`, as if the socket died before it went out.
   bool dropNextAck = false;
-  final Map<int, String> answers = {};
 
-  /// Emits a match event: logged, and delivered if the client is connected.
+  /// The verdict given to the first answer of each question.
+  final Map<int, String> verdicts = {};
+
+  /// Emits a shared match event: logged, and delivered if the client is connected.
   void emit(Map<String, Object?> frame) {
     log.add(frame);
     h.push(frame);
   }
+
+  /// Sends a per-player message (no seq, never logged): lost if the client is away.
+  void direct(Map<String, Object?> frame) => h.push(frame);
 
   void _onMessage(FakeSocket socket, Map<String, Object?> message) {
     final id = message['id']! as String;
@@ -67,13 +72,13 @@ final class MatchServer {
         socket.push(frame('ack', {'ref': id}));
       case 'ans.submit':
         final q = data['q']! as int;
-        final first = !answers.containsKey(q);
-        answers.putIfAbsent(q, () => data['opt']! as String);
+        final repeat = verdicts.containsKey(q);
+        final verdict = verdicts.putIfAbsent(q, () => 'accepted');
         if (dropNextAck) {
           dropNextAck = false;
           return;
         }
-        socket.push(script.ansAck(id, q, first ? 'accepted' : 'dup'));
+        socket.push(script.ansAck(id, q, verdict, dup: repeat));
     }
   }
 }
@@ -191,9 +196,14 @@ void main() {
       ]);
       expect(rejoined.sentOfType('client.state').single['d'], {'state': 'foreground'});
       expect(rejoined.sentOfType('ans.submit').single['id'], id3, reason: 'resent with its id');
-      expect(answer3.value.status, AnswerStatus.dup, reason: 'the server already had it');
+      expect(answer3.value.dup, isTrue, reason: 'the server already had it');
+      expect(answer3.value.status, AnswerStatus.accepted, reason: 'and repeats its verdict');
       expect(state.answered, {me, them}, reason: 'replayed from the log');
-      expect(state.myAnswer, MyAnswer(q: 3, opt: s.correctOption(3), status: AnswerStatus.dup));
+      expect(
+        state.myAnswer,
+        MyAnswer(q: 3, opt: s.correctOption(3), status: AnswerStatus.accepted),
+        reason: 'the verdict of the lost ack arrives with the repeat',
+      );
       totals = (me: (420, 3), them: (0, 0));
       server.emit(
         s.reveal(
@@ -240,6 +250,7 @@ void main() {
         q: 5,
         withQuestion: true,
         scores: {me: 420, them: 145},
+        correct: {me: 3, them: 1},
         reveal: s.revealData(
           5,
           picks: {me: (null, 0, null, 'slow'), them: (s.correctOption(5), 145, 2000, 'fast')},
@@ -276,13 +287,29 @@ void main() {
         );
       }
 
-      // ← match.end {result: win}, ← match.settled.
+      // ← match.end {result: win}, ← match.settled (to me alone, without a seq).
       server.emit(s.end(result: 'win', totals: {me: (710, 5), them: (145, 1)}));
       expect(state.phase, MatchPhase.finished);
       expect(state.end!.result, MatchResult.win);
       expect(state.awaitingSettlement, isTrue);
-      server.emit(s.settled());
+      expect(state.needsSettlementFetch(h.connection.serverClock.nowServerMs()), isFalse);
+
+      // The socket drops before match.settled. The resume replays nothing new, and the
+      // settlement sent meanwhile is lost: after 20 s the app reads it over REST instead.
+      h.socket.closeFromServer(1013);
+      h.flush();
+      server.direct(s.settled());
+      h.elapse(h.retryIn);
+      expect(h.state, isA<Open>());
+      expect(state.settlement, isNull);
+      h.elapse(const Duration(seconds: 20));
+      expect(state.needsSettlementFetch(h.connection.serverClock.nowServerMs()), isTrue);
+
+      // Here it arrives late after all.
+      server.direct(s.settled());
       expect(state.settlement!.rating!.delta, 16);
+      expect(state.settledOnServer, isTrue);
+      expect(state.needsSettlementFetch(h.connection.serverClock.nowServerMs()), isFalse);
       expect(state.totalsOf(me), const PlayerTotals(points: 710, correct: 5));
 
       // Every match event arrived once and in order: snapshots aside, seqs only go up.
