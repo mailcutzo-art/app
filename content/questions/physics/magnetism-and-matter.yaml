@@ -8363,3 +8363,778 @@ questions:
       - X
     answer: 3
     explanation: A permanent magnet needs both high retentivity and high coercivity. X combines a large remanence with a very large coercivity. W and Z have tiny coercivity (they suit electromagnets); Y retains too little field.
+
+  - id: phy-mam-401
+    topic: bar-magnet-field-lines
+    subtopic: Pole strength
+    concept: Pole strength depends on cross-section, not length
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [pole-strength]
+    stem: Which statement about the pole strength of a uniformly magnetised bar is correct?
+    options:
+      - It doubles if the bar is made twice as long
+      - It is different at the north and south poles
+      - It is independent of the bar's cross-sectional area
+      - It is proportional to the cross-sectional area for a given magnetisation
+    answer: 3
+    explanation: For magnetisation M, pole strength q_m = M × A, so it scales with cross-sectional area and does not depend on length. The two poles have equal strength.
+
+  - id: phy-mam-402
+    topic: bar-magnet-field-lines
+    subtopic: Bending into an arc
+    concept: Quarter-circle bend gives moment (2√2/π)m
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [bending-magnet]
+    stem: A thin bar magnet of moment m is bent into a quarter-circle arc (subtending 90° at the centre). Its new moment is
+    options:
+      - 2m/π
+      - (2√2/π)m
+      - m/√2
+      - (4/π)m
+    answer: 1
+    explanation: Arc length L = Rπ/2, so R = 2L/π. The chord between the poles is R√2 = 2√2L/π. With unchanged pole strength, m' = (2√2/π)m ≈ 0.90m.
+
+  - id: phy-mam-403
+    topic: bar-magnet-field-lines
+    subtopic: Closed triangle of magnets
+    concept: Magnets arranged head to tail around a triangle give zero moment
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [vector-addition]
+    stem: Three identical bar magnets are placed along the sides of an equilateral triangle, N of each touching S of the next. The resultant magnetic moment of the arrangement is
+    options:
+      - 3m
+      - √3 m
+      - m
+      - zero
+    answer: 3
+    explanation: The three moments are equal in magnitude and form a closed triangle when added head to tail, so their vector sum is zero.
+
+  - id: phy-mam-404
+    topic: bar-magnet-field-lines
+    subtopic: Perpendicular unequal magnets
+    concept: Resultant of m and √3 m at right angles is 2m at 60°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [vector-addition]
+    stem: Magnets of moments m and √3 m are joined at their centres with axes perpendicular. The resultant moment makes what angle with the axis of the weaker magnet?
+    options:
+      - 30°
+      - 60°
+      - 45°
+      - 90°
+    answer: 1
+    explanation: The resultant is √(m^2 + 3m^2) = 2m, and tanφ = √3 m/m = √3, so φ = 60° from the weaker magnet's axis.
+
+  - id: phy-mam-405
+    topic: bar-magnet-field-lines
+    subtopic: Poles and neutral points
+    concept: Crowding at poles and directionless compass at neutral point
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [field-lines, neutral-point]
+    stem: |-
+      Statement I: Field lines of a bar magnet are most crowded near its poles.
+      Statement II: A small compass placed exactly at a neutral point does not settle in any particular direction.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: The field is strongest near the poles, so lines crowd there. At a neutral point the net field is zero, so there is no torque to align the compass.
+
+  - id: phy-mam-406
+    topic: bar-magnet-field-lines
+    subtopic: Bent magnets
+    concept: Matching bent shapes with new moments
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [bending-magnet]
+    stem: |-
+      A thin magnet of moment m is bent into different shapes. Match the shape with its new moment.
+      List I: P. semicircle; Q. L shape (90° at midpoint); R. V shape with 120° between arms; S. quarter circle
+      List II: 1. (√3/2)m; 2. (2√2/π)m; 3. 2m/π; 4. m/√2
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: Semicircle gives 2m/π; the L shape gives m/√2; the 120° V gives 2(L/2)sin 60° → (√3/2)m; the quarter circle gives (2√2/π)m.
+
+  - id: phy-mam-407
+    topic: bar-magnet-field-lines
+    subtopic: Bending reduces moment
+    concept: Bending shortens pole separation at constant pole strength
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [bending-magnet]
+    stem: |-
+      Assertion (A): Bending a thin straight magnet into any curved shape reduces its magnetic moment.
+      Reason (R): Bending leaves the pole strength unchanged but reduces the straight-line distance between the poles.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: m = q_m × (straight-line pole separation). Bending does not change q_m, but the chord is always shorter than the arc, so m decreases. R explains A.
+
+  - id: phy-mam-408
+    topic: bar-magnet-field-lines
+    subtopic: Identifying the N end
+    concept: A compass's S end is attracted to a magnet's N pole
+    category: application
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [compass, polarity]
+    stem: An unmarked bar magnet has ends X and Y. When end X is brought near a compass, the south end of the needle swings toward X. End X is
+    options:
+      - a south pole
+      - neither pole, as X is neutral
+      - impossible to identify with a compass
+      - a north pole
+    answer: 3
+    explanation: Unlike poles attract, so a compass's south end is pulled toward a north pole. Hence X is the magnet's north pole.
+
+  - id: phy-mam-409
+    topic: gauss-law-magnetism
+    subtopic: Units
+    concept: Magnetic flux is measured in weber = T m^2
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units, flux]
+    stem: The SI unit of magnetic flux, which appears in Gauss's law for magnetism, is
+    options:
+      - tesla
+      - weber
+      - A m^{-1}
+      - henry
+    answer: 1
+    explanation: Magnetic flux Φ = ∫ B·dS is measured in weber (1 Wb = 1 T m^2). The tesla is the unit of B.
+
+  - id: phy-mam-410
+    topic: gauss-law-magnetism
+    subtopic: Flux at an angle
+    concept: Curved hemisphere flux equals flat-face flux BπR^2 cosθ
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [gauss-law, flux]
+    stem: A hemispherical bowl of radius 10 cm is in a uniform field of 0.4 T that makes 60° with the axis of the bowl. The magnitude of flux through its curved surface is (π = 3.14)
+    options:
+      - 1.26 × 10^{-2} Wb
+      - 1.09 × 10^{-2} Wb
+      - zero
+      - 6.28 × 10^{-3} Wb
+    answer: 3
+    explanation: The curved surface and the flat circular opening form a closed surface, so both carry equal flux magnitude. Through the flat face, Φ = BπR^2 cos 60° = 0.4 × 3.14 × 0.01 × 0.5 = 6.28 × 10^{-3} Wb.
+
+  - id: phy-mam-411
+    topic: gauss-law-magnetism
+    subtopic: Violation of the law
+    concept: Discovery of a monopole would require modifying Gauss's law
+    category: application
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [gauss-law, monopole]
+    stem: Which hypothetical observation would require Gauss's law for magnetism to be modified?
+    options:
+      - A very strong magnet with closed field lines
+      - Detection of a particle that behaves as an isolated north pole
+      - A superconductor expelling magnetic field
+      - A solenoid producing a uniform internal field
+    answer: 1
+    explanation: An isolated pole would be a source of net magnetic flux, making ∮ B·dS non-zero around it. The other observations are fully consistent with the law.
+
+  - id: phy-mam-412
+    topic: gauss-law-magnetism
+    subtopic: Which surfaces
+    concept: All closed surfaces have zero net magnetic flux; open ones need not
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [gauss-law, flux]
+    stem: |-
+      For which of the following is the net magnetic flux necessarily zero?
+      I. A sphere enclosing an entire bar magnet
+      II. A cube enclosing only the N pole region of a magnet
+      III. A closed box enclosing a segment of a current-carrying wire
+      IV. A flat disc placed across the face of a bar magnet's N pole
+    options:
+      - I only
+      - I and II only
+      - IV only
+      - I, II and III only
+    answer: 3
+    explanation: I, II and III are closed surfaces, so their net flux is zero by Gauss's law. The disc in IV is an open surface and carries non-zero flux.
+
+  - id: phy-mam-413
+    topic: equivalent-solenoid
+    subtopic: Moment of a solenoid
+    concept: m = NIπr^2 for a solenoid of circular cross-section
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    tags: [solenoid, magnetic-moment]
+    stem: A solenoid of 400 turns with circular cross-section of radius 2 cm carries 1.5 A. Its magnetic moment is about
+    options:
+      - 0.24 A m^2
+      - 0.75 A m^2
+      - 7.5 A m^2
+      - 3.0 A m^2
+    answer: 1
+    explanation: A = π(0.02)^2 = 1.26 × 10^{-3} m^2. m = NIA = 400 × 1.5 × 1.26 × 10^{-3} ≈ 0.75 A m^2.
+
+  - id: phy-mam-414
+    topic: equivalent-solenoid
+    subtopic: Iron core
+    concept: Iron core greatly increases a solenoid's effective moment
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [solenoid-core, electromagnet]
+    stem: |-
+      Assertion (A): Inserting a soft-iron core into a current-carrying solenoid makes it a much stronger magnet.
+      Reason (R): The core becomes magnetised along the solenoid's field, adding its own large magnetic moment.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The core's domains align with the solenoid's field, so the iron acquires a magnetisation M ≫ H and a large moment MV that adds to NIA. This is the principle of the electromagnet. R explains A.
+
+  - id: phy-mam-415
+    topic: equivalent-solenoid
+    subtopic: Loop moment and shape
+    concept: A planar loop's moment depends only on I and area, and is normal to the plane
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [current-loop]
+    stem: |-
+      Statement I: Two planar loops of different shapes but equal areas and currents have different magnetic moments.
+      Statement II: The magnetic moment of a planar current loop is perpendicular to its plane.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: m = IA depends only on current and area, not shape, so Statement I is false. The direction is along the normal to the plane given by the right-hand rule, so Statement II is true.
+
+  - id: phy-mam-416
+    topic: equivalent-solenoid
+    subtopic: Semicircular loop
+    concept: Moment of a semicircular loop is IπR^2/2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [current-loop]
+    stem: A closed loop consists of a semicircle of radius 10 cm and its diameter, carrying 2 A. Its magnetic moment is about
+    options:
+      - 0.063 A m^2
+      - 0.031 A m^2
+      - 0.02 A m^2
+      - 0.0157 A m^2
+    answer: 1
+    explanation: Area = πR^2/2 = 3.14 × 0.01/2 = 0.0157 m^2. m = IA = 2 × 0.0157 ≈ 0.031 A m^2.
+
+  - id: phy-mam-417
+    topic: equivalent-solenoid
+    subtopic: Orbital moment of the electron
+    concept: Electron's orbital moment is opposite to its angular momentum
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [electron-orbit, gyromagnetic-ratio]
+    stem: |-
+      For an electron in a circular orbit, which statements are correct?
+      I. It is equivalent to a current loop.
+      II. Its orbital magnetic moment has magnitude (e/2m_e)L.
+      III. Its magnetic moment points in the same direction as its angular momentum.
+      IV. A larger orbital angular momentum gives a larger magnetic moment.
+    options:
+      - I and III only
+      - II and III only
+      - I, II and III only
+      - I, II and IV only
+    answer: 3
+    explanation: The orbiting electron is a current loop (I) with μ = (e/2m_e)L (II), so μ grows with L (IV). Because the electron is negative, the conventional current is opposite to its motion and μ is antiparallel to L, so III is false.
+
+  - id: phy-mam-418
+    topic: equivalent-solenoid
+    subtopic: Rotating charged ring
+    concept: A rotating charged ring has moment qωR^2/2
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: m = IπR^2, I = qω/2π
+    tags: [current-loop, multi-concept]
+    stem: A thin plastic ring of radius 10 cm carries a charge of 2 μC spread uniformly. It spins about its axis at 100 rad s^{-1}. Its magnetic moment is
+    options:
+      - 2 × 10^{-6} A m^2
+      - 6.3 × 10^{-6} A m^2
+      - 3.2 × 10^{-5} A m^2
+      - 1 × 10^{-6} A m^2
+    answer: 3
+    explanation: The equivalent current is I = qω/2π. Then m = IπR^2 = qωR^2/2 = 2 × 10^{-6} × 100 × 0.01/2 = 1 × 10^{-6} A m^2.
+
+  - id: phy-mam-419
+    topic: equivalent-solenoid
+    subtopic: Figure-eight loop
+    concept: Figure-eight loop with equal lobes has zero net moment
+    category: application
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [current-loop, vector-addition]
+    stem: A wire carrying current is shaped into a flat figure of eight with two equal circular lobes, so that the current circulates clockwise in one lobe and anticlockwise in the other. Which statement is correct?
+    options:
+      - The net moment is twice that of one lobe
+      - The net moment is zero, since the lobes have opposite moments
+      - The net moment equals that of one lobe
+      - The net moment lies in the plane of the loop
+    answer: 1
+    explanation: Opposite circulation gives each lobe a moment of equal size but opposite direction along the normal, so they cancel.
+
+  - id: phy-mam-420
+    topic: equivalent-solenoid
+    subtopic: m versus R graph
+    concept: Moment of a loop grows as R^2
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, current-loop]
+    stem: For circular loops carrying the same current, the magnetic moment m is plotted against radius R. The graph is
+    options:
+      - a straight line through the origin
+      - a parabola through the origin, concave upward
+      - a rectangular hyperbola
+      - a horizontal line
+    answer: 1
+    explanation: m = IπR^2, so m ∝ R^2, which is a parabola through the origin opening upward. m against R^2 would be a straight line.
+
+  - id: phy-mam-421
+    topic: equivalent-solenoid
+    subtopic: Electron moment direction
+    concept: μ of an orbiting electron is antiparallel to L
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [electron-orbit, trap]
+    stem: The orbital magnetic moment of an electron in an atom is directed
+    options:
+      - along its orbital angular momentum
+      - along its velocity
+      - toward the nucleus
+      - opposite to its orbital angular momentum
+    answer: 3
+    explanation: The electron is negatively charged, so the current it represents flows opposite to its motion. Hence μ = −(e/2m_e)L points opposite to L.
+
+  - id: phy-mam-422
+    topic: equivalent-solenoid
+    subtopic: Current from maximum torque
+    concept: I = τ_max/(NAB)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [current-loop, torque]
+    stem: A coil of 10 turns and area 0.01 m^2 in a uniform field of 0.1 T experiences a maximum torque of 0.02 N m. The current in it is
+    options:
+      - 0.2 A
+      - 2 A
+      - 20 A
+      - 0.02 A
+    answer: 1
+    explanation: τ_max = NIAB, so I = 0.02/(10 × 0.01 × 0.1) = 0.02/0.01 = 2 A.
+
+  - id: phy-mam-423
+    topic: dipole-field
+    subtopic: Superposition off the midpoint
+    concept: Adding axial fields of two coaxial magnets at an asymmetric point
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [superposition]
+    stem: Two short magnets, each of moment 1 A m^2 and both pointing along +x, are at x = 0 and x = 30 cm. The field at x = 10 cm is
+    options:
+      - 2 × 10^{-4} T
+      - 1.75 × 10^{-4} T
+      - 2.5 × 10^{-5} T
+      - 2.25 × 10^{-4} T
+    answer: 3
+    explanation: The point is on the axis of both magnets, so both fields point along +x. From the first (r = 0.1 m), 2 × 10^{-7}/10^{-3} = 2 × 10^{-4} T; from the second (r = 0.2 m), 2 × 10^{-7}/8 × 10^{-3} = 2.5 × 10^{-5} T. Total = 2.25 × 10^{-4} T. Subtracting gives the wrong 1.75 × 10^{-4} T.
+
+  - id: phy-mam-424
+    topic: dipole-field
+    subtopic: Scaling
+    concept: B ∝ m/r^3 with combined changes
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [proportionality]
+    stem: If the moment of a short magnet is doubled and the distance to an axial point is halved, the field at that point becomes
+    options:
+      - 8 times
+      - 16 times
+      - 4 times
+      - 2 times
+    answer: 1
+    explanation: B ∝ m/r^3, so the factor is 2 × 2^3 = 16.
+
+  - id: phy-mam-425
+    topic: dipole-field
+    subtopic: Equal fields on axis and equator
+    concept: Axial point at 2^{1/3} times the equatorial distance gives equal field
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [axial-field, equatorial-field]
+    stem: The field of a short magnet at an equatorial point 10 cm away is B. At what distance on its axis is the field also B?
+    options:
+      - 20 cm
+      - 12.6 cm
+      - 7.9 cm
+      - 14.1 cm
+    answer: 1
+    explanation: 2/r^3 = 1/(10 cm)^3 gives r^3 = 2000 cm^3, r = 10 × 2^{1/3} ≈ 12.6 cm.
+
+  - id: phy-mam-426
+    topic: dipole-field
+    subtopic: Field direction relative to r
+    concept: On the equator B is perpendicular to the position vector
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [direction, general-point]
+    stem: Which statement about the direction of a short magnet's field is correct?
+    options:
+      - On the axis, B is perpendicular to the position vector
+      - At every point, B is along the position vector
+      - At 45° from the axis, B is along the position vector
+      - On the equatorial line, B is perpendicular to the position vector
+    answer: 3
+    explanation: On the equatorial line the field is parallel to the axis, which is perpendicular to the position vector. On the axis B is along r; at 45° it makes angle α with tanα = ½ with r.
+
+  - id: phy-mam-427
+    topic: dipole-field
+    subtopic: Dependence of the field
+    concept: Dipole field depends on m, r and θ
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [dipole-field]
+    stem: |-
+      The magnitude of a short magnet's field at a point depends on
+      I. the magnetic moment
+      II. the distance from the magnet
+      III. the angle between the position vector and the axis
+      IV. the mass of the magnet
+    options:
+      - I and II only
+      - I, II and III only
+      - II and III only
+      - I, II, III and IV
+    answer: 1
+    explanation: B = (μ_0/4π)(m/r^3)√(3cos^2θ + 1) involves m, r and θ, but not the mass of the magnet.
+
+  - id: phy-mam-428
+    topic: dipole-field
+    subtopic: Scaling changes
+    concept: Matching changes in m and r with change in equatorial field
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [proportionality]
+    stem: |-
+      A short magnet gives field B at an equatorial point. Match each change with the new field there.
+      List I: P. m doubled; Q. r doubled; R. r halved; S. m halved and r halved
+      List II: 1. 8B; 2. 4B; 3. B/8; 4. 2B
+    options:
+      - P-4, Q-1, R-3, S-2
+      - P-2, Q-3, R-1, S-4
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+    answer: 3
+    explanation: B ∝ m/r^3. Doubling m gives 2B; doubling r gives B/8; halving r gives 8B; halving both m and r gives (1/2) × 8 = 4B.
+
+  - id: phy-mam-429
+    topic: dipole-field
+    subtopic: Designing a neutral point
+    concept: Required moment for a neutral point at given distance
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [neutral-point]
+    stem: A short magnet is placed with its moment along a uniform field of 4 × 10^{-5} T. For neutral points to occur 5 cm from its centre on its equatorial line, its moment must be
+    options:
+      - 0.5 A m^2
+      - 0.05 A m^2
+      - 0.025 A m^2
+      - 0.1 A m^2
+    answer: 1
+    explanation: At the neutral point (μ_0/4π)m/r^3 = B_0, so m = B_0 r^3/10^{-7} = 4 × 10^{-5} × 1.25 × 10^{-4}/10^{-7} = 0.05 A m^2.
+
+  - id: phy-mam-430
+    topic: dipole-field
+    subtopic: Identifying a dipole from data
+    concept: Field falling 27 times when distance triples indicates a dipole
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [inverse-cube, experiment]
+    stem: A probe measures the field of an unknown small object at 10 cm and 30 cm along the same line, far from the object compared with its size. The reading drops by a factor of 27. The object behaves like
+    options:
+      - an isolated magnetic pole
+      - a magnetic dipole
+      - a long straight current-carrying wire
+      - a uniformly magnetised infinite sheet
+    answer: 1
+    explanation: Tripling r reduced B by 27 = 3^3, i.e. B ∝ 1/r^3, the signature of a dipole. A pole would give 1/r^2 (factor 9), a long wire 1/r (factor 3), and an infinite sheet a uniform field.
+
+  - id: phy-mam-431
+    topic: dipole-field
+    subtopic: Angular dependence
+    concept: Field is weakest on the equator at a given distance
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [general-point]
+    stem: |-
+      Statement I: At a fixed distance from a short magnet, the magnitude of its field depends on the direction of the point from the magnet.
+      Statement II: At a fixed distance, the field is weakest on the equatorial line.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: B ∝ √(3cos^2θ + 1), which varies with θ and has its minimum (1) at θ = 90°, the equatorial line, and maximum (2) on the axis.
+
+  - id: phy-mam-432
+    topic: dipole-field
+    subtopic: Ordering by angle
+    concept: Field magnitude decreases from axis to equator
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [ordering, general-point]
+    stem: At the same distance from a short magnet, arrange the field magnitude at angles P. 90°, Q. 0°, R. 60°, S. 30° (from the axis) in decreasing order.
+    options:
+      - P > R > S > Q
+      - Q > S > R > P
+      - Q > R > S > P
+      - S > Q > R > P
+    answer: 1
+    explanation: √(3cos^2θ + 1) is 2 at 0°, about 1.80 at 30°, about 1.32 at 60° and 1 at 90°. So Q > S > R > P.
+
+  - id: phy-mam-433
+    topic: dipole-field
+    subtopic: Exact axial field
+    concept: Exact axial field slightly exceeds the dipole estimate at moderate distance
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    formula: B = (μ_0/4π) 2mr/(r^2 − l^2)^2
+    tags: [exact-formula, axial-field]
+    stem: A magnet of length 10 cm (l = 5 cm) and moment 1 A m^2 produces what field on its axis 20 cm from its centre (exact formula)?
+    options:
+      - 2.5 × 10^{-5} T
+      - 2.0 × 10^{-5} T
+      - 3.2 × 10^{-5} T
+      - 2.84 × 10^{-5} T
+    answer: 3
+    explanation: B = 10^{-7} × 2 × 1 × 0.2/(0.04 − 0.0025)^2 = 4 × 10^{-8}/(1.406 × 10^{-3}) ≈ 2.84 × 10^{-5} T. The short-magnet formula gives 2.5 × 10^{-5} T, about 12% low.
+
+  - id: phy-mam-434
+    topic: dipole-field
+    subtopic: Electrostatic analogue
+    concept: Magnetic moment is the analogue of electric dipole moment
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [electrostatic-analogue]
+    stem: In the analogy between electric and magnetic dipoles, the electric dipole moment p corresponds to
+    options:
+      - the magnetic field B
+      - the magnetic moment m
+      - the permeability μ_0
+      - the magnetic flux Φ
+    answer: 1
+    explanation: NCERT's correspondence is p ↔ m, E ↔ B and 1/ε_0 ↔ μ_0.
+
+  - id: phy-mam-435
+    topic: dipole-field
+    subtopic: Exact vs approximate formulas
+    concept: Dipole formula underestimates axial and overestimates equatorial near fields
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [exact-formula, approximation]
+    stem: |-
+      Statement I: Close to a bar magnet, the short-magnet formula overestimates the field on its axis.
+      Statement II: Close to a bar magnet, the short-magnet formula overestimates the field on its equatorial line.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: On the axis the exact field 2mr/(r^2 − l^2)^2 exceeds 2m/r^3, so the formula underestimates it (I false). On the equator the exact field m/(r^2 + l^2)^{3/2} is less than m/r^3, so the formula overestimates it (II true).
+
+  - id: phy-mam-436
+    topic: dipole-field
+    subtopic: Symmetric antiparallel magnets
+    concept: Equal antiparallel magnets equidistant on a common equator give zero field
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [superposition]
+    stem: Two identical short magnets are placed parallel to the y-axis at x = −d and x = +d, one pointing along +y and the other along −y. The field at the origin is
+    options:
+      - 2(μ_0/4π)m/d^3 along +y
+      - (μ_0/4π)m/d^3 along −y
+      - 4(μ_0/4π)m/d^3 along +x
+      - zero
+    answer: 3
+    explanation: The origin lies on the equatorial line of each magnet at distance d. Each gives (μ_0/4π)m/d^3 antiparallel to its own moment, i.e. −y from the first and +y from the second. The two cancel.
+
+  - id: phy-mam-437
+    topic: dipole-field
+    subtopic: B r^3 against θ
+    concept: B r^3 varies between 2k and k as θ goes from 0° to 90°
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, general-point]
+    stem: For points at various angles θ from the axis of a short magnet, the quantity B r^3 is plotted against θ from 0° to 90°. The graph
+    options:
+      - is constant
+      - rises from (μ_0/4π)m to (μ_0/4π)2m
+      - falls smoothly from (μ_0/4π)2m at 0° to (μ_0/4π)m at 90°
+      - falls linearly to zero at 90°
+    answer: 2
+    explanation: B r^3 = (μ_0/4π)m√(3cos^2θ + 1), which decreases smoothly from 2 to 1 (in units of μ_0 m/4π) as θ goes from 0° to 90°. It never reaches zero.

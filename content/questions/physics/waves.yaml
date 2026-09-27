@@ -7048,3 +7048,625 @@ questions:
       - P-3, Q-4, R-1, S-2
     answer: 1
     explanation: "√(100/0.01) = 100; √(90/0.1) = √900 = 30; √(160/0.1) = √1600 = 40; √(250/0.1) = √2500 = 50 (all in m s^{-1})."
+
+  - id: phy-wav-333
+    topic: speed-of-sound
+    subtopic: Small temperature change
+    concept: A 1% rise in absolute temperature raises v by about 0.5%
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: Δv/v = ½ ΔT/T
+    tags: [temperature, percentage]
+    stem: The absolute temperature of air rises by 1%. The speed of sound in it increases by about
+    options:
+      - 0.5%
+      - 1%
+      - 2%
+      - 0.25%
+    answer: 0
+    explanation: "v ∝ T^{1/2}, so Δv/v ≈ ½ (ΔT/T) = 0.5%. Assuming v ∝ T would give 1%."
+
+  - id: phy-wav-334
+    topic: speed-of-sound
+    subtopic: Standard value
+    concept: Speed of sound in air at 0 °C is about 331 m s^{-1}
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [ncert-line]
+    stem: The speed of sound in dry air at 0 °C and normal pressure is about
+    options:
+      - 280 m s^{-1}
+      - 1500 m s^{-1}
+      - 331 m s^{-1}
+      - 3 × 10^8 m s^{-1}
+    answer: 2
+    explanation: "The measured value at 0 °C is about 331 m s^{-1}, matching Laplace's formula. 280 m s^{-1} is Newton's (isothermal) estimate and 1500 m s^{-1} is roughly the value in water."
+
+  - id: phy-wav-335
+    topic: speed-of-sound
+    subtopic: From rms speed to sound speed
+    concept: v_{sound} = v_{rms}√(γ/3)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: v = v_{rms}√(γ/3)
+    tags: [kinetic-theory, multi-concept]
+    stem: The rms speed of the molecules of a diatomic gas (γ = 1.4) at some temperature is 500 m s^{-1}. The speed of sound in the gas at that temperature is about
+    options:
+      - 500 m s^{-1}
+      - 732 m s^{-1}
+      - 591 m s^{-1}
+      - 342 m s^{-1}
+    answer: 3
+    explanation: "v_{rms} = √(3RT/M) and v = √(γRT/M), so v = 500 × √(1.4/3) ≈ 500 × 0.683 ≈ 342 m s^{-1}. Inverting the ratio gives 732 m s^{-1}."
+
+  - id: phy-wav-336
+    topic: speed-of-sound
+    subtopic: Water vs air
+    concept: Water is far less compressible (larger B) than air
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [bulk-modulus, liquids]
+    stem: |-
+      Statement I: Sound travels faster in water than in air because water is more compressible than air.
+      Statement II: The bulk modulus of water is much larger than that of air.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "Water is much LESS compressible, i.e. it has a much larger bulk modulus (about 2 × 10^9 Pa vs about 1.4 × 10^5 Pa for air). That is why v = √(B/ρ) is larger in water. Statement I gives the wrong reason; Statement II is correct."
+
+  - id: phy-wav-337
+    topic: speed-of-sound
+    subtopic: Helium vs air
+    concept: Low molar mass and higher γ make sound faster in helium
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [gases]
+    stem: |-
+      Assertion (A): At the same temperature, sound travels faster in helium than in air.
+      Reason (R): Helium has a much smaller molar mass and a larger γ than air.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "v = √(γRT/M). Helium (M = 4 g mol^{-1}, γ = 5/3) versus air (M ≈ 29 g mol^{-1}, γ = 1.4) gives almost three times the speed. R is the correct explanation."
+
+  - id: phy-wav-338
+    topic: speed-of-sound
+    subtopic: Cooling a gas
+    concept: Quartering absolute temperature halves v
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: v ∝ √T
+    tags: [temperature]
+    stem: Sound travels at 400 m s^{-1} in a gas at 400 K. At 100 K its speed is
+    options:
+      - 100 m s^{-1}
+      - 800 m s^{-1}
+      - 283 m s^{-1}
+      - 200 m s^{-1}
+    answer: 3
+    explanation: "v ∝ √T: v = 400 × √(100/400) = 400 × ½ = 200 m s^{-1}. Using v ∝ T gives 100 m s^{-1}."
+
+  - id: phy-wav-339
+    topic: speed-of-sound
+    subtopic: Log–log graph
+    concept: log v vs log T has slope ½
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: log v = ½ log T + constant
+    tags: [graph, temperature]
+    stem: For sound in an ideal gas, log v is plotted against log T (T in kelvin). The graph is a straight line of slope
+    options:
+      - ½
+      - "1"
+      - "2"
+      - −½
+    answer: 0
+    explanation: "v = √(γR/M) T^{1/2}, so log v = ½ log T + constant: a straight line of slope ½."
+
+  - id: phy-wav-340
+    topic: speed-of-sound
+    subtopic: Density change at constant pressure
+    concept: At constant P, v ∝ 1/√ρ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: v = √(γP/ρ)
+    tags: [density]
+    stem: A gas is cooled at constant pressure until its density becomes four times the original. The speed of sound in it becomes
+    options:
+      - four times
+      - one-fourth
+      - half
+      - unchanged
+    answer: 2
+    explanation: "v = √(γP/ρ) with P fixed gives v ∝ 1/√ρ, so v halves. Here density changed because temperature fell to a quarter, consistent with v ∝ √T."
+
+  - id: phy-wav-341
+    topic: speed-of-sound
+    subtopic: Newton–Laplace summary
+    concept: Isothermal B = P; Laplace gives 331 m s^{-1}; factor √γ
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [newton-formula, laplace-correction]
+    stem: |-
+      Consider:
+      I. Newton used the isothermal bulk modulus B = P.
+      II. Laplace's formula gives about 331 m s^{-1} for air at STP.
+      III. Newton's value is about 15% lower than the experimental value.
+      IV. Laplace's correction multiplies Newton's value by γ.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+      - I, II and III only
+    answer: 3
+    explanation: "Newton used B = P, obtaining ≈ 280 m s^{-1}, about 15% low. Laplace used γP, multiplying by √γ ≈ 1.18 to reach ≈ 331 m s^{-1}. IV is wrong because the factor is √γ, not γ."
+
+  - id: phy-wav-342
+    topic: speed-of-sound
+    subtopic: Air to water
+    concept: Frequency unchanged, speed and wavelength increase on entering water
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [refraction, frequency]
+    stem: A sound wave passes from air into water. Which statement is correct?
+    options:
+      - Its frequency increases and wavelength stays the same
+      - Its frequency stays the same and wavelength increases
+      - Its speed decreases and wavelength decreases
+      - Its frequency and wavelength both decrease
+    answer: 1
+    explanation: "Frequency is fixed by the source. Sound is about 4.4 times faster in water, so λ = v/f increases by the same factor."
+
+  - id: phy-wav-343
+    topic: speed-of-sound
+    subtopic: Comparing media and temperatures
+    concept: Order of speeds in air (0 °C, 100 °C), helium and water
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [ordering, multi-concept]
+    stem: "Arrange in increasing order the speed of sound in: P, air at 0 °C; Q, air at 100 °C; R, helium at 0 °C; S, water at room temperature."
+    options:
+      - P < R < Q < S
+      - Q < P < R < S
+      - P < Q < R < S
+      - P < Q < S < R
+    answer: 2
+    explanation: "Air: about 331 m s^{-1} at 0 °C, rising to about 387 m s^{-1} at 100 °C (v ∝ √T). Helium at 0 °C is about 970 m s^{-1}. Water is about 1500 m s^{-1}. So P < Q < R < S."
+
+  - id: phy-wav-344
+    topic: superposition
+    subtopic: Three equal phasors
+    concept: Three equal waves 2π/3 apart in phase cancel completely
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [phasor, multi-wave]
+    stem: Three waves of equal amplitude a and the same frequency arrive at a point with phases 0, 2π/3 and 4π/3. The resultant amplitude is
+    options:
+      - 3a
+      - a
+      - √3 a
+      - zero
+    answer: 3
+    explanation: "Represent each by a phasor of length a; three phasors 120° apart form a closed equilateral triangle, so their sum is zero. Adding just two of them gives a, which is the trap."
+
+  - id: phy-wav-345
+    topic: superposition
+    subtopic: Incoherent sources
+    concept: Intensities of incoherent sources add
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [incoherent, intensity]
+    stem: Two incoherent sources (random, rapidly varying phase difference) produce intensities I and 4I at a point. The average resultant intensity there is
+    options:
+      - 9I
+      - 5I
+      - I
+      - 3I
+    answer: 1
+    explanation: "With a random phase difference, the interference term 2√(I_1I_2) cos φ averages to zero, so intensities simply add: 5I. 9I and I are the extremes for coherent sources."
+
+  - id: phy-wav-346
+    topic: superposition
+    subtopic: Speakers facing each other
+    concept: Along the line joining two facing sources, maxima are λ/2 apart
+    category: application
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [loudspeakers, standing-waves, multi-concept]
+    stem: Two loudspeakers face each other and emit 340 Hz sound in phase. A microphone moves along the line joining them. If sound travels at 340 m s^{-1}, adjacent positions of maximum loudness are separated by
+    options:
+      - 1 m
+      - 0.25 m
+      - 0.5 m
+      - 2 m
+    answer: 2
+    explanation: "λ = 1 m. Moving a distance d along the line changes the path difference by 2d, so successive maxima (path difference change λ) are λ/2 = 0.5 m apart. Equivalently, the counter-propagating waves form a standing pattern with antinodes λ/2 apart."
+
+  - id: phy-wav-347
+    topic: superposition
+    subtopic: "Amplitude ratio 1 : 2 at π/3"
+    concept: A^2 = a^2 + 4a^2 + 2a^2 = 7a^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: A = √(A_1^2 + A_2^2 + 2A_1A_2 cos φ)
+    tags: [resultant-amplitude]
+    stem: Waves of amplitudes a and 2a and the same frequency superpose with a phase difference of π/3. The resultant amplitude is
+    options:
+      - √7 a
+      - 3a
+      - √5 a
+      - √3 a
+    answer: 0
+    explanation: "A^2 = a^2 + 4a^2 + 2(a)(2a) cos 60° = 5a^2 + 2a^2 = 7a^2, so A = √7 a. Dropping the cross term gives √5 a."
+
+  - id: phy-wav-348
+    topic: superposition
+    subtopic: Coherence conditions
+    concept: Sustained interference needs equal frequency; random phase gives I_1 + I_2
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [coherence]
+    stem: |-
+      Statement I: A steady interference pattern of sound requires the two waves to have the same frequency.
+      Statement II: If the phase difference between two sources varies randomly, the average intensity at every point is I_1 + I_2.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Unequal frequencies make the phase difference drift, giving beats instead of a steady pattern (I correct). With random phase the interference term averages to zero, so intensities add (II correct)."
+
+  - id: phy-wav-349
+    topic: superposition
+    subtopic: Scope of superposition
+    concept: Superposition requires a linear medium; energies do not simply add pointwise
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [superposition, linearity]
+    stem: |-
+      About the principle of superposition, consider:
+      I. It holds when the restoring forces obey Hooke's law (small displacements).
+      II. Waves pass through each other without being altered.
+      III. The resultant displacement is the vector sum of the individual displacements.
+      IV. At every point, the resultant energy density is the sum of the individual energy densities.
+      Which are correct?
+    options:
+      - I and IV only
+      - II and III only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: "Superposition applies to displacements in a linear medium, and waves emerge unaltered after crossing. Energy depends on the square of the amplitude, so it does not add pointwise; interference redistributes it. IV is false."
+
+  - id: phy-wav-350
+    topic: superposition
+    subtopic: Opposite phase, unequal amplitudes
+    concept: Waves in antiphase give amplitude |A_1 − A_2| in phase with the larger
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [resultant-amplitude, phase]
+    stem: "y_1 = 4 sin ωt and y_2 = 3 sin(ωt + π) (in cm) superpose. The resultant is"
+    options:
+      - 7 sin ωt
+      - 1 sin(ωt + π)
+      - 1 sin ωt
+      - 5 sin(ωt + π/2)
+    answer: 2
+    explanation: "sin(ωt + π) = −sin ωt, so y = 4 sin ωt − 3 sin ωt = sin ωt: amplitude 1 cm, in phase with the larger wave y_1."
+
+  - id: phy-wav-351
+    topic: superposition
+    subtopic: Stationary pattern
+    concept: Different frequencies give a time-varying phase difference
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [interference, coherence]
+    stem: |-
+      Assertion (A): Two sound waves of different frequencies cannot produce a stationary pattern of loud and soft points.
+      Reason (R): The phase difference between such waves at any point changes continuously with time.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "With different frequencies the phase difference at a point grows as 2π(f_1 − f_2)t, so each point alternates between loud and soft (beats). No point stays permanently loud or soft, and R explains A."
+
+  - id: phy-wav-352
+    topic: superposition
+    subtopic: Partial standing wave
+    concept: Unequal counter-propagating waves give amplitude between a_1 − a_2 and a_1 + a_2
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [partial-reflection, multi-concept]
+    stem: A wave of amplitude 5 mm on a string is partly reflected at a junction, and the reflected wave has amplitude 3 mm. Along the incident side, the amplitude of the resultant oscillation varies between
+    options:
+      - 0 and 8 mm
+      - 2 mm and 8 mm
+      - 3 mm and 5 mm
+      - 2 mm and 5 mm
+    answer: 1
+    explanation: "At points where the two counter-propagating waves are in phase the amplitude is 5 + 3 = 8 mm; where they are in antiphase it is 5 − 3 = 2 mm. True nodes (zero) need equal amplitudes."
+
+  - id: phy-wav-353
+    topic: superposition
+    subtopic: Amplitude 3 and 4 at various phases
+    concept: A = √(9 + 16 + 24 cos φ) for different φ
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: A = √(A_1^2 + A_2^2 + 2A_1A_2 cos φ)
+    tags: [match, resultant-amplitude]
+    stem: |-
+      Waves of amplitudes 3 units and 4 units superpose. Match the phase difference (List I) with the resultant amplitude (List II).
+      List I: P. 0  Q. π  R. π/2  S. 2π/3
+      List II: 1. 5  2. √13  3. 7  4. 1
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 0
+    explanation: "A^2 = 25 + 24 cos φ: φ = 0 gives 49 (7); φ = π gives 1 (1); φ = π/2 gives 25 (5); φ = 2π/3 gives 25 − 12 = 13 (√13)."
+
+  - id: phy-wav-354
+    topic: reflection
+    subtopic: Speed of sound from echoes
+    concept: Change in echo time for a change in distance gives v
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: Δt = 2Δd/v
+    tags: [echo, speed-of-sound]
+    stem: A person hears the echo of a clap from a distant wall. After walking 85 m towards the wall, the echo arrives 0.5 s sooner than before. The speed of sound is
+    options:
+      - 170 m s^{-1}
+      - 680 m s^{-1}
+      - 330 m s^{-1}
+      - 340 m s^{-1}
+    answer: 3
+    explanation: "The round trip is shorter by 2 × 85 = 170 m, which takes 0.5 s less: v = 170/0.5 = 340 m s^{-1}. Forgetting the factor 2 gives 170 m s^{-1}."
+
+  - id: phy-wav-355
+    topic: reflection
+    subtopic: Closed end of a pipe
+    concept: Displacement wave reflects with phase change π at a closed end
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [closed-end, phase-change]
+    stem: At the closed end of an organ pipe, the displacement wave of sound is reflected with a phase change of
+    options:
+      - zero
+      - π/2
+      - π
+      - 3π/2
+    answer: 2
+    explanation: "The closed end is like a rigid support: air cannot move there, so the displacement wave is reversed (phase change π). The pressure wave, however, reflects there without phase change."
+
+  - id: phy-wav-356
+    topic: reflection
+    subtopic: Reflected pulse properties
+    concept: At a rigid end the pulse is inverted with the same speed and width
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [rigid-boundary, pulse]
+    stem: |-
+      A pulse on a string is fully reflected at a rigidly fixed end. Consider:
+      I. The reflected pulse is inverted.
+      II. The reflected pulse travels with the same speed.
+      III. The reflected pulse has the same width.
+      IV. The reflected pulse has a larger amplitude.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and III only
+      - I, III and IV only
+    answer: 1
+    explanation: "The pulse returns inverted, on the same string (same speed) and with the same shape and width. With no energy loss its amplitude is unchanged, not larger."
+
+  - id: phy-wav-357
+    topic: reflection
+    subtopic: Free end reflection
+    concept: A pulse reflects upright from a free end
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    diagram: "A horizontal string whose right end is tied to a light ring that can slide freely along a smooth vertical rod. An upright triangular pulse of height 1 cm moves right towards the ring, with arrow labelled v."
+    tags: [free-boundary, diagram]
+    stem: The pulse shown reaches the ring on the smooth rod and is reflected. The reflected pulse is
+    options:
+      - inverted, of height 1 cm
+      - upright, of height 2 cm
+      - inverted, of height 2 cm
+      - upright, of height 1 cm
+    answer: 3
+    explanation: "A ring free to slide is a free (open) boundary, so the pulse returns upright with no phase change. Once reflection is complete it has its original height of 1 cm; 2 cm occurs only momentarily at the end during reflection."
+
+  - id: phy-wav-358
+    topic: reflection
+    subtopic: Meeting of reflected and incident pulses
+    concept: Timing a reflected pulse against a second pulse
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [pulse, rigid-boundary, kinematics]
+    stem: A pulse is sent from end A of a 6 m string whose other end B is fixed; pulses travel at 3 m s^{-1}. A second identical pulse is sent from A 1 s after the first. The reflected first pulse meets the second pulse at a distance from A of
+    options:
+      - 4.5 m
+      - 3 m
+      - 1.5 m
+      - 6 m
+    answer: 0
+    explanation: "The first pulse reaches B at 2 s and returns: x = 6 − 3(t − 2). The second: x = 3(t − 1). Equating gives t = 2.5 s and x = 4.5 m. Since the reflected pulse is inverted, the two momentarily cancel there."
+
+  - id: phy-wav-359
+    topic: reflection
+    subtopic: Transmitted pulse
+    concept: Transmitted pulses are never inverted; speed drops in a heavier string
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [junction, transmission]
+    stem: |-
+      Statement I: At a junction of two strings, the transmitted pulse is never inverted.
+      Statement II: When a pulse passes from a light string into a heavy string, the transmitted pulse travels faster.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "The junction point moves in the same sense as the incoming pulse, so the transmitted pulse is always upright (I correct). In the heavier string v = √(T/μ) is smaller, so it travels slower (II incorrect)."
+
+  - id: phy-wav-360
+    topic: reflection
+    subtopic: Reverberation
+    concept: Persistence of sound in a hall is due to repeated reflections
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [reverberation]
+    stem: The persistence of sound in a large hall after the source has stopped, caused by repeated reflections from walls, is called
+    options:
+      - reverberation
+      - resonance
+      - beats
+      - refraction
+    answer: 0
+    explanation: "Multiple reflections from walls, ceiling and floor keep sound lingering: this is reverberation. It is reduced with sound-absorbing materials."
+
+  - id: phy-wav-361
+    topic: reflection
+    subtopic: Fixed–free string
+    concept: Node at the fixed end and antinode at the free end allow only odd harmonics
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [boundary-conditions, odd-harmonics]
+    stem: |-
+      Assertion (A): A string fixed at one end and free at the other has only odd harmonics.
+      Reason (R): Reflection makes the fixed end a displacement node and the free end a displacement antinode.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "With a node at one end and an antinode at the other, the length must be an odd multiple of λ/4, L = (2n − 1)λ/4, giving only odd harmonics (like a closed pipe). R explains A."
