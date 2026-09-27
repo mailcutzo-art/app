@@ -1,0 +1,31 @@
+/// Pastel design system: tokens, theme, icons, motion and widgets.
+library;
+
+export 'src/icons/app_icons.dart';
+export 'src/icons/huge_icon.dart';
+export 'src/icons/icon_motion.dart';
+export 'src/icons/icon_shapes.dart' show HugeIconData;
+export 'src/theme/app_theme.dart';
+export 'src/tokens/app_colors.dart';
+export 'src/tokens/app_dimens.dart';
+export 'src/tokens/app_motion.dart';
+export 'src/tokens/app_shadows.dart';
+export 'src/tokens/app_typography.dart';
+export 'src/widgets/app_button.dart';
+export 'src/widgets/app_icon_button.dart';
+export 'src/widgets/avatar.dart';
+export 'src/widgets/cards.dart';
+export 'src/widgets/chips.dart';
+export 'src/widgets/competition_widgets.dart';
+export 'src/widgets/dot_matrix_chart.dart';
+export 'src/widgets/headers.dart';
+export 'src/widgets/inputs.dart';
+export 'src/widgets/nav_bar.dart';
+export 'src/widgets/numbers.dart';
+export 'src/widgets/pressable.dart';
+export 'src/widgets/progress.dart';
+export 'src/widgets/quiz_text.dart';
+export 'src/widgets/quiz_widgets.dart';
+export 'src/widgets/segmented_control.dart';
+export 'src/widgets/sheets.dart';
+export 'src/widgets/states.dart';
