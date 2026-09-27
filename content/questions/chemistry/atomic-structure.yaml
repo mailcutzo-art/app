@@ -7146,3 +7146,427 @@ questions:
       - 600 nm
     answer: 1
     explanation: λ_0 = 1240/3.0 ≈ 413 nm, so only wavelengths shorter than 413 nm work. 350 nm photons carry 3.54 eV; 450 nm photons carry only 2.76 eV.
+
+  - id: che-atom-341
+    topic: atomic-spectra
+    subtopic: Rydberg formula
+    concept: Wavelength of the n = 5 → 2 transition
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: ΔE = 2.18 × 10^{-18}(1/n_f^2 − 1/n_i^2) J
+    tags: [balmer, ncert-line]
+    stem: What is the wavelength of the photon emitted when the electron of a hydrogen atom falls from n = 5 to n = 2? (E_n = −2.18 × 10^{-18}/n^2 J, h = 6.626 × 10^{-34} J s, c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 486 nm
+      - 434 nm
+      - 410 nm
+      - 656 nm
+    answer: 1
+    explanation: ΔE = 2.18 × 10^{-18} × (1/4 − 1/25) = 2.18 × 10^{-18} × 0.21 = 4.58 × 10^{-19} J. λ = hc/ΔE = 1.988 × 10^{-25} ÷ 4.58 × 10^{-19} ≈ 4.34 × 10^{-7} m = 434 nm. 486 nm and 656 nm come from n = 4 and n = 3.
+
+  - id: che-atom-342
+    topic: atomic-spectra
+    subtopic: Balmer formula
+    concept: Balmer's formula holds for n ≥ 3
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    formula: ν̄ = 109,677(1/2^2 − 1/n^2) cm^{-1}
+    tags: [balmer, ncert-line]
+    stem: In Balmer's formula ν̄ = 109,677(1/2^2 − 1/n^2) cm^{-1}, the allowed values of n are
+    options:
+      - 1, 2, 3, …
+      - 2, 3, 4, …
+      - 3, 4, 5, …
+      - only 3, 4, 5 and 6
+    answer: 2
+    explanation: The upper level must be above n = 2, so n = 3, 4, 5 … Using n = 2 gives zero wavenumber, and n = 1 gives a negative value. The series has infinitely many lines converging to the limit.
+
+  - id: che-atom-343
+    topic: atomic-spectra
+    subtopic: Spectral regions
+    concept: Of the six lines from n = 4, two are visible
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [spectral-lines, balmer, multi-concept]
+    stem: A sample of hydrogen atoms excited to n = 4 emits all possible lines as it returns to the ground state. How many of these lines lie in the visible region?
+    options:
+      - "6"
+      - "3"
+      - "4"
+      - "2"
+    answer: 3
+    explanation: The six lines are 4→3 (Paschen, IR), 4→2 and 3→2 (Balmer, visible), and 4→1, 3→1, 2→1 (Lyman, UV). So only 2 are visible.
+
+  - id: che-atom-344
+    topic: atomic-spectra
+    subtopic: Absorption spectra
+    concept: Ground-state H absorbs only Lyman wavelengths
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [absorption-spectrum, lyman, trap]
+    stem: Cold hydrogen gas, with nearly all atoms in the ground state, is placed in the path of white light containing all wavelengths from UV to IR. Its absorption spectrum shows dark lines corresponding to the
+    options:
+      - Balmer series only
+      - Lyman series only
+      - Paschen series only
+      - Lyman, Balmer and Paschen series equally
+    answer: 1
+    explanation: Absorption starts from the occupied level. With atoms in n = 1, only transitions 1 → 2, 1 → 3 … occur, which are the Lyman wavelengths. Balmer absorption needs atoms already in n = 2.
+
+  - id: che-atom-345
+    topic: atomic-spectra
+    subtopic: Identifying transitions
+    concept: Matching hydrogen transitions with wavelengths
+    category: application
+    format: match
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [spectral-series, multi-concept]
+    stem: |-
+      Match the hydrogen transition (List I) with its wavelength (List II).
+      List I: P. n = 2 → 1; Q. n = 3 → 2; R. n = 4 → 3; S. n = ∞ → 1
+      List II: 1. 656 nm; 2. 91.2 nm; 3. 121.6 nm; 4. 1875 nm
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-1, R-4, S-3
+      - P-3, Q-4, R-1, S-2
+      - P-1, Q-3, R-4, S-2
+    answer: 0
+    explanation: 2 → 1 is the first Lyman line (121.6 nm), 3 → 2 is H_α (656 nm), 4 → 3 is the first Paschen line (1875 nm), and ∞ → 1 is the Lyman limit (91.2 nm).
+
+  - id: che-atom-346
+    topic: atomic-spectra
+    subtopic: Series limit
+    concept: Series-limit wavelengths scale as n_1^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: λ_limit = n_1^2/R_H
+    tags: [series-limit, proportionality]
+    stem: The ratio of the series-limit wavelength of the Lyman series to that of the Balmer series is
+    options:
+      - "4:1"
+      - "1:2"
+      - "1:4"
+      - "3:4"
+    answer: 2
+    explanation: "λ_limit = n_1^2/R_H, so the ratio is 1^2 : 2^2 = 1:4 (91.2 nm vs 364.6 nm). 4:1 is the ratio of their wavenumbers."
+
+  - id: che-atom-347
+    topic: atomic-spectra
+    subtopic: Emission and absorption spectra
+    concept: Emission and absorption lines of an element coincide
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [line-spectrum, absorption-spectrum]
+    stem: |-
+      Statement I: An emission spectrum of an element consists of bright lines on a dark background.
+      Statement II: In the absorption spectrum of the same element, dark lines appear at the wavelengths where it emits.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Both are correct. An absorption spectrum is like the photographic negative of the emission spectrum, because an atom absorbs exactly the photon energies it can emit.
+
+  - id: che-atom-348
+    topic: atomic-spectra
+    subtopic: Hydrogen-like species
+    concept: Wavenumber of a transition scales as Z^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: ν̄ ∝ Z^2
+    tags: [hydrogen-like, proportionality]
+    stem: The n = 3 → 2 transition of hydrogen has a wavenumber of 15,233 cm^{-1}. What is the wavenumber for the same transition in Li^{2+}?
+    options:
+      - 45,699 cm^{-1}
+      - 5,078 cm^{-1}
+      - 137,097 cm^{-1}
+      - 15,233 cm^{-1}
+    answer: 2
+    explanation: ν̄ = R_H Z^2(1/n_1^2 − 1/n_2^2), so for Z = 3 it is 9 × 15,233 ≈ 137,097 cm^{-1}. Multiplying by Z instead of Z^2 gives 45,699 cm^{-1}.
+
+  - id: che-atom-349
+    topic: atomic-spectra
+    subtopic: Origin of line spectra
+    concept: Each element has its own set of energy levels
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [line-spectrum]
+    stem: Why do different elements give different line spectra?
+    options:
+      - Because their atoms have different sets of allowed electronic energy levels
+      - Because their atoms have different numbers of neutrons
+      - Because they are heated to different temperatures
+      - Because their nuclei emit the light
+    answer: 0
+    explanation: Each line matches an energy gap between allowed electronic levels, and these levels differ from element to element. Isotopes, which differ only in neutrons, give nearly identical spectra.
+
+  - id: che-atom-350
+    topic: atomic-spectra
+    subtopic: Rydberg formula
+    concept: Second Balmer line from the first
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: 1/λ ∝ (1/4 − 1/n^2)
+    tags: [balmer, proportionality]
+    stem: The first line of the Balmer series of hydrogen has a wavelength of 656 nm. The wavelength of the second line of this series is about
+    options:
+      - 410 nm
+      - 434 nm
+      - 364 nm
+      - 486 nm
+    answer: 3
+    explanation: "1/λ ∝ (1/4 − 1/n^2): 5/36 for n = 3 and 3/16 for n = 4. So λ_2 = 656 × (5/36) ÷ (3/16) = 656 × 20/27 ≈ 486 nm. 364 nm is the series limit."
+
+  - id: che-atom-351
+    topic: bohr-model
+    subtopic: Radius of orbits
+    concept: Radius of the fifth orbit of hydrogen
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: r_n = 52.9 n^2 pm
+    tags: [bohr-radius, ncert-line]
+    stem: The radius of the fifth Bohr orbit of hydrogen is about (r_1 = 52.9 pm)
+    options:
+      - 264.5 pm
+      - 1.32 nm
+      - 0.529 nm
+      - 2.65 nm
+    answer: 1
+    explanation: r_5 = 52.9 × 5^2 = 1322.5 pm ≈ 1.32 nm. 264.5 pm multiplies by n instead of n^2.
+
+  - id: che-atom-352
+    topic: bohr-model
+    subtopic: Velocity of electron
+    concept: Equal Z/n gives equal electron speeds
+    category: application
+    format: direct
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: true
+    formula: v ∝ Z/n
+    tags: [bohr-velocity, hydrogen-like, trap]
+    stem: The ratio of the electron's speed in the first orbit of H to that in the second orbit of He^+ is
+    options:
+      - "1:2"
+      - "2:1"
+      - "1:1"
+      - "1:4"
+    answer: 2
+    explanation: v ∝ Z/n. For H (n = 1) it is 1/1 and for He^+ (n = 2) it is 2/2, so the speeds are equal, 1:1.
+
+  - id: che-atom-353
+    topic: bohr-model
+    subtopic: Radius of orbits
+    concept: Radius four times r_1 means n = 2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    formula: r_n ∝ n^2
+    tags: [bohr-radius]
+    stem: In which Bohr orbit of hydrogen is the radius four times that of the first orbit?
+    options:
+      - n = 4
+      - n = 2
+      - n = 16
+      - n = 3
+    answer: 1
+    explanation: r_n ∝ n^2, so r = 4r_1 needs n^2 = 4, giving n = 2. Choosing n = 4 assumes r ∝ n.
+
+  - id: che-atom-354
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: Molar ionisation energy of He^+
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: IE ∝ Z^2
+    tags: [hydrogen-like, ionisation-energy]
+    stem: The ionisation energy of hydrogen is 1312 kJ mol^{-1}. The ionisation energy of He^+ is
+    options:
+      - 2624 kJ mol^{-1}
+      - 328 kJ mol^{-1}
+      - 11,808 kJ mol^{-1}
+      - 5248 kJ mol^{-1}
+    answer: 3
+    explanation: IE ∝ Z^2 for one-electron species in the ground state, so IE(He^+) = 4 × 1312 = 5248 kJ mol^{-1}. 2624 kJ mol^{-1} scales by Z only.
+
+  - id: che-atom-355
+    topic: bohr-model
+    subtopic: Energy of transition
+    concept: Features of electron transitions in hydrogen
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [transition-energy, bohr-postulates]
+    stem: |-
+      Consider the statements about transitions in a hydrogen atom:
+      I. Energy is emitted when the electron moves from a higher to a lower orbit.
+      II. The energy released in the 3 → 2 transition is greater than that in the 2 → 1 transition.
+      III. The frequency of the radiation is ΔE/h.
+      IV. Absorption of a suitable photon moves the electron to a higher orbit.
+      Which are correct?
+    options:
+      - I and III only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 3
+    explanation: I, III and IV follow Bohr's postulates. Energy gaps shrink with n (10.2 eV for 2 → 1 vs 1.89 eV for 3 → 2), so II is false.
+
+  - id: che-atom-356
+    topic: bohr-model
+    subtopic: Energy of orbits
+    concept: Correct energy values for H and He^+ levels
+    category: numerical
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: E_n = −2.18 × 10^{-18} Z^2/n^2 J
+    tags: [bohr-energy, hydrogen-like]
+    stem: Which statement about Bohr energies is correct?
+    options:
+      - "The ground-state energy of He^+ is −4.36 × 10^{-18} J"
+      - "The energy of an electron at n = ∞ in hydrogen is −2.18 × 10^{-18} J"
+      - "The energy of the n = 2 level of hydrogen is −1.09 × 10^{-18} J"
+      - "The ground-state energy of hydrogen is −2.18 × 10^{-18} J"
+    answer: 3
+    explanation: E_1(H) = −2.18 × 10^{-18} J. He^+ is Z^2 = 4 times lower, −8.72 × 10^{-18} J; the n = ∞ energy is zero; and E_2(H) = −2.18 × 10^{-18}/4 = −5.45 × 10^{-19} J.
+
+  - id: che-atom-357
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: Wavelength of the He^+ 2 → 1 photon
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: ΔE = 13.6 Z^2(1/n_1^2 − 1/n_2^2) eV
+    tags: [hydrogen-like, transition-energy]
+    stem: The wavelength of the photon emitted when the electron of He^+ drops from n = 2 to n = 1 is about (hc = 1240 eV nm)
+    options:
+      - 30.4 nm
+      - 121.6 nm
+      - 60.8 nm
+      - 22.8 nm
+    answer: 0
+    explanation: ΔE = 13.6 × 4 × (1 − 1/4) = 40.8 eV, so λ = 1240 ÷ 40.8 ≈ 30.4 nm, a quarter of hydrogen's 121.6 nm Lyman-α line. Scaling by Z instead of Z^2 gives 60.8 nm.
+
+  - id: che-atom-358
+    topic: bohr-model
+    subtopic: Bohr model facts
+    concept: Two true facts about the Bohr model that are unrelated
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [bohr-radius, bohr-limitations]
+    stem: |-
+      Assertion (A): According to Bohr's theory, the radius of the first orbit of hydrogen is 52.9 pm.
+      Reason (R): Bohr's theory cannot explain the splitting of spectral lines in a magnetic field.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Both are true: the Bohr radius a_0 = 52.9 pm, and the model fails for the Zeeman effect. The failure in a magnetic field has nothing to do with the value of the radius, so R does not explain A."
+
+  - id: che-atom-359
+    topic: bohr-model
+    subtopic: Excitation
+    concept: Emission lines from atoms excited from n = 2 to n = 4
+    category: application
+    format: case
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [spectral-lines, excitation, trap]
+    stem: Hydrogen atoms initially in n = 2 absorb photons and are raised to n = 4. As the sample then returns fully to the ground state, the maximum number of different spectral lines emitted is
+    options:
+      - "3"
+      - "2"
+      - "4"
+      - "6"
+    answer: 3
+    explanation: Once in n = 4, atoms can fall by any route to n = 1, giving 4 × 3/2 = 6 lines (4→3, 4→2, 4→1, 3→2, 3→1, 2→1). Counting only transitions down to n = 2 gives 3.
+
+  - id: che-atom-360
+    topic: bohr-model
+    subtopic: Radius of orbits
+    concept: Ground-state radius of hydrogen-like ions varies as 1/Z
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, hydrogen-like, bohr-radius]
+    stem: For the ground states of H, He^+, Li^{2+} and Be^{3+}, a graph of the orbit radius r (y-axis) against 1/Z (x-axis) is
+    options:
+      - a straight line through the origin
+      - a rectangular hyperbola
+      - a straight line parallel to the x-axis
+      - a parabola
+    answer: 0
+    explanation: "For n = 1, r = 52.9/Z pm, so r ∝ 1/Z: a straight line through the origin with slope 52.9 pm. Plotting r against Z would give a hyperbola."

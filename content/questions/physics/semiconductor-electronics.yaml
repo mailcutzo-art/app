@@ -7412,3 +7412,1068 @@ questions:
     answer: 0
     explanation: "V_p > V_n, so the diode conducts. The potential difference is 3 − (−2) = 5 V, and I = 5/5 = 1 A. Using 3 − 2 = 1 V gives 0.2 A."
 
+  - id: phy-semi-351
+    topic: diode-circuits
+    subtopic: Clamping a divider
+    concept: A conducting diode fixes a node at the voltage of the source it connects to
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [ideal-diode, node-voltage, multi-concept]
+    stem: Two 4 kΩ resistors in series form a divider across a 12 V supply. From their midpoint M, an ideal diode (p-side at M) is connected to the positive terminal of a 4 V battery whose negative terminal is grounded. The potential of M is
+    options:
+      - 6 V
+      - 8 V
+      - 2 V
+      - 4 V
+    answer: 3
+    explanation: "Without the diode M would be at 6 V, higher than 4 V, so the diode is forward biased and conducts. An ideal conducting diode has no drop, so it holds M at 4 V (the upper resistor then carries 2 mA, the lower 1 mA and the diode 1 mA)."
+
+  - id: phy-semi-352
+    topic: diode-circuits
+    subtopic: Diode OR with unequal inputs
+    concept: With diodes joined at a common cathode, only the higher input diode conducts
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [diode-logic, ideal-diode, multi-concept]
+    stem: Two ideal diodes have their p-sides at +5 V and +2 V respectively and their n-sides joined at point Y, which is connected through a resistor to ground. The potential of Y and the diode that conducts are
+    options:
+      - 2 V; only the diode at +2 V
+      - 3.5 V; both diodes
+      - 5 V; only the diode at +5 V
+      - 7 V; both diodes
+    answer: 2
+    explanation: "If the +5 V diode conducts, Y rises to 5 V, which reverse biases the +2 V diode (its n-side at 5 V, p-side at 2 V). So Y = 5 V and only one diode conducts; Y follows the highest input."
+
+  - id: phy-semi-353
+    topic: diode-circuits
+    subtopic: Series circuit with Si diode
+    concept: Current with a 0.7 V diode drop
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [diode-drop, series-circuit]
+    stem: A 3.7 V battery, a silicon diode (0.7 V drop) and a 150 Ω resistor are in series with the diode forward biased. The current is
+    options:
+      - 24.7 mA
+      - 20 mA
+      - 4.7 mA
+      - 30 mA
+    answer: 1
+    explanation: "I = (3.7 − 0.7)/150 = 3/150 = 0.02 A = 20 mA. Ignoring the drop gives 24.7 mA."
+
+  - id: phy-semi-354
+    topic: diode-circuits
+    subtopic: Measuring reverse current
+    concept: A reverse-biased diode shows only a tiny current; ammeter resistance is irrelevant
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [reverse-bias, ammeter]
+    stem: |-
+      Assertion (A): A microammeter in series with a reverse-biased diode and a battery shows a small but non-zero reading.
+      Reason (R): An ammeter has a very low resistance.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "The small reading is the reverse saturation current of minority carriers. The ammeter's low resistance is true but is not why the current exists; the current is set by the diode."
+
+  - id: phy-semi-355
+    topic: diode-circuits
+    subtopic: Bridge steering
+    concept: A diode bridge sends current one way through the load for either polarity
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [bridge-rectifier, polarity, multi-concept]
+    stem: A DC battery is connected to the input of a four-diode bridge whose output feeds a resistor R. If the battery terminals are swapped, the current through R
+    options:
+      - becomes zero
+      - reverses direction
+      - doubles
+      - keeps the same direction and magnitude (ideal diodes)
+    answer: 3
+    explanation: "A bridge routes current through the load in the same direction whichever input terminal is positive; the other diode pair simply takes over. That is exactly why it rectifies AC, and it is also used for polarity protection."
+
+  - id: phy-semi-356
+    topic: diode-circuits
+    subtopic: I-V of diode plus resistor
+    concept: Ideal diode and resistor in series give zero current for V < 0 and slope 1/R for V > 0
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [ideal-diode, graph]
+    stem: The current I through an ideal diode in series with a resistor R is plotted against the applied voltage V (positive V forward biases the diode). The graph is
+    options:
+      - zero for V < 0 and a straight line of slope 1/R for V > 0
+      - a straight line of slope 1/R through the origin for all V
+      - zero for V > 0 and a line of slope 1/R for V < 0
+      - an exponential curve for all V
+    answer: 0
+    explanation: "For reverse voltages the ideal diode is open, so I = 0. For forward voltages it is a short, leaving only R, so I = V/R, a straight line of slope 1/R."
+
+  - id: phy-semi-357
+    topic: diode-circuits
+    subtopic: Ideal diode models
+    concept: Behaviour of ideal diodes in circuits
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [ideal-diode]
+    stem: |-
+      Consider these statements about an ideal diode in a circuit:
+      I. When forward biased, the voltage across it is zero.
+      II. When reverse biased, the current through it is zero.
+      III. When reverse biased, it may have a large voltage across it.
+      IV. It can conduct in both directions if the voltage is large enough.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: "An ideal diode is a perfect one-way switch: zero voltage when on, zero current when off, and it can hold any reverse voltage. It never conducts in reverse, so IV is wrong."
+
+  - id: phy-semi-358
+    topic: diode-circuits
+    subtopic: Power in the resistor
+    concept: Power in a resistor in series with a conducting Si diode
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: P = I^2 R
+    tags: [power, diode-drop]
+    stem: A 10 V battery, a silicon diode (0.7 V) and a 93 Ω resistor are connected in series with the diode forward biased. The power dissipated in the resistor is about
+    options:
+      - 1.08 W
+      - 0.93 W
+      - 0.07 W
+      - 9.3 W
+    answer: 1
+    explanation: "I = (10 − 0.7)/93 = 0.1 A. P = I^2 R = 0.01 × 93 = 0.93 W. Ignoring the diode drop gives 1.08 W."
+
+  - id: phy-semi-359
+    topic: rectifiers
+    subtopic: Full-wave output frequency
+    concept: Full-wave output frequency is twice the input
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [full-wave, frequency, trap]
+    stem: |-
+      Assertion (A): The fundamental frequency of the output of a full-wave rectifier equals the input frequency.
+      Reason (R): In a full-wave rectifier, both half cycles of the input produce output pulses.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "Because both halves give a pulse, there are two pulses per input cycle, so the output frequency is twice the input frequency. R is true and A is false."
+
+  - id: phy-semi-360
+    topic: rectifiers
+    subtopic: Role of transformer
+    concept: The transformer sets the AC voltage level for the rectifier
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [transformer]
+    stem: In a DC power supply, the transformer placed before the rectifier is used mainly to
+    options:
+      - convert AC into DC
+      - remove the ripple from the output
+      - step the mains voltage up or down to the required level
+      - increase the frequency of the supply
+    answer: 2
+    explanation: "The transformer changes the AC voltage to the level required; the diodes do the rectification and the filter reduces the ripple. A transformer does not change frequency."
+
+  - id: phy-semi-361
+    topic: rectifiers
+    subtopic: Output period
+    concept: Half-wave output period equals the input period
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [half-wave, frequency]
+    stem: A half-wave rectifier is fed with 60 Hz AC. The time between successive output pulses is about
+    options:
+      - 16.7 ms
+      - 8.3 ms
+      - 60 ms
+      - 33.3 ms
+    answer: 0
+    explanation: "One pulse per input cycle, so the spacing is T = 1/60 s ≈ 16.7 ms. 8.3 ms would apply to a full-wave rectifier."
+
+  - id: phy-semi-362
+    topic: rectifiers
+    subtopic: Bridge rectifier conduction
+    concept: Opposite diodes of a bridge conduct together in each half cycle
+    category: application
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    diagram: "Bridge rectifier: four diodes form a diamond with corners P (top), Q (right), R (bottom), S (left). AC input is applied between P and R. D1 goes from P to Q (anode at P), D2 from R to Q (anode at R), D3 from S to R (anode at S), D4 from S to P (anode at S). Load resistor R_L is connected between Q (positive output) and S."
+    tags: [bridge-rectifier, diagram]
+    stem: In the bridge rectifier shown, during the half cycle when P is positive with respect to R, the diodes that conduct are
+    options:
+      - D1 and D2
+      - D2 and D4
+      - D4 and D2
+      - D1 and D3
+    answer: 3
+    explanation: "With P positive, current leaves P through D1 (anode at P) to Q, passes through R_L from Q to S, and returns through D3 (anode at S) to R. D2 and D4 are reverse biased. In the other half cycle D2 and D4 conduct, and the current through R_L is again from Q to S."
+
+  - id: phy-semi-363
+    topic: rectifiers
+    subtopic: Filter failure
+    concept: Loss of filter capacitance increases ripple
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [filter, case]
+    stem: An old DC adapter starts producing a loud hum in a radio. A technician finds that the filter capacitor has dried out and lost most of its capacitance. The hum appeared because
+    options:
+      - the ripple in the output increased
+      - the diodes stopped conducting
+      - the output frequency became zero
+      - the transformer started giving DC
+    answer: 0
+    explanation: "With little capacitance, the output falls much further between charging pulses, so the ripple (AC component) rises and is heard as hum at 100 Hz for a full-wave supply."
+
+  - id: phy-semi-364
+    topic: rectifiers
+    subtopic: Reducing ripple
+    concept: Ways to reduce ripple in a rectifier output
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [filter, ripple-factor]
+    stem: Which of these would increase, rather than reduce, the ripple in a capacitor-filtered rectifier output?
+    options:
+      - Using a full-wave instead of a half-wave rectifier
+      - Using a smaller filter capacitor
+      - Using a larger filter capacitor
+      - Drawing a smaller load current
+    answer: 1
+    explanation: "A smaller capacitor discharges faster between pulses, increasing ripple. Full-wave rectification, larger C and a lighter load (larger R_L) all reduce ripple."
+
+  - id: phy-semi-365
+    topic: rectifiers
+    subtopic: RMS of full-wave output
+    concept: RMS value of full-wave output is V_m/√2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: V_rms = V_m/√2
+    tags: [full-wave, rms]
+    stem: A full-wave rectifier gives pulses of peak 20 V. The rms value of the output voltage is about
+    options:
+      - 10 V
+      - 12.7 V
+      - 20 V
+      - 14.1 V
+    answer: 3
+    explanation: "Squaring a full-wave rectified sine gives the same average as squaring the full sine, so V_rms = V_m/√2 ≈ 14.1 V. 10 V is the half-wave rms and 12.7 V the full-wave average."
+
+  - id: phy-semi-366
+    topic: rectifiers
+    subtopic: Current in each diode
+    concept: Each diode of a centre-tap rectifier carries half-wave pulses
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [centre-tap, waveform, multi-concept]
+    stem: In a centre-tap full-wave rectifier fed with a sine wave of period T, the current through one of the two diodes, plotted against time, shows
+    options:
+      - half-sine pulses once every period T, with gaps of T/2 between them
+      - half-sine pulses every T/2 with no gaps
+      - a steady DC current
+      - a complete sine wave
+    answer: 0
+    explanation: "Each diode conducts only in its own half cycle, so its current is a half-wave pattern (one pulse per period). The two diodes' pulses interleave to give the full-wave load current."
+
+  - id: phy-semi-367
+    topic: rectifiers
+    subtopic: Rectifier circuits
+    concept: Number of diodes and PIV in rectifier types
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [bridge-rectifier, centre-tap, piv, match]
+    stem: |-
+      Match List I with List II.
+      List I: P. Half-wave rectifier  Q. Centre-tap full-wave rectifier  R. Bridge rectifier  S. PIV of each diode in a bridge
+      List II: 1. One diode  2. Four diodes  3. Two diodes and a centre-tapped transformer  4. V_m
+    options:
+      - P-1, Q-2, R-3, S-4
+      - P-1, Q-3, R-2, S-4
+      - P-3, Q-1, R-2, S-4
+      - P-1, Q-3, R-4, S-2
+    answer: 1
+    explanation: "Half-wave: one diode. Centre-tap: two diodes with a centre-tapped secondary. Bridge: four diodes, each of which must withstand a reverse voltage of V_m. So P-1, Q-3, R-2, S-4."
+
+  - id: phy-semi-368
+    topic: rectifiers
+    subtopic: Half-wave rectifier
+    concept: Features of half-wave rectification
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [half-wave]
+    stem: |-
+      Consider these statements about a half-wave rectifier without a filter:
+      I. Only one half of each input cycle reaches the load.
+      II. The output frequency equals the input frequency.
+      III. It is less efficient than a full-wave rectifier.
+      IV. Its output contains no ripple.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: "I, II and III are correct. The output is a series of pulses, so it has a large ripple; IV is wrong."
+
+  - id: phy-semi-369
+    topic: zener-diode
+    subtopic: Zener current range
+    concept: Zener voltage is nearly independent of current in breakdown
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [zener, breakdown]
+    stem: When the current through a Zener diode in breakdown is doubled, the voltage across it
+    options:
+      - doubles
+      - halves
+      - becomes zero
+      - stays nearly the same
+    answer: 3
+    explanation: "In breakdown the Zener characteristic is almost vertical, so a large change in current produces only a tiny change in voltage."
+
+  - id: phy-semi-370
+    topic: zener-diode
+    subtopic: Zener in forward bias
+    concept: A Zener diode can be forward biased like any diode
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [zener, forward-bias, trap]
+    stem: |-
+      Assertion (A): A Zener diode cannot conduct when it is forward biased.
+      Reason (R): Both sides of a Zener diode are heavily doped.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "A Zener diode is a p-n junction and conducts in forward bias like an ordinary diode (about 0.7 V for Si). R is true, A is false."
+
+  - id: phy-semi-371
+    topic: zener-diode
+    subtopic: Power dissipation
+    concept: Power in a Zener diode P = V_Z I_Z
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    formula: P = V_Z I_Z
+    tags: [zener, power]
+    stem: A 9 V Zener diode carries 30 mA in a regulator. The power dissipated in it is
+    options:
+      - 0.27 W
+      - 0.3 W
+      - 2.7 W
+      - 0.03 W
+    answer: 0
+    explanation: "P = V_Z I_Z = 9 × 0.030 = 0.27 W."
+
+  - id: phy-semi-372
+    topic: zener-diode
+    subtopic: Minimum load resistance
+    concept: The load cannot draw more than the series current
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [zener, regulator, multi-concept]
+    stem: A 10 V Zener regulator is fed from 15 V through a 250 Ω series resistor. Taking the minimum Zener current as zero, the smallest load resistance for which the output stays regulated is
+    options:
+      - 250 Ω
+      - 500 Ω
+      - 750 Ω
+      - 1 kΩ
+    answer: 1
+    explanation: "I_s = (15 − 10)/250 = 20 mA. The load can take at most all of it: R_L(min) = 10 V/20 mA = 500 Ω. A smaller R_L would pull the output below 10 V."
+
+  - id: phy-semi-373
+    topic: zener-diode
+    subtopic: Wrongly connected Zener
+    concept: A Zener connected in forward bias clamps the output at about 0.7 V
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [zener, forward-bias, case, trap]
+    stem: A student builds a 6.2 V silicon Zener regulator from a 12 V supply but inserts the Zener the wrong way round (forward biased). The output across the load will be about
+    options:
+      - 6.2 V
+      - 12 V
+      - 5.8 V
+      - 0.7 V
+    answer: 3
+    explanation: "Forward biased, the Zener behaves like an ordinary silicon diode and clamps the output at about 0.7 V, with the rest of the voltage across the series resistor."
+
+  - id: phy-semi-374
+    topic: zener-diode
+    subtopic: Regulator currents from a circuit
+    concept: Currents in a Zener regulator read from a circuit diagram
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    diagram: "A 20 V DC source; its positive terminal connects through a series resistor R_s = 1 kΩ to node X. From X, a Zener diode (V_Z = 10 V) goes to the negative rail with its cathode at X (reverse biased). Also from X, a load resistor R_L = 2 kΩ goes to the negative rail. Output taken across R_L."
+    tags: [zener, regulator, diagram]
+    stem: For the circuit shown, the current through the Zener diode is
+    options:
+      - 5 mA
+      - 10 mA
+      - 15 mA
+      - 20 mA
+    answer: 0
+    explanation: "The node is held at 10 V. I_s = (20 − 10)/1000 = 10 mA; I_L = 10/2000 = 5 mA; I_Z = 10 − 5 = 5 mA."
+
+  - id: phy-semi-375
+    topic: zener-diode
+    subtopic: Field for Zener breakdown
+    concept: Zener breakdown occurs at fields of about 5 × 10^6 V m^{-1}
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [zener, electric-field, ncert-line]
+    stem: In a heavily doped Zener diode, the junction field that causes breakdown at a few volts is of the order of
+    options:
+      - 5 V m^{-1}
+      - 5 × 10^3 V m^{-1}
+      - 5 × 10^{12} V m^{-1}
+      - 5 × 10^6 V m^{-1}
+    answer: 3
+    explanation: "NCERT: with a very thin depletion layer, a reverse bias of about 5 V gives a field of about 5 × 10^6 V m^{-1}, enough to pull valence electrons out of their bonds."
+
+  - id: phy-semi-376
+    topic: zener-diode
+    subtopic: Series resistor role
+    concept: The series resistor drops the excess voltage and limits Zener current
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [zener, regulator]
+    stem: |-
+      Statement I: In a Zener regulator, the series resistor takes up the difference between the input voltage and the Zener voltage.
+      Statement II: Without the series resistor, the Zener diode could be destroyed by excessive current.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "V_in − V_Z appears across R_s, which also limits the current. Connected directly across a supply larger than V_Z, the Zener would draw a huge current and burn out. Both are correct."
+
+  - id: phy-semi-377
+    topic: zener-diode
+    subtopic: Regulation sequence
+    concept: Chain of events when the input of a Zener regulator rises
+    category: concept
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [zener, regulator, ordering]
+    stem: |-
+      The input of a Zener regulator rises. Arrange the events in order:
+      1. The extra current flows through the Zener diode
+      2. The current through the series resistor increases
+      3. The input voltage increases
+      4. The drop across the series resistor rises, keeping the load voltage at V_Z
+    options:
+      - 3, 1, 2, 4
+      - 3, 2, 1, 4
+      - 2, 3, 1, 4
+      - 3, 4, 1, 2
+    answer: 1
+    explanation: "The input rises (3), so more current flows through R_s (2). Since the load voltage is pinned at V_Z, the load current is unchanged and the extra current goes through the Zener (1). The larger drop across R_s absorbs the extra input voltage (4)."
+
+  - id: phy-semi-378
+    topic: optoelectronic-devices
+    subtopic: LED light
+    concept: LED light is nearly monochromatic; forward bias is a separate fact
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [led]
+    stem: |-
+      Assertion (A): The light emitted by an LED is nearly monochromatic.
+      Reason (R): An LED is operated in forward bias.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "LED light is nearly monochromatic because photon energies are close to the fixed band gap E_g. Forward bias is true too, but it explains why recombination happens, not why the colour is narrow."
+
+  - id: phy-semi-379
+    topic: optoelectronic-devices
+    subtopic: Solar cell operation
+    concept: A solar cell needs no battery
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [solar-cell]
+    stem: Which statement about a solar cell is incorrect?
+    options:
+      - It is basically a p-n junction that generates emf when light falls on it
+      - It needs an external battery for its operation
+      - Its current depends on the intensity of light
+      - It can charge a battery in sunlight
+    answer: 1
+    explanation: "A solar cell is itself a source of emf; no external bias or battery is needed. The other statements are correct."
+
+  - id: phy-semi-380
+    topic: optoelectronic-devices
+    subtopic: Maximum power
+    concept: Maximum power = fill factor × V_oc × I_sc
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: P_max = FF × V_oc × I_sc
+    tags: [solar-cell, power]
+    stem: A solar cell has V_oc = 0.6 V and I_sc = 3 A. If its fill factor (P_max/V_oc I_sc) is 0.75, its maximum power output is
+    options:
+      - 1.35 W
+      - 1.8 W
+      - 2.4 W
+      - 0.45 W
+    answer: 0
+    explanation: "P_max = 0.75 × 0.6 × 3 = 1.35 W. The product V_oc I_sc = 1.8 W is an upper limit that is never reached."
+
+  - id: phy-semi-381
+    topic: optoelectronic-devices
+    subtopic: Identifying characteristic curves
+    concept: Photodiode curves in the third quadrant, solar cell in the fourth
+    category: concept
+    format: diagram
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    diagram: "I-V axes with four curves. Curve W: in the first quadrant, flat then rising steeply after about 2 V. Curve X: nearly horizontal lines in the third quadrant (negative V, negative I) for three illumination levels, spaced further below the V-axis for higher intensity. Curve Y: a single curve in the fourth quadrant from the V-axis intercept marked V_oc to the I-axis intercept marked I_sc. Curve Z: a reverse curve in the third quadrant that is flat and then drops vertically at −6 V."
+    tags: [iv-characteristic, solar-cell, photodiode, diagram]
+    stem: Of the curves shown, which represent the characteristics of a photodiode and a solar cell respectively?
+    options:
+      - W and Y
+      - X and Y
+      - Z and X
+      - Y and X
+    answer: 1
+    explanation: "A photodiode is reverse biased and its current grows with intensity: flat lines in the third quadrant (X). A solar cell supplies power, so its curve is in the fourth quadrant between V_oc and I_sc (Y). W looks like an LED and Z like a Zener."
+
+  - id: phy-semi-382
+    topic: optoelectronic-devices
+    subtopic: Infrared LED in remotes
+    concept: TV remotes use GaAs infrared LEDs
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [led, infrared, case]
+    stem: The LED in a TV remote emits invisible radiation that a phone camera can show as a faint glow. It is most likely made of
+    options:
+      - diamond (E_g ≈ 5.4 eV)
+      - GaN (E_g ≈ 3.4 eV)
+      - GaAsP (E_g ≈ 1.9 eV)
+      - GaAs (E_g ≈ 1.4 eV)
+    answer: 3
+    explanation: "Invisible light from an LED here is infrared, needing E_g below about 1.8 eV. GaAs (1.4 eV) emits at about 890 nm, in the near infrared. GaAsP gives visible red and GaN blue/UV."
+
+  - id: phy-semi-383
+    topic: optoelectronic-devices
+    subtopic: Photodiode statements
+    concept: Photodiodes are not operated in forward bias
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [photodiode, trap]
+    stem: Which statement about photodiodes is incorrect?
+    options:
+      - They are operated in forward bias to maximise sensitivity to light
+      - They are used as photodetectors for optical signals
+      - Their reverse current increases with light intensity
+      - Light must have hν > E_g to be detected
+    answer: 0
+    explanation: "Photodiodes are reverse biased because the fractional change in the minority-carrier reverse current is much larger. In forward bias the photocurrent is swamped by the large majority-carrier current."
+
+  - id: phy-semi-384
+    topic: optoelectronic-devices
+    subtopic: LED photon output
+    concept: Photon emission rate from optical power and photon energy
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [led, photon, efficiency, multi-concept]
+    stem: An LED draws 20 mA at 2 V and converts 10% of its electrical power into light of photon energy 2 eV. The number of photons emitted per second is about
+    options:
+      - 1.25 × 10^{17}
+      - 1.25 × 10^{16}
+      - 2.5 × 10^{16}
+      - 4 × 10^{15}
+    answer: 1
+    explanation: "Electrical power = 2 × 0.02 = 40 mW; light power = 4 mW. Photon energy = 2 × 1.6 × 10^{-19} = 3.2 × 10^{-19} J. Rate = 4 × 10^{-3}/3.2 × 10^{-19} ≈ 1.25 × 10^{16} s^{-1}. Forgetting the 10% gives 1.25 × 10^{17}."
+
+  - id: phy-semi-385
+    topic: optoelectronic-devices
+    subtopic: Choosing solar cell materials
+    concept: NCERT criteria for solar cell materials
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [solar-cell, materials, ncert-line]
+    stem: |-
+      Which of these are criteria for choosing a solar cell material?
+      I. Band gap of about 1.0 to 1.8 eV
+      II. High optical absorption
+      III. Good electrical conductivity
+      IV. Availability of raw material and low cost
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: "NCERT lists all four: band gap (~1.0–1.8 eV), high optical absorption, electrical conductivity, and availability and cost of the raw material."
+
+  - id: phy-semi-386
+    topic: optoelectronic-devices
+    subtopic: Photodetection sequence
+    concept: Order of events in photodiode detection
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [photodiode, ordering]
+    stem: |-
+      Arrange the steps of light detection by a photodiode in order:
+      1. Current flows in the external circuit
+      2. A photon with hν > E_g is absorbed near the junction
+      3. The junction field separates the electron and the hole
+      4. An electron-hole pair is created
+    options:
+      - 2, 4, 3, 1
+      - 4, 2, 3, 1
+      - 2, 3, 4, 1
+      - 2, 4, 1, 3
+    answer: 0
+    explanation: "Absorption (2) creates a pair (4), the field separates it, electrons to n and holes to p (3), and this shows up as current in the external circuit (1)."
+
+  - id: phy-semi-387
+    topic: optoelectronic-devices
+    subtopic: LED turn-on voltage
+    concept: LEDs with larger band gap need larger forward voltage
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [led, band-gap]
+    stem: A blue LED needs a larger forward voltage to glow than a red LED because the blue LED
+    options:
+      - has a smaller band gap
+      - has a larger band gap, so each photon needs more energy
+      - is reverse biased
+      - is made of silicon
+    answer: 1
+    explanation: "Each photon's energy is about E_g, and electrons must be given roughly this energy per charge. Blue photons (about 2.7 eV) need more than red (about 1.9 eV), so the forward voltage is higher."
+
+  - id: phy-semi-388
+    topic: optoelectronic-devices
+    subtopic: Materials and devices
+    concept: Matching semiconductor materials with their optoelectronic uses
+    category: factual
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [materials, match, multi-concept]
+    stem: |-
+      Match each material in List I with its most suitable use in List II.
+      List I: P. GaAs (1.4 eV)  Q. GaAsP (about 1.9 eV)  R. Si (1.1 eV)  S. Ge (0.71 eV)
+      List II: 1. Detector for 1.5 μm light  2. Red LED  3. Infrared LED  4. Solar cell
+    options:
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-4, Q-2, R-3, S-1
+      - P-3, Q-2, R-4, S-1
+    answer: 3
+    explanation: "GaAs emits near-infrared; GaAsP is used for red LEDs; Si is the common solar cell material; Ge, with its small gap, can detect 1.5 μm (0.83 eV) photons, which Si cannot. So P-3, Q-2, R-4, S-1."
+
+  - id: phy-semi-389
+    topic: logic-gates
+    subtopic: Universal NOR
+    concept: NOR is universal
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [universal-gate, nor-gate]
+    stem: Using only NOR gates, which of the following can be built?
+    options:
+      - NOT only
+      - NOT and OR only
+      - Any logic gate, including AND and NAND
+      - Only gates with two inputs
+    answer: 2
+    explanation: "NOR is a universal gate: NOT (shorted inputs), OR (NOR + NOT), AND (NOR of inverted inputs) and hence any logic function can be built from NOR gates alone."
+
+  - id: phy-semi-390
+    topic: logic-gates
+    subtopic: AND is not universal
+    concept: AND alone cannot produce inversion
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [universal-gate, and-gate]
+    stem: |-
+      Statement I: The AND gate is a universal gate.
+      Statement II: The output of an AND gate is 1 only when all its inputs are 1.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "AND gates alone cannot perform inversion (NOT), so AND is not universal; only NAND and NOR are. Statement II is the definition of AND."
+
+  - id: phy-semi-391
+    topic: logic-gates
+    subtopic: NAND output
+    concept: NAND with both inputs 0 gives 1
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: false
+    battle: true
+    tags: [nand-gate]
+    stem: Both inputs of a NAND gate are 0. The output is
+    options:
+      - "1"
+      - "0"
+      - same as the inputs
+      - undefined
+    answer: 0
+    explanation: "A·B = 0, and NAND inverts it to 1."
+
+  - id: phy-semi-392
+    topic: logic-gates
+    subtopic: NOR output
+    concept: NOR gives 0 when any input is 1
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: false
+    battle: true
+    tags: [nor-gate]
+    stem: For a NOR gate with A = 1 and B = 0, the output is
+    options:
+      - "1"
+      - "0"
+      - equal to B′
+      - undefined
+    answer: 1
+    explanation: "A + B = 1, so NOR gives NOT 1 = 0."
+
+  - id: phy-semi-393
+    topic: logic-gates
+    subtopic: Gate network
+    concept: NOR followed by NOT is OR
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    diagram: "Logic circuit: inputs A and B go into a two-input NOR gate. The NOR output goes into a NOT gate (triangle with a bubble). The NOT output is labelled Y."
+    tags: [nor-gate, not-gate, diagram]
+    stem: The logic circuit shown is equivalent to which single gate?
+    options:
+      - NAND
+      - AND
+      - NOR
+      - OR
+    answer: 3
+    explanation: "Y = NOT(NOT(A + B)) = A + B, so the circuit is an OR gate."
+
+  - id: phy-semi-394
+    topic: logic-gates
+    subtopic: Exclusive-OR from basic gates
+    concept: (A + B)·(A·B)′ is 1 only when the inputs differ
+    category: application
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [combination, boolean-algebra, multi-concept]
+    stem: A and B feed both an OR gate and a NAND gate, and the two outputs are fed to an AND gate. The output Y is 1 for
+    options:
+      - (0, 1) and (1, 0) only
+      - (1, 1) only
+      - (0, 0) and (1, 1) only
+      - all inputs except (0, 0)
+    answer: 0
+    explanation: "Y = (A + B)·(A·B)′. For (0, 0), A + B = 0 so Y = 0. For (1, 1), (A·B)′ = 0 so Y = 0. For (0, 1) and (1, 0) both terms are 1, so Y = 1. This is the exclusive-OR function."
+
+  - id: phy-semi-395
+    topic: logic-gates
+    subtopic: Three-input NAND
+    concept: A three-input NAND gives 0 only for all inputs 1
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [nand-gate, truth-table]
+    stem: For a three-input NAND gate, how many of the 8 input combinations give output 0?
+    options:
+      - "7"
+      - "1"
+      - "3"
+      - "0"
+    answer: 1
+    explanation: "A·B·C = 1 only when all three inputs are 1, so NAND gives 0 for just that one combination and 1 for the other 7."
+
+  - id: phy-semi-396
+    topic: logic-gates
+    subtopic: Switches as gates
+    concept: Switches in series act as AND; in parallel as OR
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [and-gate, or-gate, case]
+    stem: A lamp is connected to a battery through two switches A and B connected in series (closed switch = 1, lamp on = 1). The arrangement behaves like
+    options:
+      - an OR gate
+      - a NAND gate
+      - a NOR gate
+      - an AND gate
+    answer: 3
+    explanation: "With switches in series, the lamp lights only if both A and B are closed: Y = A·B, an AND gate. Switches in parallel would give OR."
+
+  - id: phy-semi-397
+    topic: logic-gates
+    subtopic: AND and NOT
+    concept: AND needs all inputs 1; NOT has one input
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [and-gate, not-gate]
+    stem: |-
+      Statement I: The output of an AND gate is 1 when any one of its inputs is 1.
+      Statement II: A NOT gate has only one input.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "An AND gate gives 1 only when all inputs are 1; 'any one input' describes OR. The NOT gate does have a single input."
+
+  - id: phy-semi-398
+    topic: logic-gates
+    subtopic: Timing diagram
+    concept: Output sequence of an AND gate
+    category: application
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [and-gate, waveform]
+    stem: |-
+      Inputs to an AND gate over four equal intervals are:
+      A: 1, 0, 1, 1
+      B: 1, 1, 0, 1
+      The output over these intervals is
+    options:
+      - 1, 0, 0, 1
+      - 1, 1, 1, 1
+      - 0, 1, 1, 0
+      - 0, 0, 0, 1
+    answer: 0
+    explanation: "AND gives 1 only when both inputs are 1, which happens in the first and last intervals: 1, 0, 0, 1."
+
+  - id: phy-semi-399
+    topic: logic-gates
+    subtopic: De Morgan's theorem
+    concept: NOR equals A′·B′
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [de-morgan, nor-gate]
+    stem: Which expression is identical to the NOR function (A + B)′? (′ denotes NOT.)
+    options:
+      - A′ + B′
+      - A′·B′
+      - (A·B)′
+      - A + B
+    answer: 1
+    explanation: "By De Morgan's theorem, (A + B)′ = A′·B′: the output is 1 only when both inputs are 0. A′ + B′ equals (A·B)′, the NAND function."
+
+  - id: phy-semi-400
+    topic: logic-gates
+    subtopic: Gate properties
+    concept: Facts about basic gate outputs
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [truth-table]
+    stem: |-
+      Consider:
+      I. An OR gate gives 0 only when all inputs are 0.
+      II. A NAND gate gives 0 only when all inputs are 1.
+      III. A NOR gate gives 1 when at least one input is 1.
+      IV. A NOT gate inverts its input.
+      Which statements are correct?
+    options:
+      - I and III only
+      - II, III and IV only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: "I, II and IV are correct. A NOR gate gives 1 only when all inputs are 0; any 1 input makes it 0, so III is wrong."
+
