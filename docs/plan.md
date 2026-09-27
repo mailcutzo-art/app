@@ -238,9 +238,9 @@ docs/               protocol.md, matchmaking.md, tournaments.md, economy.md, sec
 
 **Auth (Google only)**
 - **Sign-in flow:**
-  1. `POST /v1/auth/nonce` issues a nonce, kept in Redis for 5 minutes and usable once.
-  2. `google_sign_in` (Credential Manager on Android) returns a Google ID token bound to that nonce.
-  3. `POST /v1/auth/google` verifies the signature, `aud` (the web client ID), `iss`, `exp`, `email_verified` and the nonce.
+  1. `google_sign_in` 7 (Credential Manager on Android) returns a Google ID token. The plugin can only be initialized once per process, so the app sets a random nonce at initialization rather than a fresh server nonce per attempt.
+  2. `POST /v1/auth/google` verifies the signature, `aud` (the web client ID), `iss`, `exp` and `email_verified`.
+  3. **Replay protection:** the token must be fresh (`iat` within 10 minutes) and is accepted **once** (a SHA-256 of the token is stored in Redis until it expires).
   4. The server upserts the user by `(provider, sub)`, never by email, and creates a device session. Each user can have at most 5 sessions.
 - **Access token:** an EdDSA JWT valid for 15 minutes, carrying `sub, sid, roles, ver, jti`, with keys rotated by `kid`. Every request checks `revoked_sid:{sid}` in Redis, so bans and logouts take effect instantly.
 - **Refresh token:**
