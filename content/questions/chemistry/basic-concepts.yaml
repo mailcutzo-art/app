@@ -1,0 +1,1047 @@
+subject: chemistry
+chapter:
+  slug: basic-concepts
+  name: Some Basic Concepts of Chemistry
+  order: 1
+  classes: [11]
+  topics:
+    - slug: matter-classification
+      name: Nature and classification of matter
+    - slug: measurement-units
+      name: Properties of matter and SI units
+    - slug: uncertainty-sig-figs
+      name: Uncertainty in measurement and significant figures
+    - slug: laws-of-combination
+      name: Laws of chemical combination
+    - slug: dalton-theory
+      name: Dalton's atomic theory
+    - slug: atomic-molecular-mass
+      name: Atomic, molecular and formula mass
+    - slug: mole-concept
+      name: Mole concept and molar mass
+    - slug: empirical-molecular-formula
+      name: Percentage composition, empirical and molecular formula
+    - slug: stoichiometry-limiting
+      name: Stoichiometry and limiting reagent
+    - slug: solution-concentration
+      name: Concentration of solutions
+questions:
+  - id: che-basic-001
+    topic: matter-classification
+    subtopic: Homogeneous and heterogeneous mixtures
+    concept: Air is a homogeneous mixture
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [mixtures, ncert-line]
+    stem: Which of the following is a homogeneous mixture?
+    options:
+      - Mixture of sand and common salt
+      - Air
+      - Oil and water
+      - Iron filings and sulphur powder
+    answer: 1
+    explanation: "A homogeneous mixture has uniform composition throughout. Air is a uniform mixture of gases (N_2, O_2, Ar, CO_2 and others). The other three mixtures show visibly separate components, so they are heterogeneous."
+
+  - id: che-basic-002
+    topic: matter-classification
+    subtopic: Compounds versus mixtures
+    concept: Compounds have fixed composition and cannot be separated physically
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [compounds, mixtures, trap]
+    stem: |-
+      Statement I: The constituents of a compound can be separated by physical methods such as filtration or distillation.
+      Statement II: A mixture always has a fixed composition by mass.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 1
+    explanation: "Constituents of a compound are chemically combined and can be separated only by chemical methods, so Statement I is wrong. A mixture can have any (variable) composition; it is a compound that has a fixed composition. Hence both statements are incorrect."
+
+  - id: che-basic-003
+    topic: matter-classification
+    subtopic: Pure substances
+    concept: Alloys like brass are mixtures, not pure substances
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [pure-substances, trap]
+    stem: Which of the following is NOT a pure substance?
+    options:
+      - Distilled water
+      - Copper
+      - Sodium chloride
+      - Brass
+    answer: 3
+    explanation: "Brass is an alloy of copper and zinc whose composition can vary, so it is a (homogeneous) mixture. Distilled water and sodium chloride are compounds, and copper is an element; all three are pure substances with fixed composition."
+
+  - id: che-basic-004
+    topic: measurement-units
+    subtopic: Density
+    concept: SI unit of density
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [si-units, density]
+    stem: What is the SI unit of density?
+    options:
+      - g cm^{-3}
+      - kg m^{-3}
+      - kg L^{-1}
+      - g mL^{-1}
+    answer: 1
+    explanation: "Density = mass/volume. In SI, mass is in kg and volume in m^3, so density is in kg m^{-3}. The unit g cm^{-3} is common in the laboratory but it is not the SI unit."
+
+  - id: che-basic-005
+    topic: measurement-units
+    subtopic: Temperature scales
+    concept: Converting Celsius to Fahrenheit
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: °F = (9/5)(°C) + 32
+    tags: [temperature]
+    stem: A temperature of 40 °C corresponds to which reading on the Fahrenheit scale?
+    options:
+      - 72 °F
+      - 88 °F
+      - 313 °F
+      - 104 °F
+    answer: 3
+    explanation: "°F = (9/5)(40) + 32 = 72 + 32 = 104 °F. The value 72 °F comes from forgetting to add 32, and 313 is the kelvin value, not °F."
+
+  - id: che-basic-006
+    topic: measurement-units
+    subtopic: Mass and weight
+    concept: Mass is constant while weight depends on gravity
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [mass-weight, ncert-line]
+    stem: Which of the following statements about mass and weight is correct?
+    options:
+      - The mass of a body changes from place to place
+      - An analytical balance measures the weight of a body in newtons
+      - The mass of a body is constant, whereas its weight may vary with gravity
+      - Mass and weight have the same SI unit
+    answer: 2
+    explanation: "Mass is the amount of matter in a body and stays constant; weight is the force exerted by gravity on it and changes with g. An analytical balance determines mass (in kg or g), and weight has the unit newton, not kilogram."
+
+  - id: che-basic-007
+    topic: measurement-units
+    subtopic: Volume units
+    concept: One litre equals one cubic decimetre
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [volume, ncert-line]
+    stem: One litre is equal to
+    options:
+      - 1 dm^3
+      - 1 m^3
+      - 100 cm^3
+      - 10 cm^3
+    answer: 0
+    explanation: "1 L = 1000 cm^3 = 1 dm^3, and 1 m^3 = 1000 L. So 1 L is not 1 m^3; students often confuse dm^3 with m^3."
+
+  - id: che-basic-008
+    topic: uncertainty-sig-figs
+    subtopic: Counting significant figures
+    concept: Leading zeros are not significant; trailing zeros after decimal are
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [significant-figures, trap]
+    stem: How many significant figures are there in 0.00520?
+    options:
+      - "2"
+      - "3"
+      - "5"
+      - "6"
+    answer: 1
+    explanation: "Zeros to the left of the first non-zero digit only locate the decimal point and are not significant. The digits 5, 2 and the trailing zero (to the right of the decimal point) are significant, giving 3."
+
+  - id: che-basic-009
+    topic: uncertainty-sig-figs
+    subtopic: Scientific notation
+    concept: In scientific notation only the digits of the coefficient are counted
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [significant-figures, scientific-notation]
+    stem: How many significant figures are there in 6.0230 × 10^{23}?
+    options:
+      - "4"
+      - "6"
+      - "23"
+      - "5"
+    answer: 3
+    explanation: "In exponential notation, only the digits in the coefficient (6.0230) are significant; the power of ten does not add figures. The coefficient has 5 significant figures, including the trailing zero after the decimal point."
+
+  - id: che-basic-010
+    topic: uncertainty-sig-figs
+    subtopic: Accuracy and precision
+    concept: Close repeated values far from the true value are precise but not accurate
+    category: application
+    format: case
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [accuracy-precision]
+    stem: The true mass of a sample is 2.00 g. A student weighs it three times and records 3.01 g, 3.02 g and 3.01 g. The student's results are
+    options:
+      - accurate and precise
+      - accurate but not precise
+      - precise but not accurate
+      - neither accurate nor precise
+    answer: 2
+    explanation: "Precision is the closeness of repeated measurements to each other; accuracy is agreement with the true value. The readings agree closely with one another (precise) but are about 1 g away from 2.00 g (not accurate)."
+
+  - id: che-basic-011
+    topic: uncertainty-sig-figs
+    subtopic: Rounding off
+    concept: When the dropped digit is 5, an even preceding digit is left unchanged
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [rounding, trap, ncert-line]
+    stem: According to the NCERT rounding rule, 2.785 rounded off to three significant figures is
+    options:
+      - "2.79"
+      - "2.78"
+      - "2.8"
+      - "2.780"
+    answer: 1
+    explanation: "When the digit to be removed is exactly 5, the preceding digit is left unchanged if it is even and increased by one if it is odd. Here the preceding digit 8 is even, so 2.785 becomes 2.78. The answer 2.79 comes from always rounding 5 upward."
+
+  - id: che-basic-012
+    topic: uncertainty-sig-figs
+    subtopic: Addition with significant figures
+    concept: In addition, the result keeps the least number of decimal places
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [significant-figures, addition]
+    stem: The sum 12.11 + 18.0 + 1.012, reported to the correct number of significant figures, is
+    options:
+      - "31.122"
+      - "31.12"
+      - "31.1"
+      - "31"
+    answer: 2
+    explanation: "In addition and subtraction the result cannot have more digits to the right of the decimal point than the term with the fewest. 18.0 has one decimal place, so 31.122 is reported as 31.1."
+
+  - id: che-basic-013
+    topic: laws-of-combination
+    subtopic: Law of definite proportions
+    concept: Proust gave the law of definite proportions
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [definite-proportions, ncert-line]
+    stem: The law of definite proportions was given by
+    options:
+      - Joseph Proust
+      - Antoine Lavoisier
+      - John Dalton
+      - Amedeo Avogadro
+    answer: 0
+    explanation: "Joseph Proust stated that a given compound always contains exactly the same proportion of elements by weight (shown with natural and synthetic cupric carbonate). Lavoisier gave the law of conservation of mass and Dalton the law of multiple proportions."
+
+  - id: che-basic-014
+    topic: laws-of-combination
+    subtopic: Law of multiple proportions
+    concept: Masses of O combining with fixed mass of H in H2O and H2O2 are in 1:2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [multiple-proportions]
+    stem: In H_2O and H_2O_2, the masses of oxygen that combine with a fixed mass of hydrogen are in the ratio
+    options:
+      - "1:1"
+      - "1:2"
+      - "2:1"
+      - "1:16"
+    answer: 1
+    explanation: "With 2 g of hydrogen, water contains 16 g of oxygen and hydrogen peroxide contains 32 g of oxygen. The ratio 16 : 32 = 1 : 2 is a simple whole-number ratio, illustrating the law of multiple proportions."
+
+  - id: che-basic-015
+    topic: laws-of-combination
+    subtopic: Gay Lussac's law
+    concept: Volume ratio of H2, O2 and water vapour is 2:1:2
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [gay-lussac, gaseous-volumes, ncert-line]
+    stem: At the same temperature and pressure, the volumes of hydrogen, oxygen and water vapour in the reaction forming water are in the ratio
+    options:
+      - "2:1:1"
+      - "1:1:1"
+      - "2:1:2"
+      - "1:2:2"
+    answer: 2
+    explanation: "100 mL of hydrogen combines with 50 mL of oxygen to give 100 mL of water vapour, a ratio of 2 : 1 : 2. This simple ratio of gaseous volumes is Gay Lussac's law."
+
+  - id: che-basic-016
+    topic: laws-of-combination
+    subtopic: Law of conservation of mass
+    concept: Conservation of mass follows from atoms being neither created nor destroyed
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [conservation-of-mass, dalton]
+    stem: |-
+      Assertion (A): In a chemical reaction, the total mass of the reactants equals the total mass of the products.
+      Reason (R): In a chemical reaction, atoms are neither created nor destroyed but only rearranged.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "A is Lavoisier's law of conservation of mass. Dalton explained it with the postulate that a reaction only reorganises atoms without creating or destroying them, so the total mass cannot change. R correctly explains A."
+
+  - id: che-basic-017
+    topic: dalton-theory
+    subtopic: Postulates
+    concept: Dalton postulate explaining conservation of mass
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [dalton, postulates]
+    stem: Which postulate of Dalton's atomic theory accounts for the law of conservation of mass?
+    options:
+      - Matter consists of indivisible atoms
+      - All atoms of a given element have identical properties, including identical mass
+      - Compounds are formed when atoms of different elements combine in a fixed ratio
+      - Chemical reactions involve reorganisation of atoms, which are neither created nor destroyed
+    answer: 3
+    explanation: "If atoms are only rearranged, the number of each kind of atom, and so the total mass, stays the same. The fixed-ratio postulate explains the law of definite proportions, not conservation of mass."
+
+  - id: che-basic-018
+    topic: dalton-theory
+    subtopic: Limitations
+    concept: Isotopes contradict identical mass of atoms of an element
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [dalton, limitations]
+    stem: Which discovery shows that atoms of the same element need not have identical masses, contrary to Dalton's theory?
+    options:
+      - Isobars
+      - Isotopes
+      - Allotropes
+      - Isomers
+    answer: 1
+    explanation: "Isotopes are atoms of the same element with different masses (for example Cl-35 and Cl-37), contradicting Dalton's postulate. Isobars are atoms of different elements with the same mass number, which contradicts a different idea."
+
+  - id: che-basic-019
+    topic: atomic-molecular-mass
+    subtopic: Atomic mass unit
+    concept: 1 amu is 1/12 of the mass of a carbon-12 atom
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [amu, ncert-line]
+    stem: One atomic mass unit (u) is defined as
+    options:
+      - 1/12 of the mass of one carbon-12 atom
+      - the mass of one hydrogen atom
+      - 1/16 of the mass of one oxygen-16 atom
+      - the mass of one proton
+    answer: 0
+    explanation: "Since 1961 the reference is carbon-12, assigned exactly 12 u; 1 u is 1/12 of the mass of one C-12 atom (1.66056 × 10^{-24} g). Hydrogen and oxygen-16 were older references."
+
+  - id: che-basic-020
+    topic: atomic-molecular-mass
+    subtopic: Average atomic mass
+    concept: Average atomic mass from isotopic abundances
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: Average atomic mass = Σ (fractional abundance × isotopic mass)
+    tags: [average-atomic-mass, isotopes]
+    stem: Chlorine has 75% Cl-35 (35 u) and 25% Cl-37 (37 u). Its average atomic mass is
+    options:
+      - 36.0 u
+      - 35.0 u
+      - 36.5 u
+      - 35.5 u
+    answer: 3
+    explanation: "Average atomic mass = 0.75 × 35 + 0.25 × 37 = 26.25 + 9.25 = 35.5 u. The simple average of 35 and 37 (36.0 u) ignores the abundances."
+
+  - id: che-basic-021
+    topic: atomic-molecular-mass
+    subtopic: Molecular mass
+    concept: Molecular mass of glucose
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    tags: [molecular-mass]
+    stem: The molecular mass of glucose (C_6H_{12}O_6) is
+    options:
+      - 180 u
+      - 168 u
+      - 186 u
+      - 342 u
+    answer: 0
+    explanation: "Molecular mass = 6(12) + 12(1) + 6(16) = 72 + 12 + 96 = 180 u. 342 u is the molecular mass of sucrose."
+
+  - id: che-basic-022
+    topic: atomic-molecular-mass
+    subtopic: Formula mass
+    concept: Ionic compounds have formula mass as they lack discrete molecules
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [formula-mass, ncert-line]
+    stem: For sodium chloride we use the term formula mass instead of molecular mass because
+    options:
+      - NaCl is a gas at room temperature
+      - sodium shows variable valency
+      - NaCl has no discrete molecules; it is a three-dimensional array of Na^+ and Cl^- ions
+      - NaCl dissociates only in water
+    answer: 2
+    explanation: "In solid NaCl, each Na^+ is surrounded by six Cl^- and vice versa in a 3D lattice, so no discrete NaCl molecule exists. The formula NaCl only gives the ratio of ions, and its mass (58.5 u) is called the formula mass."
+
+  - id: che-basic-023
+    topic: mole-concept
+    subtopic: Avogadro number
+    concept: One mole of water contains N_A molecules
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [avogadro-number]
+    stem: How many molecules are present in 18 g of water?
+    options:
+      - 3.011 × 10^{23}
+      - 6.022 × 10^{23}
+      - 1.2044 × 10^{24}
+      - 1.084 × 10^{25}
+    answer: 1
+    explanation: "Molar mass of H_2O is 18 g mol^{-1}, so 18 g is 1 mol, containing 6.022 × 10^{23} molecules. The value 1.084 × 10^{25} comes from wrongly multiplying N_A by 18."
+
+  - id: che-basic-024
+    topic: mole-concept
+    subtopic: Mass to moles
+    concept: Moles = mass / molar mass for CO2
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: n = m/M
+    tags: [moles]
+    stem: How many moles are present in 88 g of carbon dioxide?
+    options:
+      - 4 mol
+      - 0.5 mol
+      - 1 mol
+      - 2 mol
+    answer: 3
+    explanation: "Molar mass of CO_2 = 12 + 2(16) = 44 g mol^{-1}. n = 88/44 = 2 mol."
+
+  - id: che-basic-025
+    topic: mole-concept
+    subtopic: Number of atoms
+    concept: Total atoms = moles × atoms per molecule × N_A
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [number-of-atoms, trap]
+    stem: The total number of atoms present in 0.5 mol of ammonia (NH_3) is
+    options:
+      - 3.011 × 10^{23}
+      - 1.2044 × 10^{24}
+      - 6.022 × 10^{23}
+      - 2.4088 × 10^{24}
+    answer: 1
+    explanation: "0.5 mol NH_3 contains 0.5 N_A molecules; each molecule has 4 atoms. Atoms = 0.5 × 4 × 6.022 × 10^{23} = 1.2044 × 10^{24}. 3.011 × 10^{23} is the number of molecules, not atoms."
+
+  - id: che-basic-026
+    topic: mole-concept
+    subtopic: Mass of a single atom
+    concept: Mass of one atom = molar mass / N_A
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [mass-of-atom]
+    stem: The mass of one atom of carbon-12 in grams is approximately
+    options:
+      - 1.993 × 10^{-23} g
+      - 12 g
+      - 1.66 × 10^{-24} g
+      - 6.022 × 10^{-23} g
+    answer: 0
+    explanation: "One mole (6.022 × 10^{23} atoms) of C-12 weighs 12 g, so one atom weighs 12/(6.022 × 10^{23}) = 1.993 × 10^{-23} g. 1.66 × 10^{-24} g is the mass of 1 u, i.e. 1/12 of this."
+
+  - id: che-basic-027
+    topic: mole-concept
+    subtopic: Comparing number of atoms
+    concept: Greatest number of atoms corresponds to greatest number of moles of atoms
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [number-of-atoms, comparison]
+    stem: Which of the following contains the largest number of atoms? (Fe = 56, Al = 27, C = 12, Ag = 108)
+    options:
+      - 56 g of iron
+      - 27 g of aluminium
+      - 24 g of carbon
+      - 108 g of silver
+    answer: 2
+    explanation: "56 g Fe, 27 g Al and 108 g Ag are each 1 mol of atoms, but 24 g of carbon is 24/12 = 2 mol of atoms. So carbon has twice as many atoms (2N_A) as each of the others."
+
+  - id: che-basic-028
+    topic: mole-concept
+    subtopic: Molar volume
+    concept: Moles to volume at STP using 22.4 L mol^-1
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: V = n × 22.4 L (at 273 K, 1 atm)
+    tags: [molar-volume]
+    stem: What volume does 4.4 g of CO_2 occupy at 273 K and 1 atm?
+    options:
+      - 22.4 L
+      - 2.24 L
+      - 4.48 L
+      - 1.12 L
+    answer: 1
+    explanation: "4.4 g CO_2 = 4.4/44 = 0.1 mol. At 273 K and 1 atm one mole of an ideal gas occupies 22.4 L, so the volume is 0.1 × 22.4 = 2.24 L."
+
+  - id: che-basic-029
+    topic: mole-concept
+    subtopic: Molar mass
+    concept: Molar mass in g mol^-1 is numerically equal to molecular mass in u
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [molar-mass, ncert-line]
+    stem: The molar mass of a substance is
+    options:
+      - the mass of one molecule of the substance expressed in grams
+      - numerically equal to its atomic or molecular mass in u, but expressed in g mol^{-1}
+      - Avogadro's number divided by its molecular mass
+      - the mass of 22.4 L of the substance, whatever its physical state
+    answer: 1
+    explanation: "Molar mass is the mass of one mole of a substance; e.g. water has molecular mass 18.02 u and molar mass 18.02 g mol^{-1}. The 22.4 L idea applies only to ideal gases under specified conditions, not to all states."
+
+  - id: che-basic-030
+    topic: empirical-molecular-formula
+    subtopic: Percentage composition
+    concept: Mass percent of carbon in CO2
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: Mass % = (mass of element in 1 mol / molar mass) × 100
+    tags: [percentage-composition]
+    stem: The mass percentage of carbon in carbon dioxide is
+    options:
+      - 72.73%
+      - 42.86%
+      - 12.00%
+      - 27.27%
+    answer: 3
+    explanation: "Mass % of C = (12/44) × 100 = 27.27%. The value 72.73% is the percentage of oxygen, and 42.86% is carbon in CO."
+
+  - id: che-basic-031
+    topic: empirical-molecular-formula
+    subtopic: Empirical formula
+    concept: Empirical formula of glucose is CH2O
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [empirical-formula]
+    stem: The empirical formula of glucose, C_6H_{12}O_6, is
+    options:
+      - CHO
+      - CH_2O
+      - C_2H_4O_2
+      - C_3H_6O_3
+    answer: 1
+    explanation: "The empirical formula shows the simplest whole-number ratio of atoms. C : H : O = 6 : 12 : 6 = 1 : 2 : 1, giving CH_2O."
+
+  - id: che-basic-032
+    topic: empirical-molecular-formula
+    subtopic: Molecular formula from composition
+    concept: Molecular formula from percentage composition and molar mass
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: n = molar mass / empirical formula mass
+    tags: [molecular-formula, multi-concept]
+    stem: A compound contains 40.0% C, 6.67% H and 53.33% O by mass. Its molar mass is 60 g mol^{-1}. Its molecular formula is
+    options:
+      - C_2H_4O_2
+      - CH_2O
+      - C_3H_6O_3
+      - C_2H_2O_4
+    answer: 0
+    explanation: "Moles: C = 40/12 = 3.33, H = 6.67/1 = 6.67, O = 53.33/16 = 3.33; ratio 1 : 2 : 1, so the empirical formula is CH_2O (mass 30). n = 60/30 = 2, giving C_2H_4O_2. CH_2O is only the empirical formula."
+
+  - id: che-basic-033
+    topic: empirical-molecular-formula
+    subtopic: Molecular formula from empirical formula
+    concept: n = molar mass / empirical formula mass
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [molecular-formula]
+    stem: A hydrocarbon has empirical formula CH and molar mass 78 g mol^{-1}. Its molecular formula is
+    options:
+      - C_2H_2
+      - C_4H_4
+      - C_6H_6
+      - C_8H_8
+    answer: 2
+    explanation: "Empirical formula mass of CH = 13. n = 78/13 = 6, so the molecular formula is (CH)_6 = C_6H_6."
+
+  - id: che-basic-034
+    topic: empirical-molecular-formula
+    subtopic: Relation between formulas
+    concept: Molecular formula is n times the empirical formula
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [empirical-formula, molecular-formula]
+    stem: |-
+      Statement I: The empirical formula and the molecular formula of hydrogen peroxide are the same.
+      Statement II: Molecular formula = n × empirical formula, where n = molar mass / empirical formula mass.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "H_2O_2 has H : O = 2 : 2 = 1 : 1, so its empirical formula is HO, different from its molecular formula H_2O_2. Statement II is the standard relation (here n = 34/17 = 2)."
+
+  - id: che-basic-035
+    topic: empirical-molecular-formula
+    subtopic: Empirical formula from percentage
+    concept: Empirical formula of a hydrocarbon with 80% carbon
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [empirical-formula]
+    stem: A hydrocarbon contains 80% carbon and 20% hydrogen by mass. Its empirical formula is
+    options:
+      - CH
+      - CH_2
+      - CH_3
+      - CH_4
+    answer: 2
+    explanation: "Moles of C = 80/12 = 6.67; moles of H = 20/1 = 20. Ratio H/C = 20/6.67 = 3, so the empirical formula is CH_3 (ethane, C_2H_6, has this composition)."
+
+  - id: che-basic-036
+    topic: stoichiometry-limiting
+    subtopic: Mass-mass relationship
+    concept: Oxygen needed for complete combustion of methane
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [stoichiometry, combustion]
+    stem: Mass of O_2 needed for complete combustion of 16 g of methane (CH_4 + 2O_2 → CO_2 + 2H_2O) is
+    options:
+      - 32 g
+      - 16 g
+      - 44 g
+      - 64 g
+    answer: 3
+    explanation: "16 g CH_4 = 1 mol, which needs 2 mol O_2 = 2 × 32 = 64 g. The answer 32 g ignores the coefficient 2 of O_2."
+
+  - id: che-basic-037
+    topic: stoichiometry-limiting
+    subtopic: Limiting reagent
+    concept: Oxygen as limiting reagent in formation of water
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [limiting-reagent]
+    stem: 4 g of H_2 is reacted with 16 g of O_2 according to 2H_2 + O_2 → 2H_2O. The mass of water formed is
+    options:
+      - 18 g
+      - 36 g
+      - 20 g
+      - 9 g
+    answer: 0
+    explanation: "H_2 = 4/2 = 2 mol; O_2 = 16/32 = 0.5 mol. 2 mol H_2 would need 1 mol O_2, so O_2 is limiting. 0.5 mol O_2 gives 1 mol H_2O = 18 g. 20 g wrongly adds reactant masses though 3 g of H_2 is left over; 36 g assumes H_2 is fully used."
+
+  - id: che-basic-038
+    topic: stoichiometry-limiting
+    subtopic: Limiting reagent
+    concept: Identifying limiting reagent in ammonia synthesis
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [limiting-reagent, ammonia]
+    stem: 28 g of N_2 and 3 g of H_2 react according to N_2 + 3H_2 → 2NH_3. Which reactant is limiting, and what mass of NH_3 forms?
+    options:
+      - N_2 is limiting; 34 g of NH_3
+      - H_2 is limiting; 17 g of NH_3
+      - H_2 is limiting; 34 g of NH_3
+      - N_2 is limiting; 17 g of NH_3
+    answer: 1
+    explanation: "N_2 = 1 mol needs 3 mol H_2, but only 1.5 mol H_2 is present, so H_2 is limiting. 1.5 mol H_2 gives (2/3) × 1.5 = 1 mol NH_3 = 17 g. 34 g would require all the N_2 to react."
+
+  - id: che-basic-039
+    topic: stoichiometry-limiting
+    subtopic: Limiting reagent concept
+    concept: The limiting reagent is decided by moles and stoichiometry, not by mass
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [limiting-reagent, trap]
+    stem: |-
+      Assertion (A): In a chemical reaction, the reactant taken in the smaller mass is always the limiting reagent.
+      Reason (R): The limiting reagent is consumed completely first and so limits the amount of product formed.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "The limiting reagent depends on moles relative to the stoichiometric ratio, not on mass. For example, with 4 g H_2 and 16 g O_2 forming water, O_2 (the larger mass) is limiting. R is the correct definition of a limiting reagent."
+
+  - id: che-basic-040
+    topic: stoichiometry-limiting
+    subtopic: Decomposition
+    concept: Mass of CaO from thermal decomposition of CaCO3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [stoichiometry, decomposition]
+    stem: What mass of CaO is obtained by complete heating of 50 g of CaCO_3 (CaCO_3 → CaO + CO_2)?
+    options:
+      - 56 g
+      - 22 g
+      - 28 g
+      - 14 g
+    answer: 2
+    explanation: "Molar mass of CaCO_3 = 100 g mol^{-1}, so 50 g = 0.5 mol, giving 0.5 mol CaO = 0.5 × 56 = 28 g. 22 g is the mass of CO_2 released."
+
+  - id: che-basic-041
+    topic: stoichiometry-limiting
+    subtopic: Mass-volume relationship
+    concept: Volume of CO2 at STP from CaCO3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [stoichiometry, molar-volume]
+    stem: The volume of CO_2 at 273 K and 1 atm obtained by heating 25 g of CaCO_3 completely is
+    options:
+      - 5.6 L
+      - 2.24 L
+      - 11.2 L
+      - 22.4 L
+    answer: 0
+    explanation: "25 g CaCO_3 = 25/100 = 0.25 mol, giving 0.25 mol CO_2. Volume = 0.25 × 22.4 = 5.6 L."
+
+  - id: che-basic-042
+    topic: stoichiometry-limiting
+    subtopic: Metal with acid
+    concept: Mass of hydrogen released by zinc with HCl
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [stoichiometry]
+    stem: What mass of H_2 is released when 6.5 g of zinc reacts completely with dilute HCl? (Zn = 65)
+    options:
+      - 0.1 g
+      - 2 g
+      - 0.2 g
+      - 0.4 g
+    answer: 2
+    explanation: "Zn + 2HCl → ZnCl_2 + H_2. 6.5 g Zn = 0.1 mol, giving 0.1 mol H_2 = 0.1 × 2 = 0.2 g. 0.1 g confuses moles of H_2 with its mass."
+
+  - id: che-basic-043
+    topic: solution-concentration
+    subtopic: Molarity
+    concept: Molarity from mass of solute and volume of solution
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    formula: M = moles of solute / volume of solution in L
+    tags: [molarity]
+    stem: 4 g of NaOH is dissolved in water to make 250 mL of solution. The molarity of the solution is
+    options:
+      - 0.1 M
+      - 0.4 M
+      - 1.6 M
+      - 0.04 M
+    answer: 1
+    explanation: "Moles of NaOH = 4/40 = 0.1 mol. Molarity = 0.1 / 0.250 L = 0.4 M. Using 250 instead of 0.250 L leads to wrong answers like 0.0004 M; 0.1 M forgets to divide by the volume."
+
+  - id: che-basic-044
+    topic: solution-concentration
+    subtopic: Molality
+    concept: Definition of molality
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [molality, confused-pair]
+    stem: Molality of a solution is defined as the number of
+    options:
+      - moles of solute per litre of solution
+      - moles of solute per kilogram of solution
+      - grams of solute per kilogram of solvent
+      - moles of solute per kilogram of solvent
+    answer: 3
+    explanation: "Molality (m) = moles of solute / mass of solvent in kg. Moles per litre of solution is molarity, a commonly confused definition."
+
+  - id: che-basic-045
+    topic: solution-concentration
+    subtopic: Temperature dependence
+    concept: Molarity depends on temperature because volume changes
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [molarity, molality, temperature]
+    stem: Which of the following concentration terms changes with temperature?
+    options:
+      - Molality
+      - Mole fraction
+      - Molarity
+      - Mass percent
+    answer: 2
+    explanation: "Molarity is based on the volume of solution, and volume changes with temperature. Molality, mole fraction and mass percent involve only masses or moles, which do not depend on temperature."
+
+  - id: che-basic-046
+    topic: solution-concentration
+    subtopic: Mass percent
+    concept: Mass percent uses mass of solution, not solvent
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: Mass % = mass of solute / mass of solution × 100
+    tags: [mass-percent, trap]
+    stem: 5 g of NaCl is dissolved in 45 g of water. The mass percent of NaCl in the solution is
+    options:
+      - 10%
+      - 11.1%
+      - 5%
+      - 90%
+    answer: 0
+    explanation: "Mass of solution = 5 + 45 = 50 g. Mass % = (5/50) × 100 = 10%. Dividing by the mass of water (5/45) gives the tempting but wrong 11.1%."
+
+  - id: che-basic-047
+    topic: solution-concentration
+    subtopic: Mole fraction
+    concept: Mole fraction of ethanol in ethanol-water mixture
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: x_A = n_A / (n_A + n_B)
+    tags: [mole-fraction]
+    stem: A solution contains 46 g of ethanol (C_2H_5OH) and 36 g of water. The mole fraction of ethanol is
+    options:
+      - "0.5"
+      - "0.667"
+      - "0.25"
+      - "0.333"
+    answer: 3
+    explanation: "Ethanol = 46/46 = 1 mol; water = 36/18 = 2 mol. x(ethanol) = 1/(1 + 2) = 0.333. 0.5 is the ratio of moles of ethanol to water, not the mole fraction."
+
+  - id: che-basic-048
+    topic: solution-concentration
+    subtopic: Molality
+    concept: Molality of urea solution
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: m = moles of solute / mass of solvent in kg
+    tags: [molality]
+    stem: 3 g of urea (molar mass 60 g mol^{-1}) is dissolved in 250 g of water. The molality of the solution is
+    options:
+      - 0.05 m
+      - 2 m
+      - 0.2 m
+      - 0.012 m
+    answer: 2
+    explanation: "Moles of urea = 3/60 = 0.05 mol. Molality = 0.05 / 0.250 kg = 0.2 m. 0.05 m forgets to divide by the mass of solvent in kg."
+
+  - id: che-basic-049
+    topic: solution-concentration
+    subtopic: Dilution
+    concept: M1V1 = M2V2 on dilution
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: M_1V_1 = M_2V_2
+    tags: [dilution]
+    stem: 100 mL of 2 M HCl is diluted with water to a final volume of 500 mL. The molarity of the diluted solution is
+    options:
+      - 0.4 M
+      - 10 M
+      - 0.2 M
+      - 1 M
+    answer: 0
+    explanation: "Moles of HCl stay the same on dilution: 2 × 100 = M_2 × 500, so M_2 = 0.4 M. 10 M comes from inverting the ratio of volumes."
+
+  - id: che-basic-050
+    topic: solution-concentration
+    subtopic: Mole fraction
+    concept: Sum of mole fractions of all components is one
+    category: concept
+    format: statements
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: false
+    tags: [mole-fraction]
+    stem: Which statement about mole fraction is correct?
+    options:
+      - Mole fraction has the unit mol kg^{-1}
+      - The sum of the mole fractions of all components of a solution is 1
+      - Mole fraction changes when the temperature changes
+      - The mole fraction of the solvent is always less than 0.5
+    answer: 1
+    explanation: "x_A + x_B + … = 1 because each fraction is its moles divided by the total moles. Mole fraction is dimensionless and temperature-independent, and the solvent usually has the larger mole fraction."
+
