@@ -8488,3 +8488,720 @@ questions:
       - √40 m s^{-1}
     answer: 0
     explanation: W_T = 300 J and W_g = −200 J, so W_net = 100 J = ½ × 10 × v^2, giving v = √20 ≈ 4.5 m s^{-1}. Using only the tension's work gives √60.
+  - id: phy-wep-418
+    topic: work-variable-force
+    subtopic: Cubic restoring force
+    concept: F = −kx^3 is conservative with U = kx^4/4
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [conservative-force, integration]
+    stem: |-
+      A particle moves along the x-axis under a force F = −kx^3 (k > 0). Consider:
+      I. The force is conservative.
+      II. Its potential energy (zero at x = 0) is kx^4/4.
+      III. The work done by F as the particle moves from x = −a to x = +a is zero.
+      IV. The work done by F from x = 0 to x = a is −ka^4/4.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: A one-dimensional force depending only on x is conservative, with U = −∫F dx = kx^4/4. U(−a) = U(a) gives zero work for III, and W(0→a) = −[U(a) − U(0)] = −ka^4/4.
+  - id: phy-wep-419
+    topic: work-variable-force
+    subtopic: Semicircular F–x graph
+    concept: Work = area of semicircle under F–x graph
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    diagram: F–x graph with F (N) vertical and x (m) horizontal, both axes with equal scale divisions. The curve is a semicircle above the x-axis with its diameter from x = 0 to x = 4 m and peak value F = 2 N at x = 2 m.
+    tags: [f-x-graph]
+    stem: The force on a particle varies with x as the semicircle shown (diameter from x = 0 to 4 m, peak 2 N at x = 2 m). The work done by the force from x = 0 to x = 4 m is
+    options:
+      - 4π J
+      - 2π J
+      - π J
+      - 8 J
+    answer: 1
+    explanation: The area of the semicircle of radius 2 (in these units) is ½π(2)^2 = 2π J. Using the full circle gives 4π J; the enclosing rectangle gives 8 J.
+  - id: phy-wep-420
+    topic: work-variable-force
+    subtopic: Why not F × x for a linear force
+    concept: Variable force needs integration; W ≠ F_final × x
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [integration]
+    stem: |-
+      Assertion (A): For a force F = kx, the work done in moving from 0 to x is not kx × x.
+      Reason (R): The force does not stay constant over the displacement.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Since F grows from 0 to kx, the work is the triangular area ½kx^2, not the rectangle kx^2. The variation of F is exactly why.
+  - id: phy-wep-421
+    topic: work-variable-force
+    subtopic: Average of a linear force
+    concept: Displacement-averaged force of F = kx over 0 to x is kx/2
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [average-force]
+    stem: |-
+      Statement I: For a force F = kx, the displacement-averaged force between 0 and x is kx/2.
+      Statement II: For any variable force, the work done equals the displacement-averaged force multiplied by the displacement.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: The displacement average is defined as (1/Δx)∫F dx = W/Δx, so II holds by definition. For F = kx it is (½kx^2)/x = kx/2.
+  - id: phy-wep-422
+    topic: work-variable-force
+    subtopic: Pulling up a hanging rope
+    concept: Work = Mg × rise of centre of mass = MgL/2
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [chain]
+    stem: A uniform rope of mass 2 kg and length 4 m hangs vertically from the edge of a roof. The minimum work needed to pull the whole rope up onto the roof is (g = 10 m s^{-2})
+    options:
+      - 80 J
+      - 40 J
+      - 20 J
+      - 10 J
+    answer: 1
+    explanation: The rope's centre of mass rises L/2 = 2 m, so W = Mg × 2 = 40 J. Lifting the full 4 m for the whole mass gives 80 J.
+  - id: phy-wep-423
+    topic: work-variable-force
+    subtopic: Interpreting F–x graphs
+    concept: Force opposite to displacement gives negative work
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [f-x-graph, sign-of-work]
+    stem: Which statement about force–displacement graphs is correct?
+    options:
+      - Where F is negative while x increases, the force does negative work
+      - A larger peak force always means more work
+      - The area under an F–x graph gives power
+      - For a straight-line F–x graph through the origin, the work equals F_max × x_max
+    answer: 0
+    explanation: dW = F dx is negative when F < 0 and dx > 0. Work depends on the whole area, not the peak; the area gives work, not power; and a triangle's area is ½F_max x_max.
+  - id: phy-wep-424
+    topic: work-variable-force
+    subtopic: Work from different F–x shapes
+    concept: Areas of rectangle, triangle and crossing line
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    tags: [f-x-graph]
+    stem: |-
+      Match each F–x graph over x = 0 to 4 m (List I) with the work done (List II).
+      List I:
+      P. F constant at 5 N
+      Q. F rising linearly from 0 to 5 N
+      R. F falling linearly from +5 N to −5 N
+      S. F falling linearly from 5 N to 0 at x = 2 m, then zero
+      List II:
+      1. 0
+      2. 5 J
+      3. 10 J
+      4. 20 J
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-4, Q-2, R-1, S-3
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-2, S-1
+    answer: 0
+    explanation: P = 5 × 4 = 20 J; Q = ½ × 4 × 5 = 10 J; R has equal areas above and below the axis, so 0; S = ½ × 2 × 5 = 5 J.
+  - id: phy-wep-425
+    topic: work-variable-force
+    subtopic: Spring force from −x to +x
+    concept: Symmetric displacement gives zero spring work
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [trap]
+    stem: A block attached to a spring (k = 50 N m^{-1}) moves from x = +0.2 m to x = −0.2 m. The work done by the spring force over this displacement is
+    options:
+      - 2 J
+      - −2 J
+      - 4 J
+      - zero
+    answer: 3
+    explanation: W_s = −½k(x_f^2 − x_i^2) = 0 because x_f^2 = x_i^2. The spring does +1 J on the way to x = 0 and −1 J beyond it.
+  - id: phy-wep-426
+    topic: work-variable-force
+    subtopic: What graph areas represent
+    concept: F–x gives work, F–t impulse, P–t work
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [f-x-graph, p-t-graph]
+    stem: |-
+      Consider the statements:
+      I. The area under a force–displacement graph gives work.
+      II. The area under a force–time graph gives impulse.
+      III. The area under a power–time graph gives work.
+      IV. The area under an acceleration–time graph gives work per unit mass.
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: ∫F dx = W, ∫F dt = impulse and ∫P dt = W. The area under an a–t graph is the change in velocity, not work, so IV is false.
+  - id: phy-wep-427
+    topic: work-variable-force
+    subtopic: Central linear force along a curved path
+    concept: F = xî + yĵ is conservative; W = ½(r_f^2 − r_i^2)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [conservative-force, integration]
+    stem: A force F = (xî + yĵ) N (x, y in m) acts on a particle that moves along the parabola y = x^2 from (0, 0) to (1 m, 1 m). The work done by the force is
+    options:
+      - 0.5 J
+      - 2 J
+      - 1 J
+      - it depends on the shape of the path
+    answer: 2
+    explanation: F = ∇[(x^2 + y^2)/2] is conservative, so W = ½(1 + 1) − 0 = 1 J along any path, including the parabola.
+  - id: phy-wep-428
+    topic: work-energy-theorem
+    subtopic: Truck and car with equal kinetic energy braking
+    concept: Equal K and F give equal distance; time ∝ p
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [stopping-distance, momentum-ke, multi-concept]
+    stem: |-
+      A loaded truck and a car have equal kinetic energies and are stopped by equal braking forces. Consider:
+      I. They stop within equal distances.
+      II. The truck takes longer to stop.
+      III. The car has the larger momentum.
+      IV. The brakes do equal amounts of work on the two vehicles.
+      Which are correct?
+    options:
+      - I and IV only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: Fd = K gives equal distances and equal work. p = √(2mK) is larger for the truck, and Ft = p, so the truck takes longer; III is wrong.
+  - id: phy-wep-429
+    topic: work-energy-theorem
+    subtopic: Equal momenta
+    concept: Same p, lighter body has more K; same stopping time
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [momentum-ke, trap]
+    stem: |-
+      Two bodies of different masses have equal linear momenta.
+      Statement I: The lighter body has the greater kinetic energy.
+      Statement II: When stopped by equal forces, the lighter body takes longer to stop.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: K = p^2/2m, so the lighter body has more K (and travels farther). The stopping time t = p/F is the same for both, so II is wrong.
+  - id: phy-wep-430
+    topic: work-energy-theorem
+    subtopic: Shapes of kinetic energy graphs
+    concept: K = ½mv^2 = p^2/2m relations as graphs
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [momentum-ke]
+    stem: |-
+      Match each graph (List I) with its shape (List II).
+      List I:
+      P. K against time for a body moving at constant velocity
+      Q. K against v for a body of fixed mass
+      R. K against m for bodies with the same speed
+      S. K against m for bodies with the same momentum
+      List II:
+      1. Parabola
+      2. Straight line through the origin
+      3. Rectangular hyperbola
+      4. Horizontal line
+    options:
+      - P-4, Q-1, R-2, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-1, Q-4, R-2, S-3
+      - P-4, Q-1, R-3, S-2
+    answer: 0
+    explanation: Constant velocity keeps K constant; K ∝ v^2 is a parabola; K ∝ m at fixed v is linear; K = p^2/2m ∝ 1/m at fixed p is a hyperbola.
+  - id: phy-wep-431
+    topic: work-energy-theorem
+    subtopic: Bullet through a plank
+    concept: Resistive force = loss of KE / thickness
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [bullet, resistive-force]
+    stem: A 10 g bullet moving at 400 m s^{-1} passes through a 5 cm thick plank and emerges at 200 m s^{-1}. The average resistive force of the plank is
+    options:
+      - 1.2 × 10^4 N
+      - 1.6 × 10^4 N
+      - 4 × 10^3 N
+      - 1.2 × 10^3 N
+    answer: 0
+    explanation: Loss of K = ½ × 0.01 × (160 000 − 40 000) = 600 J. F = 600/0.05 = 1.2 × 10^4 N. Using the full initial K (800 J) gives 1.6 × 10^4 N.
+  - id: phy-wep-432
+    topic: work-energy-theorem
+    subtopic: Driving a nail
+    concept: Average force = KE/penetration
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [resistive-force]
+    stem: A 0.5 kg hammer head moving at 10 m s^{-1} strikes a nail and drives it 2 cm into a wooden plank, coming to rest. Assuming all its kinetic energy goes into driving the nail, the average resisting force of the wood is
+    options:
+      - 250 N
+      - 2500 N
+      - 125 N
+      - 1250 N
+    answer: 3
+    explanation: K = ½ × 0.5 × 100 = 25 J, and F × 0.02 m = 25 J gives F = 1250 N.
+  - id: phy-wep-433
+    topic: work-energy-theorem
+    subtopic: Internal forces and kinetic energy
+    concept: Internal forces can change the KE of a system
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [explosion, trap]
+    stem: |-
+      Assertion (A): The kinetic energy of a system can increase even when no external force acts on it.
+      Reason (R): Internal forces can do non-zero net work on a system, as in an explosion.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Internal forces cannot change total momentum, but the displacements of the parts differ, so their works need not cancel. In an explosion they convert chemical energy into KE.
+  - id: phy-wep-434
+    topic: work-energy-theorem
+    subtopic: Energy budget up a rough incline
+    concept: W_applied = ΔK + ΔU + |W_friction|
+    category: application
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [friction, inclined-plane, multi-concept]
+    stem: A block is pushed up a rough incline and speeds up on the way. Which relation is correct?
+    options:
+      - Work done by the push = gain in KE only
+      - Work done by the push = gain in KE + gain in PE + magnitude of the work done by friction
+      - Work done by the push = gain in PE − magnitude of the work done by friction
+      - Work done by the push = gain in PE only
+    answer: 1
+    explanation: By the work–energy theorem W_push + W_g + W_f = ΔK, with W_g = −ΔU and W_f = −|W_f|. Rearranging gives W_push = ΔK + ΔU + |W_f|.
+  - id: phy-wep-435
+    topic: work-energy-theorem
+    subtopic: Momentum change from kinetic energy change
+    concept: p = √(2mK)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [momentum-ke]
+    stem: The kinetic energy of a 2 kg body moving in a straight line increases from 25 J to 100 J without change of direction. The increase in its momentum is
+    options:
+      - 10 kg m s^{-1}
+      - 20 kg m s^{-1}
+      - 75 kg m s^{-1}
+      - 5 kg m s^{-1}
+    answer: 0
+    explanation: p = √(2mK) gives 10 and 20 kg m s^{-1}, so Δp = 10 kg m s^{-1}.
+  - id: phy-wep-436
+    topic: work-energy-theorem
+    subtopic: Position of maximum kinetic energy
+    concept: K is maximum where the net force becomes zero
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [k-x-graph]
+    stem: A body starts from rest at x = 0 and is acted on by a net force F = (10 − 2x) N along x. Its kinetic energy is maximum at
+    options:
+      - x = 0
+      - x = 10 m
+      - x = 2.5 m
+      - x = 5 m
+    answer: 3
+    explanation: dK/dx = F, so K is maximum where F = 0, i.e. x = 5 m. Beyond that F is negative and K decreases. At x = 10 m the K has fallen back to zero.
+  - id: phy-wep-437
+    topic: work-energy-theorem
+    subtopic: Stopping distances under equal force
+    concept: Stopping distance ∝ K for equal retarding force
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [stopping-distance]
+    stem: |-
+      The same retarding force stops each body below. Arrange their stopping distances in increasing order:
+      P. 1 kg at 10 m s^{-1}
+      Q. 2 kg at 6 m s^{-1}
+      R. 4 kg at 4 m s^{-1}
+      S. 0.5 kg at 15 m s^{-1}
+    options:
+      - R, P, Q, S
+      - Q, R, P, S
+      - R, Q, P, S
+      - R, Q, S, P
+    answer: 2
+    explanation: d = K/F, so compare K. P = 50 J, Q = 36 J, R = 32 J, S = 56.25 J. So R < Q < P < S.
+  - id: phy-wep-438
+    topic: work-energy-theorem
+    subtopic: Height at which KE halves
+    concept: Loss of half K means half of max height
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [vertical-throw]
+    stem: A ball thrown vertically upward has lost half its initial kinetic energy when it reaches a height of 10 m. The maximum height it reaches is
+    options:
+      - 14.1 m
+      - 20 m
+      - 40 m
+      - 15 m
+    answer: 1
+    explanation: The KE lost is proportional to the height gained (mgh). Half the KE is lost in 10 m, so all of it is lost at 20 m.
+  - id: phy-wep-439
+    topic: work-energy-theorem
+    subtopic: Terminal velocity and work
+    concept: Net work zero, gravity work positive at terminal velocity
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [resistive-force, trap]
+    stem: |-
+      A drop falls at constant terminal velocity.
+      Statement I: The net work done on it by all forces is zero.
+      Statement II: The work done on it by gravity is zero.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: K is constant, so W_net = 0. Gravity still does positive work mgh as the drop descends; it is cancelled by the negative work of air drag.
+  - id: phy-wep-440
+    topic: work-energy-theorem
+    subtopic: Speed of an accelerated electron
+    concept: v = √(2K/m) for a light particle
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [electron-volt]
+    stem: An electron (mass 9.1 × 10^{-31} kg) starting from rest gains 1.6 × 10^{-16} J of kinetic energy in an electron gun. Its speed is about
+    options:
+      - 1.9 × 10^7 m s^{-1}
+      - 3.5 × 10^{14} m s^{-1}
+      - 1.3 × 10^7 m s^{-1}
+      - 6.0 × 10^5 m s^{-1}
+    answer: 0
+    explanation: v = √(2K/m) = √(3.2 × 10^{-16}/9.1 × 10^{-31}) = √(3.5 × 10^{14}) ≈ 1.9 × 10^7 m s^{-1}. Forgetting the square root gives 3.5 × 10^{14}.
+  - id: phy-wep-441
+    topic: potential-energy
+    subtopic: Double-well potential
+    concept: U = Ax^4 − Bx^2 has maximum at 0 and minima at ±√(B/2A)
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [equilibrium, multi-concept]
+    stem: |-
+      A particle has potential energy U = Ax^4 − Bx^2 with A, B > 0. Consider:
+      I. x = 0 is a position of unstable equilibrium.
+      II. There are stable equilibria at x = ±√(B/2A).
+      III. The minimum potential energy is −B^2/2A.
+      IV. The force at x = 0 is zero.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: dU/dx = 4Ax^3 − 2Bx = 0 at x = 0 (a local maximum) and x^2 = B/2A (minima). There U = A(B/2A)^2 − B(B/2A) = −B^2/4A, not −B^2/2A, so III is false.
+  - id: phy-wep-442
+    topic: potential-energy
+    subtopic: Restoring force at stable equilibrium
+    concept: At a minimum of U, displacement produces a restoring force
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [equilibrium]
+    stem: |-
+      Assertion (A): A particle slightly displaced from a position of stable equilibrium experiences a force back towards it.
+      Reason (R): The potential energy is a minimum at a position of stable equilibrium.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: On either side of a minimum U rises, so F = −dU/dx points back towards the minimum. R explains A.
+  - id: phy-wep-443
+    topic: potential-energy
+    subtopic: Force for given potentials
+    concept: F = −dU/dx for linear, quadratic and constant U
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [force-from-pe]
+    stem: |-
+      Match each potential energy (List I, U in J, x in m) with the force it gives (List II, in N).
+      List I:
+      P. U = 5x
+      Q. U = x^2
+      R. U = −3x^2
+      S. U = 4
+      List II:
+      1. 0
+      2. 6x
+      3. −2x
+      4. −5
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-1, Q-3, R-2, S-4
+      - P-4, Q-3, R-1, S-2
+    answer: 1
+    explanation: F = −dU/dx gives −5, −2x, +6x and 0. A constant potential exerts no force.
+  - id: phy-wep-444
+    topic: potential-energy
+    subtopic: Stable point of a cubic potential
+    concept: Stable where d^2U/dx^2 > 0
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [equilibrium]
+    stem: The potential energy of a particle is U = (−2x^3 + 6x) J, with x in m. Its position of stable equilibrium is
+    options:
+      - x = 1 m
+      - x = 0
+      - x = −1 m
+      - x = √3 m
+    answer: 2
+    explanation: dU/dx = −6x^2 + 6 = 0 at x = ±1 m. d^2U/dx^2 = −12x is positive at x = −1 m (minimum, stable) and negative at x = +1 m (maximum, unstable). U = 0 at x = √3 m is not an equilibrium.
+  - id: phy-wep-445
+    topic: potential-energy
+    subtopic: Work and potential energy change
+    concept: W_c = −ΔU; slow external agent does +ΔU
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [definition]
+    stem: |-
+      Statement I: The work done by a conservative force equals the negative of the change in potential energy.
+      Statement II: The work done by an external agent moving a body slowly (without change in KE) against a conservative force equals the increase in potential energy.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: ΔU = −W_c by definition. Moving slowly, W_ext + W_c = ΔK = 0, so W_ext = −W_c = ΔU.
+  - id: phy-wep-446
+    topic: potential-energy
+    subtopic: Force near an unstable point
+    concept: Near a maximum of U, force points away on both sides
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [equilibrium, u-x-graph]
+    stem: The U–x graph of a particle has a single local maximum at x = x_0. For small displacements on either side of x_0, the force on the particle points
+    options:
+      - towards x_0 on both sides
+      - along +x on both sides
+      - away from x_0 on both sides
+      - along −x on both sides
+    answer: 2
+    explanation: Left of x_0, U increases with x, so F = −dU/dx is negative (away, towards −x); right of x_0, U decreases, so F is positive (away, towards +x). This is unstable equilibrium.
+  - id: phy-wep-447
+    topic: potential-energy
+    subtopic: Pumping from a well to a roof tank
+    concept: ΔU uses total height difference, including depth below ground
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [gravitational-pe, trap]
+    stem: 1000 kg of water is pumped from a well, where its surface is 10 m below the ground, into a tank 15 m above the ground. The increase in its gravitational potential energy is (g = 10 m s^{-2})
+    options:
+      - 1.5 × 10^5 J
+      - 5.0 × 10^4 J
+      - 1.0 × 10^5 J
+      - 2.5 × 10^5 J
+    answer: 3
+    explanation: The water rises 10 + 15 = 25 m, so ΔU = 1000 × 10 × 25 = 2.5 × 10^5 J. Using only 15 m gives 1.5 × 10^5 J.
+  - id: phy-wep-448
+    topic: potential-energy
+    subtopic: Comparing U at points in a parabolic well
+    concept: U = (x − 2)^2 evaluated at several points
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [u-x-graph]
+    stem: |-
+      A particle has U = (x − 2)^2 J (x in m). Arrange its potential energy at these positions in increasing order:
+      P. x = 0
+      Q. x = 1 m
+      R. x = 5 m
+      S. x = 2.5 m
+    options:
+      - S, Q, P, R
+      - Q, S, P, R
+      - S, P, Q, R
+      - P, Q, S, R
+    answer: 0
+    explanation: U(P) = 4 J, U(Q) = 1 J, U(R) = 9 J and U(S) = 0.25 J. The closer to the minimum at x = 2 m, the lower U.
+  - id: phy-wep-449
+    topic: potential-energy
+    subtopic: Energy exchange under conservative forces
+    concept: ΔK = −ΔU; K cannot exceed E if U ≥ 0
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [conservative-force]
+    stem: |-
+      A particle moves under conservative forces only, with U ≥ 0 everywhere. Consider:
+      I. ΔK = −ΔU.
+      II. K + U is constant.
+      III. K can exceed the total mechanical energy.
+      IV. Whenever U decreases, K increases.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: With E = K + U constant and U ≥ 0, K = E − U can never exceed E. The other statements follow from conservation of mechanical energy.
+  - id: phy-wep-450
+    topic: potential-energy
+    subtopic: Force from a two-dimensional quadratic potential
+    concept: U = ½k(x^2 + y^2) gives F = −k r
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [force-from-pe]
+    stem: A particle has potential energy U = (x^2 + y^2) J (x, y in m). The magnitude of the force on it at the point (3 m, 4 m) is
+    options:
+      - 5 N
+      - 10 N
+      - 25 N
+      - 14 N
+    answer: 1
+    explanation: F = −(2xî + 2yĵ) = −(6î + 8ĵ) N at (3, 4), of magnitude 10 N, directed towards the origin. The value 25 J is U itself.
