@@ -6031,3 +6031,2082 @@ questions:
       - 250 A
     answer: 3
     explanation: I_s = I_p × V_p/V_s = 5 × 50 = 250 A.
+  - id: phy-ac-301
+    topic: ac-values
+    subtopic: Misconceptions about average and rms
+    concept: Full-cycle average of AC is zero, not rms
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [rms-value, average-value, trap]
+    stem: Which statement about a sinusoidal alternating current is INCORRECT?
+    options:
+      - Its average value over a full cycle equals its rms value
+      - Its rms value is less than its peak value
+      - Its half-cycle average is less than its rms value
+      - Its heating effect depends on its rms value
+    answer: 0
+    explanation: The full-cycle average is zero, whereas the rms value is I_0/√2. The other statements are correct, since 0.637I_0 < 0.707I_0 < I_0.
+  - id: phy-ac-302
+    topic: ac-values
+    subtopic: Waveforms and rms
+    concept: Square wave rms equals peak; sine rms is peak/√2
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [rms-value, average-value]
+    stem: |-
+      Consider a symmetric square-wave current of amplitude I_0 and a sinusoidal current of amplitude I_0.
+      I. The rms value of the square wave is I_0.
+      II. The rms value of the sine wave is I_0/√2.
+      III. The full-cycle average of both is zero.
+      IV. The half-cycle average of the sine wave is greater than its rms value.
+      Which statements are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, II and III only
+      - I, III and IV only
+    answer: 2
+    explanation: The square wave has i^2 = I_0^2 always, so rms = I_0; the sine has rms I_0/√2; both average to zero over a cycle. The sine's half-cycle average 0.637I_0 is less than 0.707I_0.
+  - id: phy-ac-303
+    topic: ac-values
+    subtopic: Characteristic values of AC
+    concept: Peak, rms, half-cycle and full-cycle averages
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [rms-value, average-value]
+    stem: |-
+      For i = I_0 sin ωt, match the quantity in List I with its value in List II.
+      List I: P. Peak value  Q. Rms value  R. Average over a half cycle  S. Average over a full cycle
+      List II: 1. 2I_0/π  2. zero  3. I_0  4. I_0/√2
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: The peak is I_0, the rms is I_0/√2, the half-cycle average is 2I_0/π and the full-cycle average is zero.
+  - id: phy-ac-304
+    topic: ac-values
+    subtopic: Average from rms
+    concept: I_avg = (2√2/π) I_rms ≈ 0.9 I_rms
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: I_avg = 2√2 I_rms/π
+    tags: [average-value, rms-value]
+    stem: An AC ammeter reads 5 A in a sinusoidal circuit. What is the average current over a half cycle?
+    options:
+      - 4.5 A
+      - 3.18 A
+      - 5.55 A
+      - 7.07 A
+    answer: 0
+    explanation: I_0 = 5√2 ≈ 7.07 A, so the half-cycle average 2I_0/π ≈ 4.5 A. 7.07 A is the peak value.
+  - id: phy-ac-305
+    topic: ac-values
+    subtopic: Phase shift and rms
+    concept: RMS value is independent of initial phase
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [rms-value, phase]
+    stem: |-
+      Statement I: The voltages V_0 sin ωt and V_0 cos ωt have the same rms value.
+      Statement II: Shifting the phase of a sinusoidal voltage changes its rms value.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The rms value depends only on the amplitude (V_0/√2); a phase shift just moves the curve in time, so Statement II is wrong.
+  - id: phy-ac-306
+    topic: ac-values
+    subtopic: Heating by square and sine waves
+    concept: Equal peak square wave has higher rms than sine wave
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [rms-value, heating-effect]
+    stem: |-
+      Assertion (A): For the same peak value, a square-wave alternating current produces more heat in a resistor than a sinusoidal current.
+      Reason (R): The rms value of a square wave equals its peak value, which exceeds the rms value of a sine wave of the same peak.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Heat ∝ I_rms^2. Square wave gives I_0^2 and sine gives I_0^2/2, so the square wave heats twice as much; R explains A.
+  - id: phy-ac-307
+    topic: ac-values
+    subtopic: Time of first maximum with initial phase
+    concept: ωt + φ = π/2 for first maximum
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: ωt + φ = π/2
+    tags: [phase, time-period]
+    stem: A voltage v = 50 sin(100πt + π/4) volt is applied at t = 0. At what time does it first reach its maximum value?
+    options:
+      - 5 ms
+      - 1.25 ms
+      - 7.5 ms
+      - 2.5 ms
+    answer: 3
+    explanation: The maximum needs 100πt + π/4 = π/2, so t = (π/4)/(100π) = 1/400 s = 2.5 ms. 5 ms ignores the initial phase.
+  - id: phy-ac-308
+    topic: ac-values
+    subtopic: Heating time with AC and DC
+    concept: AC of peak I_0 takes twice as long as DC I_0 to give same heat
+    category: application
+    format: case
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: H = I_rms^2 R t
+    tags: [heating-effect, multi-concept]
+    stem: A kettle heats a fixed amount of water to boiling in 5 minutes when a steady current of 10 A flows. How long would it take with a sinusoidal AC of peak value 10 A, ignoring losses?
+    options:
+      - 5 minutes
+      - 7.1 minutes
+      - 2.5 minutes
+      - 10 minutes
+    answer: 3
+    explanation: With AC, I_rms^2 = 50 A^2 versus 100 A^2 for DC, so the heating rate is halved and the time doubles to 10 minutes.
+  - id: phy-ac-309
+    topic: ac-values
+    subtopic: Writing the equation of a supply
+    concept: V_0 = √2 V_rms and ω = 2πf
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [rms-value, frequency]
+    stem: Which equation represents an AC supply of rms value 100 V and frequency 60 Hz?
+    options:
+      - v = 100 sin(60t)
+      - v = 141 sin(120t)
+      - v = 141 sin(377t)
+      - v = 100 sin(377t)
+    answer: 2
+    explanation: V_0 = 100√2 ≈ 141 V and ω = 2π × 60 ≈ 377 rad s^{-1}, so v = 141 sin(377t).
+  - id: phy-ac-310
+    topic: ac-values
+    subtopic: Comparing rms values
+    concept: rms of sine = I_0/√2, square wave = I_0, DC = I
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [rms-value]
+    stem: Arrange in increasing order of rms value — W, a sinusoidal current of peak 10 A; X, a steady DC of 7.5 A; Y, a square-wave current of peak 8 A; Z, a sinusoidal current of peak 12 A.
+    options:
+      - X < W < Y < Z
+      - W < Y < X < Z
+      - W < X < Z < Y
+      - W < X < Y < Z
+    answer: 3
+    explanation: The rms values are W = 7.07 A, X = 7.5 A, Y = 8 A (square wave) and Z = 8.49 A, so W < X < Y < Z.
+  - id: phy-ac-311
+    topic: ac-values
+    subtopic: Peak-to-peak value
+    concept: Peak-to-peak = 2√2 V_rms
+    category: numerical
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [rms-value, average-value]
+    stem: |-
+      For the 220 V (rms) mains supply:
+      Statement I: The peak-to-peak voltage is about 622 V.
+      Statement II: The average voltage over a full cycle is about 0.637 of the peak value.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Peak = 311 V, so peak-to-peak = 2 × 311 ≈ 622 V. The full-cycle average is zero; 0.637V_0 is the half-cycle average.
+  - id: phy-ac-312
+    topic: ac-values
+    subtopic: Initial phase from value at t = 0
+    concept: V_0 sin φ = V_0/2 gives φ = π/6
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [phase]
+    stem: An AC voltage v = V_0 sin(ωt + φ) has the value V_0/2 at t = 0 and is increasing. What is φ?
+    options:
+      - π/6
+      - π/3
+      - π/4
+      - 5π/6
+    answer: 0
+    explanation: sin φ = ½ gives φ = π/6 or 5π/6; since v is increasing at t = 0, cos φ > 0, so φ = π/6.
+  - id: phy-ac-313
+    topic: phasors-resistor
+    subtopic: Properties of phasors
+    concept: Phasor length = amplitude; rotation at ω; angles = phase differences
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [phasor, ncert-line]
+    stem: |-
+      About phasors used to represent AC quantities:
+      I. The length of a phasor represents the amplitude of the quantity.
+      II. Phasors rotate anticlockwise with angular speed ω.
+      III. The angle between two phasors gives their phase difference.
+      IV. Phasors are real vectors pointing in a fixed direction in space.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: A phasor is a rotating representation, not a physical vector in space; its length is the amplitude and angles between phasors give phase differences.
+  - id: phy-ac-314
+    topic: phasors-resistor
+    subtopic: Units in AC circuits
+    concept: Units of reactance, inductance, capacitance, apparent power
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [units]
+    stem: |-
+      Match each quantity in List I with its SI unit in List II.
+      List I: P. Reactance  Q. Inductance  R. Capacitance  S. Apparent power
+      List II: 1. farad  2. volt-ampere  3. ohm  4. henry
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 0
+    explanation: Reactance is in ohm, inductance in henry, capacitance in farad and apparent power V_rms I_rms in volt-ampere.
+  - id: phy-ac-315
+    topic: phasors-resistor
+    subtopic: Ohm's law at every instant
+    concept: v/i = R at every instant for a resistor
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [resistor]
+    stem: Which statement about a pure resistor connected to an AC source is correct?
+    options:
+      - The ratio v/i changes during the cycle
+      - The current leads the voltage slightly
+      - The ratio v/i is constant and equal to R at every instant
+      - The resistance increases with frequency
+    answer: 2
+    explanation: For a resistor v = iR holds at every instant, so v/i = R throughout the cycle and they are in phase.
+  - id: phy-ac-316
+    topic: phasors-resistor
+    subtopic: Energy per cycle
+    concept: Energy per cycle = P_avg × T
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: E = I_rms^2 R T
+    tags: [power, energy]
+    stem: An rms current of 5 A at 50 Hz flows through a 20 Ω resistor. How much energy is dissipated in one cycle?
+    options:
+      - 500 J
+      - 25 J
+      - 20 J
+      - 10 J
+    answer: 3
+    explanation: P = 25 × 20 = 500 W and T = 0.02 s, so the energy per cycle is 500 × 0.02 = 10 J.
+  - id: phy-ac-317
+    topic: phasors-resistor
+    subtopic: Sign of instantaneous power
+    concept: v and i have the same sign in a resistor, so p ≥ 0
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [power]
+    stem: |-
+      Assertion (A): The instantaneous power delivered to a pure resistor from an AC source is never negative.
+      Reason (R): In a pure resistor the instantaneous voltage and current always have the same sign.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Being in phase, v and i change sign together, so p = vi ≥ 0 at all times; R explains A.
+  - id: phy-ac-318
+    topic: phasors-resistor
+    subtopic: Resistance from graphs
+    concept: R = V_0/I_0 from in-phase waveforms
+    category: numerical
+    format: graph
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: false
+    tags: [graph, resistor]
+    stem: On the same time axis, a sinusoidal voltage of peak 100 V and a sinusoidal current of peak 2 A cross zero and reach their maxima at the same instants. What is the element and its opposition to current?
+    options:
+      - A capacitor of reactance 50 Ω
+      - A resistor of 200 Ω
+      - A resistor of 50 Ω
+      - An inductor of reactance 50 Ω
+    answer: 2
+    explanation: In-phase waveforms indicate a pure resistor, and R = V_0/I_0 = 100/2 = 50 Ω.
+  - id: phy-ac-319
+    topic: phasors-resistor
+    subtopic: Bulbs in series on AC
+    concept: Higher-resistance bulb dissipates more power in series
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: P = I^2R
+    tags: [power, multi-concept]
+    stem: A 100 W, 220 V bulb and a 60 W, 220 V bulb are connected in series across 220 V AC mains. Which bulb glows brighter?
+    options:
+      - The 60 W bulb
+      - The 100 W bulb
+      - Both glow equally
+      - Neither glows, since AC averages to zero
+    answer: 0
+    explanation: R = V^2/P, so the 60 W bulb has the larger resistance. The same current flows through both, and P = I^2R is larger for the 60 W bulb.
+  - id: phy-ac-320
+    topic: phasors-resistor
+    subtopic: Resistor phasors and ratios
+    concept: V and I phasors parallel; V_rms/I_rms = V_0/I_0 = R
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [phasor, resistor]
+    stem: |-
+      For a pure resistor on AC:
+      Statement I: The voltage and current phasors point in the same direction at every instant.
+      Statement II: The ratio of rms voltage to rms current equals the ratio of peak voltage to peak current.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Zero phase difference makes the phasors parallel, and since both rms values are peak/√2, their ratio equals V_0/I_0 = R.
+  - id: phy-ac-321
+    topic: ac-inductor
+    subtopic: Inductor in steady DC
+    concept: Ideal inductor is a short circuit for steady DC
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [dc, reactance]
+    stem: Which statement about an ideal inductor is correct?
+    options:
+      - It blocks steady DC completely
+      - It behaves as a short circuit for steady DC
+      - Its reactance is the same for AC of all frequencies
+      - It dissipates energy as heat in AC circuits
+    answer: 1
+    explanation: X_L = ωL is zero for ω = 0, so in steady DC an ideal inductor acts like a plain wire. It opposes AC more as frequency rises.
+  - id: phy-ac-322
+    topic: ac-inductor
+    subtopic: Scaling of X_L
+    concept: X_L ∝ fL
+    category: concept
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [reactance, proportionality]
+    stem: |-
+      Match the change in List I with the effect on inductive reactance in List II.
+      List I: P. f doubled  Q. L halved  R. f halved and L doubled  S. f and L both doubled
+      List II: 1. unchanged  2. four times  3. doubled  4. halved
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: X_L = 2πfL is proportional to the product fL. Doubling f doubles it, halving L halves it, f/2 with 2L leaves it unchanged, and 2f with 2L makes it four times.
+  - id: phy-ac-323
+    topic: ac-inductor
+    subtopic: Behaviour of inductor on AC
+    concept: Back emf, lag, X_L = V_0/I_0, zero voltage at current maximum
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [phase, reactance]
+    stem: |-
+      For an ideal inductor connected to an AC source:
+      I. The self-induced emf opposes the change in current.
+      II. The current lags the applied voltage by π/2.
+      III. The ratio V_0/I_0 equals ωL.
+      IV. The voltage across it is zero when the current is maximum.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: All four hold. The back emf gives the π/2 lag, V_0 = I_0ωL, and v = L di/dt vanishes where i is maximum.
+  - id: phy-ac-324
+    topic: ac-inductor
+    subtopic: Finding inductance
+    concept: L = V/(2πfI)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: L = V/(2πfI)
+    tags: [reactance]
+    stem: A pure inductor connected to a 220 V, 50 Hz supply draws a current of 1 A. What is its inductance?
+    options:
+      - 0.35 H
+      - 0.7 H
+      - 1.4 H
+      - 4.4 H
+    answer: 1
+    explanation: X_L = 220/1 = 220 Ω and L = 220/(2π × 50) ≈ 0.70 H.
+  - id: phy-ac-325
+    topic: ac-inductor
+    subtopic: Power factor of inductor
+    concept: φ = π/2 gives cos φ = 0
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [power-factor]
+    stem: |-
+      Assertion (A): The power factor of an ideal inductor connected to AC is zero.
+      Reason (R): In an ideal inductor the current lags the voltage by π/2.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Power factor = cos φ, and φ = π/2 gives cos φ = 0. R explains A.
+  - id: phy-ac-326
+    topic: ac-inductor
+    subtopic: Current at t = 0 in inductor
+    concept: For v = V_0 sin ωt, i = −I_0 cos ωt
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 55
+    ncert: true
+    battle: false
+    tags: [graph, phase]
+    stem: A voltage v = V_0 sin ωt is applied to an ideal inductor (steady state). On the i–t graph, what is the current at t = 0, when v is zero and increasing?
+    options:
+      - Zero and increasing
+      - At its positive maximum
+      - At its negative maximum
+      - Zero and decreasing
+    answer: 2
+    explanation: i = I_0 sin(ωt − π/2) = −I_0 cos ωt, which equals −I_0 at t = 0. The current reaches its positive maximum a quarter period after the voltage does.
+  - id: phy-ac-327
+    topic: ac-inductor
+    subtopic: Instant of zero current
+    concept: At zero current |v| is maximum and stored energy is zero
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [phase, energy]
+    stem: |-
+      Consider an ideal inductor on AC at an instant when the current through it is zero.
+      Statement I: The magnitude of the voltage across it is maximum at that instant.
+      Statement II: The energy stored in its magnetic field is maximum at that instant.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Because of the π/2 phase difference, |v| is maximum when i = 0. The stored energy ½Li^2 is then zero, not maximum.
+  - id: phy-ac-328
+    topic: ac-inductor
+    subtopic: Angular frequency for given current
+    concept: ω = V/(IL)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: ω = V/(IL)
+    tags: [reactance]
+    stem: A 0.25 H pure inductor carries a current of 2 A (rms) when connected to a 100 V (rms) source. What is the angular frequency of the source?
+    options:
+      - 50 rad s^{-1}
+      - 100 rad s^{-1}
+      - 400 rad s^{-1}
+      - 200 rad s^{-1}
+    answer: 3
+    explanation: X_L = 100/2 = 50 Ω and ω = X_L/L = 50/0.25 = 200 rad s^{-1}.
+  - id: phy-ac-329
+    topic: ac-inductor
+    subtopic: Identifying element from waveforms
+    concept: Voltage peaks T/4 before current indicates inductor
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    diagram: Graph with time t on the horizontal axis from 0 to T. Solid curve v = V_0 sin ωt starting at zero, peaking at t = T/4. Dashed curve i starting at its negative maximum at t = 0, crossing zero at T/4 and peaking at t = T/2. Tick marks at T/4, T/2, 3T/4 and T.
+    tags: [graph, phase]
+    stem: The graph shows the voltage across and the current through a single ideal element connected to an AC source. What is the element?
+    options:
+      - A resistor
+      - A capacitor
+      - An inductor
+      - A resistor and capacitor in series
+    answer: 2
+    explanation: The current peaks at T/2, a quarter period after the voltage peak at T/4, so the current lags by π/2, which identifies an ideal inductor.
+  - id: phy-ac-330
+    topic: ac-inductor
+    subtopic: Low DC resistance, small AC current
+    concept: Large X_L limits AC though R is small
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [reactance, multi-concept]
+    stem: An ohmmeter shows that a coil has a resistance of only 0.5 Ω, yet when connected to 220 V, 50 Hz mains it draws only about 0.7 A. What is the best explanation?
+    options:
+      - The coil's resistance increases enormously on AC
+      - The coil has a large inductive reactance, about 300 Ω
+      - The mains voltage is too low to drive current
+      - The ohmmeter reading must be wrong
+    answer: 1
+    explanation: Z = 220/0.7 ≈ 314 Ω, almost all of which is X_L = ωL, since R is only 0.5 Ω. The inductance (≈1 H) limits the AC current.
+  - id: phy-ac-331
+    topic: ac-inductor
+    subtopic: Current with 1/π H inductor
+    concept: X_L = 2πf(1/π) = 2f
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: X_L = 2πfL
+    tags: [reactance]
+    stem: A pure inductor of (1/π) H is connected to a 100 V (rms), 50 Hz supply. What is the rms current?
+    options:
+      - 2 A
+      - 0.5 A
+      - 1 A
+      - 3.14 A
+    answer: 2
+    explanation: X_L = 2π × 50 × (1/π) = 100 Ω, so I = 100/100 = 1 A.
+  - id: phy-ac-332
+    topic: ac-capacitor
+    subtopic: Scaling of X_C
+    concept: X_C ∝ 1/(fC)
+    category: concept
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [reactance, proportionality]
+    stem: |-
+      Match the change in List I with the effect on capacitive reactance in List II.
+      List I: P. f doubled  Q. C made one-fourth  R. f halved and C doubled  S. Dielectric of K = 3 fills the capacitor
+      List II: 1. unchanged  2. becomes one-third  3. halved  4. becomes four times
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-2, R-1, S-4
+    answer: 0
+    explanation: X_C = 1/(2πfC). Doubling f halves it, C/4 makes it 4 times, (f/2)(2C) = fC leaves it unchanged, and KC with K = 3 makes it one-third.
+  - id: phy-ac-333
+    topic: ac-capacitor
+    subtopic: Charge and current in capacitor
+    concept: q in phase with v; i maximum when q = 0
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [phase, charge]
+    stem: |-
+      For an ideal capacitor on AC:
+      I. The charge on its plates is in phase with the voltage across it.
+      II. The current is maximum when the charge is zero.
+      III. Its reactance is measured in ohm.
+      IV. Its reactance increases with frequency.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - II and III only
+      - I, II and IV only
+      - I, II and III only
+    answer: 3
+    explanation: q = Cv so q and v are in phase; i = dq/dt is maximum when q crosses zero; X_C is in ohm. X_C = 1/ωC decreases with frequency, so IV is false.
+  - id: phy-ac-334
+    topic: ac-capacitor
+    subtopic: Nature of current through capacitor
+    concept: No charge crosses the dielectric
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [trap]
+    stem: Which statement about current in a circuit containing a capacitor and an AC source is INCORRECT?
+    options:
+      - Charges flow in the connecting wires as the plates charge and discharge
+      - Electrons cross the dielectric from one plate to the other
+      - The current in the wires is maximum when the capacitor voltage is zero
+      - The current reverses direction every half cycle
+    answer: 1
+    explanation: No charge crosses the insulating dielectric; current in the external circuit arises from repeated charging and discharging of the plates.
+  - id: phy-ac-335
+    topic: ac-capacitor
+    subtopic: Current from charge amplitude
+    concept: I_0 = ωq_0
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: I_0 = ωq_0
+    tags: [charge]
+    stem: The charge on a capacitor connected to a 50 Hz source oscillates with amplitude 1 mC. What is the peak current?
+    options:
+      - 0.314 A
+      - 0.05 A
+      - 3.14 A
+      - 0.157 A
+    answer: 0
+    explanation: I_0 = ωq_0 = 2π × 50 × 10^{-3} ≈ 0.314 A. 0.05 A uses f instead of ω.
+  - id: phy-ac-336
+    topic: ac-capacitor
+    subtopic: Capacitor at high frequency
+    concept: X_C → 0 as f → ∞
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [reactance]
+    stem: |-
+      Assertion (A): At very high frequencies a capacitor behaves almost like a short circuit.
+      Reason (R): Capacitive reactance 1/ωC becomes very small at high angular frequency.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: As ω grows, X_C = 1/ωC tends to zero, so the capacitor offers almost no opposition; R explains A.
+  - id: phy-ac-337
+    topic: ac-capacitor
+    subtopic: Instant of maximum voltage
+    concept: At maximum v stored energy is maximum, current zero
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [energy, phase]
+    stem: |-
+      Consider an ideal capacitor on AC at the instant the voltage across it is maximum.
+      Statement I: The energy stored in the capacitor is maximum at that instant.
+      Statement II: The current in the circuit is maximum at that instant.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: U = ½Cv^2 is maximum when v is maximum. The current, which leads by π/2, is zero at that instant.
+  - id: phy-ac-338
+    topic: ac-capacitor
+    subtopic: Current at lower frequency
+    concept: I ∝ f for capacitor
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [reactance, proportionality]
+    stem: A capacitor draws 0.5 A from a 100 Hz source. What current does it draw from a 25 Hz source of the same rms voltage?
+    options:
+      - 2 A
+      - 0.25 A
+      - 0.5 A
+      - 0.125 A
+    answer: 3
+    explanation: I = 2πfCV ∝ f, so at a quarter of the frequency the current is 0.5/4 = 0.125 A.
+  - id: phy-ac-339
+    topic: ac-capacitor
+    subtopic: Charge and current graphs
+    concept: i = dq/dt leads q by π/2
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, phase, charge]
+    stem: For a capacitor on AC, the charge q on a plate and the current i are plotted against time. Which description is correct?
+    options:
+      - i reaches its maximum a quarter period before q does
+      - i and q reach their maxima together
+      - i reaches its maximum a quarter period after q does
+      - i reaches its maximum half a period after q does
+    answer: 0
+    explanation: i = dq/dt, so if q = q_0 sin ωt then i = ωq_0 cos ωt, which leads q by π/2, i.e. peaks T/4 earlier.
+  - id: phy-ac-340
+    topic: ac-capacitor
+    subtopic: Identifying element from waveforms
+    concept: Current peaking T/4 before voltage indicates capacitor
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    diagram: Graph with time t on the horizontal axis from 0 to T. Solid curve v = V_0 sin ωt starting at zero and peaking at t = T/4. Dashed curve i starting at its positive maximum at t = 0, crossing zero at T/4 and reaching its negative maximum at T/2. Tick marks at T/4, T/2, 3T/4 and T.
+    tags: [graph, phase]
+    stem: The graph shows voltage and current waveforms for a single ideal element on AC. Which element is it?
+    options:
+      - An inductor
+      - A resistor
+      - A resistor and inductor in series
+      - A capacitor
+    answer: 3
+    explanation: The current peaks at t = 0, a quarter period before the voltage peak at T/4, so it leads by π/2; this is a capacitor.
+  - id: phy-ac-341
+    topic: ac-capacitor
+    subtopic: Voltage rating of capacitor
+    concept: Capacitor must withstand peak, not rms, voltage
+    category: application
+    format: case
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [rms-value, trap]
+    stem: A capacitor has a maximum safe voltage of 200 V. Can it safely be connected to a 150 V (rms) AC supply?
+    options:
+      - Yes, because 150 V is less than 200 V
+      - Yes, because the average voltage of AC is zero
+      - No, because the peak voltage of about 212 V exceeds 200 V
+      - No, because AC always breaks down capacitors
+    answer: 2
+    explanation: The capacitor experiences the peak voltage √2 × 150 ≈ 212 V, which exceeds its 200 V rating, so it may break down.
+  - id: phy-ac-342
+    topic: ac-capacitor
+    subtopic: Voltage division between series capacitors
+    concept: V ∝ 1/C for series capacitors on AC
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: V_1/V_2 = X_{C1}/X_{C2} = C_2/C_1
+    tags: [reactance, multi-concept]
+    stem: Capacitors of 2 μF and 3 μF are connected in series across a 100 V (rms) AC source. What is the rms voltage across the 2 μF capacitor?
+    options:
+      - 40 V
+      - 50 V
+      - 60 V
+      - 67 V
+    answer: 2
+    explanation: The same current flows through both and V = I/(ωC), so V ∝ 1/C; the voltages are in the ratio 3:2 and in phase, giving 60 V across the 2 μF capacitor.
+  - id: phy-ac-343
+    topic: series-lcr
+    subtopic: Phase relations of element voltages
+    concept: V_L leads V_R by π/2, V_C lags by π/2
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [phasor, phase]
+    stem: |-
+      In a series LCR circuit on AC:
+      I. The voltage across L leads the voltage across R by π/2.
+      II. The voltage across C lags the voltage across R by π/2.
+      III. The voltages across L and C are π out of phase.
+      IV. The voltage across R always exceeds the source voltage.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - II and III only
+      - I, II and IV only
+      - I, II and III only
+    answer: 3
+    explanation: V_R is in phase with the current, V_L leads it by π/2 and V_C lags it by π/2, so V_L and V_C are π apart. V_R ≤ V always, equality at resonance.
+  - id: phy-ac-344
+    topic: series-lcr
+    subtopic: Nature of circuit from reactances
+    concept: Sign of X_L − X_C decides lead or lag
+    category: concept
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [phase]
+    stem: |-
+      Match the condition in a series circuit (List I) with the phase of current relative to source voltage (List II).
+      List I: P. X_L > X_C, R ≠ 0  Q. X_L < X_C, R ≠ 0  R. X_L = X_C  S. R = 0, X_L > X_C
+      List II: 1. Lags by exactly π/2  2. In phase  3. Leads by less than π/2  4. Lags by less than π/2
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-1, Q-3, R-2, S-4
+    answer: 0
+    explanation: With R present, an inductive circuit lags and a capacitive one leads by less than π/2; equal reactances give zero phase; with R = 0 and net inductive reactance, the lag is exactly π/2.
+  - id: phy-ac-345
+    topic: series-lcr
+    subtopic: Properties of impedance
+    concept: Z depends on frequency and has unit ohm
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [impedance]
+    stem: Which statement about the impedance Z of a series LCR circuit is correct?
+    options:
+      - It is independent of the source frequency
+      - It depends on the source frequency and is minimum at ω = 1/√(LC)
+      - It equals R + X_L + X_C
+      - It is always less than R
+    answer: 1
+    explanation: Z = √(R^2 + (ωL − 1/ωC)^2) depends on ω and is minimum (= R) at ω_0 = 1/√(LC).
+  - id: phy-ac-346
+    topic: series-lcr
+    subtopic: Current from L, C, R and ω
+    concept: Compute reactances then Z
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: Z = √(R^2 + (ωL − 1/ωC)^2)
+    tags: [impedance, multi-concept]
+    stem: A series circuit has R = 200 Ω, L = 0.5 H and C = 20 μF, connected to a 250 V (rms) source with ω = 500 rad s^{-1}. What is the rms current?
+    options:
+      - 1.25 A
+      - 0.71 A
+      - 1.67 A
+      - 1 A
+    answer: 3
+    explanation: X_L = 250 Ω and X_C = 1/(500 × 2 × 10^{-5}) = 100 Ω, so Z = √(200^2 + 150^2) = 250 Ω and I = 250/250 = 1 A.
+  - id: phy-ac-347
+    topic: series-lcr
+    subtopic: Phase angle from L, C, R and ω
+    concept: tan φ = (ωL − 1/ωC)/R
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: tan φ = (X_L − X_C)/R
+    tags: [phase, multi-concept]
+    stem: For a series circuit with R = 200 Ω, L = 0.5 H and C = 20 μF driven at ω = 500 rad s^{-1}, what is the phase relation between current and voltage?
+    options:
+      - Current leads by about 37°
+      - Current lags by about 53°
+      - Current lags by about 37°
+      - Current is in phase
+    answer: 2
+    explanation: X_L = 250 Ω and X_C = 100 Ω, so tan φ = 150/200 = 3/4 and φ ≈ 37°; X_L > X_C so the current lags.
+  - id: phy-ac-348
+    topic: series-lcr
+    subtopic: Current and voltage phases in series
+    concept: Common current; element voltages not all in phase with it
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [phase]
+    stem: |-
+      Statement I: In a series LCR circuit the same current flows through the resistor, inductor and capacitor.
+      Statement II: In a series LCR circuit the voltage across each element is in phase with the current.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: In series the current is common. Only V_R is in phase with it; V_L leads and V_C lags by π/2.
+  - id: phy-ac-349
+    topic: series-lcr
+    subtopic: Algebraic sum exceeds source voltage
+    concept: V_R + V_L > V because of 90° phase difference
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [phasor]
+    stem: |-
+      Assertion (A): In a series LR circuit, the sum of the rms voltmeter readings across R and across L is greater than the rms source voltage.
+      Reason (R): The voltages across R and L are 90° out of phase, so they add as perpendicular phasors.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: V = √(V_R^2 + V_L^2) < V_R + V_L whenever both are nonzero, precisely because they are perpendicular phasors. R explains A.
+  - id: phy-ac-350
+    topic: series-lcr
+    subtopic: Frequency for 45° lag
+    concept: ωL = R gives φ = 45°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: ω = R/L
+    tags: [phase]
+    stem: A series LR circuit has L = 0.2 H and R = 20 Ω. At what angular frequency will the current lag the voltage by 45°?
+    options:
+      - 100 rad s^{-1}
+      - 4 rad s^{-1}
+      - 10 rad s^{-1}
+      - 200 rad s^{-1}
+    answer: 0
+    explanation: φ = 45° needs ωL = R, so ω = 20/0.2 = 100 rad s^{-1}.
+  - id: phy-ac-351
+    topic: series-lcr
+    subtopic: RC phase and frequency
+    concept: tan φ = 1/(ωCR) falls with frequency
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [phase]
+    stem: In a series RC circuit, as the source frequency is increased, the phase angle by which the current leads the voltage
+    options:
+      - increases towards π/2
+      - remains constant
+      - becomes a lag
+      - decreases towards zero
+    answer: 3
+    explanation: tan φ = X_C/R = 1/(ωCR) falls as ω rises, so the lead decreases towards zero; the circuit becomes more resistive.
+  - id: phy-ac-352
+    topic: series-lcr
+    subtopic: Finding V_L from other voltages
+    concept: V^2 = V_R^2 + (V_L − V_C)^2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: V_L = V_C + √(V^2 − V_R^2)
+    tags: [phasor, multi-concept]
+    stem: In a series LCR circuit with an inductive character, the source is 13 V (rms), the voltage across R is 5 V and across C is 4 V. What is the voltage across L?
+    options:
+      - 8 V
+      - 12 V
+      - 4 V
+      - 16 V
+    answer: 3
+    explanation: V_L − V_C = √(13^2 − 5^2) = 12 V; since the circuit is inductive, V_L = 12 + 4 = 16 V.
+  - id: phy-ac-353
+    topic: series-lcr
+    subtopic: Resistor voltage versus frequency
+    concept: V_R = IR peaks at f_0
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, resonance]
+    stem: In a series LCR circuit driven by a variable-frequency source of fixed rms voltage V, how does the rms voltage across R vary with frequency?
+    options:
+      - It stays equal to V at all frequencies
+      - It rises to a maximum of V at resonance and falls on either side
+      - It falls to zero at resonance
+      - It increases steadily with frequency
+    answer: 1
+    explanation: V_R = IR follows the current, which is maximum V/R at resonance, so V_R peaks at V there and is smaller elsewhere.
+  - id: phy-ac-354
+    topic: series-lcr
+    subtopic: Voltmeter across resistor in RC circuit
+    concept: V_R = VR/√(R^2 + X_C^2)
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    diagram: Circuit diagram. An AC source labelled 220 V, 50 Hz is connected in series with a resistor labelled R = 100 Ω and a capacitor labelled X_C = 100 Ω, forming a single loop. An AC voltmeter V_1 is connected across the resistor only.
+    formula: V_R = V R/√(R^2 + X_C^2)
+    tags: [phasor, impedance]
+    stem: In the circuit shown, what does the voltmeter V_1 across the resistor read?
+    options:
+      - 110 V
+      - 220 V
+      - 156 V
+      - 311 V
+    answer: 2
+    explanation: Z = 100√2 Ω, so I = 220/141.4 ≈ 1.56 A and V_R = 1.56 × 100 ≈ 156 V. 110 V would assume the voltages split equally in phase.
+  - id: phy-ac-355
+    topic: series-lcr
+    subtopic: Effect of increasing R
+    concept: Raising R increases Z and cos φ; ω_0 unchanged
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [impedance, power-factor, multi-concept]
+    stem: |-
+      In a series LCR circuit operating off resonance, only the resistance is increased.
+      I. The impedance increases.
+      II. The magnitude of the phase angle decreases.
+      III. The power factor increases.
+      IV. The resonant frequency changes.
+      Which statements are correct?
+    options:
+      - I, II and III only
+      - I and IV only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: Z = √(R^2 + X^2) rises; tan φ = X/R falls, so |φ| falls and cos φ rises. ω_0 = 1/√(LC) does not involve R.
+  - id: phy-ac-356
+    topic: series-lcr
+    subtopic: Resistance from Z and phase
+    concept: R = Z cos φ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: R = Z cos φ
+    tags: [impedance, phase]
+    stem: A series RC circuit has an impedance of 200 Ω and the current leads the voltage by 60°. What is the resistance?
+    options:
+      - 173 Ω
+      - 100 Ω
+      - 400 Ω
+      - 115 Ω
+    answer: 1
+    explanation: R = Z cos φ = 200 × 0.5 = 100 Ω; the capacitive reactance is Z sin φ ≈ 173 Ω.
+  - id: phy-ac-357
+    topic: resonance
+    subtopic: Misconceptions about resonance
+    concept: At resonance V_R equals source voltage
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [resonance, trap]
+    stem: Which statement about a series LCR circuit at resonance is INCORRECT?
+    options:
+      - The current is in phase with the source voltage
+      - The voltage across R is less than the source voltage
+      - The impedance equals R
+      - The voltages across L and C cancel each other
+    answer: 1
+    explanation: At resonance V_L and V_C cancel, so the whole source voltage appears across R; V_R equals, not less than, the source voltage.
+  - id: phy-ac-358
+    topic: resonance
+    subtopic: Effects of changing R, L, C
+    concept: R affects sharpness; L and C affect ω_0
+    category: application
+    format: match
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [resonance, q-factor]
+    stem: |-
+      Match each change in a series LCR circuit (List I) with its effect (List II).
+      List I: P. R increased  Q. L increased, C fixed  R. C decreased, L fixed  S. R decreased
+      List II: 1. Resonant frequency decreases  2. Resonance becomes sharper  3. Resonant frequency increases  4. Peak current decreases and curve broadens
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-2, Q-1, R-3, S-4
+      - P-4, Q-1, R-3, S-2
+      - P-4, Q-1, R-2, S-3
+    answer: 2
+    explanation: Larger R lowers V/R and Q; larger L or smaller C changes ω_0 = 1/√(LC) down or up respectively; smaller R raises Q, making the resonance sharper.
+  - id: phy-ac-359
+    topic: resonance
+    subtopic: Resonant angular frequency
+    concept: ω_0 = 1/√(LC)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: ω_0 = 1/√(LC)
+    tags: [resonance]
+    stem: What is the resonant angular frequency of a series LCR circuit with L = 4 H and C = 1 μF?
+    options:
+      - 250 rad s^{-1}
+      - 2000 rad s^{-1}
+      - 500 rad s^{-1}
+      - 1000 rad s^{-1}
+    answer: 2
+    explanation: LC = 4 × 10^{-6} s^2, √(LC) = 2 × 10^{-3} s, so ω_0 = 500 rad s^{-1}.
+  - id: phy-ac-360
+    topic: resonance
+    subtopic: Bandwidth from Q
+    concept: 2Δω = ω_0/Q
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    formula: 2Δω = ω_0/Q
+    tags: [bandwidth, q-factor]
+    stem: A series LCR circuit resonates at 1000 rad s^{-1} and has Q = 20. What is its bandwidth 2Δω?
+    options:
+      - 50 rad s^{-1}
+      - 20 000 rad s^{-1}
+      - 25 rad s^{-1}
+      - 100 rad s^{-1}
+    answer: 0
+    explanation: 2Δω = ω_0/Q = 1000/20 = 50 rad s^{-1}.
+  - id: phy-ac-361
+    topic: resonance
+    subtopic: Role of R at resonance
+    concept: R does not affect ω_0 but sets the peak current
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [resonance]
+    stem: |-
+      Statement I: The resonant frequency of a series LCR circuit depends on its resistance.
+      Statement II: The current amplitude at resonance depends on the resistance.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: ω_0 = 1/√(LC) is independent of R, but the peak current V_m/R is set by R.
+  - id: phy-ac-362
+    topic: resonance
+    subtopic: Voltage magnification
+    concept: V_L = QV at resonance, Q can exceed 1
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [q-factor]
+    stem: |-
+      Assertion (A): In a series LCR circuit at resonance, the voltage across the inductor can be many times the source voltage.
+      Reason (R): At resonance the voltage across the inductor is Q times the source voltage, and Q can be much greater than 1.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: At resonance I = V/R, so V_L = IωL = (ω_0L/R)V = QV. With a large Q, V_L greatly exceeds V; R explains A.
+  - id: phy-ac-363
+    topic: resonance
+    subtopic: Conditions at resonance
+    concept: At resonance φ = 0, not π/2
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [resonance, trap]
+    stem: |-
+      For a series LCR circuit at resonance:
+      I. X_L = X_C
+      II. ω = 1/√(LC)
+      III. The impedance is minimum.
+      IV. The current lags the voltage by π/2.
+      Which statement is NOT true?
+    options:
+      - I only
+      - II only
+      - III only
+      - IV only
+    answer: 3
+    explanation: At resonance the reactances cancel, ω = 1/√(LC), Z = R is minimum and the current is in phase with the voltage, so IV is false.
+  - id: phy-ac-364
+    topic: resonance
+    subtopic: Current off resonance
+    concept: Net reactance √3R gives Z = 2R, I = I_max/2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: I = V/√(R^2 + X^2)
+    tags: [resonance, impedance]
+    stem: A series LCR circuit carries current I_0 at resonance. At another frequency the net reactance equals √3 times the resistance. What current flows then, for the same source voltage?
+    options:
+      - I_0/√3
+      - I_0/√2
+      - I_0/2
+      - I_0/4
+    answer: 2
+    explanation: Z = √(R^2 + 3R^2) = 2R, so the current is V/2R = I_0/2.
+  - id: phy-ac-365
+    topic: resonance
+    subtopic: Zero voltage across LC
+    concept: V_{LC} = 0 at f_0 = 1/(2π√(LC))
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: f_0 = 1/(2π√(LC))
+    tags: [resonance]
+    stem: In a series LCR circuit with L = 0.1 H and C = 10 μF, a voltmeter placed across the inductor and capacitor together reads zero at one particular source frequency. What is that frequency?
+    options:
+      - 1000 Hz
+      - 159 Hz
+      - 50 Hz
+      - 318 Hz
+    answer: 1
+    explanation: V_L and V_C cancel at resonance; ω_0 = 1/√(10^{-6}) = 1000 rad s^{-1}, so f_0 = 1000/2π ≈ 159 Hz.
+  - id: phy-ac-366
+    topic: resonance
+    subtopic: Resistance from half-power points
+    concept: 2Δω = R/L
+    category: numerical
+    format: graph
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    formula: R = L × 2Δω
+    tags: [graph, bandwidth]
+    stem: The power–frequency curve of a series LCR circuit with L = 0.5 H shows maximum power at 1000 rad s^{-1} and half the maximum power at 980 rad s^{-1} and 1020 rad s^{-1}. What is the resistance?
+    options:
+      - 10 Ω
+      - 40 Ω
+      - 80 Ω
+      - 20 Ω
+    answer: 3
+    explanation: The half-power points give 2Δω = 1020 − 980 = 40 rad s^{-1} = R/L, so R = 40 × 0.5 = 20 Ω.
+  - id: phy-ac-367
+    topic: resonance
+    subtopic: Q from half-power frequencies
+    concept: Q = ω_0/(ω_2 − ω_1)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: Q = ω_0/(ω_2 − ω_1)
+    tags: [q-factor, bandwidth]
+    stem: A series LCR circuit has resonant angular frequency 1000 rad s^{-1} and half-power frequencies 990 and 1010 rad s^{-1}. What is its Q-factor?
+    options:
+      - "100"
+      - "20"
+      - "50"
+      - "10"
+    answer: 2
+    explanation: Q = ω_0/(2Δω) = 1000/20 = 50.
+  - id: phy-ac-368
+    topic: resonance
+    subtopic: Capacitor voltage at resonance
+    concept: V_C = V_L = IX_L at resonance
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: V_C = (V_R/R)X_C
+    tags: [resonance]
+    stem: At resonance a series LCR circuit has 100 V across its 50 Ω resistor, and X_L = 200 Ω. What is the rms voltage across the capacitor?
+    options:
+      - 100 V
+      - 200 V
+      - 400 V
+      - 25 V
+    answer: 2
+    explanation: I = 100/50 = 2 A; at resonance X_C = X_L = 200 Ω, so V_C = 2 × 200 = 400 V.
+  - id: phy-ac-369
+    topic: resonance
+    subtopic: Ranking quality factors
+    concept: Q = (1/R)√(L/C)
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: Q = (1/R)√(L/C)
+    tags: [q-factor]
+    stem: |-
+      Arrange these series LCR circuits in increasing order of Q-factor.
+      W. L = 1 H, C = 1 μF, R = 100 Ω
+      X. L = 0.1 H, C = 1 μF, R = 10 Ω
+      Y. L = 1 H, C = 4 μF, R = 25 Ω
+      Z. L = 4 H, C = 1 μF, R = 50 Ω
+    options:
+      - W < X < Y < Z
+      - Y < W < X < Z
+      - W < Y < Z < X
+      - W < Y < X < Z
+    answer: 3
+    explanation: Q_W = 1000/100 = 10, Q_X = 316/10 ≈ 31.6, Q_Y = 500/25 = 20 and Q_Z = 2000/50 = 40, so W < Y < X < Z.
+  - id: phy-ac-370
+    topic: ac-power
+    subtopic: Units of power quantities
+    concept: True power in W, apparent in VA, pf dimensionless, energy in kWh
+    category: factual
+    format: match
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [units, power]
+    stem: |-
+      Match each quantity in List I with its usual unit in List II.
+      List I: P. True power  Q. Apparent power  R. Power factor  S. Electrical energy sold
+      List II: 1. no unit  2. kilowatt-hour  3. watt  4. volt-ampere
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 0
+    explanation: True power is in watt, apparent power V_rms I_rms in volt-ampere, the power factor cos φ has no unit and energy is billed in kilowatt-hour.
+  - id: phy-ac-371
+    topic: ac-power
+    subtopic: Ways to improve power factor
+    concept: Reduce net reactance relative to R
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [power-factor]
+    stem: |-
+      Which of the following would raise the power factor of an inductive load?
+      I. Adding a suitable capacitor in the circuit
+      II. Adding more inductance in series
+      III. Operating the circuit at resonance
+      IV. Reducing the net reactance relative to the resistance
+    options:
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: cos φ = R/Z rises as the net reactance falls. A capacitor cancels part of X_L and resonance makes it zero. Extra inductance increases X_L and worsens the power factor.
+  - id: phy-ac-372
+    topic: ac-power
+    subtopic: Meaning of wattless current
+    concept: Current flows but average power is zero
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [wattless-current]
+    stem: Which statement correctly describes a wattless current?
+    options:
+      - A current that flows only in DC circuits
+      - A current in phase with the voltage
+      - A current that is zero at every instant
+      - A current that flows but consumes no average power because it is π/2 out of phase with the voltage
+    answer: 3
+    explanation: Wattless current is 90° out of phase with the voltage, so P = VI cos 90° = 0 although the current is nonzero.
+  - id: phy-ac-373
+    topic: ac-power
+    subtopic: Power in LR circuit
+    concept: P = V^2R/Z^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: P = I^2R
+    tags: [power]
+    stem: A coil of resistance 40 Ω and reactance 30 Ω is connected to 200 V (rms) AC. What average power does it consume?
+    options:
+      - 800 W
+      - 640 W
+      - 1000 W
+      - 480 W
+    answer: 1
+    explanation: Z = 50 Ω, I = 4 A and P = I^2R = 16 × 40 = 640 W. 800 W is the apparent power.
+  - id: phy-ac-374
+    topic: ac-power
+    subtopic: Conditions for maximum power
+    concept: P = V_rms I_rms cos φ is maximum at φ = 0
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [power, power-factor]
+    stem: |-
+      Statement I: For given rms voltage and rms current, the average power in an AC circuit is maximum when the phase difference is zero.
+      Statement II: The average power in an AC circuit is V_rms I_rms cos φ.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: P = V_rms I_rms cos φ, and cos φ is largest (1) at φ = 0; both statements are correct.
+  - id: phy-ac-375
+    topic: ac-power
+    subtopic: Penalty for low power factor
+    concept: Low pf needs larger current and causes larger line loss
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [power-factor, transmission]
+    stem: |-
+      Assertion (A): Electricity suppliers discourage industrial consumers from running loads at low power factor.
+      Reason (R): For the same power at the same voltage, a low power factor requires a larger current, increasing losses in the supply lines.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: I = P/(V cos φ), so low cos φ means larger I and larger I^2R loss in transmission; this is why low power factor is discouraged.
+  - id: phy-ac-376
+    topic: ac-power
+    subtopic: Power in RC circuit
+    concept: X_C = √3R gives Z = 2R, pf = 0.5
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: P = I^2R
+    tags: [power, power-factor]
+    stem: A 10 Ω resistor and a capacitor of reactance 10√3 Ω are in series across 100 V (rms) AC. What average power is consumed?
+    options:
+      - 500 W
+      - 1000 W
+      - 433 W
+      - 250 W
+    answer: 3
+    explanation: Z = √(100 + 300) = 20 Ω, I = 5 A and P = I^2R = 25 × 10 = 250 W.
+  - id: phy-ac-377
+    topic: ac-power
+    subtopic: Resistance from power and current
+    concept: R = P/I_rms^2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: R = P/I_rms^2
+    tags: [power]
+    stem: A series LCR circuit consumes 400 W when an rms current of 4 A flows. What is its resistance?
+    options:
+      - 100 Ω
+      - 25 Ω
+      - 50 Ω
+      - 12.5 Ω
+    answer: 1
+    explanation: Only R dissipates power, so R = P/I^2 = 400/16 = 25 Ω.
+  - id: phy-ac-378
+    topic: ac-power
+    subtopic: Instantaneous power in capacitor
+    concept: p oscillates at 2ω symmetrically about zero
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [graph, power]
+    stem: Which description matches the graph of instantaneous power p = vi against time for an ideal capacitor on AC?
+    options:
+      - Always positive, varying at twice the source frequency
+      - A sinusoid at twice the source frequency, equally positive and negative, averaging zero
+      - A constant positive value
+      - A sinusoid at the source frequency, always negative
+    answer: 1
+    explanation: With i leading v by π/2, p = ½V_0I_0 sin 2ωt, which oscillates at 2ω symmetrically about zero; the capacitor alternately takes and returns energy.
+  - id: phy-ac-379
+    topic: ac-power
+    subtopic: Current for an industrial load
+    concept: I = P/(V cos φ)
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: I = P/(V cos φ)
+    tags: [power-factor]
+    stem: A workshop load consumes 10 kW at 400 V (rms) and a power-factor meter shows 0.7 lagging. What rms current is drawn from the supply?
+    options:
+      - 25 A
+      - 17.5 A
+      - 35.7 A
+      - 57.1 A
+    answer: 2
+    explanation: I = P/(V cos φ) = 10 000/(400 × 0.7) ≈ 35.7 A. Ignoring the power factor gives 25 A.
+  - id: phy-ac-380
+    topic: ac-power
+    subtopic: Power off resonance
+    concept: P = P_0 cos^2 φ for same V and R
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: P = (V^2/R) cos^2 φ
+    tags: [power, power-factor, multi-concept]
+    stem: A series LCR circuit consumes 1 kW at resonance. The frequency is then changed so that the power factor becomes 0.6, keeping the source voltage the same. What power is now consumed?
+    options:
+      - 600 W
+      - 360 W
+      - 1000 W
+      - 800 W
+    answer: 1
+    explanation: P = I^2R with I = V cos φ/R, so P = (V^2/R) cos^2 φ = 1000 × 0.36 = 360 W. The answer 600 W forgets that the current also falls.
+  - id: phy-ac-381
+    topic: ac-power
+    subtopic: Factors affecting average power
+    concept: P depends on R, ω, V; not on initial phase
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [power]
+    stem: |-
+      On which of the following does the average power consumed by a series LCR circuit depend?
+      I. The resistance R
+      II. The source frequency
+      III. The rms source voltage
+      IV. The phase of the source voltage at t = 0
+    options:
+      - I and III only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: P = V^2R/Z^2 depends on R, V and, through Z, on the frequency. The initial phase only shifts the time origin and does not affect the average.
+  - id: phy-ac-382
+    topic: ac-power
+    subtopic: Resistance from power data
+    concept: cos φ = P/(VI), R = Z cos φ
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: R = P/I^2
+    tags: [power, power-factor]
+    stem: A coil connected to 220 V (rms) AC draws 2.2 A and consumes 242 W. What are its power factor and resistance?
+    options:
+      - 0.5 and 50 Ω
+      - 0.5 and 100 Ω
+      - 0.25 and 50 Ω
+      - 1 and 100 Ω
+    answer: 0
+    explanation: cos φ = 242/(220 × 2.2) = 0.5 and R = P/I^2 = 242/4.84 = 50 Ω. 100 Ω is the impedance V/I.
+  - id: phy-ac-383
+    topic: lc-oscillations
+    subtopic: Energy analogy with spring-mass
+    concept: q^2/2C ↔ ½kx^2, ½Li^2 ↔ ½mv^2
+    category: concept
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [analogy]
+    stem: |-
+      Match the LC-circuit quantity in List I with its analogue for a mass on a spring in List II.
+      List I: P. q^2/2C  Q. ½Li^2  R. 1/√(LC)  S. d^2q/dt^2
+      List II: 1. √(k/m)  2. Acceleration  3. Potential energy ½kx^2  4. Kinetic energy ½mv^2
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: Electric energy ↔ spring PE, magnetic energy ↔ KE, ω = 1/√(LC) ↔ √(k/m), and d^2q/dt^2 ↔ d^2x/dt^2 (acceleration).
+  - id: phy-ac-384
+    topic: lc-oscillations
+    subtopic: States during one cycle
+    concept: t = T/4 current max; T/2 reversed charge; T/8 equal sharing
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [energy, lc-oscillation]
+    stem: |-
+      An ideal LC circuit starts at t = 0 with maximum charge on the capacitor.
+      I. At t = T/4 the current is maximum.
+      II. At t = T/2 the capacitor is fully charged with reversed polarity.
+      III. At t = T/2 the current is maximum.
+      IV. At t = T/8 the energy is shared equally between L and C.
+      Which statements are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: q = q_0 cos ωt is zero at T/4 (current maximum) and −q_0 at T/2 (current zero). At T/8, q = q_0/√2 and energies are equal.
+  - id: phy-ac-385
+    topic: lc-oscillations
+    subtopic: Misconception about amplitude
+    concept: LC frequency independent of initial charge
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [lc-oscillation, trap]
+    stem: Which statement about an ideal LC circuit is INCORRECT?
+    options:
+      - The charge on the capacitor varies sinusoidally with time
+      - The total energy stays constant
+      - A larger initial charge produces a higher frequency of oscillation
+      - The oscillation frequency is 1/(2π√(LC))
+    answer: 2
+    explanation: The frequency depends only on L and C; the initial charge sets the amplitude and energy, not the frequency.
+  - id: phy-ac-386
+    topic: lc-oscillations
+    subtopic: Angular frequency from I_0 and q_0
+    concept: ω = I_0/q_0
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: I_0 = ωq_0
+    tags: [lc-oscillation]
+    stem: In an LC circuit, the maximum charge on the capacitor is 1 mC and the maximum current is 2 A. What is the angular frequency of oscillation?
+    options:
+      - 500 rad s^{-1}
+      - 2 rad s^{-1}
+      - 2000 rad s^{-1}
+      - 1000 rad s^{-1}
+    answer: 2
+    explanation: ω = I_0/q_0 = 2/10^{-3} = 2000 rad s^{-1}.
+  - id: phy-ac-387
+    topic: lc-oscillations
+    subtopic: Damping in real LC circuit
+    concept: Resistance converts energy to heat, damping oscillations
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [damping]
+    stem: |-
+      Assertion (A): The amplitude of charge oscillations in a practical LC circuit decreases with time.
+      Reason (R): The resistance of the circuit converts part of the oscillating energy into heat.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Joule heating in the circuit resistance steadily removes energy, so the oscillations are damped; R explains A.
+  - id: phy-ac-388
+    topic: lc-oscillations
+    subtopic: Current versus time graph
+    concept: With q = q_0 cos ωt, i = −ωq_0 sin ωt starts at zero
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [graph, lc-oscillation]
+    stem: An LC circuit starts at t = 0 with the capacitor at maximum charge. Which describes the i–t graph for the first half period?
+    options:
+      - Starts at maximum and falls to zero at T/4
+      - Starts at zero, reaches maximum magnitude at T/4 and returns to zero at T/2
+      - Stays constant at its maximum value
+      - Starts at zero, reaches maximum magnitude at T/2
+    answer: 1
+    explanation: i = −ωq_0 sin ωt is zero at t = 0, has maximum magnitude at T/4 (capacitor fully discharged) and is zero again at T/2.
+  - id: phy-ac-389
+    topic: lc-oscillations
+    subtopic: Magnetic energy at half charge
+    concept: U_B = U(1 − q^2/q_0^2)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: U_B = (q_0^2 − q^2)/2C
+    tags: [energy]
+    stem: A 2 μF capacitor with an initial charge of 20 μC is connected to an ideal inductor. What is the magnetic energy in the inductor when the charge on the capacitor is 10 μC?
+    options:
+      - 100 μJ
+      - 25 μJ
+      - 50 μJ
+      - 75 μJ
+    answer: 3
+    explanation: Total U = q_0^2/2C = (20 × 10^{-6})^2/(4 × 10^{-6}) = 100 μJ. At q = q_0/2 the capacitor holds 25 μJ, so the inductor holds 75 μJ.
+  - id: phy-ac-390
+    topic: lc-oscillations
+    subtopic: LC frequency and maximum current
+    concept: LC natural frequency = LCR resonant frequency; I_0 = q_0/√(LC)
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [lc-oscillation, resonance]
+    stem: |-
+      Statement I: The natural angular frequency of an LC circuit equals the resonant angular frequency of a series LCR circuit with the same L and C.
+      Statement II: In LC oscillations, the maximum current equals q_0/√(LC).
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Both are 1/√(LC), and I_0 = ωq_0 = q_0/√(LC); both statements are correct.
+  - id: phy-ac-391
+    topic: transformers
+    subtopic: Transformer facts
+    concept: Turns in step-up/down; power conservation; lamination
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [transformer]
+    stem: |-
+      Match List I with List II.
+      List I: P. Step-up transformer  Q. Step-down transformer  R. Ideal transformer  S. Laminated core
+      List II: 1. Reduces eddy currents  2. N_s < N_p  3. P_{in} = P_{out}  4. N_s > N_p
+    options:
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-4, R-3, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-3, R-2, S-1
+    answer: 2
+    explanation: A step-up transformer has more secondary turns, a step-down one fewer; an ideal transformer conserves power; lamination reduces eddy currents.
+  - id: phy-ac-392
+    topic: transformers
+    subtopic: Misconceptions about transformers
+    concept: Transformer cannot work on steady DC
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [transformer, dc, trap]
+    stem: Which statement about transformers is INCORRECT?
+    options:
+      - It can change the voltage of an alternating supply
+      - It can step up a steady DC voltage from a battery
+      - It works on the principle of mutual induction
+      - Its core is laminated to reduce energy loss
+    answer: 1
+    explanation: A steady DC produces no changing flux, so no emf is induced in the secondary; transformers work only with changing currents.
+  - id: phy-ac-393
+    topic: transformers
+    subtopic: Thicker secondary in step-down
+    concept: Step-down secondary carries larger current
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [transformer]
+    stem: |-
+      Assertion (A): In a step-down transformer the secondary winding is made of thicker wire than the primary.
+      Reason (R): In a step-down transformer the secondary carries a larger current than the primary.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: V_sI_s ≈ V_pI_p with V_s < V_p gives I_s > I_p; thicker wire keeps the I^2R loss low. R explains A.
+  - id: phy-ac-394
+    topic: transformers
+    subtopic: Secondary current with efficiency
+    concept: I_s = ηP_in/V_s
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: V_sI_s = ηP_in
+    tags: [efficiency]
+    stem: A transformer of efficiency 80% takes 1 kW of power and supplies it at 200 V. What is the secondary current?
+    options:
+      - 5 A
+      - 4 A
+      - 6.25 A
+      - 0.25 A
+    answer: 1
+    explanation: Output = 0.8 × 1000 = 800 W, so I_s = 800/200 = 4 A. 5 A assumes no losses.
+  - id: phy-ac-395
+    topic: transformers
+    subtopic: Primary current and load
+    concept: Primary current follows secondary load; no-load current small
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [transformer]
+    stem: |-
+      Consider a transformer connected to AC mains.
+      I. When the load current in the secondary increases, the primary current also increases.
+      II. With the secondary open (no load), the primary draws only a small current.
+      III. In a real transformer the input power exactly equals the output power.
+      IV. The transformer changes the frequency along with the voltage.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - III and IV only
+    answer: 0
+    explanation: The primary must supply the power drawn by the load, so I_p rises with I_s; with no load, the large reactance of the primary keeps its current small. Real transformers have losses, and the frequency is never changed.
+  - id: phy-ac-396
+    topic: transformers
+    subtopic: Voltages in transmission
+    concept: Loss ∝ 1/V^2; step-up at station, step-down near users
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [transmission]
+    stem: |-
+      Statement I: For a fixed transmitted power, the power lost in transmission lines is inversely proportional to the square of the transmission voltage.
+      Statement II: At the generating station, a step-down transformer is used before sending power over long distances.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Loss = (P/V)^2R ∝ 1/V^2, so Statement I holds. Power is stepped up at the station for transmission and stepped down near consumers.
+  - id: phy-ac-397
+    topic: transformers
+    subtopic: Current ratio
+    concept: I_p/I_s = N_s/N_p
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    formula: I_p/I_s = N_s/N_p
+    tags: [transformer]
+    stem: An ideal transformer has N_s/N_p = 10. If the secondary current is 0.5 A, what is the primary current?
+    options:
+      - 0.05 A
+      - 50 A
+      - 0.5 A
+      - 5 A
+    answer: 3
+    explanation: I_p = I_s × N_s/N_p = 0.5 × 10 = 5 A; the step-up side carries the smaller current.
+  - id: phy-ac-398
+    topic: transformers
+    subtopic: Neon sign transformer
+    concept: Turns ratio gives V_s; efficiency gives I_s
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: V_s = V_p N_s/N_p, V_sI_s = ηV_pI_p
+    tags: [transformer, efficiency, multi-concept]
+    stem: A neon-sign transformer has 150 primary and 3000 secondary turns and runs on 220 V mains. The primary current is 2 A and the efficiency is 90%. What are the secondary voltage and current?
+    options:
+      - 4400 V and 0.1 A
+      - 4400 V and 0.09 A
+      - 11 V and 36 A
+      - 4400 V and 40 A
+    answer: 1
+    explanation: V_s = 220 × 3000/150 = 4400 V. Output power = 0.9 × 440 = 396 W, so I_s = 396/4400 = 0.09 A. 0.1 A ignores the losses.
+  - id: phy-ac-399
+    topic: transformers
+    subtopic: Maximum line resistance
+    concept: Allowed loss fixes I^2R
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: P_loss = (P/V)^2R
+    tags: [transmission]
+    stem: 100 kW is to be transmitted at 20 kV with no more than 2% loss in the lines. What is the maximum allowed line resistance?
+    options:
+      - 8 Ω
+      - 800 Ω
+      - 40 Ω
+      - 80 Ω
+    answer: 3
+    explanation: I = 100 000/20 000 = 5 A and the allowed loss is 2 kW, so R = 2000/25 = 80 Ω.
+  - id: phy-ac-400
+    topic: transformers
+    subtopic: Output voltage from diagram
+    concept: V_s = V_p N_s/N_p
+    category: numerical
+    format: diagram
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    diagram: Transformer diagram. A rectangular laminated iron core. On the left limb a primary coil of 400 turns is connected to an AC source labelled 240 V, 50 Hz. On the right limb a secondary coil of 100 turns is connected across a lamp.
+    formula: V_s = V_p N_s/N_p
+    tags: [transformer]
+    stem: In the transformer shown, what rms voltage appears across the lamp (assume an ideal transformer)?
+    options:
+      - 960 V
+      - 120 V
+      - 60 V
+      - 24 V
+    answer: 2
+    explanation: V_s = 240 × 100/400 = 60 V; this is a step-down transformer. 960 V inverts the turns ratio.

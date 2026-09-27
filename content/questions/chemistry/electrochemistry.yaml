@@ -1,0 +1,1988 @@
+subject: chemistry
+chapter:
+  slug: electrochemistry
+  name: Electrochemistry
+  order: 11
+  classes: [12]
+  topics:
+    - slug: electrochemical-cells
+      name: Electrochemical cells and cell notation
+    - slug: electrode-potential
+      name: Electrode potential and electrochemical series
+    - slug: nernst-equation
+      name: Nernst equation and concentration cells
+    - slug: gibbs-energy-emf
+      name: EMF, Gibbs energy and equilibrium constant
+    - slug: conductance
+      name: Conductance, conductivity and cell constant
+    - slug: molar-conductivity
+      name: Molar conductivity and Kohlrausch's law
+    - slug: electrolysis
+      name: Electrolysis and Faraday's laws
+    - slug: batteries
+      name: Batteries and fuel cells
+    - slug: corrosion
+      name: Corrosion and its prevention
+questions:
+  - id: che-elec-001
+    topic: electrochemical-cells
+    subtopic: Galvanic cell basics
+    concept: A galvanic cell converts chemical energy of a spontaneous redox reaction into electrical energy
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [galvanic-cell, ncert-line]
+    stem: A galvanic cell converts
+    options:
+      - electrical energy into chemical energy
+      - chemical energy of a spontaneous redox reaction into electrical energy
+      - heat energy into electrical energy
+      - chemical energy of a non-spontaneous reaction into heat
+    answer: 1
+    explanation: In a galvanic (voltaic) cell the Gibbs energy of a spontaneous redox reaction is converted into electrical work. Converting electrical energy into chemical energy is what an electrolytic cell does.
+  - id: che-elec-002
+    topic: electrochemical-cells
+    subtopic: Daniell cell
+    concept: Electrode polarity and reactions in the Daniell cell
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [daniell-cell]
+    stem: In a Daniell cell, which electrode acts as the anode and what is its polarity?
+    options:
+      - Copper, positive
+      - Copper, negative
+      - Zinc, positive
+      - Zinc, negative
+    answer: 3
+    explanation: Zinc is oxidised (Zn → Zn^{2+} + 2e^−), so it is the anode; electrons accumulate on it, making it the negative terminal in a galvanic cell. Students often carry over the electrolytic-cell convention where the anode is positive.
+  - id: che-elec-003
+    topic: electrochemical-cells
+    subtopic: Salt bridge
+    concept: Function of the salt bridge
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [salt-bridge]
+    stem: The main function of a salt bridge in a galvanic cell is to
+    options:
+      - supply electrons to the cathode
+      - complete the inner circuit and maintain electrical neutrality of the two solutions
+      - allow the two electrolytes to mix freely
+      - increase the standard emf of the cell
+    answer: 1
+    explanation: Ions of the salt bridge (e.g. K^+ and NO_3^−) migrate into the half-cells, completing the internal circuit and preventing charge build-up. Electrons flow only through the external wire, and the salt bridge does not change E°.
+  - id: che-elec-004
+    topic: electrochemical-cells
+    subtopic: Cell notation
+    concept: Anode is written on the left in cell notation
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [cell-notation]
+    stem: "For the cell Zn(s) | Zn^{2+}(aq) || Ag^+(aq) | Ag(s), the reaction at the cathode is"
+    options:
+      - Zn → Zn^{2+} + 2e^−
+      - Ag → Ag^+ + e^−
+      - Ag^+ + e^− → Ag
+      - Zn^{2+} + 2e^− → Zn
+    answer: 2
+    explanation: By convention the anode (oxidation) is written on the left and the cathode (reduction) on the right. So Ag^+ ions are reduced at the silver cathode.
+  - id: che-elec-005
+    topic: electrochemical-cells
+    subtopic: Cell notation
+    concept: Writing cell representation from a redox reaction
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [cell-notation]
+    stem: Which is the correct cell representation for the reaction Mg(s) + 2Ag^+(aq) → Mg^{2+}(aq) + 2Ag(s)?
+    options:
+      - Ag(s) | Ag^+(aq) || Mg^{2+}(aq) | Mg(s)
+      - Mg^{2+}(aq) | Mg(s) || Ag(s) | Ag^+(aq)
+      - Mg(s) | Ag^+(aq) || Mg^{2+}(aq) | Ag(s)
+      - Mg(s) | Mg^{2+}(aq) || Ag^+(aq) | Ag(s)
+    answer: 3
+    explanation: Mg is oxidised, so the Mg/Mg^{2+} half-cell (anode) goes on the left written as metal | ion, and the Ag^+/Ag half-cell (cathode) goes on the right written as ion | metal, with || for the salt bridge.
+  - id: che-elec-006
+    topic: electrochemical-cells
+    subtopic: Electron and current flow
+    concept: Direction of electron flow versus conventional current
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [daniell-cell, trap]
+    stem: For a working Daniell cell, which statement is correct?
+    options:
+      - Electrons flow from copper to zinc through the external wire
+      - Current flows from zinc to copper through the external wire
+      - Electrons flow from zinc to copper through the external wire
+      - Electrons flow through the salt bridge from zinc to copper solution
+    answer: 2
+    explanation: Electrons leave the zinc anode and travel through the external wire to the copper cathode; conventional current is opposite, copper to zinc. Electrons never pass through the salt bridge, only ions do.
+  - id: che-elec-007
+    topic: electrochemical-cells
+    subtopic: Opposing external potential
+    concept: Effect of an external opposing potential greater than 1.1 V on a Daniell cell
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [daniell-cell, ncert-line]
+    stem: An external opposing potential of 1.5 V is applied to a Daniell cell (E° = 1.1 V). What happens?
+    options:
+      - The cell stops and no current flows
+      - The cell works as an electrolytic cell; Zn is deposited and Cu dissolves
+      - Current continues to flow from Cu to Zn in the external circuit
+      - Zn continues to dissolve at a slower rate
+    answer: 1
+    explanation: When the external potential exceeds 1.1 V, current reverses; the device behaves as an electrolytic cell with Zn^{2+} reduced to Zn and Cu oxidised to Cu^{2+}. No current flows only when the opposing potential equals exactly 1.1 V.
+  - id: che-elec-008
+    topic: electrochemical-cells
+    subtopic: Opposing external potential
+    concept: At external potential exactly equal to cell emf, no current flows
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [daniell-cell]
+    stem: For a Daniell cell of emf 1.1 V, when does the current in the external circuit become zero?
+    options:
+      - When the external opposing potential is 1.1 V
+      - When the external opposing potential is 0.55 V
+      - When the external opposing potential is 2.2 V
+      - When the salt bridge is replaced by a copper wire
+    answer: 0
+    explanation: An opposing potential equal to the cell potential balances it exactly, so the reaction and current stop. Below 1.1 V the cell still discharges; above it the reaction reverses.
+  - id: che-elec-009
+    topic: electrochemical-cells
+    subtopic: Galvanic vs electrolytic
+    concept: Comparing galvanic and electrolytic cells
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [galvanic-cell, electrolytic-cell, confused-pair]
+    stem: |-
+      Statement I: In both galvanic and electrolytic cells, oxidation occurs at the anode.
+      Statement II: In both galvanic and electrolytic cells, the anode is the negative electrode.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Oxidation always occurs at the anode by definition. The polarity differs; the anode is negative in a galvanic cell but positive in an electrolytic cell, because it is connected to the positive terminal of the external source.
+  - id: che-elec-010
+    topic: electrochemical-cells
+    subtopic: Salt bridge
+    concept: Choice of electrolyte in salt bridge
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [salt-bridge, trap]
+    stem: For a cell whose cathode half-cell contains Ag^+ ions, which electrolyte is unsuitable for the salt bridge?
+    options:
+      - KNO_3
+      - NH_4NO_3
+      - KCl
+      - K_2SO_4 in dilute solution
+    answer: 2
+    explanation: Cl^− from a KCl bridge would precipitate AgCl at the junction with the Ag^+ solution. KNO_3 or NH_4NO_3 are used instead because their ions do not react and have similar mobilities.
+  - id: che-elec-011
+    topic: electrochemical-cells
+    subtopic: Inert electrodes
+    concept: Use of inert Pt electrode when no metal is involved
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [inert-electrode]
+    stem: Platinum is used as the electrode in the half-cell Fe^{3+}(aq), Fe^{2+}(aq) | Pt because platinum
+    options:
+      - is oxidised more easily than Fe^{2+}
+      - reacts with Fe^{3+} to form a stable alloy
+      - provides a surface for electron transfer without taking part in the reaction
+      - increases the standard potential of the couple
+    answer: 2
+    explanation: When both oxidised and reduced forms are in solution, an inert metal such as Pt is needed only to conduct electrons; it is not oxidised or reduced itself.
+  - id: che-elec-012
+    topic: electrode-potential
+    subtopic: Standard hydrogen electrode
+    concept: SHE construction and assigned potential
+    category: factual
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [she, ncert-line]
+    stem: Which statement about the standard hydrogen electrode is incorrect?
+    options:
+      - It uses a platinum electrode coated with platinum black
+      - Pure hydrogen gas at 1 bar is bubbled through the solution
+      - The H^+ ion activity in the solution is unity
+      - Its potential is assigned the value 0 V only at 273 K
+    answer: 3
+    explanation: The SHE is assigned zero potential at all temperatures. It consists of platinised Pt dipped in a solution of unit H^+ activity with H_2 at 1 bar bubbled through it.
+  - id: che-elec-013
+    topic: electrode-potential
+    subtopic: Standard electrode potential
+    concept: Standard cell emf from reduction potentials
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: E°_cell = E°_cathode − E°_anode
+    tags: [emf-calculation]
+    stem: Given E°(Zn^{2+}/Zn) = −0.76 V and E°(Cu^{2+}/Cu) = +0.34 V, the standard emf of the Daniell cell is
+    options:
+      - 0.42 V
+      - −1.10 V
+      - 1.10 V
+      - −0.42 V
+    answer: 2
+    explanation: E°_cell = E°_cathode − E°_anode = 0.34 − (−0.76) = 1.10 V. Adding the numbers directly (0.34 + (−0.76)) gives the tempting but wrong −0.42 V.
+  - id: che-elec-014
+    topic: electrode-potential
+    subtopic: Electrochemical series
+    concept: Lower reduction potential means stronger reducing agent
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [electrochemical-series, reducing-agent]
+    stem: "Standard reduction potentials: Li^+/Li −3.05 V, Mg^{2+}/Mg −2.36 V, Zn^{2+}/Zn −0.76 V, Ag^+/Ag +0.80 V. The strongest reducing agent is"
+    options:
+      - Ag
+      - Zn
+      - Mg
+      - Li
+    answer: 3
+    explanation: The more negative the reduction potential, the greater the tendency of the metal to lose electrons. Li, with −3.05 V, is the strongest reducing agent in aqueous solution.
+  - id: che-elec-015
+    topic: electrode-potential
+    subtopic: Electrochemical series
+    concept: Highest reduction potential means strongest oxidising agent
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [electrochemical-series, oxidising-agent]
+    stem: Which of the following is the strongest oxidising agent in aqueous solution?
+    options:
+      - Cl_2
+      - F_2
+      - Br_2
+      - I_2
+    answer: 1
+    explanation: F_2/F^− has the highest standard reduction potential (+2.87 V) in the series, so F_2 is the strongest oxidising agent.
+  - id: che-elec-016
+    topic: electrode-potential
+    subtopic: Predicting displacement
+    concept: A metal with lower E° displaces a metal ion with higher E°
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [displacement, electrochemical-series]
+    stem: "Which reaction will NOT occur spontaneously under standard conditions? (E°: Zn^{2+}/Zn −0.76, Cu^{2+}/Cu +0.34, Ag^+/Ag +0.80 V)"
+    options:
+      - Zn + Cu^{2+} → Zn^{2+} + Cu
+      - Cu + 2Ag^+ → Cu^{2+} + 2Ag
+      - Zn + 2Ag^+ → Zn^{2+} + 2Ag
+      - Cu + Zn^{2+} → Cu^{2+} + Zn
+    answer: 3
+    explanation: Copper (higher E°) cannot reduce Zn^{2+} (lower E°); E°_cell = −0.76 − 0.34 = −1.10 V, negative. The other three have positive E°_cell.
+  - id: che-elec-017
+    topic: electrode-potential
+    subtopic: Storage of solutions
+    concept: Copper sulphate solution cannot be stored in a zinc vessel
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [displacement, ncert-line]
+    stem: A student wants to store 1 M CuSO_4 solution. Given E°(Zn^{2+}/Zn) = −0.76 V, E°(Ag^+/Ag) = +0.80 V, E°(Fe^{2+}/Fe) = −0.44 V and E°(Cu^{2+}/Cu) = +0.34 V, which vessel is safe to use?
+    options:
+      - Zinc vessel
+      - Iron vessel
+      - Silver vessel
+      - Galvanised iron vessel
+    answer: 2
+    explanation: Only a metal with higher E° than Cu^{2+}/Cu will not reduce Cu^{2+}. Silver (+0.80 V) cannot, while Zn and Fe (and zinc-coated iron) would dissolve and deposit copper.
+  - id: che-elec-018
+    topic: electrode-potential
+    subtopic: Reactivity with acids
+    concept: Metals with negative E° liberate H2 from dilute acids
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [hydrogen-displacement]
+    stem: Which metal will NOT liberate hydrogen from dilute HCl?
+    options:
+      - Zn (E° = −0.76 V)
+      - Fe (E° = −0.44 V)
+      - Cu (E° = +0.34 V)
+      - Mg (E° = −2.36 V)
+    answer: 2
+    explanation: Metals with negative reduction potentials lie below hydrogen and can reduce H^+ to H_2. Copper has a positive E°, so it cannot displace hydrogen from dilute non-oxidising acids.
+  - id: che-elec-019
+    topic: electrode-potential
+    subtopic: Sign convention
+    concept: Reduction potential and oxidation potential are equal in magnitude and opposite in sign
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [sign-convention]
+    stem: If the standard reduction potential of Ni^{2+}/Ni is −0.25 V, the standard oxidation potential of Ni/Ni^{2+} is
+    options:
+      - −0.25 V
+      - +0.50 V
+      - "0 V"
+      - +0.25 V
+    answer: 3
+    explanation: Reversing a half-reaction reverses the sign of its potential, so the oxidation potential of Ni → Ni^{2+} + 2e^− is +0.25 V.
+  - id: che-elec-020
+    topic: electrode-potential
+    subtopic: Intensive property
+    concept: Electrode potential does not change when the half-reaction is multiplied
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [intensive-property, trap]
+    stem: |-
+      Assertion (A): The E° of Ag^+ + e^− → Ag and 2Ag^+ + 2e^− → 2Ag are the same.
+      Reason (R): Electrode potential is an intensive property.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Potential is energy per unit charge, an intensive quantity that does not depend on how many moles react, so multiplying the half-equation leaves E° unchanged. ΔG°, an extensive quantity, does double.
+  - id: che-elec-021
+    topic: electrode-potential
+    subtopic: Oxidising power order
+    concept: Arranging oxidising agents by E°
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [electrochemical-series, ordering]
+    stem: "Given E°: MnO_4^−/Mn^{2+} = +1.51 V, Cr_2O_7^{2−}/Cr^{3+} = +1.33 V, Fe^{3+}/Fe^{2+} = +0.77 V, Cl_2/Cl^− = +1.36 V. The increasing order of oxidising power is"
+    options:
+      - Fe^{3+} < Cr_2O_7^{2−} < Cl_2 < MnO_4^−
+      - Fe^{3+} < Cl_2 < Cr_2O_7^{2−} < MnO_4^−
+      - MnO_4^− < Cl_2 < Cr_2O_7^{2−} < Fe^{3+}
+      - Cr_2O_7^{2−} < Fe^{3+} < Cl_2 < MnO_4^−
+    answer: 0
+    explanation: Oxidising power rises with reduction potential; 0.77 < 1.33 < 1.36 < 1.51 V gives Fe^{3+} < Cr_2O_7^{2−} < Cl_2 < MnO_4^−.
+  - id: che-elec-022
+    topic: electrode-potential
+    subtopic: Measuring electrode potential
+    concept: Electrode potential measured against SHE
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [she, emf-calculation]
+    stem: The cell Pt | H_2(1 bar) | H^+(1 M) || Cu^{2+}(1 M) | Cu has an emf of 0.34 V. What is E°(Cu^{2+}/Cu)?
+    options:
+      - −0.34 V
+      - +0.34 V
+      - +0.17 V
+      - "0 V"
+    answer: 1
+    explanation: With SHE as anode, E°_cell = E°_R − 0 = 0.34 V, so E°(Cu^{2+}/Cu) = +0.34 V. The positive value shows Cu^{2+} is reduced more easily than H^+.
+  - id: che-elec-023
+    topic: electrode-potential
+    subtopic: Combining half-cell potentials
+    concept: Potentials of half-reactions are combined through ΔG, not added directly
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    formula: nE° = n_1E°_1 + n_2E°_2
+    tags: [latimer, multi-concept, trap]
+    stem: Given E°(Fe^{3+}/Fe^{2+}) = +0.77 V and E°(Fe^{2+}/Fe) = −0.44 V, the value of E°(Fe^{3+}/Fe) is
+    options:
+      - +0.33 V
+      - −0.036 V
+      - +1.21 V
+      - −0.11 V
+    answer: 1
+    explanation: Add ΔG° values, not potentials; −3F·E° = −1F(0.77) − 2F(−0.44), so 3E° = 0.77 − 0.88 = −0.11 and E° = −0.037 V ≈ −0.036 V. Simply adding gives the wrong 0.33 V.
+  - id: che-elec-024
+    topic: nernst-equation
+    subtopic: Nernst equation form
+    concept: Nernst equation for a metal electrode
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: E = E° − (0.059/n) log(1/[M^{n+}])
+    tags: [nernst]
+    stem: For M^{n+}(aq) + ne^− → M(s) at 298 K, the Nernst equation is
+    options:
+      - E = E° + (0.059/n) log(1/[M^{n+}])
+      - E = E° − (0.059/n) log[M^{n+}]
+      - E = E° − (0.059/n) log(1/[M^{n+}])
+      - E = E° − 0.059n log(1/[M^{n+}])
+    answer: 2
+    explanation: E = E° − (RT/nF) ln Q with Q = 1/[M^{n+}] (solid activity = 1), giving E = E° − (0.059/n) log(1/[M^{n+}]) at 298 K. This is the same as E° + (0.059/n) log[M^{n+}].
+  - id: che-elec-025
+    topic: nernst-equation
+    subtopic: Effect of ion concentration
+    concept: Decreasing metal ion concentration lowers the reduction potential
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [nernst]
+    stem: For the electrode Cu^{2+}(aq) | Cu(s), if [Cu^{2+}] is decreased from 1 M to 0.01 M at 298 K, the reduction potential
+    options:
+      - increases by 0.059 V
+      - decreases by 0.059 V
+      - decreases by 0.118 V
+      - remains unchanged
+    answer: 1
+    explanation: E = E° + (0.059/2) log[Cu^{2+}] = E° + 0.0295 × (−2) = E° − 0.059 V. Using n = 1 by mistake gives 0.118 V.
+  - id: che-elec-026
+    topic: nernst-equation
+    subtopic: Hydrogen electrode and pH
+    concept: Potential of hydrogen electrode depends on pH
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: E = −0.059 pH
+    tags: [hydrogen-electrode, ph]
+    stem: The reduction potential of a hydrogen electrode (p_{H_2} = 1 bar) dipped in a solution of pH 10 at 298 K is
+    options:
+      - +0.59 V
+      - −0.059 V
+      - −5.9 V
+      - −0.59 V
+    answer: 3
+    explanation: For 2H^+ + 2e^− → H_2, E = 0 − (0.059/2) log(1/[H^+]^2) = −0.059 pH = −0.059 × 10 = −0.59 V.
+  - id: che-elec-027
+    topic: nernst-equation
+    subtopic: Cell emf at non-standard conditions
+    concept: Nernst equation for Daniell cell
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: E_cell = E°_cell − (0.059/2) log([Zn^{2+}]/[Cu^{2+}])
+    tags: [nernst, daniell-cell]
+    stem: "Calculate the emf of the cell Zn | Zn^{2+}(0.1 M) || Cu^{2+}(0.001 M) | Cu at 298 K. (E°_cell = 1.10 V)"
+    options:
+      - 1.16 V
+      - 1.07 V
+      - 1.04 V
+      - 1.13 V
+    answer: 2
+    explanation: Q = [Zn^{2+}]/[Cu^{2+}] = 0.1/0.001 = 100, so E = 1.10 − (0.059/2) × 2 = 1.10 − 0.059 ≈ 1.04 V. Writing the ratio upside down gives the tempting 1.16 V.
+  - id: che-elec-028
+    topic: nernst-equation
+    subtopic: Concentration cell
+    concept: A concentration cell has E°cell = 0 and emf arises only from concentration difference
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [concentration-cell]
+    stem: For the concentration cell Ag | Ag^+(C_1) || Ag^+(C_2) | Ag to have a positive emf,
+    options:
+      - C_1 must be greater than C_2
+      - C_1 must equal C_2
+      - C_2 must be greater than C_1
+      - E°_cell must be positive
+    answer: 2
+    explanation: E°_cell = 0, so E = 0.059 log(C_2/C_1). E is positive only when the cathode solution (right) is more concentrated, C_2 > C_1.
+  - id: che-elec-029
+    topic: nernst-equation
+    subtopic: Concentration cell
+    concept: EMF of a hydrogen concentration cell
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [concentration-cell, ph]
+    stem: What is the emf at 298 K of the cell Pt | H_2(1 bar) | H^+(pH = 5) || H^+(pH = 2) | H_2(1 bar) | Pt?
+    options:
+      - 0.177 V
+      - −0.177 V
+      - 0.059 V
+      - 0.413 V
+    answer: 0
+    explanation: E = 0.059 log([H^+]_cathode/[H^+]_anode) = 0.059 log(10^{−2}/10^{−5}) = 0.059 × 3 = 0.177 V. The cathode side is more acidic, so E is positive.
+  - id: che-elec-030
+    topic: nernst-equation
+    subtopic: Numerical value of 2.303RT/F
+    concept: Origin of 0.059 V at 298 K
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [nernst, constants]
+    stem: At 298 K, the quantity 2.303RT/F in the Nernst equation has the value
+    options:
+      - 0.0296 V
+      - 0.059 V
+      - 0.0821 V
+      - 8.314 V
+    answer: 1
+    explanation: 2.303 × 8.314 × 298 / 96487 ≈ 0.0591 V. The value 0.0296 V is 0.059/2, used only when n = 2.
+  - id: che-elec-031
+    topic: nernst-equation
+    subtopic: Effect of dilution
+    concept: Effect of diluting the cathode solution on emf
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [nernst, daniell-cell]
+    stem: In a Daniell cell, what happens to the emf if the CuSO_4 solution is diluted tenfold, keeping [Zn^{2+}] constant?
+    options:
+      - It decreases by about 0.03 V
+      - It increases by about 0.03 V
+      - It decreases by about 0.059 V
+      - It does not change
+    answer: 0
+    explanation: E = E° − (0.059/2) log([Zn^{2+}]/[Cu^{2+}]); lowering [Cu^{2+}] tenfold raises Q tenfold, so E falls by 0.059/2 ≈ 0.03 V.
+  - id: che-elec-032
+    topic: nernst-equation
+    subtopic: Reaction quotient
+    concept: Solids are omitted from Q and coefficients become powers
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [reaction-quotient]
+    stem: For Mg(s) + 2Ag^+(aq) → Mg^{2+}(aq) + 2Ag(s), the reaction quotient used in the Nernst equation is
+    options:
+      - "[Mg^{2+}][Ag]^2/[Mg][Ag^+]^2"
+      - "[Mg^{2+}]/[Ag^+]"
+      - "[Ag^+]^2/[Mg^{2+}]"
+      - "[Mg^{2+}]/[Ag^+]^2"
+    answer: 3
+    explanation: Solids have unit activity and drop out, and each concentration is raised to its stoichiometric coefficient, so Q = [Mg^{2+}]/[Ag^+]^2.
+  - id: che-elec-033
+    topic: nernst-equation
+    subtopic: Cell emf at non-standard conditions
+    concept: Nernst equation with a squared ion concentration (Mg–Ag cell)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [nernst, multi-concept, trap]
+    stem: "Calculate the emf of Mg(s) | Mg^{2+}(0.001 M) || Ag^+(0.0001 M) | Ag(s) at 298 K. E°(Mg^{2+}/Mg) = −2.37 V, E°(Ag^+/Ag) = +0.80 V."
+    options:
+      - 3.17 V
+      - 3.14 V
+      - 3.02 V
+      - 3.32 V
+    answer: 2
+    explanation: E° = 0.80 − (−2.37) = 3.17 V and Q = [Mg^{2+}]/[Ag^+]^2 = 10^{−3}/10^{−8} = 10^5, so E = 3.17 − (0.059/2)(5) ≈ 3.02 V. Forgetting to square [Ag^+] gives Q = 10 and the wrong 3.14 V.
+  - id: che-elec-034
+    topic: nernst-equation
+    subtopic: Equilibrium condition
+    concept: At equilibrium Ecell = 0 and Q = K
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [equilibrium, trap]
+    stem: When a galvanic cell has run down completely and the cell reaction has reached equilibrium,
+    options:
+      - E°_cell becomes zero
+      - E_cell becomes zero
+      - E_cell becomes equal to E°_cell
+      - the reaction quotient becomes 1
+    answer: 1
+    explanation: At equilibrium the cell can do no more work, so E_cell = 0 and Q = K. E°_cell is a fixed constant for the reaction and does not change.
+  - id: che-elec-035
+    topic: nernst-equation
+    subtopic: Electrode potential with gas pressure
+    concept: Effect of H2 pressure on hydrogen electrode potential
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [hydrogen-electrode, nernst]
+    stem: A hydrogen electrode has [H^+] = 1 M but the H_2 pressure is 100 bar. Its reduction potential at 298 K is
+    options:
+      - +0.059 V
+      - −0.118 V
+      - "0 V"
+      - −0.059 V
+    answer: 3
+    explanation: For 2H^+ + 2e^− → H_2, E = 0 − (0.059/2) log(p_{H_2}/[H^+]^2) = −(0.0295)(2) = −0.059 V. Raising H_2 pressure favours oxidation and makes the reduction potential more negative.
+  - id: che-elec-036
+    topic: nernst-equation
+    subtopic: Temperature term
+    concept: Nernst slope RT/nF depends on temperature
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [nernst, temperature]
+    stem: |-
+      Assertion (A): The factor 0.059/n in the Nernst equation is valid only at 298 K.
+      Reason (R): The Nernst equation contains the term 2.303RT/nF, which depends on temperature.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: 0.059 V is simply 2.303RT/F evaluated at 298 K; at any other temperature the factor changes, so R explains A.
+  - id: che-elec-037
+    topic: gibbs-energy-emf
+    subtopic: ΔG° from E°
+    concept: ΔG° = −nFE° for the Daniell cell
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    formula: ΔG° = −nFE°
+    tags: [gibbs-energy]
+    stem: The standard emf of the Daniell cell is 1.10 V. The standard Gibbs energy change of Zn + Cu^{2+} → Zn^{2+} + Cu is about (F = 96487 C mol^{−1})
+    options:
+      - −106.1 kJ mol^{−1}
+      - +212.3 kJ mol^{−1}
+      - −212.3 kJ mol^{−1}
+      - −424.6 kJ mol^{−1}
+    answer: 2
+    explanation: ΔG° = −nFE° = −2 × 96487 × 1.10 = −212 270 J ≈ −212.3 kJ mol^{−1}. Using n = 1 gives −106.1 kJ; the sign must be negative for a spontaneous reaction.
+  - id: che-elec-038
+    topic: gibbs-energy-emf
+    subtopic: Spontaneity
+    concept: Signs of ΔG°, E° and K for a spontaneous reaction
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [spontaneity]
+    stem: For a cell reaction that is spontaneous under standard conditions,
+    options:
+      - ΔG° < 0, E° > 0, K > 1
+      - ΔG° > 0, E° < 0, K < 1
+      - ΔG° < 0, E° < 0, K > 1
+      - ΔG° > 0, E° > 0, K > 1
+    answer: 0
+    explanation: ΔG° = −nFE° = −RT ln K, so a negative ΔG° corresponds to positive E° and K greater than 1.
+  - id: che-elec-039
+    topic: gibbs-energy-emf
+    subtopic: Equilibrium constant from E°
+    concept: log K = nE°/0.059
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: log K = nE°/0.059
+    tags: [equilibrium-constant]
+    stem: For Cu(s) + 2Ag^+(aq) ⇌ Cu^{2+}(aq) + 2Ag(s), E°_cell = 0.46 V at 298 K. The equilibrium constant is about
+    options:
+      - 6.2 × 10^7
+      - 3.9 × 10^{15}
+      - 1.6 × 10^{31}
+      - 2.0 × 10^{37}
+    answer: 1
+    explanation: log K = nE°/0.059 = 2 × 0.46/0.059 = 15.6, so K ≈ 3.9 × 10^{15}. Using n = 1 gives log K = 7.8 (about 6 × 10^7).
+  - id: che-elec-040
+    topic: gibbs-energy-emf
+    subtopic: E° = 0
+    concept: When E° = 0, K = 1 and ΔG° = 0
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [equilibrium-constant]
+    stem: If the standard emf of a cell reaction is zero, its equilibrium constant at 298 K is
+    options:
+      - "0"
+      - infinite
+      - "10"
+      - "1"
+    answer: 3
+    explanation: log K = nE°/0.059 = 0, so K = 10^0 = 1; correspondingly ΔG° = 0.
+  - id: che-elec-041
+    topic: gibbs-energy-emf
+    subtopic: Extensive vs intensive
+    concept: ΔG doubles but E stays the same when the equation is doubled
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [intensive-property, trap]
+    stem: |-
+      The cell reaction Zn + Cu^{2+} → Zn^{2+} + Cu is rewritten as 2Zn + 2Cu^{2+} → 2Zn^{2+} + 2Cu. Consider:
+      I. E°_cell remains 1.10 V
+      II. ΔG° is doubled
+      III. The equilibrium constant is squared
+      IV. The number of electrons transferred n becomes 4
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 3
+    explanation: E° is intensive and unchanged; ΔG° = −nFE° doubles since n goes from 2 to 4; K for a doubled equation is squared (log K = nE°/0.059 doubles). All four statements hold.
+  - id: che-elec-042
+    topic: gibbs-energy-emf
+    subtopic: Electrical work
+    concept: Maximum electrical work equals −ΔG
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [gibbs-energy, ncert-line]
+    stem: The maximum electrical work obtainable from a galvanic cell equals
+    options:
+      - the decrease in enthalpy of the cell reaction
+      - the decrease in Gibbs energy of the cell reaction
+      - the decrease in entropy of the cell reaction
+      - the decrease in internal energy of the cell reaction
+    answer: 1
+    explanation: Electrical work done reversibly equals the decrease in Gibbs energy, −ΔG = nFE_cell. Enthalpy includes the TΔS part that cannot be converted into work.
+  - id: che-elec-043
+    topic: gibbs-energy-emf
+    subtopic: ΔG° from E°
+    concept: Computing ΔG° for a six-electron reaction
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔG° = −nFE°
+    tags: [gibbs-energy]
+    stem: For 2Cr(s) + 3Cd^{2+}(aq) → 2Cr^{3+}(aq) + 3Cd(s), E°_cell = 0.34 V. ΔG° for the reaction is about (F = 96500 C mol^{−1})
+    options:
+      - −196.9 kJ mol^{−1}
+      - −65.6 kJ mol^{−1}
+      - −98.4 kJ mol^{−1}
+      - +196.9 kJ mol^{−1}
+    answer: 0
+    explanation: Six electrons are transferred (2Cr → 2Cr^{3+}); ΔG° = −6 × 96500 × 0.34 = −196 860 J ≈ −196.9 kJ mol^{−1}. Taking n = 2 or 3 gives the smaller distractors.
+  - id: che-elec-044
+    topic: gibbs-energy-emf
+    subtopic: Non-spontaneous reaction
+    concept: Negative E° gives positive ΔG° and K < 1
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: ΔG° = −nFE°
+    tags: [gibbs-energy, spontaneity]
+    stem: For Cu + Zn^{2+} → Cu^{2+} + Zn (E°_cell = −1.10 V), which set of values is correct at 298 K?
+    options:
+      - ΔG° = −212 kJ mol^{−1}, K ≈ 10^{37}
+      - ΔG° = +212 kJ mol^{−1}, K ≈ 10^{−37}
+      - ΔG° = +106 kJ mol^{−1}, K ≈ 10^{−18}
+      - ΔG° = +212 kJ mol^{−1}, K ≈ 10^{37}
+    answer: 1
+    explanation: Reversing the Daniell reaction reverses the sign of E°, so ΔG° = −2F(−1.10) ≈ +212 kJ mol^{−1} and log K = 2(−1.10)/0.059 ≈ −37, K ≈ 10^{−37}.
+  - id: che-elec-045
+    topic: gibbs-energy-emf
+    subtopic: ΔG° and K relation
+    concept: ΔG° = −2.303RT log K combined with ΔG° = −nFE°
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [equilibrium-constant]
+    stem: Which relation correctly links E°_cell with the equilibrium constant K?
+    options:
+      - E°_cell = (RT/nF) ln K
+      - E°_cell = −(RT/nF) ln K
+      - E°_cell = (nF/RT) ln K
+      - E°_cell = (RT/nF) log K
+    answer: 0
+    explanation: Equating −nFE° with −RT ln K gives E° = (RT/nF) ln K, i.e. (2.303RT/nF) log K. Writing log K without the factor 2.303 is a common slip.
+  - id: che-elec-046
+    topic: gibbs-energy-emf
+    subtopic: Comparing reactions
+    concept: Larger E° gives larger K for the same n
+    category: application
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [equilibrium-constant, gibbs-energy]
+    stem: |-
+      Statement I: For two cell reactions with the same n, the one with the higher E° has the larger equilibrium constant.
+      Statement II: For a cell reaction with E° = +0.059 V and n = 1, K = 10 at 298 K.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: log K = nE°/0.059 increases with E° for fixed n, so I is correct. For E° = 0.059 V and n = 1, log K = 1 and K = 10, so II is also correct.
+  - id: che-elec-047
+    topic: conductance
+    subtopic: Resistance and resistivity
+    concept: R = ρl/A and SI unit of resistivity
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [resistivity, units]
+    stem: The SI unit of resistivity (ρ) is
+    options:
+      - Ω m^{−1}
+      - Ω m^2
+      - Ω m
+      - S m^{−1}
+    answer: 2
+    explanation: From R = ρl/A, ρ = RA/l has units Ω × m^2/m = Ω m. S m^{−1} is the unit of its reciprocal, conductivity.
+  - id: che-elec-048
+    topic: conductance
+    subtopic: Conductivity
+    concept: Conductivity is the reciprocal of resistivity; unit S m^-1
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [conductivity, units]
+    stem: The SI unit of conductivity (κ) is
+    options:
+      - S m^{−1}
+      - S m^2 mol^{−1}
+      - S m
+      - Ω^{−1} m^2
+    answer: 0
+    explanation: κ = 1/ρ, so its unit is (Ω m)^{−1} = S m^{−1}. S m^2 mol^{−1} is the unit of molar conductivity.
+  - id: che-elec-049
+    topic: conductance
+    subtopic: Cell constant
+    concept: Cell constant = R × κ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: G* = Rκ
+    tags: [cell-constant]
+    stem: The resistance of a conductivity cell filled with 0.1 M KCl (κ = 1.29 S m^{−1}) is 100 Ω at 298 K. The cell constant is
+    options:
+      - 1.29 m^{−1}
+      - 12.9 m^{−1}
+      - 129 m^{−1}
+      - 0.0129 m^{−1}
+    answer: 2
+    explanation: G* = l/A = R × κ = 100 Ω × 1.29 S m^{−1} = 129 m^{−1} (= 1.29 cm^{−1}).
+  - id: che-elec-050
+    topic: conductance
+    subtopic: Cell constant
+    concept: Using cell constant to find conductivity of another solution
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: κ = G*/R
+    tags: [cell-constant, conductivity]
+    stem: A conductivity cell has cell constant 129 m^{−1}. When filled with 0.02 M KCl its resistance is 520 Ω. The conductivity of this solution is
+    options:
+      - 0.124 S m^{−1}
+      - 0.248 S m^{−1}
+      - 4.03 S m^{−1}
+      - 2.48 S m^{−1}
+    answer: 1
+    explanation: κ = G*/R = 129/520 = 0.248 S m^{−1}. Multiplying instead of dividing, or slipping a decimal, gives the other values.
+  - id: che-elec-051
+    topic: conductance
+    subtopic: Measurement
+    concept: AC source used to measure electrolytic resistance
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [measurement, ncert-line]
+    stem: The resistance of an electrolytic solution is measured with an alternating current source rather than DC because
+    options:
+      - AC gives a larger current
+      - DC cannot pass through ionic solutions
+      - AC is cheaper to generate in the laboratory
+      - DC would cause electrolysis and change the composition of the solution
+    answer: 3
+    explanation: Passing DC through the solution electrolyses it, altering the ion concentrations and polarising the electrodes. A rapidly alternating current avoids this.
+  - id: che-elec-052
+    topic: conductance
+    subtopic: Effect of temperature
+    concept: Electronic conductance decreases while electrolytic conductance increases with temperature
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [temperature, confused-pair, ncert-line]
+    stem: |-
+      Statement I: The conductivity of metals decreases with increase in temperature.
+      Statement II: The conductivity of electrolytic solutions decreases with increase in temperature.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: In metals, stronger lattice vibrations scatter electrons, lowering conductivity as T rises. In electrolytes, higher temperature lowers viscosity and reduces ion–ion attraction, so conductivity increases.
+  - id: che-elec-053
+    topic: conductance
+    subtopic: Effect of dilution
+    concept: Conductivity decreases on dilution
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [dilution, trap]
+    stem: On diluting an aqueous KCl solution, its conductivity (κ)
+    options:
+      - decreases because the number of ions per unit volume decreases
+      - increases because ions move more freely
+      - increases because degree of dissociation increases
+      - remains constant because KCl is a strong electrolyte
+    answer: 0
+    explanation: Conductivity is the conductance of a unit volume (1 cm^3 or 1 m^3) of solution; dilution reduces the number of ions in that volume, so κ falls. It is molar conductivity that increases.
+  - id: che-elec-054
+    topic: conductance
+    subtopic: Factors affecting conductivity
+    concept: Factors that influence electrolytic conductivity
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [factors, ncert-line]
+    stem: |-
+      Which factors affect the conductivity of an electrolytic solution?
+      I. Nature of the electrolyte
+      II. Size of the ions and their solvation
+      III. Viscosity of the solvent
+      IV. Temperature
+    options:
+      - I and II only
+      - I, III and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: NCERT lists all of these, the nature of the electrolyte, size and solvation of ions, nature and viscosity of the solvent, concentration, and temperature, as factors controlling electrolytic conductivity.
+  - id: che-elec-055
+    topic: conductance
+    subtopic: Cell constant
+    concept: Cell constant from electrode dimensions
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: G* = l/A
+    tags: [cell-constant]
+    stem: Two parallel electrodes each of area 2 cm^2 are 0.5 cm apart in a conductivity cell. The cell constant is
+    options:
+      - 4 cm^{−1}
+      - 1 cm^{−1}
+      - 0.25 cm^{−1}
+      - 0.5 cm^{−1}
+    answer: 2
+    explanation: G* = l/A = 0.5 cm / 2 cm^2 = 0.25 cm^{−1}. Inverting the ratio gives the tempting 4 cm^{−1}.
+  - id: che-elec-056
+    topic: conductance
+    subtopic: Conductance
+    concept: Conductance is the reciprocal of resistance, unit siemens
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [conductance]
+    stem: A solution has a resistance of 50 Ω in a cell. Its conductance is
+    options:
+      - 0.2 S
+      - 0.02 S
+      - 50 S
+      - 2 S
+    answer: 1
+    explanation: G = 1/R = 1/50 = 0.02 S (siemens, Ω^{−1}).
+  - id: che-elec-057
+    topic: conductance
+    subtopic: Types of conductors
+    concept: Electronic vs electrolytic conduction
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [electronic-conduction, electrolytic-conduction]
+    stem: Which statement about electrolytic (ionic) conduction is correct?
+    options:
+      - It involves no transfer of matter
+      - It is due to movement of electrons through the solution
+      - It is accompanied by chemical changes at the electrodes
+      - Its conductivity always decreases with rise in temperature
+    answer: 2
+    explanation: Current in electrolytes is carried by ions, which involves transport of matter and chemical changes (redox) at the electrodes. Metallic conduction involves no chemical change and falls with temperature.
+  - id: che-elec-058
+    topic: conductance
+    subtopic: Conductivity from resistance
+    concept: Resistivity and conductivity of a solution column
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: true
+    battle: false
+    formula: κ = l/(RA)
+    tags: [conductivity, multi-concept]
+    stem: A column of 0.05 M NaOH solution of diameter 1 cm and length 50 cm has a resistance of 5.55 × 10^3 Ω. Its conductivity is about
+    options:
+      - 0.0115 S cm^{−1}
+      - 0.0029 S cm^{−1}
+      - 87.1 S cm^{−1}
+      - 0.0460 S cm^{−1}
+    answer: 0
+    explanation: A = π(0.5 cm)^2 = 0.785 cm^2; ρ = RA/l = 5550 × 0.785/50 ≈ 87.1 Ω cm, so κ = 1/ρ ≈ 0.0115 S cm^{−1}. Using diameter instead of radius in the area gives 0.0029 S cm^{−1}.
+  - id: che-elec-059
+    topic: molar-conductivity
+    subtopic: Definition
+    concept: Λm = κ/c
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: Λ_m = κ/c
+    tags: [molar-conductivity]
+    stem: Molar conductivity (Λ_m) of a solution of concentration c and conductivity κ is given by
+    options:
+      - κ × c
+      - c/κ
+      - κ/c
+      - κ/c^2
+    answer: 2
+    explanation: Λ_m = κ/c, the conductivity per unit molar concentration. It is the conductance of the volume of solution containing one mole of electrolyte between electrodes 1 unit apart.
+  - id: che-elec-060
+    topic: molar-conductivity
+    subtopic: Units
+    concept: Unit conversion S cm^2 mol^-1 to S m^2 mol^-1
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [units, trap]
+    stem: A molar conductivity of 150 S cm^2 mol^{−1} expressed in SI units is
+    options:
+      - 1.5 S m^2 mol^{−1}
+      - 1.5 × 10^{−2} S m^2 mol^{−1}
+      - 1.5 × 10^{−4} S m^2 mol^{−1}
+      - 1.5 × 10^6 S m^2 mol^{−1}
+    answer: 1
+    explanation: 1 cm^2 = 10^{−4} m^2, so 150 S cm^2 mol^{−1} = 150 × 10^{−4} = 1.5 × 10^{−2} S m^2 mol^{−1}.
+  - id: che-elec-061
+    topic: molar-conductivity
+    subtopic: Calculation
+    concept: Λm (S cm^2 mol^-1) = κ × 1000 / M
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: Λ_m = κ × 1000/M
+    tags: [molar-conductivity]
+    stem: The conductivity of 0.20 M KCl solution at 298 K is 0.0248 S cm^{−1}. Its molar conductivity is
+    options:
+      - 4.96 S cm^2 mol^{−1}
+      - 124 S cm^2 mol^{−1}
+      - 12.4 S cm^2 mol^{−1}
+      - 248 S cm^2 mol^{−1}
+    answer: 1
+    explanation: Λ_m = κ × 1000/M = 0.0248 × 1000/0.20 = 124 S cm^2 mol^{−1}. Omitting the factor 1000 (cm^3 to L) gives a value 1000 times too small.
+  - id: che-elec-062
+    topic: molar-conductivity
+    subtopic: Variation with concentration
+    concept: Molar conductivity increases on dilution
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [dilution, trap]
+    stem: On dilution, the molar conductivity of both strong and weak electrolytes
+    options:
+      - decreases
+      - increases
+      - remains constant
+      - increases for weak but decreases for strong electrolytes
+    answer: 1
+    explanation: Although κ falls, the volume containing one mole rises faster, so Λ_m = κ × V increases on dilution for all electrolytes, sharply for weak ones and gradually for strong ones.
+  - id: che-elec-063
+    topic: molar-conductivity
+    subtopic: Debye–Hückel–Onsager
+    concept: Λm = Λ°m − A√c for strong electrolytes
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: Λ_m = Λ°_m − A c^{1/2}
+    tags: [strong-electrolyte, graph]
+    stem: For a strong electrolyte such as KCl, a plot of Λ_m (y-axis) against √c (x-axis) is
+    options:
+      - a straight line with positive slope passing through the origin
+      - a rectangular hyperbola
+      - a straight line with negative slope whose intercept on the y-axis is Λ°_m
+      - a curve rising steeply at low concentration that cannot be extrapolated
+    answer: 2
+    explanation: Λ_m = Λ°_m − A√c is linear in √c with slope −A and intercept Λ°_m. The steep, non-extrapolable curve describes a weak electrolyte like acetic acid.
+  - id: che-elec-064
+    topic: molar-conductivity
+    subtopic: Kohlrausch's law
+    concept: Statement of Kohlrausch law of independent migration of ions
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [kohlrausch, ncert-line]
+    stem: According to Kohlrausch's law, the limiting molar conductivity of an electrolyte equals
+    options:
+      - the product of the limiting molar conductivities of its cation and anion
+      - the difference of the limiting molar conductivities of its cation and anion
+      - the sum of the limiting molar conductivities of its cation and anion, each multiplied by its number in the formula
+      - the molar conductivity at 1 M concentration
+    answer: 2
+    explanation: Λ°_m = ν_+λ°_+ + ν_−λ°_−; at infinite dilution each ion migrates independently and contributes a definite amount.
+  - id: che-elec-065
+    topic: molar-conductivity
+    subtopic: Kohlrausch's law application
+    concept: Λ°m of a weak acid from strong electrolytes
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Λ°(HAc) = Λ°(HCl) + Λ°(NaAc) − Λ°(NaCl)
+    tags: [kohlrausch, weak-electrolyte]
+    stem: "Given Λ°_m (S cm^2 mol^{−1}): HCl 425.9, NaCl 126.4, CH_3COONa 91.0. The Λ°_m of CH_3COOH is"
+    options:
+      - 643.3 S cm^2 mol^{−1}
+      - 208.5 S cm^2 mol^{−1}
+      - 461.3 S cm^2 mol^{−1}
+      - 390.5 S cm^2 mol^{−1}
+    answer: 3
+    explanation: Λ°(CH_3COOH) = Λ°(HCl) + Λ°(CH_3COONa) − Λ°(NaCl) = 425.9 + 91.0 − 126.4 = 390.5 S cm^2 mol^{−1}.
+  - id: che-elec-066
+    topic: molar-conductivity
+    subtopic: Degree of dissociation
+    concept: α = Λm/Λ°m for weak electrolytes
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: α = Λ_m/Λ°_m
+    tags: [degree-of-dissociation]
+    stem: A weak acid has Λ_m = 39 S cm^2 mol^{−1} at a certain concentration and Λ°_m = 390 S cm^2 mol^{−1}. Its degree of dissociation is
+    options:
+      - "0.01"
+      - "0.1"
+      - "10"
+      - "0.9"
+    answer: 1
+    explanation: α = Λ_m/Λ°_m = 39/390 = 0.1, i.e. 10% dissociated.
+  - id: che-elec-067
+    topic: molar-conductivity
+    subtopic: Dissociation constant
+    concept: Ka from conductivity data
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: K_a = cα^2/(1 − α)
+    tags: [dissociation-constant, multi-concept]
+    stem: For 0.001028 M acetic acid, Λ_m = 48.15 S cm^2 mol^{−1} and Λ°_m = 390.5 S cm^2 mol^{−1}. The dissociation constant of acetic acid is about
+    options:
+      - 1.56 × 10^{−5}
+      - 1.27 × 10^{−4}
+      - 1.78 × 10^{−5}
+      - 1.23 × 10^{−1}
+    answer: 2
+    explanation: α = 48.15/390.5 = 0.1233; K_a = cα^2/(1 − α) = 0.001028 × 0.01520/0.8767 ≈ 1.78 × 10^{−5}. Ignoring (1 − α) gives about 1.56 × 10^{−5}.
+  - id: che-elec-068
+    topic: molar-conductivity
+    subtopic: Ionic conductivities
+    concept: H+ and OH- have exceptionally high limiting ionic conductivity
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ionic-conductivity, exception]
+    stem: Which ion has the highest limiting molar conductivity in water at 298 K?
+    options:
+      - K^+
+      - H^+
+      - OH^−
+      - Na^+
+    answer: 1
+    explanation: λ°(H^+) ≈ 349.6 S cm^2 mol^{−1}, far higher than OH^− (199.1), K^+ (73.5) or Na^+ (50.1), because protons hop through the hydrogen-bonded water network.
+  - id: che-elec-069
+    topic: molar-conductivity
+    subtopic: Kohlrausch's law
+    concept: Λ° of a salt with multiple ions
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [kohlrausch]
+    stem: "Given λ°(Ca^{2+}) = 119.0 and λ°(Cl^−) = 76.3 S cm^2 mol^{−1}, Λ°_m of CaCl_2 is"
+    options:
+      - 195.3 S cm^2 mol^{−1}
+      - 271.6 S cm^2 mol^{−1}
+      - 314.3 S cm^2 mol^{−1}
+      - 390.6 S cm^2 mol^{−1}
+    answer: 1
+    explanation: Λ°_m(CaCl_2) = λ°(Ca^{2+}) + 2λ°(Cl^−) = 119.0 + 152.6 = 271.6 S cm^2 mol^{−1}. Forgetting the factor 2 gives 195.3.
+  - id: che-elec-070
+    topic: molar-conductivity
+    subtopic: Weak electrolytes
+    concept: Λ°m of weak electrolyte cannot be obtained by extrapolation
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [weak-electrolyte, kohlrausch]
+    stem: |-
+      Assertion (A): Λ°_m of acetic acid cannot be found by extrapolating the Λ_m vs √c plot to zero concentration.
+      Reason (R): For weak electrolytes Λ_m rises very steeply at low concentrations because the degree of dissociation increases sharply.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Because α rises sharply near infinite dilution, the curve is steep and non-linear, so extrapolation is unreliable; Kohlrausch's law is used instead. R explains A.
+  - id: che-elec-071
+    topic: molar-conductivity
+    subtopic: Comparing electrolytes
+    concept: Order of limiting molar conductivities
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [kohlrausch, ordering]
+    stem: "Using λ° (S cm^2 mol^{−1}): H^+ 349.6, Na^+ 50.1, K^+ 73.5, Cl^− 76.3, OH^− 199.1, arrange Λ°_m of NaCl, KCl, NaOH and HCl in increasing order."
+    options:
+      - NaCl < KCl < NaOH < HCl
+      - KCl < NaCl < NaOH < HCl
+      - NaCl < KCl < HCl < NaOH
+      - NaOH < NaCl < KCl < HCl
+    answer: 0
+    explanation: NaCl 126.4, KCl 149.8, NaOH 249.2 and HCl 425.9 S cm^2 mol^{−1}, giving NaCl < KCl < NaOH < HCl.
+  - id: che-elec-072
+    topic: molar-conductivity
+    subtopic: Debye–Hückel–Onsager
+    concept: Constant A depends on type of electrolyte
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [strong-electrolyte, ncert-line]
+    stem: In Λ_m = Λ°_m − A√c, the constant A has the same value for
+    options:
+      - NaCl and CaCl_2
+      - KBr and MgSO_4
+      - NaCl and KBr
+      - CaCl_2 and MgSO_4
+    answer: 2
+    explanation: A depends on the solvent, temperature and the electrolyte type (charges on ions). NaCl and KBr are both 1-1 electrolytes; CaCl_2 is 2-1 and MgSO_4 is 2-2.
+  - id: che-elec-073
+    topic: electrolysis
+    subtopic: Faraday constant
+    concept: One faraday is the charge on one mole of electrons
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [faraday]
+    stem: One faraday of electricity is the charge carried by
+    options:
+      - one electron
+      - one mole of electrons
+      - one coulomb per second
+      - one mole of protons per litre
+    answer: 1
+    explanation: 1 F = N_A × e = 6.022 × 10^{23} × 1.602 × 10^{−19} C ≈ 96487 C, the charge on one mole of electrons.
+  - id: che-elec-074
+    topic: electrolysis
+    subtopic: Faraday's first law
+    concept: Mass of copper deposited from CuSO4
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: m = MIt/(nF)
+    tags: [faraday-first-law]
+    stem: A CuSO_4 solution is electrolysed for 10 minutes with a current of 1.5 A. The mass of copper deposited at the cathode is about (Cu = 63.5 g mol^{−1}, F = 96500 C mol^{−1})
+    options:
+      - 0.592 g
+      - 0.296 g
+      - 0.148 g
+      - 17.8 g
+    answer: 1
+    explanation: Q = 1.5 × 600 = 900 C; Cu^{2+} + 2e^− → Cu, so m = 63.5 × 900/(2 × 96500) ≈ 0.296 g. Using n = 1 gives the doubled value 0.592 g.
+  - id: che-elec-075
+    topic: electrolysis
+    subtopic: Charge required
+    concept: Faradays needed to reduce MnO4- to Mn2+
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [charge-required]
+    stem: How many faradays are required to reduce 1 mol of MnO_4^− to Mn^{2+}?
+    options:
+      - "3"
+      - "2"
+      - "7"
+      - "5"
+    answer: 3
+    explanation: Mn goes from +7 to +2, a gain of 5 electrons per ion, so 5 F are needed per mole of MnO_4^−.
+  - id: che-elec-076
+    topic: electrolysis
+    subtopic: Products of electrolysis
+    concept: Electrolysis of aqueous NaCl gives H2 at cathode and Cl2 at anode
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [products, brine]
+    stem: During electrolysis of concentrated aqueous NaCl with inert electrodes, the products at the cathode and anode respectively are
+    options:
+      - Na and Cl_2
+      - H_2 and O_2
+      - H_2 and Cl_2
+      - Na and O_2
+    answer: 2
+    explanation: At the cathode water (E° = −0.83 V) is reduced in preference to Na^+ (−2.71 V), giving H_2; at the anode Cl_2 is liberated because of the overpotential of oxygen. NaOH remains in solution.
+  - id: che-elec-077
+    topic: electrolysis
+    subtopic: Products of electrolysis
+    concept: Molten NaCl gives sodium at cathode
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [products, molten]
+    stem: Electrolysis of molten NaCl gives
+    options:
+      - H_2 at cathode and Cl_2 at anode
+      - Na at cathode and O_2 at anode
+      - Na at anode and Cl_2 at cathode
+      - Na at cathode and Cl_2 at anode
+    answer: 3
+    explanation: In the melt only Na^+ and Cl^− are present, so Na^+ is reduced at the cathode and Cl^− oxidised to Cl_2 at the anode.
+  - id: che-elec-078
+    topic: electrolysis
+    subtopic: Overpotential
+    concept: Cl2 rather than O2 is evolved from brine due to overpotential
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [overpotential, brine, trap]
+    stem: |-
+      Assertion (A): In the electrolysis of aqueous NaCl, Cl_2 is liberated at the anode even though E°(O_2/H_2O) = 1.23 V is lower than E°(Cl_2/Cl^−) = 1.36 V.
+      Reason (R): Oxidation of water to O_2 requires an overpotential, so Cl^− oxidation is kinetically favoured.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Thermodynamically water should be oxidised first, but the oxygen evolution reaction is slow and needs extra voltage (overpotential), so Cl_2 is formed. R correctly explains A.
+  - id: che-elec-079
+    topic: electrolysis
+    subtopic: Faraday's second law
+    concept: Masses deposited by same charge are proportional to equivalent weights
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [faraday-second-law, series-cells]
+    stem: The same charge is passed through solutions of AgNO_3 and CuSO_4 connected in series. If 1.08 g of Ag is deposited, the mass of Cu deposited is (Ag = 108, Cu = 63.5 g mol^{−1})
+    options:
+      - 0.635 g
+      - 0.3175 g
+      - 1.27 g
+      - 0.108 g
+    answer: 1
+    explanation: 1.08 g Ag = 0.01 mol = 0.01 F. Cu^{2+} needs 2 F per mole, so 0.005 mol Cu = 0.005 × 63.5 = 0.3175 g. Using mole ratio 1:1 gives 0.635 g.
+  - id: che-elec-080
+    topic: electrolysis
+    subtopic: Electrolysis with active electrodes
+    concept: Electrolysis of CuSO4 with copper electrodes
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [active-electrode, products]
+    stem: When aqueous CuSO_4 is electrolysed using copper electrodes, the reaction at the anode is
+    options:
+      - 2H_2O → O_2 + 4H^+ + 4e^−
+      - Cu → Cu^{2+} + 2e^−
+      - Cu^{2+} + 2e^− → Cu
+      - 2SO_4^{2−} → S_2O_8^{2−} + 2e^−
+    answer: 1
+    explanation: With an active copper anode, the metal itself is oxidised more easily than water or sulphate, so copper dissolves while copper deposits at the cathode; the solution concentration stays constant.
+  - id: che-elec-081
+    topic: electrolysis
+    subtopic: Electrolysis with inert electrodes
+    concept: Electrolysis of CuSO4 with Pt electrodes gives O2 at anode
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [inert-electrode, products]
+    stem: Aqueous CuSO_4 is electrolysed between platinum electrodes. The products at the cathode and anode are respectively
+    options:
+      - Cu and O_2
+      - H_2 and O_2
+      - Cu and SO_2
+      - Cu and S_2O_8^{2−}
+    answer: 0
+    explanation: Cu^{2+} (E° = +0.34 V) is reduced more readily than water at the cathode; at the inert anode water is oxidised to O_2 in preference to sulphate. The solution gradually becomes acidic (H_2SO_4 forms).
+  - id: che-elec-082
+    topic: electrolysis
+    subtopic: Faraday's first law
+    concept: Charge needed to deposit a given mass of aluminium
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [charge-required]
+    stem: How much charge is required to produce 27 g of Al from molten Al_2O_3? (Al = 27 g mol^{−1})
+    options:
+      - 1 F
+      - 2 F
+      - 3 F
+      - 6 F
+    answer: 2
+    explanation: Al^{3+} + 3e^− → Al, so 1 mol (27 g) of Al requires 3 mol electrons = 3 F ≈ 2.89 × 10^5 C.
+  - id: che-elec-083
+    topic: electrolysis
+    subtopic: Faraday's first law
+    concept: Time to deposit silver with a given current
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [faraday-first-law]
+    stem: How long must a current of 2 A be passed through AgNO_3 solution to deposit 2.16 g of silver? (Ag = 108 g mol^{−1}, F = 96500 C mol^{−1})
+    options:
+      - 965 s
+      - 1930 s
+      - 482.5 s
+      - 9650 s
+    answer: 0
+    explanation: 2.16 g = 0.02 mol Ag, needing 0.02 F = 1930 C. t = Q/I = 1930/2 = 965 s. Forgetting to divide by the current gives 1930 s.
+  - id: che-elec-084
+    topic: electrolysis
+    subtopic: Products of electrolysis
+    concept: Products depend on concentration of H2SO4
+    category: factual
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [products, match]
+    stem: |-
+      Match the electrolysis (List I) with the anode product (List II).
+      List I
+      P. Dilute aqueous H_2SO_4, Pt electrodes
+      Q. Concentrated aqueous H_2SO_4, Pt electrodes
+      R. Concentrated aqueous NaCl, Pt electrodes
+      S. Aqueous CuSO_4, Cu electrodes
+      List II
+      1. Cu^{2+} ions
+      2. S_2O_8^{2−}
+      3. O_2
+      4. Cl_2
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-4, Q-2, R-3, S-1
+    answer: 0
+    explanation: Dilute H_2SO_4 gives O_2; at higher concentration SO_4^{2−} is oxidised to peroxodisulphate; brine gives Cl_2 due to oxygen overpotential; an active Cu anode dissolves as Cu^{2+}.
+  - id: che-elec-085
+    topic: electrolysis
+    subtopic: Volume of gas liberated
+    concept: Volume of H2 per faraday
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [gas-volume]
+    stem: The volume of H_2 at STP (molar volume 22.4 L) liberated at the cathode by passing 1 F of charge through acidified water is
+    options:
+      - 22.4 L
+      - 5.6 L
+      - 11.2 L
+      - 44.8 L
+    answer: 2
+    explanation: 2H^+ + 2e^− → H_2, so 1 F produces 0.5 mol H_2 = 11.2 L at STP. The same charge gives only 5.6 L of O_2 at the anode.
+  - id: che-elec-086
+    topic: electrolysis
+    subtopic: Electrochemical equivalent
+    concept: Z = M/(nF)
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: Z = M/(nF)
+    tags: [electrochemical-equivalent]
+    stem: The electrochemical equivalent (Z) of a metal of molar mass M that deposits from M^{n+} ions is
+    options:
+      - nF/M
+      - M/(nF)
+      - MnF
+      - M/n
+    answer: 1
+    explanation: From m = ZQ and m = MQ/(nF), Z = M/(nF), the mass deposited by one coulomb. M/n is the equivalent weight, which is Z × F.
+  - id: che-elec-087
+    topic: batteries
+    subtopic: Primary cells
+    concept: Components of the dry (Leclanché) cell
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [dry-cell, ncert-line]
+    stem: In a dry (Leclanché) cell, the anode and the cathode are respectively
+    options:
+      - zinc container and carbon rod surrounded by MnO_2 and carbon
+      - carbon rod and zinc container
+      - zinc–mercury amalgam and HgO paste
+      - lead and PbO_2
+    answer: 0
+    explanation: The zinc container is the anode; a carbon (graphite) rod surrounded by powdered MnO_2 and carbon is the cathode, with a moist paste of NH_4Cl and ZnCl_2 as electrolyte.
+  - id: che-elec-088
+    topic: batteries
+    subtopic: Primary vs secondary
+    concept: Classifying batteries
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [secondary-cell]
+    stem: Which of the following is a secondary (rechargeable) cell?
+    options:
+      - Leclanché cell
+      - Mercury cell
+      - Nickel–cadmium cell
+      - Dry cell
+    answer: 2
+    explanation: Ni–Cd and lead storage batteries can be recharged by reversing the cell reaction. Leclanché (dry) and mercury cells are primary cells.
+  - id: che-elec-089
+    topic: batteries
+    subtopic: Lead storage battery
+    concept: Discharge reaction of lead storage battery
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [lead-storage]
+    stem: The overall reaction when a lead storage battery is in use (discharging) is
+    options:
+      - 2PbSO_4 + 2H_2O → Pb + PbO_2 + 2H_2SO_4
+      - Pb + PbO_2 + 2H_2SO_4 → 2PbSO_4 + 2H_2O
+      - Pb + H_2SO_4 → PbSO_4 + H_2
+      - PbO_2 + H_2 → PbO + H_2O
+    answer: 1
+    explanation: On discharge, Pb (anode) and PbO_2 (cathode) are both converted into PbSO_4, consuming H_2SO_4. The reverse reaction, forming Pb and PbO_2 from PbSO_4, occurs on charging.
+  - id: che-elec-090
+    topic: batteries
+    subtopic: Mercury cell
+    concept: Mercury cell gives constant voltage 1.35 V
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [mercury-cell, ncert-line]
+    stem: Why does a mercury cell provide an almost constant potential of about 1.35 V during its life?
+    options:
+      - Its electrolyte is regenerated during discharge
+      - It is recharged continuously by the device
+      - The overall reaction involves no ions whose concentration changes during its life
+      - Mercury has zero electrode potential
+    answer: 2
+    explanation: The overall reaction Zn(Hg) + HgO(s) → ZnO(s) + Hg(l) involves no ion in solution whose concentration changes, so the Nernst term is constant and the voltage stays steady.
+  - id: che-elec-091
+    topic: batteries
+    subtopic: Fuel cells
+    concept: H2–O2 fuel cell electrode reactions
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [fuel-cell]
+    stem: In the H_2–O_2 fuel cell with aqueous NaOH as electrolyte, the reaction at the cathode is
+    options:
+      - 2H_2 + 4OH^− → 4H_2O + 4e^−
+      - O_2 + 4H^+ + 4e^− → 2H_2O
+      - H_2 → 2H^+ + 2e^−
+      - O_2 + 2H_2O + 4e^− → 4OH^−
+    answer: 3
+    explanation: In alkaline medium oxygen is reduced to hydroxide at the cathode, O_2 + 2H_2O + 4e^− → 4OH^−; hydrogen is oxidised at the anode. The overall reaction is 2H_2 + O_2 → 2H_2O.
+  - id: che-elec-092
+    topic: batteries
+    subtopic: Fuel cells
+    concept: Advantages of fuel cells
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [fuel-cell, ncert-line]
+    stem: Which statement about fuel cells is incorrect?
+    options:
+      - They convert the energy of combustion of fuels directly into electrical energy
+      - The H_2–O_2 fuel cell was used in the Apollo space programme
+      - Their efficiency is about 70%, higher than thermal power plants
+      - They must be discarded once the fuel inside is used up
+    answer: 3
+    explanation: Fuel cells run continuously as long as reactants are supplied and products removed; they are not discarded. The other statements are NCERT facts.
+  - id: che-elec-093
+    topic: batteries
+    subtopic: Lead storage battery
+    concept: Electrolyte of the lead storage battery
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [lead-storage]
+    stem: The electrolyte used in a lead storage battery is
+    options:
+      - about 38% H_2SO_4 solution
+      - moist NH_4Cl paste
+      - concentrated KOH
+      - molten PbCl_2
+    answer: 0
+    explanation: The lead storage battery uses a 38% sulphuric acid solution. NH_4Cl paste is the dry-cell electrolyte and KOH is used in mercury and fuel cells.
+  - id: che-elec-094
+    topic: batteries
+    subtopic: Nickel–cadmium cell
+    concept: Ni-Cd cell has longer life than lead storage cell
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [nickel-cadmium]
+    stem: In the rechargeable nickel–cadmium cell, the substance oxidised at the anode during discharge is
+    options:
+      - Ni(OH)_3
+      - Cd
+      - Ni(OH)_2
+      - CdO
+    answer: 1
+    explanation: The overall discharge reaction is Cd + 2Ni(OH)_3 → CdO + 2Ni(OH)_2 + H_2O; cadmium is oxidised at the anode while Ni(III) is reduced.
+  - id: che-elec-095
+    topic: corrosion
+    subtopic: Rust
+    concept: Composition of rust
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [rust]
+    stem: The chemical formula of rust is
+    options:
+      - FeO
+      - Fe_3O_4
+      - Fe(OH)_2
+      - Fe_2O_3·xH_2O
+    answer: 3
+    explanation: Rust is hydrated ferric oxide, Fe_2O_3·xH_2O, formed when Fe^{2+} produced at anodic spots is further oxidised by atmospheric oxygen.
+  - id: che-elec-096
+    topic: corrosion
+    subtopic: Mechanism of rusting
+    concept: Cathodic reaction in rusting
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [rusting-mechanism]
+    stem: In the electrochemical mechanism of rusting of iron, the reaction at the cathodic spot is
+    options:
+      - Fe → Fe^{2+} + 2e^−
+      - O_2 + 4H^+ + 4e^− → 2H_2O
+      - Fe^{3+} + e^− → Fe^{2+}
+      - 2H_2O → O_2 + 4H^+ + 4e^−
+    answer: 1
+    explanation: Iron is oxidised at the anodic spot; the electrons move through the metal to another spot where oxygen is reduced in the presence of H^+ (from H_2CO_3 in moist air), O_2 + 4H^+ + 4e^− → 2H_2O.
+  - id: che-elec-097
+    topic: corrosion
+    subtopic: Mechanism of rusting
+    concept: E° of the overall rusting cell
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [rusting-mechanism]
+    stem: "Given E°(Fe^{2+}/Fe) = −0.44 V and E°(O_2, H^+/H_2O) = +1.23 V, the E° of the rusting cell reaction is"
+    options:
+      - 0.79 V
+      - 1.67 V
+      - −1.67 V
+      - 2.46 V
+    answer: 1
+    explanation: E°_cell = E°_cathode − E°_anode = 1.23 − (−0.44) = 1.67 V, a large positive value showing rusting is spontaneous.
+  - id: che-elec-098
+    topic: corrosion
+    subtopic: Prevention
+    concept: Galvanisation protects iron sacrificially
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [galvanisation, sacrificial-protection]
+    stem: Galvanised iron does not rust even when the zinc coating is scratched because
+    options:
+      - zinc is less reactive than iron
+      - zinc forms an alloy with iron
+      - zinc has a lower reduction potential than iron and is oxidised preferentially
+      - zinc reduces rust back to iron
+    answer: 2
+    explanation: E°(Zn^{2+}/Zn) = −0.76 V is lower than E°(Fe^{2+}/Fe) = −0.44 V, so zinc acts as the sacrificial anode and is corroded instead of iron.
+  - id: che-elec-099
+    topic: corrosion
+    subtopic: Conditions for corrosion
+    concept: Factors that accelerate rusting
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [rusting-conditions]
+    stem: |-
+      Which conditions speed up the rusting of iron?
+      I. Presence of moisture and oxygen
+      II. Presence of electrolytes such as NaCl (e.g. sea water)
+      III. Presence of acidic gases such as CO_2 and SO_2 in air
+      IV. A coating of oil or grease on the iron
+    options:
+      - I and II only
+      - I, II and III only
+      - I, III and IV only
+      - II, III and IV only
+    answer: 1
+    explanation: Moisture, oxygen, dissolved electrolytes and acidic gases (supplying H^+) all promote the electrochemical rusting process. An oil or grease film keeps out air and water and slows rusting.
+  - id: che-elec-100
+    topic: corrosion
+    subtopic: Prevention
+    concept: Choosing a sacrificial anode
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [sacrificial-protection, trap]
+    stem: Which metal would be suitable as a sacrificial anode to protect an underground iron pipe?
+    options:
+      - Copper
+      - Tin
+      - Magnesium
+      - Silver
+    answer: 2
+    explanation: A sacrificial anode must be more easily oxidised than iron (lower E°). Magnesium (−2.36 V) qualifies; Cu, Sn and Ag have higher E° than Fe and would speed up iron corrosion.

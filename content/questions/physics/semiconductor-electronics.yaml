@@ -3158,3 +3158,2122 @@ questions:
     answer: 2
     explanation: "The two drops add: 1.4 V. I = (3.4 − 1.4)/1000 = 2 mA. Subtracting only one drop gives 2.7 mA."
 
+  - id: phy-semi-151
+    topic: diode-circuits
+    subtopic: Potential in a diode circuit
+    concept: Voltage across a resistor in series with a forward-biased ideal diode
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [ideal-diode, series-circuit]
+    stem: A 10 V battery drives current through a 2 kΩ resistor, a forward-biased ideal diode and a 3 kΩ resistor, all in series. The potential difference across the 3 kΩ resistor is
+    options:
+      - 4 V
+      - 10 V
+      - 5 V
+      - 6 V
+    answer: 3
+    explanation: "An ideal forward-biased diode has no drop, so I = 10/(2 + 3) kΩ = 2 mA, and the drop across 3 kΩ is 2 mA × 3 kΩ = 6 V. 4 V is the drop across the 2 kΩ resistor."
+
+  - id: phy-semi-152
+    topic: diode-circuits
+    subtopic: Diode logic
+    concept: Two diodes with a common cathode resistor form an OR gate
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [diode-logic, or-gate, multi-concept]
+    stem: Two ideal diodes have their p-sides connected to inputs A and B and their n-sides joined together to a resistor R whose other end is at 0 V. The output Y is taken across R. A logic 1 is +5 V and logic 0 is 0 V. This circuit acts as
+    options:
+      - an AND gate
+      - a NOT gate
+      - a NOR gate
+      - an OR gate
+    answer: 3
+    explanation: "If either input is at +5 V, that diode conducts and the output rises to +5 V (logic 1). Only when both inputs are 0 V does no current flow, giving Y = 0. Output 1 whenever any input is 1 is the OR function."
+
+  - id: phy-semi-153
+    topic: diode-circuits
+    subtopic: Reversing the battery
+    concept: Reversing polarity switches which branch conducts
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [ideal-diode, parallel-circuit, trap]
+    stem: A 10 V battery is connected across two parallel branches. Branch 1 contains an ideal diode forward biased in series with 5 Ω; branch 2 contains an ideal diode reverse biased in series with 10 Ω. If the battery terminals are now reversed, the current from the battery becomes
+    options:
+      - 1 A
+      - 2 A
+      - 3 A
+      - zero
+    answer: 0
+    explanation: "Originally only branch 1 conducts (2 A). Reversing the battery reverses the bias of both diodes, so now only branch 2 conducts: I = 10/10 = 1 A. 2 A is the original current and 3 A assumes both branches conduct."
+
+  - id: phy-semi-154
+    topic: diode-circuits
+    subtopic: Threshold condition
+    concept: A Si diode conducts appreciably only when V_p − V_n exceeds about 0.7 V
+    category: application
+    format: statements
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [threshold-voltage, bias]
+    stem: The potentials of the p-side and n-side of four silicon diodes (threshold 0.7 V) are given. Which diode conducts appreciably?
+    options:
+      - p-side 0.5 V, n-side 0 V
+      - p-side 0 V, n-side 1 V
+      - p-side −4.2 V, n-side −5 V
+      - p-side 3 V, n-side 2.6 V
+    answer: 2
+    explanation: "Appreciable conduction needs V_p − V_n ≥ about 0.7 V. For −4.2 V and −5 V the difference is 0.8 V. The first and last cases are forward biased by only 0.5 V and 0.4 V, and the second is reverse biased."
+
+  - id: phy-semi-155
+    topic: diode-circuits
+    subtopic: Power in a diode
+    concept: Power dissipated in a diode P = V_D I
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    formula: P = V_D I
+    tags: [power, diode-drop]
+    stem: A silicon diode with a 0.7 V drop carries a forward current of 20 mA. The power dissipated in it is
+    options:
+      - 14 mW
+      - 35 mW
+      - 1.4 mW
+      - 140 mW
+    answer: 0
+    explanation: "P = V_D I = 0.7 × 0.020 = 0.014 W = 14 mW."
+
+  - id: phy-semi-156
+    topic: diode-circuits
+    subtopic: Current-limiting resistor
+    concept: Minimum series resistance to keep diode current below its maximum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: R = (E − V_D)/I_max
+    tags: [series-circuit, diode-drop]
+    stem: A silicon diode (drop 0.7 V) can safely carry at most 10 mA. The minimum series resistance needed to use it with a 5.7 V battery is
+    options:
+      - 570 Ω
+      - 70 Ω
+      - 500 Ω
+      - 640 Ω
+    answer: 2
+    explanation: "R_min = (5.7 − 0.7)/0.010 = 500 Ω. Ignoring the diode drop gives 570 Ω, which is safe but not the minimum."
+
+  - id: phy-semi-157
+    topic: diode-circuits
+    subtopic: Diode as a switch
+    concept: A diode conducts in one direction only
+    category: concept
+    format: case
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [case, rectification]
+    stem: A bulb, a diode and a battery are connected in series and the bulb glows. When the battery terminals are reversed, the bulb
+    options:
+      - glows more brightly
+      - glows with the same brightness
+      - does not glow
+      - flickers at 50 Hz
+    answer: 2
+    explanation: "Reversing the battery reverse biases the diode, which then blocks the current (only a tiny μA flows), so the bulb goes off."
+
+  - id: phy-semi-158
+    topic: diode-circuits
+    subtopic: Piecewise-linear diode model
+    concept: Diode modelled as a threshold voltage plus a dynamic resistance
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: I = (E − V_th)/(R + r_d)
+    tags: [dynamic-resistance, series-circuit, multi-concept]
+    stem: A diode is modelled as a 0.7 V threshold in series with a dynamic resistance of 20 Ω. It is forward biased in series with an 80 Ω resistor across 1.7 V. The current is
+    options:
+      - 12.5 mA
+      - 17 mA
+      - 21 mA
+      - 10 mA
+    answer: 3
+    explanation: "I = (1.7 − 0.7)/(80 + 20) = 1/100 = 10 mA. Ignoring r_d gives 12.5 mA and ignoring the threshold gives 17 mA."
+
+  - id: phy-semi-159
+    topic: diode-circuits
+    subtopic: Bias from circuit polarity
+    concept: Reading bias from which terminal the p-side joins
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    diagram: "A single loop: the positive terminal of a 6 V battery connects to a 1 kΩ resistor, then to the cathode (bar end, n-side) of diode D; the anode (triangle end, p-side) of D connects back to the negative terminal of the battery. An ammeter A is in series in the loop."
+    tags: [bias, diagram]
+    stem: In the circuit shown, what will the ammeter read (treat the diode as ideal)?
+    options:
+      - 6 mA
+      - 3 mA
+      - 60 mA
+      - zero
+    answer: 3
+    explanation: "The n-side of D connects (through R) to the positive terminal and the p-side to the negative terminal, so the diode is reverse biased and blocks current. The ammeter reads zero; 6 mA would be the reading if the diode were reversed."
+
+  - id: phy-semi-160
+    topic: rectifiers
+    subtopic: RMS of half-wave output
+    concept: RMS value of a half-wave rectified output is V_m/2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: V_rms = V_m/2
+    tags: [half-wave, rms]
+    stem: A half-wave rectifier gives output pulses of peak 20 V. The rms value of the output voltage is
+    options:
+      - 14.1 V
+      - 6.4 V
+      - 20 V
+      - 10 V
+    answer: 3
+    explanation: "For half-wave output V_rms = V_m/2 = 10 V. 14.1 V (V_m/√2) is the rms of a full-wave output, and 6.4 V (V_m/π) is the average value."
+
+  - id: phy-semi-161
+    topic: rectifiers
+    subtopic: Efficiency and ripple factor
+    concept: Standard efficiency and ripple values of half- and full-wave rectifiers
+    category: factual
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [efficiency, ripple-factor]
+    stem: |-
+      Match List I with List II.
+      List I: P. Maximum efficiency of a half-wave rectifier  Q. Maximum efficiency of a full-wave rectifier  R. Ripple factor of a half-wave rectifier  S. Ripple factor of a full-wave rectifier
+      List II: 1. 0.48  2. 81.2%  3. 1.21  4. 40.6%
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-4, Q-2, R-3, S-1
+      - P-3, Q-1, R-4, S-2
+    answer: 2
+    explanation: "A half-wave rectifier has maximum efficiency 40.6% and ripple factor 1.21; a full-wave rectifier doubles the efficiency to 81.2% and reduces the ripple factor to 0.48. So P-4, Q-2, R-3, S-1."
+
+  - id: phy-semi-162
+    topic: rectifiers
+    subtopic: Peak inverse voltage
+    concept: Each diode of a centre-tap rectifier must withstand 2V_m
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [piv, centre-tap]
+    stem: In a centre-tap full-wave rectifier, the peak voltage between the centre tap and either end of the secondary is 15 V. The peak inverse voltage across each diode is about
+    options:
+      - 15 V
+      - 21 V
+      - 7.5 V
+      - 30 V
+    answer: 3
+    explanation: "When one diode conducts, the non-conducting diode sees the conducting half's voltage (via the load) plus its own half: 2V_m = 30 V. Taking just V_m = 15 V is the common mistake; that value applies to each diode of a bridge."
+
+  - id: phy-semi-163
+    topic: rectifiers
+    subtopic: Full-wave versus half-wave
+    concept: Full-wave output is smoother and easier to filter
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [full-wave, half-wave, filter]
+    stem: |-
+      Assertion (A): For the same filter capacitor, the output of a full-wave rectifier has less ripple than that of a half-wave rectifier.
+      Reason (R): In a full-wave rectifier the capacitor is recharged twice per input cycle, so it discharges for a shorter time.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "With pulses every T/2 instead of every T, the capacitor has only half as long to discharge through the load between recharges, so the voltage drops less and the ripple is smaller. R explains A."
+
+  - id: phy-semi-164
+    topic: rectifiers
+    subtopic: Capacitor filter
+    concept: Ripple falls when RC is large compared with the period
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [filter, capacitor, time-constant]
+    stem: |-
+      A capacitor filter is connected across the load R_L of a rectifier. Consider:
+      I. The capacitor charges nearly to the peak voltage.
+      II. Between peaks, it discharges through R_L.
+      III. A larger capacitance reduces the ripple.
+      IV. A smaller load resistance reduces the ripple.
+      Which statements are correct?
+    options:
+      - I and II only
+      - III and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: "The capacitor charges to the peak and discharges through R_L with time constant CR_L. Ripple is small when CR_L is large compared with the time between pulses, so larger C helps but a smaller R_L (larger load current) increases ripple. IV is wrong."
+
+  - id: phy-semi-165
+    topic: rectifiers
+    subtopic: Fault in a bridge rectifier
+    concept: One open diode turns a bridge into a half-wave rectifier
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [bridge-rectifier, fault, case]
+    stem: In a bridge rectifier fed with 50 Hz AC, one diode burns out and becomes an open circuit. The output across the load becomes
+    options:
+      - zero at all times
+      - pure DC with no ripple
+      - a half-wave rectified output with 50 Hz pulses
+      - a full-wave output with 100 Hz pulses
+    answer: 2
+    explanation: "Each half cycle uses one pair of diodes. With one diode open, the pair containing it cannot conduct, so one half cycle is lost; the other pair still works. The circuit behaves as a half-wave rectifier giving 50 Hz pulses."
+
+  - id: phy-semi-166
+    topic: rectifiers
+    subtopic: Nature of rectified output
+    concept: Rectifier output is unidirectional but pulsating
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [rectification, filter]
+    stem: Which statement about the output of a rectifier without a filter is incorrect?
+    options:
+      - It is steady DC of constant magnitude
+      - It flows in only one direction through the load
+      - It contains AC components (ripple)
+      - Its magnitude varies with time
+    answer: 0
+    explanation: "Without a filter, the output is unidirectional but pulsating: its magnitude keeps varying, so it contains AC ripple. A filter is needed to get a nearly steady DC."
+
+  - id: phy-semi-167
+    topic: rectifiers
+    subtopic: Average load current
+    concept: Average current of a full-wave rectifier I_dc = 2I_m/π
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: I_dc = 2V_m/(π R_L)
+    tags: [full-wave, average-value]
+    stem: An ideal full-wave rectifier gives an output of peak 10 V across a 1 kΩ load. The average (DC) load current is about
+    options:
+      - 3.2 mA
+      - 10 mA
+      - 6.4 mA
+      - 7.1 mA
+    answer: 2
+    explanation: "I_m = 10 V/1 kΩ = 10 mA, so I_dc = 2I_m/π ≈ 6.4 mA. 3.2 mA is the half-wave value and 7.1 mA is the rms current."
+
+  - id: phy-semi-168
+    topic: rectifiers
+    subtopic: Centre-tap operation
+    concept: The diode connected to the positive end of the secondary conducts
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    diagram: "Centre-tap full-wave rectifier: transformer secondary with ends A (top) and B (bottom) and centre tap C. Diode D1 anode at A, diode D2 anode at B; both cathodes join at point X. Load resistor R_L connects X to C. Output voltage taken across R_L."
+    tags: [centre-tap, full-wave, diagram]
+    stem: In the circuit shown, at an instant when end A is positive and end B is negative with respect to the centre tap C, the current through R_L flows
+    options:
+      - through D2, from C to X
+      - through D1, from C to X
+      - through both diodes, in opposite directions
+      - through D1, from X to C
+    answer: 3
+    explanation: "With A positive, D1 is forward biased and D2 reverse biased. Current leaves A, passes through D1 to X and then through R_L from X to C. In the next half cycle D2 conducts, and the current through R_L is again from X to C."
+
+  - id: phy-semi-169
+    topic: rectifiers
+    subtopic: Filtered output waveform
+    concept: A capacitor filter gives a ripple close to the peak voltage
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [filter, waveform, graph]
+    stem: Which description best matches the output voltage of a full-wave rectifier with a large capacitor filter?
+    options:
+      - Half-sine pulses separated by zero-voltage gaps
+      - A sine wave with both positive and negative halves
+      - A nearly flat voltage just below the peak, with small sawtooth-like ripple at twice the input frequency
+      - A square wave between +V_m and −V_m
+    answer: 2
+    explanation: "The capacitor charges to about V_m at each pulse and discharges slightly between pulses, giving a nearly steady voltage with a small sawtooth ripple. For a full-wave rectifier the ripple repeats at twice the input frequency."
+
+  - id: phy-semi-170
+    topic: zener-diode
+    subtopic: Field in depletion layer
+    concept: Very thin depletion layer gives a field of about 5 × 10^6 V m^{-1}
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: d = V/E
+    tags: [zener, electric-field]
+    stem: A Zener diode breaks down at 5 V when the field across its depletion layer reaches 5 × 10^6 V m^{-1}. The width of the depletion layer is about
+    options:
+      - 10 μm
+      - 1 μm
+      - 0.1 μm
+      - 1 mm
+    answer: 1
+    explanation: "d = V/E = 5/(5 × 10^6) = 10^{-6} m = 1 μm. Such a thin layer is achieved by heavy doping of both sides."
+
+  - id: phy-semi-171
+    topic: zener-diode
+    subtopic: Load variation
+    concept: When load current rises, Zener current falls so series current stays constant
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [zener, regulator, multi-concept]
+    stem: In a Zener regulator with fixed input voltage, the load resistance is decreased (load current increases) while the Zener stays in breakdown. Then
+    options:
+      - the current through the series resistor increases
+      - the load voltage falls in proportion
+      - the Zener current decreases by the same amount as the load current increases
+      - the Zener current increases
+    answer: 2
+    explanation: "The output is held at V_Z, so the series current (V_in − V_Z)/R_s stays fixed. Since I_s = I_Z + I_L, any rise in I_L is matched by an equal fall in I_Z, as long as I_Z stays above its minimum."
+
+  - id: phy-semi-172
+    topic: zener-diode
+    subtopic: Regulator currents
+    concept: Finding Zener current from series and load currents
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: I_Z = I_s − I_L
+    tags: [zener, regulator]
+    stem: An 8 V Zener diode, a 100 Ω series resistor and a 400 Ω load form a regulator fed from 12 V. The current through the Zener diode is
+    options:
+      - 40 mA
+      - 60 mA
+      - 20 mA
+      - 30 mA
+    answer: 2
+    explanation: "I_s = (12 − 8)/100 = 40 mA; I_L = 8/400 = 20 mA; I_Z = 40 − 20 = 20 mA. 40 mA ignores the load and 60 mA adds the currents."
+
+  - id: phy-semi-173
+    topic: zener-diode
+    subtopic: Power rating
+    concept: Maximum Zener current from power rating, I_max = P/V_Z
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: I_Z(max) = P/V_Z
+    tags: [zener, power]
+    stem: A 5 V Zener diode has a power rating of 1 W. The maximum current it can safely carry is
+    options:
+      - 5 A
+      - 0.2 A
+      - 20 mA
+      - 2 A
+    answer: 1
+    explanation: "I_max = P/V_Z = 1/5 = 0.2 A (200 mA)."
+
+  - id: phy-semi-174
+    topic: zener-diode
+    subtopic: Minimum input for regulation
+    concept: The Zener must still reach V_Z when considered removed from the circuit
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [zener, regulator, multi-concept]
+    stem: A 6 V Zener diode with a 1 kΩ series resistor supplies a 2 kΩ load. Below what input voltage does the circuit stop regulating?
+    options:
+      - 6 V
+      - 12 V
+      - 9 V
+      - 8 V
+    answer: 2
+    explanation: "Regulation requires that, without the Zener, the load voltage would be at least V_Z: V_in × R_L/(R_L + R_s) ≥ 6. So V_in ≥ 6 × 3/2 = 9 V. Below 9 V the Zener leaves breakdown and the load voltage falls."
+
+  - id: phy-semi-175
+    topic: zener-diode
+    subtopic: Zener characteristic
+    concept: In breakdown the Zener I-V curve is almost vertical at V_Z
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [zener, iv-characteristic, graph]
+    stem: How does the reverse-bias I-V characteristic of a Zener diode look beyond the breakdown voltage V_Z?
+    options:
+      - Nearly vertical, with current changes greatly while voltage stays almost at V_Z
+      - Nearly horizontal, with voltage changes greatly while current stays constant
+      - A straight line through the origin
+      - A curve that bends back towards zero voltage
+    answer: 0
+    explanation: "In breakdown, the current can vary over a wide range with hardly any change in voltage, so the curve is almost vertical at V_Z. This constant voltage is what makes the Zener useful as a regulator."
+
+  - id: phy-semi-176
+    topic: zener-diode
+    subtopic: Zener in forward bias
+    concept: A forward-biased Zener behaves like an ordinary diode
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [zener, forward-bias]
+    stem: |-
+      Statement I: A forward-biased Zener diode behaves much like an ordinary p-n junction diode.
+      Statement II: A Zener diode can regulate voltage only when operated in forward bias.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "In forward bias a Zener conducts beyond about 0.7 V like any silicon diode. Voltage regulation uses its reverse breakdown region, so Statement II is incorrect."
+
+  - id: phy-semi-177
+    topic: zener-diode
+    subtopic: Zener properties
+    concept: Key features of a Zener diode
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [zener, ncert-line]
+    stem: |-
+      Consider these statements about a Zener diode:
+      I. Both its p and n regions are heavily doped.
+      II. It is used in reverse bias for voltage regulation.
+      III. Its breakdown voltage can be set during manufacture by controlling the doping.
+      IV. In a regulator, the load voltage equals the input voltage.
+      Which statements are correct?
+    options:
+      - I, II and III only
+      - I and IV only
+      - II, III and IV only
+      - I and II only
+    answer: 0
+    explanation: "I, II and III are correct. In a regulator the load voltage equals V_Z, and the excess input voltage drops across the series resistor, so IV is wrong."
+
+  - id: phy-semi-178
+    topic: zener-diode
+    subtopic: No-load condition
+    concept: With no load, all the series current passes through the Zener
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [zener, regulator]
+    stem: A 12 V Zener diode is fed from 20 V through a 400 Ω resistor with no load connected. The Zener current is
+    options:
+      - 50 mA
+      - 30 mA
+      - 12 mA
+      - 20 mA
+    answer: 3
+    explanation: "I = (20 − 12)/400 = 0.02 A = 20 mA, and with no load all of it passes through the Zener. Using 20 V/400 Ω gives 50 mA, which ignores the Zener voltage."
+
+  - id: phy-semi-179
+    topic: optoelectronic-devices
+    subtopic: Photodiode characteristic
+    concept: Photodiode reverse current increases with light intensity
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [photodiode, iv-characteristic, graph]
+    stem: The reverse-bias I-V curves of a photodiode are drawn for illumination intensities I_1 < I_2 < I_3. The curves show that
+    options:
+      - the reverse current is the same for all intensities
+      - the magnitude of the reverse current is largest for I_3
+      - the reverse current decreases as intensity increases
+      - the curves shift into the first quadrant as intensity increases
+    answer: 1
+    explanation: "More light generates more electron-hole pairs, so the reverse (photo)current rises with intensity. The curves are nearly flat lines in the third quadrant, spaced further from the V-axis for higher intensity."
+
+  - id: phy-semi-180
+    topic: optoelectronic-devices
+    subtopic: Solar cell parameters
+    concept: I_sc rises with intensity; V_oc and I_sc are the axis intercepts
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [solar-cell, iv-characteristic]
+    stem: Which statement about the I-V characteristic of a solar cell is correct?
+    options:
+      - The open-circuit voltage V_oc is the voltage when the current through the cell is maximum
+      - The short-circuit current I_sc is proportional to the intensity of light
+      - Maximum power is delivered at the short-circuit condition
+      - The curve lies in the first quadrant because the cell is forward biased
+    answer: 1
+    explanation: "I_sc (current with zero load resistance) is set by the rate of photogeneration, so it is proportional to intensity. V_oc is the voltage when the current is zero. Power V × I is zero at both intercepts, and the curve lies in the fourth quadrant."
+
+  - id: phy-semi-181
+    topic: optoelectronic-devices
+    subtopic: Solar cell construction
+    concept: A thin top layer lets light reach the junction; metal finger electrodes collect current
+    category: factual
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [solar-cell, construction, ncert-line]
+    stem: In a typical p-n junction solar cell, which feature is correct?
+    options:
+      - The top layer is very thick so that it absorbs all photons before the junction
+      - The top surface is completely covered with a thick metal plate
+      - The top layer is very thin (about 0.3 μm) and has metal finger electrodes, so light reaches the junction
+      - The cell is always reverse biased by an internal battery
+    answer: 2
+    explanation: "NCERT describes a thin n-Si layer (~0.3 μm) grown on a p-Si wafer (~300 μm), with metal finger electrodes on top. The thin layer and the fingers leave the junction exposed so that light can generate pairs within the depletion region."
+
+  - id: phy-semi-182
+    topic: optoelectronic-devices
+    subtopic: LED precautions
+    concept: LEDs have a low reverse breakdown voltage (about 5 V)
+    category: factual
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: true
+    tags: [led, reverse-bias, ncert-line]
+    stem: Care must be taken not to reverse bias an LED with a large voltage because its reverse breakdown voltage is typically about
+    options:
+      - 500 V
+      - 50 V
+      - 1000 V
+      - 5 V
+    answer: 3
+    explanation: "NCERT notes that the reverse breakdown voltage of LEDs is very low, typically around 5 V, so they are easily damaged by a reverse voltage."
+
+  - id: phy-semi-183
+    topic: optoelectronic-devices
+    subtopic: LED output versus current
+    concept: LED light output rises with forward current up to a maximum
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [led, intensity, ncert-line]
+    stem: As the forward current through an LED is increased, the intensity of emitted light
+    options:
+      - stays constant at all currents
+      - increases steadily without limit
+      - decreases from the very beginning
+      - increases up to a maximum, and further increase in current decreases it
+    answer: 3
+    explanation: "NCERT states that the intensity increases with forward current up to a maximum; beyond that, further increase in current reduces the light output (heating effects)."
+
+  - id: phy-semi-184
+    topic: optoelectronic-devices
+    subtopic: Choosing a detector material
+    concept: A detector needs E_g below the photon energy
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: E = 1240/λ(nm) eV
+    tags: [photodiode, band-gap, multi-concept]
+    stem: An optical fibre link uses light of wavelength 1.5 μm. Which photodiode material can detect it? (hc = 1240 eV nm; E_g of Si = 1.1 eV, Ge = 0.71 eV, GaAs = 1.4 eV, CdS = 2.4 eV)
+    options:
+      - Ge only
+      - Si and Ge
+      - GaAs only
+      - CdS and GaAs
+    answer: 0
+    explanation: "Photon energy = 1240/1500 ≈ 0.83 eV. Only a material with E_g below 0.83 eV can absorb it, which among these is germanium (0.71 eV). Silicon's 1.1 eV gap is too large."
+
+  - id: phy-semi-185
+    topic: optoelectronic-devices
+    subtopic: Photocurrent and intensity
+    concept: Photocurrent is proportional to light intensity
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [photodiode, intensity]
+    stem: When the intensity of light on a reverse-biased photodiode is doubled, the photocurrent
+    options:
+      - roughly doubles
+      - halves
+      - stays the same
+      - becomes zero
+    answer: 0
+    explanation: "Each absorbed photon (with energy above E_g) can create an electron-hole pair. Doubling intensity doubles the photon rate and so roughly doubles the photocurrent."
+
+  - id: phy-semi-186
+    topic: optoelectronic-devices
+    subtopic: Solar cell materials
+    concept: Solar cell materials need E_g ≈ 1.0–1.8 eV and high optical absorption
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [solar-cell, materials]
+    stem: |-
+      Assertion (A): Si and GaAs are commonly used to make solar cells.
+      Reason (R): Their band gaps lie between about 1.0 eV and 1.8 eV, close to the photon energies where solar radiation is most intense.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "The solar spectrum peaks near 1.5 eV, so materials with E_g of about 1.0–1.8 eV absorb most of it while still giving a useful voltage. Si (1.1 eV) and GaAs (1.4 eV) fit this, so R explains A."
+
+  - id: phy-semi-187
+    topic: optoelectronic-devices
+    subtopic: Visible LEDs
+    concept: Minimum band gap for visible emission is about 1.8 eV
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: E_g = hc/λ
+    tags: [led, band-gap]
+    stem: Visible light has wavelengths below about 700 nm. The minimum band gap of a semiconductor for a visible LED is about (hc = 1240 eV nm)
+    options:
+      - 3.1 eV
+      - 1.1 eV
+      - 1.8 eV
+      - 0.7 eV
+    answer: 2
+    explanation: "E_g ≥ 1240/700 ≈ 1.77 eV, i.e. about 1.8 eV, which matches NCERT's statement. 3.1 eV corresponds to the violet end (400 nm)."
+
+  - id: phy-semi-188
+    topic: optoelectronic-devices
+    subtopic: Device biasing
+    concept: Operating mode of each p-n junction device
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [bias, match]
+    stem: |-
+      Match each device in List I with its normal operating condition in List II.
+      List I: P. LED  Q. Photodiode  R. Solar cell  S. Zener voltage regulator
+      List II: 1. Reverse bias in the breakdown region  2. Forward bias  3. No external bias  4. Reverse bias below breakdown
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-2, Q-4, R-3, S-1
+      - P-2, Q-4, R-1, S-3
+    answer: 2
+    explanation: "An LED is forward biased; a photodiode is reverse biased below breakdown; a solar cell needs no external bias; a Zener regulator works in reverse breakdown. So P-2, Q-4, R-3, S-1."
+
+  - id: phy-semi-189
+    topic: optoelectronic-devices
+    subtopic: Power from a solar cell
+    concept: Solar cell delivers zero power at open circuit and at short circuit
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [solar-cell, power, trap]
+    stem: A solar cell has open-circuit voltage V_oc and short-circuit current I_sc. The power delivered to an external load is
+    options:
+      - maximum at open circuit and equal to V_oc I_sc
+      - zero at both open circuit and short circuit, and maximum at some intermediate load
+      - maximum at short circuit
+      - the same for every load
+    answer: 1
+    explanation: "At open circuit I = 0 and at short circuit V = 0, so P = VI is zero in both cases. The maximum power occurs at an intermediate operating point and is always less than V_oc I_sc."
+
+  - id: phy-semi-190
+    topic: logic-gates
+    subtopic: Evaluating Boolean expressions
+    concept: Evaluate Y = (A + B)·C for given inputs
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [boolean-algebra]
+    stem: A and B feed an OR gate, and its output and input C feed an AND gate. For A = 0, B = 1, C = 1, the output is
+    options:
+      - "0"
+      - "1"
+      - undefined
+      - equal to A
+    answer: 1
+    explanation: "A + B = 0 + 1 = 1; then 1·C = 1·1 = 1."
+
+  - id: phy-semi-191
+    topic: logic-gates
+    subtopic: NOT from NOR
+    concept: Shorting the inputs of a NOR gate gives a NOT gate
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [nor-gate, not-gate, universal-gate]
+    stem: Both inputs of a NOR gate are connected together to a single input A. The output is
+    options:
+      - A
+      - always 1
+      - always 0
+      - NOT A
+    answer: 3
+    explanation: "Y = NOT(A + A) = NOT A, so a NOR gate with shorted inputs acts as a NOT gate."
+
+  - id: phy-semi-192
+    topic: logic-gates
+    subtopic: AND from NOR gates
+    concept: Inverting both inputs of a NOR gate gives AND
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [nor-gate, universal-gate, de-morgan]
+    stem: A is passed through one NOR gate with shorted inputs, and B through another. These two outputs are fed to a third NOR gate. The final output is
+    options:
+      - A + B
+      - A·B
+      - NOT(A·B)
+      - NOT(A + B)
+    answer: 1
+    explanation: "The first two gates give A′ and B′. The third gives NOT(A′ + B′) = A·B by De Morgan's theorem. So three NOR gates make an AND gate."
+
+  - id: phy-semi-193
+    topic: logic-gates
+    subtopic: Identifying a gate from its truth table
+    concept: Truth table 0, 1, 1, 1 is the OR gate
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    tags: [or-gate, truth-table]
+    stem: A two-input gate gives Y = 0 for (0, 0) and Y = 1 for (0, 1), (1, 0) and (1, 1). The gate is
+    options:
+      - AND
+      - NOR
+      - OR
+      - NAND
+    answer: 2
+    explanation: "Output 1 when at least one input is 1 is the OR function. NAND is 0 only for (1, 1), which is a different pattern."
+
+  - id: phy-semi-194
+    topic: logic-gates
+    subtopic: Timing diagram
+    concept: Output sequence of a NAND gate for given input waveforms
+    category: application
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [nand-gate, waveform]
+    stem: |-
+      Inputs to a NAND gate over four equal time intervals are:
+      A: 1, 1, 0, 0
+      B: 1, 0, 1, 0
+      The output over these intervals is
+    options:
+      - 1, 0, 0, 0
+      - 0, 1, 1, 1
+      - 1, 1, 1, 0
+      - 0, 0, 0, 1
+    answer: 1
+    explanation: "NAND gives 0 only when both inputs are 1, which happens only in the first interval. So the output is 0, 1, 1, 1. 1, 0, 0, 0 is the AND output."
+
+  - id: phy-semi-195
+    topic: logic-gates
+    subtopic: AND from NAND
+    concept: NAND followed by a NAND inverter gives AND
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [nand-gate, universal-gate]
+    stem: The output of a NAND gate (inputs A, B) is fed to both inputs of a second NAND gate. The final output is
+    options:
+      - A·B
+      - A + B
+      - NOT(A + B)
+      - NOT(A·B)
+    answer: 0
+    explanation: "The first gate gives (A·B)′; the second, with shorted inputs, inverts it back to A·B. So this is an AND gate."
+
+  - id: phy-semi-196
+    topic: logic-gates
+    subtopic: Boolean identities
+    concept: Basic Boolean identities; A + A′ = 1, not 0
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [boolean-algebra, trap]
+    stem: Which Boolean identity is incorrect? (A′ denotes NOT A.)
+    options:
+      - A + A = A
+      - A·A′ = 0
+      - A + A′ = 0
+      - A·1 = A
+    answer: 2
+    explanation: "Either A or A′ is always 1, so A + A′ = 1, not 0. The other identities are correct."
+
+  - id: phy-semi-197
+    topic: logic-gates
+    subtopic: Truth tables with three inputs
+    concept: A three-input OR gate is 1 for 7 of the 8 input combinations
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [or-gate, truth-table]
+    stem: For a three-input OR gate, how many of the possible input combinations give output 1?
+    options:
+      - "1"
+      - "8"
+      - "4"
+      - "7"
+    answer: 3
+    explanation: "Three inputs give 2^3 = 8 combinations. The OR output is 0 only for (0, 0, 0), so 7 combinations give 1."
+
+  - id: phy-semi-198
+    topic: logic-gates
+    subtopic: Real-life logic
+    concept: An alarm triggered by either of two sensors is an OR function
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [or-gate, case]
+    stem: A security alarm must ring (output 1) if the door sensor gives 1, or the window sensor gives 1, or both. The logic gate needed is
+    options:
+      - AND
+      - NOR
+      - NAND
+      - OR
+    answer: 3
+    explanation: "Ringing when at least one input is 1 is the OR function. An AND gate would ring only when both door and window are open."
+
+  - id: phy-semi-199
+    topic: logic-gates
+    subtopic: OR from NOR gates
+    concept: NOR followed by a NOR inverter gives OR
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [nor-gate, universal-gate]
+    stem: The output of a NOR gate (inputs A, B) is applied to both inputs of another NOR gate. The combination behaves as
+    options:
+      - an OR gate
+      - an AND gate
+      - a NAND gate
+      - a NOT gate
+    answer: 0
+    explanation: "The first gate gives (A + B)′; the second NOR with shorted inputs inverts it, giving A + B. So the combination is an OR gate."
+
+  - id: phy-semi-200
+    topic: logic-gates
+    subtopic: De Morgan's theorem
+    concept: NOT(A′ + B′) = A·B
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [de-morgan, boolean-algebra]
+    stem: A and B each pass through a NOT gate, and the outputs feed a NOR gate. The Boolean output is
+    options:
+      - A + B
+      - NOT(A + B)
+      - NOT(A·B)
+      - A·B
+    answer: 3
+    explanation: "Y = NOT(A′ + B′). By De Morgan's theorem this equals A·B. Check: Y = 1 only when A′ = B′ = 0, i.e. A = B = 1, the AND function."
+
+  - id: phy-semi-201
+    topic: classification-energy-bands
+    subtopic: Ge versus Si conduction
+    concept: Pure Ge conducts better than pure Si because of its smaller band gap
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [band-gap, si-vs-ge]
+    stem: |-
+      Assertion (A): At room temperature, pure germanium has a much higher conductivity than pure silicon.
+      Reason (R): The band gap of germanium is smaller than that of silicon.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "With a 0.71 eV gap, far more electrons in Ge are thermally excited than in Si (1.1 eV), so n_i and hence the conductivity of Ge are much larger. R explains A."
+
+  - id: phy-semi-202
+    topic: classification-energy-bands
+    subtopic: Classification by resistivity and band gap
+    concept: Typical resistivity, conductivity and band gap ranges
+    category: factual
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [resistivity, band-gap, ncert-line]
+    stem: |-
+      Match List I with List II.
+      List I: P. Conductivity of metals  Q. Resistivity of semiconductors  R. Resistivity of insulators  S. Band gap of insulators
+      List II: 1. 10^{11} to 10^{19} Ω m  2. more than 3 eV  3. 10^2 to 10^8 S m^{-1}  4. 10^{-5} to 10^6 Ω m
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-1, Q-4, R-3, S-2
+    answer: 0
+    explanation: "NCERT: metals have σ ≈ 10^2–10^8 S m^{-1} (ρ ≈ 10^{-2}–10^{-8} Ω m); semiconductors ρ ≈ 10^{-5}–10^6 Ω m; insulators ρ ≈ 10^{11}–10^{19} Ω m with E_g > 3 eV. So P-3, Q-4, R-1, S-2."
+
+  - id: phy-semi-203
+    topic: classification-energy-bands
+    subtopic: Charge carriers
+    concept: Both CB electrons and VB holes carry current in semiconductors
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [carriers, confused-pair]
+    stem: |-
+      Statement I: In a semiconductor, both electrons in the conduction band and holes in the valence band contribute to the current.
+      Statement II: In a metal, holes are the main current carriers.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Semiconductors conduct by both free electrons and holes. In metals conduction is by free electrons in the partly filled band; holes are not the main carriers. So only Statement I is correct."
+
+  - id: phy-semi-204
+    topic: classification-energy-bands
+    subtopic: Excess photon energy
+    concept: Photon energy above E_g appears as extra kinetic energy of the carriers
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: E = 1240/λ(nm) eV
+    tags: [photon, band-gap, multi-concept]
+    stem: Light of wavelength 620 nm is absorbed in silicon (E_g = 1.1 eV), creating an electron-hole pair. The energy in excess of the band gap given to the pair is about (hc = 1240 eV nm)
+    options:
+      - 0.9 eV
+      - 2.0 eV
+      - 1.1 eV
+      - 3.1 eV
+    answer: 0
+    explanation: "Photon energy = 1240/620 = 2.0 eV. Only 1.1 eV is needed to cross the gap, so about 2.0 − 1.1 = 0.9 eV is excess energy, which is soon lost as heat to the lattice."
+
+  - id: phy-semi-205
+    topic: classification-energy-bands
+    subtopic: Transparency and band gap
+    concept: Diamond is transparent because visible photons cannot bridge its 5.4 eV gap
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [band-gap, optical-properties, multi-concept]
+    stem: Visible photons have energies between about 1.8 eV and 3.1 eV. Pure diamond (E_g ≈ 5.4 eV) is transparent to visible light because
+    options:
+      - visible photons are reflected by its free electrons
+      - visible photons do not have enough energy to lift valence electrons across its band gap, so they are not absorbed
+      - its conduction band overlaps the valence band
+      - visible photons ionise all its atoms and pass through
+    answer: 1
+    explanation: "A photon can be absorbed by band-to-band excitation only if hν ≥ E_g. Even violet light (3.1 eV) falls short of 5.4 eV, so visible light passes through without absorption. Silicon, with 1.1 eV, absorbs visible light and looks opaque."
+
+  - id: phy-semi-206
+    topic: classification-energy-bands
+    subtopic: Transparency of silicon to infrared
+    concept: Photons with energy below E_g pass through a semiconductor
+    category: application
+    format: assertion-reason
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [band-gap, infrared, multi-concept]
+    stem: |-
+      Assertion (A): A thin pure silicon wafer is nearly transparent to infrared radiation of wavelength 2 μm.
+      Reason (R): A 2 μm photon has an energy of about 0.62 eV, less than the band gap of silicon.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "E = 1240/2000 ≈ 0.62 eV < 1.1 eV, so the photons cannot create electron-hole pairs and are not absorbed by band-to-band transitions; the wafer transmits them. R explains A."
+
+  - id: phy-semi-207
+    topic: classification-energy-bands
+    subtopic: Comparing resistivities
+    concept: Ordering resistivities of a metal, two semiconductors and an insulator
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [resistivity, ordering]
+    stem: |-
+      Arrange these in increasing order of resistivity at room temperature (all pure):
+      1. Silicon
+      2. Copper
+      3. Glass
+      4. Germanium
+    options:
+      - 2, 1, 4, 3
+      - 4, 2, 1, 3
+      - 2, 4, 1, 3
+      - 2, 4, 3, 1
+    answer: 2
+    explanation: "Copper (a metal) has the lowest resistivity. Germanium, with its smaller band gap, has more intrinsic carriers than silicon, so it has lower resistivity than Si. Glass, an insulator, is highest. So 2, 4, 1, 3."
+
+  - id: phy-semi-208
+    topic: classification-energy-bands
+    subtopic: Band filling at 0 K
+    concept: At 0 K the valence band of a semiconductor is completely filled
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [energy-bands, temperature]
+    stem: In a pure semiconductor at 0 K, the valence band and conduction band are respectively
+    options:
+      - empty and completely filled
+      - completely filled and empty
+      - both partly filled
+      - both empty
+    answer: 1
+    explanation: "At 0 K all valence electrons are in the valence band, which is full, and none has the energy to reach the conduction band, which is empty. That is why the crystal is an insulator at 0 K."
+
+  - id: phy-semi-209
+    topic: classification-energy-bands
+    subtopic: Conductivity versus temperature graph
+    concept: Conductivity rises with T for semiconductors and falls for metals
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [graph, conductivity, temperature, confused-pair]
+    stem: Conductivity σ is plotted against temperature T for a copper wire and for a pure silicon sample. Which description is correct?
+    options:
+      - Both curves rise with T
+      - Both curves fall with T
+      - The copper curve falls slowly with T while the silicon curve rises steeply
+      - The copper curve rises steeply while the silicon curve falls slowly
+    answer: 2
+    explanation: "In copper, n is fixed and collisions increase with T, so σ decreases gradually. In silicon, carrier density rises nearly exponentially with T, so σ increases steeply."
+
+  - id: phy-semi-210
+    topic: classification-energy-bands
+    subtopic: Competing effects of temperature
+    concept: Carrier density rise outweighs mobility fall in semiconductors
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [temperature, mobility, multi-concept]
+    stem: |-
+      When the temperature of a pure semiconductor rises:
+      I. The carrier concentration increases.
+      II. The mobility of carriers decreases slightly due to more collisions.
+      III. The net conductivity decreases because mobility falls.
+      IV. The net conductivity increases because the rise in carrier concentration dominates.
+      Which statements are correct?
+    options:
+      - I and III only
+      - II and III only
+      - I, II and IV only
+      - I and IV only
+    answer: 2
+    explanation: "Both effects occur: carriers increase sharply and mobility falls slightly. The exponential rise in carriers dominates, so σ increases. III is the metal-like reasoning that does not apply here."
+
+  - id: phy-semi-211
+    topic: intrinsic-semiconductors
+    subtopic: Properties of intrinsic semiconductors
+    concept: Intrinsic semiconductors contain no dopant
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [intrinsic]
+    stem: Which statement about an intrinsic semiconductor is incorrect?
+    options:
+      - The numbers of free electrons and holes are equal
+      - Its conductivity increases with temperature
+      - It contains impurity atoms that donate extra electrons
+      - It behaves as an insulator at 0 K
+    answer: 2
+    explanation: "An intrinsic semiconductor is pure; impurity atoms donating electrons would make it n-type (extrinsic). The other statements are correct."
+
+  - id: phy-semi-212
+    topic: intrinsic-semiconductors
+    subtopic: Resistance of a sample
+    concept: R = ρL/A applied to a pure silicon rod
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: R = ρL/A
+    tags: [resistivity, resistance]
+    stem: Pure silicon at room temperature has a resistivity of about 2.3 × 10^3 Ω m. A rod of this silicon is 1 cm long with cross-section 1 mm^2. Its resistance is about
+    options:
+      - 2.3 × 10^7 Ω
+      - 2.3 × 10^3 Ω
+      - 2.3 × 10^{-1} Ω
+      - 2.3 × 10^{10} Ω
+    answer: 0
+    explanation: "R = ρL/A = 2.3 × 10^3 × 10^{-2}/10^{-6} = 2.3 × 10^7 Ω. Forgetting to convert mm^2 to m^2 (10^{-6}) is the usual error."
+
+  - id: phy-semi-213
+    topic: intrinsic-semiconductors
+    subtopic: Drift velocity of holes
+    concept: Drift velocity v_d = μE
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: v_d = μE
+    tags: [mobility, drift-velocity]
+    stem: Holes in a sample have mobility 0.05 m^2 V^{-1} s^{-1}. In a field of 200 V m^{-1}, their drift speed is
+    options:
+      - 4000 m s^{-1}
+      - 2.5 × 10^{-4} m s^{-1}
+      - 0.1 m s^{-1}
+      - 10 m s^{-1}
+    answer: 3
+    explanation: "v_d = μE = 0.05 × 200 = 10 m s^{-1}. Mobility is drift speed per unit field."
+
+  - id: phy-semi-214
+    topic: intrinsic-semiconductors
+    subtopic: Direction of currents
+    concept: Electron and hole currents add, since they move oppositely with opposite charges
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [current, hole]
+    stem: |-
+      Assertion (A): In a semiconductor, the electron current and hole current add up to give the total current.
+      Reason (R): Electrons and holes move in opposite directions in an electric field and carry charges of opposite sign.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Negative electrons moving against the field and positive holes moving along it both give conventional current in the direction of the field, so I = I_e + I_h. R explains A."
+
+  - id: phy-semi-215
+    topic: intrinsic-semiconductors
+    subtopic: Ways to increase conductivity
+    concept: Heating, suitable light and doping all raise conductivity of pure Si
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [conductivity, doping, photoconduction]
+    stem: |-
+      Which of these will increase the conductivity of a pure silicon crystal?
+      I. Raising its temperature
+      II. Shining light with photon energy greater than 1.1 eV on it
+      III. Doping it with phosphorus
+      IV. Cooling it towards 0 K
+    options:
+      - I and II only
+      - I, II and III only
+      - II and III only
+      - I, III and IV only
+    answer: 1
+    explanation: "Heating and suitable light both create more electron-hole pairs, and doping adds carriers. Cooling towards 0 K reduces the carriers, lowering conductivity."
+
+  - id: phy-semi-216
+    topic: intrinsic-semiconductors
+    subtopic: Thermistor
+    concept: Large negative temperature coefficient of semiconductors used in thermistors
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [thermistor, temperature, case]
+    stem: An engineer needs a small sensor whose resistance falls sharply as temperature rises, for use in an electronic thermometer. The best choice of material is
+    options:
+      - a copper wire
+      - a manganin wire
+      - a semiconductor (thermistor)
+      - a glass rod
+    answer: 2
+    explanation: "Semiconductors have a large negative temperature coefficient of resistance, so a small change in temperature gives a large fall in resistance. Copper's resistance rises slowly with T, and manganin's hardly changes."
+
+  - id: phy-semi-217
+    topic: intrinsic-semiconductors
+    subtopic: Comparing Ge and Si
+    concept: Conductivity ratio of Ge and Si scales with n_i if mobilities were equal
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: σ ∝ n_i (for equal mobilities)
+    tags: [conductivity, si-vs-ge]
+    stem: At room temperature n_i is 2.5 × 10^{19} m^{-3} for germanium and 1.5 × 10^{16} m^{-3} for silicon. If the carrier mobilities were the same in both, the ratio σ_Ge/σ_Si would be about
+    options:
+      - "1.7"
+      - "17"
+      - 1.7 × 10^3
+      - 6 × 10^{-4}
+    answer: 2
+    explanation: "σ = e n_i (μ_e + μ_h), so with equal mobilities σ_Ge/σ_Si = 2.5 × 10^{19}/1.5 × 10^{16} ≈ 1.7 × 10^3. The inverse, 6 × 10^{-4}, is σ_Si/σ_Ge."
+
+  - id: phy-semi-218
+    topic: intrinsic-semiconductors
+    subtopic: Crystal bonding
+    concept: Each Si or Ge atom forms covalent bonds with four neighbours
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [covalent-bond, crystal-structure]
+    stem: In a silicon crystal, each silicon atom is covalently bonded to how many neighbouring atoms?
+    options:
+      - Two
+      - Six
+      - Eight
+      - Four
+    answer: 3
+    explanation: "Si and Ge are tetravalent; each atom shares its four valence electrons with four nearest neighbours in a tetrahedral (diamond-like) structure."
+
+  - id: phy-semi-219
+    topic: extrinsic-semiconductors
+    subtopic: Carriers in n-type
+    concept: Minority carriers in n-type fall below n_i; conduction is by majority carriers
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [n-type, mass-action-law]
+    stem: |-
+      Statement I: At the same temperature, n-type silicon contains fewer holes than intrinsic silicon.
+      Statement II: The conductivity of an extrinsic semiconductor is mainly due to its majority carriers.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Extra donor electrons increase recombination, so n_h = n_i^2/n_e falls below n_i. Majority carriers outnumber minority carriers by many orders, so they dominate the conductivity. Both statements are correct."
+
+  - id: phy-semi-220
+    topic: extrinsic-semiconductors
+    subtopic: Hole concentration comparison
+    concept: Ordering hole density across differently doped samples
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [mass-action-law, ordering, multi-concept]
+    stem: |-
+      Arrange these silicon samples (same temperature) in increasing order of hole concentration:
+      1. Intrinsic silicon
+      2. Silicon heavily doped with arsenic
+      3. Silicon doped with boron
+      4. Silicon lightly doped with arsenic
+    options:
+      - 4, 2, 1, 3
+      - 2, 4, 3, 1
+      - 1, 4, 2, 3
+      - 2, 4, 1, 3
+    answer: 3
+    explanation: "n_h = n_i^2/n_e, so more donors mean fewer holes: heavily As-doped (2) < lightly As-doped (4) < intrinsic (1). Boron-doped (3) has holes as majority carriers, the most. So 2, 4, 1, 3."
+
+  - id: phy-semi-221
+    topic: extrinsic-semiconductors
+    subtopic: Mass action law in Ge
+    concept: Minority hole density in n-type germanium
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: n_h = n_i^2/n_e
+    tags: [mass-action-law, germanium]
+    stem: Germanium (n_i = 2.5 × 10^{19} m^{-3}) is doped so that n_e = 4 × 10^{22} m^{-3}. The hole concentration is about
+    options:
+      - 6.25 × 10^{38} m^{-3}
+      - 1.6 × 10^{16} m^{-3}
+      - 2.5 × 10^{19} m^{-3}
+      - 6.25 × 10^{-4} m^{-3}
+    answer: 1
+    explanation: "n_h = (2.5 × 10^{19})^2/(4 × 10^{22}) = 6.25 × 10^{38}/4 × 10^{22} ≈ 1.6 × 10^{16} m^{-3}. The first option is n_i^2 alone."
+
+  - id: phy-semi-222
+    topic: extrinsic-semiconductors
+    subtopic: Doping with aluminium
+    concept: Aluminium doping creates holes and raises conductivity
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [p-type, doping]
+    stem: |-
+      Assertion (A): The conductivity of silicon increases when it is doped with aluminium.
+      Reason (R): Aluminium, being pentavalent, supplies extra free electrons.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: "Doping with Al does raise conductivity, but aluminium is trivalent (group 13): it creates holes and makes Si p-type. R is false."
+
+  - id: phy-semi-223
+    topic: extrinsic-semiconductors
+    subtopic: Conductivity of p-type
+    concept: For p-type σ ≈ e n_h μ_h
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: σ ≈ e n_h μ_h
+    tags: [conductivity, p-type]
+    stem: A p-type sample has 10^{21} holes per m^3 with mobility 0.05 m^2 V^{-1} s^{-1}. Ignoring electrons, its conductivity is
+    options:
+      - 0.8 S m^{-1}
+      - 80 S m^{-1}
+      - 8 S m^{-1}
+      - 0.125 S m^{-1}
+    answer: 2
+    explanation: "σ = e n_h μ_h = 1.6 × 10^{-19} × 10^{21} × 0.05 = 8 S m^{-1}. 0.125 Ω m would be the resistivity."
+
+  - id: phy-semi-224
+    topic: extrinsic-semiconductors
+    subtopic: Doping terminology
+    concept: Doping, donor, acceptor and typical dopant level
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [doping, match, ncert-line]
+    stem: |-
+      Match List I with List II.
+      List I: P. Doping  Q. Donor  R. Acceptor  S. Typical dopant level
+      List II: 1. Trivalent impurity  2. About one part per million  3. Deliberate addition of a suitable impurity  4. Pentavalent impurity
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 2
+    explanation: "Doping is deliberate addition of impurity; donors are pentavalent and acceptors trivalent; dopant levels are tiny, of the order of 1 ppm. So P-3, Q-4, R-1, S-2."
+
+  - id: phy-semi-225
+    topic: extrinsic-semiconductors
+    subtopic: Weakly bound donor electron
+    concept: The fifth donor electron is weakly bound and easily freed
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: true
+    tags: [donor, ionisation-energy]
+    stem: Only about 0.05 eV frees the fifth electron of a phosphorus atom in silicon because that electron
+    options:
+      - is in the nucleus
+      - is shared by all four neighbouring bonds
+      - takes no part in covalent bonding and is only weakly held by its parent ion
+      - is already in the valence band
+    answer: 2
+    explanation: "Four P electrons form bonds with Si neighbours. The fifth has no bond to join and is only weakly attracted by the parent ion (screened by the surrounding crystal), so a tiny energy frees it into the conduction band."
+
+  - id: phy-semi-226
+    topic: extrinsic-semiconductors
+    subtopic: n-type versus p-type conductivity
+    concept: For equal doping, n-type conducts better due to higher electron mobility
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [mobility, n-type, p-type, multi-concept]
+    stem: Two identical silicon samples are doped, one with phosphorus and the other with boron, at the same concentration of 10^{22} m^{-3}. Which sample has higher conductivity, and why?
+    options:
+      - The boron-doped sample, because holes are heavier and carry more momentum
+      - Both are equal, because the carrier densities are equal
+      - The boron-doped sample, because holes have higher mobility
+      - The phosphorus-doped sample, because electrons have higher mobility than holes
+    answer: 3
+    explanation: "Majority carrier densities are equal, so σ ∝ μ of the majority carrier. Electrons move in the conduction band and have higher mobility than holes, so the n-type (phosphorus) sample conducts better."
+
+  - id: phy-semi-227
+    topic: extrinsic-semiconductors
+    subtopic: Donor impurity
+    concept: Antimony is a donor impurity
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [doping, n-type]
+    stem: Which of these can act as a donor impurity in germanium?
+    options:
+      - Antimony
+      - Gallium
+      - Indium
+      - Aluminium
+    answer: 0
+    explanation: "Antimony (Sb) is pentavalent and donates its fifth electron, giving n-type Ge. Gallium, indium and aluminium are trivalent acceptors."
+
+  - id: phy-semi-228
+    topic: extrinsic-semiconductors
+    subtopic: p-type properties
+    concept: Features of acceptor-doped semiconductors
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [p-type, mass-action-law, acceptor]
+    stem: |-
+      For a p-type semiconductor at room temperature, consider:
+      I. Holes are the majority carriers.
+      II. The acceptor level lies very close to (just above) the valence band.
+      III. n_e n_h = n_i^2 holds.
+      IV. It contains more free electrons than the intrinsic material at the same temperature.
+      Which statements are correct?
+    options:
+      - I, II and III only
+      - I and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "I, II and III are correct. Because n_h rises, n_e = n_i^2/n_h falls below n_i, so p-type material has fewer free electrons than intrinsic material. IV is wrong."
+
+  - id: phy-semi-229
+    topic: extrinsic-semiconductors
+    subtopic: Effect of tiny doping
+    concept: Even ppm doping raises carrier density by orders of magnitude
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [doping, conductivity]
+    stem: Which statement about doping silicon at about 1 part per million is correct?
+    options:
+      - It has almost no effect because the dopant fraction is so small
+      - It increases the carrier density by several orders of magnitude over n_i
+      - It changes the crystal from diamond structure to a metal lattice
+      - It reduces the conductivity because impurities scatter carriers
+    answer: 1
+    explanation: "Si has about 5 × 10^{28} atoms m^{-3}; 1 ppm gives about 5 × 10^{22} dopants m^{-3}, some 10^6 times n_i (1.5 × 10^{16}). So the carrier density and conductivity rise enormously while the lattice is unchanged."
+
+  - id: phy-semi-230
+    topic: pn-junction-formation
+    subtopic: Sequence of junction formation
+    concept: Order of events when a p-n junction forms
+    category: concept
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [depletion-layer, ordering]
+    stem: |-
+      Arrange these events in the order in which they happen when a p-n junction forms:
+      1. Drift current becomes equal to diffusion current
+      2. Majority carriers diffuse across the junction
+      3. An electric field builds up across the junction
+      4. Fixed ions are uncovered near the junction
+    options:
+      - 2, 3, 4, 1
+      - 4, 2, 3, 1
+      - 2, 4, 3, 1
+      - 3, 2, 4, 1
+    answer: 2
+    explanation: "Diffusion of majority carriers (2) uncovers fixed ions (4), whose charges set up a field (3). This field drives a drift current that grows until it equals the diffusion current (1), giving equilibrium."
+
+  - id: phy-semi-231
+    topic: pn-junction-formation
+    subtopic: Drift current direction
+    concept: Drift current follows the junction field from n to p
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [drift, electric-field]
+    stem: |-
+      Assertion (A): In an unbiased p-n junction, the drift current flows from the n-side to the p-side.
+      Reason (R): The electric field in the depletion region is directed from the n-side to the p-side.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "The field points from the positive donor ions (n-side) to the negative acceptor ions (p-side). Minority carriers drifting in this field give a conventional current along the field, from n to p. R explains A."
+
+  - id: phy-semi-232
+    topic: pn-junction-formation
+    subtopic: Barrier for both carriers
+    concept: The barrier opposes both electrons from n and holes from p
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [barrier-potential]
+    stem: The potential barrier at an unbiased p-n junction opposes the diffusion of
+    options:
+      - only electrons from the n-side
+      - only holes from the p-side
+      - neither carrier
+      - both electrons from the n-side and holes from the p-side
+    answer: 3
+    explanation: "The n-side is at higher potential. Electrons (negative) find it hard to move to the lower-potential p-side, and holes (positive) find it hard to climb to the n-side. So the barrier opposes diffusion of both majority carriers."
+
+  - id: phy-semi-233
+    topic: pn-junction-formation
+    subtopic: Measuring barrier potential
+    concept: A voltmeter cannot measure barrier potential because contact potentials cancel it
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [barrier-potential, trap]
+    stem: A voltmeter connected across an unbiased p-n junction diode reads zero even though a barrier potential exists. This is because
+    options:
+      - the barrier potential is too small for any voltmeter
+      - contact potentials at the metal-semiconductor junctions of the leads exactly cancel the barrier potential
+      - the depletion layer is conducting
+      - the barrier exists only when the diode is forward biased
+    answer: 1
+    explanation: "At equilibrium no net energy can be extracted from the diode. The potential differences at the metal-to-p and metal-to-n contacts adjust so that the total around the circuit is zero, so the voltmeter reads nothing."
+
+  - id: phy-semi-234
+    topic: pn-junction-formation
+    subtopic: Asymmetric doping
+    concept: Equal charge on both sides means a wider depletion region on the lightly doped side
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [depletion-layer, doping, multi-concept]
+    stem: |-
+      Statement I: The total charge of the uncovered ions on the p-side of the depletion layer equals, in magnitude, that on the n-side.
+      Statement II: If the p-side is much more heavily doped than the n-side, the depletion layer extends further into the n-side.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Every electron that leaves the n-side uncovers one donor ion and fills one acceptor site, so the charges are equal and opposite. The lightly doped side has fewer ions per unit volume, so it needs a wider region to hold the same charge. Both are correct."
+
+  - id: phy-semi-235
+    topic: pn-junction-formation
+    subtopic: Space charge profile
+    concept: Charge density is negative on the p-side and positive on the n-side of the junction
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [space-charge, graph]
+    stem: The space-charge density ρ is plotted against position x across an unbiased p-n junction (p-side on the left). The graph shows
+    options:
+      - positive charge on the left of the junction and negative charge on the right
+      - zero charge everywhere
+      - negative charge in a thin region left of the junction and positive charge in a thin region right of it, zero elsewhere
+      - uniform negative charge throughout the p-region
+    answer: 2
+    explanation: "Uncovered acceptor ions give a negative charge on the p-side of the depletion layer and donor ions a positive charge on the n-side. Outside the depletion layer the material is neutral."
+
+  - id: phy-semi-236
+    topic: pn-junction-formation
+    subtopic: Making a junction
+    concept: Pressing p and n slabs together does not form a junction
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [junction-fabrication, ncert-line]
+    stem: Can a useful p-n junction be made by simply pressing a p-type slab firmly against an n-type slab?
+    options:
+      - No, because surface roughness (much larger than interatomic spacing) breaks the continuity of the crystal
+      - Yes, pressing is how all diodes are made
+      - Yes, provided the slabs are of the same material
+      - No, because p and n slabs repel each other
+    answer: 0
+    explanation: "Any slab surface is rough on the atomic scale, so the contact is not continuous and acts as a discontinuity for carriers. Real junctions are grown in a single crystal (e.g. by diffusion or alloying)."
+
+  - id: phy-semi-237
+    topic: pn-junction-formation
+    subtopic: Junction field
+    concept: Field from barrier potential and depletion width
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: E = V_0/d
+    tags: [electric-field, depletion-layer]
+    stem: A silicon junction has a barrier of 0.6 V across a depletion layer 0.5 μm wide. The average field in the layer is
+    options:
+      - 3 × 10^5 V m^{-1}
+      - 1.2 × 10^5 V m^{-1}
+      - 1.2 × 10^6 V m^{-1}
+      - 3 × 10^{-7} V m^{-1}
+    answer: 2
+    explanation: "E = V_0/d = 0.6/(0.5 × 10^{-6}) = 1.2 × 10^6 V m^{-1}. Multiplying instead of dividing gives the last option."
+
+  - id: phy-semi-238
+    topic: pn-junction-formation
+    subtopic: Junction terminology
+    concept: Diffusion, drift, depletion layer and Ge barrier
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [diffusion, drift, match]
+    stem: |-
+      Match List I with List II.
+      List I: P. Diffusion current  Q. Drift current  R. Depletion layer  S. Barrier potential of Ge
+      List II: 1. Immobile ions  2. About 0.2 V  3. Minority carriers  4. Majority carriers
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-2, S-1
+      - P-1, Q-3, R-4, S-2
+      - P-4, Q-3, R-1, S-2
+    answer: 3
+    explanation: "Diffusion current is carried by majority carriers and drift current by minority carriers; the depletion layer contains immobile ions; the barrier potential of Ge is about 0.2–0.3 V. So P-4, Q-3, R-1, S-2."
+
+  - id: phy-semi-239
+    topic: pn-junction-formation
+    subtopic: Temperature and barrier potential
+    concept: Barrier potential decreases as temperature rises
+    category: concept
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [barrier-potential, temperature]
+    stem: A silicon diode is heated from 25 °C to 75 °C while a small constant forward current is maintained through it. The voltage across the diode
+    options:
+      - increases, because the barrier rises with temperature
+      - decreases, because the barrier potential falls with temperature
+      - remains exactly 0.7 V
+      - becomes negative
+    answer: 1
+    explanation: "Heating increases the intrinsic carrier density and the energy of carriers, so a smaller voltage is needed for the same current; the barrier (and forward drop) falls by roughly 2 mV per °C. Diode drops are therefore used as temperature sensors."
+
+  - id: phy-semi-240
+    topic: diode-bias-characteristics
+    subtopic: Where the voltage drops
+    concept: In forward bias the applied voltage mostly drops across the depletion region
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [forward-bias, depletion-layer, ncert-line]
+    stem: |-
+      Statement I: In a forward-biased diode, the applied voltage drops mostly across the depletion region, whose resistance is much higher than that of the p and n regions.
+      Statement II: In forward bias, the depletion layer width increases.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "NCERT notes that the voltage mostly drops across the depletion region because it has high resistance. Forward bias reduces the barrier and narrows the depletion layer, so Statement II is wrong."
+
+  - id: phy-semi-241
+    topic: diode-bias-characteristics
+    subtopic: Forward versus reverse bias
+    concept: Comparing forward and reverse bias behaviour
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [forward-bias, reverse-bias]
+    stem: |-
+      Consider these statements:
+      I. In forward bias, the barrier height becomes V_0 − V.
+      II. In reverse bias, the current is due to minority carriers.
+      III. In reverse bias, the current rises steadily in proportion to voltage below breakdown.
+      IV. In forward bias, the current is due mainly to majority carriers.
+      Which statements are correct?
+    options:
+      - I and III only
+      - I, II and IV only
+      - II and III only
+      - I, II, III and IV
+    answer: 1
+    explanation: "I, II and IV are standard results. III is wrong: below breakdown the reverse current saturates and hardly depends on voltage."
+
+  - id: phy-semi-242
+    topic: diode-bias-characteristics
+    subtopic: Variation of dynamic resistance
+    concept: Dynamic resistance falls as forward current rises
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: true
+    tags: [dynamic-resistance, iv-characteristic]
+    stem: On the forward characteristic of a diode, how does the dynamic resistance change as the current increases beyond the knee?
+    options:
+      - It stays constant
+      - It increases steadily
+      - It becomes negative
+      - It decreases, because the curve becomes steeper
+    answer: 3
+    explanation: "r_d = ΔV/ΔI is the inverse of the slope of the I-V curve. Above the knee the curve grows steeper, so the same ΔV gives a larger ΔI and r_d decreases."
+
+  - id: phy-semi-243
+    topic: diode-bias-characteristics
+    subtopic: Reverse current in Si and Ge
+    concept: Si diodes have far smaller reverse current than Ge diodes
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [reverse-bias, si-vs-ge]
+    stem: |-
+      Assertion (A): The reverse saturation current of a silicon diode is much smaller than that of a similar germanium diode.
+      Reason (R): Silicon has a larger band gap, so fewer minority carriers are thermally generated in it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Reverse current is carried by thermally generated minority carriers. With a 1.1 eV gap, Si has far fewer of them than Ge (0.71 eV), giving nA-level leakage compared with μA in Ge. R explains A."
+
+  - id: phy-semi-244
+    topic: diode-bias-characteristics
+    subtopic: Comparing Si and Ge characteristics
+    concept: A Ge diode starts conducting at lower forward voltage than a Si diode
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [iv-characteristic, si-vs-ge, graph]
+    stem: The forward characteristics of a germanium diode and a silicon diode are drawn on the same axes. Which is correct?
+    options:
+      - The silicon curve rises steeply at about 0.2 V and the germanium curve at about 0.7 V
+      - Both curves rise at the same voltage
+      - The germanium curve rises steeply at about 0.2 V, well before the silicon curve at about 0.7 V
+      - Neither curve rises until 1.1 V
+    answer: 2
+    explanation: "Germanium has the smaller barrier, so its current rises sharply after about 0.2 V; silicon's rises after about 0.7 V."
+
+  - id: phy-semi-245
+    topic: diode-bias-characteristics
+    subtopic: Testing a diode
+    concept: A good diode shows low resistance one way and high resistance the other
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [multimeter, testing, case]
+    stem: A student checks a diode with a multimeter on its resistance range. It reads a low resistance in both directions of connection. The most likely conclusion is that
+    options:
+      - the diode is working normally
+      - the diode is an ideal diode
+      - the diode is open-circuited
+      - the diode is damaged (short-circuited)
+    answer: 3
+    explanation: "A healthy diode shows low resistance when forward biased by the meter's battery and very high resistance when reversed. Low resistance both ways means the junction has broken down into a short circuit. High both ways would indicate an open diode."
+
+  - id: phy-semi-246
+    topic: diode-bias-characteristics
+    subtopic: Effective barrier in forward bias
+    concept: Forward bias V lowers the barrier to V_0 − V
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: V_eff = V_0 − V
+    tags: [forward-bias, barrier-potential]
+    stem: A junction has a barrier potential of 0.7 V. When a forward bias of 0.5 V is applied, the effective barrier becomes
+    options:
+      - 1.2 V
+      - 0.2 V
+      - 0.5 V
+      - 0.7 V
+    answer: 1
+    explanation: "Forward bias opposes the built-in potential, so V_eff = V_0 − V = 0.7 − 0.5 = 0.2 V. 1.2 V would be the reverse-bias result."
+
+  - id: phy-semi-247
+    topic: diode-bias-characteristics
+    subtopic: Depletion width under bias
+    concept: Depletion width ordering for reverse, zero and forward bias
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [depletion-layer, ordering]
+    stem: |-
+      Arrange the depletion layer width of the same diode in decreasing order:
+      1. Unbiased
+      2. Forward biased by 0.3 V
+      3. Reverse biased by 5 V
+    options:
+      - 3, 1, 2
+      - 1, 2, 3
+      - 2, 1, 3
+      - 3, 2, 1
+    answer: 0
+    explanation: "Reverse bias widens the depletion layer and forward bias narrows it, so reverse (3) > unbiased (1) > forward (2)."
+
+  - id: phy-semi-248
+    topic: diode-bias-characteristics
+    subtopic: Asymmetric conduction
+    concept: The asymmetric I-V curve of a diode allows rectification
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [iv-characteristic, rectification]
+    stem: The property of a p-n junction diode that makes it useful as a rectifier is that
+    options:
+      - its resistance is the same in both directions
+      - it conducts easily in one direction and hardly at all in the other
+      - it stores charge like a capacitor
+      - it emits light when forward biased
+    answer: 1
+    explanation: "A diode's I-V curve is highly asymmetric: large current for forward bias, negligible for reverse bias. So it passes only one half of an AC signal."
+
+  - id: phy-semi-249
+    topic: diode-bias-characteristics
+    subtopic: Reverse current saturation
+    concept: Reverse current hardly changes with reverse voltage below breakdown
+    category: application
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [reverse-bias, saturation]
+    stem: The reverse bias on a silicon diode is increased from 1 V to 10 V, staying well below breakdown. Which statement is correct?
+    options:
+      - The reverse current increases tenfold
+      - The reverse current becomes zero
+      - The reverse current stays nearly the same
+      - The diode starts conducting in the forward direction
+    answer: 2
+    explanation: "Below breakdown, the reverse current is limited by the supply of minority carriers, not by the voltage, so it stays almost constant (saturation current)."
+
+  - id: phy-semi-250
+    topic: diode-circuits
+    subtopic: Diode across a resistor
+    concept: A forward-biased ideal diode shorts the resistor in parallel with it
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [ideal-diode, parallel-circuit, trap]
+    stem: An ideal diode is connected in parallel with a 10 Ω resistor. This combination is in series with a 5 Ω resistor across a 15 V battery, with the diode forward biased. The current drawn from the battery is
+    options:
+      - 1 A
+      - 1.5 A
+      - 3 A
+      - zero
+    answer: 2
+    explanation: "The forward-biased ideal diode has zero resistance, so it short-circuits the 10 Ω resistor. The battery sees only 5 Ω: I = 15/5 = 3 A. Treating the diode as open gives 15/15 = 1 A, which is the answer if the diode were reverse biased."
+
