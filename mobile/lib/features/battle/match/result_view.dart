@@ -76,8 +76,12 @@ class _ResultViewState extends ConsumerState<ResultView> {
     if (live == null) return;
     setState(() => _starting = true);
     try {
-      await live.playAgain(view);
+      final started = await live.playAgain(view);
       if (!mounted) return;
+      if (!started) {
+        widget.onDone();
+        return;
+      }
       // A bot game opens by itself; a search shows the search screen.
       if (!view.isBot) context.go(Routes.battleSearch);
       WidgetsBinding.instance.addPostFrameCallback((_) => live.closeMatch(widget.matchId));
@@ -167,7 +171,8 @@ class _OutcomeCard extends ConsumerWidget {
         : LiveText.endReason(outcome, opponent: view.opponentName);
     final subject = view.intro?.request?.subjectLabel;
     final kind = switch (view.mode) {
-      'bot' => 'Practice game · not rated',
+      // "Practice game · not rated" follows right under the card.
+      'bot' => 'Practice Bot',
       'casual' => 'Casual',
       'rated' => 'Rated',
       _ => null,

@@ -212,13 +212,14 @@ class LiveController {
     }
   }
 
-  /// Plays again with a finished game's settings.
-  Future<void> playAgain(MatchView view) {
+  /// Plays again with a finished game's settings. Returns false, without asking the server, when
+  /// this device doesn't know them (a game reopened after a restart): the Battle tab is the place
+  /// to pick then.
+  Future<bool> playAgain(MatchView view) async {
     final request = view.intro?.request ?? _lastRequest;
-    if (request == null) {
-      return Future.error(const RealtimeError(code: RealtimeErrorCode.badRequest));
-    }
-    return join(view.isBot ? request.withMode('bot') : request);
+    if (request == null) return false;
+    await join(view.isBot ? request.withMode('bot') : request);
+    return true;
   }
 
   /// Accepts (or offers) a rematch; the new match opens as soon as it's made.
@@ -425,7 +426,8 @@ class LiveController {
     if (event is! RematchStatusEvent) return;
     final view = match.view;
     final id = match.matchId;
-    if (view.state.rematch == Rematch.offeredByThem && !Routes.isBattleMatch(_path, id)) {
+    // The result screen has its own Accept; anywhere else (the review too) gets a banner.
+    if (view.state.rematch == Rematch.offeredByThem && _path != Routes.battleMatch(id)) {
       _hub.show(
         LiveAlert(
           id: LiveAlertIds.rematch(id),
@@ -605,6 +607,7 @@ class LiveController {
               ..dismiss(LiveAlertIds.found(id))
               ..dismiss(LiveAlertIds.rejoin(id));
           }
+          if (path == Routes.battleMatch(id)) _hub.dismiss(LiveAlertIds.rematch(id));
         }
       }
       if (path == Routes.battleSearch) _hub.dismiss(LiveAlertIds.timeout);
