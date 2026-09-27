@@ -458,7 +458,7 @@ Every answer in every mode writes one `question_attempts` row:
   - `match.snapshot`, `match.phase{phase,ends_at}`
   - `q.show{q,total,stem,options[{id,text}],shown_at,deadline_at}`
   - `q.progress{answered:[uid]}`, which shows who has answered, never what
-  - `ans.ack{status: accepted|late|dup|invalid|too_early}`
+  - `ans.ack{status: accepted|late|invalid|too_early, dup}` (a repeat gets the first status back with `dup`)
   - `q.reveal{correct_opt, per-player {opt,correct,pts,el_ms}, totals, question_ref}`
   - `opp.conn{state,grace_until}`
   - `match.end{result,reason,scores}`, then `match.settled{rating Δ, coins, xp, missions}`

@@ -63,7 +63,6 @@ the returned `due_ms`.
 | `conn.lua` | A player connected or dropped. Sets `grace_until`, emits `opp.conn`, and pulls `due_ms` earlier if a grace deadline now comes first |
 | `forfeit.lua` | Voluntary forfeit → `finished` with `reason = forfeit` |
 | `emote.lua` | Emote rate limits (1 per 3 s, 10 per match), then emit |
-| `emit.lua` | Appends a post-settlement event (`match.settled`) to the log with the next `seq` |
 
 **`advance.lua` by phase**
 - `ready_wait` past its deadline:
@@ -84,12 +83,16 @@ the returned `due_ms`.
 
 **`answer.lua` in one atomic step**
 1. Check the phase is `q_open`, `q` matches, and the player is in `open_players`.
-2. De-duplicate on `a:{uid}` (returns `dup`).
+2. De-duplicate on `a:{uid}`: a repeat returns the stored status with `dup = true`, so a resend
+   after a reconnect gets the same verdict as the first send.
 3. `raw = now − shown_at`, and `e = clamp(el_ms, raw − lat, raw)`.
 4. Judge the timing: `too_early`, `late` or `accepted`.
 5. Score it and store the answer.
 6. Update the player totals and emit `q.progress`.
 7. If every open player has answered, reveal now.
+
+The gateway that received the answer sends `ans.ack` straight back to the player. Replies are
+never logged, so they don't take a `seq`.
 
 The speed labels in `q.reveal` follow `docs/data-model.md`. The scoring, speed and timing rules are
 also implemented as pure Python functions (`app/modules/realtime/engine/scoring.py`), and the
@@ -97,8 +100,13 @@ tests check that the Lua and Python versions agree.
 
 **Every emitted event does three things.** It increments `seq`, runs
 `XADD m:{mid}:log MAXLEN ~ 300 * seq <n> ev <json>`, and runs `PUBLISH ev:m:{mid} <json>`. Events
-are identical for every recipient. Anything viewer-specific, such as `result: win` in
-`match.end`, is added by the gateway as it forwards the event.
+are identical for every recipient.
+- **Viewer-specific details** are added by the gateway as it forwards an event:
+  - `result: win` in `match.end`;
+  - the option order in group battles, a permutation seeded by match, player and question.
+- **Per-player messages** (`ans.ack`, `match.settled`) never go through the log. Per-player data
+  in the shared stream would either leak to the other players or leave them with `seq` gaps that
+  never close.
 
 ## Owners, timers and failover
 
@@ -175,8 +183,12 @@ are identical for every recipient. Anything viewer-specific, such as `result: wi
   4. Post the coin ledger entries with idempotency keys `m:{mid}:{uid}:{kind}`.
   5. Record XP and mission progress, and the tournament pairing result.
   6. Write the outbox rows, and mark the match settled.
-- **After commit.** Run `emit.lua` with `match.settled` for each player, `ZREM settle:q`, clear
-  `busy`, and let the keys expire an hour later.
+- **After commit.**
+  - Publish each player's `match.settled` to their own `ev:u:{uid}`, with no `seq`. The envelope's
+    `ch` is still `m:<mid>`, so the app files it under the match.
+  - Then `ZREM settle:q`, clear `busy`, and let the keys expire an hour later.
+  - A player who misses it (offline, app killed) reads the same numbers from
+    `GET /v1/matches/{id}`.
 - **Reconciler.** A Postgres match still live after its maximum duration plus 5 minutes, with no
   Redis state, is voided and refunded. An alert fires if settlement lags more than 60 s.
 
@@ -194,5 +206,6 @@ are identical for every recipient. Anything viewer-specific, such as `result: wi
 - **Per connection:**
   - an in-memory token bucket for inbound frames;
   - an outbound queue of 256, dropping `q.progress` and `emote` first;
-  - heartbeat pings every 10 s (5 s in a match), keeping the last 10 round trips for the latency
-    allowance (`lat_ms` in `m:{mid}:p`).
+  - heartbeat pings every `hb_s`: 30 s when idle, 10 s while queued or in a room, 5 s in a match,
+    announced with `hb`. It keeps the last 10 round trips for the latency allowance (`lat_ms` in
+    `m:{mid}:p`).

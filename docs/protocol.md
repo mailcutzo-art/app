@@ -9,8 +9,9 @@ Practice Bot, Play with Friend, Group Battle) and tournament games all use it. R
   timing, correctness, points and results.
 - **Nothing leaks early.** The correct answer, question ids and difficulty are never sent while a
   question is open.
-- **One clock.** Every server timestamp (`ts`, `shown_at`, `deadline_at`, `ends_at`) is server
-  time in Unix milliseconds. The client maps it to its own clock with the offset from clock sync
+- **One clock.** Every time on the socket (`ts`, `shown_at`, `deadline_at`, `ends_at`,
+  `grace_until`, `expires_at`, `closes_at`, `resets_at`, `until`) is server time in Unix
+  milliseconds, as an integer. The client maps it to its own clock with the offset from clock sync
   and only uses it for display.
 - **Everything is resumable.** A dropped connection loses nothing: the client reconnects, and the
   server replays what was missed or sends a snapshot.
@@ -83,6 +84,19 @@ Every frame is one JSON object in a UTF-8 text frame.
 | `r:<room_id>` | One room's lobby events (friend duel or group battle) | Yes |
 | `t:<tournament_id>` | Standings and round updates, only after `sub` | No (the snapshot is re-sent on `sub`) |
 
+- **What `u` carried while disconnected** is recovered without replay: `welcome.active` says which
+  queue, match, room or tournament the user is in, and REST has the rest (inbox, invites, and
+  `GET /v1/matches/{id}` for results).
+- **Shared and per-player events.** Events on `m:` and `r:` are the same for every member, and are
+  numbered with `seq` and kept in the channel's log. A few messages are for one player only. They
+  go to that player alone, on the same channel but **without** `seq`, and are never logged:
+  - replies (`ack`, `error`, `ans.ack`);
+  - `match.settled`.
+- **Viewer-specific details** of a shared event are added as it's forwarded, without changing its
+  `seq`: `result` in `match.end`, and the option order in group battles.
+- **Player cards.** On the socket a player is `{"uid", "handle", "display_name", "avatar": {"tone",
+  "symbol"}, "level", "is_bot"}`. `mm.found.opponent` adds `rating` and `record`.
+
 Unknown message types and unknown fields are ignored on both sides, so fields can be added within
 v1. Breaking changes get a new endpoint, `/v2/ws`, served alongside v1 for at least 60 days.
 
@@ -101,7 +115,7 @@ v1. Breaking changes get a new endpoint, `/v2/ws`, served alongside v1 for at le
   `clock.pong {"c0": …, "s": <server ms>}`.
   - On each reconnect the client takes 5 samples and keeps the one with the smallest round trip:
     `offset = s − (c0 + rtt / 2)`. It drops samples with a round trip above 1 s.
-  - It re-syncs every 60 s.
+  - It re-syncs every 60 s during a match, and every 5 minutes otherwise.
 - **Reconnect backoff.** Full jitter: a random 0–(500 ms × 2^attempt), capped at 10 s (2 s while
   in a match). Backoff pauses while the phone has no network. After close code `1012`, the client
   reconnects after a random 0–2 s.
@@ -192,38 +206,50 @@ Client → server:
 | `emote` | `{"match_id", "e": "gg" \| "nice" \| "wow" \| "oops"}` | At most 1 every 3 s and 10 per match |
 | `match.forfeit` | `{"match_id"}` | Leaves and loses |
 | `match.rematch` | `{"match_id", "accept": true}` | Casual Quick Battle only, within 15 s of `match.end`, and at most 3 in a row. When both accept, a new `mm.found` arrives (a new 5-coin entry is held first) |
-| `sync` | `{"ch": "m:<id>", "last_seq": 41}` | Sent after a `seq` gap. The server replays or sends a snapshot |
+| `sync` | `{"ch": "m:<id>", "last_seq": 41}` | Sent after a `seq` gap, or with `last_seq: 0` to rejoin after a cold start. The reply is the replay or a snapshot; there is no `ack` |
 
-Server → client (channel `m:<match_id>`, with `seq`):
+Server → client (channel `m:<match_id>`, with `seq`, the same for every player):
 
 | Type | Payload |
 |---|---|
-| `match.snapshot` | Full state: `{"match_id", "kind", "phase", "ends_at", "q", "total", "limit_ms", "players": [card + `connected`, `score`, `answered`], "question": <current q.show payload or null>, "reveal": <last q.reveal or null>, "mine": [{"q", "opt", "status"}]}` |
+| `match.snapshot` | Full state, built for the receiving player: `{"match_id", "kind", "phase", "ends_at", "q", "total", "limit_ms", "players": [card + `connected`, `grace_until`, `score`, `correct`, `answered`], "question": <current q.show payload or null>, "reveal": <last q.reveal or null>, "mine": [{"q", "opt", "status"}], "end": <the match.end payload or null>, "settled": false}`. Its envelope `seq` is the channel's current `seq` |
 | `match.phase` | `{"phase": "countdown", "q": 0, "ends_at": 1790000003000}` |
 | `q.show` | `{"q": 1, "total": 7, "stem": "…", "options": [{"id": "k2P9x", "text": "…"} ×4], "shown_at": T, "deadline_at": T + limit, "limit_ms": 15000, "chapter": "Kinematics"}` |
 | `q.progress` | `{"q": 1, "answered": ["<uid>"]}`: who has answered, never what |
-| `ans.ack` | `{"ref", "q": 1, "status": "accepted" \| "late" \| "dup" \| "too_early" \| "invalid" \| "wrong_phase"}` |
 | `q.reveal` | `{"q": 1, "correct": "k2P9x", "players": {"<uid>": {"opt": "k2P9x" \| null, "correct": true, "pts": 132, "time_ms": 6010, "speed": "fast" \| "slow" \| "even" \| null}}, "totals": {"<uid>": {"points": 382, "correct": 3}}, "ref": "<question ref>"}` |
 | `opp.conn` | `{"uid", "state": "connected" \| "reconnecting" \| "left", "grace_until": 1790000031000}` |
 | `emote` | `{"uid", "e": "gg"}` |
 | `match.end` | `{"result": "win" \| "loss" \| "draw", "reason": "normal" \| "forfeit" \| "opponent_forfeit" \| "left" \| "disconnected" \| "no_show" \| "ended_by_host" \| "aborted" \| "voided", "totals": {…}, "ranking": [["<uid>"], …]}`. `result` is from the receiver's point of view. `left` means someone chose to leave, `disconnected` means someone was away past their grace, `no_show` means a tournament player never got ready, and `ended_by_host` means a group host ended the game early on the current scores |
-| `match.settled` | `{"rating": {"scope": "physics", "before": "1502?", "after": "1518?", "delta": 16} \| null, "rank": {"board": "rating:physics", "before": 47, "after": 42} \| {"board": "rating:physics", "games_to_rank": 6} \| null, "coins": {"delta": 10, "balance": 245, "capped": false}, "xp": {"delta": 30, "level": 4, "into_level": 120, "for_next": 250, "level_up": false, "capped": false}, "resets_at": "<next IST midnight>", "missions": [{"id", "title", "progress", "target", "done"}], "streak": {"days": 5, "extended": true}, "achievements": [{"id", "title"}], "tip": {"message", "action", "params"} \| null}` |
 | `rematch.status` | `{"match_id", "state": "offered" \| "accepted" \| "declined" \| "expired" \| "failed", "by": "<uid>", "reason": "insufficient_coins" \| "opponent_left" \| null}` |
+
+Server → client, only to one player (channel `m:<match_id>`, **no** `seq`, never logged):
+
+| Type | Payload |
+|---|---|
+| `ans.ack` | `{"ref", "q": 1, "status": "accepted" \| "late" \| "too_early" \| "invalid" \| "wrong_phase", "dup": false}`. A repeat of an answer the server already has (a resend after a reconnect, or a second tap) gets the first answer's `status` again with `dup: true`. A status never changes once given |
+| `match.settled` | `{"match_id", "rating": {"scope": "physics", "before": "1502?", "after": "1518?", "delta": 16} \| null, "rank": {"board": "rating:physics", "before": 47, "after": 42} \| {"board": "rating:physics", "games_to_rank": 6} \| null, "coins": {"delta": 10, "balance": 245, "capped": false}, "xp": {"delta": 30, "level": 4, "into_level": 120, "for_next": 250, "level_up": false, "capped": false}, "resets_at": 1790035200000, "missions": [{"id", "title", "progress", "target", "done"}], "streak": {"days": 5, "extended": true}, "achievements": [{"id", "title"}], "tip": {"message", "action", "params"} \| null}` |
 
 - **Question timing.** `q.show` is sent about 400 ms before `shown_at`, so every client has it
   before it goes live. The client keeps the question hidden until its synced clock reaches
   `shown_at`, then starts the countdown ring from `deadline_at`.
 - **Early advance.** When everyone has answered, the server moves to `q_reveal` early. Otherwise
   it waits until `deadline_at` plus a 250 ms grace.
+- **Stale snapshots.** The client ignores a `match.snapshot` whose `seq` is lower than the last one
+  it applied.
+- **Option order in group battles.** Each player sees the options in their own order (the same
+  ids). The order is fixed per player and question, so a resend or a snapshot shows the same order.
 - **Group standings.** In group battles with the between-questions leaderboard on, `q.reveal` also
   carries `"standings": [{"uid", "points", "place", "change"}]`. `match.end.ranking` is the final
   order for the podium screen.
 - **After the match.** `ref` in `q.reveal` identifies the question in this match. Once the match is
   finished, `GET /v1/matches/{id}/review` returns every question with its explanation and bookmark
   state.
-- **Settlement.** `match.settled` arrives after the server commits the result. If the client
-  misses it, `GET /v1/matches/{id}` has the same numbers. Until then the result screen shows
-  "Results syncing…".
+- **Settlement.** `match.settled` arrives, to each player separately, after the server commits the
+  result. The result screen shows "Results syncing…" until then. The client reads
+  `GET /v1/matches/{id}`, which has the same numbers, when:
+  - it hasn't arrived 20 s after `match.end`;
+  - the connection dropped while it was waiting;
+  - a snapshot says `"settled": true` and it has no settlement yet.
 - **Disconnects.** The match clock never pauses. A disconnected player gets a grace period (30 s
   quick, 45 s tournament, 60 s friend). The other players see `opp.conn` with `grace_until`. In
   group battles a missing player simply scores 0 until they're back.
@@ -328,9 +354,13 @@ live, so the bell badge updates at once. The full inbox is REST (`docs/api-play.
   - sends a **snapshot** (`match.snapshot` or `room.state`, whose `seq` is the channel's current
     `seq`).
 - **Gaps and duplicates.** The client ignores events with `seq ≤` the last one it applied. A gap
-  (`seq > last + 1`) triggers `sync`.
+  (`seq > last + 1`) triggers `sync`. A snapshot older than the last applied `seq` is ignored.
+- **`sync` replies.** There is no `ack`: the reply is the replay or a snapshot. `last_seq: 0`
+  always gets a snapshot. A channel the user can no longer see gets
+  `error {"ref", "code": "NOT_FOUND"}`, and the client stops tracking it.
 - **Answers in flight.** Unacknowledged `ans.submit` frames are resent after reconnecting, with
-  the same `id`. The server's answer is idempotent per player and question (`dup`).
+  the same `id`. The server's answer is idempotent per player and question: a repeat gets the
+  first status again, with `dup: true`.
 - **Cold starts.** After a crash, `welcome.active` has everything needed to reopen the game. The
   app never stores question content on disk.
 
