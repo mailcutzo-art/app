@@ -9047,3 +9047,728 @@ questions:
     answer: 2
     explanation: log K = 100/5.7 ≈ 17.5, so K ≈ 10^{17}. Such a huge K means the equilibrium mixture contains almost only products.
 
+  - id: che-thermo-436
+    topic: thermo-terms
+    subtopic: Classifying a process
+    concept: Melting of ice at 0 °C and 1 atm is isothermal, isobaric and reversible
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [processes, phase-equilibrium]
+    stem: Melting of ice at 273 K and 1 atm, with ice and water in equilibrium throughout, is best described as
+    options:
+      - Isothermal, isobaric and reversible
+      - Adiabatic and irreversible
+      - Isochoric and isothermal
+      - Isobaric but not isothermal
+    answer: 0
+    explanation: The temperature stays at 273 K and the pressure at 1 atm, and because the phases remain in equilibrium the change can be reversed by an infinitesimal change in T. The volume changes slightly, so it is not isochoric.
+
+  - id: che-thermo-437
+    topic: thermo-terms
+    subtopic: Exchange across boundaries
+    concept: Matching system type with what it can exchange
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [open-system, closed-system, isolated-system]
+    stem: |-
+      Match List I with List II.
+      List I: P. Open system  Q. Closed system  R. Isolated system  S. Adiabatic closed system
+      List II: 1. Neither matter nor energy  2. Work but not heat or matter  3. Both matter and energy  4. Energy but not matter
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-1, R-4, S-2
+    answer: 0
+    explanation: An open system exchanges matter and energy; a closed system only energy; an isolated system neither. A closed system with adiabatic walls cannot exchange heat but can still exchange energy as work.
+
+  - id: che-thermo-438
+    topic: thermo-terms
+    subtopic: Macroscopic nature of thermodynamics
+    concept: Thermodynamics deals with bulk systems, not individual molecules
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [scope]
+    stem: |-
+      Assertion (A): The laws of thermodynamics apply to macroscopic systems and not to the behaviour of individual molecules.
+      Reason (R): Thermodynamics deals with bulk properties such as pressure, volume and temperature that are averages over very large numbers of molecules.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: NCERT notes that thermodynamic laws deal with energy changes of macroscopic systems involving a large number of molecules. Properties like p and T have meaning only as averages, so R explains A.
+
+  - id: che-thermo-439
+    topic: thermo-terms
+    subtopic: Closed system example
+    concept: A sealed balloon being heated is a closed system doing work
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [closed-system, expansion]
+    stem: A sealed rubber balloon filled with helium is placed in sunlight and expands. Taking the helium as the system, which description is correct?
+    options:
+      - "Open system; it absorbs heat and matter"
+      - "Isolated system; no energy crosses the rubber"
+      - Closed system; it absorbs heat and does expansion work on the surroundings
+      - Closed system; work is done on it by the surroundings
+    answer: 2
+    explanation: The sealed balloon keeps the helium in, so it is closed, but heat passes through the rubber. As the gas expands it pushes back the atmosphere, doing work on the surroundings (w < 0).
+
+  - id: che-thermo-440
+    topic: first-law
+    subtopic: Limitation of the first law
+    concept: The first law does not predict the direction of a process
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [first-law, second-law]
+    stem: |-
+      Assertion (A): The first law of thermodynamics cannot tell whether heat will flow from a cold body to a hot body on its own.
+      Reason (R): The first law only states that energy is conserved and says nothing about the direction of spontaneous change.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Heat flowing from cold to hot would not violate energy conservation, yet it never happens spontaneously. The direction is decided by the second law (entropy), not the first. R explains A.
+
+  - id: che-thermo-441
+    topic: first-law
+    subtopic: Heating at constant volume
+    concept: At constant volume w = 0 and q = ΔU = nC_vΔT
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [isochoric, heat-capacity]
+    stem: One mole of an ideal gas (C_v = 20.8 J K^{-1} mol^{-1}) is heated at constant volume from 300 K to 350 K. Which set of values is correct?
+    options:
+      - "q = 1040 J, w = −416 J, ΔU = 624 J"
+      - "q = 1456 J, w = 0, ΔU = 1040 J"
+      - q = 1040 J, w = 0, ΔU = 1040 J
+      - q = 0, w = 1040 J, ΔU = 1040 J
+    answer: 2
+    explanation: At constant volume no pV work is done (w = 0), so ΔU = q_v = nC_vΔT = 1 × 20.8 × 50 = 1040 J.
+
+  - id: che-thermo-442
+    topic: first-law
+    subtopic: Isothermal ideal gas change
+    concept: For isothermal change of ideal gas both ΔU and ΔH are zero
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [isothermal, ideal-gas]
+    stem: For the reversible isothermal expansion of an ideal gas, which statement is correct?
+    options:
+      - "ΔU = 0 but ΔH > 0"
+      - "q = 0 and w = 0"
+      - ΔU = 0, ΔH = 0 and q = −w
+      - ΔU < 0 because the gas does work
+    answer: 2
+    explanation: U and H of an ideal gas depend only on temperature, so both are unchanged at constant T. The first law then gives q = −w; the heat absorbed equals the work done by the gas.
+
+  - id: che-thermo-443
+    topic: first-law
+    subtopic: Perpetual motion
+    concept: A machine producing work without energy input violates the first law
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [first-law]
+    stem: A machine claimed to run forever and deliver work without any energy input would violate
+    options:
+      - The third law of thermodynamics
+      - The first law of thermodynamics
+      - Hess's law
+      - The law of mass action
+    answer: 1
+    explanation: Producing work from nothing means creating energy, which the first law (conservation of energy) forbids. Such a device is called a perpetual motion machine of the first kind.
+
+  - id: che-thermo-444
+    topic: pv-work
+    subtopic: Work in a reaction producing gas
+    concept: w = −Δn_gRT when a metal reacts with acid releasing H_2
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [reaction-work]
+    stem: One mole of zinc reacts with excess dilute HCl in an open beaker at 298 K, releasing H_2 gas. What is the work done by the system? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - "Zero, because the beaker is open"
+      - "+2.48 kJ"
+      - −2.48 kJ
+      - −4.96 kJ
+    answer: 2
+    explanation: One mole of H_2 is produced (Δn_g = +1), which pushes back the atmosphere. w = −Δn_gRT = −8.314 × 298 J ≈ −2.48 kJ.
+
+  - id: che-thermo-445
+    topic: pv-work
+    subtopic: Isotherms at two temperatures
+    concept: Reversible work between same volumes is larger at higher temperature
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [pv-diagram, reversible-work]
+    stem: A p–V graph shows two isotherms for 1 mol of an ideal gas, one at T_1 and a higher one at T_2 (T_2 > T_1). The gas expands reversibly from V_1 to V_2 along each. Which is correct?
+    options:
+      - "The work is the same along both isotherms"
+      - "More work is done along the T_1 isotherm"
+      - More work is done along the T_2 isotherm, since it lies higher and encloses more area
+      - No work is done along either isotherm
+    answer: 2
+    explanation: The magnitude of work is the area under the curve. The T_2 isotherm lies above the T_1 isotherm at every volume, so it encloses more area; equivalently, w = −nRT ln(V_2/V_1) grows with T.
+
+  - id: che-thermo-446
+    topic: pv-work
+    subtopic: Maximum and minimum work
+    concept: Reversible expansion gives maximum work; reversible compression needs minimum work
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [reversible-work, compression]
+    stem: |-
+      Statement I: Between two given volumes at constant temperature, the work done by a gas is maximum when it expands reversibly.
+      Statement II: Between the same volumes at constant temperature, the work needed to compress the gas is minimum when the compression is reversible.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: In a reversible path the external pressure differs from the gas pressure only infinitesimally at every stage. On expansion this extracts the most work; on compression it demands the least. Both statements are correct.
+
+  - id: che-thermo-447
+    topic: pv-work
+    subtopic: Finding volume ratio from work
+    concept: Solving w_{rev} for the volume ratio
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [reversible-work]
+    stem: Two moles of an ideal gas expanding reversibly and isothermally at 300 K do 11.49 kJ of work. By what factor did the volume increase? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - "2"
+      - "100"
+      - "10"
+      - "5"
+    answer: 2
+    explanation: 11 490 = 2.303 × 2 × 8.314 × 300 × log(V_2/V_1) = 11 488 × log(V_2/V_1), so log(V_2/V_1) = 1 and the volume increased tenfold.
+
+  - id: che-thermo-448
+    topic: enthalpy
+    subtopic: ΔH from ΔU for ethene combustion
+    concept: ΔH of combustion of ethene from bomb-calorimeter ΔU
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [delta-h-delta-u, combustion]
+    stem: For C_2H_4(g) + 3O_2(g) → 2CO_2(g) + 2H_2O(l) at 298 K, ΔU = −1406.0 kJ mol^{-1}. What is ΔH? (RT = 2.48 kJ mol^{-1})
+    options:
+      - "−1401.0 kJ mol^{-1}"
+      - "−1403.5 kJ mol^{-1}"
+      - −1411.0 kJ mol^{-1}
+      - −1408.5 kJ mol^{-1}
+    answer: 2
+    explanation: Δn_g = 2 − 4 = −2, so ΔH = ΔU + Δn_gRT = −1406.0 − 4.96 ≈ −1411.0 kJ mol^{-1}. Using Δn_g = −1 gives −1408.5.
+
+  - id: che-thermo-449
+    topic: enthalpy
+    subtopic: ΔH for isothermal ideal gas process
+    concept: ΔH = 0 for an isothermal change of an ideal gas
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ideal-gas, isothermal]
+    stem: What is ΔH when an ideal gas is compressed isothermally?
+    options:
+      - Positive, because work is done on it
+      - Negative, because heat is released
+      - Zero
+      - Equal to the work done
+    answer: 2
+    explanation: ΔH = ΔU + Δ(pV) = ΔU + nRΔT. At constant T, both ΔU and nRΔT are zero, so ΔH = 0 even though heat and work are exchanged.
+
+  - id: che-thermo-450
+    topic: enthalpy
+    subtopic: Exothermic processes
+    concept: Condensation is exothermic; ionisation, bond breaking and melting are endothermic
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [exothermic, endothermic]
+    stem: Which of the following processes is exothermic?
+    options:
+      - "Na(g) → Na^+(g) + e^−"
+      - "Cl_2(g) → 2Cl(g)"
+      - H_2O(g) → H_2O(l)
+      - H_2O(s) → H_2O(l)
+    answer: 2
+    explanation: Condensation releases the enthalpy of vaporisation, so ΔH < 0. Ionisation, bond dissociation and melting all absorb energy.
+
+  - id: che-thermo-451
+    topic: enthalpy
+    subtopic: ΔH = ΔU cases
+    concept: Selecting reactions with Δn_g = 0
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [delta-h-delta-u]
+    stem: |-
+      For which reactions is ΔH = ΔU?
+      I. C(graphite) + O_2(g) → CO_2(g)
+      II. N_2(g) + O_2(g) → 2NO(g)
+      III. 2H_2(g) + O_2(g) → 2H_2O(g)
+      IV. CH_4(g) + 2O_2(g) → CO_2(g) + 2H_2O(g)
+    options:
+      - I and II only
+      - II and III only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: Δn_g is 0 for I (1 → 1), 0 for II (2 → 2), −1 for III (3 → 2) and 0 for IV (3 → 3, with steam). So ΔH = ΔU for I, II and IV.
+
+  - id: che-thermo-452
+    topic: heat-capacity-calorimetry
+    subtopic: Melting and heating ice
+    concept: Total heat to melt ice and warm the water
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [phase-change, heat-capacity, multi-concept]
+    stem: How much heat is needed to convert 18 g of ice at 0 °C into water at 10 °C? (ΔfusH = 6.01 kJ mol^{-1}, C_{p,m}(water) = 75.3 J K^{-1} mol^{-1})
+    options:
+      - "0.75 kJ"
+      - "6.01 kJ"
+      - 6.76 kJ
+      - 13.5 kJ
+    answer: 2
+    explanation: 18 g is 1 mol. Melting needs 6.01 kJ and heating the water by 10 K needs 75.3 × 10 = 753 J. Total = 6.01 + 0.753 ≈ 6.76 kJ.
+
+  - id: che-thermo-453
+    topic: heat-capacity-calorimetry
+    subtopic: Calorie and joule
+    concept: 1 cal = 4.184 J
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [unit-conversion]
+    stem: One calorie is equal to
+    options:
+      - 4.184 J
+      - 8.314 J
+      - 101.3 J
+      - "0.239 J"
+    answer: 0
+    explanation: 1 cal = 4.184 J, the heat needed to raise 1 g of water by 1 °C. Conversely 1 J ≈ 0.239 cal.
+
+  - id: che-thermo-454
+    topic: heat-capacity-calorimetry
+    subtopic: C_p from γ
+    concept: C_p = γR/(γ − 1)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [heat-capacity]
+    stem: An ideal gas has γ = C_p/C_v = 1.4. What is its molar C_p in terms of R?
+    options:
+      - "5/2 R"
+      - "3/2 R"
+      - 7/2 R
+      - 2R
+    answer: 2
+    explanation: With C_p − C_v = R and C_p = 1.4C_v, 0.4C_v = R, so C_v = 5/2 R and C_p = 7/2 R.
+
+  - id: che-thermo-455
+    topic: reaction-enthalpies
+    subtopic: ΔfH of NaCl
+    concept: ΔfH° of NaCl(s) is −411 kJ mol^{-1}
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [enthalpy-of-formation, ncert-line]
+    stem: The standard enthalpy of formation of NaCl(s) used in the NCERT Born–Haber cycle is about
+    options:
+      - "+788 kJ mol^{-1}"
+      - "−788 kJ mol^{-1}"
+      - −411 kJ mol^{-1}
+      - −349 kJ mol^{-1}
+    answer: 2
+    explanation: ΔfH° of NaCl(s) is −411.2 kJ mol^{-1}. 788 is the lattice enthalpy and −349 is the electron gain enthalpy of chlorine.
+
+  - id: che-thermo-456
+    topic: reaction-enthalpies
+    subtopic: Ordering formation enthalpies
+    concept: Relative ΔfH° values of CO_2, H_2O(l), CO and CH_4
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [enthalpy-of-formation]
+    stem: Arrange the standard enthalpies of formation from most negative to least negative - CH_4(g), CO(g), CO_2(g), H_2O(l).
+    options:
+      - "H_2O(l) < CO_2(g) < CO(g) < CH_4(g)"
+      - "CO(g) < CO_2(g) < H_2O(l) < CH_4(g)"
+      - CO_2(g) < H_2O(l) < CO(g) < CH_4(g)
+      - CO_2(g) < CO(g) < H_2O(l) < CH_4(g)
+    answer: 2
+    explanation: The values are CO_2 −393.5, H_2O(l) −285.8, CO −110.5 and CH_4 −74.8 kJ mol^{-1}, so the most negative is CO_2 and the least negative is CH_4.
+
+  - id: che-thermo-457
+    topic: reaction-enthalpies
+    subtopic: Calorific value
+    concept: Calorific value per gram vs enthalpy of combustion per mole
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [fuel-value, combustion]
+    stem: |-
+      Statement I: Methane has a more negative molar enthalpy of combustion than hydrogen.
+      Statement II: Methane releases more heat per gram on combustion than hydrogen.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Per mole, CH_4 releases 890 kJ and H_2 only 286 kJ. Per gram, however, H_2 gives 143 kJ g^{-1} versus about 56 kJ g^{-1} for CH_4, because hydrogen's molar mass is so small.
+
+  - id: che-thermo-458
+    topic: reaction-enthalpies
+    subtopic: Enthalpy of solution from ion hydration
+    concept: ΔsolH of LiCl from lattice and individual hydration enthalpies
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [enthalpy-of-solution, hydration]
+    stem: For LiCl, lattice enthalpy = +853 kJ mol^{-1}, hydration enthalpy of Li^+ = −520 and of Cl^− = −364 kJ mol^{-1}. What is ΔsolH of LiCl?
+    options:
+      - "+31 kJ mol^{-1}"
+      - "−1737 kJ mol^{-1}"
+      - −31 kJ mol^{-1}
+      - +333 kJ mol^{-1}
+    answer: 2
+    explanation: ΔsolH = ΔlatticeH + ΔhydH(Li^+) + ΔhydH(Cl^−) = 853 − 520 − 364 = −31 kJ mol^{-1}. The strongly hydrated small Li^+ ion makes the dissolution exothermic.
+
+  - id: che-thermo-459
+    topic: hess-law
+    subtopic: Oxidation of NO from ΔfH
+    concept: ΔrH of 2NO + O_2 → 2NO_2 from formation enthalpies
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [enthalpy-of-formation]
+    stem: ΔfH° of NO(g) = +90 and NO_2(g) = +33 kJ mol^{-1}. What is ΔrH° for 2NO(g) + O_2(g) → 2NO_2(g)?
+    options:
+      - "−57 kJ"
+      - "+114 kJ"
+      - −114 kJ
+      - +246 kJ
+    answer: 2
+    explanation: ΔrH° = 2(33) − 2(90) − 0 = 66 − 180 = −114 kJ. Without the coefficients the answer would be −57 kJ.
+
+  - id: che-thermo-460
+    topic: hess-law
+    subtopic: Formation of PCl_5 from PCl_3
+    concept: ΔrH for PCl_3 + Cl_2 → PCl_5 from formation enthalpies
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [enthalpy-of-formation]
+    stem: ΔfH° of PCl_3(g) = −287 and PCl_5(g) = −375 kJ mol^{-1}. What is ΔrH° for PCl_3(g) + Cl_2(g) → PCl_5(g)?
+    options:
+      - "+88 kJ mol^{-1}"
+      - "−662 kJ mol^{-1}"
+      - −88 kJ mol^{-1}
+      - −375 kJ mol^{-1}
+    answer: 2
+    explanation: ΔrH° = −375 − (−287 + 0) = −88 kJ mol^{-1}. Cl_2(g) is an element in its reference state.
+
+  - id: che-thermo-461
+    topic: hess-law
+    subtopic: Solving for an unknown step
+    concept: Using Hess's law to find the enthalpy of an unmeasurable step
+    category: application
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [hess-law, multi-concept]
+    stem: Anhydrous CuSO_4 dissolves with ΔH = −66.5 kJ mol^{-1}, and CuSO_4·5H_2O dissolves with ΔH = +11.7 kJ mol^{-1} (both to the same dilute solution). What is ΔH for CuSO_4(s) + 5H_2O(l) → CuSO_4·5H_2O(s), which cannot be measured directly?
+    options:
+      - "−54.8 kJ mol^{-1}"
+      - "+78.2 kJ mol^{-1}"
+      - −78.2 kJ mol^{-1}
+      - +54.8 kJ mol^{-1}
+    answer: 2
+    explanation: Anhydrous salt → solution (−66.5) equals anhydrous → hydrate (x) then hydrate → solution (+11.7). So x = −66.5 − 11.7 = −78.2 kJ mol^{-1}, the enthalpy of hydration of the salt.
+
+  - id: che-thermo-462
+    topic: hess-law
+    subtopic: Formation from two combustion equations
+    concept: ΔfH of CO from combustion of C and CO in reverse question form
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [hess-law]
+    stem: If ΔfH° of CO(g) is −110.5 kJ mol^{-1} and ΔcH° of CO(g) is −283.0 kJ mol^{-1}, what is ΔcH° of graphite?
+    options:
+      - "−172.5 kJ mol^{-1}"
+      - "+393.5 kJ mol^{-1}"
+      - −393.5 kJ mol^{-1}
+      - −283.0 kJ mol^{-1}
+    answer: 2
+    explanation: C → CO (−110.5) followed by CO → CO_2 (−283.0) equals C → CO_2. So ΔcH°(graphite) = −110.5 − 283.0 = −393.5 kJ mol^{-1}.
+
+  - id: che-thermo-463
+    topic: bond-enthalpy
+    subtopic: Decomposition of hydrazine
+    concept: ΔH of N_2H_4 → N_2 + 2H_2 from bond enthalpies
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [bond-enthalpy]
+    stem: Using bond enthalpies (kJ mol^{-1}) N–N 163, N–H 391, N≡N 946 and H–H 436, estimate ΔH for N_2H_4(g) → N_2(g) + 2H_2(g).
+    options:
+      - "+91 kJ mol^{-1}"
+      - "−254 kJ mol^{-1}"
+      - −91 kJ mol^{-1}
+      - −3545 kJ mol^{-1}
+    answer: 2
+    explanation: Broken - one N–N and four N–H = 163 + 1564 = 1727 kJ. Formed - N≡N and two H–H = 946 + 872 = 1818 kJ. ΔH = 1727 − 1818 = −91 kJ mol^{-1}.
+
+  - id: che-thermo-464
+    topic: bond-enthalpy
+    subtopic: Bond length and bond enthalpy
+    concept: Shorter bonds generally have higher bond enthalpy
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [bond-enthalpy, bond-length]
+    stem: |-
+      Statement I: For bonds between the same pair of atoms, a shorter bond generally has a higher bond enthalpy.
+      Statement II: The F–F bond is longer than the Cl–Cl bond, which is why its bond enthalpy is lower.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: C≡C < C=C < C–C in length and the reverse in strength, supporting Statement I. The F–F bond is actually shorter than Cl–Cl; its low bond enthalpy is due to repulsion between lone pairs on the small F atoms.
+
+  - id: che-thermo-465
+    topic: bond-enthalpy
+    subtopic: Bond enthalpy vs experimental
+    concept: Bond enthalpy estimate of combustion differs when water is liquid
+    category: application
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [bond-enthalpy, trap]
+    stem: A student estimates ΔcH of methane from bond enthalpies as about −800 kJ mol^{-1}, but the tabulated value is −890 kJ mol^{-1}. Which is the main reason?
+    options:
+      - "Bond enthalpies are negative quantities"
+      - "The student should have used the enthalpy of formation of O atoms"
+      - The tabulated value has liquid water as product, while bond enthalpies give gaseous water; condensation releases extra heat
+      - Methane has resonance stabilisation
+    answer: 2
+    explanation: Condensing 2 mol of water releases about 88 kJ, which accounts for most of the difference. Using mean bond enthalpies adds a little further error. Bond enthalpies themselves are positive.
+
+  - id: che-thermo-466
+    topic: lattice-born-haber
+    subtopic: Comparing lattice enthalpies of equal-size compounds
+    concept: CaO has a much larger lattice enthalpy than KF due to charges
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [lattice-enthalpy, ionic-charge]
+    stem: KF and CaO have similar interionic distances. Their lattice enthalpies compare as
+    options:
+      - "KF ≈ CaO"
+      - "KF ≈ 4 × CaO"
+      - CaO ≈ 4 × KF
+      - CaO ≈ 2 × KF
+    answer: 2
+    explanation: Lattice enthalpy is roughly proportional to the product of ionic charges for similar ion distances. CaO has charges 2 × 2 = 4 against 1 × 1 = 1 for KF, so its lattice enthalpy is about four times larger.
+
+  - id: che-thermo-467
+    topic: lattice-born-haber
+    subtopic: Born–Haber cycle ideas
+    concept: Statements about the Born–Haber cycle
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [born-haber]
+    stem: |-
+      Which statements about the Born–Haber cycle are correct?
+      I. It relates the lattice enthalpy to the enthalpy of formation of an ionic solid.
+      II. It relies on enthalpy being a state function.
+      III. Every step in the cycle is exothermic.
+      IV. It can be used to estimate an unknown electron gain enthalpy.
+    options:
+      - I and III only
+      - I, II and III only
+      - I, II and IV only
+      - II and IV only
+    answer: 2
+    explanation: The cycle is Hess's law applied to ionic compound formation, so any single unknown (lattice enthalpy, electron gain enthalpy, etc.) can be found. Several steps, such as sublimation and ionisation, are endothermic.
+
+  - id: che-thermo-468
+    topic: lattice-born-haber
+    subtopic: Formation vs lattice sign
+    concept: Lattice formation enthalpy is the negative of lattice enthalpy
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [lattice-enthalpy, sign-convention]
+    stem: The lattice enthalpy of KCl is +701 kJ mol^{-1}. Which statement is correct?
+    options:
+      - "The formation of KCl(s) from K(s) and Cl_2(g) releases 701 kJ mol^{-1}"
+      - "K^+(g) + Cl^−(g) → KCl(s) absorbs 701 kJ mol^{-1}"
+      - K^+(g) + Cl^−(g) → KCl(s) releases 701 kJ mol^{-1}
+      - KCl(s) → K(s) + ½Cl_2(g) requires 701 kJ mol^{-1}
+    answer: 2
+    explanation: +701 kJ mol^{-1} is for KCl(s) → K^+(g) + Cl^−(g), so the reverse (lattice formation from gaseous ions) releases the same amount. It is not the enthalpy of formation from elements.
+
+  - id: che-thermo-469
+    topic: entropy
+    subtopic: ΔrS° of forming liquid water
+    concept: ΔrS° from standard entropies for 2H_2 + O_2 → 2H_2O(l)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [standard-entropy]
+    stem: S° (J K^{-1} mol^{-1}) of H_2(g) = 130.7, O_2(g) = 205.1 and H_2O(l) = 69.9. What is ΔrS° for 2H_2(g) + O_2(g) → 2H_2O(l)?
+    options:
+      - "−265.9 J K^{-1} mol^{-1}"
+      - "+326.7 J K^{-1} mol^{-1}"
+      - −326.7 J K^{-1} mol^{-1}
+      - −163.4 J K^{-1} mol^{-1}
+    answer: 2
+    explanation: ΔrS° = 2(69.9) − [2(130.7) + 205.1] = 139.8 − 466.5 = −326.7 J K^{-1} mol^{-1}. It is strongly negative because three moles of gas become a liquid.
+
+  - id: che-thermo-470
+    topic: entropy
+    subtopic: Entropy-driven endothermic change
+    concept: A spontaneous endothermic process must have positive ΔS_{sys}
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [entropy-driven, spontaneity]
+    stem: |-
+      Assertion (A): If an endothermic reaction is spontaneous at constant T and p, its ΔS_{sys} must be positive.
+      Reason (R): For ΔG = ΔH − TΔS to be negative when ΔH is positive, TΔS must be positive and larger than ΔH.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: With ΔH > 0, only a positive entropy term can make ΔG negative, and it must outweigh ΔH. R explains A.
+
