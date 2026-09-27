@@ -1,0 +1,2122 @@
+subject: physics
+chapter:
+  slug: ray-optics
+  name: Ray Optics and Optical Instruments
+  order: 23
+  classes: [12]
+  topics:
+    - slug: reflection-mirrors
+      name: Reflection and spherical mirrors
+    - slug: refraction-plane
+      name: Refraction at plane surfaces
+    - slug: total-internal-reflection
+      name: Total internal reflection and its applications
+    - slug: spherical-refraction
+      name: Refraction at spherical surfaces
+    - slug: thin-lenses
+      name: Thin lenses and lens maker's formula
+    - slug: lens-power-combination
+      name: Power of a lens and combination of lenses
+    - slug: prism
+      name: Refraction through a prism
+    - slug: microscopes
+      name: Simple and compound microscopes
+    - slug: telescopes
+      name: Refracting and reflecting telescopes
+questions:
+  - id: phy-ray-001
+    topic: reflection-mirrors
+    subtopic: Focal length and radius of curvature
+    concept: Focal length of a spherical mirror is half its radius of curvature
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: f = R/2
+    tags: [focal-length, radius-of-curvature]
+    stem: A concave mirror has a radius of curvature of 30 cm. What is its focal length?
+    options:
+      - 15 cm
+      - 30 cm
+      - 60 cm
+      - 7.5 cm
+    answer: 0
+    explanation: "For a spherical mirror (paraxial rays) f = R/2 = 30/2 = 15 cm. Doubling R (60 cm) is the common slip of writing R = f/2."
+
+  - id: phy-ray-002
+    topic: reflection-mirrors
+    subtopic: Mirror formula
+    concept: Object at centre of curvature of a concave mirror gives image at C
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: 1/v + 1/u = 1/f
+    tags: [mirror-formula, concave-mirror]
+    stem: An object is placed 30 cm in front of a concave mirror of focal length 15 cm. Where is the image formed?
+    options:
+      - 15 cm in front of the mirror
+      - 30 cm behind the mirror
+      - 30 cm in front of the mirror
+      - 60 cm in front of the mirror
+    answer: 2
+    explanation: "With u = −30 cm and f = −15 cm, 1/v = 1/f − 1/u = −1/15 + 1/30 = −1/30, so v = −30 cm. The image is real, inverted and of the same size at the centre of curvature, 30 cm in front of the mirror."
+
+  - id: phy-ray-003
+    topic: reflection-mirrors
+    subtopic: Image by a convex mirror
+    concept: Convex mirror always forms a virtual, erect, diminished image of a real object
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [convex-mirror, nature-of-image]
+    stem: For a real object placed anywhere in front of a convex mirror, the image is always
+    options:
+      - real, inverted and diminished
+      - virtual, erect and magnified
+      - real, erect and same size
+      - virtual, erect and diminished
+    answer: 3
+    explanation: "A convex mirror diverges the reflected rays, so they only appear to meet behind the mirror between P and F. The image is therefore always virtual, erect and smaller than the object. A virtual magnified image is what a concave mirror gives when the object is inside F."
+
+  - id: phy-ray-004
+    topic: reflection-mirrors
+    subtopic: Magnification by a mirror
+    concept: Image size from mirror formula and m = −v/u
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: m = −v/u
+    tags: [magnification, concave-mirror]
+    stem: A 2 cm tall object stands 15 cm in front of a concave mirror of focal length 10 cm. What are the size and nature of the image?
+    options:
+      - 4 cm, erect
+      - 4 cm, inverted
+      - 1 cm, inverted
+      - 6 cm, inverted
+    answer: 1
+    explanation: "1/v = 1/f − 1/u = −1/10 + 1/15 = −1/30, so v = −30 cm. m = −v/u = −(−30)/(−15) = −2, so the image is 4 cm tall and inverted (negative m). Taking |m| without the sign makes students choose the erect option."
+
+  - id: phy-ray-005
+    topic: reflection-mirrors
+    subtopic: Object inside focus of concave mirror
+    concept: Object between P and F of a concave mirror gives a virtual magnified image
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: 1/v + 1/u = 1/f
+    tags: [concave-mirror, virtual-image, trap]
+    stem: An object is placed 5 cm in front of a concave mirror of focal length 10 cm. The image is
+    options:
+      - 10 cm in front of the mirror, real and inverted
+      - 10 cm behind the mirror, virtual and twice the object size
+      - 3.3 cm behind the mirror, virtual and diminished
+      - at infinity
+    answer: 1
+    explanation: "u = −5 cm, f = −10 cm: 1/v = −1/10 + 1/5 = +1/10, so v = +10 cm (behind the mirror). m = −v/u = −10/(−5) = +2, a virtual, erect image twice as large. This is the shaving/makeup mirror case."
+
+  - id: phy-ray-006
+    topic: reflection-mirrors
+    subtopic: Convex mirror magnification
+    concept: Magnification of a convex mirror with object at distance f
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: m = −v/u
+    tags: [convex-mirror, magnification]
+    stem: An object is 20 cm in front of a convex mirror of focal length 20 cm. What is the magnification?
+    options:
+      - "+2"
+      - "−0.5"
+      - "+0.5"
+      - "+1"
+    answer: 2
+    explanation: "u = −20 cm, f = +20 cm: 1/v = 1/20 + 1/20 = 1/10, v = +10 cm. m = −v/u = −10/(−20) = +0.5. A convex mirror never gives |m| ≥ 1 for a real object, and its image is erect, so m is positive."
+
+  - id: phy-ray-007
+    topic: reflection-mirrors
+    subtopic: Uses of convex mirrors
+    concept: Convex mirrors give a wide field of view, so they serve as rear-view mirrors
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [convex-mirror, rear-view-mirror]
+    stem: |-
+      Assertion (A): Convex mirrors are used as rear-view mirrors in vehicles.
+      Reason (R): A convex mirror forms an erect, diminished image and so covers a wider field of view.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Because the image is diminished and erect, a small convex mirror shows a large region behind the vehicle the right way up. That is exactly why it is chosen, so R explains A."
+
+  - id: phy-ray-008
+    topic: reflection-mirrors
+    subtopic: Mirror in a medium
+    concept: Focal length of a mirror does not depend on the surrounding medium
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [trap, medium-independence]
+    stem: A concave mirror of focal length 20 cm in air is immersed in water (n = 4/3). Its focal length in water is
+    options:
+      - 15 cm
+      - 26.7 cm
+      - 80 cm
+      - 20 cm
+    answer: 3
+    explanation: "Reflection obeys i = r regardless of the medium, and f = R/2 depends only on the geometry, so f stays 20 cm. Dividing or multiplying by 4/3 wrongly applies the lens behaviour to a mirror."
+
+  - id: phy-ray-009
+    topic: reflection-mirrors
+    subtopic: Graphs of mirror formula
+    concept: Plot of 1/v against 1/u for a mirror is a straight line of slope −1
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: 1/v = −1/u + 1/f
+    tags: [graph, mirror-formula]
+    stem: For a concave mirror, 1/v is plotted on the y-axis against 1/u on the x-axis (Cartesian signs). The graph is
+    options:
+      - a straight line of slope +1 passing through the origin
+      - a rectangular hyperbola
+      - a straight line of slope −1 with intercept 1/f on the y-axis
+      - a parabola opening upward
+    answer: 2
+    explanation: "Rearranging 1/v + 1/u = 1/f gives 1/v = −(1/u) + 1/f, a straight line of slope −1 whose y-intercept is 1/f. A plot of v against u (not reciprocals) is the hyperbola."
+
+  - id: phy-ray-010
+    topic: reflection-mirrors
+    subtopic: Image positions for a concave mirror
+    concept: Matching object position with image position for a concave mirror
+    category: concept
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [concave-mirror, image-formation]
+    stem: |-
+      Match the object position for a concave mirror (List I) with the image (List II).
+      List I: P. Beyond C; Q. At C; R. Between C and F; S. Between F and P
+      List II: 1. Beyond C, real, magnified; 2. Behind mirror, virtual, magnified; 3. Between F and C, real, diminished; 4. At C, real, same size
+    options:
+      - P-1, Q-4, R-3, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: "Object beyond C gives a diminished real image between F and C; at C the image is at C and the same size; between C and F the image is beyond C and magnified; inside F the image is virtual, erect and magnified behind the mirror."
+
+  - id: phy-ray-011
+    topic: reflection-mirrors
+    subtopic: Paraxial approximation
+    concept: Mirror formula assumes paraxial rays
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [paraxial-rays, ncert-line]
+    stem: The relation f = R/2 for a spherical mirror holds strictly only for rays that are
+    options:
+      - paraxial, close to the principal axis and making small angles with it
+      - parallel to the mirror surface
+      - incident at the centre of curvature
+      - of a single wavelength
+    answer: 0
+    explanation: "The derivation uses tan θ ≈ θ and treats the pole region as nearly flat, valid only for paraxial rays. Marginal rays focus closer to the mirror, which is spherical aberration. Mirrors have no wavelength dependence."
+
+  - id: phy-ray-012
+    topic: reflection-mirrors
+    subtopic: Rotation of a plane mirror
+    concept: Rotating a mirror by θ rotates the reflected ray by 2θ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [plane-mirror, rotation]
+    stem: A plane mirror is rotated by 12° about an axis in its plane while the incident ray is fixed. The reflected ray turns through
+    options:
+      - 6°
+      - 12°
+      - 36°
+      - 24°
+    answer: 3
+    explanation: "Turning the mirror by θ changes the angle of incidence by θ and the reflected ray moves by 2θ relative to the fixed incident ray, so it turns 24°. 12° forgets that both i and r change."
+
+  - id: phy-ray-013
+    topic: reflection-mirrors
+    subtopic: Properties of spherical mirrors
+    concept: Statements on image formation by spherical mirrors
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [concave-mirror, convex-mirror]
+    stem: |-
+      Consider the following statements about spherical mirrors (real objects).
+      I. A concave mirror can form both real and virtual images.
+      II. A convex mirror can form a real image.
+      III. A virtual image formed by a single mirror is always erect.
+      IV. A concave mirror never forms a diminished image.
+      Which are correct?
+    options:
+      - I and II only
+      - I and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: "I is true (object inside F gives virtual, elsewhere real). III is true because a single mirror's virtual image is always erect. II is false for real objects, and IV is false since an object beyond C gives a diminished image."
+
+  - id: phy-ray-014
+    topic: reflection-mirrors
+    subtopic: Sign convention
+    concept: Cartesian sign convention for mirrors
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [sign-convention, ncert-line]
+    stem: In the Cartesian sign convention, distances measured in the direction of the incident light from the pole are taken as
+    options:
+      - negative
+      - positive
+      - positive only for virtual images
+      - negative only for mirrors
+    answer: 1
+    explanation: "All distances are measured from the pole; those along the direction of incident light are positive and those against it are negative. Hence for a real object in front of a mirror u is negative."
+
+  - id: phy-ray-015
+    topic: refraction-plane
+    subtopic: Snell's law
+    concept: Angle of refraction from Snell's law
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: n_1 sin i = n_2 sin r
+    tags: [snells-law]
+    stem: A ray in air strikes a glass surface (n = √3) at 60° incidence. The angle of refraction is
+    options:
+      - 45°
+      - 60°
+      - 30°
+      - 15°
+    answer: 2
+    explanation: "sin r = sin 60°/√3 = (√3/2)/√3 = 1/2, so r = 30°. The ray bends towards the normal on entering the denser glass, so r must be less than 60°."
+
+  - id: phy-ray-016
+    topic: refraction-plane
+    subtopic: Apparent depth
+    concept: Apparent depth equals real depth divided by refractive index
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: apparent depth = real depth/n
+    tags: [apparent-depth, normal-shift]
+    stem: A coin lies at the bottom of a tank filled with water (n = 4/3) to a depth of 12 cm. Viewed from directly above, the coin appears raised by
+    options:
+      - 3 cm
+      - 9 cm
+      - 4 cm
+      - 16 cm
+    answer: 0
+    explanation: "Apparent depth = 12/(4/3) = 9 cm, so the coin appears raised by 12 − 9 = 3 cm. 9 cm is the apparent depth itself, not the shift."
+
+  - id: phy-ray-017
+    topic: refraction-plane
+    subtopic: Frequency and wavelength in a medium
+    concept: Frequency is unchanged on refraction while speed and wavelength change
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [frequency, wavelength, trap]
+    stem: When light passes from air into glass, which quantity remains unchanged?
+    options:
+      - Speed
+      - Wavelength
+      - Direction for all angles of incidence
+      - Frequency
+    answer: 3
+    explanation: "Frequency is set by the source and the boundary cannot change it. Speed drops to c/n and wavelength to λ/n, and the direction changes except at normal incidence."
+
+  - id: phy-ray-018
+    topic: refraction-plane
+    subtopic: Speed of light in a medium
+    concept: Speed in a medium is c/n
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: v = c/n
+    tags: [refractive-index, speed-of-light]
+    stem: The refractive index of glass is 1.5. The speed of light in this glass is
+    options:
+      - 4.5 × 10^8 m s^{-1}
+      - 2 × 10^8 m s^{-1}
+      - 1.5 × 10^8 m s^{-1}
+      - 3 × 10^8 m s^{-1}
+    answer: 1
+    explanation: "v = c/n = (3 × 10^8)/1.5 = 2 × 10^8 m s^{-1}. Multiplying by n would give a speed greater than c, which is impossible in a material."
+
+  - id: phy-ray-019
+    topic: refraction-plane
+    subtopic: Relative refractive index
+    concept: Refractive index of glass with respect to water is n_g/n_w
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: n_{21} = n_2/n_1
+    tags: [relative-refractive-index]
+    stem: If n_glass = 3/2 and n_water = 4/3, the refractive index of glass with respect to water is
+    options:
+      - 8/9
+      - "2"
+      - 9/8
+      - 17/6
+    answer: 2
+    explanation: "n_gw = n_g/n_w = (3/2)/(4/3) = 9/8. The value 8/9 is the index of water with respect to glass; it must be less than 1 since water is optically rarer."
+
+  - id: phy-ray-020
+    topic: refraction-plane
+    subtopic: Glass slab
+    concept: Emergent ray from a parallel slab is parallel to the incident ray but laterally shifted
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [glass-slab, lateral-shift]
+    stem: |-
+      Assertion (A): A ray passing obliquely through a parallel-sided glass slab emerges parallel to the incident ray.
+      Reason (R): The angle of refraction at the first face equals the angle of incidence at the second face, and the media on both sides are the same.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Parallel faces make r at the first face equal to the incidence angle at the second face. With air on both sides, Snell's law reversed gives an emergence angle equal to i, so the ray only shifts sideways. R explains A."
+
+  - id: phy-ray-021
+    topic: refraction-plane
+    subtopic: Wavelength in a medium
+    concept: Wavelength in a medium is λ/n
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: λ_m = λ/n
+    tags: [wavelength]
+    stem: Light of wavelength 600 nm in air enters glass of refractive index 1.5. Its wavelength in glass is
+    options:
+      - 900 nm
+      - 600 nm
+      - 300 nm
+      - 400 nm
+    answer: 3
+    explanation: "With frequency fixed and speed reduced by n, λ_glass = 600/1.5 = 400 nm. 900 nm wrongly multiplies by n."
+
+  - id: phy-ray-022
+    topic: refraction-plane
+    subtopic: Reversibility of light
+    concept: n_12 × n_21 = 1 from the principle of reversibility
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [reversibility, ncert-line]
+    stem: If n_21 is the refractive index of medium 2 with respect to medium 1, then n_12 equals
+    options:
+      - n_21
+      - 1/n_21
+      - n_21 − 1
+      - √n_21
+    answer: 1
+    explanation: "By reversibility of the light path, a ray retracing its route obeys Snell's law with the roles swapped, so n_12 = 1/n_21."
+
+  - id: phy-ray-023
+    topic: refraction-plane
+    subtopic: Apparent height seen from a denser medium
+    concept: An object in air viewed from water appears farther by factor n
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: apparent height = n × real height
+    tags: [apparent-height, trap]
+    stem: A bird flies 6 m above the surface of a still lake. To a fish just below the surface looking straight up (n_water = 4/3), the bird appears to be at a height of
+    options:
+      - 4.5 m
+      - 6 m
+      - 8 m
+      - 10 m
+    answer: 2
+    explanation: "For near-normal viewing from the denser medium, apparent distance = (n_observer/n_object) × real = (4/3) × 6 = 8 m. The bird looks farther away, not nearer; 4.5 m is the answer for the reverse situation."
+
+  - id: phy-ray-024
+    topic: refraction-plane
+    subtopic: Normal incidence
+    concept: A ray incident along the normal passes undeviated
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [normal-incidence]
+    stem: A ray of light falls normally on the surface of a glass block. Inside the glass the ray
+    options:
+      - bends towards the normal
+      - bends away from the normal
+      - is totally reflected
+      - continues undeviated but slows down
+    answer: 3
+    explanation: "With i = 0, Snell's law gives sin r = 0, so r = 0 and the direction is unchanged. The speed still drops to c/n."
+
+  - id: phy-ray-025
+    topic: refraction-plane
+    subtopic: Normal shift through a slab
+    concept: Shift of an object seen through a slab is t(1 − 1/n)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: shift = t(1 − 1/n)
+    tags: [normal-shift, glass-slab]
+    stem: A mark on paper is viewed normally through a glass slab 6 cm thick (n = 1.5). By how much does the mark appear raised?
+    options:
+      - 2 cm
+      - 4 cm
+      - 3 cm
+      - 1.5 cm
+    answer: 0
+    explanation: "Shift = t(1 − 1/n) = 6(1 − 2/3) = 2 cm. 4 cm is the apparent thickness t/n, not the shift."
+
+  - id: phy-ray-026
+    topic: total-internal-reflection
+    subtopic: Critical angle
+    concept: sin C = 1/n
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: sin C = 1/n
+    tags: [critical-angle]
+    stem: The critical angle for a medium of refractive index √2 (with respect to air) is
+    options:
+      - 30°
+      - 60°
+      - 90°
+      - 45°
+    answer: 3
+    explanation: "sin C = 1/n = 1/√2, so C = 45°. Any ray inside the medium hitting the surface at more than 45° is totally reflected."
+
+  - id: phy-ray-027
+    topic: total-internal-reflection
+    subtopic: Conditions for TIR
+    concept: TIR needs light going from denser to rarer medium and i greater than C
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [tir-conditions]
+    stem: |-
+      Statement I: Total internal reflection can occur when light travels from air into water.
+      Statement II: For total internal reflection the angle of incidence in the denser medium must exceed the critical angle.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "Going from rarer (air) to denser (water) the ray bends towards the normal and always refracts, so TIR is impossible; Statement I is wrong. Statement II states the correct angle condition."
+
+  - id: phy-ray-028
+    topic: total-internal-reflection
+    subtopic: Sparkle of diamond
+    concept: Diamond's small critical angle causes multiple TIR and brilliance
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [diamond, ncert-line]
+    stem: Diamond (n ≈ 2.42) sparkles mainly because
+    options:
+      - it has a very small critical angle (about 24°), so light undergoes repeated total internal reflection
+      - it emits light when illuminated
+      - its critical angle is close to 90°
+      - it absorbs all colours except white
+    answer: 0
+    explanation: "sin C = 1/2.42 gives C ≈ 24.4°. Cut suitably, most light entering a diamond meets inner faces at more than 24° and is totally reflected many times before leaving, so it sparkles."
+
+  - id: phy-ray-029
+    topic: total-internal-reflection
+    subtopic: Optical fibres
+    concept: Core of an optical fibre has higher refractive index than cladding
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [optical-fibre, ncert-line]
+    stem: In an optical fibre, light is guided along the core because
+    options:
+      - the cladding has a higher refractive index than the core
+      - the core and cladding have the same refractive index
+      - the core has a higher refractive index than the cladding
+      - the fibre surface is silvered
+    answer: 2
+    explanation: "TIR at the core-cladding boundary requires light to travel from denser to rarer medium, so n_core > n_cladding. No silvering is used; reflection loss would be too high."
+
+  - id: phy-ray-030
+    topic: total-internal-reflection
+    subtopic: Mirage
+    concept: Mirage in deserts is caused by total internal reflection in hot air layers
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [mirage, natural-phenomena]
+    stem: On a hot day, a road ahead appears wet. This mirage is due to
+    options:
+      - dispersion of sunlight by dust
+      - total internal reflection of light in air layers whose refractive index decreases towards the hot ground
+      - scattering of light by water vapour
+      - reflection of light from the road surface
+    answer: 1
+    explanation: "Air near the hot road is less dense and has a lower refractive index. Light from the sky bends progressively away from the normal and is finally totally reflected upward, so an inverted image of the sky appears on the road like water."
+
+  - id: phy-ray-031
+    topic: total-internal-reflection
+    subtopic: Critical angle between two media
+    concept: sin C = n_rarer/n_denser at a glass-water interface
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: sin C = n_2/n_1
+    tags: [critical-angle, relative-refractive-index]
+    stem: Light goes from glass (n = 3/2) towards water (n = 4/3). The sine of the critical angle at the interface is
+    options:
+      - 2/3
+      - 3/4
+      - 9/8
+      - 8/9
+    answer: 3
+    explanation: "sin C = n_water/n_glass = (4/3)/(3/2) = 8/9. 2/3 is the glass-air value; 9/8 exceeds 1 and cannot be a sine."
+
+  - id: phy-ray-032
+    topic: total-internal-reflection
+    subtopic: Critical angle and wavelength
+    concept: Critical angle is larger for red light than for violet light
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [critical-angle, wavelength, trap]
+    stem: For a given glass, the critical angle for red light compared with violet light is
+    options:
+      - smaller, because red light travels slower in glass
+      - equal, because the critical angle depends only on the glass
+      - larger, because the refractive index for red is smaller
+      - larger, because red light has higher frequency
+    answer: 2
+    explanation: "n is smaller for longer wavelengths (red), and sin C = 1/n, so C is larger for red. Red actually travels faster in glass and has a lower frequency."
+
+  - id: phy-ray-033
+    topic: total-internal-reflection
+    subtopic: Totally reflecting prisms
+    concept: A 45°-90°-45° glass prism turns rays by 90° or 180° using TIR
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [right-angled-prism, periscope]
+    stem: A right-angled isosceles glass prism is used in periscopes to turn light through 90°. This works because
+    options:
+      - the light meets the hypotenuse at 45°, which exceeds the critical angle of glass (about 42°)
+      - the hypotenuse is silvered
+      - light meets the hypotenuse at 90°
+      - the prism disperses light into colours
+    answer: 0
+    explanation: "Light entering normally through one short face hits the hypotenuse at 45°. For glass with n = 1.5, C ≈ 41.8°, so 45° > C and the light is totally reflected, emerging at 90° through the other face. No silvering is needed."
+
+  - id: phy-ray-034
+    topic: total-internal-reflection
+    subtopic: Circle of light at the surface
+    concept: Radius of the lit circle above a point source is h/√(n^2 − 1)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: r = h tan C = h/√(n^2 − 1)
+    tags: [critical-angle, multi-concept]
+    stem: A point source lies √7 m below the surface of a pond (n = 4/3). What is the radius of the circle on the surface through which light emerges?
+    options:
+      - √7 m
+      - 4 m
+      - 3 m
+      - 7/3 m
+    answer: 2
+    explanation: "Light escapes only where the angle of incidence is below C, so r = h tan C = h/√(n^2 − 1). n^2 − 1 = 16/9 − 1 = 7/9, so √(n^2 − 1) = √7/3 and r = √7 × 3/√7 = 3 m."
+
+  - id: phy-ray-035
+    topic: total-internal-reflection
+    subtopic: TIR statements
+    concept: Identifying correct facts about total internal reflection
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [tir-conditions]
+    stem: Which statement about total internal reflection is correct?
+    options:
+      - At the critical angle the refracted ray travels along the surface (angle of refraction 90°).
+      - The critical angle is larger for a medium of larger refractive index.
+      - In TIR a small fraction of light is always transmitted into the rarer medium.
+      - TIR is possible at any angle if the rarer medium is vacuum.
+    answer: 0
+    explanation: "At i = C the refracted ray grazes the surface (r = 90°). Larger n means smaller C; in TIR essentially all light is reflected; and TIR still needs i > C even into vacuum."
+
+  - id: phy-ray-036
+    topic: spherical-refraction
+    subtopic: Refraction formula for a spherical surface
+    concept: Focusing of parallel rays by a convex refracting surface
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: n_2/v − n_1/u = (n_2 − n_1)/R
+    tags: [spherical-surface]
+    stem: Parallel rays in air fall on the convex end of a long glass rod (n = 1.5, R = 10 cm). The rays focus inside the glass at a distance of
+    options:
+      - 20 cm
+      - 15 cm
+      - 30 cm
+      - 10 cm
+    answer: 2
+    explanation: "With u = ∞, n_2/v = (n_2 − n_1)/R gives 1.5/v = 0.5/10, so v = 30 cm inside the rod. 20 cm is the thin-lens (both surfaces) result, not a single surface."
+
+  - id: phy-ray-037
+    topic: spherical-refraction
+    subtopic: Virtual image by a spherical surface
+    concept: Object close to a convex refracting surface gives a virtual image
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: n_2/v − n_1/u = (n_2 − n_1)/R
+    tags: [spherical-surface, virtual-image]
+    stem: A point object in air is 30 cm from the convex surface (R = 20 cm) of a thick glass block (n = 1.5). The image is formed
+    options:
+      - 90 cm inside the glass, real
+      - 180 cm from the surface on the object side, virtual
+      - 60 cm inside the glass, real
+      - 45 cm on the object side, virtual
+    answer: 1
+    explanation: "u = −30 cm: 1.5/v + 1/30 = 0.5/20 = 1/40, so 1.5/v = 1/40 − 1/30 = −1/120 and v = −180 cm. Negative v means the image is on the incident side, hence virtual."
+
+  - id: phy-ray-038
+    topic: spherical-refraction
+    subtopic: Object at centre of a sphere
+    concept: Rays from the centre of a sphere travel radially and are not deviated
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [glass-sphere, trap]
+    stem: A small air bubble sits exactly at the centre of a solid glass sphere. Viewed from outside, the bubble appears
+    options:
+      - at the centre of the sphere
+      - nearer to the observer than the centre
+      - farther than the centre
+      - at the surface of the sphere
+    answer: 0
+    explanation: "Rays from the centre travel along radii and meet the surface normally, so they are not bent. The bubble is seen at its true position. Applying the plane-surface apparent-depth rule here is the trap."
+
+  - id: phy-ray-039
+    topic: spherical-refraction
+    subtopic: Sign convention for refracting surfaces
+    concept: R is positive when the centre of curvature is on the outgoing side
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [sign-convention]
+    stem: In n_2/v − n_1/u = (n_2 − n_1)/R, the radius R of the refracting surface is taken positive when
+    options:
+      - the surface is concave towards the incident light
+      - the centre of curvature lies on the side where light emerges
+      - the object is real
+      - n_2 > n_1
+    answer: 1
+    explanation: "R follows the same Cartesian convention as distances: positive if the centre of curvature is in the direction of travel of light (outgoing side). A surface convex towards the incoming light has R > 0."
+
+  - id: phy-ray-040
+    topic: spherical-refraction
+    subtopic: Fish in a spherical bowl
+    concept: Apparent position of an object seen through a curved water-air surface
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: n_2/v − n_1/u = (n_2 − n_1)/R
+    tags: [spherical-surface, apparent-depth]
+    stem: A small fish is 10 cm from the wall of a spherical fishbowl of radius 20 cm filled with water (n = 4/3), on the line joining the observer and the centre. Neglecting the thin glass, the fish appears to be at what distance from the wall?
+    options:
+      - 7.5 cm
+      - 10 cm
+      - 12 cm
+      - about 8.6 cm
+    answer: 3
+    explanation: "Light goes from water (n_1 = 4/3) to air (n_2 = 1) with u = −10 cm and R = −20 cm (centre on the water side). 1/v + (4/3)/10 = (−1/3)/(−20) = 1/60, so 1/v = 1/60 − 8/60 = −7/60 and v ≈ −8.6 cm. The flat-surface rule 10/(4/3) = 7.5 cm ignores the curvature."
+
+  - id: phy-ray-041
+    topic: spherical-refraction
+    subtopic: Transparent sphere
+    concept: A parallel beam focuses on the rear surface of a sphere when n = 2
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: n_2/v − n_1/u = (n_2 − n_1)/R
+    tags: [glass-sphere, multi-concept]
+    stem: A paraxial parallel beam in air falls on a transparent sphere of radius R. For what refractive index of the sphere will the beam be focused exactly on the rear surface of the sphere?
+    options:
+      - "1.5"
+      - "2"
+      - "1.33"
+      - "2.5"
+    answer: 1
+    explanation: "For the first surface with u = ∞, n/v = (n − 1)/R, so v = nR/(n − 1). Focusing on the rear surface needs v = 2R, giving n = 2(n − 1), i.e. n = 2. For glass (1.5) the focus would lie 3R away, beyond the sphere."
+
+  - id: phy-ray-042
+    topic: spherical-refraction
+    subtopic: Validity of the refraction formula
+    concept: Single-surface refraction formula holds for paraxial rays in any pair of media
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [spherical-surface, paraxial-rays]
+    stem: |-
+      Statement I: The relation n_2/v − n_1/u = (n_2 − n_1)/R is derived assuming paraxial rays.
+      Statement II: The relation holds only when light goes from a rarer to a denser medium.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "The derivation uses small-angle approximations, so it needs paraxial rays. With proper signs it holds for any pair of media, including denser to rarer (then n_2 − n_1 is negative)."
+
+  - id: phy-ray-043
+    topic: spherical-refraction
+    subtopic: Real image inside glass
+    concept: Real image formed inside a glass block by a convex surface
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: n_2/v − n_1/u = (n_2 − n_1)/R
+    tags: [spherical-surface, real-image]
+    stem: A point object in air is 30 cm in front of the convex face (R = 10 cm) of a long glass rod (n = 1.5). The image forms inside the rod at a distance of
+    options:
+      - 30 cm
+      - 45 cm
+      - 60 cm
+      - 90 cm
+    answer: 3
+    explanation: "u = −30 cm: 1.5/v + 1/30 = 0.5/10 = 1/20, so 1.5/v = 1/20 − 1/30 = 1/60 and v = 90 cm. Positive v means a real image inside the glass."
+
+  - id: phy-ray-044
+    topic: spherical-refraction
+    subtopic: Magnification by a refracting surface
+    concept: Lateral magnification for a single refracting surface is n_1 v/(n_2 u)
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: m = n_1 v/(n_2 u)
+    tags: [magnification, spherical-surface]
+    stem: For refraction at a single spherical surface from medium n_1 into medium n_2, the lateral magnification is
+    options:
+      - n_1 v/(n_2 u)
+      - n_2 v/(n_1 u)
+      - v/u
+      - −v/u
+    answer: 0
+    explanation: "Using the paraxial ray through the pole and Snell's law with small angles, h'/h = n_1 v/(n_2 u). v/u is the thin-lens result (n_1 = n_2 on both sides of the lens) and −v/u is for mirrors."
+
+  - id: phy-ray-045
+    topic: thin-lenses
+    subtopic: Lens maker's formula
+    concept: Focal length of an equiconvex lens from lens maker's formula
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: 1/f = (n − 1)(1/R_1 − 1/R_2)
+    tags: [lens-makers-formula]
+    stem: An equiconvex lens of glass (n = 1.5) has both radii of curvature equal to 20 cm. Its focal length is
+    options:
+      - 10 cm
+      - 20 cm
+      - 40 cm
+      - 30 cm
+    answer: 1
+    explanation: "R_1 = +20 cm and R_2 = −20 cm, so 1/f = 0.5 × (1/20 + 1/20) = 1/20 and f = 20 cm. For an equiconvex lens with n = 1.5, f = R."
+
+  - id: phy-ray-046
+    topic: thin-lenses
+    subtopic: Plano-convex lens
+    concept: Plano-convex lens with n = 1.5 has f = 2R
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: 1/f = (n − 1)/R
+    tags: [lens-makers-formula, plano-convex]
+    stem: A plano-convex lens (n = 1.5) has a curved surface of radius 15 cm. Its focal length is
+    options:
+      - 15 cm
+      - 7.5 cm
+      - 30 cm
+      - 45 cm
+    answer: 2
+    explanation: "For the plane face 1/R = 0, so 1/f = (1.5 − 1)/15 = 1/30 and f = 30 cm. 15 cm would apply to an equiconvex lens of the same radius."
+
+  - id: phy-ray-047
+    topic: thin-lenses
+    subtopic: Lens immersed in a liquid
+    concept: Focal length of a glass lens increases when placed in water
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: 1/f = (n_l/n_m − 1)(1/R_1 − 1/R_2)
+    tags: [lens-in-medium, multi-concept]
+    stem: A glass lens (n = 1.5) has a focal length of 20 cm in air. What is its focal length when fully immersed in water (n = 4/3)?
+    options:
+      - 26.7 cm
+      - 20 cm
+      - 40 cm
+      - 80 cm
+    answer: 3
+    explanation: "f is inversely proportional to (n_rel − 1). In air this factor is 0.5; in water it is 1.5/(4/3) − 1 = 1/8. So f_water = 20 × 0.5/(1/8) = 80 cm. 26.7 cm wrongly multiplies f by 4/3."
+
+  - id: phy-ray-048
+    topic: thin-lenses
+    subtopic: Lens in a medium of equal index
+    concept: A lens immersed in a liquid of the same refractive index has no focusing power
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [lens-in-medium]
+    stem: |-
+      Assertion (A): A glass lens becomes almost invisible when dipped in a liquid of the same refractive index.
+      Reason (R): Light does not bend at an interface between media of equal refractive index, so the lens acts like a plane sheet of the liquid.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "With n_lens = n_medium, (n_l/n_m − 1) = 0 and the focal length becomes infinite. No refraction or reflection occurs at the boundary, which is why the lens cannot be seen. R explains A."
+
+  - id: phy-ray-049
+    topic: thin-lenses
+    subtopic: Thin lens formula
+    concept: Real image by a convex lens with object between F and 2F
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: 1/v − 1/u = 1/f
+    tags: [lens-formula, convex-lens]
+    stem: An object is placed 15 cm from a convex lens of focal length 10 cm. The image distance and magnification are
+    options:
+      - 30 cm, −2
+      - 6 cm, −0.4
+      - 30 cm, +2
+      - −30 cm, +3
+    answer: 0
+    explanation: "1/v = 1/f + 1/u = 1/10 − 1/15 = 1/30, v = +30 cm. m = v/u = 30/(−15) = −2: real, inverted, twice as large. Using the mirror formula (1/v + 1/u) gives the wrong 6 cm."
+
+  - id: phy-ray-050
+    topic: thin-lenses
+    subtopic: Concave lens images
+    concept: A concave lens always forms a virtual, erect, diminished image of a real object
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [concave-lens, nature-of-image]
+    stem: The image of a real object formed by a concave lens is always
+    options:
+      - real and inverted
+      - virtual, erect and magnified
+      - virtual, erect and diminished, between the lens and its focus
+      - real and diminished
+    answer: 2
+    explanation: "A diverging lens spreads rays, which appear to come from a point between the optical centre and F on the object side. The image is virtual, erect and smaller than the object wherever the object is."
+
+  - id: phy-ray-051
+    topic: thin-lenses
+    subtopic: Partly covered lens
+    concept: Covering half a lens gives the full image with reduced brightness
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [trap, image-intensity, ncert-line]
+    stem: The lower half of a convex lens is covered with black paper. The image of an object formed by the lens will
+    options:
+      - show only the upper half of the object
+      - show only the lower half of the object
+      - disappear completely
+      - be complete but less bright
+    answer: 3
+    explanation: "Every point of the object sends rays through the uncovered half, and these still converge at the image point. So the whole image forms, but with fewer rays its intensity drops. Half an image is the common misconception."
+
+  - id: phy-ray-052
+    topic: thin-lenses
+    subtopic: Minimum object-image distance
+    concept: Minimum distance between an object and its real image for a convex lens is 4f
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: D_min = 4f
+    tags: [convex-lens, real-image]
+    stem: A convex lens of focal length 20 cm forms a real image of an object. The least possible distance between the object and the image is
+    options:
+      - 40 cm
+      - 80 cm
+      - 20 cm
+      - 60 cm
+    answer: 1
+    explanation: "The object–image separation u + v (magnitudes) is least when u = v = 2f, giving 4f = 80 cm. 40 cm is 2f, the distance of each from the lens, not their separation."
+
+  - id: phy-ray-053
+    topic: thin-lenses
+    subtopic: Displacement method
+    concept: f = (D^2 − d^2)/4D in the displacement method
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: f = (D^2 − d^2)/(4D)
+    tags: [displacement-method, convex-lens]
+    stem: An object and a screen are 100 cm apart. A convex lens placed between them gives a sharp image at two positions 20 cm apart. The focal length of the lens is
+    options:
+      - 20 cm
+      - 25 cm
+      - 24 cm
+      - 16 cm
+    answer: 2
+    explanation: "The two positions are conjugate (u and v interchange): u + v = 100 and v − u = 20, so v = 60, u = 40 and f = uv/(u + v) = 2400/100 = 24 cm. Equivalently f = (D^2 − d^2)/4D = (10000 − 400)/400 = 24 cm."
+
+  - id: phy-ray-054
+    topic: thin-lenses
+    subtopic: Graphs for lenses
+    concept: For a lens, 1/v against 1/u is a straight line of slope +1
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: 1/v = 1/u + 1/f
+    tags: [graph, lens-formula]
+    stem: For a convex lens, a graph of 1/v (y-axis) against 1/u (x-axis) using Cartesian signs is
+    options:
+      - a straight line of slope −1 with y-intercept 1/f
+      - a straight line of slope +1 with y-intercept 1/f
+      - a straight line through the origin
+      - a curve approaching the axes asymptotically
+    answer: 1
+    explanation: "The lens formula gives 1/v = 1/u + 1/f: slope +1, intercept 1/f (positive for a convex lens). Slope −1 belongs to the mirror formula."
+
+  - id: phy-ray-055
+    topic: thin-lenses
+    subtopic: Object at focus
+    concept: An object at the focus of a convex lens gives an image at infinity
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [convex-lens, image-formation]
+    stem: Where is the image when an object is placed at the principal focus of a convex lens?
+    options:
+      - At infinity
+      - At 2F on the other side
+      - At the focus on the other side
+      - At the optical centre
+    answer: 0
+    explanation: "Rays from the focal point emerge parallel after refraction, so they meet only at infinity (1/v = 1/f − 1/f = 0)."
+
+  - id: phy-ray-056
+    topic: thin-lenses
+    subtopic: Biconcave lens focal length
+    concept: Lens maker's formula for a biconcave lens gives negative f
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: 1/f = (n − 1)(1/R_1 − 1/R_2)
+    tags: [lens-makers-formula, concave-lens]
+    stem: A biconcave lens (n = 1.5) has both radii of curvature 30 cm. Its focal length is
+    options:
+      - +30 cm
+      - −60 cm
+      - −15 cm
+      - −30 cm
+    answer: 3
+    explanation: "R_1 = −30 cm and R_2 = +30 cm, so 1/f = 0.5 × (−1/30 − 1/30) = −1/30, f = −30 cm. The negative sign marks a diverging lens."
+
+  - id: phy-ray-057
+    topic: thin-lenses
+    subtopic: Lens in a denser medium
+    concept: A convex lens behaves as diverging in a medium of higher refractive index
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: 1/f_m = (n_l/n_m − 1)(1/R_1 − 1/R_2)
+    tags: [lens-in-medium, trap, multi-concept]
+    stem: A biconvex glass lens (n = 1.5) of focal length +20 cm in air is immersed in a liquid of refractive index 1.75. Its focal length in the liquid is
+    options:
+      - +70 cm
+      - +35 cm
+      - −70 cm
+      - −35 cm
+    answer: 2
+    explanation: "In air (n − 1) = 0.5; in the liquid (1.5/1.75 − 1) = −1/7. f_liquid = 20 × 0.5/(−1/7) = −70 cm. The lens now diverges light because it is optically rarer than its surroundings."
+
+  - id: phy-ray-058
+    topic: thin-lenses
+    subtopic: Convex lens as magnifier
+    concept: Virtual magnified image when object lies within f of a convex lens
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: 1/v − 1/u = 1/f
+    tags: [convex-lens, virtual-image]
+    stem: An object is placed 10 cm from a convex lens of focal length 15 cm. The magnification produced is
+    options:
+      - "−3"
+      - "+3"
+      - "+1.5"
+      - "+0.6"
+    answer: 1
+    explanation: "1/v = 1/15 − 1/10 = −1/30, so v = −30 cm (same side as object, virtual). m = v/u = (−30)/(−10) = +3: erect and three times larger."
+
+  - id: phy-ray-059
+    topic: thin-lenses
+    subtopic: Properties of thin lenses
+    concept: Evaluating statements about convex and concave lenses
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [convex-lens, concave-lens]
+    stem: |-
+      Consider these statements about thin lenses in air.
+      I. A ray through the optical centre passes undeviated.
+      II. The focal length of a lens depends on the wavelength of light used.
+      III. A convex lens made of glass always converges light, whatever the surrounding medium.
+      IV. A lens has two principal foci at equal distances on either side when the same medium is on both sides.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: "I is true for a thin lens. II is true because n varies with wavelength. IV is true for the same medium on both sides. III is false: in a denser liquid a glass convex lens diverges light."
+
+  - id: phy-ray-060
+    topic: thin-lenses
+    subtopic: Image positions for a convex lens
+    concept: Matching object positions with images for a convex lens
+    category: concept
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [convex-lens, image-formation]
+    stem: |-
+      Match the object position for a convex lens (List I) with the image (List II).
+      List I: P. At infinity; Q. At 2F_1; R. Between F_1 and O; S. Between F_1 and 2F_1
+      List II: 1. At 2F_2, same size, inverted; 2. Same side as object, virtual, magnified; 3. At F_2, highly diminished point; 4. Beyond 2F_2, real, magnified
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-1, Q-3, R-2, S-4
+      - P-3, Q-1, R-2, S-4
+      - P-3, Q-4, R-2, S-1
+    answer: 2
+    explanation: "Parallel rays focus at F_2; an object at 2F_1 images at 2F_2 with equal size; inside F_1 the image is virtual and magnified; between F_1 and 2F_1 the image is real, magnified and beyond 2F_2."
+
+  - id: phy-ray-061
+    topic: lens-power-combination
+    subtopic: Power of a lens
+    concept: Power in dioptre is 1/f in metres
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: P = 1/f (f in m)
+    tags: [power, dioptre]
+    stem: The power of a concave lens of focal length 25 cm is
+    options:
+      - +4 D
+      - −0.04 D
+      - −4 D
+      - −25 D
+    answer: 2
+    explanation: "P = 1/f with f in metres: 1/(−0.25 m) = −4 D. Forgetting to convert cm to m gives −0.04 D; the negative sign marks a diverging lens."
+
+  - id: phy-ray-062
+    topic: lens-power-combination
+    subtopic: Lenses in contact
+    concept: Equivalent focal length of two thin lenses in contact
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: 1/F = 1/f_1 + 1/f_2
+    tags: [combination-of-lenses]
+    stem: A convex lens of focal length 10 cm is placed in contact with a concave lens of focal length 15 cm. The combination behaves as
+    options:
+      - a convex lens of focal length 6 cm
+      - a concave lens of focal length 30 cm
+      - a convex lens of focal length 25 cm
+      - a convex lens of focal length 30 cm
+    answer: 3
+    explanation: "1/F = 1/10 + 1/(−15) = (3 − 2)/30 = 1/30, so F = +30 cm, a converging combination. Adding the magnitudes (1/10 + 1/15) gives 6 cm, the trap."
+
+  - id: phy-ray-063
+    topic: lens-power-combination
+    subtopic: Adding powers
+    concept: Powers of thin lenses in contact add algebraically
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: P = P_1 + P_2
+    tags: [power, combination-of-lenses]
+    stem: Lenses of power +5 D and −2 D are placed in contact. The focal length of the combination is about
+    options:
+      - 33.3 cm, converging
+      - 14.3 cm, converging
+      - 33.3 cm, diverging
+      - 50 cm, converging
+    answer: 0
+    explanation: "P = +5 − 2 = +3 D, so F = 1/3 m ≈ 33.3 cm, positive and therefore converging. Adding magnitudes (7 D) gives 14.3 cm."
+
+  - id: phy-ray-064
+    topic: lens-power-combination
+    subtopic: Magnification of a combination
+    concept: Total magnification of a lens system is the product of individual magnifications
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: m = m_1 m_2 m_3 …
+    tags: [magnification, ncert-line]
+    stem: In a system of two lenses, the first produces magnification −2 and the second +3 on the image formed by the first. The net magnification is
+    options:
+      - "+1"
+      - "+6"
+      - "−1.5"
+      - "−6"
+    answer: 3
+    explanation: "Each lens magnifies the image of the previous one, so m = m_1 × m_2 = (−2)(3) = −6: six times larger and inverted. Adding magnifications is the error behind +1."
+
+  - id: phy-ray-065
+    topic: lens-power-combination
+    subtopic: Separated lenses
+    concept: Power of two lenses separated by d is P_1 + P_2 − dP_1P_2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: P = P_1 + P_2 − d P_1 P_2
+    tags: [combination-of-lenses, separation]
+    stem: Two convex lenses, each of power +5 D, are placed coaxially 10 cm apart in air. The power of the combination is
+    options:
+      - +10 D
+      - +7.5 D
+      - +12.5 D
+      - +2.5 D
+    answer: 1
+    explanation: "P = P_1 + P_2 − dP_1P_2 = 5 + 5 − (0.10)(5)(5) = 10 − 2.5 = 7.5 D. +10 D is correct only for lenses in contact (d = 0)."
+
+  - id: phy-ray-066
+    topic: lens-power-combination
+    subtopic: Power and focal length
+    concept: A lens of shorter focal length has greater power
+    category: concept
+    format: assertion-reason
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: false
+    tags: [power]
+    stem: |-
+      Assertion (A): A convex lens of focal length 25 cm has a greater power than a convex lens of focal length 50 cm.
+      Reason (R): Power of a lens is the reciprocal of its focal length.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "P = 1/f gives +4 D for 25 cm and +2 D for 50 cm. The shorter focal length bends rays more strongly, which is exactly what the reciprocal relation expresses."
+
+  - id: phy-ray-067
+    topic: lens-power-combination
+    subtopic: Silvered lens
+    concept: Plano-convex lens silvered on the curved face acts as a mirror of focal length R/2n
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: P_eq = 2P_lens + P_mirror
+    tags: [silvered-lens, multi-concept]
+    stem: The curved surface (R = 20 cm) of a plano-convex lens (n = 1.5) is silvered. Light enters through the plane face. The system acts as a concave mirror of focal length
+    options:
+      - 20 cm
+      - 10 cm
+      - 6.67 cm
+      - 40 cm
+    answer: 2
+    explanation: "Light passes the lens twice and reflects once: P = 2P_L + P_M with P_L = (n − 1)/R = 1/40 and P_M = 2/R = 1/10 (in cm^{-1}). P = 1/20 + 1/10 = 3/20, so f = 20/3 ≈ 6.67 cm, i.e. R/2n."
+
+  - id: phy-ray-068
+    topic: lens-power-combination
+    subtopic: Unit of power
+    concept: Dioptre equals inverse metre
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [dioptre, units]
+    stem: One dioptre is equal to
+    options:
+      - 1 m
+      - 1 m^{-1}
+      - 1 cm^{-1}
+      - 1 rad m
+    answer: 1
+    explanation: "P = 1/f, so 1 D is the power of a lens of focal length 1 m, i.e. 1 m^{-1}."
+
+  - id: phy-ray-069
+    topic: lens-power-combination
+    subtopic: Identical lenses combined
+    concept: Two identical plano-convex lenses joined make an equiconvex lens of half the focal length
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: 1/F = 1/f + 1/f
+    tags: [combination-of-lenses, plano-convex]
+    stem: Two identical plano-convex lenses, each of focal length 20 cm, are placed with their plane faces in contact. The focal length of the combination is
+    options:
+      - 40 cm
+      - 20 cm
+      - 5 cm
+      - 10 cm
+    answer: 3
+    explanation: "Powers add: 1/F = 1/20 + 1/20 = 1/10, so F = 10 cm. The result is an equiconvex lens with doubled power."
+
+  - id: phy-ray-070
+    topic: lens-power-combination
+    subtopic: Cutting a lens
+    concept: Cutting a lens perpendicular to its axis changes f; cutting along the axis does not
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [trap, lens-cutting]
+    stem: An equiconvex lens of focal length f is cut. Which statement is correct?
+    options:
+      - Cut along the principal axis into two halves, each half has focal length 2f.
+      - Cut perpendicular to the axis into two plano-convex parts, each part has focal length 2f.
+      - Cut perpendicular to the axis, each part has focal length f/2.
+      - Any cut leaves the focal length of each piece equal to f.
+    answer: 1
+    explanation: "A perpendicular cut leaves one curved face per piece, halving (1/R_1 − 1/R_2), so each plano-convex part has 2f. A cut along the axis keeps both curved faces, so each half keeps f (only brightness drops)."
+
+  - id: phy-ray-071
+    topic: lens-power-combination
+    subtopic: Designing a combination
+    concept: Finding the lens needed to obtain a given combined power
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: P = P_1 + P_2
+    tags: [power, combination-of-lenses]
+    stem: A lens of power +4 D is to be combined in contact with another lens so that the combination has a focal length of +50 cm. The second lens must have power
+    options:
+      - +2 D
+      - −6 D
+      - −2 D
+      - +6 D
+    answer: 2
+    explanation: "The required power is 1/0.5 m = +2 D, so P_2 = 2 − 4 = −2 D, a concave lens of focal length 50 cm."
+
+  - id: phy-ray-072
+    topic: prism
+    subtopic: Minimum deviation
+    concept: Refractive index from angle of minimum deviation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: n = sin[(A + δ_m)/2]/sin(A/2)
+    tags: [minimum-deviation]
+    stem: An equilateral glass prism gives a minimum deviation of 30°. The refractive index of the glass is
+    options:
+      - √3
+      - "1.5"
+      - √2
+      - "2"
+    answer: 2
+    explanation: "n = sin[(60° + 30°)/2]/sin 30° = sin 45°/sin 30° = (1/√2)/(1/2) = √2."
+
+  - id: phy-ray-073
+    topic: prism
+    subtopic: Thin prism
+    concept: Deviation by a thin prism is (n − 1)A
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: δ = (n − 1)A
+    tags: [thin-prism]
+    stem: A thin prism of angle 5° is made of glass of refractive index 1.5. The deviation it produces is
+    options:
+      - 7.5°
+      - 2.5°
+      - 5°
+      - 3.3°
+    answer: 1
+    explanation: "For small A, δ = (n − 1)A = 0.5 × 5° = 2.5°. Multiplying by n (7.5°) is the usual slip."
+
+  - id: phy-ray-074
+    topic: prism
+    subtopic: Prism geometry
+    concept: Sum of refraction angles inside a prism equals the prism angle
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: r_1 + r_2 = A
+    tags: [prism-angles, ncert-line]
+    stem: For a ray passing through a prism of angle A, the angles of refraction r_1 at the first face and r_2 at the second face satisfy
+    options:
+      - r_1 − r_2 = A
+      - r_1 + r_2 = 2A
+      - r_1 + r_2 = A
+      - r_1 + r_2 = 180° − A
+    answer: 2
+    explanation: "The two face normals meet at an angle 180° − A, and the triangle they form with the ray gives r_1 + r_2 = A."
+
+  - id: phy-ray-075
+    topic: prism
+    subtopic: Deviation versus incidence
+    concept: δ–i graph of a prism is U-shaped with a single minimum
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [graph, minimum-deviation]
+    stem: The angle of deviation δ produced by a prism is plotted against the angle of incidence i. The curve
+    options:
+      - rises linearly with i
+      - falls steadily with i
+      - is a horizontal straight line
+      - first decreases, reaches a minimum and then increases
+    answer: 3
+    explanation: "As i increases δ falls to a minimum value δ_m (when i = e) and then rises again, giving a U-shaped curve. Except at the minimum, each δ corresponds to two values of i (i and e interchanged)."
+
+  - id: phy-ray-076
+    topic: prism
+    subtopic: Condition of minimum deviation
+    concept: At minimum deviation the ray passes symmetrically through the prism
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [minimum-deviation]
+    stem: |-
+      For a prism in the position of minimum deviation:
+      I. The angle of incidence equals the angle of emergence.
+      II. r_1 = r_2 = A/2.
+      III. The ray inside an equilateral prism is parallel to its base.
+      IV. The deviation is zero.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, II and IV only
+      - I, II and III only
+    answer: 3
+    explanation: "At minimum deviation the path is symmetric: i = e and r_1 = r_2 = A/2, so in an equilateral (isosceles) prism the internal ray runs parallel to the base. The deviation is at its least value δ_m, not zero."
+
+  - id: phy-ray-077
+    topic: prism
+    subtopic: Finding minimum deviation
+    concept: δ_m for a 60° prism of index √3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: n = sin[(A + δ_m)/2]/sin(A/2)
+    tags: [minimum-deviation]
+    stem: A prism of angle 60° has refractive index √3. Its angle of minimum deviation is
+    options:
+      - 60°
+      - 30°
+      - 45°
+      - 90°
+    answer: 0
+    explanation: "sin[(60° + δ_m)/2] = √3 × sin 30° = √3/2, so (60° + δ_m)/2 = 60° and δ_m = 60°."
+
+  - id: phy-ray-078
+    topic: prism
+    subtopic: Angle of incidence at minimum deviation
+    concept: At minimum deviation i = (A + δ_m)/2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: i = (A + δ_m)/2
+    tags: [minimum-deviation]
+    stem: A 60° prism has a minimum deviation of 40°. The angle of incidence for minimum deviation is
+    options:
+      - 40°
+      - 60°
+      - 50°
+      - 30°
+    answer: 2
+    explanation: "At minimum deviation i = e, and δ_m = 2i − A, so i = (A + δ_m)/2 = (60° + 40°)/2 = 50°."
+
+  - id: phy-ray-079
+    topic: prism
+    subtopic: Deviation relation
+    concept: δ = i + e − A
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: δ = i + e − A
+    tags: [deviation]
+    stem: A ray passes through a prism of angle 60°, with angle of incidence 50° and angle of emergence 40°. The deviation is
+    options:
+      - 90°
+      - 30°
+      - 10°
+      - 150°
+    answer: 1
+    explanation: "δ = i + e − A = 50° + 40° − 60° = 30°."
+
+  - id: phy-ray-080
+    topic: prism
+    subtopic: Prism in a liquid
+    concept: Deviation by a thin prism reduces when immersed in water
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: δ = (n_p/n_m − 1)A
+    tags: [thin-prism, prism-in-medium]
+    stem: A thin glass prism (n = 1.5) produces a deviation of 4° in air. When immersed in water (n = 4/3), the deviation becomes
+    options:
+      - 1°
+      - 3°
+      - 2°
+      - 5.3°
+    answer: 0
+    explanation: "δ ∝ (n_rel − 1). In air this is 0.5 and in water 1.5/(4/3) − 1 = 1/8, a quarter of the air value, so δ = 4°/4 = 1°."
+
+  - id: phy-ray-081
+    topic: prism
+    subtopic: Limiting prism angle
+    concept: No ray emerges from a prism if A exceeds 2C
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: A_max = 2C
+    tags: [critical-angle, multi-concept]
+    stem: A prism is made of a material of refractive index √2. What is the largest prism angle for which at least some ray entering one face can emerge from the other face?
+    options:
+      - 45°
+      - 60°
+      - 120°
+      - 90°
+    answer: 3
+    explanation: "r_1 can be at most C (grazing incidence) and r_2 must be at most C for emergence, so A = r_1 + r_2 ≤ 2C. With sin C = 1/√2, C = 45° and A_max = 90°. 45° mistakes C itself for the limit."
+
+  - id: phy-ray-082
+    topic: prism
+    subtopic: Deviation of colours
+    concept: Violet light is deviated most by a prism because its refractive index is highest
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [dispersion, colours]
+    stem: When white light passes through a glass prism, which colour is deviated the most?
+    options:
+      - Red
+      - Yellow
+      - Violet
+      - Green
+    answer: 2
+    explanation: "Glass has the largest refractive index for violet (shortest visible wavelength), and deviation increases with n, so violet bends most and red least."
+
+  - id: phy-ray-083
+    topic: prism
+    subtopic: Normal incidence on a prism
+    concept: Deviation when a ray enters a prism normally
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: n = sin e/sin r_2
+    tags: [deviation, snells-law]
+    stem: A ray falls normally on one face of a prism of angle 30° and refractive index √2. The deviation of the ray is
+    options:
+      - 30°
+      - 15°
+      - 45°
+      - 0°
+    answer: 1
+    explanation: "Normal incidence gives r_1 = 0, so r_2 = A = 30°. At the second face sin e = √2 sin 30° = 1/√2, e = 45°. δ = i + e − A = 0 + 45° − 30° = 15°."
+
+  - id: phy-ray-084
+    topic: microscopes
+    subtopic: Simple microscope, near point
+    concept: Magnifying power of a simple microscope with image at near point is 1 + D/f
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: m = 1 + D/f
+    tags: [simple-microscope, near-point]
+    stem: A convex lens of focal length 5 cm is used as a simple microscope with the image at the near point (25 cm). Its magnifying power is
+    options:
+      - "5"
+      - "4"
+      - "6"
+      - "25"
+    answer: 2
+    explanation: "m = 1 + D/f = 1 + 25/5 = 6. The value 5 (D/f) applies when the image is at infinity."
+
+  - id: phy-ray-085
+    topic: microscopes
+    subtopic: Simple microscope, relaxed eye
+    concept: Magnifying power with image at infinity is D/f
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: m = D/f
+    tags: [simple-microscope, normal-adjustment]
+    stem: A simple microscope of focal length 2.5 cm is used with the final image at infinity (D = 25 cm). Its angular magnification is
+    options:
+      - "10"
+      - "11"
+      - "9"
+      - "12.5"
+    answer: 0
+    explanation: "With the object at the focus the image is at infinity and m = D/f = 25/2.5 = 10. 11 is the near-point value 1 + D/f."
+
+  - id: phy-ray-086
+    topic: microscopes
+    subtopic: Compound microscope magnification
+    concept: Magnifying power of a compound microscope in normal adjustment is (L/f_o)(D/f_e)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: m = (L/f_o)(D/f_e)
+    tags: [compound-microscope]
+    stem: A compound microscope has an objective of focal length 1 cm, an eyepiece of focal length 5 cm and tube length 15 cm. Its magnifying power in normal adjustment (D = 25 cm) is about
+    options:
+      - "375"
+      - "15"
+      - "20"
+      - "75"
+    answer: 3
+    explanation: "m = (L/f_o)(D/f_e) = (15/1)(25/5) = 15 × 5 = 75. Using f_o in the eyepiece factor or multiplying all numbers gives the larger distractor."
+
+  - id: phy-ray-087
+    topic: microscopes
+    subtopic: Choice of lenses
+    concept: Objective of a microscope has small focal length and small aperture
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [compound-microscope, objective]
+    stem: The objective lens of a compound microscope should have
+    options:
+      - large focal length and large aperture
+      - short focal length and small aperture
+      - large focal length and small aperture
+      - short focal length and large aperture
+    answer: 1
+    explanation: "A short focal length objective (placed just beyond its focus) gives a large real magnification L/f_o; the object is tiny and close, so a small aperture suffices. Large aperture is the telescope objective's requirement."
+
+  - id: phy-ray-088
+    topic: microscopes
+    subtopic: Nature of final image
+    concept: Final image of a compound microscope is virtual, inverted and magnified
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [compound-microscope, nature-of-image]
+    stem: The final image seen in a compound microscope, compared with the object, is
+    options:
+      - real, erect and magnified
+      - virtual, erect and magnified
+      - virtual, inverted and magnified
+      - real, inverted and diminished
+    answer: 2
+    explanation: "The objective forms a real, inverted, magnified image; the eyepiece acts as a magnifier on it and gives a virtual image without further inversion. So the final image is virtual and inverted relative to the object."
+
+  - id: phy-ray-089
+    topic: microscopes
+    subtopic: Improving magnification
+    concept: Magnifying power of a compound microscope increases as f_o and f_e decrease
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [compound-microscope]
+    stem: |-
+      Statement I: The magnifying power of a compound microscope increases if the focal length of its eyepiece is decreased.
+      Statement II: The magnifying power of a compound microscope increases if the focal length of its objective is increased.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "m = (L/f_o)(D/f_e) is inversely proportional to both focal lengths, so decreasing f_e raises m (I correct) and increasing f_o lowers it (II wrong)."
+
+  - id: phy-ray-090
+    topic: microscopes
+    subtopic: Objective magnification
+    concept: Total magnification is the product of objective and eyepiece magnifications
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: m = m_o × m_e
+    tags: [compound-microscope, magnification]
+    stem: A compound microscope has magnifying power 200 in normal adjustment. Its eyepiece has focal length 5 cm (D = 25 cm). The magnification produced by the objective is
+    options:
+      - "40"
+      - "195"
+      - "33"
+      - "1000"
+    answer: 0
+    explanation: "In normal adjustment m_e = D/f_e = 25/5 = 5, and m = m_o × m_e, so m_o = 200/5 = 40. Subtracting instead of dividing gives 195."
+
+  - id: phy-ray-091
+    topic: microscopes
+    subtopic: Angular magnification
+    concept: Magnifying power is the ratio of angles subtended by image and by object at the near point
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [angular-magnification, ncert-line]
+    stem: The magnifying power of an optical instrument like a simple microscope is defined as the ratio of
+    options:
+      - image size to object size
+      - image distance to object distance
+      - focal length of the lens to the near point distance
+      - angle subtended at the eye by the image to the angle subtended by the object placed at the near point
+    answer: 3
+    explanation: "What matters to the eye is the angle subtended. Angular magnification compares the image angle with the largest angle the unaided object can subtend, i.e. when held at the near point D."
+
+  - id: phy-ray-092
+    topic: microscopes
+    subtopic: Choosing a magnifier
+    concept: Finding focal length from required magnification at the near point
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: m = 1 + D/f
+    tags: [simple-microscope, near-point]
+    stem: A simple magnifier is to give a magnification of 11 with the image at the near point (D = 25 cm). The focal length required is
+    options:
+      - 2.27 cm
+      - 2.5 cm
+      - 5 cm
+      - 3 cm
+    answer: 1
+    explanation: "1 + D/f = 11 gives D/f = 10, so f = 25/10 = 2.5 cm. Using m = D/f alone gives 2.27 cm, which applies to the relaxed-eye case."
+
+  - id: phy-ray-093
+    topic: telescopes
+    subtopic: Length of telescope
+    concept: Tube length of an astronomical telescope in normal adjustment is f_o + f_e
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: L = f_o + f_e
+    tags: [refracting-telescope, normal-adjustment]
+    stem: An astronomical telescope has objective and eyepiece focal lengths 100 cm and 5 cm. In normal adjustment the distance between the lenses is
+    options:
+      - 95 cm
+      - 20 cm
+      - 105 cm
+      - 500 cm
+    answer: 2
+    explanation: "In normal adjustment the image by the objective lies at its focus, which is also the focus of the eyepiece, so L = f_o + f_e = 105 cm."
+
+  - id: phy-ray-094
+    topic: telescopes
+    subtopic: Magnifying power in normal adjustment
+    concept: Magnifying power of a telescope in normal adjustment is f_o/f_e
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: m = f_o/f_e
+    tags: [refracting-telescope]
+    stem: A telescope has an objective of focal length 150 cm and an eyepiece of focal length 5 cm. Its magnifying power in normal adjustment is
+    options:
+      - "30"
+      - "155"
+      - "1/30"
+      - "750"
+    answer: 0
+    explanation: "m = f_o/f_e = 150/5 = 30. The reciprocal 1/30 would result from using the lenses the wrong way round."
+
+  - id: phy-ray-095
+    topic: telescopes
+    subtopic: Image at near point
+    concept: Telescope magnification with final image at near point is (f_o/f_e)(1 + f_e/D)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: m = (f_o/f_e)(1 + f_e/D)
+    tags: [refracting-telescope, near-point]
+    stem: A telescope with f_o = 100 cm and f_e = 5 cm is adjusted so that the final image is formed at the near point (D = 25 cm). Its magnifying power is
+    options:
+      - "20"
+      - "21"
+      - "25"
+      - "24"
+    answer: 3
+    explanation: "m = (f_o/f_e)(1 + f_e/D) = 20 × (1 + 5/25) = 20 × 1.2 = 24. Normal adjustment would give only 20."
+
+  - id: phy-ray-096
+    topic: telescopes
+    subtopic: Objective aperture
+    concept: A large-aperture objective gathers more light and gives better resolution
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [objective, resolving-power]
+    stem: The objective of an astronomical telescope is given a large diameter mainly to
+    options:
+      - increase the magnifying power
+      - gather more light and improve resolving power
+      - reduce the length of the telescope
+      - form an erect image
+    answer: 1
+    explanation: "Magnifying power depends on f_o/f_e, not on the aperture. A wider objective collects more light (fainter stars become visible) and resolves finer detail."
+
+  - id: phy-ray-097
+    topic: telescopes
+    subtopic: Reflecting telescopes
+    concept: Advantages of reflecting over refracting telescopes
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [reflecting-telescope]
+    stem: Which of the following is NOT an advantage of a reflecting telescope over a refracting telescope?
+    options:
+      - A mirror has no chromatic aberration.
+      - A paraboloidal mirror removes spherical aberration.
+      - A mirror can be supported over its whole back, so it can be made much larger.
+      - A mirror objective gives a larger magnifying power for the same focal lengths.
+    answer: 3
+    explanation: "Magnifying power is still f_o/f_e, so a mirror gives no extra magnification for the same focal lengths. The other three (no chromatic aberration, no spherical aberration with a paraboloid, easier mechanical support of large mirrors) are the NCERT advantages."
+
+  - id: phy-ray-098
+    topic: telescopes
+    subtopic: Cassegrain telescope
+    concept: A Cassegrain telescope uses a convex secondary mirror
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [cassegrain, reflecting-telescope, ncert-line]
+    stem: In a Cassegrain reflecting telescope, the secondary mirror that sends light back through a hole in the primary is
+    options:
+      - convex
+      - concave
+      - plane
+      - parabolic concave
+    answer: 0
+    explanation: "The concave primary converges the light, and a small convex secondary reflects it back through a hole in the primary to the eyepiece, making the instrument compact."
+
+  - id: phy-ray-099
+    topic: telescopes
+    subtopic: Size of image by objective
+    concept: Diameter of image of the Moon formed by the objective is f_o × α
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: d = f_o × (D_moon/r)
+    tags: [refracting-telescope, angular-size]
+    stem: The objective of a telescope has focal length 15 m. The Moon has diameter 3.48 × 10^6 m and is 3.8 × 10^8 m away. The diameter of the Moon's image formed by the objective is about
+    options:
+      - 1.4 cm
+      - 13.7 cm
+      - 1.37 m
+      - 0.9 cm
+    answer: 1
+    explanation: "The Moon subtends α = 3.48 × 10^6/3.8 × 10^8 ≈ 9.16 × 10^{-3} rad. Its image lies in the focal plane with diameter f_o α = 15 × 9.16 × 10^{-3} ≈ 0.137 m = 13.7 cm."
+
+  - id: phy-ray-100
+    topic: telescopes
+    subtopic: Reversed telescope
+    concept: Viewing through the objective end gives magnification f_e/f_o, less than 1
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [trap, refracting-telescope]
+    stem: A telescope with f_o = 50 cm and f_e = 5 cm is used the wrong way round (looking through the objective). The magnifying power becomes
+    options:
+      - "10"
+      - "−10"
+      - "0.1"
+      - "55"
+    answer: 2
+    explanation: "The roles swap, so m = f_e/f_o = 5/50 = 0.1: distant objects look smaller, like viewing through the wrong end of binoculars."
+

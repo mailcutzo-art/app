@@ -7538,3 +7538,1116 @@ questions:
     answer: 2
     explanation: "l = kT/(√2πd^2P) ∝ T at constant P, giving a straight line through the origin. At constant volume instead, l would be a horizontal line."
 
+  - id: phy-kt-351
+    topic: molecular-nature
+    subtopic: Atoms vs molecules
+    concept: Counting atoms in monatomic and diatomic gases
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [avogadro, trap]
+    stem: What is the ratio of the number of atoms in 4 g of helium to that in 4 g of hydrogen gas (H_2)?
+    options:
+      - "1 : 4"
+      - "1 : 2"
+      - "1 : 1"
+      - "2 : 1"
+    answer: 0
+    explanation: "4 g He = 1 mol of atoms. 4 g H_2 = 2 mol of molecules = 4 mol of atoms. Ratio 1 : 4. Comparing molecules instead of atoms gives 1 : 2."
+
+  - id: phy-kt-352
+    topic: molecular-nature
+    subtopic: Mole concept
+    concept: Molar volume 22.4 L applies only to gases
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [molar-volume, trap]
+    stem: |-
+      Statement I: One mole of any substance contains 6.02 × 10^{23} elementary entities.
+      Statement II: At STP, 22.4 L of water contains 6.02 × 10^{23} molecules.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Avogadro's number applies to every substance (Statement I). The molar volume 22.4 L at STP holds only for (ideal) gases; water at STP is a liquid or solid, and 22.4 L of it is over 1000 mol."
+
+  - id: phy-kt-353
+    topic: molecular-nature
+    subtopic: Molecules in a breath
+    concept: N = PV/kT for a small volume of air
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: N = PV/kT
+    tags: [number-of-molecules, order-of-magnitude]
+    stem: A person inhales 0.5 L of air at 1.013 × 10^5 Pa and 37 °C. About how many molecules are inhaled? (k = 1.38 × 10^{-23} J K^{-1})
+    options:
+      - 1.3 × 10^{22}
+      - 1.2 × 10^{25}
+      - 6.0 × 10^{23}
+      - 1.2 × 10^{22}
+    answer: 3
+    explanation: "N = PV/kT = (1.013 × 10^5 × 5 × 10^{-4})/(1.38 × 10^{-23} × 310) ≈ 1.2 × 10^{22}. Using 273 K gives 1.3 × 10^{22}; forgetting to convert litres gives the 10^{25} value."
+
+  - id: phy-kt-354
+    topic: gas-laws
+    subtopic: Gas under a free piston
+    concept: A freely moving loaded piston keeps pressure constant, so V ∝ T
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: V_1/T_1 = V_2/T_2
+    tags: [charles-law, trap]
+    stem: A vertical cylinder has a frictionless piston of mass 10 kg and area 100 cm^2; atmospheric pressure is 1.0 × 10^5 Pa. The trapped gas column is 20 cm high at 300 K. The gas is slowly heated to 360 K. What is the new height of the gas column?
+    options:
+      - 20 cm
+      - 26.4 cm
+      - 24 cm
+      - 16.7 cm
+    answer: 2
+    explanation: "The piston is free, so the gas pressure stays P_0 + mg/A = 1.1 × 10^5 Pa throughout. At constant pressure V ∝ T: h = 20 × 360/300 = 24 cm. The piston mass fixes the pressure but does not change the ratio."
+
+  - id: phy-kt-355
+    topic: gas-laws
+    subtopic: Adding load on a piston
+    concept: Isothermal compression by extra weight, P includes atmospheric pressure
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: P_1V_1 = P_2V_2
+    tags: [boyles-law, multi-concept]
+    stem: A frictionless piston of mass 10 kg and area 100 cm^2 traps a gas column 20 cm high in a vertical cylinder (atmospheric pressure 1.0 × 10^5 Pa, g = 10 m s^{-2}). Another 10 kg is placed on the piston and the temperature is held constant. What is the new height of the gas column?
+    options:
+      - 10 cm
+      - 16.7 cm
+      - 21.8 cm
+      - 18.3 cm
+    answer: 3
+    explanation: "P_1 = 1.0 × 10^5 + (100 N/0.01 m^2) = 1.1 × 10^5 Pa; P_2 = 1.2 × 10^5 Pa. h_2 = 20 × 1.1/1.2 ≈ 18.3 cm. Halving the height (10 cm) wrongly ignores atmospheric pressure."
+
+  - id: phy-kt-356
+    topic: gas-laws
+    subtopic: Straight-line graphs of gas laws
+    concept: P–T, V–T and PV–T lines pass through origin; P–V does not
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [graph, gas-laws]
+    stem: |-
+      For a fixed mass of ideal gas, which of these graphs are straight lines passing through the origin?
+      I. P against T at constant volume
+      II. V against T at constant pressure
+      III. P against V at constant temperature
+      IV. PV against T
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "P ∝ T at fixed V, V ∝ T at fixed P, and PV = nRT ∝ T all give lines through the origin. P against V at constant T is a rectangular hyperbola."
+
+  - id: phy-kt-357
+    topic: gas-laws
+    subtopic: Equal volumes of two gases
+    concept: Equal volumes at same T, P have equal molecules; masses in ratio of M
+    category: application
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [avogadro, gas-density]
+    stem: Equal volumes of hydrogen and oxygen are at the same temperature and pressure. Which statement is correct?
+    options:
+      - They have equal masses.
+      - They contain different numbers of molecules.
+      - "Their masses are in the ratio 1 : 16."
+      - They contain different numbers of atoms.
+    answer: 2
+    explanation: "By Avogadro's law they have equal numbers of molecules, and since both are diatomic, equal numbers of atoms. Masses are in the ratio of molar masses, 2 : 32 = 1 : 16."
+
+  - id: phy-kt-358
+    topic: gas-laws
+    subtopic: Volumes of two gases
+    concept: At same T and P, V ∝ number of moles
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [avogadro]
+    stem: At the same temperature and pressure, what is the ratio of the volume of 4 g of hydrogen to that of 32 g of oxygen?
+    options:
+      - "1 : 8"
+      - "1 : 1"
+      - "8 : 1"
+      - "2 : 1"
+    answer: 3
+    explanation: "4 g H_2 = 2 mol, 32 g O_2 = 1 mol. At equal T and P, V ∝ n, so the ratio is 2 : 1."
+
+  - id: phy-kt-359
+    topic: gas-laws
+    subtopic: Pressure and Celsius temperature
+    concept: At constant V, P is linear in t (°C) but proportional only to T (K)
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [pressure-law, trap]
+    stem: |-
+      Assertion (A): At constant volume, the pressure of a fixed mass of ideal gas varies linearly with its Celsius temperature.
+      Reason (R): At constant volume, the pressure of an ideal gas is proportional to its absolute temperature.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "P ∝ T = t + 273.15, so P = P_0(1 + t/273.15): linear in t (with a non-zero intercept), though not proportional to t. R leads directly to A."
+
+  - id: phy-kt-360
+    topic: pressure-kinetic
+    subtopic: Mean square speed
+    concept: Pressure depends on ⟨v^2⟩, not on average speed
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    formula: P = (1/3)nm⟨v^2⟩
+    tags: [pressure-formula, trap]
+    stem: In gas A (same molecules, same number density as gas B), half the molecules move at speed v and half at 3v. In gas B, every molecule moves at 2v. What is P_A/P_B?
+    options:
+      - 5/4
+      - "1"
+      - 4/5
+      - √5/2
+    answer: 0
+    explanation: "⟨v^2⟩_A = (v^2 + 9v^2)/2 = 5v^2 and ⟨v^2⟩_B = 4v^2. Since P ∝ ⟨v^2⟩, P_A/P_B = 5/4. Both gases have the same average speed 2v, which is why 1 is tempting."
+
+  - id: phy-kt-361
+    topic: pressure-kinetic
+    subtopic: Effect of changes on pressure
+    concept: P = nkT under combined changes
+    category: application
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    formula: P = NkT/V
+    tags: [proportionality]
+    stem: |-
+      For an ideal gas, match each change in List I with its effect on pressure in List II.
+      List I:
+      P. Volume halved and absolute temperature doubled
+      Q. Volume doubled and absolute temperature doubled
+      R. Number of molecules doubled at constant V and T
+      S. Absolute temperature halved at constant volume
+      List II:
+      1. Unchanged
+      2. Doubles
+      3. Halves
+      4. Becomes four times
+    options:
+      - P-4, Q-1, R-3, S-2
+      - P-2, Q-1, R-4, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-4, Q-1, R-2, S-3
+    answer: 3
+    explanation: "P = NkT/V. P: 2/(1/2) = 4 (P-4). Q: 2/2 = 1 (Q-1). R: N doubled → 2 (R-2). S: T halved → 1/2 (S-3)."
+
+  - id: phy-kt-362
+    topic: pressure-kinetic
+    subtopic: Number density and temperature
+    concept: Doubling n and T quadruples P
+    category: application
+    format: statements
+    difficulty: 4
+    time: 50
+    ncert: true
+    battle: false
+    formula: P = nkT
+    tags: [number-density, pressure-formula]
+    stem: Which statement correctly describes how the pressure of an ideal gas depends on molecular quantities?
+    options:
+      - It depends only on the number density of molecules.
+      - Doubling both the number density and the absolute temperature makes it four times.
+      - At a fixed temperature and number density, it is proportional to the molecular mass.
+      - It depends on the average speed rather than on the mean square speed.
+    answer: 1
+    explanation: "P = nkT, so doubling n and T gives 4P. Pressure depends on temperature too; at fixed T and n it does not depend on mass (m⟨v^2⟩ = 3kT); and it involves ⟨v^2⟩."
+
+  - id: phy-kt-363
+    topic: pressure-kinetic
+    subtopic: Gravity and gas pressure
+    concept: Gravity has negligible effect on pressure in small containers
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [pressure-origin]
+    stem: Why is the gas pressure at the top and bottom of a small closed container practically the same, despite gravity?
+    options:
+      - Gas molecules have no weight.
+      - Gravity acts only on liquids and solids.
+      - Molecular speeds are so high that the gravitational change in their KE over a small height is negligible.
+      - The container walls cancel the effect of gravity.
+    answer: 2
+    explanation: "Molecules move at hundreds of m s^{-1}; the change mgh over a few cm is tiny compared with their KE, so the number density hardly varies with height. Over kilometres (the atmosphere) the effect becomes noticeable."
+
+  - id: phy-kt-364
+    topic: pressure-kinetic
+    subtopic: Momentum transfer at a wall
+    concept: Each elastic hit transfers 2mv_x; force = rate of momentum transfer
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [derivation, momentum]
+    stem: |-
+      Statement I: When a molecule with x-velocity v_x collides elastically with a wall normal to x, it transfers momentum 2mv_x to the wall.
+      Statement II: The force on the wall equals the momentum transferred to it per unit time by the molecules.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "v_x reverses, so the molecule's momentum changes by −2mv_x and the wall receives 2mv_x. By Newton's second law, the force is the rate of momentum transfer; dividing by area gives pressure."
+
+  - id: phy-kt-365
+    topic: pressure-kinetic
+    subtopic: Mixing gases from two vessels
+    concept: Each gas's partial pressure falls as it spreads into the larger volume
+    category: application
+    format: case
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    formula: p_iV_{total} = p_{i0}V_i
+    tags: [dalton-law, mixture]
+    stem: Two vessels of equal volume, at the same temperature, contain nitrogen at pressure P and oxygen at pressure 2P. They are connected and the gases mix at the same temperature. What is the partial pressure of nitrogen in the mixture?
+    options:
+      - P
+      - P/2
+      - 3P/2
+      - P/3
+    answer: 1
+    explanation: "Nitrogen spreads into twice its volume, so its pressure halves to P/2 (and oxygen's to P). The total pressure is 3P/2, but the question asks only for nitrogen's share."
+
+  - id: phy-kt-366
+    topic: pressure-kinetic
+    subtopic: Wall collisions at constant pressure
+    concept: At constant P, collision rate per area ∝ P/√T falls as T rises
+    category: application
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [pressure-origin, multi-concept]
+    stem: |-
+      Assertion (A): When a gas is heated at constant pressure, the number of molecules striking unit area of the wall per second decreases.
+      Reason (R): At constant pressure, the number density falls in proportion to 1/T, while the average speed rises only as √T.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Collision rate per area ∝ nv̄ ∝ (1/T)(√T) = 1/√T, which falls. Each hit carries more momentum (∝ √T), so the pressure stays constant. R explains A."
+
+  - id: phy-kt-367
+    topic: kinetic-temperature
+    subtopic: Energy added on heating
+    concept: Translational KE of gas in fixed volume doubles when T doubles
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    formula: E = (3/2)PV = (3/2)nRT
+    tags: [average-kinetic-energy, multi-concept]
+    stem: One cubic metre of an ideal gas at 1.013 × 10^5 Pa and 300 K is heated at constant volume to 600 K. By how much does the total translational kinetic energy of its molecules increase?
+    options:
+      - 3.04 × 10^5 J
+      - 1.01 × 10^5 J
+      - 1.52 × 10^5 J
+      - 2.53 × 10^5 J
+    answer: 2
+    explanation: "Initially E = (3/2)PV = 1.52 × 10^5 J. E ∝ T, so it doubles to 3.04 × 10^5 J, an increase of 1.52 × 10^5 J. 3.04 × 10^5 J is the final value, not the increase."
+
+  - id: phy-kt-368
+    topic: kinetic-temperature
+    subtopic: Two gases at different temperatures
+    concept: Only average KE per molecule is fixed by T alone
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [average-kinetic-energy, trap]
+    stem: Gas A is at 300 K and gas B at 600 K (nothing else is known). Which statement must be true?
+    options:
+      - The rms speed of B is twice that of A.
+      - The pressure of B is twice that of A.
+      - B contains more molecules than A.
+      - The average translational KE per molecule of B is twice that of A.
+    answer: 3
+    explanation: "Average KE per molecule depends only on T, so it doubles. The rms speed also depends on molar mass, and pressure and number of molecules depend on amount and volume, none of which are given."
+
+  - id: phy-kt-369
+    topic: kinetic-temperature
+    subtopic: KE against 1/T
+    concept: E_{avg} ∝ T so E vs 1/T is a rectangular hyperbola
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [graph, average-kinetic-energy]
+    stem: The average translational kinetic energy of ideal gas molecules is plotted against 1/T, where T is the absolute temperature. The graph is
+    options:
+      - a straight line through the origin
+      - a rectangular hyperbola
+      - a straight line parallel to the 1/T axis
+      - a straight line with negative slope
+    answer: 1
+    explanation: "E = (3/2)kT = (3/2)k/(1/T), so E × (1/T) is constant: a rectangular hyperbola."
+
+  - id: phy-kt-370
+    topic: kinetic-temperature
+    subtopic: Average KE at various temperatures
+    concept: E_{avg} = (3/2)kT at several temperatures
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: E = (3/2)kT
+    tags: [average-kinetic-energy]
+    stem: |-
+      Match each temperature in List I with the average translational KE per molecule in List II.
+      List I:
+      P. 300 K
+      Q. 600 K
+      R. 150 K
+      S. 3000 K
+      List II:
+      1. 6.2 × 10^{-20} J
+      2. 3.1 × 10^{-21} J
+      3. 1.24 × 10^{-20} J
+      4. 6.2 × 10^{-21} J
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-1, Q-3, R-2, S-4
+      - P-4, Q-3, R-2, S-1
+    answer: 3
+    explanation: "At 300 K, (3/2)kT = 6.2 × 10^{-21} J (P-4). E ∝ T: 600 K doubles it to 1.24 × 10^{-20} J (Q-3), 150 K halves it to 3.1 × 10^{-21} J (R-2), and 3000 K gives 6.2 × 10^{-20} J (S-1)."
+
+  - id: phy-kt-371
+    topic: kinetic-temperature
+    subtopic: Comparing total translational KE
+    concept: Total translational KE ∝ nT
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    formula: E = (3/2)nRT
+    tags: [average-kinetic-energy]
+    stem: What is the ratio of the total translational KE of 2 mol of helium at 300 K to that of 1 mol of oxygen at 600 K?
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "1 : 1"
+      - "1 : 4"
+    answer: 2
+    explanation: "Translational KE = (3/2)nRT for any gas: (2 × 300) : (1 × 600) = 1 : 1. The rotational energy of oxygen is not included in translational KE."
+
+  - id: phy-kt-372
+    topic: kinetic-temperature
+    subtopic: Path independence
+    concept: Change in average KE depends only on the temperature change
+    category: concept
+    format: case
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [average-kinetic-energy]
+    stem: Two identical samples of an ideal gas are heated from 300 K to 400 K, one at constant volume and the other at constant pressure. How do the increases in the average translational KE per molecule compare?
+    options:
+      - Larger at constant pressure, because more heat is supplied
+      - Larger at constant volume, because no work is done
+      - Zero at constant pressure, because the gas expands
+      - Equal in both cases, because the average KE depends only on temperature
+    answer: 3
+    explanation: "Average KE per molecule = (3/2)kT depends only on T, so the same ΔT gives the same increase. The extra heat at constant pressure goes into expansion work, not into molecular KE."
+
+  - id: phy-kt-373
+    topic: molecular-speeds
+    subtopic: RMS speed of a mixture
+    concept: v_{rms} of a mixture uses the mean of all v^2 values
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: v_{rms} = √(Σn_iv_i^2/Σn_i)
+    tags: [rms-speed, mixture]
+    stem: A mixture contains 1 mol of H_2 and 1 mol of O_2 at the same temperature. If v_O is the rms speed of the oxygen molecules, what is the rms speed of all the molecules in the mixture taken together?
+    options:
+      - 2.5v_O
+      - 4v_O
+      - 1.58v_O
+      - 2.92v_O
+    answer: 3
+    explanation: "v_H = 4v_O. With equal numbers, ⟨v^2⟩ = (16v_O^2 + v_O^2)/2 = 8.5v_O^2, so v_{rms} = √8.5 v_O ≈ 2.92v_O. Averaging the speeds gives 2.5v_O, which is not an rms value."
+
+  - id: phy-kt-374
+    topic: molecular-speeds
+    subtopic: High-speed tail
+    concept: Lighter gases have more molecules above a given high speed
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [speed-distribution, escape-speed]
+    stem: Hydrogen and oxygen are at the same temperature. Which statement about their speed distributions is correct?
+    options:
+      - Both gases have the same most probable speed.
+      - A larger fraction of H_2 molecules than O_2 molecules have speeds above a given high value such as 3 km s^{-1}.
+      - O_2 molecules have a broader spread of speeds than H_2 molecules.
+      - The fraction of molecules above any speed is the same for both gases.
+    answer: 1
+    explanation: "All characteristic speeds of H_2 are 4 times those of O_2, and its distribution is broader, so far more H_2 molecules lie in the high-speed tail. This is why light gases escape planetary atmospheres."
+
+  - id: phy-kt-375
+    topic: molecular-speeds
+    subtopic: Linear graphs of rms speed
+    concept: v_{rms} ∝ √T
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [graph, rms-speed]
+    stem: For an ideal gas, which graph is a straight line through the origin?
+    options:
+      - v_{rms} against T
+      - v_{rms} against √T
+      - v_{rms} against 1/T
+      - v_{rms}^2 against √T
+    answer: 1
+    explanation: "v_{rms} = √(3R/M) × √T, so v_{rms} is proportional to √T. Against T itself the graph curves (slope decreasing)."
+
+  - id: phy-kt-376
+    topic: molecular-speeds
+    subtopic: Ozone and oxygen
+    concept: v_{O_3}/v_{O_2} = √(32/48)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    formula: v ∝ 1/√M
+    tags: [rms-speed]
+    stem: What is the ratio of the rms speed of ozone (O_3) molecules to that of oxygen (O_2) molecules at the same temperature?
+    options:
+      - 2/3
+      - √(3/2)
+      - √(2/3)
+      - 3/2
+    answer: 2
+    explanation: "v ∝ 1/√M: v_{O_3}/v_{O_2} = √(32/48) = √(2/3) ≈ 0.82. The heavier ozone moves more slowly; 2/3 forgets the square root."
+
+  - id: phy-kt-377
+    topic: molecular-speeds
+    subtopic: RMS speed, pressure and density
+    concept: v_{rms} depends on T/M; at fixed P it depends on density
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    formula: v_{rms} = √(3P/ρ) = √(3RT/M)
+    tags: [rms-speed, trap]
+    stem: |-
+      Statement I: At a given temperature, the rms speed of a gas does not depend on its pressure.
+      Statement II: At a given pressure, the rms speed of a gas does not depend on its density.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "v_{rms} = √(3RT/M) is fixed by T for a given gas, so Statement I is correct. v_{rms} = √(3P/ρ) shows that at fixed P a denser gas has a smaller v_{rms}, so Statement II is incorrect."
+
+  - id: phy-kt-378
+    topic: molecular-speeds
+    subtopic: Diffusion of heavy gases
+    concept: Heavier gases diffuse more slowly because v_{rms} ∝ 1/√M
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [rms-speed, isotopes]
+    stem: |-
+      Assertion (A): At the same temperature, UF_6 vapour diffuses much more slowly than hydrogen.
+      Reason (R): At the same temperature, the rms speed of gas molecules is inversely proportional to the square root of their molar mass.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "UF_6 (M ≈ 350 g mol^{-1}) molecules move about 13 times more slowly than H_2 molecules, so they spread more slowly. The small speed difference between ^{235}UF_6 and ^{238}UF_6 is used in isotope separation."
+
+  - id: phy-kt-379
+    topic: equipartition
+    subtopic: Internal energy from γ
+    concept: U = nRT/(γ − 1)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    formula: U = nRT/(γ − 1)
+    tags: [internal-energy, gamma]
+    stem: What is the internal energy of 1 mol of an ideal gas with γ = 1.4 at 300 K? (R = 8.31 J mol^{-1} K^{-1})
+    options:
+      - 3.74 kJ
+      - 6.23 kJ
+      - 8.72 kJ
+      - 2.49 kJ
+    answer: 1
+    explanation: "C_v = R/(γ − 1) = 2.5R, so U = C_vT = 8.31 × 300/0.4 ≈ 6.23 kJ. 8.72 kJ uses C_p, and 3.74 kJ counts only translational energy."
+
+  - id: phy-kt-380
+    topic: equipartition
+    subtopic: Equipartition in solids
+    concept: Each atom in a solid has 3 modes of kT, giving 3R
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [solids, dulong-petit]
+    stem: |-
+      Applying equipartition to a solid whose atoms vibrate about fixed positions:
+      I. Each atom has 3 independent vibrational modes.
+      II. Each mode has an average energy kT.
+      III. The internal energy per mole is 3RT.
+      IV. The molar specific heat is (3/2)R.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "An atom oscillates in 3 directions; each mode has kinetic and potential terms, so kT. U = 3N_AkT = 3RT and C = 3R, not (3/2)R."
+
+  - id: phy-kt-381
+    topic: equipartition
+    subtopic: Degrees of freedom in different conditions
+    concept: Matching molecules and conditions with f
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [degrees-of-freedom, vibration]
+    stem: |-
+      Match each gas in List I with the number of quadratic energy terms (effective degrees of freedom) per molecule in List II.
+      List I:
+      P. H_2 at room temperature
+      Q. H_2 at very high temperature (vibration active)
+      R. He
+      S. H_2O vapour (rigid, non-linear)
+      List II:
+      1. 7
+      2. 6
+      3. 5
+      4. 3
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-2, R-4, S-1
+      - P-4, Q-1, R-3, S-2
+    answer: 0
+    explanation: "Rigid H_2: 3 + 2 = 5 (P-3). Vibrating H_2 adds 2 terms: 7 (Q-1). He: 3 (R-4). Rigid non-linear H_2O: 3 + 3 = 6 (S-2)."
+
+  - id: phy-kt-382
+    topic: equipartition
+    subtopic: Meaning of degrees of freedom
+    concept: Degrees of freedom of a rigid molecule are fewer than 3N
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [degrees-of-freedom, trap]
+    stem: |-
+      Statement I: A degree of freedom is an independent way in which a molecule can move and store energy.
+      Statement II: The number of degrees of freedom used for energy in kinetic theory is always three times the number of atoms in the molecule.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Statement I is the NCERT idea. Statement II is wrong: a rigid diatomic molecule (2 atoms) has 5, not 6, energy degrees of freedom, and vibrational modes count twice (kinetic + potential) when active."
+
+  - id: phy-kt-383
+    topic: equipartition
+    subtopic: Degrees of freedom from C_p
+    concept: C_p = (f/2 + 1)R gives f
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    formula: C_p = (f/2 + 1)R
+    tags: [degrees-of-freedom]
+    stem: An ideal gas has molar specific heat at constant pressure C_p = 4R. How many degrees of freedom do its molecules have?
+    options:
+      - "6"
+      - "8"
+      - "4"
+      - "5"
+    answer: 0
+    explanation: "C_v = C_p − R = 3R = (f/2)R, so f = 6, as for a rigid non-linear molecule. Taking C_p = (f/2)R wrongly gives 8."
+
+  - id: phy-kt-384
+    topic: equipartition
+    subtopic: Stopping a moving gas
+    concept: ΔT = Mv^2/(fR) for gas brought to rest
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: ½Mv^2 = (f/2)RΔT
+    tags: [energy-conservation, degrees-of-freedom]
+    stem: An insulated vessel containing oxygen (rigid diatomic, M = 32 g mol^{-1}) moves at 100 m s^{-1} and is suddenly stopped. If all the bulk kinetic energy becomes internal energy of the gas, what is the rise in temperature? (R = 8.31 J mol^{-1} K^{-1})
+    options:
+      - 12.8 K
+      - 7.7 K
+      - 5.5 K
+      - 38.5 K
+    answer: 1
+    explanation: "Per mole ½Mv^2 = (5/2)RΔT, so ΔT = Mv^2/(5R) = 0.032 × 10^4/(5 × 8.31) ≈ 7.7 K. Treating O_2 as monatomic (3R) gives 12.8 K."
+
+  - id: phy-kt-385
+    topic: equipartition
+    subtopic: Linear vs non-linear triatomic
+    concept: CH_4 has more energy than CO_2 per mole due to extra rotation
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [polyatomic, degrees-of-freedom]
+    stem: |-
+      Assertion (A): At the same temperature, 1 mol of rigid CH_4 has more internal energy than 1 mol of rigid CO_2.
+      Reason (R): CH_4 is non-linear with 3 rotational degrees of freedom, while linear CO_2 has only 2.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "U(CH_4) = 3RT and U(CO_2) = (5/2)RT, the difference coming from the extra rotational degree of freedom of the non-linear molecule. R explains A."
+
+  - id: phy-kt-386
+    topic: specific-heats
+    subtopic: C_p of a mixture
+    concept: C_p of equimolar O_2–Ar mixture = 3R
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: C_p = Σn_iC_{pi}/Σn_i
+    tags: [mixture, molar-specific-heat]
+    stem: One mole of oxygen (rigid diatomic) is mixed with one mole of argon. What is the molar specific heat of the mixture at constant pressure? (R = 8.31 J mol^{-1} K^{-1})
+    options:
+      - 16.6 J mol^{-1} K^{-1}
+      - 29.1 J mol^{-1} K^{-1}
+      - 24.9 J mol^{-1} K^{-1}
+      - 20.8 J mol^{-1} K^{-1}
+    answer: 2
+    explanation: "C_p = [(7/2)R + (5/2)R]/2 = 3R ≈ 24.9 J mol^{-1} K^{-1}. 16.6 J mol^{-1} K^{-1} (2R) is the mixture's C_v."
+
+  - id: phy-kt-387
+    topic: specific-heats
+    subtopic: Mayer's relation
+    concept: C_p − C_v = R is the same for all ideal gases
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [mayer-relation]
+    stem: Which of these molar quantities has the same value for all ideal gases, whatever their atomicity?
+    options:
+      - C_v
+      - C_p
+      - C_p − C_v
+      - C_p/C_v
+    answer: 2
+    explanation: "C_p − C_v = R for every ideal gas. C_v, C_p and γ all depend on the number of degrees of freedom."
+
+  - id: phy-kt-388
+    topic: specific-heats
+    subtopic: Solids and the limits of equipartition
+    concept: Most solids have C ≈ 3R, but carbon (diamond) is much lower
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [solids, dulong-petit, ncert-line]
+    stem: |-
+      Consider these statements about molar specific heats of solids at room temperature.
+      I. For most metals, such as copper and aluminium, C is close to 3R.
+      II. For carbon (diamond), the measured C is much lower than 3R.
+      III. For water (liquid), C is close to 9R.
+      IV. Classical equipartition correctly explains the low value for carbon.
+      Which statements are correct?
+    options:
+      - I and III only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "NCERT's table shows about 24–26 J mol^{-1} K^{-1} for most metals but only about 6.1 J mol^{-1} K^{-1} for carbon. Water gives about 75 J mol^{-1} K^{-1} ≈ 9R. The low value for carbon needs quantum theory, so IV is false."
+
+  - id: phy-kt-389
+    topic: specific-heats
+    subtopic: Work at constant pressure
+    concept: Work fraction at constant P = R/C_p = 2/7 for diatomic
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: W/Q = R/C_p
+    tags: [molar-specific-heat, multi-concept]
+    stem: 700 J of heat is supplied to a rigid diatomic ideal gas at constant pressure. How much work does the gas do in expanding?
+    options:
+      - 500 J
+      - 280 J
+      - 400 J
+      - 200 J
+    answer: 3
+    explanation: "Q = nC_pΔT with C_p = (7/2)R, and W = nRΔT. So W/Q = R/C_p = 2/7, giving W = 200 J; the other 500 J raises the internal energy. 280 J uses the monatomic ratio 2/5."
+
+  - id: phy-kt-390
+    topic: specific-heats
+    subtopic: Specific heat per gram
+    concept: c_v = C_v/M varies strongly with molar mass
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: c_v = C_v/M
+    tags: [specific-heat-per-mass]
+    stem: |-
+      Match each gas in List I with its specific heat at constant volume per gram (J g^{-1} K^{-1}) in List II. Treat diatomic gases as rigid; R = 8.31 J mol^{-1} K^{-1}.
+      List I:
+      P. He (M = 4)
+      Q. H_2 (M = 2)
+      R. O_2 (M = 32)
+      S. Ar (M = 40)
+      List II:
+      1. 0.31
+      2. 0.65
+      3. 10.4
+      4. 3.1
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+    answer: 2
+    explanation: "c_v = C_v/M: He 12.5/4 ≈ 3.1 (P-4); H_2 20.8/2 ≈ 10.4 (Q-3); O_2 20.8/32 ≈ 0.65 (R-2); Ar 12.5/40 ≈ 0.31 (S-1)."
+
+  - id: phy-kt-391
+    topic: specific-heats
+    subtopic: C_p against C_v
+    concept: C_p = C_v + R gives a line of slope 1 and intercept R
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [graph, mayer-relation]
+    stem: C_p is plotted against C_v for several different ideal gases. The points lie on
+    options:
+      - a line through the origin with slope γ
+      - a straight line of slope 1 with intercept R on the C_p axis
+      - a horizontal line C_p = R
+      - a rectangular hyperbola
+    answer: 1
+    explanation: "C_p = C_v + R for every ideal gas, so all points lie on a line of slope 1 and intercept R. Different gases have different γ, so no single line of slope γ fits them all."
+
+  - id: phy-kt-392
+    topic: specific-heats
+    subtopic: Interpreting γ
+    concept: γ = 5/3 rules out a diatomic gas at ordinary temperatures
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [gamma]
+    stem: Which statement about the ratio γ of an ideal gas is correct?
+    options:
+      - γ can exceed 5/3 for polyatomic gases.
+      - γ is defined as C_v/C_p.
+      - γ has the same value for all ideal gases.
+      - A gas with γ = 1.67 cannot be diatomic at ordinary temperatures.
+    answer: 3
+    explanation: "γ = 1 + 2/f; 5/3 corresponds to f = 3 (monatomic), the maximum value. Diatomic gases have γ ≤ 1.4. γ = C_p/C_v, and it varies with atomicity."
+
+  - id: phy-kt-393
+    topic: specific-heats
+    subtopic: γ of mixtures
+    concept: Heat capacities, not γ values, are averaged in a mixture
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [mixture, gamma]
+    stem: |-
+      Assertion (A): The γ of a gas mixture is generally not equal to the mole-weighted average of the γ values of its components.
+      Reason (R): In a mixture, the molar heat capacities C_v and C_p combine as mole-weighted averages, and γ_{mix} is their ratio.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Internal energies add, so C_v(mix) and C_p(mix) are weighted averages. The ratio of two averages is not the average of the ratios, so A follows from R."
+
+  - id: phy-kt-394
+    topic: mean-free-path
+    subtopic: Number density from mean free path
+    concept: n = 1/(√2πd^2l)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    formula: n = 1/(√2πd^2l)
+    tags: [mean-free-path, number-density]
+    stem: Molecules of diameter 3 × 10^{-10} m have a mean free path of 1.0 × 10^{-7} m. What is the number density of the gas?
+    options:
+      - 3.5 × 10^{25} m^{-3}
+      - 2.5 × 10^{25} m^{-3}
+      - 2.5 × 10^{22} m^{-3}
+      - 7.9 × 10^{24} m^{-3}
+    answer: 1
+    explanation: "n = 1/(√2πd^2l) = 1/(1.41 × 3.14 × 9 × 10^{-20} × 10^{-7}) ≈ 1/(4.0 × 10^{-26}) ≈ 2.5 × 10^{25} m^{-3}. Omitting √2 gives 3.5 × 10^{25} m^{-3}."
+
+  - id: phy-kt-395
+    topic: mean-free-path
+    subtopic: Definition
+    concept: Mean free path is the average distance between successive collisions
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 15
+    ncert: true
+    battle: true
+    tags: [mean-free-path, ncert-line]
+    stem: The mean free path of a gas molecule is
+    options:
+      - the average distance between neighbouring molecules
+      - the diameter of the molecule
+      - the average distance travelled between successive collisions
+      - the distance travelled in one second
+    answer: 2
+    explanation: "Mean free path is the average distance a molecule covers between two successive collisions. It is much larger than both the molecular diameter and the average spacing between molecules."
+
+  - id: phy-kt-396
+    topic: mean-free-path
+    subtopic: Heating at constant pressure
+    concept: At constant P, T × 4 gives l × 4, v̄ × 2, ν × 1/2, n × 1/4
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [mean-free-path, collision-frequency, multi-concept]
+    stem: |-
+      A gas is heated from T to 4T at constant pressure.
+      I. The mean free path becomes 4 times.
+      II. The average speed doubles.
+      III. The collision frequency of a molecule halves.
+      IV. The number density becomes one-fourth.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: "At constant P, n = P/kT falls to 1/4 (IV), so l ∝ 1/n rises 4 times (I). v̄ ∝ √T doubles (II). Collision frequency v̄/l = 2/4 = 1/2 (III). All four are correct."
+
+  - id: phy-kt-397
+    topic: mean-free-path
+    subtopic: Hydrogen vs oxygen
+    concept: Mean free path depends on size, not speed
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [mean-free-path, trap]
+    stem: |-
+      Statement I: At the same temperature and pressure, the mean free path in hydrogen is larger than in oxygen, because H_2 molecules are smaller.
+      Statement II: The mean free path in hydrogen is larger because H_2 molecules move faster.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Same P and T give the same n, so l ∝ 1/d^2 is larger for the smaller H_2 molecule (Statement I). Speed does not enter l = 1/(√2nπd^2); faster molecules only collide more often (Statement II is incorrect)."
+
+  - id: phy-kt-398
+    topic: mean-free-path
+    subtopic: Doubling the mean free path
+    concept: In a closed container, only reducing n increases l
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [mean-free-path, trap]
+    stem: Which change would double the mean free path of the molecules of a gas in a closed rigid container?
+    options:
+      - Doubling the absolute temperature
+      - Removing half the molecules
+      - Doubling the pressure by heating
+      - Doubling the average molecular speed
+    answer: 1
+    explanation: "In a rigid container l = 1/(√2nπd^2) changes only with n. Removing half the molecules halves n and doubles l. Heating raises speeds and pressure but leaves n and l unchanged."
+
+  - id: phy-kt-399
+    topic: mean-free-path
+    subtopic: Ratio for two gases
+    concept: l ∝ 1/(Pd^2) at the same temperature
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: l = kT/(√2πd^2P)
+    tags: [mean-free-path, proportionality]
+    stem: At the same temperature, gas 1 is at twice the pressure of gas 2, and its molecules have half the diameter. What is l_1/l_2?
+    options:
+      - "8"
+      - 1/2
+      - "4"
+      - "2"
+    answer: 3
+    explanation: "l ∝ 1/(Pd^2): l_1/l_2 = (P_2/P_1)(d_2/d_1)^2 = (1/2)(4) = 2."
+
+  - id: phy-kt-400
+    topic: mean-free-path
+    subtopic: Comparing states
+    concept: l ∝ T/P for a given gas
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [mean-free-path, ordering]
+    stem: |-
+      The same gas is in four states. Arrange them in increasing order of mean free path.
+      P. 1 atm, 300 K
+      Q. 1 atm, 600 K
+      R. 2 atm, 300 K
+      S. 2 atm, 1200 K
+    options:
+      - R < P < Q = S
+      - P < R < Q < S
+      - R < P < S < Q
+      - R = P < Q = S
+    answer: 0
+    explanation: "l ∝ T/P: P 300, Q 600, R 150, S 600 (arbitrary units). So R < P < Q = S."
+
