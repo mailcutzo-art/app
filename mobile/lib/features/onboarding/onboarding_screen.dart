@@ -1,13 +1,18 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../app/env.dart';
 import '../../core/auth/session.dart';
 import '../../core/auth/user.dart';
 import '../../core/network/app_failure.dart';
+import '../debug/debug_screen.dart' show sharedPrefsProvider;
 import 'onboarding_repository.dart';
 
 /// Four short steps: name and handle, avatar, goal, birth year.
@@ -21,7 +26,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   static const _steps = 4;
 
-  final _pages = PageController();
+  late final PageController _pages;
   late final TextEditingController _name;
   final _handle = TextEditingController();
   final _birthYear = TextEditingController();
@@ -35,19 +40,93 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   String? _nameError;
   String? _handleError;
   String? _yearError;
+  bool _underAge = false;
   Timer? _debounce;
+  late final String _userId;
+
+  /// Progress is kept on the phone, so an interrupted onboarding resumes.
+  String get _draftKey => 'onboarding.draft.$_userId';
+
+  SharedPreferences? get _prefs {
+    try {
+      return ref.read(sharedPrefsProvider);
+    } on Object {
+      return null;
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     final me = ref.read(meProvider);
-    _name = TextEditingController(text: me.displayName);
+    _userId = me.id;
+    // Only the first name is pre-filled: it's shown to other players.
+    _name = TextEditingController(text: me.displayName.trim().split(RegExp(r'\s+')).first);
     _goal = me.goal;
     _avatar = me.avatar;
+    final restored = _restoreDraft();
+    _pages = PageController(initialPage: _step);
+    if (restored && _handle.text.isNotEmpty) {
+      _onHandleChanged(_handle.text);
+      return;
+    }
     final suggestion = me.displayName.toLowerCase().replaceAll(RegExp('[^a-z0-9]'), '');
     if (suggestion.length >= 3) {
       _handle.text = suggestion.substring(0, suggestion.length.clamp(3, 16));
       _onHandleChanged(_handle.text);
+    }
+  }
+
+  bool _restoreDraft() {
+    try {
+      final raw = _prefs?.getString(_draftKey);
+      if (raw == null) return false;
+      if (jsonDecode(raw) case final Map<String, dynamic> draft) {
+        _step = (draft['step'] as num? ?? 0).toInt().clamp(0, _steps - 1);
+        if (draft['name'] case final String name when name.isNotEmpty) _name.text = name;
+        if (draft['handle'] case final String handle) _handle.text = handle;
+        if (draft['avatar'] != null) _avatar = Avatar.parse(draft['avatar']);
+        _goal = Goal.parse(draft['goal']) ?? _goal;
+        if (draft['birth_year'] case final String year) _birthYear.text = year;
+        return true;
+      }
+    } on Object {
+      // An unreadable draft just means starting over.
+    }
+    return false;
+  }
+
+  void _saveDraft() {
+    final prefs = _prefs;
+    if (prefs == null) return;
+    unawaited(
+      prefs.setString(
+        _draftKey,
+        jsonEncode({
+          'step': _step,
+          'name': _name.text,
+          'handle': _handle.text,
+          'avatar': _avatar.toJson(),
+          'goal': _goal?.name,
+          'birth_year': _birthYear.text,
+        }),
+      ),
+    );
+  }
+
+  void _clearDraft() => unawaited(_prefs?.remove(_draftKey));
+
+  Future<void> _switchAccount() async {
+    _clearDraft();
+    await ref.read(sessionProvider.notifier).signOut();
+  }
+
+  Future<void> _openLegal(String page) async {
+    final base = ref.read(appEnvProvider).legalBaseUrl;
+    try {
+      await launchUrl(Uri.parse('$base/$page'), mode: LaunchMode.externalApplication);
+    } on Object {
+      if (mounted) showAppToast(context, 'Couldn\'t open that page.', icon: AppIcons.alert);
     }
   }
 
@@ -112,7 +191,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     }
     final year = _parsedYear!;
     final now = DateTime.now().year;
-    if (year < now - 100 || year > now - 10) {
+    if (year > now - 10 && year <= now) {
+      setState(() => _underAge = true);
+      return;
+    }
+    if (year < now - 100 || year > now) {
       setState(() => _yearError = 'Please enter a year between ${now - 100} and ${now - 10}');
       return;
     }
@@ -122,6 +205,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   void _goTo(int step) {
     FocusScope.of(context).unfocus();
     setState(() => _step = step);
+    _saveDraft();
     _pages.animateToPage(
       step,
       duration: AppMotion.of(context, AppMotion.page),
@@ -141,6 +225,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             goal: _goal!,
             birthYear: year,
           );
+      _clearDraft();
       await ref.read(sessionProvider.notifier).updateUser(me);
     } on ValidationFailure catch (failure) {
       if (!mounted) return;
@@ -156,6 +241,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     } on ConflictFailure catch (failure) {
       if (failure.code == 'ALREADY_ONBOARDED') {
         // An earlier attempt went through but its response was lost: carry on.
+        _clearDraft();
         await ref.read(sessionProvider.notifier).refreshUser();
         return;
       }
@@ -242,6 +328,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             status: _handleStatus,
                           ),
                         ),
+                        const SizedBox(height: AppSpacing.xl),
+                        _SignedInAs(
+                          email: ref.watch(meProvider).email,
+                          onSwitch: _submitting ? null : _switchAccount,
+                        ),
                       ],
                     ),
                   ),
@@ -272,17 +363,25 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   _Step(
                     title: 'When were\nyou born?',
                     subtitle: 'Only your birth year. We use it to keep younger players safe.',
-                    child: AppTextField(
-                      label: 'Birth year',
-                      controller: _birthYear,
-                      hint: 'e.g. 2008',
-                      maxLength: 4,
-                      error: _yearError,
-                      keyboardType: TextInputType.number,
-                      textInputAction: TextInputAction.done,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      onChanged: (_) => setState(() => _yearError = null),
-                    ),
+                    child: _underAge
+                        ? _UnderAge(
+                            onEdit: () => setState(() {
+                              _underAge = false;
+                              _birthYear.clear();
+                            }),
+                            onSignOut: _switchAccount,
+                          )
+                        : AppTextField(
+                            label: 'Birth year',
+                            controller: _birthYear,
+                            hint: 'e.g. 2008',
+                            maxLength: 4,
+                            error: _yearError,
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.done,
+                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                            onChanged: (_) => setState(() => _yearError = null),
+                          ),
                   ),
                 ],
               ),
@@ -294,15 +393,110 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 AppSpacing.gutter,
                 AppSpacing.lg,
               ),
-              child: AppButton(
-                label: _step == _steps - 1 ? 'Finish' : 'Continue',
-                trailingIcon: _step == _steps - 1 ? AppIcons.check : AppIcons.chevronRight,
-                loading: _submitting,
-                onPressed: _stepValid ? _next : null,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (!_underAge)
+                    AppButton(
+                      label: _step == _steps - 1 ? 'Finish' : 'Continue',
+                      trailingIcon: _step == _steps - 1 ? AppIcons.check : AppIcons.chevronRight,
+                      loading: _submitting,
+                      onPressed: _stepValid ? _next : null,
+                    ),
+                  if (_step == _steps - 1 && ref.watch(appEnvProvider).legalBaseUrl.isNotEmpty)
+                    _LegalLinks(
+                      onTerms: () => _openLegal('terms'),
+                      onPrivacy: () => _openLegal('privacy'),
+                    ),
+                ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _SignedInAs extends StatelessWidget {
+  const _SignedInAs({required this.email, required this.onSwitch});
+
+  final String? email;
+  final VoidCallback? onSwitch;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = context.text;
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            'Signed in as ${email ?? 'your Google account'}',
+            style: text.bodySmall,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        AppButton(
+          label: 'Switch account',
+          variant: AppButtonVariant.ghost,
+          size: AppButtonSize.small,
+          expand: false,
+          onPressed: onSwitch,
+        ),
+      ],
+    );
+  }
+}
+
+class _UnderAge extends StatelessWidget {
+  const _UnderAge({required this.onEdit, required this.onSignOut});
+
+  final VoidCallback onEdit;
+  final VoidCallback onSignOut;
+
+  @override
+  Widget build(BuildContext context) {
+    return SurfaceCard(
+      child: Column(
+        children: [
+          const EmptyState(
+            icon: AppIcons.graduation,
+            tone: PastelTone.lavender,
+            title: 'Quiz Arena is for students aged 10 and up',
+            message: 'Come back when you\'re a little older. Keep learning till then!',
+          ),
+          AppButton(label: 'Sign out', variant: AppButtonVariant.ink, onPressed: onSignOut),
+          const SizedBox(height: AppSpacing.sm),
+          AppButton(
+            label: 'I typed the wrong year',
+            variant: AppButtonVariant.ghost,
+            onPressed: onEdit,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LegalLinks extends StatelessWidget {
+  const _LegalLinks({required this.onTerms, required this.onPrivacy});
+
+  final VoidCallback onTerms;
+  final VoidCallback onPrivacy;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.sm),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          Text('By finishing, you agree to the', style: context.text.caption),
+          TextButton(onPressed: onTerms, child: const Text('Terms')),
+          Text('and', style: context.text.caption),
+          TextButton(onPressed: onPrivacy, child: const Text('Privacy policy')),
+        ],
       ),
     );
   }

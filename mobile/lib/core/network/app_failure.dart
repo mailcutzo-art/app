@@ -35,7 +35,10 @@ final class UnauthorizedFailure extends AppFailure {
 }
 
 final class ForbiddenFailure extends AppFailure {
-  const ForbiddenFailure(super.message, {super.code});
+  const ForbiddenFailure(super.message, {super.code, this.details = const {}});
+
+  /// Extra facts from the server, e.g. a ban's `reason`, `until` and `appeal`.
+  final Map<String, Object?> details;
 }
 
 final class NotFoundFailure extends AppFailure {
@@ -127,7 +130,7 @@ AppFailure _fromResponse(Response<dynamic>? response) {
     case 401:
       return UnauthorizedFailure(code: code);
     case 403:
-      return ForbiddenFailure(text, code: code);
+      return ForbiddenFailure(text, code: code, details: _detailsMap(details));
     case 404:
       return NotFoundFailure(text, code: code);
     case 409:
@@ -166,3 +169,11 @@ Map<String, String> _fieldErrors(Object? details) {
       if (key is String && value is String) key: value,
   };
 }
+
+Map<String, Object?> _detailsMap(Object? details) => switch (details) {
+  final Map<dynamic, dynamic> map => {
+    for (final MapEntry(:key, :value) in map.entries)
+      if (key is String) key: value,
+  },
+  _ => const {},
+};

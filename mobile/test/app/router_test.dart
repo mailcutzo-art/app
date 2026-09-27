@@ -5,6 +5,7 @@ import 'package:quiz_app/app/app.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/auth/session.dart';
 import 'package:quiz_app/core/config/app_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../support/fakes.dart';
 
@@ -69,6 +70,52 @@ void main() {
       final refreshing = container.read(sessionProvider);
       expect(refreshing.isLoading, isTrue);
       expect(_redirect(refreshing, Routes.home), isNull);
+    });
+  });
+
+  group('suspended accounts', () {
+    const suspended = AsyncData<Session>(Suspended(reason: 'cheating'));
+
+    test('only the Suspended screen (and debug) is reachable', () {
+      expect(_redirect(suspended, Routes.home), Routes.suspended);
+      expect(_redirect(suspended, Routes.signIn), Routes.suspended);
+      expect(_redirect(suspended, Routes.suspended), isNull);
+      expect(_redirect(suspended, Routes.debug), isNull);
+    });
+
+    test('nothing is remembered as a destination while suspended', () {
+      final decision = decideRoute(
+        gate: _open,
+        session: suspended,
+        location: '/j/K7M2QX',
+        pending: '/t/abc',
+      );
+      expect(decision, (redirect: Routes.suspended, pending: null));
+    });
+  });
+
+  group('pending destination storage', () {
+    test('survives an app restart for 30 minutes, then expires', () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      var now = DateTime.utc(2026, 9, 27, 18);
+      PendingDestination(prefs: prefs, clock: () => now).location = '/j/K7M2QX';
+
+      now = now.add(const Duration(minutes: 29));
+      expect(PendingDestination(prefs: prefs, clock: () => now).location, '/j/K7M2QX');
+
+      now = now.add(const Duration(minutes: 2));
+      expect(PendingDestination(prefs: prefs, clock: () => now).location, isNull);
+    });
+
+    test('clearing it removes the saved copy', () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      PendingDestination(prefs: prefs)
+        ..location = '/t/abc'
+        ..location = null;
+      expect(prefs.getString(PendingDestination.key), isNull);
+      expect(PendingDestination(prefs: prefs).location, isNull);
     });
   });
 

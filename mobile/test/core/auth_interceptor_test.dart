@@ -10,22 +10,30 @@ import '../support/fakes.dart';
 void main() {
   late TokenStore tokens;
   late int expiredSignals;
+  late SessionEnd? lastEnd;
 
   setUp(() async {
     FlutterSecureStorage.setMockInitialValues({});
     tokens = TokenStore(const FlutterSecureStorage());
     expiredSignals = 0;
+    lastEnd = null;
   });
 
   /// API client whose server accepts only `Bearer fresh`, and whose refresh
-  /// endpoint answers with [refreshStatus].
-  (ApiClient, FakeAdapter) build({int refreshStatus = 200}) {
+  /// endpoint answers with [refreshStatus] (and [refreshBody] when it fails).
+  /// [rejectWith] replaces the 401 body sent for other tokens.
+  (ApiClient, FakeAdapter) build({
+    int refreshStatus = 200,
+    Object? refreshBody,
+    Object? rejectWith,
+    int rejectStatus = 401,
+  }) {
     var refreshCount = 0;
     final adapter = FakeAdapter((options) async {
       if (options.path == '/v1/auth/refresh') {
         refreshCount++;
         await Future<void>.delayed(const Duration(milliseconds: 10));
-        if (refreshStatus != 200) return jsonBody(null, status: refreshStatus);
+        if (refreshStatus != 200) return jsonBody(refreshBody, status: refreshStatus);
         return jsonBody({
           'access_token': 'fresh',
           'access_expires_in': 900,
@@ -34,7 +42,10 @@ void main() {
       }
       final auth = options.headers['Authorization'];
       if (auth != 'Bearer fresh') {
-        return jsonBody(<String, Object?>{'error': <String, Object?>{}}, status: 401);
+        return jsonBody(
+          rejectWith ?? <String, Object?>{'error': <String, Object?>{}},
+          status: rejectStatus,
+        );
       }
       return jsonBody({'ok': options.path});
     });
@@ -46,7 +57,10 @@ void main() {
           tokens: tokens,
           refreshDio: plain,
           retryDio: plain,
-          onSessionExpired: () => expiredSignals++,
+          onSessionExpired: (end) {
+            expiredSignals++;
+            lastEnd = end;
+          },
         ),
       );
     return (ApiClient(dio), adapter);
@@ -112,5 +126,66 @@ void main() {
       throwsA(isA<UnauthorizedFailure>()),
     );
     expect(adapter.requests.single.headers['Authorization'], isNull);
+  });
+
+  test('a revoked session says why it ended', () async {
+    await tokens.save(
+      accessToken: 'stale',
+      accessTtl: const Duration(hours: 1),
+      refreshToken: 'r0',
+    );
+    final (api, _) = build(
+      refreshStatus: 401,
+      rejectWith: {
+        'error': {
+          'code': 'SESSION_REVOKED',
+          'message': 'You have been signed out.',
+          'details': {'reason': 'signed_out'},
+        },
+      },
+    );
+
+    await expectLater(api.get('/v1/me'), throwsA(isA<UnauthorizedFailure>()));
+    expect(expiredSignals, 1);
+    expect(lastEnd?.reason, 'signed_out');
+    expect(lastEnd?.ban, isNull);
+  });
+
+  test('a suspended account ends the session with the ban details', () async {
+    await tokens.save(
+      accessToken: 'stale',
+      accessTtl: const Duration(hours: 1),
+      refreshToken: 'r0',
+    );
+    final (api, _) = build(
+      rejectStatus: 403,
+      rejectWith: {
+        'error': {
+          'code': 'ACCOUNT_BANNED',
+          'message': 'This account has been suspended.',
+          'details': {'reason': 'cheating', 'until': null, 'appeal': 'appeals@example.com'},
+        },
+      },
+    );
+
+    await expectLater(api.get('/v1/me'), throwsA(isA<ForbiddenFailure>()));
+    expect(expiredSignals, 1);
+    expect(lastEnd?.ban, {'reason': 'cheating', 'until': null, 'appeal': 'appeals@example.com'});
+    expect(await tokens.readRefreshToken(), isNull, reason: 'tokens are cleared');
+  });
+
+  test('the build number goes out with every request once known', () async {
+    final adapter = FakeAdapter((_) => jsonBody({'ok': true}));
+    final dio = Dio(BaseOptions(baseUrl: 'http://api.test'))
+      ..httpClientAdapter = adapter
+      ..interceptors.add(BuildHeaderInterceptor(() async => 57));
+    await dio.get<Object?>('/v1/config');
+    expect(adapter.requests.single.headers['X-App-Build'], '57');
+
+    final unknown = Dio(BaseOptions(baseUrl: 'http://api.test'))
+      ..httpClientAdapter = adapter
+      ..interceptors.add(BuildHeaderInterceptor(() async => throw StateError('no plugin')));
+    await unknown.get<Object?>('/v1/config');
+    expect(adapter.requests.last.headers.containsKey('X-App-Build'), isFalse);
   });
 }

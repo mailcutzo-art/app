@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../features/debug/debug_screen.dart' show sharedPrefsProvider;
+import '../device/app_build.dart';
 import '../network/api_client.dart';
 import '../network/app_failure.dart';
 import '../network/server_signals.dart';
+
+export '../device/app_build.dart' show appBuildProvider;
 
 /// Server-driven switches from `GET /v1/config`.
 @immutable
@@ -125,12 +127,6 @@ final configProvider = AsyncNotifierProvider<ConfigController, AppConfig>(
   ConfigController.new,
   retry: (_, _) => null,
 );
-
-/// This app's build number (the `+N` in the version), or 0 when unknown.
-final appBuildProvider = FutureProvider<int>((ref) async {
-  final info = await PackageInfo.fromPlatform();
-  return int.tryParse(info.buildNumber) ?? 0;
-});
 
 /// What the whole app is allowed to show right now.
 enum AppGate { open, updateRequired, maintenance }

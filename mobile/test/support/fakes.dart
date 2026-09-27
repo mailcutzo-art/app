@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:quiz_app/app/env.dart';
 import 'package:quiz_app/core/auth/session.dart';
@@ -32,6 +33,9 @@ class FakeSessionController extends SessionController {
 
   @override
   Future<Session> build() async => initial;
+
+  @override
+  Future<void> signOut() async => state = const AsyncData(SignedOut());
 }
 
 /// Onboarding API stand-in: every well-formed handle is available.

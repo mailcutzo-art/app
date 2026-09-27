@@ -6,6 +6,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// screen (match found, tournament round ready).
 enum AlertStyle { banner, takeover }
 
+/// Which alert wins when several are waiting: lower shows first.
+abstract final class LivePriority {
+  static const roundJoin = 10;
+  static const matchFound = 20;
+  static const rematch = 30;
+  static const invite = 40;
+  static const checkIn = 50;
+  static const notice = 60;
+}
+
 /// A button on an alert: runs [run] (e.g. decline an invite) and/or opens
 /// [route], then dismisses the alert.
 @immutable
@@ -33,6 +43,7 @@ class LiveAlert {
     this.secondary,
     this.expiresAt,
     this.autoRunAfter,
+    this.priority = LivePriority.notice,
   });
 
   /// Stable per event: showing an alert with the same id replaces it.
@@ -51,6 +62,9 @@ class LiveAlert {
 
   /// Runs [primary] by itself after this long (a found match opens the game).
   final Duration? autoRunAfter;
+
+  /// See [LivePriority]; ties keep arrival order.
+  final int priority;
 }
 
 /// A long-running state worth a pill on every screen ("Searching · 0:32").
@@ -75,9 +89,14 @@ class LiveState {
   final List<LiveAlert> alerts;
   final LiveStatus? status;
 
-  /// The one alert on screen: takeovers first, then the oldest banner.
-  LiveAlert? get visible =>
-      alerts.where((a) => a.style == AlertStyle.takeover).firstOrNull ?? alerts.firstOrNull;
+  /// The one alert on screen: the most urgent, and the oldest among equals.
+  LiveAlert? get visible {
+    LiveAlert? best;
+    for (final alert in alerts) {
+      if (best == null || alert.priority < best.priority) best = alert;
+    }
+    return best;
+  }
 }
 
 /// The queue behind the live banner layer.

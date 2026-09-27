@@ -115,7 +115,7 @@ void main() {
     expect(container.read(liveHubProvider).alerts, isEmpty);
   });
 
-  testWidgets('a takeover beats banners and opens the game by itself', (tester) async {
+  testWidgets('a more urgent takeover beats banners and opens the game by itself', (tester) async {
     final container = await pumpApp(tester);
     final hub = container.read(liveHubProvider.notifier)
       ..show(const LiveAlert(id: 'b', title: 'A banner'))
@@ -125,6 +125,7 @@ void main() {
           title: 'Match found!',
           message: 'You vs Rahul',
           style: AlertStyle.takeover,
+          priority: LivePriority.matchFound,
           autoRunAfter: Duration(seconds: 3),
           primary: LiveAction('Play now', route: '/battle?match=1'),
         ),
@@ -160,6 +161,21 @@ void main() {
     container.read(liveHubProvider.notifier).setStatus(null);
     await tester.pumpAndSettle();
     expect(find.textContaining('Searching'), findsNothing);
+  });
+
+  test('the most urgent alert shows first; equals keep arrival order', () {
+    final container = ProviderContainer();
+    addTearDown(container.dispose);
+    final hub = container.read(liveHubProvider.notifier)
+      ..show(const LiveAlert(id: 'notice', title: 'Refunded'))
+      ..show(const LiveAlert(id: 'invite', title: 'Invite', priority: LivePriority.invite))
+      ..show(const LiveAlert(id: 'round', title: 'Round 2', priority: LivePriority.roundJoin))
+      ..show(const LiveAlert(id: 'invite-2', title: 'Invite 2', priority: LivePriority.invite));
+    expect(container.read(liveHubProvider).visible?.id, 'round');
+    hub.dismiss('round');
+    expect(container.read(liveHubProvider).visible?.id, 'invite');
+    hub.dismiss('invite');
+    expect(container.read(liveHubProvider).visible?.id, 'invite-2');
   });
 
   test('showing an alert with the same id replaces it instead of stacking', () {

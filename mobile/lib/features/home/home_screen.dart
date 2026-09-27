@@ -36,7 +36,16 @@ class HomeScreen extends ConsumerWidget {
               icon: AppIcons.notification,
               semanticLabel: 'Notifications',
               motion: IconMotions.bell,
-              onPressed: () {},
+              onPressed: () => showAppSheet<void>(
+                context,
+                builder: (_) => const SheetScaffold(
+                  title: 'Inbox',
+                  subtitle:
+                      'Invites, tournament updates, rewards and refunds will all be kept here. '
+                      'Coming soon.',
+                  child: SizedBox.shrink(),
+                ),
+              ),
             ),
           ],
         ),

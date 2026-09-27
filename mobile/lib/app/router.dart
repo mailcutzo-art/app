@@ -1,6 +1,10 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/auth/session.dart';
 import '../core/config/app_config.dart';
@@ -15,6 +19,7 @@ import '../features/profile/profile_screen.dart';
 import '../features/social/social_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/system/maintenance_screen.dart';
+import '../features/system/suspended_screen.dart';
 import '../features/system/update_required_screen.dart';
 import 'shell.dart';
 
@@ -24,6 +29,7 @@ abstract final class Routes {
   static const onboarding = '/onboarding';
   static const update = '/update';
   static const maintenance = '/maintenance';
+  static const suspended = '/suspended';
   static const home = '/home';
   static const learn = '/learn';
   static const battle = '/battle';
@@ -36,7 +42,7 @@ abstract final class Routes {
 
   /// Screens that only exist to get the user somewhere else. Being on one never
   /// counts as a destination to come back to.
-  static const gates = {splash, signIn, onboarding, update, maintenance};
+  static const gates = {splash, signIn, onboarding, update, maintenance, suspended};
 }
 
 /// Where the router should send the user, and the destination to resume once
@@ -74,6 +80,10 @@ RouteDecision decideRoute({
     return (redirect: path == Routes.splash ? null : Routes.splash, pending: remember);
   }
   switch (value) {
+    case Suspended():
+      // Nothing else is reachable, and nothing is worth remembering.
+      const allowed = {Routes.suspended, Routes.debug};
+      return (redirect: allowed.contains(path) ? null : Routes.suspended, pending: null);
     case SignedOut():
       const open = {Routes.signIn, Routes.debug};
       return (redirect: open.contains(path) ? null : Routes.signIn, pending: remember);
@@ -91,12 +101,64 @@ String? authRedirect(AsyncValue<Session> session, String location) =>
 
 /// The destination to open once sign-in and onboarding are done. A plain
 /// holder rather than reactive state: only the router's redirect reads and
-/// writes it.
+/// writes it. It is saved for 30 minutes, so an invite link survives the app
+/// being closed during sign-in or onboarding.
 class PendingDestination {
-  String? location;
+  PendingDestination({this._prefs, this._clock = DateTime.now}) {
+    _location = _load();
+  }
+
+  static const key = 'router.pending';
+  static const ttl = Duration(minutes: 30);
+
+  final SharedPreferences? _prefs;
+  final DateTime Function() _clock;
+  String? _location;
+
+  String? get location => _location;
+
+  set location(String? value) {
+    if (value == _location) return;
+    _location = value;
+    final prefs = _prefs;
+    if (prefs == null) return;
+    if (value == null) {
+      unawaited(prefs.remove(key));
+    } else {
+      unawaited(
+        prefs.setString(
+          key,
+          jsonEncode({'location': value, 'at': _clock().toUtc().toIso8601String()}),
+        ),
+      );
+    }
+  }
+
+  String? _load() {
+    try {
+      final raw = _prefs?.getString(key);
+      if (raw == null) return null;
+      final saved = jsonDecode(raw);
+      if (saved case {'location': final String location, 'at': final String at}) {
+        final savedAt = DateTime.tryParse(at);
+        if (savedAt != null && _clock().difference(savedAt) < ttl) return location;
+      }
+    } on FormatException {
+      // Ignore an unreadable entry.
+    }
+    return null;
+  }
 }
 
-final pendingDestinationProvider = Provider<PendingDestination>((ref) => PendingDestination());
+final pendingDestinationProvider = Provider<PendingDestination>((ref) {
+  SharedPreferences? prefs;
+  try {
+    prefs = ref.read(sharedPrefsProvider);
+  } on Object {
+    prefs = null; // Not provided (tests): keep it in memory only.
+  }
+  return PendingDestination(prefs: prefs);
+});
 
 /// Links shared outside the app. Each maps onto the tab that handles it; the
 /// tab reads the query parameter when its feature is available.
@@ -144,6 +206,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.onboarding, builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: Routes.update, builder: (_, _) => const UpdateRequiredScreen()),
       GoRoute(path: Routes.maintenance, builder: (_, _) => const MaintenanceScreen()),
+      GoRoute(path: Routes.suspended, builder: (_, _) => const SuspendedScreen()),
       GoRoute(path: Routes.profile, builder: (_, _) => const ProfileScreen()),
       GoRoute(path: Routes.debug, builder: (_, _) => const DebugScreen()),
       GoRoute(path: '/j/:code', redirect: (_, state) => DeepLinks.join(state)),
