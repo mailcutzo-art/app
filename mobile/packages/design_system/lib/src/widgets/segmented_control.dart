@@ -10,11 +10,14 @@ import 'pressable.dart';
 
 @immutable
 class AppSegment<T> {
-  const AppSegment({required this.value, required this.label, this.icon});
+  const AppSegment({required this.value, required this.label, this.icon, this.enabled = true});
 
   final T value;
   final String label;
   final HugeIconData? icon;
+
+  /// A disabled segment is greyed out and can't be picked (e.g. Casual without enough coins).
+  final bool enabled;
 }
 
 /// Pill segmented control with a sliding ink indicator (e.g. Rated / Casual).
@@ -70,7 +73,9 @@ class AppSegmentedControl<T> extends StatelessWidget {
                   for (final segment in segments)
                     Expanded(
                       child: Pressable(
-                        onPressed: onChanged == null ? null : () => onChanged!(segment.value),
+                        onPressed: onChanged == null || !segment.enabled
+                            ? null
+                            : () => onChanged!(segment.value),
                         selected: segment.value == selected,
                         pressedScale: 0.97,
                         child: _SegmentLabel(
@@ -78,7 +83,7 @@ class AppSegmentedControl<T> extends StatelessWidget {
                           selected: segment.value == selected,
                           style: text.labelLarge,
                           selectedColor: colors.onInverse,
-                          color: colors.inkMuted,
+                          color: segment.enabled ? colors.inkMuted : colors.inkSubtle,
                           duration: duration,
                         ),
                       ),

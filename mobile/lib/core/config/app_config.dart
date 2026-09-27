@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/debug/debug_screen.dart' show sharedPrefsProvider;
+import '../auth/session.dart' show currentUserIdProvider;
 import '../device/app_build.dart';
 import '../network/api_client.dart';
 import '../network/app_failure.dart';
@@ -135,12 +136,39 @@ final appGateProvider = Provider<AppGate>((ref) {
   final signals = ref.watch(serverSignalsProvider);
   final config = ref.watch(configProvider).value;
   final build = ref.watch(appBuildProvider).value ?? 0;
-  return decideGate(signals: signals, config: config, build: build);
+  return decideGate(
+    signals: signals,
+    config: config,
+    build: build,
+    liveGame: ref.watch(liveGameProvider),
+  );
 });
 
+/// Whether a live game is on: a match in play, or its result still on screen. The update and
+/// maintenance gates wait for it, since they never interrupt a live game. The live layer sets
+/// it; a new user starts without one.
+final liveGameProvider = NotifierProvider<LiveGameFlag, bool>(LiveGameFlag.new);
+
+class LiveGameFlag extends Notifier<bool> {
+  @override
+  bool build() {
+    ref.watch(currentUserIdProvider);
+    return false;
+  }
+
+  void set({required bool live}) => state = live;
+}
+
 /// Pure gate rule: an update beats maintenance, and neither blocks while the
-/// config is unknown (offline first start).
-AppGate decideGate({required ServerSignals signals, AppConfig? config, required int build}) {
+/// config is unknown (offline first start) or while a [liveGame] is on (the
+/// gate applies once it ends).
+AppGate decideGate({
+  required ServerSignals signals,
+  AppConfig? config,
+  required int build,
+  bool liveGame = false,
+}) {
+  if (liveGame) return AppGate.open;
   if (signals.updateRequired) return AppGate.updateRequired;
   if (config != null && build > 0 && build < config.minBuild) return AppGate.updateRequired;
   if (signals.maintenance || (config?.maintenance ?? false)) return AppGate.maintenance;

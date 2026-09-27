@@ -128,9 +128,10 @@ class _NavButton extends StatelessWidget {
                   ),
               ],
             ),
-            AnimatedSize(
+            // A zero-length AnimatedSize (reduced motion) re-dirties itself mid-layout, so the
+            // label simply appears then.
+            _SizeChange(
               duration: duration,
-              curve: AppMotion.emphasized,
               child: selected
                   ? Padding(
                       padding: const EdgeInsets.only(left: 8),
@@ -147,4 +148,17 @@ class _NavButton extends StatelessWidget {
       ),
     );
   }
+}
+
+/// [AnimatedSize], or no animation at all when [duration] is zero.
+class _SizeChange extends StatelessWidget {
+  const _SizeChange({required this.duration, required this.child});
+
+  final Duration duration;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => duration == Duration.zero
+      ? child
+      : AnimatedSize(duration: duration, curve: AppMotion.emphasized, child: child);
 }

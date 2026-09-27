@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/realtime/realtime_host.dart';
 import '../features/practice/data/answer_queue.dart';
 import 'live/live_layer.dart';
 import 'router.dart';
@@ -19,7 +20,8 @@ class QuizApp extends ConsumerWidget {
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       routerConfig: ref.watch(routerProvider),
-      builder: (context, child) => LiveLayer(child: child ?? const SizedBox.shrink()),
+      builder: (context, child) =>
+          LiveLayer(child: RealtimeHost(child: child ?? const SizedBox.shrink())),
     );
   }
 }

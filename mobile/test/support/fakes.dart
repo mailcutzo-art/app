@@ -15,12 +15,20 @@ import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/config/app_config.dart';
 import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/core/network/connectivity.dart';
+import 'package:quiz_app/core/realtime/realtime_providers.dart';
 import 'package:quiz_app/core/storage/prefs.dart';
+import 'package:quiz_app/features/battle/data/battle_repository.dart';
+import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
+import 'package:quiz_app/features/battle/demo/demo_server.dart';
+import 'package:quiz_app/features/battle/match/screen_guard.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
 import 'package:quiz_app/features/learn/data/learn_repository.dart';
 import 'package:quiz_app/features/onboarding/onboarding_repository.dart';
 import 'package:quiz_app/features/practice/practice_controller.dart';
+import 'package:realtime_client/realtime_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'rt_server.dart';
 
 const testEnv = AppEnv(flavor: Flavor.dev, apiBaseUrl: 'http://api.test', googleServerClientId: '');
 
@@ -46,6 +54,21 @@ class FakeSessionController extends SessionController {
 
   @override
   Future<void> signOut() async => state = const AsyncData(SignedOut());
+}
+
+/// Like [FakeSessionController], and it also ends the session when the app is told it's over
+/// (`sessionExpiredProvider`), as the real controller does.
+class ExpiringSessionController extends FakeSessionController {
+  ExpiringSessionController(super.initial);
+
+  @override
+  Future<Session> build() async {
+    ref.listen(sessionExpiredProvider, (_, _) {
+      final end = ref.read(sessionExpiredProvider.notifier).last;
+      state = AsyncData(SignedOut(message: signedOutMessage(end.reason)));
+    });
+    return initial;
+  }
 }
 
 /// Onboarding API stand-in: every well-formed handle is available.
@@ -78,7 +101,9 @@ class FakeConfigController extends ConfigController {
 
 /// Everything the app reads at startup, faked. [learn] defaults to the
 /// sample data, [online] to a device that stays online, and [config] and
-/// [build] to an open app on a current build.
+/// [build] to an open app on a current build. The realtime connection talks
+/// to [realtime] (a quiet [TestRealtimeServer] by default) on the test's fake
+/// time, and battles read [battle] and [matches].
 List<Override> testOverrides({
   required Session session,
   required SharedPreferences prefs,
@@ -86,15 +111,32 @@ List<Override> testOverrides({
   Stream<bool>? online,
   AppConfig config = const AppConfig(),
   int build = 1,
+  WebSocketConnector? realtime,
+  BattleRepository? battle,
+  MatchRepository? matches,
+  ScreenGuard? screenGuard,
+  SessionController Function()? sessionController,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
-  sessionProvider.overrideWith(() => FakeSessionController(session)),
+  sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
   onboardingRepositoryProvider.overrideWithValue(FakeOnboardingRepository()),
   sharedPrefsProvider.overrideWithValue(prefs),
   learnRepositoryProvider.overrideWithValue(learn ?? FakeLearnRepository.seeded()),
   connectivityProvider.overrideWith((ref) => online ?? Stream.value(true)),
   configProvider.overrideWith(() => FakeConfigController(config)),
   appBuildProvider.overrideWith((ref) async => build),
+  realtimeConnectorProvider.overrideWith((ref) {
+    final connector = realtime ?? TestRealtimeServer();
+    // The demo server's timers stop with the widget tree, before the test checks for timers.
+    if (connector is DemoRealtimeServer) ref.onDispose(connector.dispose);
+    return connector;
+  }),
+  realtimeTicketsProvider.overrideWithValue(() async => 'test-ticket'),
+  realtimeClockProvider.overrideWithValue(ClockRealtimeClock()),
+  realtimeLogProvider.overrideWithValue(null),
+  battleRepositoryProvider.overrideWithValue(battle ?? FakeBattleRepository()),
+  matchRepositoryProvider.overrideWithValue(matches ?? FakeMatchRepository()),
+  screenGuardProvider.overrideWithValue(screenGuard ?? FakeScreenGuard()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -115,12 +157,29 @@ Future<ProviderContainer> pumpApp(
   Stopwatch Function()? stopwatch,
   String location = Routes.home,
   bool settle = true,
+  WebSocketConnector? realtime,
+  BattleRepository? battle,
+  MatchRepository? matches,
+  ScreenGuard? screenGuard,
+  SessionController Function()? sessionController,
+  List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
-        ...testOverrides(session: SignedIn(fakeUser()), prefs: prefs, learn: learn, online: online),
+        ...testOverrides(
+          session: SignedIn(fakeUser()),
+          prefs: prefs,
+          learn: learn,
+          online: online,
+          realtime: realtime,
+          battle: battle,
+          matches: matches,
+          screenGuard: screenGuard,
+          sessionController: sessionController,
+        ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
+        ...overrides,
       ],
       child: const QuizApp(),
     ),

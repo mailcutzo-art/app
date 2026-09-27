@@ -96,11 +96,13 @@ TipDestination? tipDestination(Tip tip) {
     ),
     TipAction.startChapter => chapterAt(Difficulty.easy),
     TipAction.practiceMedium => chapterAt(Difficulty.medium),
-    // Preselecting the subject and chapter arrives with battles.
     TipAction.battle => null,
     null => null,
   };
-  if (tip.action == TipAction.battle) return const TipOpens(Routes.battle);
+  // The Battle tab opens with the tip's subject and chapter picked.
+  if (tip.action == TipAction.battle) {
+    return TipOpens(Routes.battleWith(subject: subject, chapter: chapter));
+  }
   return settings == null ? null : TipPractice(settings);
 }
 
