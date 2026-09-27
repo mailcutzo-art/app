@@ -63,15 +63,20 @@ select = [
     "PTH",   # pathlib
     "PT",    # pytest style
     "ASYNC", # async pitfalls
+    "PLE",   # pylint errors, incl. invisible and bidi characters in source
     "FAST",  # FastAPI
     "RUF",   # ruff-specific
 ]
 # Error classes are named after the condition they signal (NotFound, RateLimited, ...).
 ignore = ["N818"]
+# User-facing messages use typographic en dashes ("Use 3–20 letters").
+allowed-confusables = ["–"]
 
 [tool.ruff.lint.per-file-ignores]
 # Tests assert, use fixed fake credentials and exercise error paths on purpose.
 "tests/**" = ["S101", "S105", "S106", "BLE001"]
+# Command-line tools report to the terminal.
+"scripts/**" = ["T201"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["app"]

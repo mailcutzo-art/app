@@ -6,6 +6,7 @@ import pytest
 from alembic import command
 from alembic.autogenerate import compare_metadata
 from alembic.migration import MigrationContext
+from alembic.script import ScriptDirectory
 from fastapi import APIRouter, FastAPI
 from httpx import AsyncClient
 from sqlalchemy import Connection, func, select, text
@@ -135,15 +136,21 @@ async def test_models_match_the_migrations(db_connection: AsyncConnection) -> No
 
 
 async def test_migrations_downgrade_and_upgrade_cleanly(db_connection: AsyncConnection) -> None:
-    await db_connection.run_sync(lambda sync: command.downgrade(alembic_config(sync), "base"))
-    tables = await db_connection.scalar(
-        text("SELECT count(*) FROM pg_tables WHERE tablename IN ('app_config', 'audit_log')")
+    app_tables = text(
+        "SELECT count(*) FROM pg_tables WHERE schemaname = 'public' AND tablename IN "
+        "('app_config', 'audit_log', 'users', 'auth_identities', 'device_sessions', "
+        "'refresh_tokens')"
     )
-    assert tables == 0
+    await db_connection.run_sync(lambda sync: command.downgrade(alembic_config(sync), "base"))
+    assert await db_connection.scalar(app_tables) == 0
 
     await db_connection.run_sync(lambda sync: command.upgrade(alembic_config(sync), "head"))
+    assert await db_connection.scalar(app_tables) == 6
+    head = await db_connection.run_sync(
+        lambda sync: ScriptDirectory.from_config(alembic_config(sync)).get_current_head()
+    )
     version = await db_connection.scalar(text("SELECT version_num FROM alembic_version"))
-    assert version == "0001"
+    assert version == head
 
 
 async def test_audit_log_is_append_only(db_session: AsyncSession) -> None:

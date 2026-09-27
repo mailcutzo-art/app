@@ -26,7 +26,8 @@ class RequestContextMiddleware:
     """Pure ASGI middleware; install it outermost so it sees every response.
 
     * Uses the incoming ``X-Request-ID`` when it is safe, otherwise generates one; echoes it on
-      the response and binds it to the logging context.
+      the response and binds it to the logging context. Anything else handlers bind there (such
+      as the user id) appears on the access-log line and is discarded after the request.
     * Writes one access-log line per request: method, path (never the query string), status and
       duration. Successful probes of ``quiet_paths`` are not logged.
     * Logs unhandled exceptions and answers them with the standard 500 envelope, so no stack
@@ -53,21 +54,24 @@ class RequestContextMiddleware:
             nonlocal status_code, response_started
             if message["type"] == "http.response.start":
                 response_started = True
-                status_code = message["status"]
+                status_code = int(message["status"])
                 MutableHeaders(scope=message)[REQUEST_ID_HEADER] = request_id
             await send(message)
 
-        with structlog.contextvars.bound_contextvars(request_id=request_id):
-            try:
-                await self.app(scope, receive, send_with_request_id)
-            except Exception:
-                log.exception("http.unhandled_error")
-                if response_started:
-                    raise
-                response = internal_error_response(request_id)
-                await response(scope, receive, send_with_request_id)
-            finally:
-                self._log_access(scope, status_code, started_at)
+        outer_context = structlog.contextvars.get_contextvars()
+        structlog.contextvars.bind_contextvars(request_id=request_id)
+        try:
+            await self.app(scope, receive, send_with_request_id)
+        except Exception:
+            log.exception("http.unhandled_error")
+            if response_started:
+                raise
+            response = internal_error_response(request_id)
+            await response(scope, receive, send_with_request_id)
+        finally:
+            self._log_access(scope, status_code, started_at)
+            structlog.contextvars.clear_contextvars()
+            structlog.contextvars.bind_contextvars(**outer_context)
 
     def _log_access(self, scope: Scope, status_code: int, started_at: float) -> None:
         path: str = scope["path"]

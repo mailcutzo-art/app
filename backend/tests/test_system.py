@@ -75,7 +75,7 @@ async def test_client_config_reflects_settings() -> None:
 
 
 async def test_api_docs_are_disabled_in_prod() -> None:
-    settings = make_settings(env="prod", **prod_secrets())
+    settings = make_settings(env="prod", dev_login_enabled=False, **prod_secrets())
 
     async with serve(create_app(settings)) as client:
         docs = await client.get("/docs")

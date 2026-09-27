@@ -1,6 +1,9 @@
 """Application settings, read from ``APP_*`` environment variables and an optional ``.env`` file."""
 
+import base64
+import binascii
 import secrets
+from dataclasses import dataclass
 from enum import StrEnum
 from functools import lru_cache
 from typing import Annotated, Any, Self
@@ -18,12 +21,20 @@ DEV_REDIS_URL = "redis://127.0.0.1:63790/0"
 _ASYNCPG_SCHEME = "postgresql+asyncpg://"
 _POSTGRES_ALIASES = ("postgresql://", "postgres://")
 _REDIS_SCHEMES = ("redis://", "rediss://", "unix://")
+_GRACE_KEY_BYTES = 32
 
 
 class Environment(StrEnum):
     DEV = "dev"
     TEST = "test"
     PROD = "prod"
+
+
+@dataclass(frozen=True, slots=True)
+class JwtKeys:
+    key_id: str
+    private_pem: str
+    public_pem: str
 
 
 class Settings(BaseSettings):
@@ -55,6 +66,9 @@ class Settings(BaseSettings):
     jwt_private_key: SecretStr | None = None
     jwt_public_key: str | None = None
     jwt_key_id: str | None = None
+    # AES-256-GCM key (32 bytes, base64) encrypting the refresh-token pairs kept for crash
+    # retries. Same value on every api replica; generated per process in dev/test.
+    refresh_grace_key: SecretStr | None = None
 
     google_client_ids: Annotated[list[str], NoDecode] = []
     dev_login_enabled: bool = False
@@ -100,16 +114,41 @@ class Settings(BaseSettings):
             raise ValueError("must be a redis://, rediss:// or unix:// URL")
         return value
 
+    @field_validator("refresh_grace_key")
+    @classmethod
+    def _check_refresh_grace_key(cls, value: SecretStr | None) -> SecretStr | None:
+        if value is not None:
+            _decode_grace_key(value.get_secret_value())
+        return value
+
     @model_validator(mode="after")
     def _check_environment(self) -> Self:
         if self.env is Environment.PROD:
             self._check_production()
         self._resolve_signing_key()
+        if self.refresh_grace_key is None:
+            key = secrets.token_bytes(_GRACE_KEY_BYTES)
+            self.refresh_grace_key = SecretStr(base64.b64encode(key).decode())
         return self
 
     @property
     def is_prod(self) -> bool:
         return self.env is Environment.PROD
+
+    @property
+    def jwt_keys(self) -> JwtKeys:
+        """The access-token signing key (always set once validation has run)."""
+        if self.jwt_private_key is None or self.jwt_public_key is None or not self.jwt_key_id:
+            raise RuntimeError("JWT keys are resolved during validation")
+        return JwtKeys(
+            self.jwt_key_id, self.jwt_private_key.get_secret_value(), self.jwt_public_key
+        )
+
+    @property
+    def refresh_grace_key_bytes(self) -> bytes:
+        if self.refresh_grace_key is None:
+            raise RuntimeError("the refresh grace key is resolved during validation")
+        return _decode_grace_key(self.refresh_grace_key.get_secret_value())
 
     def _check_production(self) -> None:
         problems: list[str] = []
@@ -119,7 +158,7 @@ class Settings(BaseSettings):
             problems.append(
                 "APP_JWT_PRIVATE_KEY, APP_JWT_PUBLIC_KEY and APP_JWT_KEY_ID are required"
             )
-        for name in ("database_url", "redis_url"):
+        for name in ("database_url", "redis_url", "refresh_grace_key"):
             if name not in self.model_fields_set:
                 problems.append(f"APP_{name.upper()} must be set explicitly")
         if problems:
@@ -143,6 +182,16 @@ class Settings(BaseSettings):
         _check_ed25519_pair(private_pem, public_pem)
         self.jwt_private_key = SecretStr(private_pem)
         self.jwt_public_key = public_pem
+
+
+def _decode_grace_key(value: str) -> bytes:
+    try:
+        key = base64.b64decode(value.replace("-", "+").replace("_", "/") + "=" * (-len(value) % 4))
+    except (binascii.Error, ValueError) as exc:
+        raise ValueError("APP_REFRESH_GRACE_KEY must be base64") from exc
+    if len(key) != _GRACE_KEY_BYTES:
+        raise ValueError("APP_REFRESH_GRACE_KEY must decode to exactly 32 bytes")
+    return key
 
 
 def _unescape_pem(pem: str) -> str:

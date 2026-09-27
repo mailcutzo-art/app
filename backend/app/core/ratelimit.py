@@ -6,8 +6,9 @@ Redis ``TIME``, so it is atomic and every api/rt replica sees the same clock.
 
 Usage::
 
-    @router.post("/v1/auth/nonce", dependencies=[Depends(rate_limit("auth.nonce", capacity=10,
-                                                                      refill_per_sec=10 / 60))])
+    @router.get("/v1/handles/check", dependencies=[
+        Depends(rate_limit("handles.check", capacity=30, refill_per_sec=0.5, scope="user"))
+    ])
 """
 
 import math

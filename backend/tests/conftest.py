@@ -12,6 +12,7 @@ before every test that uses the ``redis`` or ``client`` fixture.
 
 from collections.abc import AsyncIterator
 
+import httpx
 import pytest
 from alembic import command
 from fastapi import FastAPI
@@ -26,10 +27,12 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
+from app.core.clock import get_clock
 from app.core.config import Settings
 from app.core.db import get_sessionmaker
 from app.main_api import create_app
-from tests.helpers import alembic_config, make_settings, serve
+from app.modules.auth.google import GoogleIdTokenVerifier, JwksCache, get_google_verifier
+from tests.helpers import FakeClock, alembic_config, google_certs_transport, make_settings, serve
 
 
 @pytest.fixture(scope="session")
@@ -90,9 +93,31 @@ async def redis(settings: Settings) -> AsyncIterator[Redis]:
 
 
 @pytest.fixture
-def app(settings: Settings) -> FastAPI:
-    """The REST app. Tests may add routes or overrides before using ``client``."""
-    return create_app(settings)
+def clock() -> FakeClock:
+    """The app's clock: real time until a test advances it."""
+    return FakeClock()
+
+
+@pytest.fixture
+async def google_http() -> AsyncIterator[httpx.AsyncClient]:
+    """An HTTP client on which Google's certs URL serves the local test keys."""
+    async with httpx.AsyncClient(transport=google_certs_transport()) as client:
+        yield client
+
+
+@pytest.fixture
+def app(settings: Settings, clock: FakeClock, google_http: httpx.AsyncClient) -> FastAPI:
+    """The REST app with a controllable clock and Google keys served locally.
+
+    Tests may add routes or overrides before using ``client``.
+    """
+    app = create_app(settings)
+    jwks = JwksCache()
+    app.dependency_overrides[get_clock] = lambda: clock
+    app.dependency_overrides[get_google_verifier] = lambda: GoogleIdTokenVerifier(
+        client_ids=settings.google_client_ids, jwks=jwks, http=google_http
+    )
+    return app
 
 
 @pytest.fixture

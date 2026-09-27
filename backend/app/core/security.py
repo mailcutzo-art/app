@@ -1,14 +1,32 @@
-"""Caller identity: client IP resolution and the authenticated-user dependency."""
+"""Caller identity: client IP resolution, bearer authentication and role checks."""
 
 import uuid
-from collections.abc import Sequence
+from collections.abc import Awaitable, Callable, Sequence
+from dataclasses import dataclass
 from ipaddress import IPv4Network, IPv6Network, ip_address
 from typing import Annotated
 
+import structlog
 from fastapi import Depends
 from starlette.requests import HTTPConnection
 
-from app.core.errors import Unauthorized
+from app.core.clock import ClockDep
+from app.core.config import SettingsDep
+from app.core.db import SessionDep
+from app.core.errors import Forbidden, Unauthorized
+from app.core.redis import RedisDep
+from app.core.tokens import decode_access_token
+from app.modules.auth.access import (
+    ACTIVITY_INTERVAL_S,
+    activity_gate_key,
+    record_activity,
+    revoked_session_key,
+)
+from app.modules.users.authz import authz_key, load_authz, parse_authz
+from app.modules.users.models import Role, UserStatus
+
+# Higher roles include the lower ones.
+_ROLE_RANKS: dict[str, int] = {Role.USER: 0, Role.MODERATOR: 1, Role.ADMIN: 2}
 
 
 def client_ip(conn: HTTPConnection, trusted_proxies: Sequence[IPv4Network | IPv6Network]) -> str:
@@ -42,13 +60,77 @@ def _is_trusted(host: str, trusted_proxies: Sequence[IPv4Network | IPv6Network])
     return any(address in network for network in trusted_proxies)
 
 
-async def get_current_user_id() -> uuid.UUID:
-    """FastAPI dependency: the authenticated user's id.
+@dataclass(frozen=True, slots=True)
+class AuthContext:
+    user_id: uuid.UUID
+    session_id: uuid.UUID
+    roles: frozenset[str]
 
-    Access-token verification lands with the auth module. Until then no request is authenticated,
-    so user-scoped features (user rate limits, idempotency keys) fail closed with 401.
+    def has_role(self, role: Role) -> bool:
+        rank = max((_ROLE_RANKS.get(held, -1) for held in self.roles), default=-1)
+        return rank >= _ROLE_RANKS[role]
+
+
+async def get_auth_context(
+    conn: HTTPConnection,
+    settings: SettingsDep,
+    redis: RedisDep,
+    db: SessionDep,
+    clock: ClockDep,
+) -> AuthContext:
+    """FastAPI dependency: authenticate the ``Authorization: Bearer`` access token.
+
+    Besides the signature and expiry it checks, in one Redis round trip, that the session was
+    not revoked (logout, ban, reuse detection) and that the user's status and token version
+    still allow the token. Activity is recorded at most every ``ACTIVITY_INTERVAL_S`` seconds.
     """
-    raise Unauthorized()
+    scheme, _, token = conn.headers.get("authorization", "").partition(" ")
+    if scheme.lower() != "bearer" or not token.strip():
+        raise Unauthorized()
+    now = clock()
+    claims = decode_access_token(settings.jwt_keys, token.strip(), now=now)
+
+    async with redis.pipeline(transaction=False) as pipe:
+        pipe.exists(revoked_session_key(claims.session_id))
+        pipe.get(authz_key(claims.user_id))
+        pipe.set(activity_gate_key(claims.session_id), "1", nx=True, ex=ACTIVITY_INTERVAL_S)
+        revoked, cached_authz, first_in_interval = await pipe.execute()
+    if revoked:
+        raise Unauthorized("You have been signed out.", code="SESSION_REVOKED")
+
+    authz = parse_authz(cached_authz) or await load_authz(db, redis, claims.user_id)
+    if authz is None:
+        raise Unauthorized("Your session is not valid.", code="INVALID_ACCESS_TOKEN")
+    if authz.status == UserStatus.BANNED:
+        raise Forbidden("This account has been suspended.", code="ACCOUNT_BANNED")
+    if authz.status in {UserStatus.PENDING_DELETION, UserStatus.DELETED}:
+        raise Unauthorized("This account has been closed.", code="ACCOUNT_CLOSED")
+    if authz.token_version != claims.token_version:
+        raise Unauthorized("Your session is not valid.", code="INVALID_ACCESS_TOKEN")
+
+    if first_in_interval:
+        await record_activity(db, user_id=claims.user_id, session_id=claims.session_id, now=now)
+    structlog.contextvars.bind_contextvars(user_id=str(claims.user_id))
+    return AuthContext(user_id=claims.user_id, session_id=claims.session_id, roles=authz.roles)
+
+
+CurrentAuth = Annotated[AuthContext, Depends(get_auth_context)]
+
+
+async def get_current_user_id(auth: CurrentAuth) -> uuid.UUID:
+    """FastAPI dependency: the authenticated user's id."""
+    return auth.user_id
 
 
 CurrentUserId = Annotated[uuid.UUID, Depends(get_current_user_id)]
+
+
+def require_role(role: Role) -> Callable[..., Awaitable[AuthContext]]:
+    """Dependency factory: 403 ``ROLE_REQUIRED`` unless the caller has ``role`` (or higher)."""
+
+    async def ensure_role(auth: CurrentAuth) -> AuthContext:
+        if not auth.has_role(role):
+            raise Forbidden("You don't have access to this.", code="ROLE_REQUIRED")
+        return auth
+
+    return ensure_role
