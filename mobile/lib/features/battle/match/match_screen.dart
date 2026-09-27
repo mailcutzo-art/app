@@ -44,6 +44,7 @@ class MatchScreen extends ConsumerStatefulWidget {
 class _MatchScreenState extends ConsumerState<MatchScreen> {
   late final ScreenGuard _guard;
   bool _asking = false;
+  Timer? _leaving;
 
   @override
   void initState() {
@@ -54,6 +55,7 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
 
   @override
   void dispose() {
+    _leaving?.cancel();
     unawaited(_guard.release());
     super.dispose();
   }
@@ -107,11 +109,10 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     await match.forfeit();
     // The result follows as soon as the server confirms. If it can't (no connection), go anyway:
     // the server ends the game when the grace period runs out.
-    unawaited(
-      Future<void>.delayed(const Duration(seconds: 4), () {
-        if (mounted && !(ref.read(matchViewProvider(widget.matchId))?.isOver ?? true)) _done();
-      }),
-    );
+    _leaving?.cancel();
+    _leaving = Timer(const Duration(seconds: 4), () {
+      if (mounted && !(ref.read(matchViewProvider(widget.matchId))?.isOver ?? true)) _done();
+    });
   }
 
   @override

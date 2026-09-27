@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/router.dart';
@@ -46,6 +47,28 @@ void reduceMotion(WidgetTester tester) {
     disableAnimations: true,
   );
   addTearDown(tester.platformDispatcher.clearAccessibilityFeaturesTestValue);
+}
+
+/// Sends the app to the background the way the OS does: inactive, hidden, paused.
+void toBackground(WidgetTester tester) {
+  for (final state in [
+    AppLifecycleState.inactive,
+    AppLifecycleState.hidden,
+    AppLifecycleState.paused,
+  ]) {
+    tester.binding.handleAppLifecycleStateChanged(state);
+  }
+}
+
+/// Brings the app back: hidden, inactive, resumed.
+void toForeground(WidgetTester tester) {
+  for (final state in [
+    AppLifecycleState.hidden,
+    AppLifecycleState.inactive,
+    AppLifecycleState.resumed,
+  ]) {
+    tester.binding.handleAppLifecycleStateChanged(state);
+  }
 }
 
 /// A demo server playing as the test user (`u1`), quick to answer.

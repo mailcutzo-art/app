@@ -35,6 +35,17 @@ Map<String, Object?> frame(
   int? seq,
 ]) => {'v': 1, 't': type, 'ch': ?ch, 'seq': ?seq, 'ts': serverNow(), 'd': data};
 
+/// Decodes [frame] the way the connection does.
+ServerEvent decodeEvent(Map<String, Object?> frame) => ServerEvent.decode(jsonEncode(frame));
+
+/// A decoded event on channel [ch] (default `u`).
+ServerEvent event(
+  String type, [
+  Map<String, Object?> data = const {},
+  String? ch = 'u',
+  int? seq,
+]) => decodeEvent(frame(type, data, ch, seq));
+
 /// A scriptable realtime server for widget tests. By default it answers `hello` with `welcome`
 /// and `clock.ping` with `clock.pong`; the test plays everything else with [push].
 class TestRealtimeServer implements WebSocketConnector {

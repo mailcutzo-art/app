@@ -482,7 +482,7 @@ class LiveController {
     final current = search.value;
     if (queue != null) {
       search.value = current.adoptQueue(ticketId: queue.id);
-    } else if (current.isSearching || current.phase == SearchPhase.joining) {
+    } else if (current.isSearching) {
       // The server let the search go while the app was away.
       search.value = current.stoppedWhileAway();
       if (_path != Routes.battleSearch) {
@@ -550,7 +550,12 @@ class LiveController {
     switch (reason) {
       case Revoked():
         // The session is over: the same path as a rejected refresh token.
-        unawaited(_ref.read(tokenStoreProvider).clear());
+        unawaited(
+          _ref
+              .read(tokenStoreProvider)
+              .clear()
+              .then<void>((_) {}, onError: (Object e) => debugPrint('Keeping tokens: $e')),
+        );
         _ref.read(sessionExpiredProvider.notifier).fire();
       case Superseded():
         _hub.show(

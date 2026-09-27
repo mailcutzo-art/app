@@ -56,6 +56,21 @@ class FakeSessionController extends SessionController {
   Future<void> signOut() async => state = const AsyncData(SignedOut());
 }
 
+/// Like [FakeSessionController], and it also ends the session when the app is told it's over
+/// (`sessionExpiredProvider`), as the real controller does.
+class ExpiringSessionController extends FakeSessionController {
+  ExpiringSessionController(super.initial);
+
+  @override
+  Future<Session> build() async {
+    ref.listen(sessionExpiredProvider, (_, _) {
+      final end = ref.read(sessionExpiredProvider.notifier).last;
+      state = AsyncData(SignedOut(message: signedOutMessage(end.reason)));
+    });
+    return initial;
+  }
+}
+
 /// Onboarding API stand-in: every well-formed handle is available.
 class FakeOnboardingRepository extends OnboardingRepository {
   FakeOnboardingRepository() : super(ApiClient(Dio()));
@@ -100,9 +115,10 @@ List<Override> testOverrides({
   BattleRepository? battle,
   MatchRepository? matches,
   ScreenGuard? screenGuard,
+  SessionController Function()? sessionController,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
-  sessionProvider.overrideWith(() => FakeSessionController(session)),
+  sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
   onboardingRepositoryProvider.overrideWithValue(FakeOnboardingRepository()),
   sharedPrefsProvider.overrideWithValue(prefs),
   learnRepositoryProvider.overrideWithValue(learn ?? FakeLearnRepository.seeded()),
@@ -145,6 +161,7 @@ Future<ProviderContainer> pumpApp(
   BattleRepository? battle,
   MatchRepository? matches,
   ScreenGuard? screenGuard,
+  SessionController Function()? sessionController,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -159,6 +176,7 @@ Future<ProviderContainer> pumpApp(
           battle: battle,
           matches: matches,
           screenGuard: screenGuard,
+          sessionController: sessionController,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,
