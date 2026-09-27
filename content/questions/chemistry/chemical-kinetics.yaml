@@ -7202,3 +7202,1024 @@ questions:
       - ln[R]_0
     answer: 3
     explanation: At t = 0, [R] = [R]_0, so ln[R]_0 = I. This gives ln[R] = ln[R]_0 − kt, the integrated first order equation.
+  - id: che-kin-351
+    topic: first-order
+    subtopic: Integrated rate law
+    concept: At t = 2.303/k, one-tenth of the reactant remains
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [first-order, integrated-rate-law]
+    stem: For a first order reaction, what fraction of the reactant remains at t = 2.303/k?
+    options:
+      - 1/10
+      - 1/2
+      - 1/e
+      - 1/100
+    answer: 0
+    explanation: At t = 2.303/k, ln([R]_0/[R]) = kt = 2.303 = ln 10, so [R] = [R]_0/10. The fraction 1/e remains at t = 1/k.
+  - id: che-kin-352
+    topic: first-order
+    subtopic: Integrated rate law in a/(a − x) form
+    concept: k = (2.303/t) log[a/(a − x)] where x is the amount reacted
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: k = (2.303/t) log[a/(a − x)]
+    tags: [first-order, integrated-rate-law, trap]
+    stem: For a first order reaction A → products, the initial concentration a = 0.80 mol L^{-1}, and x = 0.60 mol L^{-1} has reacted after 20 min. What is k? (log 4 = 0.602)
+    options:
+      - 0.0144 min^{-1}
+      - 0.030 min^{-1}
+      - 0.0693 min^{-1}
+      - 0.0347 min^{-1}
+    answer: 2
+    explanation: k = (2.303/t) log[a/(a − x)] = (2.303/20) log(0.80/0.20) = (2.303/20) × 0.602 = 0.0693 min^{-1}. Using a/x instead of a/(a − x) gives 0.0144 min^{-1}.
+  - id: che-kin-353
+    topic: first-order
+    subtopic: First order gas-phase reactions
+    concept: For 2A(g) → B(g), p_A = 2p_t − p_i
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [first-order, gas-phase, multi-concept]
+    stem: The first order gas-phase reaction 2A(g) → B(g) is started with pure A at 0.80 atm at constant volume and temperature. After 30 min the total pressure is 0.60 atm. What is the rate constant?
+    options:
+      - 9.6 × 10^{-3} min^{-1}
+      - 2.31 × 10^{-2} min^{-1}
+      - 4.62 × 10^{-2} min^{-1}
+      - 1.16 × 10^{-2} min^{-1}
+    answer: 1
+    explanation: If 2y atm of A reacts, y atm of B forms, so p_{total} = 0.80 − y = 0.60 and y = 0.20 atm. Then p_A = 0.80 − 0.40 = 0.40 atm, half its initial value, so t_{1/2} = 30 min and k = 0.693/30 = 2.31 × 10^{-2} min^{-1}. Taking p_A as the total pressure, 0.60 atm, gives 9.6 × 10^{-3} min^{-1}.
+  - id: che-kin-354
+    topic: first-order
+    subtopic: Graphs for first order
+    concept: A steeper log[R]–t line means a larger k and a shorter half-life
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [first-order, graph, half-life]
+    stem: Plots of log[R] against t for two first order reactions X and Y start at the same point, and the line for X is twice as steep as that for Y. Which statement is correct?
+    options:
+      - The half-life of X is half that of Y.
+      - The half-life of X is twice that of Y.
+      - X and Y have the same half-life because they start at the same point.
+      - X is zero order and Y is first order.
+    answer: 0
+    explanation: The slope of log[R] against t is −k/2.303, so X has twice the rate constant of Y. Since t_{1/2} = 0.693/k, the half-life of X is half that of Y; the common starting point only means equal [R]_0.
+  - id: che-kin-355
+    topic: first-order
+    subtopic: Rate during a first order reaction
+    concept: After one half-life the rate of a first order reaction is halved
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [first-order, half-life]
+    stem: Which statement about the rate of a first order reaction as it proceeds is correct?
+    options:
+      - It stays constant until the reactant is used up.
+      - After one half-life it is half the initial rate.
+      - After one half-life it is twice the initial rate.
+      - It does not depend on the concentration of the reactant.
+    answer: 1
+    explanation: For first order, rate = k[R], so the rate is proportional to the concentration; after one half-life [R] = [R]_0/2 and the rate is half its initial value. A constant rate is characteristic of zero order.
+  - id: che-kin-356
+    topic: first-order
+    subtopic: Fraction reacted
+    concept: Fraction reacted = 1 − e^{−kt}
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [first-order, exponential-decay, trap]
+    stem: A first order reaction has k = 0.10 min^{-1}. What fraction of the reactant has reacted after 10 min? (e^{−1} = 0.368)
+    options:
+      - "0.368"
+      - "0.100"
+      - "0.632"
+      - "1.00"
+    answer: 2
+    explanation: The fraction remaining is e^{−kt} = e^{−1} = 0.368, so the fraction reacted is 1 − 0.368 = 0.632. Taking kt = 1 to mean complete reaction (1.00) treats the reaction as zero order.
+  - id: che-kin-357
+    topic: first-order
+    subtopic: Unit of the first order rate constant
+    concept: The concentration unit cancels in k = rate/[R]
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [first-order, rate-constant-units]
+    stem: |-
+      Assertion (A): The unit of the rate constant of a first order reaction depends on the unit used for concentration.
+      Reason (R): For a first order reaction, k = rate/[R].
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: Since k = rate/[R] = (concentration time^{-1})/concentration, the concentration unit cancels and k has the unit time^{-1}, so A is false. R is the correct relation that leads to this cancellation.
+  - id: che-kin-358
+    topic: first-order
+    subtopic: Radiocarbon dating
+    concept: 70.7% remaining corresponds to half a half-life
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [radioactive-decay, half-life, trap]
+    stem: A charcoal sample shows 70.7% of the ^{14}C activity of fresh charcoal. If the half-life of ^{14}C is 5730 years, how old is the sample? (1/√2 = 0.707)
+    options:
+      - 2865 years
+      - 3358 years
+      - 4051 years
+      - 5730 years
+    answer: 0
+    explanation: 0.707 = (½)^{1/2}, so half of one half-life has passed and the age is 5730/2 = 2865 years. Assuming a linear decay (29.3% lost at 50% per 5730 years) gives about 3358 years.
+  - id: che-kin-359
+    topic: first-order
+    subtopic: First order formulae
+    concept: Expressions for k, t_{1/2}, [R] and t_{99.9%} of a first order reaction
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [first-order, half-life, integrated-rate-law]
+    stem: |-
+      For a first order reaction, match each quantity in List I with its expression in List II.
+      List I
+      P. Rate constant, k
+      Q. Half-life, t_{1/2}
+      R. Concentration at time t, [R]
+      S. Time for 99.9% completion
+      List II
+      1. 6.909/k
+      2. [R]_0 e^{−kt}
+      3. 0.693/k
+      4. (2.303/t) log([R]_0/[R])
+    options:
+      - P-4, Q-1, R-2, S-3
+      - P-4, Q-3, R-2, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: k = (2.303/t) log([R]_0/[R]), t_{1/2} = 0.693/k and [R] = [R]_0 e^{−kt}. For 99.9% completion [R]_0/[R] = 1000, so t = (2.303/k) × 3 = 6.909/k.
+  - id: che-kin-360
+    topic: first-order
+    subtopic: Characteristics of first order reactions
+    concept: t_{90%} is concentration-independent, and the rate falls in step with [R]
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [first-order]
+    stem: |-
+      Statement I: For a first order reaction, the time for 90% completion does not depend on the initial concentration.
+      Statement II: For a first order reaction, the rate falls to one-tenth of its initial value when 90% of the reactant has reacted.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: t_{90%} = (2.303/k) log 10 contains no concentration term. Since rate = k[R], the rate falls in step with [R], to one-tenth when 90% has reacted. Both statements are correct.
+  - id: che-kin-361
+    topic: first-order
+    subtopic: Comparing first order reactions
+    concept: Progress of two reactions with k_1 = 3k_2 over the same time
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [first-order, half-life, trap]
+    stem: Two first order reactions have k_1 = 3k_2 and start with equal concentrations. When the first reaction is 87.5% complete, how far has the second one gone?
+    options:
+      - 29.2% complete
+      - 87.5% complete
+      - 50% complete
+      - 12.5% complete
+    answer: 2
+    explanation: 87.5% completion of the first reaction takes three of its half-lives. The second reaction's half-life is three times longer, so in the same time it completes exactly one half-life, i.e. 50%. Dividing 87.5% by 3 (29.2%) wrongly assumes linear progress.
+  - id: che-kin-362
+    topic: first-order
+    subtopic: Initial rate from later data
+    concept: Back-calculating [R]_0 and k from two readings, then the initial rate k[R]_0
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [first-order, half-life, multi-concept]
+    stem: In a first order reaction, [R] is 0.60 mol L^{-1} at t = 15 min and 0.15 mol L^{-1} at t = 45 min. What was the initial rate of the reaction?
+    options:
+      - 5.5 × 10^{-2} mol L^{-1} min^{-1}
+      - 2.8 × 10^{-2} mol L^{-1} min^{-1}
+      - 1.5 × 10^{-2} mol L^{-1} min^{-1}
+      - 8.0 × 10^{-2} mol L^{-1} min^{-1}
+    answer: 0
+    explanation: A four-fold fall in 30 min is two half-lives, so t_{1/2} = 15 min, k = 0.693/15 = 0.0462 min^{-1} and [R]_0 = 2 × 0.60 = 1.20 mol L^{-1}. The initial rate is k[R]_0 = 0.0462 × 1.20 ≈ 5.5 × 10^{-2} mol L^{-1} min^{-1}. Using 0.60 mol L^{-1} as [R]_0 gives 2.8 × 10^{-2}.
+  - id: che-kin-363
+    topic: first-order
+    subtopic: Equal fractions in equal times
+    concept: 51% completion means 0.49 = 0.70^2 remains, i.e. two equal intervals
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [first-order, trap]
+    stem: A first order reaction is 30% complete in 10 min. How long will it take to be 51% complete?
+    options:
+      - 17 min
+      - 20 min
+      - 15 min
+      - 30 min
+    answer: 1
+    explanation: After 10 min 70% remains, and in the next 10 min another 30% of that reacts, leaving 0.70 × 0.70 = 0.49, i.e. 51% complete after 20 min. Scaling linearly (51/30 × 10 ≈ 17 min) ignores that equal times remove equal fractions.
+  - id: che-kin-364
+    topic: half-life
+    subtopic: Time for a given extent from the half-life
+    concept: Time for 80% reaction from t_{1/2} using k = 0.693/t_{1/2}
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [half-life, first-order]
+    stem: A first order reaction has a half-life of 1386 s. How long will it take for 80% of the reactant to react? (log 5 = 0.699)
+    options:
+      - 2218 s
+      - 3219 s
+      - 2772 s
+      - 1109 s
+    answer: 1
+    explanation: k = 0.693/1386 = 5.0 × 10^{-4} s^{-1}, and 80% reacted means [R]_0/[R] = 5. So t = (2.303/k) log 5 = 4606 × 0.699 ≈ 3219 s. 2772 s is two half-lives, which corresponds to only 75% reacted.
+  - id: che-kin-365
+    topic: half-life
+    subtopic: Radioactive decay
+    concept: Counting halvings of activity to find the half-life
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [half-life, radioactive-decay]
+    stem: The activity of a radioactive sample falls from 800 to 100 counts per minute in 3 hours. What is its half-life?
+    options:
+      - 22.5 min
+      - 37.5 min
+      - 3 h
+      - 1 h
+    answer: 3
+    explanation: 800 → 400 → 200 → 100 is three halvings in 3 h, so each half-life is 1 h. Dividing 3 h by 8 (22.5 min) confuses the factor of decrease with the number of half-lives.
+  - id: che-kin-366
+    topic: half-life
+    subtopic: Half-life and temperature
+    concept: A first order t_{1/2} shortens with temperature; its concentration independence is a separate fact
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [half-life, temperature-effect]
+    stem: |-
+      Assertion (A): The half-life of a first order reaction decreases as the temperature is raised.
+      Reason (R): The half-life of a first order reaction is independent of the initial concentration.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: t_{1/2} = 0.693/k, and k increases with temperature, so the half-life becomes shorter and A is true. R is also true, but concentration independence says nothing about how t_{1/2} varies with temperature.
+  - id: che-kin-367
+    topic: half-life
+    subtopic: Reading the half-life from a graph
+    concept: k from the half-life read off a first order decay curve
+    category: numerical
+    format: diagram
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    diagram: "Curve of [R] (y-axis, mol L^{-1}) against time (x-axis, min) for a first order reaction: [R] = 0.80 at t = 0, 0.40 at t = 12, 0.20 at t = 24 and 0.10 at t = 36, joined by a smooth decaying curve with these four points marked."
+    tags: [half-life, graph, first-order]
+    stem: From the concentration–time curve shown, what is the rate constant of the reaction?
+    options:
+      - 0.0833 min^{-1}
+      - 0.0578 min^{-1}
+      - 0.0250 min^{-1}
+      - 0.693 min^{-1}
+    answer: 1
+    explanation: "[R] halves every 12 min, so t_{1/2} = 12 min and k = 0.693/12 = 0.0578 min^{-1}. 0.0833 min^{-1} is 1/12, which leaves out the factor 0.693."
+  - id: che-kin-368
+    topic: half-life
+    subtopic: Half-life and temperature
+    concept: E_a from the change of a first order half-life with temperature
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [half-life, activation-energy, multi-concept]
+    stem: The half-life of a first order reaction is 40 min at 290 K and 10 min at 300 K. What is its activation energy? (log 4 = 0.602, 2.303R = 19.15 J K^{-1} mol^{-1})
+    options:
+      - 50.1 kJ mol^{-1}
+      - 100 kJ mol^{-1}
+      - 43.6 kJ mol^{-1}
+      - 200 kJ mol^{-1}
+    answer: 1
+    explanation: Since t_{1/2} = 0.693/k, a four-fold drop in half-life means k_{300}/k_{290} = 4. Then E_a = 2.303R × log 4 × T_1T_2/(T_2 − T_1) = 19.15 × 0.602 × 8700 ≈ 1.00 × 10^5 J mol^{-1} = 100 kJ mol^{-1}. Using a ratio of 2 gives about 50 kJ mol^{-1}.
+  - id: che-kin-369
+    topic: half-life
+    subtopic: Half-life expressions
+    concept: Both zero and first order half-lives vary inversely with k
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [half-life, zero-order, first-order]
+    stem: Which statement comparing the half-lives of zero order and first order reactions is correct?
+    options:
+      - In both cases the half-life is inversely proportional to the rate constant.
+      - In both cases the half-life is independent of [R]_0.
+      - For a zero order reaction the half-life does not depend on k.
+      - For a first order reaction the half-life is proportional to [R]_0.
+    answer: 0
+    explanation: t_{1/2} = [R]_0/2k for zero order and 0.693/k for first order, so both vary as 1/k. Only the first order half-life is independent of [R]_0; the zero order one is proportional to [R]_0.
+  - id: che-kin-370
+    topic: half-life
+    subtopic: Number of half-lives
+    concept: Seven half-lives leave less than 1% of the reactant
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [half-life, first-order]
+    stem: What is the minimum whole number of half-lives after which less than 1% of the reactant remains in a first order reaction?
+    options:
+      - "6"
+      - "10"
+      - "7"
+      - "100"
+    answer: 2
+    explanation: (½)^6 = 1/64 ≈ 1.6% is still above 1%, while (½)^7 = 1/128 ≈ 0.78% is below it, so 7 half-lives are needed. Ten half-lives leave only about 0.1%.
+  - id: che-kin-371
+    topic: half-life
+    subtopic: Half-life calculations
+    concept: Four half-lives give 93.75% completion; a zero order t_{1/2} varies as 1/k
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [half-life, zero-order]
+    stem: |-
+      Statement I: If the half-life of a first order reaction is 10 min, the reaction is 93.75% complete in 40 min.
+      Statement II: For a zero order reaction, doubling the rate constant halves the half-life.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: 40 min is four half-lives, leaving (½)^4 = 6.25%, so 93.75% has reacted. For zero order t_{1/2} = [R]_0/2k, so doubling k halves t_{1/2}. Both statements are correct.
+  - id: che-kin-372
+    topic: half-life
+    subtopic: Times for different extents of reaction
+    concept: t_{75%} = 2t_{1/2}; t_{99%} and t_{99.9%} are 2 and 3 times t_{90%}
+    category: application
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [half-life, first-order]
+    stem: |-
+      A first order reaction has a half-life of 10 min. Match the extent of reaction in List I with the time needed in List II. (log 2 = 0.301)
+      List I
+      P. 75% complete
+      Q. 90% complete
+      R. 99% complete
+      S. 99.9% complete
+      List II
+      1. 66.4 min
+      2. 99.7 min
+      3. 20 min
+      4. 33.2 min
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+    answer: 2
+    explanation: 75% is two half-lives, 20 min. t_{90%} = t_{1/2} × (log 10/log 2) = 10/0.301 ≈ 33.2 min, and 99% and 99.9% need log 100 and log 1000, i.e. 2 and 3 times t_{90%}, about 66.4 and 99.7 min.
+  - id: che-kin-373
+    topic: pseudo-first-order
+    subtopic: Role of the acid
+    concept: H^+ catalyses the hydrolysis of ethyl acetate and is not consumed
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [pseudo-first-order, catalyst]
+    stem: In the pseudo first order hydrolysis of ethyl acetate in dilute acid, the role of H^+ is that of a
+    options:
+      - reactant used up in the reaction
+      - catalyst
+      - reaction intermediate
+      - product
+    answer: 1
+    explanation: NCERT writes this reaction with H^+ over the arrow; H^+ speeds up the hydrolysis and is not consumed, so it is a catalyst. The reactants are the ester and water.
+  - id: che-kin-374
+    topic: pseudo-first-order
+    subtopic: Following ester hydrolysis by titration
+    concept: The ester left is proportional to V_∞ − V_t, allowing for the titre of the acid catalyst
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 110
+    ncert: true
+    battle: false
+    tags: [pseudo-first-order, data-analysis, trap]
+    stem: |-
+      The acid-catalysed hydrolysis of methyl acetate in excess water was followed by titrating equal samples of the mixture against NaOH. The volumes of NaOH needed were 20.0 mL at t = 0 (for the acid catalyst alone), 25.0 mL at t = 30 min and 40.0 mL when the reaction was complete.
+      What is the pseudo first order rate constant? (log 1.333 = 0.125)
+    options:
+      - 3.27 × 10^{-2} min^{-1}
+      - 7.4 × 10^{-3} min^{-1}
+      - 4.2 × 10^{-3} min^{-1}
+      - 9.6 × 10^{-3} min^{-1}
+    answer: 3
+    explanation: The titre due to acetic acid formed is V_t − V_0, so the ester left is proportional to V_∞ − V_t and the initial ester to V_∞ − V_0. Hence k′ = (2.303/30) log[(40.0 − 20.0)/(40.0 − 25.0)] = (2.303/30) × 0.125 ≈ 9.6 × 10^{-3} min^{-1}. Ignoring the titre of the acid catalyst gives 3.27 × 10^{-2} min^{-1}.
+  - id: che-kin-375
+    topic: pseudo-first-order
+    subtopic: Relation between k and k′
+    concept: k′ = k[H_2O] is a first order constant; k is a second order constant
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [pseudo-first-order, rate-constant-units]
+    stem: Which statement about the constants k and k′ for the pseudo first order hydrolysis of an ester in excess water is correct?
+    options:
+      - k′ = k/[H_2O]
+      - k′ does not depend on the concentration of water.
+      - k and k′ always have the same numerical value.
+      - k′ has the unit s^{-1}, whereas the true second order k has the unit L mol^{-1} s^{-1}.
+    answer: 3
+    explanation: rate = k[ester][H_2O] = k′[ester] with k′ = k[H_2O]. So k′ is a first order constant (s^{-1}) that depends on [H_2O], while k is a second order constant (L mol^{-1} s^{-1}).
+  - id: che-kin-376
+    topic: pseudo-first-order
+    subtopic: Conditions for pseudo first order behaviour
+    concept: With comparable concentrations the true second order kinetics appear
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [pseudo-first-order, order-of-reaction]
+    stem: If an ester and water, both at 0.50 mol L^{-1}, react in an inert solvent with an acid catalyst (rate = k[ester][H_2O]), the reaction will show
+    options:
+      - pseudo first order kinetics
+      - second order kinetics, first order in each reactant
+      - zero order kinetics
+      - first order kinetics in water only
+    answer: 1
+    explanation: Pseudo first order behaviour needs one reactant in large excess. With comparable concentrations both ester and water are used up significantly, so the rate depends on both and the reaction shows its true second order kinetics.
+  - id: che-kin-377
+    topic: pseudo-first-order
+    subtopic: Half-life under pseudo first order conditions
+    concept: t_{1/2} = 0.693/k′ for the inversion of cane sugar
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [pseudo-first-order, half-life, inversion-of-cane-sugar]
+    stem: The pseudo first order rate constant for the inversion of cane sugar under certain conditions is 6.93 × 10^{-4} s^{-1}. What is the half-life?
+    options:
+      - 100 s
+      - 1000 s
+      - 1443 s
+      - 693 s
+    answer: 1
+    explanation: t_{1/2} = 0.693/k′ = 0.693/(6.93 × 10^{-4}) = 1000 s. 1443 s is 1/k′, not the half-life.
+  - id: che-kin-378
+    topic: arrhenius-equation
+    subtopic: Using a log k equation
+    concept: Evaluating log k = log A − (E_a/2.303R)/T at a given temperature
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [arrhenius-equation]
+    stem: For a reaction, log (k/s^{-1}) = 10 − (2000 K)/T. What is k at 400 K?
+    options:
+      - 1.0 × 10^{-5} s^{-1}
+      - 5.0 s^{-1}
+      - 1.0 × 10^5 s^{-1}
+      - 1.0 × 10^{10} s^{-1}
+    answer: 2
+    explanation: log k = 10 − 2000/400 = 10 − 5 = 5, so k = 1.0 × 10^5 s^{-1}. 1.0 × 10^{10} s^{-1} is A, the limiting value at very high temperature.
+  - id: che-kin-379
+    topic: arrhenius-equation
+    subtopic: Activation energy and temperature sensitivity
+    concept: For the same temperatures, log(k_2/k_1) is proportional to E_a
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [activation-energy, two-temperature, temperature-effect]
+    stem: Two reactions have activation energies of 50 kJ mol^{-1} and 100 kJ mol^{-1}. The rate constant of the first doubles when the temperature is raised from 300 K to 310 K. By what factor does the rate constant of the second increase over the same range?
+    options:
+      - 2 times
+      - 4 times
+      - 3 times
+      - 8 times
+    answer: 1
+    explanation: log(k_2/k_1) = (E_a/2.303R)(1/T_1 − 1/T_2), so for the same two temperatures log(k_2/k_1) is proportional to E_a. Doubling E_a doubles the logarithm, so the factor becomes 2^2 = 4.
+  - id: che-kin-380
+    topic: arrhenius-equation
+    subtopic: Activation energy from the Arrhenius plot
+    concept: E_a from two points on a plot of ln k against 1/T
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [arrhenius-plot, activation-energy]
+    stem: Two points on a plot of ln k against 1/T are (2.0 × 10^{-3} K^{-1}, −2.0) and (3.0 × 10^{-3} K^{-1}, −8.0). What is the activation energy? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - 115 kJ mol^{-1}
+      - 49.9 kJ mol^{-1}
+      - 21.7 kJ mol^{-1}
+      - 6.0 kJ mol^{-1}
+    answer: 1
+    explanation: Slope = (−8.0 − (−2.0))/(3.0 × 10^{-3} − 2.0 × 10^{-3}) = −6.0 × 10^3 K = −E_a/R, so E_a = 6.0 × 10^3 × 8.314 ≈ 4.99 × 10^4 J mol^{-1} = 49.9 kJ mol^{-1}. Also multiplying by 2.303 (115 kJ mol^{-1}) is needed only for a log k plot.
+  - id: che-kin-381
+    topic: arrhenius-equation
+    subtopic: Temperature rise needed to double k
+    concept: The rise needed to double k depends on E_a and is only roughly 10 K
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [two-temperature, temperature-coefficient]
+    stem: A reaction has E_a = 60 kJ mol^{-1}. Starting from 300 K, by about how many kelvin must the temperature be raised to double the rate constant? (log 2 = 0.301, 2.303R = 19.15 J K^{-1} mol^{-1})
+    options:
+      - 10 K
+      - 5 K
+      - 20 K
+      - 9 K
+    answer: 3
+    explanation: log 2 = (60000/19.15)(1/300 − 1/T), so 1/300 − 1/T = 0.301 × 19.15/60000 = 9.6 × 10^{-5} K^{-1}. Then 1/T = 3.237 × 10^{-3} K^{-1}, T ≈ 309 K, a rise of about 9 K. The 10 K rule of thumb is only approximate.
+  - id: che-kin-382
+    topic: arrhenius-equation
+    subtopic: Temperature and reversible reactions
+    concept: Both forward and backward rate constants rise with T; a larger E_a means greater sensitivity
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [temperature-effect, activation-energy, trap]
+    stem: |-
+      Statement I: The rate constants of both the forward and the backward reactions of a reversible reaction increase when the temperature is raised.
+      Statement II: A reaction with a larger activation energy is less sensitive to temperature.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Both directions have positive activation energies, so both rate constants increase with temperature, by different amounts, which is why the equilibrium shifts. A larger E_a makes k more, not less, sensitive to temperature, so Statement II is incorrect.
+  - id: che-kin-383
+    topic: arrhenius-equation
+    subtopic: Fraction of molecules with E ≥ E_a
+    concept: Doubling T takes the square root of the Boltzmann fraction e^{−E_a/RT}
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: true
+    tags: [boltzmann-factor, temperature-effect, trap]
+    stem: At 300 K, 1.0 × 10^{-10} of the molecules of a gas have energy at least equal to E_a. Assuming E_a is constant, what fraction has at least this energy at 600 K?
+    options:
+      - 2.0 × 10^{-10}
+      - 1.0 × 10^{-20}
+      - 1.0 × 10^{-5}
+      - 5.0 × 10^{-11}
+    answer: 2
+    explanation: The fraction is e^{−E_a/RT}. Doubling T halves the exponent, so the new fraction is (1.0 × 10^{-10})^{1/2} = 1.0 × 10^{-5}. Simply doubling the fraction (2.0 × 10^{-10}) ignores its exponential dependence on 1/T.
+  - id: che-kin-384
+    topic: arrhenius-equation
+    subtopic: Rate constant at another temperature
+    concept: E_a from one temperature rise, then k at a third temperature
+    category: application
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [two-temperature, multi-concept, trap]
+    stem: A rate constant rises from 1.0 × 10^{-3} s^{-1} at 300 K to 4.0 × 10^{-3} s^{-1} at 320 K. Assuming E_a is constant, what is k at 340 K? (log 4 = 0.602)
+    options:
+      - 1.6 × 10^{-2} s^{-1}
+      - 1.4 × 10^{-2} s^{-1}
+      - 8.0 × 10^{-3} s^{-1}
+      - 5.0 × 10^{-3} s^{-1}
+    answer: 1
+    explanation: From the first rise, E_a/2.303R = 0.602 × (300 × 320)/20 = 2890 K. For 320 → 340 K, log(k_{340}/k_{320}) = 2890 × 20/(320 × 340) ≈ 0.53, a factor of about 3.4, so k_{340} ≈ 1.4 × 10^{-2} s^{-1}. Assuming the same factor of 4 for every 20 K (1.6 × 10^{-2}) ignores that the effect weakens at higher T.
+  - id: che-kin-385
+    topic: arrhenius-equation
+    subtopic: Forms and plots of the Arrhenius equation
+    concept: ln k is linear in 1/T; equal E_a gives parallel Arrhenius lines
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [arrhenius-equation, arrhenius-plot]
+    stem: |-
+      Consider the following statements about the Arrhenius equation.
+      I. It can be written as ln k = ln A − E_a/RT.
+      II. A plot of log k against T is a straight line.
+      III. For E_a > 0, k increases with temperature.
+      IV. Two reactions with the same E_a but different A give parallel lines on a plot of ln k against 1/T.
+      Which of these are correct?
+    options:
+      - I, III and IV only
+      - I and II only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: Taking logarithms gives ln k = ln A − E_a/RT, so ln k (or log k) is linear in 1/T, not in T, and II is wrong. The slope −E_a/R depends only on E_a, so equal E_a gives parallel lines that differ only in intercept (ln A).
+  - id: che-kin-386
+    topic: arrhenius-equation
+    subtopic: What changes the rate constant
+    concept: Temperature and catalysts change k; concentration does not; a higher E_a lowers k
+    category: application
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [rate-constant, catalyst, temperature-effect]
+    stem: |-
+      Match each change in List I with its effect on the rate constant in List II.
+      List I
+      P. Raising the temperature
+      Q. Adding a catalyst
+      R. Doubling the concentration of a reactant
+      S. Using a reaction with a higher E_a (same A and T)
+      List II
+      1. k increases because E_a is lowered
+      2. k is unchanged
+      3. k decreases
+      4. k increases because more molecules have energy ≥ E_a
+    options:
+      - P-1, Q-4, R-2, S-3
+      - P-4, Q-1, R-3, S-2
+      - P-4, Q-1, R-2, S-3
+      - P-4, Q-2, R-1, S-3
+    answer: 2
+    explanation: Heating raises the fraction of molecules with E ≥ E_a, while a catalyst lowers E_a; both increase k. A change in concentration alters the rate but not k, and a larger E_a gives a smaller k at the same A and T.
+  - id: che-kin-387
+    topic: arrhenius-equation
+    subtopic: Variation of k with T
+    concept: k rises ever more steeply with T; only ln k against 1/T is linear
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [arrhenius-equation, graph]
+    stem: For a reaction with E_a > 0, how does a plot of k against T look over ordinary temperatures?
+    options:
+      - A straight line through the origin
+      - A horizontal line
+      - A curve that falls as T rises
+      - A curve that rises more and more steeply as T increases
+    answer: 3
+    explanation: Since k = A e^{−E_a/RT}, k increases exponentially with temperature over ordinary ranges, giving an upward-curving plot. It is ln k against 1/T, not k against T, that is a straight line.
+  - id: che-kin-388
+    topic: arrhenius-equation
+    subtopic: Comparing activation energies
+    concept: E_a is proportional to the coefficient of 1/T in log k = log A − (E_a/2.303R)/T
+    category: application
+    format: ordering
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [activation-energy, arrhenius-equation]
+    stem: |-
+      The rate constants of four reactions vary with temperature as shown. Arrange them in increasing order of activation energy.
+      I. log k = 12 − 3000/T
+      II. log k = 14 − 5000/T
+      III. log k = 10 − 2000/T
+      IV. log k = 11 − 4000/T
+    options:
+      - III < IV < I < II
+      - II < IV < I < III
+      - I < III < IV < II
+      - III < I < IV < II
+    answer: 3
+    explanation: Comparing with log k = log A − E_a/2.303RT, E_a = 2.303R × (the number multiplying 1/T). So E_a rises with 2000, 3000, 4000 and 5000 K, giving III < I < IV < II; the intercepts (log A) do not matter here.
+  - id: che-kin-389
+    topic: arrhenius-equation
+    subtopic: Combined effect of A and E_a
+    concept: Ranking rate constants by log k = log A − E_a/2.303RT
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [arrhenius-equation, activation-energy, multi-concept]
+    stem: |-
+      Four reactions at 300 K (2.303RT = 5744 J mol^{-1}) have the following values of A and E_a. Arrange them in increasing order of rate constant.
+      I. A = 10^{10} s^{-1}, E_a = 57.4 kJ mol^{-1}
+      II. A = 10^{12} s^{-1}, E_a = 80.4 kJ mol^{-1}
+      III. A = 10^{8} s^{-1}, E_a = 34.5 kJ mol^{-1}
+      IV. A = 10^{11} s^{-1}, E_a = 57.4 kJ mol^{-1}
+    options:
+      - III < IV < I < II
+      - I < IV < II < III
+      - II < I < IV < III
+      - II < III < I < IV
+    answer: 2
+    explanation: log k = log A − E_a/2.303RT gives about 0 for I, −2 for II, +2 for III and +1 for IV, so k increases in the order II < I < IV < III. Ranking by A alone, or by E_a alone, misses that both terms matter.
+  - id: che-kin-390
+    topic: activation-energy-catalysis
+    subtopic: Activated complex
+    concept: The activated complex is the unstable species at the top of the energy barrier
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [activated-complex, ncert-line]
+    stem: The unstable species of highest energy formed momentarily as reactants change into products is called the
+    options:
+      - activated complex
+      - intermediate
+      - catalyst
+      - product complex
+    answer: 0
+    explanation: The activated complex sits at the top of the energy barrier and exists only for an instant before forming products or reverting to reactants. An intermediate, by contrast, lies in an energy minimum between steps.
+  - id: che-kin-391
+    topic: activation-energy-catalysis
+    subtopic: Threshold energy and activation energy
+    concept: E_a(forward) = threshold energy − average reactant energy; then E_a(backward) from ΔH
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [activation-energy, threshold-energy, enthalpy]
+    stem: For a reaction, the threshold energy is 150 kJ mol^{-1}, the average energy of the reactants is 60 kJ mol^{-1} and ΔH = −30 kJ mol^{-1}. What is the activation energy of the backward reaction?
+    options:
+      - 90 kJ mol^{-1}
+      - 60 kJ mol^{-1}
+      - 180 kJ mol^{-1}
+      - 120 kJ mol^{-1}
+    answer: 3
+    explanation: E_a(forward) = threshold energy − average reactant energy = 150 − 60 = 90 kJ mol^{-1}. Since ΔH = E_a(forward) − E_a(backward), E_a(backward) = 90 − (−30) = 120 kJ mol^{-1}. 90 kJ mol^{-1} is the forward barrier.
+  - id: che-kin-392
+    topic: activation-energy-catalysis
+    subtopic: Energy profile with a catalyst
+    concept: A catalysed path through an intermediate complex has a lower highest point; ΔH is unchanged
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    diagram: "Potential energy (y-axis, kJ mol^{-1}) against reaction coordinate (x-axis). Reactants at 0 and products at −40. The uncatalysed path (solid curve) has one hump peaking at 120. The catalysed path (dashed curve) has two humps, peaking at 70 and at 60, separated by a valley at 30 labelled 'intermediate complex'. All levels are marked on the y-axis."
+    tags: [energy-profile, catalyst, enthalpy]
+    stem: For the energy profiles shown, what are the effective activation energy of the catalysed path and the enthalpy change of the reaction?
+    options:
+      - 70 kJ mol^{-1} and −40 kJ mol^{-1}
+      - 130 kJ mol^{-1} and −40 kJ mol^{-1}
+      - 70 kJ mol^{-1} and −80 kJ mol^{-1}
+      - 120 kJ mol^{-1} and −40 kJ mol^{-1}
+    answer: 0
+    explanation: On the catalysed path the highest point above the reactants is 70 kJ mol^{-1}, which sets its effective barrier, compared with 120 kJ mol^{-1} uncatalysed. ΔH = −40 − 0 = −40 kJ mol^{-1} for both paths, since a catalyst does not change the energies of reactants and products. Adding the two humps (130) is wrong.
+  - id: che-kin-393
+    topic: activation-energy-catalysis
+    subtopic: What a catalyst changes
+    concept: A catalyst changes k and E_a but not ΔH or K
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [catalyst, equilibrium, enthalpy]
+    stem: |-
+      A catalyst is added to a reversible reaction at constant temperature. Which of the following quantities are changed?
+      I. The rate constant of the forward reaction
+      II. The activation energy
+      III. The enthalpy change of the reaction
+      IV. The equilibrium constant
+    options:
+      - I, II and IV only
+      - II and III only
+      - I and II only
+      - I, II, III and IV
+    answer: 2
+    explanation: By providing a path with a lower E_a, a catalyst increases the rate constants of both directions. ΔH depends only on the energies of reactants and products, and K depends on ΔG, neither of which a catalyst changes.
+  - id: che-kin-394
+    topic: activation-energy-catalysis
+    subtopic: Threshold energy
+    concept: Threshold energy = activation energy + average energy of the reactants
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [threshold-energy, activation-energy]
+    stem: Which statement about the threshold energy of a reaction is correct?
+    options:
+      - It equals the activation energy plus the average energy of the reacting molecules.
+      - It is the energy of the products.
+      - It is lowered when the temperature is raised.
+      - It is equal to the enthalpy change of the reaction.
+    answer: 0
+    explanation: Threshold energy is the minimum energy colliding molecules must have for an effective collision; subtracting the average energy of the reactants gives the activation energy. Raising the temperature gives more molecules this energy but does not change the threshold itself.
+  - id: che-kin-395
+    topic: activation-energy-catalysis
+    subtopic: Activation energies and equilibrium
+    concept: K = k_f/k_b = e^{(E_{a,b} − E_{a,f})/RT} when A is the same for both directions
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [activation-energy, equilibrium, multi-concept, trap]
+    stem: For an elementary reversible reaction A ⇌ B, E_a(forward) = 50 kJ mol^{-1} and E_a(backward) = 70 kJ mol^{-1}, and both directions have the same A. What is the equilibrium constant K = k_f/k_b at 300 K? (2.303RT = 5744 J mol^{-1})
+    options:
+      - 3.0 × 10^3
+      - 3.3 × 10^{-4}
+      - "1.4"
+      - "3.48"
+    answer: 0
+    explanation: K = k_f/k_b = e^{−(50000 − 70000)/RT} = e^{20000/RT}, so log K = 20000/5744 ≈ 3.48 and K ≈ 3.0 × 10^3. The ratio of barriers (1.4) and the logarithm itself (3.48) are traps, and 3.3 × 10^{-4} is k_b/k_f.
+  - id: che-kin-396
+    topic: collision-theory
+    subtopic: Probability (steric) factor
+    concept: Ignoring orientation makes the simple collision expression overestimate rates
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [collision-theory, steric-factor, orientation]
+    stem: |-
+      Assertion (A): For reactions of complex molecules, the collision theory expression rate = Z_{AB} e^{−E_a/RT} often predicts a rate larger than the observed rate.
+      Reason (R): This expression ignores the need for proper orientation of the colliding molecules.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Not every sufficiently energetic collision is effective; the molecules must also be properly oriented. Leaving this out overestimates the rate, which is why the probability factor P is introduced, giving rate = P Z_{AB} e^{−E_a/RT}. R explains A.
+  - id: che-kin-397
+    topic: collision-theory
+    subtopic: Effect of temperature on collision frequency
+    concept: Collision frequency rises only slightly (as √T) with temperature
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [collision-frequency, temperature-effect]
+    stem: If the collision frequency varies as √T, by about what percentage does it increase when the temperature rises from 300 K to 330 K? (√1.1 = 1.049)
+    options:
+      - 10%
+      - 21%
+      - 1%
+      - 4.9%
+    answer: 3
+    explanation: Z_{330}/Z_{300} = √(330/300) = √1.1 ≈ 1.049, an increase of about 4.9%. The rate constant rises far more over this range, showing that the growth in energetic collisions, not in collision frequency, dominates.
+  - id: che-kin-398
+    topic: collision-theory
+    subtopic: Catalysis in terms of collision theory
+    concept: A catalyst lowers the energy barrier so that more collisions are effective
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [collision-theory, catalyst]
+    stem: In terms of collision theory, a catalyst increases the rate of a reaction because it
+    options:
+      - increases the collision frequency
+      - increases the kinetic energy of the molecules
+      - raises the temperature of the mixture
+      - lowers the energy barrier, so a larger fraction of collisions are effective
+    answer: 3
+    explanation: A catalyst provides a path with a lower activation energy, so at the same temperature a larger fraction of collisions has enough energy to react. It does not change the collision frequency or the molecular energies.
+  - id: che-kin-399
+    topic: collision-theory
+    subtopic: Postulates of collision theory
+    concept: Energetic but wrongly oriented collisions do not react
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [collision-theory, orientation]
+    stem: Which statement about collision theory is incorrect?
+    options:
+      - The collision frequency depends on the concentrations of the reactants.
+      - It treats reacting molecules as hard spheres.
+      - The probability factor P accounts for orientation.
+      - Every collision with energy at least E_a leads to reaction, whatever the orientation.
+    answer: 3
+    explanation: An energetic collision still fails if the molecules are wrongly oriented, as when OH^− strikes the bromine end of CH_3Br. The other three statements are correct features of collision theory.
+  - id: che-kin-400
+    topic: collision-theory
+    subtopic: Comparing rates by collision theory
+    concept: A smaller P can be offset by a lower E_a
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [collision-theory, steric-factor, multi-concept]
+    stem: At 300 K (2.303RT = 5744 J mol^{-1}), gaseous reactions X and Y have the same collision frequency. For X, P = 0.10 and E_a = 50.0 kJ mol^{-1}; for Y, P = 1.0 and E_a = 55.7 kJ mol^{-1}. How do their rates compare?
+    options:
+      - X is about 10 times faster
+      - Y is about 10 times faster
+      - Y is about 100 times faster
+      - They are about equal
+    answer: 3
+    explanation: X has a 10 times smaller P, but its E_a is lower by 5.7 kJ mol^{-1}, which makes e^{−E_a/RT} about 10^{5700/5744} ≈ 10 times larger for X. The two factors cancel, so the rates are nearly equal.
