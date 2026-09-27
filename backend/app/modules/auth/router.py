@@ -19,7 +19,7 @@ from app.core.redis import RedisDep
 from app.core.security import CurrentAuth
 from app.modules.auth import service
 from app.modules.auth.google import GoogleVerifierDep, claim_single_use
-from app.modules.auth.models import Provider
+from app.modules.auth.models import Provider, RevokeReason
 from app.modules.auth.refresh import IssuedTokens
 from app.modules.auth.schemas import (
     DevLoginIn,
@@ -29,7 +29,7 @@ from app.modules.auth.schemas import (
     SignInOut,
     TokensOut,
 )
-from app.modules.auth.service import ExternalAccount, RevokeReason, SignInResult
+from app.modules.auth.service import ExternalAccount, SignInResult
 from app.modules.users.schemas import MeOut
 
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -156,7 +156,7 @@ def _sign_in_response(result: SignInResult, now: datetime) -> SignInOut:
         access_token=result.tokens.access_token,
         access_expires_in=_seconds_left(result.tokens, now),
         refresh_token=result.tokens.refresh_token,
-        user=MeOut.from_user(result.user),
+        user=MeOut.from_user(result.user, now=now),
         is_new_user=result.is_new_user,
     )
 

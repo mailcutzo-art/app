@@ -7,13 +7,16 @@ changes apply within a minute even if an invalidation is missed.
 
 import uuid
 from dataclasses import dataclass
+from datetime import datetime
 
 import orjson
 from redis.asyncio import Redis
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.modules.users.models import User
+from app.core.clock import iso_utc
+from app.core.errors import Forbidden
+from app.modules.users.models import User, ban_in_force
 
 AUTHZ_TTL_S = 60
 
@@ -23,6 +26,11 @@ class Authz:
     status: str
     token_version: int
     roles: frozenset[str]
+    ban_reason: str | None = None
+    banned_until: datetime | None = None
+
+    def banned(self, now: datetime) -> bool:
+        return ban_in_force(self.status, self.banned_until, now)
 
 
 def authz_key(user_id: uuid.UUID) -> str:
@@ -35,7 +43,14 @@ def parse_authz(raw: str | None) -> Authz | None:
         return None
     try:
         data = orjson.loads(raw)
-        return Authz(data["status"], int(data["ver"]), frozenset(data["roles"]))
+        until = data["banned_until"]
+        return Authz(
+            data["status"],
+            int(data["ver"]),
+            frozenset(data["roles"]),
+            data["ban_reason"],
+            datetime.fromisoformat(until) if until is not None else None,
+        )
     except (orjson.JSONDecodeError, KeyError, TypeError, ValueError):
         return None
 
@@ -44,15 +59,34 @@ async def load_authz(db: AsyncSession, redis: Redis, user_id: uuid.UUID) -> Auth
     """Read the snapshot from the database and cache it; ``None`` if the user doesn't exist."""
     row = (
         await db.execute(
-            select(User.status, User.token_version, User.roles).where(User.id == user_id)
+            select(
+                User.status, User.token_version, User.roles, User.ban_reason, User.banned_until
+            ).where(User.id == user_id)
         )
     ).one_or_none()
     if row is None:
         return None
-    authz = Authz(row.status, row.token_version, frozenset(row.roles))
-    payload = {"status": authz.status, "ver": authz.token_version, "roles": sorted(authz.roles)}
+    authz = Authz(
+        row.status, row.token_version, frozenset(row.roles), row.ban_reason, row.banned_until
+    )
+    payload = {
+        "status": authz.status,
+        "ver": authz.token_version,
+        "roles": sorted(authz.roles),
+        "ban_reason": authz.ban_reason,
+        "banned_until": authz.banned_until.isoformat() if authz.banned_until else None,
+    }
     await redis.set(authz_key(user_id), orjson.dumps(payload), ex=AUTHZ_TTL_S)
     return authz
+
+
+def account_banned(reason: str | None, until: datetime | None, *, appeal: str) -> Forbidden:
+    """The 403 for a suspended account, with what the Suspended screen shows."""
+    return Forbidden(
+        "This account has been suspended.",
+        code="ACCOUNT_BANNED",
+        details={"reason": reason, "until": iso_utc(until), "appeal": appeal},
+    )
 
 
 async def invalidate_authz(redis: Redis, user_id: uuid.UUID) -> None:

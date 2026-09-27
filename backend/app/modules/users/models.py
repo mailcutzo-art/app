@@ -23,6 +23,13 @@ class Goal(StrEnum):
     JEE = "jee"
 
 
+class BanReason(StrEnum):
+    CHEATING = "cheating"
+    ABUSE = "abuse"
+    OFFENSIVE_NAME = "offensive_name"
+    OTHER = "other"
+
+
 class Role(StrEnum):
     USER = "user"
     MODERATOR = "moderator"
@@ -38,6 +45,9 @@ class User(TimestampMixin, Base):
             name="status",
         ),
         CheckConstraint("roles <@ ARRAY['user', 'moderator', 'admin']::text[]", name="roles"),
+        CheckConstraint(
+            "ban_reason IN ('cheating', 'abuse', 'offensive_name', 'other')", name="ban_reason"
+        ),
     )
 
     id: Mapped[UUIDv7Pk]
@@ -57,3 +67,15 @@ class User(TimestampMixin, Base):
     onboarding_completed_at: Mapped[datetime | None]
     timezone: Mapped[str] = mapped_column(server_default="Asia/Kolkata")
     last_seen_at: Mapped[datetime | None]
+    # While status is "banned": why, and until when (NULL: permanently). A ban that has run out
+    # no longer counts, even before anyone resets the status (see ``ban_in_force``).
+    ban_reason: Mapped[str | None]
+    banned_until: Mapped[datetime | None]
+
+    def ban_in_force(self, now: datetime) -> bool:
+        return ban_in_force(self.status, self.banned_until, now)
+
+
+def ban_in_force(status: str, banned_until: datetime | None, now: datetime) -> bool:
+    """Whether a ban applies now: status "banned", and permanent or not yet over."""
+    return status == UserStatus.BANNED and (banned_until is None or banned_until > now)

@@ -29,6 +29,13 @@ def utc_now() -> datetime:
     return datetime.now(UTC)
 
 
+def iso_utc(moment: datetime | None) -> str | None:
+    """``2026-09-27T16:00:00Z``: ISO 8601 in UTC, as API responses write times."""
+    if moment is None:
+        return None
+    return moment.astimezone(UTC).isoformat().replace("+00:00", "Z")
+
+
 async def get_clock() -> Clock:
     """FastAPI dependency: the wall clock."""
     return utc_now

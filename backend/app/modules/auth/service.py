@@ -7,7 +7,6 @@ fails, and Redis markers are written only after the database agrees.
 import uuid
 from dataclasses import dataclass
 from datetime import datetime
-from enum import StrEnum
 
 import structlog
 from redis.asyncio import Redis
@@ -20,7 +19,13 @@ from app.core.errors import Forbidden, Unauthorized
 from app.core.ids import new_id
 from app.core.tokens import issue_access_token
 from app.modules.auth.access import mark_sessions_revoked
-from app.modules.auth.models import AuthIdentity, DeviceSession, Provider, RefreshToken
+from app.modules.auth.models import (
+    AuthIdentity,
+    DeviceSession,
+    Provider,
+    RefreshToken,
+    RevokeReason,
+)
 from app.modules.auth.refresh import (
     REFRESH_FAMILY_TTL,
     REFRESH_TOKEN_TTL,
@@ -31,6 +36,7 @@ from app.modules.auth.refresh import (
     new_refresh_token,
 )
 from app.modules.auth.schemas import DeviceIn
+from app.modules.users.authz import account_banned
 from app.modules.users.models import User, UserStatus
 from app.modules.users.validation import (
     DEFAULT_AVATAR_SYMBOL,
@@ -42,14 +48,6 @@ MAX_ACTIVE_SESSIONS = 5
 CLOSED_STATUSES = frozenset({UserStatus.PENDING_DELETION, UserStatus.DELETED})
 
 log = structlog.stdlib.get_logger(__name__)
-
-
-class RevokeReason(StrEnum):
-    REPLACED = "replaced"  # the same installation signed in again
-    SESSION_LIMIT = "session_limit"  # more than MAX_ACTIVE_SESSIONS active
-    LOGOUT = "logout"
-    SIGNED_OUT = "signed_out"  # ended from another device's session list
-    REFRESH_REUSE = "refresh_reuse"  # a used refresh token came back after the grace period
 
 
 @dataclass(frozen=True, slots=True)
@@ -82,12 +80,12 @@ async def sign_in(
     session ends, and beyond ``MAX_ACTIVE_SESSIONS`` the least recently used ones end too.
     """
     user, is_new_user = await _find_or_create_user(db, account)
-    if user.status == UserStatus.BANNED:
-        raise Forbidden("This account has been suspended.", code="ACCOUNT_BANNED")
+    if user.ban_in_force(now):
+        raise account_banned(user.ban_reason, user.banned_until, appeal=settings.appeal_contact)
     if user.status in CLOSED_STATUSES:
         raise Forbidden("This account has been closed.", code="ACCOUNT_CLOSED")
 
-    revoked = await _end_active_sessions(
+    replaced = await _end_active_sessions(
         db, user.id, now, RevokeReason.REPLACED, install_id=device.install_id
     )
     session = DeviceSession(
@@ -102,11 +100,12 @@ async def sign_in(
     )
     db.add(session)
     await db.flush()
-    revoked += await _enforce_session_limit(db, user.id, now)
+    over_limit = await _enforce_session_limit(db, user.id, now)
     user.last_seen_at = now
     tokens, _ = await _issue_tokens(db, settings, user, session, now)
     await db.commit()
-    await mark_sessions_revoked(redis, revoked)
+    await mark_sessions_revoked(redis, replaced, RevokeReason.REPLACED)
+    await mark_sessions_revoked(redis, over_limit, RevokeReason.SESSION_LIMIT)
     log.info("auth.signed_in", user_id=str(user.id), provider=account.provider, new=is_new_user)
     return SignInResult(user=user, tokens=tokens, is_new_user=is_new_user)
 
@@ -146,8 +145,8 @@ async def rotate_refresh_token(
         raise _invalid_refresh_token()
 
     user = await db.get_one(User, session.user_id)
-    if user.status == UserStatus.BANNED:
-        raise Forbidden("This account has been suspended.", code="ACCOUNT_BANNED")
+    if user.ban_in_force(now):
+        raise account_banned(user.ban_reason, user.banned_until, appeal=settings.appeal_contact)
     if user.status in CLOSED_STATUSES:
         raise Unauthorized("This account has been closed.", code="ACCOUNT_CLOSED")
 
@@ -193,7 +192,7 @@ async def end_session(
     if ended is None:
         return False
     await db.commit()
-    await mark_sessions_revoked(redis, [session_id])
+    await mark_sessions_revoked(redis, [session_id], reason)
     return True
 
 
@@ -202,7 +201,7 @@ async def end_other_sessions(
 ) -> None:
     ended = await _end_active_sessions(db, user_id, now, RevokeReason.SIGNED_OUT, keep=keep)
     await db.commit()
-    await mark_sessions_revoked(redis, ended)
+    await mark_sessions_revoked(redis, ended, RevokeReason.SIGNED_OUT)
 
 
 async def active_sessions(db: AsyncSession, user_id: uuid.UUID) -> list[DeviceSession]:
@@ -343,7 +342,7 @@ async def _end_session_for_reuse(
     session.revoked_at = now
     session.revoke_reason = RevokeReason.REFRESH_REUSE
     await db.commit()
-    await mark_sessions_revoked(redis, [session.id])
+    await mark_sessions_revoked(redis, [session.id], RevokeReason.REFRESH_REUSE)
     log.warning(
         "auth.refresh_reuse_detected", user_id=str(session.user_id), session_id=str(session.id)
     )

@@ -30,6 +30,10 @@ x-backend-env: &backend-env
   APP_TRUSTED_PROXIES: ${EDGE_SUBNET:-172.30.0.0/24}
   APP_MIN_BUILD: ${APP_MIN_BUILD:-1}
   APP_MAINTENANCE: ${APP_MAINTENANCE:-false}
+  APP_MAINTENANCE_MESSAGE: ${APP_MAINTENANCE_MESSAGE:-}
+  APP_MAINTENANCE_UNTIL: ${APP_MAINTENANCE_UNTIL:-}
+  APP_MAINTENANCE_AT: ${APP_MAINTENANCE_AT:-}
+  APP_APPEAL_CONTACT: ${APP_APPEAL_CONTACT:-support@example.com}
   APP_FEATURE_FLAGS: ${APP_FEATURE_FLAGS:-}
 
 x-backend: &backend
@@ -99,10 +103,29 @@ services:
         condition: service_healthy
     networks: [data]
 
+  # Loads the question bank from content/ (idempotent: unchanged content changes nothing).
+  seed:
+    <<: *backend
+    command: ["python", "-m", "app.modules.content.seed"]
+    restart: "no"
+    environment:
+      <<: *backend-env
+      APP_CONTENT_DIR: /content
+    volumes:
+      - ../content:/content:ro
+    healthcheck:
+      disable: true
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    networks: [data]
+
   api:
     <<: *backend
     depends_on:
       migrate:
+        condition: service_completed_successfully
+      seed:
         condition: service_completed_successfully
       redis:
         condition: service_healthy

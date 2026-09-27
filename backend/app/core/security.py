@@ -20,9 +20,10 @@ from app.modules.auth.access import (
     ACTIVITY_INTERVAL_S,
     activity_gate_key,
     record_activity,
+    revoke_reason,
     revoked_session_key,
 )
-from app.modules.users.authz import authz_key, load_authz, parse_authz
+from app.modules.users.authz import account_banned, authz_key, load_authz, parse_authz
 from app.modules.users.models import Role, UserStatus
 
 # Higher roles include the lower ones.
@@ -91,18 +92,22 @@ async def get_auth_context(
     claims = decode_access_token(settings.jwt_keys, token.strip(), now=now)
 
     async with redis.pipeline(transaction=False) as pipe:
-        pipe.exists(revoked_session_key(claims.session_id))
+        pipe.get(revoked_session_key(claims.session_id))
         pipe.get(authz_key(claims.user_id))
         pipe.set(activity_gate_key(claims.session_id), "1", nx=True, ex=ACTIVITY_INTERVAL_S)
         revoked, cached_authz, first_in_interval = await pipe.execute()
-    if revoked:
-        raise Unauthorized("You have been signed out.", code="SESSION_REVOKED")
+    if revoked is not None:
+        raise Unauthorized(
+            "You have been signed out.",
+            code="SESSION_REVOKED",
+            details={"reason": revoke_reason(revoked)},
+        )
 
     authz = parse_authz(cached_authz) or await load_authz(db, redis, claims.user_id)
     if authz is None:
         raise Unauthorized("Your session is not valid.", code="INVALID_ACCESS_TOKEN")
-    if authz.status == UserStatus.BANNED:
-        raise Forbidden("This account has been suspended.", code="ACCOUNT_BANNED")
+    if authz.banned(now):
+        raise account_banned(authz.ban_reason, authz.banned_until, appeal=settings.appeal_contact)
     if authz.status in {UserStatus.PENDING_DELETION, UserStatus.DELETED}:
         raise Unauthorized("This account has been closed.", code="ACCOUNT_CLOSED")
     if authz.token_version != claims.token_version:

@@ -15,13 +15,15 @@ router = APIRouter(tags=["users"])
 
 
 @router.get("/me")
-async def read_me(auth: CurrentAuth, db: SessionDep) -> MeOut:
-    return MeOut.from_user(await service.get_user(db, auth.user_id))
+async def read_me(auth: CurrentAuth, db: SessionDep, clock: ClockDep) -> MeOut:
+    return MeOut.from_user(await service.get_user(db, auth.user_id), now=clock())
 
 
 @router.patch("/me")
-async def update_me(body: ProfilePatchIn, auth: CurrentAuth, db: SessionDep) -> MeOut:
-    return MeOut.from_user(await service.update_profile(db, auth.user_id, body))
+async def update_me(
+    body: ProfilePatchIn, auth: CurrentAuth, db: SessionDep, clock: ClockDep
+) -> MeOut:
+    return MeOut.from_user(await service.update_profile(db, auth.user_id, body), now=clock())
 
 
 @router.post("/me/onboarding")
@@ -30,8 +32,9 @@ async def complete_onboarding(
 ) -> MeOut:
     """Name, handle, avatar, goal and birth year, once. 409 ``ALREADY_ONBOARDED`` afterwards;
     409 ``HANDLE_TAKEN`` if the handle belongs to someone else."""
-    user = await service.complete_onboarding(db, auth.user_id, body, now=clock())
-    return MeOut.from_user(user)
+    now = clock()
+    user = await service.complete_onboarding(db, auth.user_id, body, now=now)
+    return MeOut.from_user(user, now=now)
 
 
 @router.get(

@@ -13,7 +13,7 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from app.core.config import get_settings
-from app.models import Base
+from app.models import Base, include_name
 
 config = context.config
 target_metadata = Base.metadata
@@ -28,7 +28,9 @@ def _database_url() -> str:
 
 
 def _configure(**kwargs: object) -> None:
-    context.configure(target_metadata=target_metadata, compare_type=True, **kwargs)
+    context.configure(
+        target_metadata=target_metadata, compare_type=True, include_name=include_name, **kwargs
+    )
 
 
 def run_migrations_offline() -> None:

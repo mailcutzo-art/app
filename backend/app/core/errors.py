@@ -105,6 +105,14 @@ class Conflict(AppError):
     default_message = "The request conflicts with the current state of the resource."
 
 
+class UpdateRequired(AppError):
+    """The app build is too old for this server (``X-App-Build`` below ``min_build``)."""
+
+    http_status = HTTPStatus.UPGRADE_REQUIRED
+    default_code = "UPDATE_REQUIRED"
+    default_message = "Please update the app to keep playing."
+
+
 class ValidationFailed(AppError):
     http_status = HTTPStatus.UNPROCESSABLE_ENTITY
     default_code = "VALIDATION_FAILED"
@@ -223,6 +231,13 @@ _FIELD_MESSAGES = {
     "greater_than_equal": "This number is too small.",
     "less_than": "This number is too large.",
     "less_than_equal": "This number is too large.",
+    "too_short": "This needs at least one item.",
+    "too_long": "This has too many items.",
+    "list_type": "Send a list.",
+    "datetime_type": "Enter a date and time.",
+    "datetime_parsing": "Enter a date and time.",
+    "datetime_from_date_parsing": "Enter a date and time.",
+    "timezone_aware": "Enter a date and time.",
 }
 _DEFAULT_FIELD_MESSAGE = "Enter a valid value."
 _LOCATIONS = frozenset({"body", "query", "path", "header", "cookie"})

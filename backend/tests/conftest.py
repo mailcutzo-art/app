@@ -27,12 +27,21 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from app.core.clock import get_clock
+from app.core.clock import get_clock, utc_now
 from app.core.config import Settings
 from app.core.db import get_sessionmaker
 from app.main_api import create_app
 from app.modules.auth.google import GoogleIdTokenVerifier, JwksCache, get_google_verifier
-from tests.helpers import FakeClock, alembic_config, google_certs_transport, make_settings, serve
+from app.modules.content.loader import load_content
+from app.modules.content.seed import seed_content
+from tests.helpers import (
+    CONTENT_DIR,
+    FakeClock,
+    alembic_config,
+    google_certs_transport,
+    make_settings,
+    serve,
+)
 
 
 @pytest.fixture(scope="session")
@@ -49,9 +58,14 @@ def settings() -> Settings:
 
 @pytest.fixture(scope="session")
 async def engine(settings: Settings) -> AsyncIterator[AsyncEngine]:
+    """Migrated, and loaded with the repository's question bank (committed; the seed is
+    idempotent, so reruns change nothing)."""
     engine = create_async_engine(settings.database_url.get_secret_value())
     async with engine.begin() as connection:
         await connection.run_sync(lambda sync: command.upgrade(alembic_config(sync), "head"))
+    async with async_sessionmaker(engine)() as db:
+        await seed_content(db, load_content(CONTENT_DIR), now=utc_now())
+        await db.commit()
     yield engine
     await engine.dispose()
 

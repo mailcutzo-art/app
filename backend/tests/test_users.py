@@ -12,7 +12,7 @@ from app.core.clock import utc_now
 from app.modules.system.models import AuditLog
 from app.modules.users import service
 from app.modules.users.models import Role, User
-from tests.helpers import bearer, dev_login
+from tests.helpers import FakeClock, bearer, dev_login
 
 THIS_YEAR = utc_now().year  # tests never straddle New Year in India closely enough to matter
 
@@ -53,6 +53,17 @@ async def test_onboarding_completes_the_profile(client: AsyncClient, asha: dict[
     assert me["is_minor"] is True
     assert me["onboarding_completed"] is True
     assert (await client.get("/v1/me", headers=asha)).json() == me
+
+
+async def test_minors_grow_up(client: AsyncClient, asha: dict[str, str], clock: FakeClock) -> None:
+    await client.post("/v1/me/onboarding", json=onboarding(birth_year=THIS_YEAR - 17), headers=asha)
+
+    clock.advance(days=366)  # the flag follows the birth year, not the day of onboarding
+    asha = bearer((await dev_login(client, "asha@example.com"))["access_token"])
+    me = (await client.get("/v1/me", headers=asha)).json()
+
+    assert me["is_minor"] is False
+    assert me["email"] == "asha@example.com"
 
 
 @pytest.mark.parametrize(("age", "minor"), [(17, True), (18, False), (40, False)])

@@ -11,7 +11,14 @@ from typing import Annotated, Any, Self
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
 from fastapi import Depends
-from pydantic import Field, IPvAnyNetwork, SecretStr, field_validator, model_validator
+from pydantic import (
+    AwareDatetime,
+    Field,
+    IPvAnyNetwork,
+    SecretStr,
+    field_validator,
+    model_validator,
+)
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 from starlette.requests import HTTPConnection
 
@@ -78,7 +85,17 @@ class Settings(BaseSettings):
 
     min_build: int = Field(default=1, ge=0)
     maintenance: bool = False
+    # Shown on the app's Maintenance screen while ``maintenance`` is on.
+    maintenance_message: str | None = None
+    # When maintenance should end, and when planned maintenance starts (ISO 8601 with offset).
+    maintenance_until: AwareDatetime | None = None
+    maintenance_at: AwareDatetime | None = None
+    # Where suspended players can appeal (an email address or URL), shown on the Suspended screen.
+    appeal_contact: str = "support@example.com"
     feature_flags: dict[str, bool] = {}
+
+    # Question bank loaded by ``python -m app.modules.content.seed`` (relative to the working dir).
+    content_dir: str = "../content"
 
     @field_validator("google_client_ids", "cors_origins", "trusted_proxies", mode="before")
     @classmethod

@@ -1,7 +1,7 @@
 """Async SQLAlchemy: engine and session factories, the declarative base and column helpers."""
 
 import uuid
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Iterable
 from datetime import datetime
 from typing import Annotated, Any
 
@@ -57,6 +57,15 @@ class TimestampMixin:
 
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
+
+
+def one_of(column: str, values: Iterable[str]) -> str:
+    """SQL for a CHECK constraint that limits a text column to ``values``.
+
+    NULL passes, as with any CHECK; declare the column NOT NULL where a value is required.
+    """
+    quoted = ", ".join("'" + value.replace("'", "''") + "'" for value in values)
+    return f"{column} IN ({quoted})"
 
 
 def violated_constraint(error: IntegrityError) -> str | None:

@@ -155,3 +155,11 @@ def birth_year_problem(birth_year: int, *, this_year: int) -> str | None:
 
 def is_minor(birth_year: int, *, this_year: int) -> bool:
     return this_year - birth_year < ADULT_AGE
+
+
+def minor_now(birth_year: int | None, *, stored: bool, now: datetime) -> bool:
+    """Whether the player is a minor today: worked out from the birth year each time it is read
+    (players grow up), or the stored flag when there is no birth year."""
+    if birth_year is None:
+        return stored
+    return is_minor(birth_year, this_year=current_year(now))

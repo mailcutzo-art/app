@@ -16,7 +16,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped
 
 from app.core.db import SessionDep, TimestampMixin, UUIDv7Pk
 from app.core.errors import Conflict
-from app.models import Base
+from app.models import Base, include_name
 from app.modules.system.models import AppConfig, AuditLog
 from tests.helpers import alembic_config
 
@@ -129,23 +129,28 @@ def test_constraint_names_follow_the_naming_convention() -> None:
 
 async def test_models_match_the_migrations(db_connection: AsyncConnection) -> None:
     def diff(connection: Connection) -> list[Any]:
-        context = MigrationContext.configure(connection, opts={"compare_type": True})
+        context = MigrationContext.configure(
+            connection, opts={"compare_type": True, "include_name": include_name}
+        )
         return compare_metadata(context, Base.metadata)
 
     assert await db_connection.run_sync(diff) == []
 
 
 async def test_migrations_downgrade_and_upgrade_cleanly(db_connection: AsyncConnection) -> None:
+    model_tables = sorted(Base.metadata.tables)
     app_tables = text(
-        "SELECT count(*) FROM pg_tables WHERE schemaname = 'public' AND tablename IN "
-        "('app_config', 'audit_log', 'users', 'auth_identities', 'device_sessions', "
-        "'refresh_tokens')"
+        "SELECT count(*) FROM pg_tables WHERE schemaname = 'public' AND tablename = ANY(:names)"
+    ).bindparams(names=model_tables)
+    partitions = text(
+        "SELECT count(*) FROM pg_inherits WHERE inhparent = 'question_attempts'::regclass"
     )
     await db_connection.run_sync(lambda sync: command.downgrade(alembic_config(sync), "base"))
     assert await db_connection.scalar(app_tables) == 0
 
     await db_connection.run_sync(lambda sync: command.upgrade(alembic_config(sync), "head"))
-    assert await db_connection.scalar(app_tables) == 6
+    assert await db_connection.scalar(app_tables) == len(model_tables)
+    assert await db_connection.scalar(partitions) == 5  # this month, 3 ahead and the default
     head = await db_connection.run_sync(
         lambda sync: ScriptDirectory.from_config(alembic_config(sync)).get_current_head()
     )

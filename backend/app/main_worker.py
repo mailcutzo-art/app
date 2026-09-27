@@ -16,6 +16,8 @@ import structlog
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.resources import Resources, open_resources
+from app.modules.content.jobs import question_stats_job
+from app.modules.practice.jobs import attempt_partitions_job, practice_housekeeping_job
 
 SHUTDOWN_GRACE_S = 10.0
 
@@ -33,7 +35,15 @@ async def heartbeat(_resources: Resources) -> None:
     log.info("worker.heartbeat")
 
 
-JOBS: tuple[PeriodicJob, ...] = (PeriodicJob("heartbeat", 30.0, heartbeat),)
+JOBS: tuple[PeriodicJob, ...] = (
+    PeriodicJob("heartbeat", 30.0, heartbeat),
+    # Close expired practice sessions, delete ones past 90 days, forget old answer ids.
+    PeriodicJob("practice_housekeeping", 600.0, practice_housekeeping_job),
+    # Once a day: this month's and the next 3 months' partitions of question_attempts.
+    PeriodicJob("attempt_partitions", 3600.0, attempt_partitions_job),
+    # Once a night (after 02:00 IST): per-question attempts, share correct and typical time.
+    PeriodicJob("question_stats", 600.0, question_stats_job),
+)
 
 
 async def run_periodic(job: PeriodicJob, resources: Resources, stop: asyncio.Event) -> None:

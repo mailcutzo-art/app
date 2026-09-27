@@ -7,10 +7,12 @@ import structlog
 from fastapi import APIRouter
 from sqlalchemy import text
 
+from app.core.clock import ClockDep
 from app.core.config import SettingsDep
 from app.core.db import SessionDep
 from app.core.errors import ServiceUnavailable
 from app.core.redis import RedisDep
+from app.modules.system.runtime import RuntimeConfigDep
 from app.modules.system.schemas import ClientConfig, Health, Readiness
 
 READINESS_TIMEOUT_S = 2.0
@@ -54,10 +56,17 @@ async def _probe(name: str, check: Callable[[], Awaitable[object]]) -> str:
 
 
 @router.get("/config")
-async def client_config(settings: SettingsDep) -> ClientConfig:
-    """Bootstrap config fetched at app start: force-update threshold, maintenance, flags."""
+async def client_config(
+    settings: SettingsDep, runtime: RuntimeConfigDep, clock: ClockDep
+) -> ClientConfig:
+    """Bootstrap config fetched at app start: force-update threshold, maintenance, flags and
+    the server's clock. Needs no authentication, and works during maintenance."""
     return ClientConfig(
-        min_build=settings.min_build,
-        maintenance=settings.maintenance,
+        min_build=runtime.min_build,
+        maintenance=runtime.maintenance,
+        maintenance_message=runtime.maintenance_message,
+        maintenance_until=runtime.maintenance_until,
+        maintenance_at=runtime.maintenance_at,
         features=settings.feature_flags,
+        server_time=clock(),
     )

@@ -27,6 +27,7 @@ from app.core.config import Settings
 from app.modules.auth.google import GOOGLE_CERTS_URL
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
+CONTENT_DIR = BACKEND_DIR.parent / "content"
 TEST_DATABASE_URL = os.environ.get(
     "APP_DATABASE_URL", "postgresql+asyncpg://quiz:quiz@127.0.0.1:54329/quiz_test"
 )

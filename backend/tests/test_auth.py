@@ -2,7 +2,7 @@
 
 import logging
 import uuid
-from datetime import timedelta
+from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any
 
 import pytest
@@ -86,6 +86,7 @@ async def test_google_sign_in_creates_the_user_and_a_session(
         "id": user["id"],
         "handle": None,
         "display_name": "Asha Verma",
+        "email": "asha@example.com",  # private to the player: "Signed in as ..."
         "avatar": {"tone": "lime", "symbol": "rocket"},
         "goal": None,
         "birth_year": None,
@@ -257,6 +258,7 @@ async def test_signing_in_again_on_an_install_ends_its_previous_session(
     sessions = await client.get("/v1/me/sessions", headers=bearer(second["access_token"]))
 
     assert stale.json()["error"]["code"] == "SESSION_REVOKED"
+    assert stale.json()["error"]["details"] == {"reason": "replaced"}
     assert refreshed.json()["error"]["code"] == "INVALID_REFRESH_TOKEN"
     assert len(sessions.json()) == 1
 
@@ -273,6 +275,7 @@ async def test_at_most_five_sessions_the_least_recently_used_ends(
     newest = await client.get("/v1/me/sessions", headers=bearer(logins[5]["access_token"]))
 
     assert oldest.json()["error"]["code"] == "SESSION_REVOKED"
+    assert oldest.json()["error"]["details"] == {"reason": "session_limit"}
     assert len(newest.json()) == 5
 
 
@@ -310,6 +313,7 @@ async def test_ending_another_session(client: AsyncClient) -> None:
     assert again.status_code == 404
     locked_out = await client.get("/v1/me", headers=bearer(tablet["access_token"]))
     assert locked_out.json()["error"]["code"] == "SESSION_REVOKED"
+    assert locked_out.json()["error"]["details"] == {"reason": "signed_out"}
 
 
 async def test_sessions_of_other_users_cannot_be_ended(client: AsyncClient) -> None:
@@ -349,6 +353,7 @@ async def test_logout_ends_the_session_immediately(client: AsyncClient) -> None:
     assert response.content == b""
     me = await client.get("/v1/me", headers=bearer(login["access_token"]))
     assert me.json()["error"]["code"] == "SESSION_REVOKED"
+    assert me.json()["error"]["details"] == {"reason": "logout"}
     refreshed = await client.post(
         "/v1/auth/refresh", json={"refresh_token": login["refresh_token"]}
     )
@@ -410,6 +415,7 @@ async def test_reuse_after_the_grace_period_ends_the_session(
     ] == "INVALID_REFRESH_TOKEN"
     me = await client.get("/v1/me", headers=bearer(successor["access_token"]))
     assert me.json()["error"]["code"] == "SESSION_REVOKED"
+    assert me.json()["error"]["details"] == {"reason": "refresh_reuse"}
     reason = await db_session.scalar(select(DeviceSession.revoke_reason))
     assert reason == "refresh_reuse"
 
@@ -544,7 +550,7 @@ async def test_banned_users_are_refused_everywhere(
     client: AsyncClient, clock: FakeClock, db_session: AsyncSession, redis: Redis
 ) -> None:
     login = (await google_sign_in(client, clock)).json()
-    await set_user(db_session, redis, login["user"]["id"], status="banned")
+    await set_user(db_session, redis, login["user"]["id"], status="banned", ban_reason="cheating")
 
     me = await client.get("/v1/me", headers=bearer(login["access_token"]))
     refreshed = await refresh(client, login["refresh_token"])
@@ -552,7 +558,59 @@ async def test_banned_users_are_refused_everywhere(
 
     for response in (me, refreshed, signed_in):
         assert response.status_code == 403
-        assert response.json()["error"]["code"] == "ACCOUNT_BANNED"
+        error = response.json()["error"]
+        assert error["code"] == "ACCOUNT_BANNED"
+        # A permanent ban: the Suspended screen shows why and where to appeal.
+        assert error["details"] == {
+            "reason": "cheating",
+            "until": None,
+            "appeal": "support@example.com",
+        }
+
+
+async def test_a_temporary_ban_says_until_when(
+    client: AsyncClient, clock: FakeClock, db_session: AsyncSession, redis: Redis
+) -> None:
+    login = (await google_sign_in(client, clock)).json()
+    until = datetime(2031, 5, 4, 12, 30, tzinfo=UTC)
+    await set_user(db_session, redis, login["user"]["id"], status="banned", banned_until=until)
+
+    me = await client.get("/v1/me", headers=bearer(login["access_token"]))
+    refreshed = await refresh(client, login["refresh_token"])
+    signed_in = await google_sign_in(client, clock, install_id="install-2")
+
+    for response in (me, refreshed, signed_in):
+        assert response.status_code == 403
+        assert response.json()["error"]["details"] == {
+            "reason": None,
+            "until": "2031-05-04T12:30:00Z",
+            "appeal": "support@example.com",
+        }
+
+
+async def test_a_temporary_ban_lifts_by_itself(
+    client: AsyncClient, clock: FakeClock, db_session: AsyncSession, redis: Redis
+) -> None:
+    login = (await google_sign_in(client, clock)).json()
+    await set_user(
+        db_session,
+        redis,
+        login["user"]["id"],
+        status="banned",
+        ban_reason="abuse",
+        banned_until=clock() + timedelta(minutes=5),
+    )
+    headers = bearer(login["access_token"])
+    assert (await client.get("/v1/me", headers=headers)).status_code == 403  # also cached now
+
+    clock.advance(minutes=5, seconds=1)
+
+    me = await client.get("/v1/me", headers=headers)
+    refreshed = await refresh(client, login["refresh_token"])
+    signed_in = await google_sign_in(client, clock, install_id="install-2")
+    assert me.status_code == 200
+    assert refreshed.status_code == 200
+    assert signed_in.status_code == 200
 
 
 async def test_closed_accounts_are_signed_out(

@@ -24,6 +24,16 @@ class Provider(StrEnum):
     DEV = "dev"
 
 
+class RevokeReason(StrEnum):
+    """Why a device session ended; a 401 ``SESSION_REVOKED`` reports it as ``details.reason``."""
+
+    REPLACED = "replaced"  # the same installation signed in again
+    SESSION_LIMIT = "session_limit"  # more than MAX_ACTIVE_SESSIONS active
+    LOGOUT = "logout"
+    SIGNED_OUT = "signed_out"  # ended from another device's session list
+    REFRESH_REUSE = "refresh_reuse"  # a used refresh token came back after the grace period
+
+
 class AuthIdentity(Base):
     """An external account (Google ``sub``, or a dev-login email) linked to a user."""
 

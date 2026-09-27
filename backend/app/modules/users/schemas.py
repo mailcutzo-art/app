@@ -93,9 +93,14 @@ class AvatarOut(ApiModel):
 
 
 class MeOut(ApiModel):
+    """The signed-in player's own profile. Private: ``email`` must never appear in public
+    profiles or cards."""
+
     id: uuid.UUID
     handle: str | None
     display_name: str
+    # The account's email, so onboarding can say which Google account is signed in.
+    email: str | None
     avatar: AvatarOut
     goal: str | None
     birth_year: int | None
@@ -105,15 +110,16 @@ class MeOut(ApiModel):
     created_at: datetime
 
     @classmethod
-    def from_user(cls, user: User) -> "MeOut":
+    def from_user(cls, user: User, *, now: datetime) -> "MeOut":
         return cls(
             id=user.id,
             handle=user.handle,
             display_name=user.display_name,
+            email=user.email,
             avatar=AvatarOut(tone=user.avatar_tone, symbol=user.avatar_symbol),
             goal=user.goal,
             birth_year=user.birth_year,
-            is_minor=user.is_minor,
+            is_minor=rules.minor_now(user.birth_year, stored=user.is_minor, now=now),
             onboarding_completed=user.onboarding_completed_at is not None,
             roles=sorted(user.roles),
             created_at=user.created_at,

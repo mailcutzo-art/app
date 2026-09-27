@@ -9,6 +9,7 @@
 | `rt` | Realtime WebSocket server for live battles | Caddy only |
 | `worker` | Background jobs (tournaments, settlement retries, notifications) | Nothing |
 | `migrate` | Applies database migrations, then exits; the others wait for it | Nothing |
+| `seed` | Loads the questions in `content/` into the database, then exits; `api` waits for it | Nothing |
 | `postgres` | PostgreSQL 16, the source of truth | Backend services only |
 | `redis` | Redis 7: live match state, queues, rate limits | Backend services only |
 
@@ -67,9 +68,10 @@ With the stack running in `lan` mode:
 python3 infra/smoke_test.py http://localhost:8080
 ```
 
-It signs up a fresh test player and walks sign-in, profile, username check, onboarding, token
-refresh (including a crash retry), the device list and sign-out, stopping at the first step that
-fails. CI runs it on every change to the backend or infra.
+It signs up a fresh test player and walks sign-in, profile, username check, onboarding, the Learn
+catalog and progress, a practice session (a retried start, a re-uploaded answer, the result), a
+bookmark, token refresh (including a crash retry), the device list and sign-out, stopping at the
+first step that fails. CI runs it on every change to the backend or infra.
 
 ## Everyday commands
 
@@ -95,6 +97,8 @@ gunzip -c backup.sql.gz | docker compose exec -T postgres psql -U quiz quiz   # 
 | `HTTP_PORT`, `HTTPS_PORT` | Host ports Caddy listens on |
 | `APP_MIN_BUILD` | Builds below this number must update before playing |
 | `APP_MAINTENANCE` | `true` shows a maintenance screen in the app |
+| `APP_MAINTENANCE_MESSAGE` | Text shown on that maintenance screen (optional) |
+| `APP_APPEAL_CONTACT` | Email address or URL where suspended players can appeal |
 | `ADMIN_ALLOW_IPS` | Space-separated IPs or CIDRs allowed to open `/admin`, in quotes (default: anywhere; admin sign-in is still required) |
 | `EDGE_SUBNET` | Docker subnet for Caddy and the backend (change only if it clashes with your network) |
 
