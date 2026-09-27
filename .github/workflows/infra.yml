@@ -66,6 +66,9 @@ jobs:
             fi
           done
 
+      - name: Walk a new player's journey
+        run: python3 smoke_test.py http://localhost:8080
+
       - name: Logs
         if: failure()
         run: docker compose logs --no-color

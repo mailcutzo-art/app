@@ -59,6 +59,18 @@ email. Only use it on a network you trust.
    Caddy fetches a TLS certificate automatically on the first request.
 3. Build the release app with `--dart-define=API_BASE_URL=https://api.example.com`.
 
+## Check the whole journey
+
+With the stack running in `lan` mode:
+
+```bash
+python3 infra/smoke_test.py http://localhost:8080
+```
+
+It signs up a fresh test player and walks sign-in, profile, username check, onboarding, token
+refresh (including a crash retry), the device list and sign-out, stopping at the first step that
+fails. CI runs it on every change to the backend or infra.
+
 ## Everyday commands
 
 ```bash
