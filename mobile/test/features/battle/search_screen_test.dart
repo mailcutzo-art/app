@@ -223,10 +223,9 @@ void main() {
     final match = MatchFrames(them: 'bot', kind: 'bot');
     final server = _server(
       also: (socket, message) {
+        // The ticket ends first, then the game starts.
         if (message['t'] == 'mm.respond') {
-          socket
-            ..push(match.found(mode: 'bot', bot: true))
-            ..push(match.snapshot(phase: 'ready_wait'));
+          socket.push(frame('mm.cancelled', {'reason': 'user', 'refunded': 0}, 'u'));
         }
       },
     );
@@ -236,9 +235,36 @@ void main() {
     await tester.tap(find.text('Play a Practice Bot'));
     await advance(tester, const Duration(milliseconds: 600));
     expect(server.sentOfType('mm.respond').single['d'], {'choice': 'bot'});
+    expect(find.text('Starting a Practice Bot game…'), findsOneWidget);
+    expect(find.text('You\'re not searching'), findsNothing);
+
+    server
+      ..push(match.found(mode: 'bot', bot: true))
+      ..push(match.snapshot(phase: 'ready_wait'));
+    await advance(tester, const Duration(milliseconds: 600));
     expect(location(container), Routes.battleMatch('m1'));
     expect(find.text('PRACTICE BOT'), findsOneWidget);
     expect(find.text('Match found!'), findsNothing);
+  });
+
+  testWidgets('a Practice Bot game that never starts says so', (tester) async {
+    usePhoneViewport(tester);
+    reduceMotion(tester);
+    final server = _server(
+      also: (socket, message) {
+        if (message['t'] == 'mm.respond') {
+          socket.push(frame('mm.cancelled', {'reason': 'user', 'refunded': 0}, 'u'));
+        }
+      },
+    );
+    await _search(tester, server);
+    server.push(_timeout());
+    await advance(tester, const Duration(milliseconds: 600));
+    await tester.tap(find.text('Play a Practice Bot'));
+    await advance(tester, const Duration(seconds: 10));
+    expect(find.text('Couldn\'t start the Practice Bot. Please try again.'), findsOneWidget);
+    expect(find.text('Starting a Practice Bot game…'), findsNothing);
+    expect(find.text('Play the Practice Bot'), findsOneWidget);
   });
 
   testWidgets('in a casual search, the bot option says the coins come back', (tester) async {

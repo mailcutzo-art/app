@@ -43,12 +43,35 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   bool _cancelling = false;
   bool _restarting = false;
 
+  /// A Practice Bot game was asked for: the search ends first (`mm.cancelled`), then the game
+  /// opens by itself. Until then this screen says the game is starting.
+  bool _botStarting = false;
+  Timer? _botTimeout;
+
   @override
   void initState() {
     super.initState();
     // An offer that came while the user was elsewhere is shown on arrival.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _follow(ref.read(searchProvider));
+    });
+  }
+
+  @override
+  void dispose() {
+    _botTimeout?.cancel();
+    super.dispose();
+  }
+
+  void _startingBot(bool starting) {
+    _botTimeout?.cancel();
+    setState(() => _botStarting = starting);
+    if (!starting) return;
+    // The game opens by itself; if it doesn't, say so instead of waiting forever.
+    _botTimeout = Timer(const Duration(seconds: 10), () {
+      if (!mounted || !_botStarting) return;
+      setState(() => _botStarting = false);
+      showAppToast(context, 'Couldn\'t start the Practice Bot. Please try again.');
     });
   }
 
@@ -81,11 +104,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Future<void> _respond(String choice) async {
     final live = ref.read(liveControllerProvider);
     if (live == null) return;
+    if (choice == 'bot') _startingBot(true);
     try {
       await live.respond(choice);
       if (mounted && choice == 'cancel') _leave();
     } on RealtimeError {
-      if (mounted) showAppToast(context, 'That didn\'t go through. Please try again.');
+      if (!mounted) return;
+      if (choice == 'bot') _startingBot(false);
+      showAppToast(context, 'That didn\'t go through. Please try again.');
     }
   }
 
@@ -109,11 +135,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Future<void> _searchAgain(SearchRequest request) async {
     final live = ref.read(liveControllerProvider);
     if (live == null) return;
+    if (request.isBot) _startingBot(true);
     setState(() => _restarting = true);
     try {
       await live.join(request);
     } on RealtimeError catch (error) {
-      if (mounted && error.code != RealtimeErrorCode.busy) {
+      if (!mounted) return;
+      if (request.isBot) _startingBot(false);
+      if (error.code != RealtimeErrorCode.busy) {
         showAppToast(context, LiveText.joinError(error), icon: AppIcons.alert);
       }
     } finally {
@@ -125,10 +154,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(searchProvider);
     ref.listen(searchProvider, (_, next) => _follow(next));
-    final searching = state.isSearching || state.phase == SearchPhase.joining;
+    final searching = !_botStarting && (state.isSearching || state.phase == SearchPhase.joining);
 
     final Widget body;
-    if (searching) {
+    if (_botStarting) {
+      body = const _Found(key: ValueKey('bot'), bot: true);
+    } else if (searching) {
       body = _Searching(key: const ValueKey('searching'), state: state);
     } else if (state.phase == SearchPhase.matched) {
       body = const _Found(key: ValueKey('found'));
@@ -343,15 +374,19 @@ class _ElapsedState extends ConsumerState<_Elapsed> {
   }
 }
 
+/// A match was found (or a Practice Bot game asked for): the game opens in a moment.
 class _Found extends StatelessWidget {
-  const _Found({super.key});
+  const _Found({super.key, this.bot = false});
+
+  final bool bot;
 
   @override
-  Widget build(BuildContext context) => const Center(
+  Widget build(BuildContext context) => Center(
     child: EmptyState(
-      icon: AppIcons.battle,
-      title: 'Match found!',
-      message: 'Getting the game ready…',
+      icon: bot ? AppIcons.robot : AppIcons.battle,
+      tone: bot ? PastelTone.lavender : PastelTone.sky,
+      title: bot ? 'Starting a Practice Bot game…' : 'Match found!',
+      message: bot ? 'Unrated, no coins · just practice' : 'Getting the game ready…',
     ),
   );
 }
