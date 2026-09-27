@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:quiz_app/app/env.dart';
 import 'package:quiz_app/core/auth/session.dart';
 import 'package:quiz_app/core/auth/user.dart';
+import 'package:quiz_app/core/config/app_config.dart';
 import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/features/onboarding/onboarding_repository.dart';
 
@@ -42,10 +43,29 @@ class FakeOnboardingRepository extends OnboardingRepository {
       handlePattern.hasMatch(handle) ? HandleStatus.available : HandleStatus.invalid;
 }
 
-List<Override> testOverrides({required Session session}) => [
+/// Config stand-in: a fixed answer, no network.
+class FakeConfigController extends ConfigController {
+  FakeConfigController([this.config = const AppConfig()]);
+
+  final AppConfig config;
+
+  @override
+  Future<AppConfig> build() async => config;
+
+  @override
+  Future<void> recheck() async {}
+}
+
+List<Override> testOverrides({
+  required Session session,
+  AppConfig config = const AppConfig(),
+  int build = 1,
+}) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(() => FakeSessionController(session)),
   onboardingRepositoryProvider.overrideWithValue(FakeOnboardingRepository()),
+  configProvider.overrideWith(() => FakeConfigController(config)),
+  appBuildProvider.overrideWith((ref) async => build),
 ];
 
 /// Scripted HTTP responses for Dio, recorded for assertions.

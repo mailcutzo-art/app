@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/env.dart';
 import '../auth/token_store.dart';
 import 'app_failure.dart';
+import 'server_signals.dart';
 
 /// Marks a request that must not carry or refresh the access token.
 const skipAuth = 'skip_auth';
@@ -150,6 +151,28 @@ class AuthInterceptor extends QueuedInterceptor {
   }
 }
 
+/// Reports app-wide conditions seen on any response: this build is too old
+/// (426) or the service is in maintenance (503 `MAINTENANCE`).
+class ServerSignalInterceptor extends Interceptor {
+  ServerSignalInterceptor({required this.onUpdateRequired, required this.onMaintenance});
+
+  final void Function() onUpdateRequired;
+  final void Function() onMaintenance;
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    switch (failureFromDio(err)) {
+      case UpgradeRequiredFailure():
+        onUpdateRequired();
+      case MaintenanceFailure():
+        onMaintenance();
+      default:
+        break;
+    }
+    handler.next(err);
+  }
+}
+
 BaseOptions _baseOptions(String baseUrl) => BaseOptions(
   baseUrl: baseUrl,
   connectTimeout: const Duration(seconds: 10),
@@ -177,14 +200,21 @@ final apiClientProvider = Provider<ApiClient>((ref) {
   final options = _baseOptions(env.apiBaseUrl);
   final plain = Dio(options);
   final dio = Dio(options);
-  dio.interceptors.add(
-    AuthInterceptor(
-      tokens: tokens,
-      refreshDio: plain,
-      retryDio: plain,
-      onSessionExpired: () => ref.read(sessionExpiredProvider.notifier).fire(),
-    ),
-  );
+  dio.interceptors
+    ..add(
+      ServerSignalInterceptor(
+        onUpdateRequired: () => ref.read(serverSignalsProvider.notifier).updateRequired(),
+        onMaintenance: () => ref.read(serverSignalsProvider.notifier).maintenance(),
+      ),
+    )
+    ..add(
+      AuthInterceptor(
+        tokens: tokens,
+        refreshDio: plain,
+        retryDio: plain,
+        onSessionExpired: () => ref.read(sessionExpiredProvider.notifier).fire(),
+      ),
+    );
   ref.onDispose(() {
     dio.close();
     plain.close();

@@ -153,7 +153,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       });
       if (_nameError != null || _handleError != null) _goTo(0);
       if (fields.isEmpty) showAppToast(context, failure.message, icon: AppIcons.alert);
-    } on ConflictFailure {
+    } on ConflictFailure catch (failure) {
+      if (failure.code == 'ALREADY_ONBOARDED') {
+        // An earlier attempt went through but its response was lost: carry on.
+        await ref.read(sessionProvider.notifier).refreshUser();
+        return;
+      }
       if (!mounted) return;
       setState(() {
         _handleStatus = HandleStatus.taken;
