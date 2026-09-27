@@ -9,7 +9,9 @@ import '../features/battle/battle_screen.dart';
 import '../features/debug/debug_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/learn/learn_screen.dart';
+import '../features/learn/subject_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
+import '../features/practice/practice_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/social/social_screen.dart';
 import '../features/splash/splash_screen.dart';
@@ -26,8 +28,15 @@ abstract final class Routes {
   static const social = '/social';
   static const profile = '/profile';
   static const debug = '/debug';
+  static const practice = '/practice';
 
   static const tabs = [home, learn, battle, arena, social];
+
+  /// A subject's chapters, inside the Learn tab: `/learn/:subject`.
+  static String subject(String slug) => '$learn/$slug';
+
+  /// A practice session, full screen above the tabs: `/practice/:sessionId`.
+  static String practiceSession(String sessionId) => '$practice/$sessionId';
 }
 
 /// Where the auth state requires the user to be, or null to stay put.
@@ -67,6 +76,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.onboarding, builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: Routes.profile, builder: (_, _) => const ProfileScreen()),
       GoRoute(path: Routes.debug, builder: (_, _) => const DebugScreen()),
+      GoRoute(
+        path: '${Routes.practice}/:sessionId',
+        builder: (_, state) => PracticeScreen(sessionId: state.pathParameters['sessionId']!),
+      ),
       StatefulShellRoute(
         builder: (context, state, shell) => AppShell(shell: shell),
         navigatorContainerBuilder: (context, shell, children) =>
@@ -76,7 +89,19 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [GoRoute(path: Routes.home, builder: (_, _) => const HomeScreen())],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.learn, builder: (_, _) => const LearnScreen())],
+            routes: [
+              GoRoute(
+                path: Routes.learn,
+                builder: (_, _) => const LearnScreen(),
+                routes: [
+                  // Pushed on the Learn tab's own navigator, so the nav bar stays.
+                  GoRoute(
+                    path: ':subject',
+                    builder: (_, state) => SubjectScreen(slug: state.pathParameters['subject']!),
+                  ),
+                ],
+              ),
+            ],
           ),
           StatefulShellBranch(
             routes: [GoRoute(path: Routes.battle, builder: (_, _) => const BattleScreen())],

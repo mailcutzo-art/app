@@ -42,6 +42,16 @@ void main() {
       expect(authRedirect(ready, Routes.profile), isNull);
     });
 
+    test('Learn subjects and practice sessions sit behind the same gates', () {
+      final ready = AsyncData<Session>(SignedIn(fakeUser()));
+      expect(authRedirect(ready, Routes.subject('physics')), isNull);
+      expect(authRedirect(ready, Routes.practiceSession('s-1')), isNull);
+      const out = AsyncData<Session>(SignedOut());
+      expect(authRedirect(out, Routes.practiceSession('s-1')), Routes.signIn);
+      final fresh = AsyncData<Session>(SignedIn(fakeUser(onboarded: false)));
+      expect(authRedirect(fresh, Routes.subject('physics')), Routes.onboarding);
+    });
+
     test('a refresh that keeps the previous value does not bounce to splash', () async {
       final container = ProviderContainer(
         overrides: [
@@ -56,5 +66,10 @@ void main() {
       expect(refreshing.isLoading, isTrue);
       expect(authRedirect(refreshing, Routes.home), isNull);
     });
+  });
+
+  test('route helpers build the documented paths', () {
+    expect(Routes.subject('physics'), '/learn/physics');
+    expect(Routes.practiceSession('s-1'), '/practice/s-1');
   });
 }

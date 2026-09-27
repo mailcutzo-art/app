@@ -120,6 +120,16 @@ final sessionProvider = AsyncNotifierProvider<SessionController, Session>(
   retry: (_, _) => null,
 );
 
+/// The signed-in user's id, or null while signed out. Per-user storage on the
+/// device (e.g. queued practice answers) is keyed by it, because phones get
+/// shared.
+final currentUserIdProvider = Provider<String?>(
+  (ref) => switch (ref.watch(sessionProvider).value) {
+    SignedIn(:final user) => user.id,
+    _ => null,
+  },
+);
+
 /// The signed-in user; only valid below the auth gate.
 final meProvider = Provider<Me>((ref) {
   final session = ref.watch(sessionProvider).value;

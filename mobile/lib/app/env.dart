@@ -38,6 +38,9 @@ class AppEnv {
   /// Dev-only password-less login for local testing. Never in release builds.
   bool get devLoginAvailable => isDev && !kReleaseMode;
 
+  /// Dev-only sample data for Learn and practice. Never in release builds.
+  bool get demoDataAvailable => isDev && !kReleaseMode;
+
   bool get googleSignInConfigured => googleServerClientId.isNotEmpty;
 
   AppEnv copyWith({String? apiBaseUrl}) => AppEnv(

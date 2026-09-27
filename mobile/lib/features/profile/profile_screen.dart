@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/env.dart';
 import '../../app/router.dart';
 import '../../core/auth/session.dart';
+import '../practice/data/answer_queue.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -18,15 +19,27 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool _signingOut = false;
 
   Future<void> _signOut() async {
+    // Practice answers still on the phone would wait for this user's next
+    // sign-in, so try to send them first.
+    setState(() => _signingOut = true);
+    final queue = ref.read(answerQueueProvider);
+    await queue.flush().timeout(const Duration(seconds: 5), onTimeout: () {});
+    if (!mounted) return;
+    setState(() => _signingOut = false);
+    final unsaved = queue.pendingCount;
     final confirmed = await showAppSheet<bool>(
       context,
       builder: (context) => SheetScaffold(
         title: 'Sign out?',
-        subtitle: 'You can sign back in with the same Google account any time.',
+        subtitle: switch (unsaved) {
+          0 => 'You can sign back in with the same Google account any time.',
+          1 => '1 answer isn\'t saved yet. Sign out anyway?',
+          _ => '$unsaved answers aren\'t saved yet. Sign out anyway?',
+        },
         footer: Column(
           children: [
             AppButton(
-              label: 'Sign out',
+              label: unsaved == 0 ? 'Sign out' : 'Sign out anyway',
               variant: AppButtonVariant.danger,
               onPressed: () => Navigator.pop(context, true),
             ),
@@ -38,7 +51,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ],
         ),
-        child: const SizedBox.shrink(),
+        child: unsaved == 0
+            ? const SizedBox.shrink()
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.gutter),
+                child: Text(
+                  'They\'ll be sent the next time you sign in on this phone.',
+                  style: context.text.bodySmall,
+                ),
+              ),
       ),
     );
     if (confirmed != true) return;

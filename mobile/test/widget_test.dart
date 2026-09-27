@@ -9,7 +9,7 @@ void main() {
   testWidgets('a signed-out user lands on the sign-in screen', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: testOverrides(session: const SignedOut()),
+        overrides: testOverrides(session: const SignedOut(), prefs: await testPrefs()),
         child: const QuizApp(),
       ),
     );
@@ -20,7 +20,7 @@ void main() {
   testWidgets('a signed-in user who finished onboarding lands on Home', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: testOverrides(session: SignedIn(fakeUser())),
+        overrides: testOverrides(session: SignedIn(fakeUser()), prefs: await testPrefs()),
         child: const QuizApp(),
       ),
     );
@@ -31,7 +31,10 @@ void main() {
   testWidgets('a new user is sent to onboarding', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: testOverrides(session: SignedIn(fakeUser(onboarded: false))),
+        overrides: testOverrides(
+          session: SignedIn(fakeUser(onboarded: false)),
+          prefs: await testPrefs(),
+        ),
         child: const QuizApp(),
       ),
     );

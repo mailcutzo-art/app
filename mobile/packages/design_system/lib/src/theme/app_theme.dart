@@ -150,6 +150,18 @@ abstract final class AppTheme {
         ),
         errorStyle: type.caption.copyWith(color: c.onErrorContainer),
       ),
+      // On is the ink pill used for every selected state; off is a sunken track.
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected) ? c.onInverse : c.inkMuted,
+        ),
+        trackColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected) ? c.inverse : c.surfaceSunken,
+        ),
+        trackOutlineColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected) ? c.inverse : c.outlineStrong,
+        ),
+      ),
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: c.ink,
         linearTrackColor: c.surfaceSunken,
