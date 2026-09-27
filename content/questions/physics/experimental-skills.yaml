@@ -1,0 +1,2112 @@
+subject: physics
+chapter:
+  slug: experimental-skills
+  name: Experimental Skills
+  order: 29
+  classes: [11, 12]
+  topics:
+    - slug: vernier-callipers
+      name: "Vernier callipers"
+    - slug: screw-gauge
+      name: "Screw gauge"
+    - slug: simple-pendulum
+      name: "Simple pendulum and energy dissipation"
+    - slug: metre-scale-moments
+      name: "Mass by principle of moments"
+    - slug: youngs-modulus
+      name: "Young's modulus of a metallic wire"
+    - slug: surface-tension-viscosity
+      name: "Surface tension and viscosity experiments"
+    - slug: resonance-tube
+      name: "Speed of sound by resonance tube"
+    - slug: method-of-mixtures
+      name: "Specific heat by method of mixtures"
+    - slug: metre-bridge-ohms-law
+      name: "Metre bridge and Ohm's law"
+    - slug: galvanometer-half-deflection
+      name: "Galvanometer by half-deflection method"
+    - slug: optics-experiments
+      name: "Mirror, lens, prism and slab experiments"
+    - slug: diodes-and-components
+      name: "Diode and Zener characteristics, component identification"
+questions:
+  - id: phy-exp-001
+    topic: vernier-callipers
+    subtopic: "Least count"
+    concept: "LC = 1 MSD − 1 VSD for 10 VSD = 9 MSD"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "LC = 1 MSD − 1 VSD"
+    tags: [least-count]
+    stem: "In a Vernier callipers, 10 divisions of the Vernier scale coincide with 9 divisions of the main scale, and 1 main scale division is 1 mm. What is the least count?"
+    options:
+      - "0.01 mm"
+      - "0.05 mm"
+      - "0.9 mm"
+      - "0.1 mm"
+    answer: 3
+    explanation: "1 VSD = 9/10 MSD = 0.9 mm, so LC = 1 MSD − 1 VSD = 1 − 0.9 = 0.1 mm. 0.9 mm is the size of one VSD, not the least count."
+
+  - id: phy-exp-002
+    topic: vernier-callipers
+    subtopic: "Least count"
+    concept: "LC for 20 VSD = 19 MSD"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "LC = MSD/N"
+    tags: [least-count]
+    stem: "A Vernier callipers has 20 Vernier divisions equal to 19 main scale divisions of 1 mm each. Its least count is"
+    options:
+      - "0.02 mm"
+      - "0.5 mm"
+      - "0.05 mm"
+      - "0.95 mm"
+    answer: 2
+    explanation: "When N VSD = (N − 1) MSD, LC = 1 MSD/N = 1 mm/20 = 0.05 mm. 0.95 mm is the length of one Vernier division."
+
+  - id: phy-exp-003
+    topic: vernier-callipers
+    subtopic: "Reading"
+    concept: "Total reading = MSR + VSR × LC"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "Reading = MSR + n × LC"
+    tags: [reading]
+    stem: "A Vernier callipers of least count 0.1 mm shows a main scale reading of 2.3 cm and the 6th Vernier division coincides with a main scale mark. With no zero error, the reading is"
+    options:
+      - "2.36 cm"
+      - "2.306 cm"
+      - "2.9 cm"
+      - "2.46 cm"
+    answer: 0
+    explanation: "Vernier reading = 6 × 0.1 mm = 0.6 mm = 0.06 cm, so total = 2.3 + 0.06 = 2.36 cm. Adding 0.6 cm (to get 2.9 cm) is the classic mm–cm slip."
+
+  - id: phy-exp-004
+    topic: vernier-callipers
+    subtopic: "Zero error"
+    concept: "Positive zero error is subtracted"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "True reading = observed − zero error"
+    tags: [zero-error, trap]
+    stem: "A Vernier callipers (LC 0.01 cm) has a positive zero error of 0.03 cm. The observed diameter of a rod is 1.47 cm. The true diameter is"
+    options:
+      - "1.50 cm"
+      - "1.47 cm"
+      - "1.41 cm"
+      - "1.44 cm"
+    answer: 3
+    explanation: "Correct reading = observed reading − zero error = 1.47 − (+0.03) = 1.44 cm. Adding the zero error (1.50 cm) is the common mistake; it is the correction, −(zero error), that is added."
+
+  - id: phy-exp-005
+    topic: vernier-callipers
+    subtopic: "Zero error"
+    concept: "Negative zero error value"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "Negative zero error = −(N − n) × LC"
+    tags: [zero-error]
+    stem: "A Vernier callipers has 10 Vernier divisions and LC 0.1 mm. With the jaws closed, the Vernier zero lies to the left of the main-scale zero and the 7th Vernier division coincides with a main scale mark. The zero error is"
+    options:
+      - "+0.7 mm"
+      - "+0.3 mm"
+      - "−0.7 mm"
+      - "−0.3 mm"
+    answer: 3
+    explanation: "Vernier zero to the left of main zero means a negative zero error. Its magnitude is (N − n) × LC = (10 − 7) × 0.1 = 0.3 mm, so zero error = −0.3 mm. Taking −0.7 mm ignores the fact that the coinciding division is counted from the wrong end."
+
+  - id: phy-exp-006
+    topic: vernier-callipers
+    subtopic: "Parts of the instrument"
+    concept: "Inner jaws measure internal diameter"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ncert-line, parts]
+    stem: "Which part of a Vernier callipers is used to measure the internal diameter of a hollow cylinder?"
+    options:
+      - "The lower (outside) jaws"
+      - "The depth strip (tail)"
+      - "The upper (inside) jaws"
+      - "The ratchet"
+    answer: 2
+    explanation: "The upper jaws, with outward-facing edges, fit inside the tube and measure the internal diameter. The lower jaws measure external dimensions and the thin strip at the back measures depth. A ratchet belongs to the screw gauge."
+
+  - id: phy-exp-007
+    topic: vernier-callipers
+    subtopic: "Depth of a vessel"
+    concept: "Depth measured with the sliding strip"
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [depth]
+    stem: "To find the depth of a beaker with a Vernier callipers, the edge of the main scale rests on the rim and the instrument is opened until"
+    options:
+      - "the upper jaws touch the inside wall"
+      - "the Vernier zero coincides with the main-scale zero"
+      - "the lower jaws grip the outside wall"
+      - "the depth strip just touches the bottom of the beaker"
+    answer: 3
+    explanation: "The thin strip attached to the Vernier slides out from the end of the main scale. The reading when it just touches the bottom, with the main scale resting on the rim, gives the depth."
+
+  - id: phy-exp-008
+    topic: vernier-callipers
+    subtopic: "Precision"
+    concept: "More Vernier divisions give a smaller least count"
+    category: application
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [least-count, multi-concept]
+    stem: |-
+      Statement I: For the same main-scale division, a Vernier with 50 divisions equal to 49 MSD has a smaller least count than one with 10 divisions equal to 9 MSD.
+      Statement II: A Vernier callipers with a smaller least count always gives a more accurate reading, whatever its zero error.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 2
+    explanation: "LC = MSD/N, so N = 50 gives a least count five times smaller than N = 10: Statement I is correct. A smaller least count improves precision (resolution), but a zero error left uncorrected makes the reading inaccurate, so Statement II is incorrect."
+
+  - id: phy-exp-009
+    topic: vernier-callipers
+    subtopic: "Internal diameter"
+    concept: "Wall thickness from external and internal diameters"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "t = (D − d)/2"
+    tags: [internal-diameter, multi-concept]
+    stem: "Using a Vernier callipers, the external diameter of a hollow tube is 2.54 cm and its internal diameter is 2.12 cm. The thickness of the wall of the tube is"
+    options:
+      - "0.21 cm"
+      - "0.42 cm"
+      - "2.33 cm"
+      - "0.84 cm"
+    answer: 0
+    explanation: "The wall appears on both sides of the bore, so D = d + 2t and t = (2.54 − 2.12)/2 = 0.42/2 = 0.21 cm. Reporting the full difference 0.42 cm forgets the factor of 2."
+
+  - id: phy-exp-010
+    topic: screw-gauge
+    subtopic: "Least count"
+    concept: "LC = pitch/number of circular divisions"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "LC = pitch/N"
+    tags: [least-count]
+    stem: "A screw gauge has a pitch of 0.5 mm and 50 divisions on its circular scale. Its least count is"
+    options:
+      - "0.1 mm"
+      - "0.05 mm"
+      - "0.001 mm"
+      - "0.01 mm"
+    answer: 3
+    explanation: "LC = pitch/number of circular scale divisions = 0.5 mm/50 = 0.01 mm."
+
+  - id: phy-exp-011
+    topic: screw-gauge
+    subtopic: "Pitch"
+    concept: "Pitch is the distance moved per full rotation"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [pitch, ncert-line]
+    stem: "The pitch of a screw gauge is"
+    options:
+      - "the distance moved by the spindle for one division of the circular scale"
+      - "the smallest length the main scale can read"
+      - "the number of divisions on the circular scale"
+      - "the linear distance moved by the spindle in one complete rotation of the circular scale"
+    answer: 3
+    explanation: "Pitch is the linear distance advanced by the screw in one full rotation. The distance for one circular division is the least count, pitch/N."
+
+  - id: phy-exp-012
+    topic: screw-gauge
+    subtopic: "Reading"
+    concept: "Reading = LSR + CSR × LC"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "Reading = LSR + n × LC"
+    tags: [reading]
+    stem: "A screw gauge of least count 0.01 mm shows a linear scale reading of 2 mm and a circular scale reading of 36 divisions for a wire. With no zero error, the diameter is"
+    options:
+      - "2.036 mm"
+      - "2.0036 mm"
+      - "5.6 mm"
+      - "2.36 mm"
+    answer: 3
+    explanation: "Diameter = LSR + CSR × LC = 2 + 36 × 0.01 = 2 + 0.36 = 2.36 mm."
+
+  - id: phy-exp-013
+    topic: screw-gauge
+    subtopic: "Zero error"
+    concept: "Correcting a negative zero error"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "True = observed − zero error"
+    tags: [zero-error, trap]
+    stem: "A screw gauge has a zero error of −0.04 mm. The observed thickness of a sheet is 1.26 mm. Its true thickness is"
+    options:
+      - "1.22 mm"
+      - "1.26 mm"
+      - "1.30 mm"
+      - "1.34 mm"
+    answer: 2
+    explanation: "True reading = observed − zero error = 1.26 − (−0.04) = 1.30 mm. A negative zero error makes the instrument read too little, so the correction is added."
+
+  - id: phy-exp-014
+    topic: screw-gauge
+    subtopic: "Ratchet"
+    concept: "Ratchet prevents excess pressure on the object"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ratchet, ncert-line]
+    stem: "While measuring the diameter of a wire with a screw gauge, the screw is turned using the ratchet because it"
+    options:
+      - "removes the backlash error completely"
+      - "makes the least count smaller"
+      - "prevents the spindle from pressing the wire too hard"
+      - "corrects the zero error automatically"
+    answer: 2
+    explanation: "The ratchet slips once the spindle grips the wire with a fixed light pressure, so the wire is not squeezed and the reading is consistent. It does not change the least count, and backlash is reduced by always turning in one direction."
+
+  - id: phy-exp-015
+    topic: screw-gauge
+    subtopic: "Backlash error"
+    concept: "Backlash from wear of screw threads"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [backlash-error]
+    stem: "Backlash error in a screw gauge arises because"
+    options:
+      - "the circular scale has too few divisions"
+      - "the object is compressed by the spindle"
+      - "the zero of the circular scale does not match the reference line"
+      - "worn threads let the screw rotate slightly without moving the spindle when the direction of rotation is reversed"
+    answer: 3
+    explanation: "Due to wear, there is play between the screw and the nut, so on reversing the direction of rotation the screw turns a little before the spindle moves. It is minimised by always turning the screw in the same direction."
+
+  - id: phy-exp-016
+    topic: screw-gauge
+    subtopic: "Wire diameter procedure"
+    concept: "Diameter measured at several places in perpendicular directions"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [procedure, errors]
+    stem: "Which step in measuring the diameter of a wire with a screw gauge is NOT correct practice?"
+    options:
+      - "Take readings at several places along the wire"
+      - "At each place take two readings in mutually perpendicular directions"
+      - "Tighten the thimble firmly by hand until the wire cannot move"
+      - "Find and apply the zero error before reporting the mean"
+    answer: 2
+    explanation: "The screw should be advanced with the ratchet only until it clicks, not tightened by hand, which squeezes the wire and strains the screw. Readings along the wire and in perpendicular directions average out non-uniformity and ovality."
+
+  - id: phy-exp-017
+    topic: screw-gauge
+    subtopic: "Zero error sign"
+    concept: "Positive zero error with jaws closed"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "Zero error = n × LC"
+    tags: [zero-error]
+    stem: "When the studs of a screw gauge (LC 0.01 mm) are brought in contact, the zero of the circular scale has moved 4 divisions past the reference line, so the gauge reads +4 divisions with nothing between the studs. A wire then gives LSR 1 mm and CSR 52. The corrected diameter is"
+    options:
+      - "1.48 mm"
+      - "1.52 mm"
+      - "1.56 mm"
+      - "1.44 mm"
+    answer: 0
+    explanation: "The zero error is +4 × 0.01 = +0.04 mm. Observed = 1 + 52 × 0.01 = 1.52 mm, so the corrected diameter = 1.52 − 0.04 = 1.48 mm."
+
+  - id: phy-exp-018
+    topic: screw-gauge
+    subtopic: "Sheet thickness"
+    concept: "Screw gauge vs Vernier for thin sheet"
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [instrument-choice]
+    stem: "The thickness of a sheet of paper-thin metal foil, about 0.2 mm, is best measured with"
+    options:
+      - "a metre scale"
+      - "a Vernier callipers of LC 0.1 mm"
+      - "a screw gauge of LC 0.01 mm"
+      - "a travelling microscope focused on the top face"
+    answer: 2
+    explanation: "For a length of about 0.2 mm, a 0.1 mm least count gives only 2 counts (50% uncertainty). A screw gauge with LC 0.01 mm gives about 20 counts, so it is the right instrument for thin sheets and wires."
+
+  - id: phy-exp-019
+    topic: simple-pendulum
+    subtopic: "Damping"
+    concept: "Amplitude decreases exponentially with time"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: "A = A_0 e^{−bt/2m}"
+    tags: [damping, graph]
+    stem: "In the experiment on dissipation of energy of a simple pendulum, the graph of amplitude against time is"
+    options:
+      - "a straight line with negative slope"
+      - "a parabola opening upward"
+      - "a horizontal straight line"
+      - "a decaying exponential curve"
+    answer: 3
+    explanation: "Air resistance produces damping, and the amplitude falls as A = A_0 e^{−bt/2m}: it drops quickly at first and then more slowly. A straight line would imply a constant loss of amplitude per second, which is not observed."
+
+  - id: phy-exp-020
+    topic: simple-pendulum
+    subtopic: "Damping"
+    concept: "ln A vs t is linear"
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: true
+    formula: "ln A = ln A_0 − (b/2m)t"
+    tags: [damping, graph]
+    stem: "If ln(amplitude) of a damped simple pendulum is plotted against time, the graph is"
+    options:
+      - "a straight line with a negative slope"
+      - "a straight line with a positive slope"
+      - "a rectangular hyperbola"
+      - "a decaying exponential curve"
+    answer: 0
+    explanation: "From A = A_0 e^{−bt/2m}, ln A = ln A_0 − (b/2m)t, which is a straight line of slope −b/2m. Its slope measures how quickly energy is dissipated."
+
+  - id: phy-exp-021
+    topic: simple-pendulum
+    subtopic: "Energy loss"
+    concept: "Energy is proportional to amplitude squared"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: true
+    formula: "E ∝ A^2"
+    tags: [energy, multi-concept]
+    stem: "The amplitude of a simple pendulum falls from 10 cm to 5 cm in 2 minutes. By what fraction has its energy of oscillation decreased?"
+    options:
+      - "1/2"
+      - "1/4"
+      - "3/4"
+      - "7/8"
+    answer: 2
+    explanation: "Energy of oscillation ∝ A^2, so the energy becomes (5/10)^2 = 1/4 of its initial value. The loss is 1 − 1/4 = 3/4 of the initial energy. Choosing 1/2 treats energy as proportional to amplitude."
+
+  - id: phy-exp-022
+    topic: simple-pendulum
+    subtopic: "Bob material"
+    concept: "Light, large bob is damped faster"
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [damping, bob]
+    stem: "Two pendulums of equal length and equal initial amplitude have bobs of the same size, one of solid iron and one of wood. Amplitude is plotted against time for each. Which observation is expected?"
+    options:
+      - "Both amplitudes decay at the same rate since the air drag is the same"
+      - "The iron bob's amplitude decays faster because it is heavier"
+      - "The wooden bob's amplitude decays faster"
+      - "The wooden bob's time period increases steadily while the iron bob's stays constant"
+    answer: 2
+    explanation: "The drag force is about the same for equal-sized bobs, but the wooden bob has much less mass (and energy), so the damping constant b/2m is larger and its amplitude decays faster. The time period of both remains practically constant."
+
+  - id: phy-exp-023
+    topic: simple-pendulum
+    subtopic: "Effective length"
+    concept: "Effective length includes radius of the bob"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: "L = l + r"
+    tags: [effective-length, ncert-line]
+    stem: "The effective length of a simple pendulum in the laboratory is measured from the point of suspension to"
+    options:
+      - "the hook of the bob"
+      - "the lowest point of the bob"
+      - "the top of the bob"
+      - "the centre of gravity of the bob"
+    answer: 3
+    explanation: "Effective length = length of thread + length of hook + radius of the bob, i.e. up to the centre of gravity of the spherical bob, which is where the mass may be treated as concentrated."
+
+  - id: phy-exp-024
+    topic: simple-pendulum
+    subtopic: "L–T^2 graph"
+    concept: "Graph of L against T^2 is a straight line"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: "T^2 = 4π^2 L/g"
+    tags: [graph]
+    stem: "For a simple pendulum, which graph obtained from the observations is a straight line passing through the origin?"
+    options:
+      - "T against L"
+      - "T^2 against 1/L"
+      - "T against 1/L"
+      - "T^2 against L"
+    answer: 3
+    explanation: "T = 2π√(L/g) gives T^2 = (4π^2/g)L, so T^2 ∝ L. The T–L graph is a parabola and the others are curves."
+
+  - id: phy-exp-025
+    topic: simple-pendulum
+    subtopic: "Small amplitude"
+    concept: "Amplitude kept small for SHM"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [small-angle]
+    stem: |-
+      Assertion (A): In the simple pendulum experiment, the bob is displaced through a small angle only.
+      Reason (R): The time period of a simple pendulum is independent of amplitude only for small angular displacements.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "T = 2π√(L/g) is derived with sin θ ≈ θ, valid only for small angles; at large amplitude the period increases. That is exactly why the bob is given a small displacement, so R explains A."
+
+  - id: phy-exp-026
+    topic: simple-pendulum
+    subtopic: "Counting oscillations"
+    concept: "Timing many oscillations reduces error"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "T = t/n"
+    tags: [errors]
+    stem: "A stopwatch has a least count of 0.1 s. The time for 20 oscillations of a pendulum is 32.0 s. What are the time period and its maximum uncertainty?"
+    options:
+      - "1.6 s ± 0.1 s"
+      - "1.6 s ± 0.05 s"
+      - "32.0 s ± 0.1 s"
+      - "1.6 s ± 0.005 s"
+    answer: 3
+    explanation: "T = 32.0/20 = 1.6 s, and the uncertainty of 0.1 s in the total time is shared over 20 oscillations: ΔT = 0.1/20 = 0.005 s. This is why many oscillations are timed together."
+
+  - id: phy-exp-027
+    topic: metre-scale-moments
+    subtopic: "Principle of moments"
+    concept: "m d_1 = M d_2"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "m_1 d_1 = m_2 d_2"
+    tags: [moments]
+    stem: "A uniform metre scale is balanced at its 50 cm mark on a knife edge. An unknown mass hung at the 20 cm mark is balanced by a 60 g mass hung at the 90 cm mark. The unknown mass is"
+    options:
+      - "80 g"
+      - "45 g"
+      - "60 g"
+      - "120 g"
+    answer: 0
+    explanation: "Distances from the fulcrum: 50 − 20 = 30 cm and 90 − 50 = 40 cm. m × 30 = 60 × 40, so m = 80 g."
+
+  - id: phy-exp-028
+    topic: metre-scale-moments
+    subtopic: "Centre of gravity"
+    concept: "First step is to find the balance point of the scale"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [procedure, ncert-line]
+    stem: "In finding the mass of an object using a metre scale and the principle of moments, the first step is to"
+    options:
+      - "hang the known mass at the 0 cm end"
+      - "hang the unknown mass at the 100 cm end"
+      - "measure the length of the scale with a Vernier callipers"
+      - "balance the scale alone on the knife edge to locate its centre of gravity"
+    answer: 3
+    explanation: "The scale alone is balanced on the knife edge; the balance point is its centre of gravity. The scale is then kept on that point so that its own weight has zero moment about the fulcrum."
+
+  - id: phy-exp-029
+    topic: metre-scale-moments
+    subtopic: "Scale's own weight"
+    concept: "Weight of the scale contributes a moment when not supported at its CG"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "Σ clockwise moments = Σ anticlockwise moments"
+    tags: [moments, multi-concept]
+    stem: "A uniform metre scale of mass 100 g is supported on a knife edge at the 40 cm mark. It balances when a mass m is hung at the 10 cm mark. The value of m is"
+    options:
+      - "50 g"
+      - "25 g"
+      - "100 g"
+      - "33.3 g"
+    answer: 3
+    explanation: "The scale's weight acts at its centre, 50 cm, i.e. 10 cm from the fulcrum. Balancing moments: m × (40 − 10) = 100 × (50 − 40), so m × 30 = 1000 and m = 33.3 g."
+
+  - id: phy-exp-030
+    topic: metre-scale-moments
+    subtopic: "Condition of equilibrium"
+    concept: "Rotational equilibrium needs zero net torque"
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [moments]
+    stem: |-
+      Assertion (A): A metre scale carrying two masses balances horizontally on a knife edge when the moments of the masses about the edge are equal and opposite.
+      Reason (R): For rotational equilibrium, the net torque about any point must be zero.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "At balance the clockwise and anticlockwise moments cancel, which is the condition of rotational equilibrium stated in R; so R correctly explains A."
+
+  - id: phy-exp-031
+    topic: metre-scale-moments
+    subtopic: "Sources of error"
+    concept: "Knife edge must be sharp and threads light"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [errors]
+    stem: |-
+      Which of the following are genuine precautions in the metre-scale (principle of moments) experiment?
+      I. The knife edge should be sharp.
+      II. The loops of thread carrying the masses should be fine and of negligible mass.
+      III. The masses should be hung as close to the fulcrum as possible to reduce error.
+      IV. Readings should be taken only after the scale comes to rest horizontally.
+    options:
+      - "I, II and IV only"
+      - "I and III only"
+      - "II, III and IV only"
+      - "I, II, III and IV"
+    answer: 0
+    explanation: "A sharp knife edge fixes the fulcrum position, light threads add no extra moment, and readings are taken when the scale is at rest horizontally. Hanging masses very close to the fulcrum makes the distances small and increases the percentage error, so III is wrong."
+
+  - id: phy-exp-032
+    topic: metre-scale-moments
+    subtopic: "Distance measurement"
+    concept: "Unknown mass nearer the fulcrum is heavier"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "m_1 d_1 = m_2 d_2"
+    tags: [moments]
+    stem: "A metre scale balances at the 50 cm mark. A 50 g mass at the 20 cm mark is balanced by an unknown mass at the 75 cm mark. The unknown mass is"
+    options:
+      - "40 g"
+      - "50 g"
+      - "60 g"
+      - "75 g"
+    answer: 2
+    explanation: "Moment arms are 30 cm and 25 cm. m × 25 = 50 × 30, so m = 60 g. The unknown mass is closer to the fulcrum, so it must be heavier than 50 g."
+
+  - id: phy-exp-033
+    topic: metre-scale-moments
+    subtopic: "Balancing condition"
+    concept: "Heavier mass must be nearer the fulcrum"
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [moments]
+    stem: "A 100 g mass and a 200 g mass balance a metre scale supported at its centre of gravity. Compared with the 100 g mass, the 200 g mass hangs"
+    options:
+      - "at the same distance from the fulcrum"
+      - "at twice the distance from the fulcrum"
+      - "at half the distance from the fulcrum"
+      - "at four times the distance from the fulcrum"
+    answer: 2
+    explanation: "Equal moments need m_1 d_1 = m_2 d_2, so doubling the mass halves the moment arm."
+
+  - id: phy-exp-034
+    topic: youngs-modulus
+    subtopic: "Formula"
+    concept: "Y = MgL/(πr^2 Δl)"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "Y = MgL/(πr^2 Δl)"
+    tags: [formula, ncert-line]
+    stem: "In Searle's method, a wire of original length L and radius r extends by Δl under a load of mass M. Young's modulus is"
+    options:
+      - "MgL/(πr^2 Δl)"
+      - "MgΔl/(πr^2 L)"
+      - "πr^2 L/(MgΔl)"
+      - "Mg/(πr^2 Δl)"
+    answer: 0
+    explanation: "Stress = Mg/(πr^2) and strain = Δl/L, so Y = stress/strain = MgL/(πr^2 Δl)."
+
+  - id: phy-exp-035
+    topic: youngs-modulus
+    subtopic: "Numerical"
+    concept: "Y from load, length, area and extension"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "Y = FL/(AΔl)"
+    tags: [numerical]
+    stem: "A wire 2 m long with cross-sectional area 1 mm^2 extends by 1 mm under a load of 100 N. Young's modulus of the wire is"
+    options:
+      - "2 × 10^{8} Pa"
+      - "2 × 10^{5} Pa"
+      - "5 × 10^{10} Pa"
+      - "2 × 10^{11} Pa"
+    answer: 3
+    explanation: "Y = FL/(AΔl) = (100 × 2)/(10^{−6} × 10^{−3}) = 2 × 10^{11} Pa. Forgetting to convert mm^2 to m^2 gives the much smaller wrong values."
+
+  - id: phy-exp-036
+    topic: youngs-modulus
+    subtopic: "Reference wire"
+    concept: "Two identical wires compensate for temperature and support yielding"
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [searle, reference-wire]
+    stem: "Why does Searle's apparatus use two identical wires hanging from the same support, one of which carries only a fixed load?"
+    options:
+      - "To double the extension so it is easier to measure"
+      - "To measure the Poisson's ratio simultaneously"
+      - "To keep the stress in the experimental wire constant"
+      - "To compensate for changes in length due to temperature and for any yielding of the support"
+    answer: 3
+    explanation: "The spirit level compares the two wires, so any change common to both, such as thermal expansion or sagging of the support, cancels. Only the extension caused by the extra load on the experimental wire is recorded."
+
+  - id: phy-exp-037
+    topic: youngs-modulus
+    subtopic: "Load–extension graph"
+    concept: "Graph of extension vs load is straight within elastic limit"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [graph, hooke-law]
+    stem: "When extension of the wire is plotted against load in Searle's experiment within the elastic limit, the graph is"
+    options:
+      - "a straight line passing through the origin"
+      - "a parabola"
+      - "a straight line with a positive intercept on the load axis"
+      - "a curve bending towards the load axis from the start"
+    answer: 0
+    explanation: "Within the elastic limit, Hooke's law holds, so extension ∝ load and the graph is a straight line through the origin. Its slope is used to calculate Y."
+
+  - id: phy-exp-038
+    topic: youngs-modulus
+    subtopic: "Slope of graph"
+    concept: "Y from slope of extension–load graph"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "Y = gL/(πr^2 × slope)"
+    tags: [graph, multi-concept]
+    stem: "In Searle's experiment the slope of the graph of extension Δl against load mass M is 2.5 × 10^{−4} m kg^{−1}. The wire has length 2.0 m and cross-sectional area 4.0 × 10^{−7} m^2. Taking g = 10 m s^{−2}, Young's modulus is"
+    options:
+      - "5 × 10^{10} Pa"
+      - "1 × 10^{11} Pa"
+      - "2 × 10^{11} Pa"
+      - "4 × 10^{11} Pa"
+    answer: 2
+    explanation: "Y = MgL/(AΔl) = gL/(A × slope) = (10 × 2.0)/(4.0 × 10^{−7} × 2.5 × 10^{−4}) = 20/(10^{−10}) = 2 × 10^{11} Pa."
+
+  - id: phy-exp-039
+    topic: youngs-modulus
+    subtopic: "Error analysis"
+    concept: "Radius contributes twice its fractional error"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "ΔY/Y = ΔM/M + ΔL/L + 2Δr/r + Δ(Δl)/Δl"
+    tags: [error-analysis, multi-concept]
+    stem: "In a Young's modulus experiment the fractional errors are: load 0.5%, length 0.2%, radius 1% and extension 2%. The maximum percentage error in Y is"
+    options:
+      - "3.7%"
+      - "5.2%"
+      - "2.5%"
+      - "4.7%"
+    answer: 3
+    explanation: "ΔY/Y = 0.5 + 0.2 + 2 × 1 + 2 = 4.7%. The radius appears squared, so its error is doubled; forgetting that gives 3.7%."
+
+  - id: phy-exp-040
+    topic: youngs-modulus
+    subtopic: "Measuring the wire"
+    concept: "Diameter measured with a screw gauge"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [instruments]
+    stem: "In the experiment to determine Young's modulus of a wire, the diameter of the wire is measured with"
+    options:
+      - "a metre scale"
+      - "the micrometer screw of the spirit level"
+      - "a spherometer"
+      - "a screw gauge"
+    answer: 3
+    explanation: "The diameter is a fraction of a millimetre, so a screw gauge (LC 0.01 mm) is used at several points. The micrometer attached to the spirit level measures the extension, not the diameter."
+
+  - id: phy-exp-041
+    topic: youngs-modulus
+    subtopic: "Loading and unloading"
+    concept: "Readings taken while loading and unloading"
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [procedure]
+    stem: |-
+      Statement I: In Searle's experiment, micrometer readings are taken both while increasing the load and while decreasing it, and the mean is used.
+      Statement II: The load on the experimental wire can be increased well beyond the elastic limit because the reference wire compensates for it.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 2
+    explanation: "Taking readings while loading and unloading reveals and averages out any lag (elastic after-effect) and confirms that the wire stays elastic, so Statement I is correct. The reference wire only compensates for temperature and support effects; exceeding the elastic limit would permanently set the wire, so Statement II is wrong."
+
+  - id: phy-exp-042
+    topic: surface-tension-viscosity
+    subtopic: "Capillary rise formula"
+    concept: "T = rhρg/(2 cos θ)"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "T = rhρg/(2 cos θ)"
+    tags: [capillary-rise]
+    stem: "In the capillary rise method, the surface tension of water with contact angle θ is given by"
+    options:
+      - "T = rhρg/(2 cos θ)"
+      - "T = 2rhρg cos θ"
+      - "T = hρg/(2r cos θ)"
+      - "T = 2 cos θ/(rhρg)"
+    answer: 0
+    explanation: "Balancing the upward surface-tension force 2πrT cos θ against the weight of the raised column πr^2hρg gives T = rhρg/(2 cos θ); for clean water and glass θ ≈ 0."
+
+  - id: phy-exp-043
+    topic: surface-tension-viscosity
+    subtopic: "Capillary rise numerical"
+    concept: "T from h and r"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "T = rhρg/2"
+    tags: [capillary-rise]
+    stem: "Water rises 2.8 cm in a clean glass capillary of radius 0.5 mm. Taking θ = 0, ρ = 1000 kg m^{−3} and g = 10 m s^{−2}, the surface tension of water is"
+    options:
+      - "0.14 N m^{−1}"
+      - "0.035 N m^{−1}"
+      - "0.070 N m^{−1}"
+      - "0.70 N m^{−1}"
+    answer: 2
+    explanation: "T = rhρg/2 = (0.5 × 10^{−3} × 2.8 × 10^{−2} × 1000 × 10)/2 = 0.14/2 = 0.070 N m^{−1}."
+
+  - id: phy-exp-044
+    topic: surface-tension-viscosity
+    subtopic: "Effect of detergent"
+    concept: "Detergent lowers surface tension and capillary rise"
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [detergent, ncert-line]
+    stem: "When a little detergent is dissolved in the water used in the capillary rise experiment, the height to which water rises in the tube"
+    options:
+      - "increases because detergent increases the surface tension"
+      - "decreases because detergent increases the density of water"
+      - "stays the same because the tube radius is unchanged"
+      - "decreases because detergent reduces the surface tension"
+    answer: 3
+    explanation: "h = 2T cos θ/(rρg). A detergent lowers the surface tension of water considerably, so the rise decreases."
+
+  - id: phy-exp-045
+    topic: surface-tension-viscosity
+    subtopic: "Measuring the radius"
+    concept: "Travelling microscope measures bore and height"
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [travelling-microscope]
+    stem: "In the capillary rise experiment, the internal radius of the capillary tube and the height of the water column are measured with"
+    options:
+      - "a screw gauge"
+      - "a Vernier callipers"
+      - "a travelling microscope"
+      - "a spherometer"
+    answer: 2
+    explanation: "The bore is too fine for callipers, so a travelling microscope is focused on opposite edges of the bore (for the diameter) and on the meniscus and the water surface outside (for the height)."
+
+  - id: phy-exp-046
+    topic: surface-tension-viscosity
+    subtopic: "Terminal velocity"
+    concept: "v_t ∝ r^2"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: false
+    formula: "v_t = 2r^2(ρ − σ)g/(9η)"
+    tags: [terminal-velocity, proportionality]
+    stem: "In the viscosity experiment, a steel ball of radius r falls through glycerine with terminal velocity 2 cm s^{−1}. A steel ball of radius 2r in the same glycerine will have a terminal velocity of"
+    options:
+      - "4 cm s^{−1}"
+      - "16 cm s^{−1}"
+      - "1 cm s^{−1}"
+      - "8 cm s^{−1}"
+    answer: 3
+    explanation: "Terminal velocity ∝ r^2, so doubling the radius makes it four times larger: 4 × 2 = 8 cm s^{−1}."
+
+  - id: phy-exp-047
+    topic: surface-tension-viscosity
+    subtopic: "Terminal velocity"
+    concept: "Timing starts well below the surface"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [procedure, terminal-velocity]
+    stem: "In the experiment to find viscosity by terminal velocity, the first timing mark on the tall jar is placed some distance below the liquid surface because"
+    options:
+      - "the ball needs time to reach terminal velocity"
+      - "the liquid near the surface is cooler"
+      - "the ball is not visible near the surface"
+      - "surface tension stops the ball near the surface"
+    answer: 0
+    explanation: "On entry the ball accelerates; only after it has fallen some distance does the viscous drag plus buoyancy balance its weight. Timing from the first mark then measures a constant (terminal) velocity."
+
+  - id: phy-exp-048
+    topic: surface-tension-viscosity
+    subtopic: "Viscosity numerical"
+    concept: "η from terminal velocity"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: true
+    battle: false
+    formula: "η = 2r^2(ρ − σ)g/(9v)"
+    tags: [viscosity, numerical]
+    stem: "A steel ball of radius 1 mm and density 7800 kg m^{−3} falls through glycerine of density 1500 kg m^{−3} with a terminal velocity of 1.4 cm s^{−1}. Taking g = 10 m s^{−2}, the coefficient of viscosity of glycerine is"
+    options:
+      - "0.5 Pa s"
+      - "2.0 Pa s"
+      - "1.0 Pa s"
+      - "10 Pa s"
+    answer: 2
+    explanation: "η = 2r^2(ρ − σ)g/(9v) = 2 × 10^{−6} × 6300 × 10/(9 × 0.014) = 0.126/0.126 = 1.0 Pa s."
+
+  - id: phy-exp-049
+    topic: surface-tension-viscosity
+    subtopic: "v vs r^2 graph"
+    concept: "Graph of terminal velocity vs r^2 is linear"
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [graph, terminal-velocity]
+    stem: "Balls of different radii are dropped in the same viscous liquid. Which plot of the observations gives a straight line through the origin?"
+    options:
+      - "Terminal velocity against r"
+      - "Terminal velocity against √r"
+      - "Terminal velocity against 1/r"
+      - "Terminal velocity against r^2"
+    answer: 3
+    explanation: "v_t = 2r^2(ρ − σ)g/(9η), so v_t ∝ r^2. The slope of the v_t–r^2 line equals 2(ρ − σ)g/(9η), from which η can be found."
+
+  - id: phy-exp-050
+    topic: resonance-tube
+    subtopic: "Resonance condition"
+    concept: "First resonance at l_1 + e = λ/4"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "l_1 + e = λ/4"
+    tags: [resonance, ncert-line]
+    stem: "In the resonance tube experiment, the first resonance occurs when the length of the air column plus the end correction equals"
+    options:
+      - "λ/2"
+      - "λ"
+      - "λ/4"
+      - "3λ/4"
+    answer: 2
+    explanation: "The air column closed by water behaves as a closed pipe, with a node at the water surface and an antinode near the open end, so the fundamental needs l_1 + e = λ/4."
+
+  - id: phy-exp-051
+    topic: resonance-tube
+    subtopic: "Speed of sound"
+    concept: "v = 2f(l_2 − l_1)"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "v = 2f(l_2 − l_1)"
+    tags: [speed-of-sound]
+    stem: "With a 512 Hz tuning fork, the first and second resonance lengths of a resonance tube are 16.0 cm and 50.0 cm. The speed of sound in air is"
+    options:
+      - "348 m s^{−1}"
+      - "174 m s^{−1}"
+      - "256 m s^{−1}"
+      - "340 m s^{−1}"
+    answer: 0
+    explanation: "l_2 − l_1 = λ/2 = 34.0 cm, so λ = 68.0 cm and v = fλ = 512 × 0.68 = 348 m s^{−1}."
+
+  - id: phy-exp-052
+    topic: resonance-tube
+    subtopic: "End correction"
+    concept: "e = (l_2 − 3l_1)/2"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "e = (l_2 − 3l_1)/2"
+    tags: [end-correction]
+    stem: "First and second resonance lengths in a resonance tube are 16.0 cm and 50.0 cm. The end correction is"
+    options:
+      - "2.0 cm"
+      - "0.5 cm"
+      - "17.0 cm"
+      - "1.0 cm"
+    answer: 3
+    explanation: "From l_1 + e = λ/4 and l_2 + e = 3λ/4, e = (l_2 − 3l_1)/2 = (50 − 48)/2 = 1.0 cm."
+
+  - id: phy-exp-053
+    topic: resonance-tube
+    subtopic: "End correction"
+    concept: "End correction ≈ 0.3 × diameter"
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: "e ≈ 0.3d"
+    tags: [end-correction, ncert-line]
+    stem: "The end correction of a resonance tube of internal diameter d is approximately"
+    options:
+      - "0.3 d"
+      - "0.6 d"
+      - "1.2 d"
+      - "d/4"
+    answer: 0
+    explanation: "The antinode forms slightly outside the open end at about 0.3 × diameter (0.6 × radius). Taking 0.6 d confuses diameter with radius."
+
+  - id: phy-exp-054
+    topic: resonance-tube
+    subtopic: "Advantage of two resonances"
+    concept: "Using l_2 − l_1 eliminates end correction"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [end-correction]
+    stem: |-
+      Assertion (A): Using both the first and second resonance lengths gives the speed of sound without knowing the end correction.
+      Reason (R): The end correction is the same for both resonances, so it cancels in l_2 − l_1.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "(l_2 + e) − (l_1 + e) = λ/2, and e cancels because the open end is the same in both cases. R is exactly why A holds."
+
+  - id: phy-exp-055
+    topic: resonance-tube
+    subtopic: "Ratio of lengths"
+    concept: "l_2 ≈ 3l_1 ignoring end correction"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [resonance]
+    stem: "Neglecting end correction, the second resonance length in a resonance tube is about how many times the first?"
+    options:
+      - "3"
+      - "2"
+      - "4"
+      - "1.5"
+    answer: 0
+    explanation: "l_1 = λ/4 and l_2 = 3λ/4, so l_2 = 3l_1. In practice l_2 = 3l_1 + 2e, slightly more than 3l_1, because of the end correction."
+
+  - id: phy-exp-056
+    topic: resonance-tube
+    subtopic: "Detecting resonance"
+    concept: "Loud sound marks resonance"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [procedure]
+    stem: "In the resonance tube experiment, resonance is identified when"
+    options:
+      - "the water level stops moving"
+      - "the sound from the tube becomes loudest"
+      - "the tuning fork stops vibrating"
+      - "the sound heard is exactly one octave higher"
+    answer: 1
+    explanation: "At resonance, the natural frequency of the air column matches the fork frequency, and the air column vibrates with maximum amplitude, giving a loud boom."
+
+  - id: phy-exp-057
+    topic: resonance-tube
+    subtopic: "Speed and temperature"
+    concept: "Room temperature must be recorded"
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "v ∝ √T"
+    tags: [temperature]
+    stem: "In the resonance tube experiment it is important to record the room temperature because"
+    options:
+      - "the frequency of the tuning fork depends strongly on temperature"
+      - "the speed of sound in air depends on temperature"
+      - "the end correction depends on temperature"
+      - "water evaporates at higher temperatures"
+    answer: 1
+    explanation: "The speed of sound in air ∝ √T (absolute temperature), so the result applies to the room temperature at which it was measured. The fork's frequency changes negligibly."
+
+  - id: phy-exp-058
+    topic: resonance-tube
+    subtopic: "Numerical"
+    concept: "Wavelength from first resonance with end correction"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: true
+    formula: "λ = 4(l_1 + e)"
+    tags: [end-correction]
+    stem: "A 480 Hz fork gives first resonance at 17.0 cm in a tube with an end correction of 1.0 cm. The speed of sound is"
+    options:
+      - "326 m s^{−1}"
+      - "346 m s^{−1}"
+      - "336 m s^{−1}"
+      - "356 m s^{−1}"
+    answer: 1
+    explanation: "λ = 4(l_1 + e) = 4 × 18.0 = 72.0 cm, so v = 480 × 0.72 = 345.6 ≈ 346 m s^{−1}. Ignoring e gives 326 m s^{−1}."
+
+  - id: phy-exp-059
+    topic: method-of-mixtures
+    subtopic: "Principle"
+    concept: "Heat lost by hot body = heat gained by cold body"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [calorimetry, ncert-line]
+    stem: "The method of mixtures for finding specific heat capacity is based on"
+    options:
+      - "the principle of calorimetry: heat lost by the hot body equals heat gained by the cold body"
+      - "Newton's law of cooling"
+      - "the first law of thermodynamics applied to gases"
+      - "the principle of moments"
+    answer: 0
+    explanation: "If no heat is lost to the surroundings, the heat given out by the hot solid equals the heat taken in by the water and calorimeter; this equation gives the unknown specific heat."
+
+  - id: phy-exp-060
+    topic: method-of-mixtures
+    subtopic: "Numerical"
+    concept: "c of solid from mixing"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "m_s c_s (T_s − θ) = m_w c_w (θ − T_w)"
+    tags: [calorimetry]
+    stem: "A 100 g solid at 100 °C is dropped into 150 g of water at 20 °C and the final temperature is 30 °C. Neglecting the calorimeter, and taking c of water = 4.2 J g^{−1} K^{−1}, the specific heat of the solid is"
+    options:
+      - "0.45 J g^{−1} K^{−1}"
+      - "1.8 J g^{−1} K^{−1}"
+      - "0.63 J g^{−1} K^{−1}"
+      - "0.9 J g^{−1} K^{−1}"
+    answer: 3
+    explanation: "Heat gained by water = 150 × 4.2 × 10 = 6300 J. Heat lost by solid = 100 × c × 70 = 7000c. So c = 6300/7000 = 0.9 J g^{−1} K^{−1}."
+
+  - id: phy-exp-061
+    topic: method-of-mixtures
+    subtopic: "Water equivalent"
+    concept: "Calorimeter also absorbs heat"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [calorimeter]
+    stem: "In the method of mixtures, if the heat absorbed by the copper calorimeter is ignored, the calculated specific heat of the solid will be"
+    options:
+      - "larger than the true value"
+      - "smaller than the true value"
+      - "unaffected"
+      - "larger or smaller depending on the stirrer"
+    answer: 1
+    explanation: "The solid actually gives heat to both water and calorimeter. Leaving out the calorimeter underestimates the heat gained, so the calculated specific heat of the solid comes out smaller than the true value."
+
+  - id: phy-exp-062
+    topic: method-of-mixtures
+    subtopic: "Precautions"
+    concept: "Quick transfer reduces heat loss"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [precautions, errors]
+    stem: |-
+      Which precautions help in the method of mixtures experiment?
+      I. The hot solid should be transferred to the calorimeter quickly.
+      II. The calorimeter should be kept in an insulating jacket.
+      III. The water should be stirred continuously to keep its temperature uniform.
+      IV. The final temperature should be read long after the maximum, once it has fallen steadily.
+    options:
+      - "I and II only"
+      - "II and IV only"
+      - "I, II and III only"
+      - "I, III and IV only"
+    answer: 2
+    explanation: "Quick transfer and insulation reduce heat loss, and stirring gives a uniform temperature. The final temperature is the maximum reached; waiting after it lets the mixture lose heat to the surroundings, so IV is wrong."
+
+  - id: phy-exp-063
+    topic: method-of-mixtures
+    subtopic: "Final temperature"
+    concept: "Highest steady temperature is the mixture temperature"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [procedure]
+    stem: "After a hot solid is put into water in a calorimeter, which reading is taken as the final temperature of the mixture?"
+    options:
+      - "The temperature 1 s after dropping the solid"
+      - "The maximum steady temperature reached"
+      - "The average of the initial water temperature and the initial solid temperature"
+      - "The room temperature"
+    answer: 1
+    explanation: "The temperature rises as heat flows from the solid and becomes steady at the highest value, when solid, water and calorimeter are in equilibrium; that maximum is recorded."
+
+  - id: phy-exp-064
+    topic: method-of-mixtures
+    subtopic: "Specific heat of liquid"
+    concept: "Using a solid of known c to find c of a liquid"
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: "m_s c_s (T_s − θ) = m_l c_l (θ − T_l)"
+    tags: [calorimetry, multi-concept]
+    stem: "A 200 g brass piece (c = 0.4 J g^{−1} K^{−1}) at 95 °C is dropped into 200 g of a liquid at 25 °C in a calorimeter of negligible heat capacity. The final temperature is 35 °C. The specific heat of the liquid is"
+    options:
+      - "4.8 J g^{−1} K^{−1}"
+      - "1.2 J g^{−1} K^{−1}"
+      - "2.4 J g^{−1} K^{−1}"
+      - "0.6 J g^{−1} K^{−1}"
+    answer: 2
+    explanation: "Heat lost by brass = 200 × 0.4 × 60 = 4800 J. Heat gained by liquid = 200 × c × 10 = 2000c. So c = 4800/2000 = 2.4 J g^{−1} K^{−1}."
+
+  - id: phy-exp-065
+    topic: method-of-mixtures
+    subtopic: "Heat capacity of calorimeter"
+    concept: "Water equivalent formula"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "W = m_c c_c/c_w"
+    tags: [calorimeter]
+    stem: "A copper calorimeter of mass 100 g has specific heat 0.4 J g^{−1} K^{−1}. Its water equivalent (with c of water = 4.2 J g^{−1} K^{−1}) is about"
+    options:
+      - "9.5 g"
+      - "40 g"
+      - "105 g"
+      - "0.95 g"
+    answer: 0
+    explanation: "Water equivalent = m_c c_c/c_w = 100 × 0.4/4.2 ≈ 9.5 g: the calorimeter absorbs as much heat per kelvin as 9.5 g of water."
+
+  - id: phy-exp-066
+    topic: method-of-mixtures
+    subtopic: "Heat exchange equation"
+    concept: "Final temperature of mixture of water samples"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: false
+    battle: true
+    formula: "m_1(T_1 − θ) = m_2(θ − T_2)"
+    tags: [calorimetry]
+    stem: "100 g of water at 80 °C is mixed with 300 g of water at 20 °C in an insulated vessel of negligible heat capacity. The final temperature is"
+    options:
+      - "50 °C"
+      - "35 °C"
+      - "40 °C"
+      - "30 °C"
+    answer: 1
+    explanation: "100 × (80 − θ) = 300 × (θ − 20) gives 8000 + 6000 = 400θ, so θ = 35 °C. 50 °C would be correct only for equal masses."
+
+  - id: phy-exp-067
+    topic: metre-bridge-ohms-law
+    subtopic: "Balance condition"
+    concept: "X/R = l/(100 − l)"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "X/R = l/(100 − l)"
+    tags: [wheatstone]
+    stem: "In a metre bridge, the unknown resistance X is in the left gap and a 6 Ω resistance in the right gap. The null point is at 40 cm from the left end. X is"
+    options:
+      - "9 Ω"
+      - "4 Ω"
+      - "2.4 Ω"
+      - "3.6 Ω"
+    answer: 1
+    explanation: "X/R = l/(100 − l) = 40/60, so X = 6 × 2/3 = 4 Ω."
+
+  - id: phy-exp-068
+    topic: metre-bridge-ohms-law
+    subtopic: "Resistivity"
+    concept: "ρ = Xπr^2/L"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "ρ = πr^2 X/L"
+    tags: [resistivity]
+    stem: "A wire of length 50 cm and diameter 0.4 mm has a resistance of 2 Ω as found with a metre bridge. Its resistivity is about"
+    options:
+      - "1.3 × 10^{−7} Ω m"
+      - "2.0 × 10^{−6} Ω m"
+      - "5.0 × 10^{−7} Ω m"
+      - "2.5 × 10^{−8} Ω m"
+    answer: 2
+    explanation: "r = 0.2 mm, so area πr^2 = 3.14 × 4 × 10^{−8} = 1.26 × 10^{−7} m^2. ρ = XA/L = 2 × 1.26 × 10^{−7}/0.5 ≈ 5.0 × 10^{−7} Ω m. Using the diameter instead of the radius gives four times this."
+
+  - id: phy-exp-069
+    topic: metre-bridge-ohms-law
+    subtopic: "Null point position"
+    concept: "Null point near the middle gives least error"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [sensitivity, ncert-line]
+    stem: "For best accuracy in a metre bridge experiment, the known resistance is chosen so that the null point lies"
+    options:
+      - "close to the left end of the wire"
+      - "close to the right end of the wire"
+      - "near the middle of the wire"
+      - "exactly at 0 cm"
+    answer: 2
+    explanation: "Near the middle, a given error in reading l produces the smallest percentage error in X, and end errors matter least. Near the ends, l or (100 − l) is small, so its percentage error is large."
+
+  - id: phy-exp-070
+    topic: metre-bridge-ohms-law
+    subtopic: "End error"
+    concept: "Interchanging X and R reduces end errors"
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [end-error]
+    stem: "In the metre bridge experiment, the known and unknown resistances are interchanged and the mean of the two results is taken in order to"
+    options:
+      - "eliminate end errors due to resistance of the copper strips and contacts"
+      - "increase the current through the galvanometer"
+      - "avoid heating of the wire"
+      - "make the bridge more sensitive to temperature"
+    answer: 0
+    explanation: "The resistance of the thick copper strips and imperfect contacts at the ends adds unknown extra length on each side. Interchanging X and R and averaging cancels much of this end error."
+
+  - id: phy-exp-071
+    topic: metre-bridge-ohms-law
+    subtopic: "Jockey"
+    concept: "Jockey pressed momentarily"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [precautions]
+    stem: "The jockey in a metre bridge is pressed only momentarily and not slid along the wire while pressed, because"
+    options:
+      - "the galvanometer may otherwise read in reverse"
+      - "continuous current heats the wire and sliding scrapes it, making the wire non-uniform"
+      - "the null point shifts every second"
+      - "it must be kept in contact with both gaps"
+    answer: 1
+    explanation: "A steady current heats the wire and changes its resistance, and dragging a pressed jockey scrapes the wire so that its cross-section, and hence its resistance per unit length, becomes non-uniform."
+
+  - id: phy-exp-072
+    topic: metre-bridge-ohms-law
+    subtopic: "Ohm's law"
+    concept: "V–I graph slope gives resistance"
+    category: concept
+    format: graph
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: false
+    formula: "V = IR"
+    tags: [ohms-law, graph]
+    stem: "In the experiment to verify Ohm's law, potential difference V (y-axis) is plotted against current I (x-axis) for a wire. The graph is a straight line through the origin whose slope equals"
+    options:
+      - "the resistance of the wire"
+      - "the conductance of the wire"
+      - "the resistivity of the wire"
+      - "the power dissipated in the wire"
+    answer: 0
+    explanation: "V = IR, so the slope ΔV/ΔI of the V–I line is the resistance R. If I were plotted against V, the slope would be 1/R, the conductance."
+
+  - id: phy-exp-073
+    topic: metre-bridge-ohms-law
+    subtopic: "Ohm's law circuit"
+    concept: "Ammeter in series and voltmeter in parallel"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [circuit]
+    stem: "In the Ohm's law experiment, the ammeter and voltmeter are connected with the resistance wire as follows:"
+    options:
+      - "both in series with the wire"
+      - "ammeter in parallel, voltmeter in series"
+      - "ammeter in series, voltmeter in parallel"
+      - "both in parallel with the wire"
+    answer: 2
+    explanation: "The ammeter must carry the whole current through the wire, so it is in series; the voltmeter measures the potential difference across the wire, so it is connected in parallel with it."
+
+  - id: phy-exp-074
+    topic: metre-bridge-ohms-law
+    subtopic: "Rheostat"
+    concept: "Rheostat varies the current"
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [circuit]
+    stem: "In the Ohm's law experiment, the purpose of the rheostat in series with the wire is to"
+    options:
+      - "measure the current"
+      - "vary the current through the wire to get several sets of readings"
+      - "protect the voltmeter from high voltage"
+      - "keep the resistance of the wire constant"
+    answer: 1
+    explanation: "By changing the rheostat, the current and hence the potential difference across the wire are varied, giving several (V, I) pairs to plot."
+
+  - id: phy-exp-075
+    topic: galvanometer-half-deflection
+    subtopic: "Half-deflection formula"
+    concept: "G = RS/(R − S)"
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    formula: "G = RS/(R − S)"
+    tags: [half-deflection, ncert-line]
+    stem: "In the half-deflection method, a galvanometer shows deflection θ with a series resistance R. A shunt S across the galvanometer reduces the deflection to θ/2 (R unchanged). The galvanometer resistance is"
+    options:
+      - "G = RS/(R + S)"
+      - "G = RS/(R − S)"
+      - "G = (R − S)/RS"
+      - "G = R − S"
+    answer: 1
+    explanation: "With the shunt, the galvanometer current halves; solving the two circuit equations gives G = RS/(R − S). When R ≫ S, G ≈ S."
+
+  - id: phy-exp-076
+    topic: galvanometer-half-deflection
+    subtopic: "Numerical"
+    concept: "G from R and S"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "G = RS/(R − S)"
+    tags: [half-deflection]
+    stem: "In the half-deflection method, R = 1050 Ω and the shunt for half deflection is S = 50 Ω. The resistance of the galvanometer is"
+    options:
+      - "47.7 Ω"
+      - "50.0 Ω"
+      - "52.5 Ω"
+      - "1000 Ω"
+    answer: 2
+    explanation: "G = RS/(R − S) = 1050 × 50/1000 = 52.5 Ω. Using the approximation G ≈ S gives 50 Ω, which is slightly low."
+
+  - id: phy-exp-077
+    topic: galvanometer-half-deflection
+    subtopic: "Figure of merit"
+    concept: "Current per unit deflection"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "k = I/θ"
+    tags: [figure-of-merit]
+    stem: "The figure of merit of a galvanometer is"
+    options:
+      - "the current required to produce a deflection of one division"
+      - "the deflection produced per unit current"
+      - "the resistance of the galvanometer coil"
+      - "the maximum current the galvanometer can carry"
+    answer: 0
+    explanation: "Figure of merit k = I/θ, the current per division. Deflection per unit current is the current sensitivity, which is its reciprocal."
+
+  - id: phy-exp-078
+    topic: galvanometer-half-deflection
+    subtopic: "Figure of merit"
+    concept: "k = E/((R + G)θ)"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "k = E/((R + G)θ)"
+    tags: [figure-of-merit]
+    stem: "A cell of emf 2 V (negligible internal resistance) is connected with a resistance of 4950 Ω in series with a galvanometer of resistance 50 Ω. The deflection is 20 divisions. The figure of merit is"
+    options:
+      - "4 × 10^{−4} A per division"
+      - "2 × 10^{−5} A per division"
+      - "4 × 10^{−7} A per division"
+      - "1 × 10^{−4} A per division"
+    answer: 1
+    explanation: "I = E/(R + G) = 2/5000 = 4 × 10^{−4} A, and k = I/θ = 4 × 10^{−4}/20 = 2 × 10^{−5} A per division."
+
+  - id: phy-exp-079
+    topic: galvanometer-half-deflection
+    subtopic: "Choice of R"
+    concept: "High series resistance makes G ≈ S"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "G = RS/(R − S)"
+    tags: [half-deflection]
+    stem: |-
+      Assertion (A): In the half-deflection method, the galvanometer resistance is nearly equal to the shunt resistance when the series resistance R is very high.
+      Reason (R): G = RS/(R − S), and the factor R/(R − S) approaches 1 when R ≫ S.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "From G = RS/(R − S) = S × R/(R − S), when R is thousands of ohms and S only tens of ohms, R/(R − S) ≈ 1 and G ≈ S. R directly explains A."
+
+  - id: phy-exp-080
+    topic: galvanometer-half-deflection
+    subtopic: "Keys"
+    concept: "Shunt added with K_2 closed after K_1"
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [procedure]
+    stem: |-
+      Arrange the steps of the half-deflection method in the correct order.
+      P. Close K_2 and adjust the shunt S to get half the deflection.
+      Q. With K_2 open, close K_1 and adjust R for an even-numbered deflection θ.
+      R. Set a high resistance R in the resistance box in series with the galvanometer.
+      S. Calculate G = RS/(R − S).
+    options:
+      - "R, Q, P, S"
+      - "Q, R, P, S"
+      - "R, P, Q, S"
+      - "P, R, Q, S"
+    answer: 0
+    explanation: "First a high R is inserted (to protect the galvanometer), then K_1 is closed and θ noted, then the shunt is connected with K_2 and adjusted for θ/2, and finally G is calculated."
+
+  - id: phy-exp-081
+    topic: galvanometer-half-deflection
+    subtopic: "Even deflection"
+    concept: "Even-numbered deflection is chosen"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [procedure]
+    stem: "In the half-deflection method, R is adjusted so that the initial deflection is an even number of divisions because"
+    options:
+      - "odd deflections damage the galvanometer"
+      - "half of it must also be a whole number of divisions for easy reading"
+      - "the figure of merit is defined only for even deflections"
+      - "the shunt resistance box has only even values"
+    answer: 1
+    explanation: "The next step is to reduce the deflection to exactly half; an even θ makes θ/2 a whole division that can be read without estimation."
+
+  - id: phy-exp-082
+    topic: galvanometer-half-deflection
+    subtopic: "Error"
+    concept: "G ≈ S approximation error"
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: "G = RS/(R − S)"
+    tags: [half-deflection, trap]
+    stem: |-
+      Statement I: In the half-deflection method with R = 5000 Ω and S = 50 Ω, taking G ≈ S introduces an error of about 1%.
+      Statement II: The larger the series resistance R, the smaller the error in taking G ≈ S.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 0
+    explanation: "G = RS/(R − S) = 5000 × 50/4950 ≈ 50.5 Ω, so G ≈ S = 50 Ω is off by about 1%. As R increases, R/(R − S) approaches 1, so the error decreases. Both statements are correct."
+
+  - id: phy-exp-083
+    topic: galvanometer-half-deflection
+    subtopic: "Circuit"
+    concept: "Shunt is in parallel with the galvanometer"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [circuit]
+    stem: "In the half-deflection method, the shunt resistance S is connected"
+    options:
+      - "in series with the galvanometer"
+      - "in parallel with the galvanometer"
+      - "in parallel with the high resistance R"
+      - "in parallel with the cell"
+    answer: 1
+    explanation: "The shunt is joined across the galvanometer terminals through key K_2, so part of the current bypasses the coil and the deflection falls."
+
+  - id: phy-exp-084
+    topic: optics-experiments
+    subtopic: "Concave mirror"
+    concept: "No parallax at centre of curvature"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: "R = 2f"
+    tags: [parallax, concave-mirror]
+    stem: "In finding the focal length of a concave mirror by the parallax method with a single pin, the object pin and its inverted image have no parallax when the pin is at"
+    options:
+      - "the focus"
+      - "the centre of curvature"
+      - "the pole"
+      - "a point between focus and pole"
+    answer: 1
+    explanation: "At the centre of curvature, rays return along themselves and the real inverted image forms at the same place as the object, so u = v = R and f = R/2."
+
+  - id: phy-exp-085
+    topic: optics-experiments
+    subtopic: "Removal of parallax"
+    concept: "Tip-to-tip coincidence with no relative movement"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [parallax, ncert-line]
+    stem: "Parallax between an image and a pin is said to be removed when"
+    options:
+      - "the two appear equally bright"
+      - "the tips appear to coincide and do not separate when the eye is moved sideways"
+      - "the image appears larger than the pin"
+      - "the pin is placed exactly at the focus"
+    answer: 1
+    explanation: "When the image and pin are at the same place, they move together as the eye moves left and right; any relative shift means they are at different distances."
+
+  - id: phy-exp-086
+    topic: optics-experiments
+    subtopic: "Parallax rule"
+    concept: "Farther object moves with the eye"
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: true
+    tags: [parallax, trap]
+    stem: "While removing parallax, the image appears to move in the same direction as the eye when the eye is moved sideways. This means the image is"
+    options:
+      - "nearer the eye than the pin"
+      - "farther from the eye than the pin"
+      - "at the same distance as the pin"
+      - "virtual and cannot be located"
+    answer: 1
+    explanation: "Of two objects at different distances, the farther one appears to move with the eye and the nearer one against it. The pin should therefore be moved away from the eye to meet the image."
+
+  - id: phy-exp-087
+    topic: optics-experiments
+    subtopic: "Convex lens"
+    concept: "1/f = 1/v − 1/u"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "1/f = 1/v − 1/u"
+    tags: [convex-lens]
+    stem: "In the u–v method for a convex lens, the object pin is 20 cm from the lens and the image pin is found without parallax at 60 cm on the other side. The focal length is"
+    options:
+      - "15 cm"
+      - "40 cm"
+      - "30 cm"
+      - "80 cm"
+    answer: 0
+    explanation: "With u = −20 cm and v = +60 cm, 1/f = 1/60 + 1/20 = 4/60, so f = 15 cm."
+
+  - id: phy-exp-088
+    topic: optics-experiments
+    subtopic: "u–v graph"
+    concept: "u = v = 2f point on the graph"
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [graph, convex-lens]
+    stem: "For a convex lens, the magnitudes |u| and |v| are plotted and a line at 45° through the origin cuts the curve at a point (x, x). The focal length is"
+    options:
+      - "x"
+      - "2x"
+      - "x/2"
+      - "x/4"
+    answer: 2
+    explanation: "|u| = |v| happens when the object is at 2f, so x = 2f and f = x/2. The u–v curve is a rectangular hyperbola with asymptotes at |u| = f and |v| = f."
+
+  - id: phy-exp-089
+    topic: optics-experiments
+    subtopic: "Prism i–δ graph"
+    concept: "Deviation first decreases then increases"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [prism, graph]
+    stem: "As the angle of incidence on a triangular prism is increased from a small value, the angle of deviation"
+    options:
+      - "increases steadily"
+      - "decreases steadily"
+      - "first decreases to a minimum and then increases"
+      - "first increases to a maximum and then decreases"
+    answer: 2
+    explanation: "The i–δ graph is a U-shaped curve: δ falls to a minimum δ_m (when i = e) and then rises again."
+
+  - id: phy-exp-090
+    topic: optics-experiments
+    subtopic: "Refractive index from δ_m"
+    concept: "n = sin((A + δ_m)/2)/sin(A/2)"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "n = sin((A + δ_m)/2)/sin(A/2)"
+    tags: [prism]
+    stem: "For an equilateral glass prism, the minimum deviation found from the i–δ graph is 30°. The refractive index of the glass is"
+    options:
+      - "1.5"
+      - "√3"
+      - "1.33"
+      - "√2"
+    answer: 3
+    explanation: "n = sin((60° + 30°)/2)/sin 30° = sin 45°/sin 30° = (1/√2)/(1/2) = √2 ≈ 1.41."
+
+  - id: phy-exp-091
+    topic: optics-experiments
+    subtopic: "Travelling microscope"
+    concept: "n = real depth/apparent depth from three readings"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "n = (R_3 − R_1)/(R_3 − R_2)"
+    tags: [glass-slab, travelling-microscope]
+    stem: "A travelling microscope is focused on a mark (reading R_1 = 2.250 cm), then on the mark seen through a glass slab placed over it (R_2 = 2.850 cm), and finally on lycopodium powder on the top of the slab (R_3 = 4.050 cm). The refractive index of glass is"
+    options:
+      - "1.33"
+      - "1.60"
+      - "1.50"
+      - "1.45"
+    answer: 2
+    explanation: "Real thickness = R_3 − R_1 = 1.800 cm; apparent thickness = R_3 − R_2 = 1.200 cm. n = 1.800/1.200 = 1.50."
+
+  - id: phy-exp-092
+    topic: optics-experiments
+    subtopic: "Lycopodium"
+    concept: "Powder makes the top surface visible"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [glass-slab]
+    stem: "Why is a little lycopodium powder sprinkled on the top surface of the glass slab in the travelling microscope experiment?"
+    options:
+      - "To prevent reflection from the top surface"
+      - "To make the transparent top surface visible so the microscope can be focused on it"
+      - "To increase the refractive index of glass"
+      - "To mark the position of the lower surface"
+    answer: 1
+    explanation: "A clean glass surface cannot be focused on. The fine powder particles lying on the top face give a sharp object to focus on, which marks the top surface."
+
+  - id: phy-exp-093
+    topic: diodes-and-components
+    subtopic: "Forward characteristic"
+    concept: "Current rises sharply after knee voltage"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [diode, graph]
+    stem: "In the forward-bias characteristic of a silicon p–n junction diode, the current"
+    options:
+      - "increases linearly from zero voltage"
+      - "remains almost zero until about 0.7 V and then rises sharply"
+      - "is large even at zero voltage"
+      - "decreases as the voltage increases"
+    answer: 1
+    explanation: "Below the knee (threshold) voltage, about 0.7 V for Si, the barrier allows negligible current; beyond it the current rises steeply, almost exponentially."
+
+  - id: phy-exp-094
+    topic: diodes-and-components
+    subtopic: "Meters in reverse bias"
+    concept: "Microammeter in reverse bias"
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [diode, circuit]
+    stem: "To study the reverse-bias characteristic of a p–n junction diode, the current is measured with"
+    options:
+      - "a milliammeter, because the reverse current is large"
+      - "a microammeter, because the reverse current is very small"
+      - "an ammeter of range 0–5 A"
+      - "a voltmeter connected in series"
+    answer: 1
+    explanation: "In reverse bias only minority carriers flow, giving a current of the order of microamperes (for Ge; nanoamperes for Si), which requires a microammeter."
+
+  - id: phy-exp-095
+    topic: diodes-and-components
+    subtopic: "Dynamic resistance"
+    concept: "r_d = ΔV/ΔI"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "r_d = ΔV/ΔI"
+    tags: [diode, dynamic-resistance]
+    stem: "On the forward characteristic of a diode, when the voltage changes from 0.7 V to 0.8 V the current changes from 10 mA to 20 mA. The dynamic resistance in this region is"
+    options:
+      - "80 Ω"
+      - "10 Ω"
+      - "70 Ω"
+      - "1 Ω"
+    answer: 1
+    explanation: "r_d = ΔV/ΔI = 0.1 V/10 mA = 0.1/0.01 = 10 Ω. Dividing V by I at a single point (e.g. 0.8/0.02 = 40 Ω) gives the static resistance, not the dynamic one."
+
+  - id: phy-exp-096
+    topic: diodes-and-components
+    subtopic: "Zener breakdown"
+    concept: "Voltage nearly constant after breakdown"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [zener, graph]
+    stem: "In the reverse characteristic of a Zener diode, after the breakdown voltage V_Z is reached,"
+    options:
+      - "the current falls to zero"
+      - "the current increases sharply while the voltage across the diode stays nearly constant"
+      - "the voltage increases sharply while the current stays constant"
+      - "the diode begins to conduct in the forward direction"
+    answer: 1
+    explanation: "At V_Z the reverse current rises steeply for almost no change in voltage; this constant-voltage behaviour is what makes the Zener useful as a voltage regulator."
+
+  - id: phy-exp-097
+    topic: diodes-and-components
+    subtopic: "Identification"
+    concept: "A resistor conducts equally in both directions"
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [identification, multimeter]
+    stem: "An unknown two-terminal component, tested with a multimeter, shows the same finite resistance when the probes are interchanged. It is"
+    options:
+      - "a p–n junction diode"
+      - "an LED"
+      - "a capacitor"
+      - "a resistor"
+    answer: 3
+    explanation: "A resistor obeys Ohm's law in both directions and gives the same reading on reversing the leads. A diode or LED conducts in one direction only, and a capacitor shows a reading that changes with time."
+
+  - id: phy-exp-098
+    topic: diodes-and-components
+    subtopic: "Identification"
+    concept: "LED glows in forward bias"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [identification, led]
+    stem: "In a mixed collection of components, an LED can be distinguished from an ordinary diode because it"
+    options:
+      - "conducts in both directions"
+      - "emits light when forward biased"
+      - "emits light when reverse biased"
+      - "shows a steadily decreasing current when connected"
+    answer: 1
+    explanation: "Both an LED and a diode conduct in one direction only, but the LED emits light when forward biased with enough current."
+
+  - id: phy-exp-099
+    topic: diodes-and-components
+    subtopic: "Identification"
+    concept: "Capacitor current decays with time"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [identification, capacitor]
+    stem: "When the terminals of an element are connected to a multimeter on the resistance range, the needle shows a deflection that quickly falls back to show infinite resistance. The element is"
+    options:
+      - "a capacitor"
+      - "a resistor"
+      - "an LED"
+      - "a diode in forward bias"
+    answer: 0
+    explanation: "A capacitor draws a charging current which decays to zero as it charges, so the initial deflection dies away. A resistor gives a steady reading, and a forward-biased diode gives a steady conduction."
+
+  - id: phy-exp-100
+    topic: diodes-and-components
+    subtopic: "Zener circuit"
+    concept: "Series resistor limits Zener current"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [zener, circuit]
+    stem: "In the experiment to draw the reverse characteristic of a Zener diode, a resistance is always connected in series with the diode in order to"
+    options:
+      - "raise the breakdown voltage"
+      - "limit the current after breakdown so the diode is not damaged"
+      - "make the diode forward biased"
+      - "measure the breakdown voltage directly"
+    answer: 1
+    explanation: "After breakdown the current rises steeply for tiny changes in voltage; without a series resistor it could exceed the rated power and destroy the Zener."
+

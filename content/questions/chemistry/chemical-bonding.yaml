@@ -2,121 +2,2054 @@ subject: chemistry
 chapter:
   slug: chemical-bonding
   name: Chemical Bonding and Molecular Structure
-  order: 2
+  order: 4
+  classes: [11]
   topics:
-    - slug: bond-types
-      name: Ionic and covalent bonds
-    - slug: vsepr-shapes
-      name: Molecular shapes (VSEPR)
+    - slug: kossel-lewis-octet
+      name: Kössel–Lewis approach, octet rule and formal charge
+    - slug: ionic-bond
+      name: Ionic bond and lattice enthalpy
+    - slug: bond-parameters
+      name: Bond parameters and resonance
+    - slug: polarity-dipole
+      name: "Polarity of bonds, dipole moment and Fajans' rules"
+    - slug: vsepr-theory
+      name: VSEPR theory and molecular shapes
+    - slug: valence-bond-theory
+      name: Valence bond theory and orbital overlap
+    - slug: hybridisation
+      name: Hybridisation
+    - slug: molecular-orbital-theory
+      name: Molecular orbital theory
+    - slug: hydrogen-bonding
+      name: Hydrogen bonding
 questions:
   - id: che-bond-001
-    topic: bond-types
+    topic: kossel-lewis-octet
+    subtopic: Kössel–Lewis approach
+    concept: Noble gases are chemically inert because of a stable octet
     category: concept
+    format: direct
     difficulty: 1
+    time: 25
+    ncert: true
     battle: true
-    stem: Which type of bond forms when one atom transfers electrons to another?
+    tags: [octet-rule, ncert-line]
+    stem: According to the Kössel–Lewis approach, atoms combine chemically in order to
     options:
-      - Ionic bond
-      - Covalent bond
-      - Metallic bond
-      - Hydrogen bond
-    answer: 0
-    explanation: When one atom loses electrons and another gains them, oppositely charged ions form and attract each other. That electrostatic attraction is an ionic (electrovalent) bond, as in NaCl.
+      - increase their number of valence electrons to ten
+      - attain a stable noble-gas (octet) configuration
+      - lose all their valence electrons
+      - acquire an unpaired electron
+    answer: 1
+    explanation: Kössel and Lewis related bonding to the stability of noble gases; atoms lose, gain or share electrons to attain an octet (duplet for H, Li, Be) in their valence shell.
 
   - id: che-bond-002
-    topic: bond-types
+    topic: kossel-lewis-octet
+    subtopic: Lewis symbols
+    concept: Dots in a Lewis symbol represent valence electrons
     category: factual
+    format: direct
     difficulty: 1
+    time: 20
+    ncert: true
     battle: true
-    stem: How many covalent bonds join the two atoms in a nitrogen molecule, N_2?
+    tags: [lewis-symbol]
+    stem: How many dots are drawn around the symbol of nitrogen in its Lewis symbol?
     options:
-      - "1"
-      - "2"
-      - "4"
       - "3"
-    answer: 3
-    explanation: Each nitrogen atom needs three more electrons for an octet, so the two atoms share three pairs. N≡N is a triple bond, made of one σ bond and two π bonds.
+      - "7"
+      - "5"
+      - "2"
+    answer: 2
+    explanation: "Nitrogen is 1s^2 2s^2 2p^3; its valence shell holds 5 electrons, so its Lewis symbol shows 5 dots. Seven is the atomic number, not the valence count."
 
   - id: che-bond-003
-    topic: bond-types
-    category: application
-    difficulty: 2
+    topic: kossel-lewis-octet
+    subtopic: Electrovalence
+    concept: Electrovalence equals the number of electrons lost or gained
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
     battle: true
-    stem: Which of these compounds has the most ionic character?
+    tags: [electrovalence]
+    stem: What is the electrovalence of calcium in CaCl_2?
     options:
-      - NaCl
-      - KF
-      - LiI
-      - HCl
-    answer: 1
-    explanation: Ionic character grows with the electronegativity difference between the atoms, and K and F differ the most. Fajans' rules agree, since a large cation with a small anion is the least polarised.
+      - "2"
+      - "1"
+      - "4"
+      - "0"
+    answer: 0
+    explanation: Calcium loses two electrons to form Ca^{2+}; the number of electrons lost or gained in forming an ionic bond is the electrovalence, so it is 2.
 
   - id: che-bond-004
-    topic: bond-types
-    category: concept
-    difficulty: 2
-    battle: true
-    stem: Why does H_2O have a dipole moment while CO_2 has none?
+    topic: kossel-lewis-octet
+    subtopic: Formal charge
+    concept: Formal charge = V − L − ½S
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Formal charge = V − L − ½S
+    tags: [formal-charge, ozone, ncert-line]
+    stem: In the Lewis structure of ozone (O=O–O, central O bearing one lone pair), what is the formal charge on the central oxygen atom?
     options:
-      - C=O bonds are non-polar
-      - Oxygen is less electronegative than carbon
-      - CO_2 is linear, so its bond dipoles cancel
-      - CO_2 has no lone pairs
-    answer: 2
-    explanation: Both molecules have polar bonds, but CO_2 is linear, so its two C=O bond dipoles point in opposite directions and cancel. H_2O is bent (about 104.5°), so its O–H dipoles add up to a net dipole moment.
+      - "0"
+      - "−1"
+      - "+2"
+      - "+1"
+    answer: 3
+    explanation: "Central O: V = 6, lone-pair electrons L = 2, bonding electrons S = 6 (one double + one single bond). Formal charge = 6 − 2 − 3 = +1. The singly bonded terminal O carries −1 and the doubly bonded O carries 0."
 
   - id: che-bond-005
-    topic: vsepr-shapes
-    category: factual
-    difficulty: 1
-    battle: true
-    stem: What is the shape of a methane (CH_4) molecule?
+    topic: kossel-lewis-octet
+    subtopic: Formal charge
+    concept: Terminal singly bonded O in O_3 carries −1 formal charge
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: Formal charge = V − L − ½S
+    tags: [formal-charge, ozone]
+    stem: In the Lewis structure of O_3, what is the formal charge on the terminal oxygen that is joined to the central atom by a single bond (and carries three lone pairs)?
     options:
-      - Square planar
-      - Trigonal planar
-      - Tetrahedral
-      - Pyramidal
-    answer: 2
-    explanation: Carbon has four bond pairs and no lone pairs. VSEPR places them as far apart as possible, at the corners of a tetrahedron with bond angles of 109.5°.
+      - "−1"
+      - "+1"
+      - "0"
+      - "−2"
+    answer: 0
+    explanation: "V = 6, L = 6, S = 2, so formal charge = 6 − 6 − 1 = −1. This balances the +1 on the central oxygen, giving a neutral molecule."
 
   - id: che-bond-006
-    topic: vsepr-shapes
-    category: application
-    difficulty: 2
+    topic: kossel-lewis-octet
+    subtopic: Incomplete octet
+    concept: BCl_3 has an incomplete octet on boron
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
     battle: true
-    stem: What is the shape of an ammonia (NH_3) molecule?
+    tags: [octet-exception, incomplete-octet]
+    stem: In which of the following molecules does the central atom have fewer than eight electrons in its valence shell?
     options:
-      - Trigonal pyramidal
-      - Trigonal planar
-      - Tetrahedral
-      - T-shaped
-    answer: 0
-    explanation: Nitrogen has three bond pairs and one lone pair. The four electron pairs point towards the corners of a tetrahedron, but the shape describes only the atoms, so NH_3 is trigonal pyramidal.
+      - NH_3
+      - CCl_4
+      - BCl_3
+      - H_2O
+    answer: 2
+    explanation: Boron has only three valence electrons; forming three B–Cl bonds gives it six electrons, an incomplete octet. N, C and O in the other molecules all complete their octets.
 
   - id: che-bond-007
-    topic: vsepr-shapes
-    category: concept
-    difficulty: 3
+    topic: kossel-lewis-octet
+    subtopic: Odd-electron molecules
+    concept: NO and NO_2 are odd-electron molecules
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
     battle: true
-    stem: Why is the H–O–H bond angle in water (about 104.5°) smaller than the tetrahedral angle of 109.5°?
+    tags: [octet-exception, odd-electron, ncert-line]
+    stem: Which of the following is an odd-electron molecule for which the octet rule cannot be satisfied for all atoms?
     options:
-      - Oxygen is smaller than carbon
-      - Lone pairs repel more strongly than bond pairs
-      - The hydrogen atoms attract each other
-      - Water molecules form hydrogen bonds
+      - CO
+      - NO_2
+      - N_2O
+      - CO_2
     answer: 1
-    explanation: Oxygen has two bond pairs and two lone pairs. Repulsion falls in the order lone pair–lone pair > lone pair–bond pair > bond pair–bond pair, so the lone pairs squeeze the O–H bonds closer together.
+    explanation: NO_2 has 5 + 12 = 17 valence electrons, an odd number, so nitrogen cannot complete an octet. CO, N_2O and CO_2 all have even electron counts.
 
   - id: che-bond-008
-    topic: bond-types
-    category: numerical
-    difficulty: 3
+    topic: kossel-lewis-octet
+    subtopic: Expanded octet
+    concept: Sulphur in SF_6 has 12 electrons around it
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
     battle: true
-    stem: What is the bond order of O_2 according to molecular orbital theory?
+    tags: [octet-exception, expanded-octet]
+    stem: How many electrons surround the sulphur atom in SF_6?
+    options:
+      - "8"
+      - "10"
+      - "14"
+      - "12"
+    answer: 3
+    explanation: Six S–F bonds put 6 × 2 = 12 electrons around sulphur, an expanded octet possible because S (period 3) has vacant 3d orbitals.
+
+  - id: che-bond-009
+    topic: kossel-lewis-octet
+    subtopic: Limitations of the octet rule
+    concept: Octet rule cannot explain molecular shape or stability
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [octet-rule, limitations]
+    stem: Which statement about the octet rule is INCORRECT?
+    options:
+      - It cannot explain the formation of compounds such as XeF_2 and KrF_2.
+      - It explains the shape of molecules and their relative stability.
+      - It is not obeyed in odd-electron molecules such as NO.
+      - Elements of period 3 and beyond can accommodate more than eight valence electrons.
+    answer: 1
+    explanation: The octet rule says nothing about molecular geometry or the energy (stability) of a molecule; that is one of its stated NCERT limitations. The other three are correct statements of its failures.
+
+  - id: che-bond-010
+    topic: kossel-lewis-octet
+    subtopic: Lewis structures
+    concept: Counting lone pairs in the Lewis structure of CO
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [lewis-structure, carbon-monoxide]
+    stem: In the Lewis structure of carbon monoxide, how many lone pairs are present in total on both atoms?
+    options:
+      - "2"
+      - "1"
+      - "4"
+      - "3"
+    answer: 0
+    explanation: CO has 10 valence electrons. A C≡O triple bond uses 6, leaving 4 electrons as one lone pair on C and one on O, so 2 lone pairs in all.
+
+  - id: che-bond-011
+    topic: kossel-lewis-octet
+    subtopic: Formal charge
+    concept: Formal charges in the carbon monoxide Lewis structure
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Formal charge = V − L − ½S
+    tags: [formal-charge, carbon-monoxide, trap]
+    stem: In the Lewis structure :C≡O:, what are the formal charges on carbon and oxygen respectively?
+    options:
+      - 0 and 0
+      - +1 and −1
+      - −1 and +1
+      - −2 and +2
+    answer: 2
+    explanation: "C: 4 − 2 − 3 = −1. O: 6 − 2 − 3 = +1. The less electronegative carbon carries the negative formal charge here, which partly cancels the expected C→O bond polarity and explains the small dipole moment of CO."
+
+  - id: che-bond-012
+    topic: ionic-bond
+    subtopic: Conditions for ionic bonding
+    concept: Low ionisation enthalpy and high lattice enthalpy favour ionic bonds
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [ionic-bond, lattice-enthalpy]
+    stem: Formation of an ionic compound is favoured by
+    options:
+      - high ionisation enthalpy of the metal and low lattice enthalpy
+      - low ionisation enthalpy of the metal and positive electron gain enthalpy of the non-metal
+      - high ionisation enthalpy of the metal and high lattice enthalpy
+      - low ionisation enthalpy of the metal and high lattice enthalpy
+    answer: 3
+    explanation: Easy cation formation (low ΔiH), exothermic anion formation (negative ΔegH) and a large energy release when the lattice forms (high lattice enthalpy) all favour an ionic bond.
+
+  - id: che-bond-013
+    topic: ionic-bond
+    subtopic: Lattice enthalpy
+    concept: Definition of lattice enthalpy
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    tags: [lattice-enthalpy, ncert-line]
+    stem: The lattice enthalpy of an ionic solid is the energy required to
+    options:
+      - completely separate one mole of the solid into its gaseous ions
+      - convert one mole of the solid into its liquid form
+      - convert one mole of the solid into its constituent atoms in their standard states
+      - dissolve one mole of the solid in excess water
+    answer: 0
+    explanation: NCERT defines lattice enthalpy as the energy needed to completely separate one mole of a solid ionic compound into gaseous constituent ions; for NaCl it is 788 kJ mol^{-1}.
+
+  - id: che-bond-014
+    topic: ionic-bond
+    subtopic: Lattice enthalpy
+    concept: Lattice enthalpy of NaCl is 788 kJ mol^{-1}
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [lattice-enthalpy, ncert-line]
+    stem: The lattice enthalpy of NaCl quoted in NCERT is about
+    options:
+      - 411 kJ mol^{-1}
+      - 348 kJ mol^{-1}
+      - 788 kJ mol^{-1}
+      - 1502 kJ mol^{-1}
+    answer: 2
+    explanation: About 788 kJ mol^{-1} is needed to separate one mole of solid NaCl into Na^+ and Cl^- ions at infinite distance. This large value explains why the ionic bond forms even though Na → Na^+ needs energy.
+
+  - id: che-bond-015
+    topic: ionic-bond
+    subtopic: Lattice enthalpy trends
+    concept: Higher ionic charge gives higher lattice enthalpy
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [lattice-enthalpy, ionic-charge]
+    stem: Which of the following has the highest lattice enthalpy?
+    options:
+      - NaCl
+      - MgO
+      - KCl
+      - NaF
+    answer: 1
+    explanation: Lattice enthalpy rises with the product of ionic charges and falls with ionic size. MgO has +2/−2 ions that are also small, so it far exceeds the +1/−1 salts.
+
+  - id: che-bond-016
+    topic: ionic-bond
+    subtopic: Ionic bond energetics
+    concept: Na → Na^+ is endothermic; lattice energy compensates
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [ionic-bond, energetics]
+    stem: |-
+      Assertion (A): NaCl is formed even though the sum of the ionisation enthalpy of Na and the electron gain enthalpy of Cl is positive.
+      Reason (R): The energy released when gaseous Na^+ and Cl^- ions pack into a crystal lattice more than compensates for this.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "ΔiH(Na) = 495.8 kJ mol^{-1} and ΔegH(Cl) = −348.7 kJ mol^{-1}, a net +147 kJ mol^{-1}. The lattice enthalpy (788 kJ mol^{-1}) released on forming the solid makes the overall process strongly favourable, so R explains A."
+
+  - id: che-bond-017
+    topic: ionic-bond
+    subtopic: Nature of ionic compounds
+    concept: Ionic compounds form 3-D crystal lattices, not discrete molecules
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ionic-solid]
+    stem: Which statement about solid sodium chloride is correct?
+    options:
+      - It consists of discrete NaCl molecules held by van der Waals forces.
+      - Each Na^+ is covalently bonded to one Cl^-.
+      - It is a three-dimensional lattice in which each ion is surrounded by oppositely charged ions.
+      - Its ions are free to move, so the solid conducts electricity.
+    answer: 2
+    explanation: In the NaCl crystal each Na^+ is surrounded by six Cl^- and vice versa; the formula only gives the ratio. The ions are fixed in the solid, so it conducts only when molten or dissolved.
+
+  - id: che-bond-018
+    topic: ionic-bond
+    subtopic: Lattice enthalpy trends
+    concept: Lattice enthalpy decreases with increasing anion size
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [lattice-enthalpy, ionic-size]
+    stem: Arrange the lattice enthalpies of NaF, NaCl, NaBr and NaI in decreasing order.
+    options:
+      - NaI > NaBr > NaCl > NaF
+      - NaCl > NaF > NaBr > NaI
+      - NaF > NaCl > NaI > NaBr
+      - NaF > NaCl > NaBr > NaI
+    answer: 3
+    explanation: With the same cation and charge, lattice enthalpy falls as the anion grows (F^- < Cl^- < Br^- < I^-), because the interionic distance increases and attraction weakens.
+
+  - id: che-bond-019
+    topic: bond-parameters
+    subtopic: Bond length
+    concept: Bond length of H_2 is 74 pm
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [bond-length, ncert-line]
+    stem: The equilibrium bond length of the H_2 molecule is about
+    options:
+      - 74 pm
+      - 109 pm
+      - 144 pm
+      - 37 pm
+    answer: 0
+    explanation: "At 74 pm the attractive and repulsive forces between the two H atoms balance and the energy is minimum (−435.8 kJ mol^{-1}). 37 pm is the covalent radius of H, half the bond length."
+
+  - id: che-bond-020
+    topic: bond-parameters
+    subtopic: Covalent and van der Waals radii
+    concept: Covalent radius is half the bond length in a homonuclear molecule
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [covalent-radius]
+    stem: The Cl–Cl bond length in Cl_2 is 198 pm. What is the covalent radius of chlorine?
+    options:
+      - 198 pm
+      - 180 pm
+      - 99 pm
+      - 396 pm
+    answer: 2
+    explanation: The covalent radius is half the distance between the nuclei of two bonded like atoms, 198/2 = 99 pm. The van der Waals radius (about 180 pm) refers to non-bonded atoms and is larger.
+
+  - id: che-bond-021
+    topic: bond-parameters
+    subtopic: Covalent and van der Waals radii
+    concept: van der Waals radius exceeds covalent radius
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [covalent-radius, van-der-waals-radius, trap]
+    stem: |-
+      Statement I: The van der Waals radius of an atom is always smaller than its covalent radius.
+      Statement II: The van der Waals radius is half the distance between two similar non-bonded atoms in neighbouring molecules of a solid.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: Non-bonded atoms cannot approach as closely as bonded ones, so the van der Waals radius (e.g. Cl 180 pm) is larger than the covalent radius (Cl 99 pm). Statement II is the correct definition.
+
+  - id: che-bond-022
+    topic: bond-parameters
+    subtopic: Bond order
+    concept: Bond order in N_2 by Lewis structure is 3
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [bond-order]
+    stem: What is the bond order of the nitrogen–nitrogen bond in N_2?
     options:
       - "1"
-      - "2.5"
       - "3"
       - "2"
+      - "2.5"
+    answer: 1
+    explanation: In the Lewis description N_2 has a triple bond (:N≡N:), so the bond order is 3; MO theory gives the same value, (10 − 4)/2 = 3.
+
+  - id: che-bond-023
+    topic: bond-parameters
+    subtopic: Bond order and bond length
+    concept: Higher bond order means shorter bond
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [bond-length, bond-order]
+    stem: Arrange the carbon–carbon bond lengths in ethane, ethene and ethyne in increasing order.
+    options:
+      - Ethane < ethene < ethyne
+      - Ethene < ethyne < ethane
+      - Ethyne < ethane < ethene
+      - Ethyne < ethene < ethane
     answer: 3
-    explanation: Bond order = (bonding electrons − antibonding electrons)/2 = (10 − 6)/2 = 2, which matches the O=O double bond. The two unpaired electrons in antibonding π orbitals also make O_2 paramagnetic.
+    explanation: "As bond order rises, bond length falls: C≡C (120 pm) < C=C (134 pm) < C–C (154 pm)."
+
+  - id: che-bond-024
+    topic: bond-parameters
+    subtopic: Bond enthalpy
+    concept: Bond enthalpy increases with bond order
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [bond-enthalpy, bond-order]
+    stem: Arrange the bond dissociation enthalpies of N_2, O_2 and F_2 in decreasing order.
+    options:
+      - N_2 > O_2 > F_2
+      - F_2 > O_2 > N_2
+      - O_2 > N_2 > F_2
+      - N_2 > F_2 > O_2
+    answer: 0
+    explanation: "Bond orders are 3, 2 and 1, and bond enthalpies follow: N_2 946 > O_2 498 > F_2 about 155 kJ mol^{-1}."
+
+  - id: che-bond-025
+    topic: bond-parameters
+    subtopic: Resonance
+    concept: C–O bond order in carbonate ion is 4/3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [resonance, bond-order, carbonate]
+    stem: What is the C–O bond order in the carbonate ion, CO_3^{2-}?
+    options:
+      - "1.5"
+      - "2"
+      - "1.33"
+      - "1"
+    answer: 2
+    explanation: Three equivalent resonance structures share one C=O double bond among three C–O positions. Bond order = total bonds/number of positions = 4/3 ≈ 1.33.
+
+  - id: che-bond-026
+    topic: bond-parameters
+    subtopic: Resonance
+    concept: Resonance hybrid is more stable than any canonical form
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [resonance, trap]
+    stem: Which statement about resonance is correct?
+    options:
+      - The molecule oscillates rapidly between its canonical forms.
+      - Each canonical form has a real, separate existence.
+      - The resonance hybrid has lower energy than any single canonical structure.
+      - Canonical forms differ in the positions of their atoms.
+    answer: 2
+    explanation: The hybrid is the single real structure and resonance lowers its energy (resonance stabilisation). Canonical forms have no real existence, the molecule does not flip between them, and they differ only in electron positions, not atom positions.
+
+  - id: che-bond-027
+    topic: bond-parameters
+    subtopic: Resonance in ozone
+    concept: Both O–O bonds in O_3 are equal (128 pm)
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [resonance, ozone, ncert-line]
+    stem: The two O–O bonds in ozone are
+    options:
+      - of unequal length, 121 pm and 148 pm
+      - both 148 pm, equal to an O–O single bond
+      - both 121 pm, equal to an O=O double bond
+      - of equal length, 128 pm, between single and double bond values
+    answer: 3
+    explanation: Experimentally both O–O bonds in O_3 are 128 pm, intermediate between O–O (148 pm) and O=O (121 pm). This is explained by resonance between two canonical structures.
+
+  - id: che-bond-028
+    topic: bond-parameters
+    subtopic: Bond angle
+    concept: Bond angle is measured between orbitals of the central atom
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [bond-angle]
+    stem: What is the H–O–H bond angle in water?
+    options:
+      - 109.5°
+      - 104.5°
+      - 107°
+      - 120°
+    answer: 1
+    explanation: Two lone pairs on oxygen repel the bond pairs more strongly than bond pairs repel each other, squeezing the angle from the tetrahedral 109.5° down to 104.5°.
+
+  - id: che-bond-029
+    topic: bond-parameters
+    subtopic: Bond enthalpy in polyatomic molecules
+    concept: Average bond enthalpy of O–H from stepwise dissociation of water
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Average bond enthalpy = total dissociation enthalpy / number of bonds
+    tags: [bond-enthalpy, average]
+    stem: "For water: H_2O(g) → H(g) + OH(g), ΔH = 502 kJ mol^{-1}; OH(g) → H(g) + O(g), ΔH = 427 kJ mol^{-1}. What is the average O–H bond enthalpy?"
+    options:
+      - 929 kJ mol^{-1}
+      - 502 kJ mol^{-1}
+      - 427 kJ mol^{-1}
+      - 464.5 kJ mol^{-1}
+    answer: 3
+    explanation: The two O–H bonds break with different energies because the chemical environment changes. Average = (502 + 427)/2 = 464.5 kJ mol^{-1}.
+
+  - id: che-bond-030
+    topic: bond-parameters
+    subtopic: Resonance
+    concept: Bond orders in nitrate ion are equal
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [resonance, nitrate, bond-order]
+    stem: What is the N–O bond order in the nitrate ion, NO_3^-?
+    options:
+      - "1.33"
+      - "1.5"
+      - "2"
+      - "1.67"
+    answer: 0
+    explanation: Like carbonate, NO_3^- has three equivalent resonance structures with one N=O among three N–O bonds, so each bond order is 4/3 ≈ 1.33.
+
+  - id: che-bond-031
+    topic: polarity-dipole
+    subtopic: Dipole moment definition
+    concept: Dipole moment = charge × distance
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: μ = Q × r
+    tags: [dipole-moment, units]
+    stem: The dipole moment of a molecule is conventionally expressed in debye (D). One debye equals
+    options:
+      - 3.336 × 10^{-30} C m
+      - 1.602 × 10^{-19} C m
+      - 3.336 × 10^{-20} C m
+      - 1 × 10^{-18} C m
+    answer: 0
+    explanation: "μ = charge × distance, so its SI unit is C m. 1 D = 3.33564 × 10^{-30} C m (equivalently 10^{-18} esu cm, not C m)."
+
+  - id: che-bond-032
+    topic: polarity-dipole
+    subtopic: Zero dipole moment molecules
+    concept: Symmetric molecules have zero net dipole moment
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [dipole-moment, symmetry]
+    stem: Which of the following molecules has a zero dipole moment?
+    options:
+      - H_2O
+      - NH_3
+      - BF_3
+      - CHCl_3
+    answer: 2
+    explanation: Trigonal planar BF_3 has three equal B–F bond dipoles at 120°, which cancel exactly. H_2O (bent), NH_3 (pyramidal) and CHCl_3 (unsymmetrical tetrahedron) are polar.
+
+  - id: che-bond-033
+    topic: polarity-dipole
+    subtopic: NH_3 vs NF_3
+    concept: Lone pair moment adds in NH_3 but opposes in NF_3
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [dipole-moment, nh3-nf3, ncert-line, trap]
+    stem: |-
+      Assertion (A): The dipole moment of NH_3 is greater than that of NF_3.
+      Reason (R): In NH_3 the orbital dipole of the lone pair is in the same direction as the resultant of the N–H bond dipoles, while in NF_3 it opposes the resultant of the N–F bond dipoles.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "NH_3 has μ = 4.90 × 10^{-30} C m and NF_3 only 0.80 × 10^{-30} C m, although F is more electronegative than H. The lone-pair moment reinforces the bond moments in NH_3 but largely cancels them in NF_3, exactly as R states."
+
+  - id: che-bond-034
+    topic: polarity-dipole
+    subtopic: Polar covalent bond
+    concept: Electronegativity difference causes bond polarity
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [polarity, electronegativity]
+    stem: In the HF molecule the shared electron pair lies
+    options:
+      - exactly midway between H and F
+      - closer to the hydrogen atom
+      - entirely on the hydrogen atom
+      - closer to the fluorine atom
+    answer: 3
+    explanation: F is far more electronegative than H, so the bonding pair is displaced towards F, giving H^{δ+}–F^{δ−}, a polar covalent bond.
+
+  - id: che-bond-035
+    topic: polarity-dipole
+    subtopic: Fajans' rules
+    concept: Small highly charged cation polarises anion strongly
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [fajans-rules, covalent-character]
+    stem: According to Fajans' rules, the covalent character of an ionic bond increases when
+    options:
+      - the cation is large and the anion is small
+      - the cation is small and the anion is large
+      - both ions are large and singly charged
+      - the cation has a noble-gas configuration and low charge
+    answer: 1
+    explanation: A small, highly charged cation has high polarising power and a large anion is easily polarised; together they distort the anion's electron cloud towards the cation, increasing covalent character.
+
+  - id: che-bond-036
+    topic: polarity-dipole
+    subtopic: Fajans' rules
+    concept: Covalent character increases with anion size (LiI most covalent)
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [fajans-rules, lithium-halides]
+    stem: Which lithium halide has the greatest covalent character?
+    options:
+      - LiF
+      - LiCl
+      - LiI
+      - LiBr
+    answer: 2
+    explanation: For a fixed small cation (Li^+), covalent character rises with the polarisability of the anion, which increases with size, F^- < Cl^- < Br^- < I^-. So LiI is the most covalent.
+
+  - id: che-bond-037
+    topic: polarity-dipole
+    subtopic: Dipole moment of chloromethanes
+    concept: Vector addition of C–Cl dipoles in chloromethanes
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [dipole-moment, chloromethanes, trap]
+    stem: Arrange CH_3Cl, CH_2Cl_2, CHCl_3 and CCl_4 in decreasing order of dipole moment.
+    options:
+      - CCl_4 > CHCl_3 > CH_2Cl_2 > CH_3Cl
+      - CH_2Cl_2 > CH_3Cl > CHCl_3 > CCl_4
+      - CHCl_3 > CH_2Cl_2 > CH_3Cl > CCl_4
+      - CH_3Cl > CH_2Cl_2 > CHCl_3 > CCl_4
+    answer: 3
+    explanation: "Adding C–Cl bonds does not add dipole: tetrahedral vectors partly cancel. Values are about CH_3Cl 1.9 D, CH_2Cl_2 1.6 D, CHCl_3 1.0 D and CCl_4 0 (perfect cancellation). Choosing CCl_4 as largest is the common trap."
+
+  - id: che-bond-038
+    topic: polarity-dipole
+    subtopic: Percentage ionic character
+    concept: Percent ionic character = μ_observed/μ_ionic × 100
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    formula: "% ionic character = (μ_observed / μ_100% ionic) × 100"
+    tags: [ionic-character, dipole-moment]
+    stem: The observed dipole moment of HCl is 1.03 D and its bond length is 127 pm. If the bond were 100% ionic its dipole moment would be about 6.1 D. What is the approximate percentage ionic character of HCl?
+    options:
+      - 6%
+      - 17%
+      - 83%
+      - 35%
+    answer: 1
+    explanation: "% ionic character = 1.03/6.1 × 100 ≈ 17%. The rest is covalent, so HCl is a polar covalent molecule."
+
+  - id: che-bond-039
+    topic: polarity-dipole
+    subtopic: Zero dipole moment molecules
+    concept: CO_2 is linear and non-polar though C=O bonds are polar
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [dipole-moment, co2, linear]
+    stem: |-
+      Statement I: The C=O bonds in CO_2 are polar.
+      Statement II: CO_2 has a zero dipole moment because it is a linear molecule.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Each C=O bond has a dipole because O is more electronegative than C, but in the linear O=C=O arrangement the two equal dipoles point in opposite directions and cancel.
+
+  - id: che-bond-040
+    topic: polarity-dipole
+    subtopic: Dipole moment and geometry
+    concept: Non-zero dipole moment of H_2O proves bent shape
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [dipole-moment, geometry]
+    stem: Water has a dipole moment of 1.85 D. What does this tell us about the shape of the molecule?
+    options:
+      - It is linear.
+      - It is trigonal planar.
+      - It is bent (angular).
+      - It is square planar.
+    answer: 2
+    explanation: In a linear H–O–H the two O–H dipoles would cancel to zero. A non-zero resultant means the bonds are at an angle, so water is bent (104.5°).
+
+  - id: che-bond-041
+    topic: polarity-dipole
+    subtopic: Fajans' rules
+    concept: Pseudo-noble-gas cations polarise more than noble-gas cations
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [fajans-rules, pseudo-noble-gas, trap]
+    stem: CuCl is more covalent than NaCl although Cu^+ (77 pm) and Na^+ (102 pm) carry the same charge and are not very different in size. The main reason is that Cu^+
+    options:
+      - has a noble-gas configuration that makes it more polarisable
+      - has an (n−1)d^{10} configuration whose d electrons shield the nucleus poorly
+      - has a larger ionic radius than Na^+
+      - forms a more exothermic lattice than Na^+
+    answer: 1
+    explanation: Cu^+ is 3d^{10} (pseudo-noble-gas). d electrons shield the nuclear charge poorly, so Cu^+ has a high effective nuclear charge at its surface and polarises Cl^- more than Na^+ (noble-gas configuration) does.
+
+  - id: che-bond-042
+    topic: vsepr-theory
+    subtopic: Postulates of VSEPR
+    concept: Repulsion order lp–lp > lp–bp > bp–bp
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    tags: [vsepr, repulsion-order, ncert-line]
+    stem: According to VSEPR theory, the correct order of electron-pair repulsions is
+    options:
+      - bp–bp > lp–bp > lp–lp
+      - lp–bp > lp–lp > bp–bp
+      - lp–lp > bp–bp > lp–bp
+      - lp–lp > lp–bp > bp–bp
+    answer: 3
+    explanation: Lone pairs are held by only one nucleus and spread out more, so they repel most. Hence lone pair–lone pair > lone pair–bond pair > bond pair–bond pair.
+
+  - id: che-bond-043
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: NH_3 is trigonal pyramidal
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, ammonia]
+    stem: What is the shape of the ammonia molecule?
+    options:
+      - Trigonal planar
+      - Trigonal pyramidal
+      - Tetrahedral
+      - T-shaped
+    answer: 1
+    explanation: N has 3 bond pairs and 1 lone pair (AB_3E). The electron pairs are tetrahedrally arranged, but the shape described by the atoms is trigonal pyramidal.
+
+  - id: che-bond-044
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: SF_4 is see-saw (AB_4E)
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, sf4]
+    stem: What is the shape of SF_4?
+    options:
+      - Tetrahedral
+      - Square planar
+      - See-saw
+      - Square pyramidal
+    answer: 2
+    explanation: S has 6 valence electrons; 4 form bonds and 2 remain as one lone pair (AB_4E). Five pairs are trigonal bipyramidal and the lone pair takes an equatorial position, giving a see-saw shape.
+
+  - id: che-bond-045
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: ClF_3 is T-shaped with lone pairs equatorial
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, clf3]
+    stem: What is the shape of ClF_3?
+    options:
+      - T-shaped
+      - Trigonal planar
+      - Trigonal pyramidal
+      - See-saw
+    answer: 0
+    explanation: Cl has 7 valence electrons; 3 bond pairs and 2 lone pairs (AB_3E_2). The two lone pairs occupy equatorial positions of a trigonal bipyramid, leaving a T-shaped molecule.
+
+  - id: che-bond-046
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: XeF_4 is square planar (AB_4E_2)
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, xenon-fluoride]
+    stem: What is the shape of XeF_4?
+    options:
+      - Tetrahedral
+      - See-saw
+      - Square pyramidal
+      - Square planar
+    answer: 3
+    explanation: Xe has 8 valence electrons; 4 bond pairs and 2 lone pairs make six pairs in an octahedral arrangement. The lone pairs sit trans to each other, so the atoms are square planar.
+
+  - id: che-bond-047
+    topic: vsepr-theory
+    subtopic: Lone pairs and bond angle
+    concept: Bond angle decreases CH_4 > NH_3 > H_2O
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [vsepr, bond-angle]
+    stem: Arrange the bond angles of CH_4, NH_3 and H_2O in decreasing order.
+    options:
+      - H_2O > NH_3 > CH_4
+      - NH_3 > CH_4 > H_2O
+      - CH_4 > NH_3 > H_2O
+      - CH_4 > H_2O > NH_3
+    answer: 2
+    explanation: "All three have four electron pairs. With 0, 1 and 2 lone pairs the angles are 109.5°, 107° and 104.5°; more lone pairs mean greater compression of the bond angle."
+
+  - id: che-bond-048
+    topic: vsepr-theory
+    subtopic: Shapes without lone pairs
+    concept: PCl_5 is trigonal bipyramidal
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, pcl5]
+    stem: In the gaseous state, the shape of the PCl_5 molecule is
+    options:
+      - square pyramidal
+      - trigonal bipyramidal
+      - octahedral
+      - pentagonal planar
+    answer: 1
+    explanation: P has five bond pairs and no lone pair (AB_5); five pairs are placed at the corners of a trigonal bipyramid.
+
+  - id: che-bond-049
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: BrF_5 is square pyramidal
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, interhalogen]
+    stem: What is the shape of BrF_5?
+    options:
+      - Trigonal bipyramidal
+      - Pentagonal planar
+      - Octahedral
+      - Square pyramidal
+    answer: 3
+    explanation: Br has 7 valence electrons; 5 bond pairs and 1 lone pair (AB_5E). Six pairs are octahedral, and with one position taken by the lone pair the atoms form a square pyramid.
+
+  - id: che-bond-050
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: SO_2 is bent (AB_2E)
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, so2]
+    stem: What is the shape of the SO_2 molecule?
+    options:
+      - Bent
+      - Linear
+      - Trigonal planar
+      - T-shaped
+    answer: 0
+    explanation: S uses its electrons in two S=O bonds and keeps one lone pair; treating each double bond as one super-pair gives AB_2E, three regions in a trigonal plane, so the molecule is bent (about 119°).
+
+  - id: che-bond-051
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: XeF_2 is linear with three equatorial lone pairs
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [vsepr, shape, xenon-fluoride, trap]
+    stem: XeF_2 has five electron pairs around xenon, yet the molecule is linear. Why?
+    options:
+      - Xe uses only two electron pairs in bonding and has no lone pairs.
+      - The three lone pairs occupy the equatorial positions of a trigonal bipyramid.
+      - The lone pairs occupy the axial positions of a trigonal bipyramid.
+      - The three lone pairs occupy corners of an octahedron.
+    answer: 1
+    explanation: XeF_2 is AB_2E_3. Lone pairs prefer equatorial sites of the trigonal bipyramid, where they have fewer 90° repulsions, so the two F atoms are axial and F–Xe–F is 180°.
+
+  - id: che-bond-052
+    topic: vsepr-theory
+    subtopic: Geometry of electron pairs
+    concept: Six electron pairs give octahedral arrangement
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [vsepr, electron-geometry]
+    stem: What is the arrangement of six electron pairs around a central atom according to VSEPR theory?
+    options:
+      - Trigonal prismatic
+      - Hexagonal planar
+      - Octahedral
+      - Pentagonal pyramidal
+    answer: 2
+    explanation: Six pairs keep as far apart as possible at the corners of an octahedron with 90° angles, as in SF_6.
+
+  - id: che-bond-053
+    topic: vsepr-theory
+    subtopic: Shapes of molecules
+    concept: Matching formula type to shape
+    category: application
+    format: match
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    tags: [vsepr, shape, match]
+    stem: |-
+      Match the molecule (List I) with its shape (List II).
+      List I: P. NH_3  Q. SF_4  R. ClF_3  S. XeF_4
+      List II: 1. T-shaped  2. Square planar  3. Trigonal pyramidal  4. See-saw
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 2
+    explanation: "NH_3 (AB_3E) is trigonal pyramidal, SF_4 (AB_4E) see-saw, ClF_3 (AB_3E_2) T-shaped and XeF_4 (AB_4E_2) square planar."
+
+  - id: che-bond-054
+    topic: vsepr-theory
+    subtopic: Postulates of VSEPR
+    concept: Multiple bond treated as a single super pair
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [vsepr, postulates]
+    stem: Which of the following is NOT a postulate of VSEPR theory?
+    options:
+      - The shape depends on the number of valence-shell electron pairs around the central atom.
+      - A multiple bond is treated as if it were a single electron pair.
+      - Electron pairs arrange themselves to minimise repulsion.
+      - Hybrid orbitals of the central atom overlap with orbitals of the surrounding atoms.
+    answer: 3
+    explanation: Orbital overlap and hybridisation belong to valence bond theory. VSEPR only counts electron pairs (bonded and lone), treats a multiple bond as one super pair, and places pairs to minimise repulsion.
+
+  - id: che-bond-055
+    topic: vsepr-theory
+    subtopic: Shapes of ions
+    concept: I_3^- is linear
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [vsepr, shape, triiodide]
+    stem: What is the shape of the triiodide ion, I_3^-?
+    options:
+      - Bent
+      - Trigonal planar
+      - T-shaped
+      - Linear
+    answer: 3
+    explanation: The central I has 7 + 1 = 8 electrons; 2 are used in bonding and 3 lone pairs remain (AB_2E_3). As in XeF_2, the lone pairs go equatorial and the ion is linear.
+
+  - id: che-bond-056
+    topic: vsepr-theory
+    subtopic: Shapes with lone pairs
+    concept: H_2S bond angle smaller than H_2O
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [bond-angle, group-16, trap]
+    stem: The H–S–H bond angle in H_2S (about 92°) is smaller than the H–O–H angle in H_2O. This is mainly because
+    options:
+      - S is larger and less electronegative, so bond pairs lie farther from S and repel less
+      - H_2S has three lone pairs on sulphur
+      - S is more electronegative than O
+      - H_2S is a linear molecule
+    answer: 0
+    explanation: In H_2S the bonding pairs are drawn towards the more electronegative H relative to large S and lie farther from the central atom, so bond pair–bond pair repulsion is weaker and lone pairs compress the angle more.
+
+  - id: che-bond-057
+    topic: valence-bond-theory
+    subtopic: Formation of H_2
+    concept: Energy minimum at equilibrium bond distance
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [potential-energy-curve, h2]
+    stem: When two H atoms approach each other, the potential energy of the system plotted against internuclear distance
+    options:
+      - increases continuously as the atoms come closer
+      - decreases continuously to zero distance
+      - stays constant until the atoms touch, then rises sharply
+      - falls to a minimum at 74 pm and rises steeply at shorter distances
+    answer: 3
+    explanation: At large distance the energy is zero; attraction lowers it until at 74 pm attraction and repulsion balance (−435.8 kJ mol^{-1}). Closer still, nuclear–nuclear and electron–electron repulsion dominate and energy rises sharply.
+
+  - id: che-bond-058
+    topic: valence-bond-theory
+    subtopic: Orbital overlap
+    concept: Greater overlap gives stronger bond
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [orbital-overlap]
+    stem: According to the orbital overlap concept, the strength of a covalent bond depends mainly on
+    options:
+      - the number of neutrons in the atoms
+      - the extent of overlap of the atomic orbitals
+      - the number of lone pairs on the atoms
+      - the molar mass of the molecule
+    answer: 1
+    explanation: Overlap concentrates electron density between the nuclei; the greater the overlap, the stronger the bond formed.
+
+  - id: che-bond-059
+    topic: valence-bond-theory
+    subtopic: Sigma and pi bonds
+    concept: Sigma bond forms by head-on (axial) overlap
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [sigma-bond]
+    stem: A sigma (σ) bond is formed by
+    options:
+      - sidewise overlap of p orbitals
+      - overlap of two d orbitals only
+      - end-to-end (head-on) overlap of orbitals along the internuclear axis
+      - transfer of an electron between atoms
+    answer: 2
+    explanation: A σ bond forms from axial (head-on) overlap of s–s, s–p or p–p orbitals along the internuclear axis. Sidewise overlap gives a π bond.
+
+  - id: che-bond-060
+    topic: valence-bond-theory
+    subtopic: Sigma and pi bonds
+    concept: Counting σ and π bonds in ethyne
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [sigma-pi-count, ethyne]
+    stem: How many σ and π bonds are present in ethyne, HC≡CH?
+    options:
+      - 3 σ and 2 π
+      - 2 σ and 3 π
+      - 4 σ and 1 π
+      - 3 σ and 3 π
+    answer: 0
+    explanation: Two C–H bonds and one of the C≡C bonds are σ (3 σ); the remaining two bonds of the triple bond are π (2 π).
+
+  - id: che-bond-061
+    topic: valence-bond-theory
+    subtopic: Sigma and pi bonds
+    concept: σ bond is stronger than π bond
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [sigma-bond, pi-bond, bond-strength]
+    stem: |-
+      Assertion (A): A σ bond is stronger than a π bond.
+      Reason (R): The extent of overlap of orbitals is greater in axial overlap than in sidewise overlap.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Head-on overlap concentrates electron density directly between the nuclei and is more extensive than sidewise overlap, so the σ bond is stronger. R is the correct explanation.
+
+  - id: che-bond-062
+    topic: valence-bond-theory
+    subtopic: Types of overlap
+    concept: Zero overlap between orthogonal orbitals
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [orbital-overlap, zero-overlap]
+    stem: Taking the internuclear axis as z, which combination of atomic orbitals gives zero (non-bonding) overlap?
+    options:
+      - s and p_z
+      - p_z and p_z
+      - p_x and p_x
+      - s and p_x
+    answer: 3
+    explanation: With z as the bond axis, the positive and negative lobes of p_x overlap equally with s, so the net overlap is zero. s + p_z and p_z + p_z give σ overlap, and p_x + p_x gives π overlap.
+
+  - id: che-bond-063
+    topic: valence-bond-theory
+    subtopic: Sigma and pi bonds
+    concept: π bond electron density lies above and below the axis
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [pi-bond]
+    stem: Which statement about a π bond is correct?
+    options:
+      - It is formed by head-on overlap of p orbitals.
+      - Its electron cloud lies above and below the internuclear axis.
+      - It can exist in a molecule without a σ bond between the same atoms.
+      - Free rotation about a π bond is easy.
+    answer: 1
+    explanation: A π bond arises from sidewise overlap of parallel p orbitals, with electron density in two lobes above and below the axis. It forms only in addition to a σ bond, and it restricts rotation.
+
+  - id: che-bond-064
+    topic: valence-bond-theory
+    subtopic: Sigma and pi bonds
+    concept: Counting σ and π bonds in benzene
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [sigma-pi-count, benzene]
+    stem: How many σ and π bonds does a benzene molecule (C_6H_6) contain?
+    options:
+      - 6 σ and 6 π
+      - 9 σ and 3 π
+      - 12 σ and 3 π
+      - 12 σ and 6 π
+    answer: 2
+    explanation: There are 6 C–C σ and 6 C–H σ bonds (12 σ) plus 3 π bonds from the alternating double bonds of a Kekulé structure.
+
+  - id: che-bond-065
+    topic: valence-bond-theory
+    subtopic: Directional properties of bonds
+    concept: Pure overlap cannot explain 109.5° in CH_4
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [valence-bond, limitations, hybridisation]
+    stem: If carbon in CH_4 used its pure 2s and three 2p orbitals (after excitation) for bonding, which result would be expected?
+    options:
+      - Three H–C–H angles of 90° and one C–H bond different from the others
+      - Four identical C–H bonds at 109.5°
+      - Four identical C–H bonds in a square plane
+      - A linear molecule
+    answer: 0
+    explanation: Three mutually perpendicular p orbitals would give three C–H bonds at 90° and the s orbital a different, non-directional fourth bond. The observed four equivalent bonds at 109.5° require hybridisation.
+
+  - id: che-bond-066
+    topic: hybridisation
+    subtopic: sp^3 hybridisation
+    concept: Methane carbon is sp^3
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [hybridisation, methane]
+    stem: What is the hybridisation of carbon in methane?
+    options:
+      - sp
+      - sp^2
+      - sp^3
+      - sp^3d
+    answer: 2
+    explanation: Carbon mixes one 2s and three 2p orbitals to form four equivalent sp^3 hybrids pointing to the corners of a tetrahedron (109.5°).
+
+  - id: che-bond-067
+    topic: hybridisation
+    subtopic: sp hybridisation
+    concept: BeCl_2 is sp hybridised and linear
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [hybridisation, becl2]
+    stem: The hybridisation of Be in gaseous BeCl_2 and the resulting shape are
+    options:
+      - sp^2, trigonal planar
+      - sp, linear
+      - sp^3, tetrahedral
+      - sp, bent
+    answer: 1
+    explanation: Excited Be (2s^1 2p^1) mixes one s and one p orbital into two sp hybrids at 180°, giving a linear Cl–Be–Cl molecule.
+
+  - id: che-bond-068
+    topic: hybridisation
+    subtopic: s character
+    concept: Percentage s character of sp^2 is 33.3%
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [s-character]
+    stem: What is the percentage s character in an sp^2 hybrid orbital?
+    options:
+      - 25%
+      - 50%
+      - 66.7%
+      - 33.3%
+    answer: 3
+    explanation: An sp^2 hybrid is formed from one s and two p orbitals, so s character is 1/3 ≈ 33.3%. sp has 50% and sp^3 has 25%.
+
+  - id: che-bond-069
+    topic: hybridisation
+    subtopic: Hybridisation in ions
+    concept: NH_4^+ is sp^3 tetrahedral
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [hybridisation, ammonium]
+    stem: What are the hybridisation and shape of the ammonium ion, NH_4^+?
+    options:
+      - sp^3, tetrahedral
+      - sp^3, trigonal pyramidal
+      - sp^2, trigonal planar
+      - dsp^2, square planar
+    answer: 0
+    explanation: In NH_4^+ nitrogen has four bond pairs and no lone pair (the lone pair of NH_3 becomes the N–H bond to H^+), so it is sp^3 and tetrahedral.
+
+  - id: che-bond-070
+    topic: hybridisation
+    subtopic: sp^3d hybridisation
+    concept: Axial bonds in PCl_5 are longer than equatorial
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [pcl5, axial-equatorial, ncert-line]
+    stem: |-
+      Statement I: In PCl_5, the two axial P–Cl bonds are longer than the three equatorial P–Cl bonds.
+      Statement II: The axial bond pairs suffer more repulsion from the other bond pairs than the equatorial ones do.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Each axial pair has three 90° neighbours whereas each equatorial pair has only two, so axial bonds are pushed out and are longer and weaker; this is why PCl_5 is reactive.
+
+  - id: che-bond-071
+    topic: hybridisation
+    subtopic: sp^3d^2 hybridisation
+    concept: SF_6 uses sp^3d^2 hybrid orbitals
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [hybridisation, sf6]
+    stem: The hybridisation of sulphur in SF_6 is
+    options:
+      - sp^3
+      - sp^3d
+      - d^2sp^3
+      - sp^3d^2
+    answer: 3
+    explanation: In its excited state S has six unpaired electrons in 3s, 3p and 3d orbitals; mixing one s, three p and two d orbitals gives six sp^3d^2 hybrids directed octahedrally.
+
+  - id: che-bond-072
+    topic: hybridisation
+    subtopic: Hybridisation in organic molecules
+    concept: Carbon hybridisation in propene
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [hybridisation, organic]
+    stem: The hybridisation states of the three carbon atoms in propene, CH_2=CH–CH_3 (from left to right), are
+    options:
+      - sp^2, sp^2, sp^3
+      - sp^2, sp^3, sp^3
+      - sp^3, sp^2, sp^2
+      - sp, sp^2, sp^3
+    answer: 0
+    explanation: The two carbons of the C=C are sp^2 (three σ bonds each), while the CH_3 carbon forms four σ bonds and is sp^3.
+
+  - id: che-bond-073
+    topic: hybridisation
+    subtopic: Features of hybridisation
+    concept: Hybrid orbitals are equivalent in energy and shape
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [hybridisation, features]
+    stem: Which statement about hybridisation is INCORRECT?
+    options:
+      - The number of hybrid orbitals equals the number of atomic orbitals mixed.
+      - Hybrid orbitals are equivalent in energy and shape.
+      - Only orbitals of widely different energies can hybridise.
+      - Hybrid orbitals form more effective bonds than pure atomic orbitals.
+    answer: 2
+    explanation: Only orbitals of nearly the same energy in the valence shell hybridise. The other statements are standard features of hybridisation given in NCERT.
+
+  - id: che-bond-074
+    topic: hybridisation
+    subtopic: sp^2 hybridisation
+    concept: BCl_3 is sp^2 trigonal planar
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [hybridisation, bcl3]
+    stem: What is the Cl–B–Cl bond angle in BCl_3?
+    options:
+      - 109.5°
+      - 120°
+      - 90°
+      - 180°
+    answer: 1
+    explanation: Boron is sp^2 hybridised with three equivalent hybrids in a plane at 120°, so BCl_3 is trigonal planar.
+
+  - id: che-bond-075
+    topic: hybridisation
+    subtopic: Hybridisation of ions
+    concept: Nitrate ion is sp^2 trigonal planar
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [hybridisation, nitrate]
+    stem: What is the hybridisation of nitrogen in the nitrate ion, NO_3^-?
+    options:
+      - sp
+      - sp^3
+      - sp^3d
+      - sp^2
+    answer: 3
+    explanation: N forms three σ bonds to O and has no lone pair; three regions of electron density mean sp^2 hybridisation and a trigonal planar ion. The π bond is delocalised by resonance.
+
+  - id: che-bond-076
+    topic: hybridisation
+    subtopic: Hybridisation and electronegativity
+    concept: More s character makes carbon more electronegative
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [s-character, electronegativity]
+    stem: Arrange sp, sp^2 and sp^3 hybridised carbon in decreasing order of electronegativity.
+    options:
+      - sp^3 > sp^2 > sp
+      - sp > sp^2 > sp^3
+      - sp^2 > sp > sp^3
+      - sp > sp^3 > sp^2
+    answer: 1
+    explanation: s electrons are held closer to the nucleus; as s character rises (25% → 33% → 50%), the hybrid carbon attracts electrons more strongly. Hence sp > sp^2 > sp^3.
+
+  - id: che-bond-077
+    topic: hybridisation
+    subtopic: Hybridisation of ions
+    concept: PCl_6^- in solid PCl_5 is sp^3d^2 octahedral
+    category: application
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [hybridisation, pcl5-solid, trap]
+    stem: In the solid state PCl_5 exists as [PCl_4]^+[PCl_6]^-. The hybridisations of P in the cation and the anion are respectively
+    options:
+      - sp^3d and sp^3d
+      - sp^3 and sp^3d
+      - sp^3 and sp^3d^2
+      - sp^3d^2 and sp^3
+    answer: 2
+    explanation: PCl_4^+ has four bond pairs and no lone pair (sp^3, tetrahedral); PCl_6^- has six bond pairs (sp^3d^2, octahedral). The gaseous molecule itself is sp^3d.
+
+  - id: che-bond-078
+    topic: hybridisation
+    subtopic: Hybridisation and bond angle
+    concept: sp hybrid orbitals are at 180°
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [hybridisation, bond-angle]
+    stem: The angle between two sp hybrid orbitals is
+    options:
+      - 90°
+      - 109.5°
+      - 120°
+      - 180°
+    answer: 3
+    explanation: The two sp hybrids point in opposite directions along one axis, 180° apart, which gives linear molecules such as BeCl_2 and C_2H_2.
+
+  - id: che-bond-079
+    topic: hybridisation
+    subtopic: Hybridisation of ions
+    concept: Hybridisation by steric number formula
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: H = ½(V + M − C + A)
+    tags: [hybridisation, steric-number, iodine]
+    stem: Using H = ½(V + M − C + A), where V is the number of valence electrons of the central atom, M the number of monovalent atoms, C the cationic charge and A the anionic charge, find the hybridisation of iodine in ICl_4^-.
+    options:
+      - sp^3
+      - sp^3d
+      - sp^3d^2
+      - dsp^2
+    answer: 2
+    explanation: "H = ½(7 + 4 − 0 + 1) = 6, so iodine is sp^3d^2. Four bond pairs and two lone pairs give a square planar ion."
+
+  - id: che-bond-080
+    topic: molecular-orbital-theory
+    subtopic: Bond order
+    concept: Bond order = ½(N_b − N_a)
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: Bond order = ½(N_b − N_a)
+    tags: [mot, bond-order]
+    stem: In molecular orbital theory, bond order is given by
+    options:
+      - (N_b + N_a)/2
+      - N_b − N_a
+      - (N_b − N_a)/2
+      - N_b/N_a
+    answer: 2
+    explanation: Bond order is half the difference between the number of electrons in bonding (N_b) and antibonding (N_a) molecular orbitals. A positive value indicates a stable molecule.
+
+  - id: che-bond-081
+    topic: molecular-orbital-theory
+    subtopic: Magnetic behaviour
+    concept: O_2 is paramagnetic with two unpaired electrons
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [mot, paramagnetism, oxygen, ncert-line]
+    stem: How many unpaired electrons does an O_2 molecule have according to MO theory?
+    options:
+      - "0"
+      - "2"
+      - "1"
+      - "4"
+    answer: 1
+    explanation: The last two electrons of O_2 go singly into the two degenerate antibonding π2p_x and π2p_y orbitals (Hund's rule), so O_2 has two unpaired electrons and is paramagnetic, which Lewis theory cannot explain.
+
+  - id: che-bond-082
+    topic: molecular-orbital-theory
+    subtopic: Bond order of diatomic species
+    concept: Bond order of O_2^- is 1.5
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    tags: [mot, bond-order, superoxide]
+    stem: What is the bond order of the superoxide ion, O_2^-?
+    options:
+      - "1"
+      - "2"
+      - "2.5"
+      - "1.5"
+    answer: 3
+    explanation: O_2^- has 17 electrons; the extra electron enters an antibonding π orbital. N_b = 10, N_a = 7, bond order = (10 − 7)/2 = 1.5.
+
+  - id: che-bond-083
+    topic: molecular-orbital-theory
+    subtopic: Stability of species
+    concept: He_2 does not exist; bond order zero
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [mot, bond-order, helium]
+    stem: Why does the He_2 molecule not exist?
+    options:
+      - Its bond order is zero.
+      - Its bond order is 0.5.
+      - Helium has no electrons in the 1s orbital.
+      - It is paramagnetic.
+    answer: 0
+    explanation: He_2 would have σ1s^2 σ*1s^2 (the second pair antibonding), so bond order = (2 − 2)/2 = 0 and there is no net bonding.
+
+  - id: che-bond-084
+    topic: molecular-orbital-theory
+    subtopic: LCAO conditions
+    concept: Combining AOs must have comparable energy and same symmetry
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [mot, lcao]
+    stem: Which of the following is NOT a condition for the combination of atomic orbitals to form molecular orbitals?
+    options:
+      - The combining orbitals must have the same or nearly the same energy.
+      - The combining orbitals must have the same symmetry about the molecular axis.
+      - The combining orbitals should overlap to the maximum extent.
+      - The combining orbitals must belong to the same atom.
+    answer: 3
+    explanation: Molecular orbitals form from atomic orbitals of different atoms. The three genuine conditions are comparable energy, same symmetry about the molecular axis and maximum overlap.
+
+  - id: che-bond-085
+    topic: molecular-orbital-theory
+    subtopic: Bonding and antibonding MOs
+    concept: Antibonding MO has a node between nuclei and higher energy
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [mot, antibonding]
+    stem: An antibonding molecular orbital
+    options:
+      - has lower energy than the parent atomic orbitals
+      - has a nodal plane between the nuclei and higher energy than the parent atomic orbitals
+      - concentrates electron density between the nuclei
+      - is formed by additive overlap of wave functions
+    answer: 1
+    explanation: Subtractive combination (ψ_A − ψ_B) cancels electron density between the nuclei, creating a node; the nuclei are then poorly shielded and the MO is higher in energy than the atomic orbitals.
+
+  - id: che-bond-086
+    topic: molecular-orbital-theory
+    subtopic: MO energy ordering
+    concept: For N_2, π2p lies below σ2p_z
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [mot, energy-order, trap]
+    stem: For which of the following molecules does the σ2p_z molecular orbital lie HIGHER in energy than the π2p_x and π2p_y orbitals?
+    options:
+      - O_2
+      - F_2
+      - N_2
+      - Ne_2
+    answer: 2
+    explanation: For molecules up to N_2 (14 electrons), s–p mixing raises σ2p_z above π2p_x = π2p_y. For O_2 and heavier, σ2p_z lies below the π2p orbitals.
+
+  - id: che-bond-087
+    topic: molecular-orbital-theory
+    subtopic: Bond order and stability
+    concept: Stability order O_2^+ > O_2 > O_2^- > O_2^{2-}
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: true
+    tags: [mot, bond-order, stability, oxygen-species]
+    stem: Arrange O_2, O_2^+, O_2^- and O_2^{2-} in decreasing order of bond order.
+    options:
+      - O_2^+ > O_2 > O_2^- > O_2^{2-}
+      - O_2 > O_2^+ > O_2^- > O_2^{2-}
+      - O_2^{2-} > O_2^- > O_2 > O_2^+
+      - O_2^+ > O_2^- > O_2 > O_2^{2-}
+    answer: 0
+    explanation: "Removing an antibonding electron raises bond order and adding one lowers it: O_2^+ 2.5, O_2 2, O_2^- 1.5, O_2^{2-} 1."
+
+  - id: che-bond-088
+    topic: molecular-orbital-theory
+    subtopic: Magnetic behaviour
+    concept: C_2 is diamagnetic
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    tags: [mot, magnetism, c2]
+    stem: Which of the following species is diamagnetic?
+    options:
+      - B_2
+      - O_2
+      - C_2
+      - N_2^+
+    answer: 2
+    explanation: "C_2 (12 electrons): ... σ2s^2 σ*2s^2 π2p_x^2 π2p_y^2, all paired, so diamagnetic. B_2 has two unpaired π electrons, O_2 two, and N_2^+ one."
+
+  - id: che-bond-089
+    topic: molecular-orbital-theory
+    subtopic: Bond order of diatomic species
+    concept: N_2^+ bond order 2.5
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [mot, bond-order, nitrogen-species]
+    stem: What is the bond order of N_2^+?
+    options:
+      - "3"
+      - "2.5"
+      - "2"
+      - "3.5"
+    answer: 1
+    explanation: N_2^+ has 13 electrons; removing one electron from the bonding σ2p_z of N_2 gives N_b = 9, N_a = 4, bond order = 2.5.
+
+  - id: che-bond-090
+    topic: molecular-orbital-theory
+    subtopic: Number of MOs
+    concept: Number of MOs equals number of AOs combined
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [mot, lcao]
+    stem: When two atomic orbitals combine according to the LCAO method, how many molecular orbitals are formed?
+    options:
+      - One
+      - Two
+      - Three
+      - Four
+    answer: 1
+    explanation: The number of molecular orbitals always equals the number of atomic orbitals combined; two AOs give one bonding and one antibonding MO.
+
+  - id: che-bond-091
+    topic: molecular-orbital-theory
+    subtopic: Isoelectronic species
+    concept: CO, CN^- and NO^+ are isoelectronic with N_2, bond order 3
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [mot, isoelectronic, bond-order]
+    stem: Which of the following species has a bond order different from that of N_2?
+    options:
+      - CO
+      - CN^-
+      - NO^+
+      - "NO"
+    answer: 3
+    explanation: CO, CN^- and NO^+ each have 14 electrons like N_2, so bond order 3. NO has 15 electrons with one in an antibonding π orbital, giving bond order 2.5.
+
+  - id: che-bond-092
+    topic: molecular-orbital-theory
+    subtopic: Bond order and bond length
+    concept: Bond length inversely related to bond order among O_2 species
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [mot, bond-length, oxygen-species]
+    stem: Among O_2, O_2^+, O_2^- and O_2^{2-}, which has the longest O–O bond?
+    options:
+      - O_2^+
+      - O_2
+      - O_2^{2-}
+      - O_2^-
+    answer: 2
+    explanation: Bond length increases as bond order decreases. O_2^{2-} (peroxide) has the lowest bond order, 1, so it has the longest bond.
+
+  - id: che-bond-093
+    topic: molecular-orbital-theory
+    subtopic: Electronic configuration of molecules
+    concept: Li_2 has bond order 1
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [mot, lithium]
+    stem: What is the bond order of Li_2?
+    options:
+      - "0"
+      - "0.5"
+      - "2"
+      - "1"
+    answer: 3
+    explanation: "Li_2 (6 electrons): σ1s^2 σ*1s^2 σ2s^2. N_b = 4, N_a = 2, bond order = 1. It exists in the vapour phase and is diamagnetic."
+
+  - id: che-bond-094
+    topic: hydrogen-bonding
+    subtopic: Definition
+    concept: H-bond forms when H is bonded to F, O or N
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [hydrogen-bond, ncert-line]
+    stem: A hydrogen bond is formed when hydrogen is covalently bonded to a small, highly electronegative atom such as
+    options:
+      - F, O or N
+      - Cl, S or P
+      - C, Si or Ge
+      - Na, K or Li
+    answer: 0
+    explanation: When H is attached to F, O or N, the bond is highly polar and the small H^{δ+} is attracted to a lone pair on another electronegative atom. Cl, S and P are too large or not electronegative enough for strong H-bonding.
+
+  - id: che-bond-095
+    topic: hydrogen-bonding
+    subtopic: Intramolecular H-bonding
+    concept: o-Nitrophenol has intramolecular H-bond
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [hydrogen-bond, intramolecular, nitrophenol]
+    stem: Which compound shows intramolecular hydrogen bonding?
+    options:
+      - p-Nitrophenol
+      - o-Nitrophenol
+      - Water
+      - Ammonia
+    answer: 1
+    explanation: In o-nitrophenol the –OH and –NO_2 groups are adjacent, so H bonds to an O of the nitro group within the same molecule, forming a six-membered ring. In p-nitrophenol the groups are too far apart, so it H-bonds intermolecularly.
+
+  - id: che-bond-096
+    topic: hydrogen-bonding
+    subtopic: Effect on boiling point
+    concept: H_2O boils much higher than H_2S due to H-bonding
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [hydrogen-bond, boiling-point]
+    stem: |-
+      Assertion (A): H_2O is a liquid at room temperature while H_2S is a gas.
+      Reason (R): Water molecules are associated through intermolecular hydrogen bonding, which is negligible in H_2S.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Although H_2S is heavier, oxygen's high electronegativity and small size allow extensive intermolecular H-bonding in water, which must be overcome on boiling. S is too large and not electronegative enough.
+
+  - id: che-bond-097
+    topic: hydrogen-bonding
+    subtopic: H-bonding and volatility
+    concept: Intramolecular H-bonding makes o-nitrophenol more volatile
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [hydrogen-bond, volatility, nitrophenol, trap]
+    stem: o-Nitrophenol is steam volatile but p-nitrophenol is not. This is because o-nitrophenol
+    options:
+      - has a higher molar mass
+      - forms intermolecular hydrogen bonds with water
+      - has intramolecular hydrogen bonding, so its molecules do not associate
+      - is ionic in nature
+    answer: 2
+    explanation: Intramolecular H-bonding ties up the –OH within each molecule, so o-nitrophenol molecules are not associated and it has a lower boiling point. p-Nitrophenol is associated through intermolecular H-bonds. Both have the same molar mass.
+
+  - id: che-bond-098
+    topic: hydrogen-bonding
+    subtopic: Hydrogen bonding in HF
+    concept: HF forms zigzag chains through H-bonds
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [hydrogen-bond, hf]
+    stem: In solid and liquid hydrogen fluoride, the molecules are linked by hydrogen bonds into
+    options:
+      - discrete dimers only
+      - a three-dimensional tetrahedral network like ice
+      - zigzag chains
+      - planar hexagonal rings only
+    answer: 2
+    explanation: Each HF has one H and forms one strong H-bond to the F of the next molecule, giving H–F···H–F···H–F zigzag chains, as shown in NCERT.
+
+  - id: che-bond-099
+    topic: hydrogen-bonding
+    subtopic: Strength of H-bond
+    concept: H-bond is weaker than a covalent bond
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [hydrogen-bond, bond-strength]
+    stem: A hydrogen bond is
+    options:
+      - stronger than a covalent bond
+      - weaker than a covalent bond but stronger than typical van der Waals forces
+      - weaker than London dispersion forces
+      - equal in strength to an ionic bond
+    answer: 1
+    explanation: H-bond energies are typically about 10–40 kJ mol^{-1}, much less than covalent bonds (a few hundred kJ mol^{-1}) but more than ordinary van der Waals attractions.
+
+  - id: che-bond-100
+    topic: hydrogen-bonding
+    subtopic: Types of hydrogen bonding
+    concept: Intermolecular vs intramolecular examples
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [hydrogen-bond, intermolecular, intramolecular]
+    stem: |-
+      Which of the following show INTERMOLECULAR hydrogen bonding?
+      I. HF
+      II. o-Nitrophenol
+      III. Water
+      IV. p-Nitrophenol
+    options:
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+      - I, II and III only
+    answer: 2
+    explanation: HF, water and p-nitrophenol link different molecules together by H-bonds. o-Nitrophenol's H-bond is predominantly within the same molecule (intramolecular).

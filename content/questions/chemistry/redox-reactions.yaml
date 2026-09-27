@@ -1,0 +1,2077 @@
+subject: chemistry
+chapter:
+  slug: redox-reactions
+  name: Redox Reactions
+  order: 7
+  classes: [11]
+  topics:
+    - slug: classical-concept
+      name: Classical idea of oxidation and reduction
+    - slug: electron-transfer
+      name: Redox reactions in terms of electron transfer
+    - slug: competitive-electron-transfer
+      name: Competitive electron transfer reactions
+    - slug: oxidation-number
+      name: Oxidation number and Stock notation
+    - slug: types-of-redox
+      name: Types of redox reactions
+    - slug: oxidising-reducing-agents
+      name: Oxidising and reducing agents
+    - slug: balancing-ion-electron
+      name: Balancing by the half-reaction method
+    - slug: balancing-oxidation-number
+      name: Balancing by the oxidation number method
+    - slug: redox-titrations
+      name: Redox titrations and equivalent concept
+    - slug: electrode-processes
+      name: Redox reactions and electrode processes
+questions:
+  - id: che-redox-001
+    topic: classical-concept
+    subtopic: Oxidation as addition of oxygen
+    concept: Burning of magnesium is oxidation by addition of oxygen
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [classical-definition, ncert-line]
+    stem: "In the reaction 2Mg(s) + O_2(g) → 2MgO(s), magnesium undergoes"
+    options:
+      - "reduction, because it gains oxygen"
+      - "oxidation, because it gains oxygen"
+      - "neither oxidation nor reduction"
+      - "disproportionation"
+    answer: 1
+    explanation: "In the classical sense, addition of oxygen to a substance is oxidation. Magnesium combines with oxygen to form MgO, so magnesium is oxidised; gaining oxygen is never called reduction."
+
+  - id: che-redox-002
+    topic: classical-concept
+    subtopic: Oxidation as removal of hydrogen
+    concept: H2S is oxidised to S by removal of hydrogen
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [classical-definition, ncert-line]
+    stem: "In 2H_2S(g) + O_2(g) → 2S(s) + 2H_2O(l), H_2S is oxidised because"
+    options:
+      - "hydrogen is removed from it"
+      - "oxygen is added to it"
+      - "an electropositive element is added to it"
+      - "its sulphur gains electrons"
+    answer: 0
+    explanation: "Classically, removal of hydrogen from a substance is oxidation. H_2S loses its hydrogen to form sulphur. Sulphur goes from −2 to 0, i.e. it loses electrons, so the option saying it gains electrons is wrong."
+
+  - id: che-redox-003
+    topic: classical-concept
+    subtopic: Electropositive and electronegative elements
+    concept: Addition of an electronegative element is oxidation
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [classical-definition, ncert-line]
+    stem: "In the reaction 2HgCl_2 + SnCl_2 → Hg_2Cl_2 + SnCl_4, which statement is correct in terms of the classical definitions?"
+    options:
+      - "HgCl_2 is oxidised by addition of chlorine"
+      - "SnCl_2 is reduced by removal of mercury"
+      - "SnCl_2 is oxidised by addition of the electronegative element chlorine"
+      - "Neither species is oxidised or reduced"
+    answer: 2
+    explanation: "SnCl_2 gains chlorine (an electronegative element) to become SnCl_4, which is oxidation. HgCl_2 is reduced because it loses chlorine, equivalently it gains the electropositive element mercury, forming Hg_2Cl_2."
+
+  - id: che-redox-004
+    topic: classical-concept
+    subtopic: Reduction as removal of oxygen
+    concept: CuO is reduced by hydrogen to copper
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [classical-definition]
+    stem: "When hot CuO is treated with H_2 to give Cu and H_2O, the substance reduced is"
+    options:
+      - "H_2"
+      - "H_2O"
+      - "Cu"
+      - "CuO"
+    answer: 3
+    explanation: "CuO loses oxygen and becomes Cu, so CuO is reduced. H_2 gains oxygen to form water and is oxidised; Cu is a product, not a substance undergoing reduction."
+
+  - id: che-redox-005
+    topic: classical-concept
+    subtopic: Removal of electropositive element
+    concept: Removal of potassium from K4[Fe(CN)6] is oxidation
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [classical-definition, ncert-line, trap]
+    stem: "In 2K_4[Fe(CN)_6] + H_2O_2 → 2K_3[Fe(CN)_6] + 2KOH, potassium ferrocyanide is"
+    options:
+      - "reduced, as it loses an electropositive element"
+      - "oxidised, as it loses the electropositive element potassium"
+      - "reduced, because iron gains an electron"
+      - "neither oxidised nor reduced, since no oxygen is added"
+    answer: 1
+    explanation: "Removal of an electropositive element (potassium) is classically oxidation. Consistently, iron changes from +2 in K_4[Fe(CN)_6] to +3 in K_3[Fe(CN)_6], a loss of one electron. Oxygen need not be added for oxidation."
+
+  - id: che-redox-006
+    topic: classical-concept
+    subtopic: Redox is simultaneous
+    concept: Oxidation and reduction always occur together
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [ncert-line, redox-definition]
+    stem: |-
+      Assertion (A): Oxidation and reduction always take place simultaneously in a reaction.
+      Reason (R): Electrons lost by one species must be gained by another species.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "Free electrons cannot accumulate in a chemical reaction, so electrons released in oxidation must be taken up in reduction. This is exactly why the two processes are coupled and the term redox is used."
+
+  - id: che-redox-007
+    topic: classical-concept
+    subtopic: Photosynthesis as redox
+    concept: In photosynthesis CO2 is reduced and water is oxidised
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [trap, multi-concept]
+    stem: "In photosynthesis, 6CO_2 + 6H_2O → C_6H_{12}O_6 + 6O_2. Which species is oxidised?"
+    options:
+      - "CO_2"
+      - "C_6H_{12}O_6"
+      - "H_2O"
+      - "No species; it is not a redox reaction"
+    answer: 2
+    explanation: "Oxygen goes from −2 in water to 0 in O_2, so water is oxidised. Carbon goes from +4 in CO_2 to 0 in glucose, so CO_2 is reduced; the trap is to call CO_2 oxidised because it forms a sugar."
+
+  - id: che-redox-008
+    topic: electron-transfer
+    subtopic: Definitions
+    concept: Oxidation is loss of electrons
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 15
+    ncert: true
+    battle: true
+    tags: [electronic-concept, ncert-line]
+    stem: "According to the electronic concept, oxidation is defined as"
+    options:
+      - "gain of electrons"
+      - "gain of protons"
+      - "loss of electrons"
+      - "loss of neutrons"
+    answer: 2
+    explanation: "Oxidation is loss of electrons and reduction is gain of electrons (OIL RIG). Protons and neutrons are not transferred in ordinary chemical reactions."
+
+  - id: che-redox-009
+    topic: electron-transfer
+    subtopic: Half reactions
+    concept: Na is oxidised in formation of NaCl
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [half-reaction, ncert-line]
+    stem: "In the reaction 2Na(s) + Cl_2(g) → 2NaCl(s), the half reaction representing oxidation is"
+    options:
+      - "Cl_2 + 2e^- → 2Cl^-"
+      - "2Na → 2Na^+ + 2e^-"
+      - "Na^+ + e^- → Na"
+      - "2Cl^- → Cl_2 + 2e^-"
+    answer: 1
+    explanation: "Sodium loses one electron per atom to become Na^+, so 2Na → 2Na^+ + 2e^- is the oxidation half. Chlorine gaining electrons is the reduction half; the reverse processes do not occur here."
+
+  - id: che-redox-010
+    topic: electron-transfer
+    subtopic: Oxidant and reductant
+    concept: The electron acceptor is the oxidising agent
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [oxidant, confused-pair]
+    stem: "A species that accepts electrons in a reaction is called"
+    options:
+      - "a reducing agent, and it is itself oxidised"
+      - "an oxidising agent, and it is itself oxidised"
+      - "a reducing agent, and it is itself reduced"
+      - "an oxidising agent, and it is itself reduced"
+    answer: 3
+    explanation: "An electron acceptor oxidises the other species and is itself reduced, so it is the oxidising agent (oxidant). Mixing up 'agent' with 'what happens to it' is the most common error here."
+
+  - id: che-redox-011
+    topic: electron-transfer
+    subtopic: Identifying electron transfer
+    concept: Ca + H2 gives CaH2 where Ca is oxidised
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [hydride, trap]
+    stem: "In the formation of CaH_2 from Ca and H_2, the species that gets reduced is"
+    options:
+      - "Ca"
+      - "H_2"
+      - "both Ca and H_2"
+      - "neither, as hydrogen is not added to oxygen"
+    answer: 1
+    explanation: "In CaH_2 hydrogen is present as H^- (oxidation number −1), so each H atom gains an electron from Ca: H_2 is reduced and Ca is oxidised to Ca^{2+}. Classical ideas (addition of hydrogen = reduction) mislead here, because Ca is not reduced."
+
+  - id: che-redox-012
+    topic: electron-transfer
+    subtopic: Half reactions
+    concept: Electrons lost equal electrons gained
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [electron-count]
+    stem: "In 2Al + 3Cu^{2+} → 2Al^{3+} + 3Cu, the total number of electrons transferred is"
+    options:
+      - "2"
+      - "3"
+      - "5"
+      - "6"
+    answer: 3
+    explanation: "Each Al loses 3 electrons, so 2Al lose 6; each Cu^{2+} gains 2, so 3Cu^{2+} gain 6. Electrons lost equal electrons gained, 6 in all."
+
+  - id: che-redox-013
+    topic: electron-transfer
+    subtopic: Definitions
+    concept: Reduction as gain of electrons, statement check
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [electronic-concept]
+    stem: "Which of the following statements is correct?"
+    options:
+      - "A reducing agent gains electrons during a reaction"
+      - "Reduction is an increase in oxidation number"
+      - "An oxidising agent undergoes a decrease in oxidation number"
+      - "Oxidation can occur without any simultaneous reduction"
+    answer: 2
+    explanation: "An oxidising agent gains electrons, so its oxidation number decreases. A reducing agent loses electrons, reduction lowers the oxidation number, and oxidation never happens alone."
+
+  - id: che-redox-014
+    topic: electron-transfer
+    subtopic: Ionic reactions
+    concept: Fe3+ to Fe2+ is reduction by one electron
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [half-reaction]
+    stem: "The change Fe^{3+} + e^- → Fe^{2+} represents"
+    options:
+      - "oxidation of iron"
+      - "reduction of iron"
+      - "disproportionation of iron"
+      - "a change that is not redox"
+    answer: 1
+    explanation: "Fe^{3+} gains one electron and its oxidation number falls from +3 to +2, which is reduction. A single half-reaction cannot be a disproportionation."
+
+  - id: che-redox-015
+    topic: electron-transfer
+    subtopic: Electron transfer in ionic compounds
+    concept: Formation of MgO involves transfer of two electrons per Mg
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [ncert-line]
+    stem: |-
+      Statement I: In the formation of MgO from Mg and O_2, each Mg atom loses two electrons.
+      Statement II: In the same reaction, O_2 acts as the reducing agent.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 2
+    explanation: "Mg → Mg^{2+} + 2e^-, so Statement I is correct. O_2 accepts these electrons to form O^{2-}, so it is the oxidising agent, not the reducing agent."
+
+  - id: che-redox-016
+    topic: competitive-electron-transfer
+    subtopic: Zinc in copper sulphate
+    concept: Zn displaces Cu from CuSO4 solution
+    category: factual
+    format: case
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ncert-line, zinc-copper]
+    stem: "A zinc rod is dipped in blue copper sulphate solution for an hour. What is observed?"
+    options:
+      - "Zinc gets coated with reddish copper and the blue colour fades"
+      - "Copper dissolves and the solution turns deep blue"
+      - "Hydrogen gas bubbles form on the rod"
+      - "No change occurs"
+    answer: 0
+    explanation: "Zn gives electrons to Cu^{2+}: Zn + Cu^{2+} → Zn^{2+} + Cu. Metallic copper deposits on the rod and the blue colour due to Cu^{2+} fades as it is consumed."
+
+  - id: che-redox-017
+    topic: competitive-electron-transfer
+    subtopic: Copper and zinc ions
+    concept: Cu does not reduce Zn2+
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ncert-line, zinc-copper]
+    stem: "A copper rod is placed in zinc sulphate solution. Which is correct?"
+    options:
+      - "Zinc is deposited on copper"
+      - "The solution turns blue quickly"
+      - "Oxygen is evolved"
+      - "No appreciable reaction occurs"
+    answer: 3
+    explanation: "Zinc releases electrons more readily than copper, so Cu cannot reduce Zn^{2+}. The NCERT experiment shows no Cu^{2+} forms (no blackening with H_2S), so there is no reaction."
+
+  - id: che-redox-018
+    topic: competitive-electron-transfer
+    subtopic: Copper and silver nitrate
+    concept: Cu displaces Ag from AgNO3 solution
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ncert-line]
+    stem: "When a copper strip is kept in silver nitrate solution, the solution gradually becomes blue because"
+    options:
+      - "Ag^+ is oxidised to Ag^{2+}"
+      - "Cu is oxidised to Cu^{2+} while Ag^+ is reduced to Ag"
+      - "NO_3^- is reduced to NO_2"
+      - "copper forms a blue complex with silver"
+    answer: 1
+    explanation: "Cu + 2Ag^+ → Cu^{2+} + 2Ag. The blue colour is due to hydrated Cu^{2+}, and silver metal deposits on the strip."
+
+  - id: che-redox-019
+    topic: competitive-electron-transfer
+    subtopic: Activity order
+    concept: Order of electron-releasing tendency Zn > Cu > Ag
+    category: application
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [activity-series, ncert-line]
+    stem: "Zn reduces Cu^{2+}, and Cu reduces Ag^+. The decreasing order of tendency to release electrons is"
+    options:
+      - "Ag > Cu > Zn"
+      - "Cu > Zn > Ag"
+      - "Zn > Cu > Ag"
+      - "Zn > Ag > Cu"
+    answer: 2
+    explanation: "A metal that reduces another's ions releases electrons more readily. Zn beats Cu, and Cu beats Ag, so the order is Zn > Cu > Ag."
+
+  - id: che-redox-020
+    topic: competitive-electron-transfer
+    subtopic: Predicting displacement
+    concept: Metal higher in activity series displaces lower one
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [activity-series]
+    stem: "Given E° values Mg^{2+}/Mg −2.37 V, Fe^{2+}/Fe −0.44 V, Cu^{2+}/Cu +0.34 V, which reaction will NOT occur spontaneously?"
+    options:
+      - "Mg + Fe^{2+} → Mg^{2+} + Fe"
+      - "Fe + Cu^{2+} → Fe^{2+} + Cu"
+      - "Mg + Cu^{2+} → Mg^{2+} + Cu"
+      - "Cu + Fe^{2+} → Cu^{2+} + Fe"
+    answer: 3
+    explanation: "The metal with the more negative E° is the stronger reducing agent and displaces the other. Cu (+0.34 V) cannot reduce Fe^{2+} (−0.44 V), so that reaction does not occur; the other three do."
+
+  - id: che-redox-021
+    topic: competitive-electron-transfer
+    subtopic: Storage of solutions
+    concept: CuSO4 solution cannot be stored in a zinc vessel
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [application, activity-series]
+    stem: "Copper sulphate solution is to be stored. Which container is suitable? (E°: Zn −0.76 V, Fe −0.44 V, Ag +0.80 V, Al −1.66 V)"
+    options:
+      - "Zinc vessel"
+      - "Iron vessel"
+      - "Silver vessel"
+      - "Aluminium vessel"
+    answer: 2
+    explanation: "Cu^{2+}/Cu has E° = +0.34 V. Zn, Fe and Al all have lower E° and would reduce Cu^{2+}, getting corroded. Silver (+0.80 V) cannot reduce Cu^{2+}, so a silver vessel is safe."
+
+  - id: che-redox-022
+    topic: competitive-electron-transfer
+    subtopic: Test for Cu2+ ions
+    concept: H2S gives black CuS with Cu2+
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ncert-line, test]
+    stem: "In the NCERT experiment, the presence of Cu^{2+} ions in solution is detected by passing H_2S, which gives"
+    options:
+      - "a white precipitate of ZnS"
+      - "a yellow precipitate of S"
+      - "a black precipitate of CuS"
+      - "a blue precipitate of Cu(OH)_2"
+    answer: 2
+    explanation: "Cu^{2+} forms black CuS with H_2S; this sensitive test shows whether any copper has gone into solution. White ZnS is the test for Zn^{2+}."
+
+  - id: che-redox-023
+    topic: competitive-electron-transfer
+    subtopic: Nickel and copper
+    concept: Ni reduces Cu2+ ions
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [activity-series]
+    stem: "Nickel metal is placed in CuSO_4 solution (E°: Ni^{2+}/Ni −0.25 V, Cu^{2+}/Cu +0.34 V). The ion formed in solution is"
+    options:
+      - "Ni^{2+}"
+      - "Cu^+"
+      - "SO_3^{2-}"
+      - "No new ion forms"
+    answer: 0
+    explanation: "Ni has the lower reduction potential, so it is the better reducing agent: Ni + Cu^{2+} → Ni^{2+} + Cu. Green Ni^{2+} ions enter the solution."
+
+  - id: che-redox-024
+    topic: oxidation-number
+    subtopic: Basic rules
+    concept: Oxidation number of an element in free state is zero
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 15
+    ncert: true
+    battle: true
+    tags: [rules, ncert-line]
+    stem: "The oxidation number of sulphur in S_8 is"
+    options:
+      - "−2"
+      - "0"
+      - "+2"
+      - "+8"
+    answer: 1
+    explanation: "Every atom in an element in its uncombined state has oxidation number zero, whatever the molecule's size (S_8, P_4, O_3 and so on)."
+
+  - id: che-redox-025
+    topic: oxidation-number
+    subtopic: Oxoanions
+    concept: Mn in KMnO4 is +7
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [manganese]
+    stem: "The oxidation number of Mn in KMnO_4 is"
+    options:
+      - "+2"
+      - "+4"
+      - "+6"
+      - "+7"
+    answer: 3
+    explanation: "+1 + x + 4(−2) = 0 gives x = +7. The +6 answer belongs to K_2MnO_4 (manganate)."
+
+  - id: che-redox-026
+    topic: oxidation-number
+    subtopic: Peroxy linkages
+    concept: S in H2SO5 is +6 due to one peroxide linkage
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [peroxide, trap, structure-based]
+    stem: "Peroxomonosulphuric acid (Caro's acid), H_2SO_5, contains one O–O linkage. The oxidation number of sulphur in it is"
+    options:
+      - "+8"
+      - "+7"
+      - "+6"
+      - "+5"
+    answer: 2
+    explanation: "Two peroxide oxygens are −1 each and three others −2 each: 2(+1) + x + 3(−2) + 2(−1) = 0 gives x = +6. Treating all five O as −2 gives the impossible +8, since sulphur cannot exceed +6."
+
+  - id: che-redox-027
+    topic: oxidation-number
+    subtopic: Fractional oxidation number
+    concept: Average oxidation number of Fe in Fe3O4 is 8/3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [fractional, ncert-line]
+    stem: "The average oxidation number of iron in Fe_3O_4 is"
+    options:
+      - "+2"
+      - "+3"
+      - "+8/3"
+      - "+4/3"
+    answer: 2
+    explanation: "3x + 4(−2) = 0 gives x = +8/3. Fe_3O_4 actually contains Fe^{2+} and Fe^{3+} in 1 : 2 ratio (FeO·Fe_2O_3), and the fraction is only an average."
+
+  - id: che-redox-028
+    topic: oxidation-number
+    subtopic: Superoxides
+    concept: Oxygen in KO2 has oxidation number −1/2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [superoxide, ncert-line]
+    stem: "The oxidation number of oxygen in potassium superoxide, KO_2, is"
+    options:
+      - "−2"
+      - "−1"
+      - "−1/2"
+      - "+1/2"
+    answer: 2
+    explanation: "K is +1, so 2x = −1 and x = −1/2. The superoxide ion is O_2^-; −1 is the value for peroxides such as Na_2O_2."
+
+  - id: che-redox-029
+    topic: oxidation-number
+    subtopic: Oxygen with fluorine
+    concept: O is +2 in OF2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [exception, ncert-line, trap]
+    stem: "The oxidation number of oxygen in OF_2 is"
+    options:
+      - "−2"
+      - "+1"
+      - "+2"
+      - "−1"
+    answer: 2
+    explanation: "Fluorine, the most electronegative element, is always −1. So x + 2(−1) = 0 gives x = +2; oxygen has a positive oxidation number only when bonded to fluorine."
+
+  - id: che-redox-030
+    topic: oxidation-number
+    subtopic: Metal hydrides
+    concept: H is −1 in metal hydrides
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [hydride, ncert-line]
+    stem: "In which compound does hydrogen have oxidation number −1?"
+    options:
+      - "HCl"
+      - "NaH"
+      - "H_2O"
+      - "NH_3"
+    answer: 1
+    explanation: "In binary hydrides of active metals like NaH, LiH and CaH_2, hydrogen is bonded to a less electronegative metal and has −1. In HCl, H_2O and NH_3 it is +1."
+
+  - id: che-redox-031
+    topic: oxidation-number
+    subtopic: Chromium compounds
+    concept: Cr in K2Cr2O7 is +6
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [chromium]
+    stem: "The oxidation number of chromium in K_2Cr_2O_7 is"
+    options:
+      - "+3"
+      - "+6"
+      - "+7"
+      - "+12"
+    answer: 1
+    explanation: "2(+1) + 2x + 7(−2) = 0 gives 2x = 12, x = +6. The value +12 is the total for both Cr atoms, not per atom."
+
+  - id: che-redox-032
+    topic: oxidation-number
+    subtopic: Structure-based oxidation number
+    concept: CrO5 has Cr in +6 state due to two peroxide groups
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [peroxide, structure-based, trap]
+    stem: "Chromium peroxide, CrO_5, has one oxygen doubly bonded to Cr and two peroxo (O–O) groups. The oxidation number of Cr is"
+    options:
+      - "+10"
+      - "+6"
+      - "+5"
+      - "+4"
+    answer: 1
+    explanation: "Four peroxo oxygens are −1 each and one oxo oxygen is −2: x − 4 − 2 = 0 gives x = +6. Using −2 for all oxygens gives +10, which exceeds chromium's maximum of +6."
+
+  - id: che-redox-033
+    topic: oxidation-number
+    subtopic: Tetrathionate
+    concept: Average ON of S in S4O6^2- is +2.5
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [fractional, ncert-line]
+    stem: "The average oxidation number of sulphur in the tetrathionate ion, S_4O_6^{2-}, is"
+    options:
+      - "+2"
+      - "+2.5"
+      - "+3"
+      - "+5"
+    answer: 1
+    explanation: "4x + 6(−2) = −2 gives 4x = 10, x = +2.5. Structurally the two central S atoms are 0 and the two terminal ones +5, which average to +2.5."
+
+  - id: che-redox-034
+    topic: oxidation-number
+    subtopic: Organic carbon
+    concept: C in HCHO has oxidation number 0
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [carbon]
+    stem: "The oxidation number of carbon in formaldehyde, HCHO, is"
+    options:
+      - "−2"
+      - "0"
+      - "+2"
+      - "+4"
+    answer: 1
+    explanation: "2(+1) + x + (−2) = 0 gives x = 0. Methanol has C at −2, formic acid +2 and CO_2 +4."
+
+  - id: che-redox-035
+    topic: oxidation-number
+    subtopic: Stock notation
+    concept: Stock notation of Hg2Cl2 is mercury(I) chloride
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [stock-notation, ncert-line]
+    stem: "The Stock notation for Hg_2Cl_2 is"
+    options:
+      - "Hg(II)_2Cl_2"
+      - "Hg_2(I)Cl_2"
+      - "Hg(I)Cl"
+      - "Hg_2(II)Cl_2"
+    answer: 1
+    explanation: "Each Hg is +1 in Hg_2Cl_2 (the Hg_2^{2+} ion), so it is written Hg_2(I)Cl_2, mercury(I) chloride. The Roman numeral shows the oxidation number of each metal atom, not the total."
+
+  - id: che-redox-036
+    topic: oxidation-number
+    subtopic: Highest oxidation state
+    concept: Os in OsO4 shows +8, the highest oxidation state
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ncert-line]
+    stem: "Which element shows the oxidation number +8 in one of its oxides?"
+    options:
+      - "Mn"
+      - "Cr"
+      - "Os"
+      - "Fe"
+    answer: 2
+    explanation: "Osmium (and ruthenium) show +8 in OsO_4 (RuO_4). Mn reaches +7 in Mn_2O_7 and Cr reaches +6 in CrO_3."
+
+  - id: che-redox-037
+    topic: oxidation-number
+    subtopic: Nitrogen compounds
+    concept: N in hydrazine is −2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [nitrogen]
+    stem: "The oxidation number of nitrogen in N_2H_4 is"
+    options:
+      - "−2"
+      - "−3"
+      - "+2"
+      - "−1"
+    answer: 0
+    explanation: "2x + 4(+1) = 0 gives x = −2. Nitrogen is −3 in NH_3 and −1 in NH_2OH."
+
+  - id: che-redox-038
+    topic: oxidation-number
+    subtopic: Comparison
+    concept: Highest ON of N among given species is in N2O5
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [nitrogen, comparison]
+    stem: "In which of these is the oxidation number of nitrogen the highest?"
+    options:
+      - "NO_2"
+      - "N_2O_3"
+      - "HNO_2"
+      - "N_2O_5"
+    answer: 3
+    explanation: "N is +4 in NO_2, +3 in N_2O_3 and HNO_2, and +5 in N_2O_5, which is the maximum for nitrogen."
+
+  - id: che-redox-039
+    topic: oxidation-number
+    subtopic: Oxoacids of phosphorus
+    concept: P in H3PO2 is +1
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [phosphorus]
+    stem: "The oxidation number of phosphorus in hypophosphorous acid, H_3PO_2, is"
+    options:
+      - "+1"
+      - "+3"
+      - "+5"
+      - "−1"
+    answer: 0
+    explanation: "3(+1) + x + 2(−2) = 0 gives x = +1. H_3PO_3 has P at +3 and H_3PO_4 at +5."
+
+  - id: che-redox-040
+    topic: oxidation-number
+    subtopic: Coordination compounds
+    concept: Fe in K4[Fe(CN)6] is +2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [complex]
+    stem: "The oxidation number of iron in K_4[Fe(CN)_6] is"
+    options:
+      - "+3"
+      - "+2"
+      - "+6"
+      - "−4"
+    answer: 1
+    explanation: "Cyanide is CN^- (−1). 4(+1) + x + 6(−1) = 0 gives x = +2. In K_3[Fe(CN)_6] iron is +3."
+
+  - id: che-redox-041
+    topic: oxidation-number
+    subtopic: Multi-statement check
+    concept: Oxidation numbers of O in various compounds
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [oxygen, exception]
+    stem: |-
+      Consider the oxidation numbers of oxygen stated below:
+      I. −1 in BaO_2
+      II. +2 in O_2F_2
+      III. −1/2 in RbO_2
+      IV. 0 in O_3
+      Which of these are correct?
+    options:
+      - "I, II and III only"
+      - "I, III and IV only"
+      - "II and IV only"
+      - "I, II, III and IV"
+    answer: 1
+    explanation: "BaO_2 is a peroxide (−1), RbO_2 a superoxide (−1/2) and O_3 an element (0). In O_2F_2, 2x − 2 = 0 gives x = +1, not +2, so statement II is wrong."
+
+  - id: che-redox-042
+    topic: types-of-redox
+    subtopic: Combination reactions
+    concept: Formation of Mg3N2 is a combination redox reaction
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [combination, ncert-line]
+    stem: "The reaction 3Mg(s) + N_2(g) → Mg_3N_2(s) is an example of"
+    options:
+      - "a decomposition redox reaction"
+      - "a displacement redox reaction"
+      - "a combination redox reaction"
+      - "a disproportionation reaction"
+    answer: 2
+    explanation: "Two elements combine into one compound, with Mg going 0 → +2 and N going 0 → −3, so it is a combination redox reaction."
+
+  - id: che-redox-043
+    topic: types-of-redox
+    subtopic: Decomposition
+    concept: Decomposition of CaCO3 is not redox
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [decomposition, ncert-line, trap]
+    stem: "Which of the following decomposition reactions is NOT a redox reaction?"
+    options:
+      - "2H_2O → 2H_2 + O_2"
+      - "2KClO_3 → 2KCl + 3O_2"
+      - "2NaH → 2Na + H_2"
+      - "CaCO_3 → CaO + CO_2"
+    answer: 3
+    explanation: "In CaCO_3 → CaO + CO_2, Ca stays +2, C stays +4 and O stays −2, so there is no change in oxidation number. The other three involve elements being set free and are redox."
+
+  - id: che-redox-044
+    topic: types-of-redox
+    subtopic: Metal displacement
+    concept: Thermite-type reduction of Cr2O3 by Al
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [displacement, ncert-line]
+    stem: "The reaction Cr_2O_3 + 2Al → Al_2O_3 + 2Cr is classified as"
+    options:
+      - "metal displacement"
+      - "non-metal displacement"
+      - "combination"
+      - "disproportionation"
+    answer: 0
+    explanation: "Aluminium, a more reactive metal, displaces chromium from its oxide. Such reactions (like V_2O_5 + Ca and TiCl_4 + Mg) are metal displacement reactions used in metallurgy."
+
+  - id: che-redox-045
+    topic: types-of-redox
+    subtopic: Hydrogen displacement
+    concept: Sodium displaces hydrogen from cold water
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [displacement, ncert-line]
+    stem: "Which metal displaces hydrogen from cold water?"
+    options:
+      - "Copper"
+      - "Iron"
+      - "Magnesium"
+      - "Sodium"
+    answer: 3
+    explanation: "All alkali metals and Ca, Sr and Ba displace hydrogen from cold water. Mg and Fe need steam (or hot water), while Cu does not react at all."
+
+  - id: che-redox-046
+    topic: types-of-redox
+    subtopic: Disproportionation
+    concept: Decomposition of H2O2 is disproportionation
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [disproportionation, ncert-line]
+    stem: "In 2H_2O_2 → 2H_2O + O_2, oxygen changes its oxidation number from −1 to"
+    options:
+      - "−2 only"
+      - "0 only"
+      - "both −2 and 0"
+      - "+1 and −2"
+    answer: 2
+    explanation: "Some oxygen atoms go from −1 to −2 (in H_2O) and others from −1 to 0 (in O_2). The same element in one oxidation state is both oxidised and reduced, which is disproportionation."
+
+  - id: che-redox-047
+    topic: types-of-redox
+    subtopic: Halogen displacement
+    concept: Chlorine displaces bromide and iodide
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [halogen, displacement]
+    stem: "Which of the following reactions does NOT occur?"
+    options:
+      - "Cl_2 + 2KBr → 2KCl + Br_2"
+      - "Br_2 + 2KI → 2KBr + I_2"
+      - "I_2 + 2KCl → 2KI + Cl_2"
+      - "Cl_2 + 2KI → 2KCl + I_2"
+    answer: 2
+    explanation: "Oxidising power decreases F_2 > Cl_2 > Br_2 > I_2, so a halogen displaces only halides below it. Iodine cannot oxidise Cl^- to Cl_2."
+
+  - id: che-redox-048
+    topic: types-of-redox
+    subtopic: Disproportionation of halogens
+    concept: Fluorine does not show disproportionation
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [disproportionation, fluorine, ncert-line]
+    stem: |-
+      Assertion (A): Fluorine does not undergo disproportionation in alkali.
+      Reason (R): Fluorine is the most electronegative element and cannot show a positive oxidation number.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "Disproportionation requires the element to be both oxidised and reduced. Fluorine can only be reduced (to −1), since it never has a positive oxidation number, so F_2 with alkali gives F^- and OF_2 in a plain redox reaction."
+
+  - id: che-redox-049
+    topic: types-of-redox
+    subtopic: Disproportionation of phosphorus
+    concept: P4 in alkali gives PH3 and H2PO2^-
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [disproportionation, phosphorus, ncert-line]
+    stem: "White phosphorus disproportionates in alkali to give PH_3 and H_2PO_2^-. The oxidation numbers of P in these products are"
+    options:
+      - "−3 and +1"
+      - "−3 and +3"
+      - "+3 and +1"
+      - "−3 and +5"
+    answer: 0
+    explanation: "In PH_3, P is −3. In H_2PO_2^-, 2(+1) + x + 2(−2) = −1 gives x = +1. P goes from 0 to both −3 and +1."
+
+  - id: che-redox-050
+    topic: types-of-redox
+    subtopic: Non-redox reactions
+    concept: Dichromate-chromate interconversion is not redox
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [trap, chromium]
+    stem: "Which reaction is NOT a redox reaction?"
+    options:
+      - "Zn + 2HCl → ZnCl_2 + H_2"
+      - "Cr_2O_7^{2-} + 2OH^- → 2CrO_4^{2-} + H_2O"
+      - "2Cu^+ → Cu^{2+} + Cu"
+      - "Cl_2 + H_2O → HCl + HOCl"
+    answer: 1
+    explanation: "Chromium is +6 in both Cr_2O_7^{2-} and CrO_4^{2-}; this is an acid–base interconversion. The others involve changes in oxidation number (the last two are disproportionations)."
+
+  - id: che-redox-051
+    topic: types-of-redox
+    subtopic: Disproportionation of oxoanions
+    concept: Perchlorate cannot disproportionate
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [disproportionation, chlorine, ncert-line]
+    stem: "Which of the following oxoanions of chlorine does NOT undergo disproportionation?"
+    options:
+      - "ClO_4^-"
+      - "ClO^-"
+      - "ClO_2^-"
+      - "ClO_3^-"
+    answer: 0
+    explanation: "In ClO_4^- chlorine is +7, its highest oxidation state, so it cannot be oxidised further and cannot disproportionate. ClO^- (+1), ClO_2^- (+3) and ClO_3^- (+5) all can."
+
+  - id: che-redox-052
+    topic: types-of-redox
+    subtopic: Hydrogen displacement from acids
+    concept: Copper cannot displace H2 from dilute HCl
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [displacement, ncert-line]
+    stem: |-
+      Statement I: Cadmium and tin do not react with water but displace hydrogen from dilute acids.
+      Statement II: Copper, silver and gold react with dilute hydrochloric acid to liberate hydrogen.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 2
+    explanation: "Less active metals like Cd and Sn liberate H_2 only from acids. Cu, Ag and Au are below hydrogen in the activity series and do not liberate H_2 from dilute HCl."
+
+  - id: che-redox-053
+    topic: types-of-redox
+    subtopic: Classification
+    concept: Match reactions with their redox type
+    category: application
+    format: match
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    tags: [classification, ncert-line]
+    stem: |-
+      Match List I (reaction) with List II (type).
+      List I
+      P. 2F_2 + 2H_2O → 4HF + O_2
+      Q. TiCl_4 + 2Mg → Ti + 2MgCl_2
+      R. C + O_2 → CO_2
+      S. 3ClO^- → 2Cl^- + ClO_3^-
+      List II
+      1. Combination
+      2. Metal displacement
+      3. Disproportionation
+      4. Non-metal displacement
+    options:
+      - "P-4, Q-2, R-1, S-3"
+      - "P-2, Q-4, R-1, S-3"
+      - "P-4, Q-2, R-3, S-1"
+      - "P-3, Q-2, R-1, S-4"
+    answer: 0
+    explanation: "F_2 displaces oxygen from water (non-metal displacement); Mg displaces Ti (metal displacement); C and O_2 combine; ClO^- (Cl +1) gives Cl^- (−1) and ClO_3^- (+5), a disproportionation."
+
+  - id: che-redox-054
+    topic: oxidising-reducing-agents
+    subtopic: Dual behaviour
+    concept: SO2 can act as both oxidising and reducing agent
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [dual-role]
+    stem: "Which of the following can act both as an oxidising agent and as a reducing agent?"
+    options:
+      - "H_2S"
+      - "HNO_3"
+      - "SO_2"
+      - "KMnO_4"
+    answer: 2
+    explanation: "In SO_2 sulphur is +4, intermediate between −2 and +6, so it can be oxidised or reduced. S in H_2S is at its minimum (−2) and can only be oxidised; N in HNO_3 (+5) and Mn in KMnO_4 (+7) are at their maxima."
+
+  - id: che-redox-055
+    topic: oxidising-reducing-agents
+    subtopic: Identifying agents
+    concept: SO2 acts as oxidant towards H2S
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [dual-role, trap]
+    stem: "In the reaction SO_2 + 2H_2S → 3S + 2H_2O, SO_2 acts as"
+    options:
+      - "a reducing agent"
+      - "an acid only"
+      - "a catalyst"
+      - "an oxidising agent"
+    answer: 3
+    explanation: "Sulphur in SO_2 goes from +4 to 0, so SO_2 is reduced and acts as the oxidising agent; H_2S (S from −2 to 0) is the reducing agent. SO_2 is usually thought of as a reductant, which is the trap."
+
+  - id: che-redox-056
+    topic: oxidising-reducing-agents
+    subtopic: Hydrogen peroxide
+    concept: H2O2 acts as a reducing agent with acidified KMnO4
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [hydrogen-peroxide, dual-role]
+    stem: "When H_2O_2 reacts with acidified KMnO_4, oxygen gas is evolved. Here H_2O_2 behaves as"
+    options:
+      - "a reducing agent"
+      - "an oxidising agent"
+      - "a dehydrating agent"
+      - "a bleaching agent only"
+    answer: 0
+    explanation: "Oxygen in H_2O_2 goes from −1 to 0 in O_2, so H_2O_2 is oxidised and acts as the reducing agent while MnO_4^- is reduced to Mn^{2+}."
+
+  - id: che-redox-057
+    topic: oxidising-reducing-agents
+    subtopic: Only reducing agents
+    concept: Species with element in lowest state act only as reductant
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [lowest-oxidation-state]
+    stem: "Which species can act ONLY as a reducing agent?"
+    options:
+      - "NO_2^-"
+      - "H_2O_2"
+      - "NH_3"
+      - "Cl_2"
+    answer: 2
+    explanation: "Nitrogen in NH_3 is at −3, its lowest oxidation state, so it can only be oxidised. NO_2^- (+3), H_2O_2 (O −1) and Cl_2 (0) are in intermediate states and can also be reduced."
+
+  - id: che-redox-058
+    topic: oxidising-reducing-agents
+    subtopic: Halogens
+    concept: F2 is the strongest oxidising agent
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 15
+    ncert: true
+    battle: true
+    tags: [halogen, ncert-line]
+    stem: "The strongest oxidising agent among the halogens is"
+    options:
+      - "F_2"
+      - "Cl_2"
+      - "Br_2"
+      - "I_2"
+    answer: 0
+    explanation: "F_2 has the highest standard reduction potential (+2.87 V), so it has the greatest tendency to gain electrons. Oxidising power falls down the group."
+
+  - id: che-redox-059
+    topic: oxidising-reducing-agents
+    subtopic: Reducing strength
+    concept: Iodide is the strongest reducing halide
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [halide, ordering]
+    stem: "The correct increasing order of reducing power of halide ions is"
+    options:
+      - "I^- < Br^- < Cl^- < F^-"
+      - "F^- < Cl^- < Br^- < I^-"
+      - "Cl^- < F^- < Br^- < I^-"
+      - "F^- < Br^- < Cl^- < I^-"
+    answer: 1
+    explanation: "The weaker the halogen as an oxidant, the stronger its halide as a reductant. Since oxidising power is F_2 > Cl_2 > Br_2 > I_2, reducing power is F^- < Cl^- < Br^- < I^-."
+
+  - id: che-redox-060
+    topic: oxidising-reducing-agents
+    subtopic: Identifying agents
+    concept: Identify the reducing agent in Fe2O3 + CO reaction
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [metallurgy]
+    stem: "In the blast furnace reaction Fe_2O_3 + 3CO → 2Fe + 3CO_2, the reducing agent is"
+    options:
+      - "Fe_2O_3"
+      - "Fe"
+      - "CO_2"
+      - "CO"
+    answer: 3
+    explanation: "Carbon in CO goes from +2 to +4, so CO is oxidised and is the reducing agent. Fe_2O_3 is reduced (Fe +3 to 0) and is the oxidising agent."
+
+  - id: che-redox-061
+    topic: oxidising-reducing-agents
+    subtopic: Nitric acid
+    concept: HNO3 acts only as an oxidising agent
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [nitric-acid, highest-oxidation-state]
+    stem: |-
+      Assertion (A): HNO_3 can act only as an oxidising agent in redox reactions.
+      Reason (R): Nitrogen in HNO_3 is in its maximum oxidation state of +5.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "Since nitrogen (group 15) cannot exceed +5, it cannot be oxidised further in HNO_3; it can only be reduced to NO_2, NO, N_2O, NH_4^+ and so on. Hence HNO_3 is only an oxidant, and R explains A."
+
+  - id: che-redox-062
+    topic: oxidising-reducing-agents
+    subtopic: Multi-statement
+    concept: Oxidant-reductant role statements
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [dual-role, multi-concept]
+    stem: |-
+      Consider the following statements:
+      I. H_2O_2 oxidises PbS to PbSO_4.
+      II. O_3 acts as a reducing agent towards KI.
+      III. HNO_2 can act as both oxidant and reductant.
+      IV. In 2Na + H_2 → 2NaH, hydrogen acts as an oxidising agent.
+      Which of these are correct?
+    options:
+      - "I and II only"
+      - "II and IV only"
+      - "I, III and IV only"
+      - "I, II and III only"
+    answer: 2
+    explanation: "H_2O_2 oxidises PbS (S −2 → +6) to PbSO_4; N in HNO_2 (+3) is intermediate; H_2 gains electrons from Na to form H^-, so it is the oxidant. Ozone oxidises iodide to I_2, so statement II is wrong."
+
+  - id: che-redox-063
+    topic: oxidising-reducing-agents
+    subtopic: Metals as reducing agents
+    concept: Metals generally act as reducing agents
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 15
+    ncert: false
+    battle: true
+    tags: [metals]
+    stem: "Metals in their elemental state generally act as"
+    options:
+      - "oxidising agents, because they gain electrons"
+      - "reducing agents, because they lose electrons"
+      - "oxidising agents, because they have high electronegativity"
+      - "neither oxidising nor reducing agents"
+    answer: 1
+    explanation: "Metals have low ionisation enthalpies and readily lose electrons to form cations, so they reduce other species. They cannot have negative oxidation numbers in simple compounds, so they cannot gain electrons as the element."
+
+  - id: che-redox-064
+    topic: oxidising-reducing-agents
+    subtopic: Comparing strengths using E°
+    concept: More positive E° means stronger oxidant
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [electrode-potential, ncert-line]
+    stem: "Given E° (V): MnO_4^-/Mn^{2+} +1.51, Cr_2O_7^{2-}/Cr^{3+} +1.33, Fe^{3+}/Fe^{2+} +0.77, I_2/I^- +0.54. The strongest oxidising agent is"
+    options:
+      - "I_2"
+      - "Fe^{3+}"
+      - "Cr_2O_7^{2-}"
+      - "MnO_4^-"
+    answer: 3
+    explanation: "The oxidised form of the couple with the highest reduction potential is the strongest oxidant. MnO_4^- (+1.51 V) tops this list."
+
+  - id: che-redox-065
+    topic: balancing-ion-electron
+    subtopic: Permanganate with ferrous ion
+    concept: Balanced MnO4- and Fe2+ equation in acid
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    tags: [permanganate, ncert-line]
+    stem: "In the balanced equation MnO_4^- + aFe^{2+} + bH^+ → Mn^{2+} + aFe^{3+} + cH_2O, the values of a, b and c are"
+    options:
+      - "5, 8, 4"
+      - "5, 4, 8"
+      - "3, 8, 4"
+      - "5, 16, 8"
+    answer: 0
+    explanation: "Mn gains 5 electrons (+7 → +2), and each Fe^{2+} loses 1, so a = 5. Four O atoms become 4H_2O (c = 4), needing 8H^+ (b = 8). Charge check: −1 + 10 + 8 = 17 = 2 + 15."
+
+  - id: che-redox-066
+    topic: balancing-ion-electron
+    subtopic: Reduction half of dichromate
+    concept: Cr2O7^2- half reaction needs 6 electrons and 14 H+
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [dichromate, half-reaction, ncert-line]
+    stem: "In the balanced half reaction Cr_2O_7^{2-} + xH^+ + ye^- → 2Cr^{3+} + 7H_2O, x and y are"
+    options:
+      - "7 and 3"
+      - "14 and 6"
+      - "14 and 3"
+      - "8 and 6"
+    answer: 1
+    explanation: "7 O atoms form 7H_2O, needing 14H^+. Each Cr goes from +6 to +3, gaining 3 electrons, so two Cr gain 6. Charge: −2 + 14 − 6 = +6 = 2(+3)."
+
+  - id: che-redox-067
+    topic: balancing-ion-electron
+    subtopic: Basic medium
+    concept: Permanganate oxidises iodide to iodate in basic medium
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    tags: [basic-medium, permanganate, ncert-line]
+    stem: "Permanganate oxidises iodide to iodate in basic solution: aMnO_4^- + I^- + H_2O → aMnO_2 + IO_3^- + bOH^-. The values of a and b are"
+    options:
+      - "1 and 1"
+      - "2 and 1"
+      - "3 and 2"
+      - "2 and 2"
+    answer: 3
+    explanation: "I goes from −1 to +5 (loses 6 e^-), and each Mn from +7 to +4 (gains 3), so a = 2. Charge: left −3; right −1 − b, so b = 2. O check: 8 + 1 = 4 + 3 + 2 = 9."
+
+  - id: che-redox-068
+    topic: balancing-ion-electron
+    subtopic: Steps of the method
+    concept: In basic medium OH- is added after balancing with H+
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [method, ncert-line]
+    stem: "While balancing a half reaction in basic medium by the ion–electron method, the H^+ ions used to balance hydrogen are removed by"
+    options:
+      - "adding an equal number of H_2O molecules to both sides"
+      - "adding an equal number of OH^- ions to both sides"
+      - "adding electrons to the side with more H^+"
+      - "cancelling them against oxygen atoms"
+    answer: 1
+    explanation: "Adding OH^- equal in number to the H^+ on both sides converts H^+ into H_2O; the excess water molecules are then cancelled. Adding electrons is used only to balance charge."
+
+  - id: che-redox-069
+    topic: balancing-ion-electron
+    subtopic: Oxalate with permanganate
+    concept: 2 MnO4- react with 5 C2O4^2-
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [oxalate, permanganate]
+    stem: "In the balanced reaction of MnO_4^- with C_2O_4^{2-} in acidic medium, the number of moles of CO_2 formed per mole of MnO_4^- is"
+    options:
+      - "2"
+      - "2.5"
+      - "5"
+      - "10"
+    answer: 2
+    explanation: "2MnO_4^- + 5C_2O_4^{2-} + 16H^+ → 2Mn^{2+} + 10CO_2 + 8H_2O. Ten CO_2 per two MnO_4^- is 5 per mole. The distractor 10 ignores the 2 in front of MnO_4^-."
+
+  - id: che-redox-070
+    topic: balancing-ion-electron
+    subtopic: Sulphite with dichromate
+    concept: Cr2O7^2- oxidises 3 SO3^2- in acid
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [dichromate, sulphite, ncert-line]
+    stem: "In the balanced ionic equation for oxidation of SO_3^{2-} by Cr_2O_7^{2-} in acidic solution, the number of H_2O molecules formed per Cr_2O_7^{2-} is"
+    options:
+      - "4"
+      - "7"
+      - "3"
+      - "8"
+    answer: 0
+    explanation: "Cr_2O_7^{2-} + 3SO_3^{2-} + 8H^+ → 2Cr^{3+} + 3SO_4^{2-} + 4H_2O. The 7 in the half reaction drops to 4 because the sulphite half consumes water: 3SO_3^{2-} + 3H_2O → 3SO_4^{2-} + 6H^+ + 6e^-."
+
+  - id: che-redox-071
+    topic: balancing-ion-electron
+    subtopic: Half reaction of oxalate
+    concept: C2O4^2- loses two electrons to form 2CO2
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [oxalate, half-reaction]
+    stem: "The correctly balanced oxidation half reaction of oxalate ion is"
+    options:
+      - "C_2O_4^{2-} → 2CO_2 + e^-"
+      - "C_2O_4^{2-} + 2e^- → 2CO_2"
+      - "C_2O_4^{2-} → 2CO_2 + 2e^-"
+      - "C_2O_4^{2-} → CO_2 + CO + 2e^-"
+    answer: 2
+    explanation: "Each carbon goes from +3 to +4, so two carbons release 2 electrons; charge is balanced as −2 = 0 − 2. Electrons appear on the product side for oxidation."
+
+  - id: che-redox-072
+    topic: balancing-ion-electron
+    subtopic: Hydrogen peroxide with permanganate
+    concept: 2 MnO4- react with 5 H2O2 in acid
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [hydrogen-peroxide, permanganate]
+    stem: "For 2MnO_4^- + 5H_2O_2 + xH^+ → 2Mn^{2+} + 5O_2 + yH_2O, the values of x and y are"
+    options:
+      - "16 and 8"
+      - "6 and 8"
+      - "6 and 4"
+      - "8 and 10"
+    answer: 1
+    explanation: "Oxygen: 8 + 10 = 10 + y gives y = 8. Hydrogen: 10 + x = 16 gives x = 6. Charge check: −2 + 6 = +4 = 2(+2). The value 16 applies only when the reductant contributes no hydrogen."
+
+  - id: che-redox-073
+    topic: balancing-ion-electron
+    subtopic: Disproportionation of chlorine
+    concept: Hot alkali gives chloride and chlorate in 5:1 ratio
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [disproportionation, chlorine]
+    stem: "Chlorine reacts with hot concentrated NaOH to give Cl^- and ClO_3^-. The molar ratio Cl^- : ClO_3^- in the balanced equation is"
+    options:
+      - "1 : 1"
+      - "3 : 1"
+      - "5 : 1"
+      - "1 : 5"
+    answer: 2
+    explanation: "3Cl_2 + 6OH^- → 5Cl^- + ClO_3^- + 3H_2O. Forming one ClO_3^- (0 → +5) releases 5 electrons, which reduce five Cl atoms (0 → −1), hence 5 : 1."
+
+  - id: che-redox-074
+    topic: balancing-ion-electron
+    subtopic: Charge balance
+    concept: Electrons balance charge in half reactions
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [method, ncert-line]
+    stem: |-
+      Statement I: In the half-reaction method, oxygen atoms in acidic medium are balanced by adding H_2O to the side deficient in oxygen.
+      Statement II: The two half reactions are added only after multiplying them so that electrons lost equal electrons gained.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 0
+    explanation: "Both are standard steps: water supplies oxygen, then H^+ balances hydrogen and electrons balance charge. The half reactions are scaled so that electrons cancel when added."
+
+  - id: che-redox-075
+    topic: balancing-oxidation-number
+    subtopic: Copper with dilute nitric acid
+    concept: 3Cu + 8HNO3 gives 2NO
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [nitric-acid]
+    stem: "Copper reacts with dilute HNO_3: aCu + bHNO_3 → aCu(NO_3)_2 + cNO + dH_2O. The value of b is"
+    options:
+      - "4"
+      - "6"
+      - "8"
+      - "10"
+    answer: 2
+    explanation: "Cu loses 2 e^- and N (+5 → +2) gains 3, so 3Cu and 2NO. Nitrate needed: 6 in 3Cu(NO_3)_2 plus 2 reduced = 8HNO_3, and 4H_2O balance H and O."
+
+  - id: che-redox-076
+    topic: balancing-oxidation-number
+    subtopic: Change in oxidation number
+    concept: Total increase equals total decrease in ON
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [method, ncert-line]
+    stem: "The oxidation number method of balancing is based on the principle that"
+    options:
+      - "the number of atoms of oxygen is the same on both sides"
+      - "the total increase in oxidation number equals the total decrease"
+      - "the charge on reactants is always zero"
+      - "only the reducing agent changes its oxidation number"
+    answer: 1
+    explanation: "Electrons lost by the reductant must equal electrons gained by the oxidant, so the total increase in oxidation number equals the total decrease. Atom balancing of O and H is done afterwards."
+
+  - id: che-redox-077
+    topic: balancing-oxidation-number
+    subtopic: Hydrazine and chlorate
+    concept: 3N2H4 + 4ClO3- gives 6NO + 4Cl-
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    tags: [hydrazine, ncert-line, multi-concept]
+    stem: "Hydrazine is oxidised by chlorate ion: N_2H_4 + ClO_3^- → NO + Cl^-. In the balanced equation, the ratio of moles of N_2H_4 to ClO_3^- is"
+    options:
+      - "4 : 3"
+      - "1 : 1"
+      - "2 : 3"
+      - "3 : 4"
+    answer: 3
+    explanation: "N goes −2 → +2 (4 e^- per N, 8 per N_2H_4); Cl goes +5 → −1 (6 e^-). LCM 24 gives 3N_2H_4 and 4ClO_3^-: 3N_2H_4 + 4ClO_3^- → 6NO + 4Cl^- + 6H_2O."
+
+  - id: che-redox-078
+    topic: balancing-oxidation-number
+    subtopic: Zinc with very dilute nitric acid
+    concept: Zn reduces nitrate to ammonium ion
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [nitric-acid, ammonium]
+    stem: "In 4Zn + NO_3^- + xH^+ → 4Zn^{2+} + NH_4^+ + yH_2O, the values of x and y are"
+    options:
+      - "10 and 3"
+      - "8 and 3"
+      - "10 and 4"
+      - "6 and 1"
+    answer: 0
+    explanation: "N falls from +5 to −3 (8 e^-), matching 4Zn losing 8 e^-. O: 3 = y so y = 3; H: x = 4 + 6 = 10. Charge: −1 + 10 = 9 = 8 + 1."
+
+  - id: che-redox-079
+    topic: balancing-oxidation-number
+    subtopic: Coefficient ratio
+    concept: Coefficients from ON changes in Cu + HNO3 (conc)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [nitric-acid]
+    stem: "In the balanced equation Cu + 4HNO_3(conc) → Cu(NO_3)_2 + xNO_2 + yH_2O, x and y are"
+    options:
+      - "1 and 1"
+      - "2 and 1"
+      - "2 and 2"
+      - "4 and 2"
+    answer: 2
+    explanation: "Cu loses 2 e^-; each N going +5 → +4 gains 1, so 2NO_2. H: 4 = 2y gives y = 2. O check: 12 = 6 + 4 + 2."
+
+  - id: che-redox-080
+    topic: balancing-oxidation-number
+    subtopic: Permanganate and sulphur dioxide
+    concept: 2MnO4- oxidise 5SO2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [sulphur-dioxide, permanganate]
+    stem: "In the balanced equation 2MnO_4^- + 5SO_2 + xH_2O → 2Mn^{2+} + 5SO_4^{2-} + yH^+, x and y are"
+    options:
+      - "4 and 2"
+      - "2 and 4"
+      - "6 and 12"
+      - "8 and 16"
+    answer: 1
+    explanation: "Oxygen: 8 + 10 + x = 20 gives x = 2; hydrogen: 2x = y = 4. Charge: −2 on the left; +4 − 10 + 4 = −2 on the right. Water is a reactant here because SO_2 needs oxygen to become sulphate."
+
+  - id: che-redox-081
+    topic: balancing-oxidation-number
+    subtopic: Intramolecular redox
+    concept: Balancing thermal decomposition of KClO3
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [decomposition]
+    stem: "In 2KClO_3 → 2KCl + 3O_2, the total number of electrons transferred is"
+    options:
+      - "6"
+      - "3"
+      - "12"
+      - "10"
+    answer: 2
+    explanation: "Each Cl goes +5 → −1 (6 e^- gained), so 2Cl gain 12. Six oxygen atoms go −2 → 0 (2 e^- each), losing 12. Hence 12 electrons are transferred."
+
+  - id: che-redox-082
+    topic: balancing-oxidation-number
+    subtopic: Coefficient of oxidant
+    concept: Balancing MnO2 + HCl gives Cl2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: true
+    tags: [chlorine-preparation]
+    stem: "In MnO_2 + xHCl → MnCl_2 + Cl_2 + 2H_2O, the value of x is"
+    options:
+      - "2"
+      - "3"
+      - "4"
+      - "6"
+    answer: 2
+    explanation: "Mn gains 2 e^- (+4 → +2), and 2Cl^- lose 2 e^- to form Cl_2. Chlorine atoms: 2 in MnCl_2 + 2 in Cl_2 = 4, so x = 4, and 4H give 2H_2O."
+
+  - id: che-redox-083
+    topic: balancing-oxidation-number
+    subtopic: Disproportionation of P4
+    concept: P4 + 3OH- + 3H2O gives PH3 + 3H2PO2-
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [phosphorus, disproportionation, ncert-line]
+    stem: "In the reaction P_4 + 3OH^- + 3H_2O → PH_3 + 3H_2PO_2^-, the ratio of P atoms oxidised to P atoms reduced is"
+    options:
+      - "1 : 3"
+      - "3 : 1"
+      - "1 : 1"
+      - "2 : 2"
+    answer: 1
+    explanation: "Three P atoms go 0 → +1 (oxidised, 3 e^- lost) and one goes 0 → −3 (reduced, 3 e^- gained). So oxidised : reduced = 3 : 1."
+
+  - id: che-redox-084
+    topic: redox-titrations
+    subtopic: Indicators
+    concept: KMnO4 acts as self indicator
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [indicator, ncert-line]
+    stem: "No external indicator is needed in titrations with KMnO_4 because"
+    options:
+      - "it is colourless in acid"
+      - "Mn^{2+} is intensely purple"
+      - "the first excess drop of MnO_4^- gives a permanent pink colour"
+      - "it forms a blue complex with starch"
+    answer: 2
+    explanation: "MnO_4^- is intensely purple while Mn^{2+} is almost colourless. Beyond the end point one excess drop tints the solution pink, so KMnO_4 serves as its own indicator."
+
+  - id: che-redox-085
+    topic: redox-titrations
+    subtopic: Choice of acid
+    concept: HCl is not used to acidify KMnO4 titrations
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [permanganate, trap]
+    stem: |-
+      Assertion (A): Hydrochloric acid is not used to acidify the solution in permanganate titrations.
+      Reason (R): KMnO_4 oxidises HCl to Cl_2, so part of the titrant is consumed by the acid.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 0
+    explanation: "MnO_4^- (E° +1.51 V) can oxidise Cl^- (E° Cl_2/Cl^- +1.36 V), giving a high titre. Dilute H_2SO_4 is used instead because sulphate is not oxidised."
+
+  - id: che-redox-086
+    topic: redox-titrations
+    subtopic: n-factor of KMnO4
+    concept: n-factor of KMnO4 in acidic medium is 5
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [n-factor, permanganate]
+    stem: "The n-factor (electrons gained per formula unit) of KMnO_4 in acidic medium is"
+    options:
+      - "1"
+      - "3"
+      - "5"
+      - "7"
+    answer: 2
+    explanation: "In acid MnO_4^- is reduced to Mn^{2+}: +7 → +2, a gain of 5 electrons. It is 3 in neutral/weakly basic medium (MnO_2) and 1 in strongly basic medium (MnO_4^{2-})."
+
+  - id: che-redox-087
+    topic: redox-titrations
+    subtopic: Equivalent weight
+    concept: Equivalent weight of K2Cr2O7 in acid is M/6
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [equivalent-weight, dichromate]
+    stem: "The equivalent weight of K_2Cr_2O_7 (M = 294) as an oxidising agent in acidic medium is"
+    options:
+      - "294"
+      - "147"
+      - "98"
+      - "49"
+    answer: 3
+    explanation: "Cr_2O_7^{2-} → 2Cr^{3+} involves 2 × 3 = 6 electrons, so E = 294/6 = 49. Using 3 electrons (per Cr) gives the wrong answer 98."
+
+  - id: che-redox-088
+    topic: redox-titrations
+    subtopic: Volume calculation
+    concept: Molarity × n-factor × volume equal at end point
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: "M_1n_1V_1 = M_2n_2V_2"
+    tags: [volumetric, permanganate]
+    stem: "What volume of 0.1 M KMnO_4 is needed to oxidise 50 mL of 0.2 M FeSO_4 in acidic medium?"
+    options:
+      - "100 mL"
+      - "50 mL"
+      - "20 mL"
+      - "10 mL"
+    answer: 2
+    explanation: "Equivalents of Fe^{2+} = 50 × 0.2 × 1 = 10 meq. KMnO_4 supplies 0.1 × 5 = 0.5 meq per mL, so V = 10/0.5 = 20 mL. Ignoring the n-factor of 5 gives 100 mL."
+
+  - id: che-redox-089
+    topic: redox-titrations
+    subtopic: Iodometry
+    concept: Starch indicator gives blue with iodine
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [iodometry, indicator, ncert-line]
+    stem: "In titrations involving iodine and thiosulphate, the end point is detected using"
+    options:
+      - "phenolphthalein"
+      - "starch, which gives an intense blue colour with iodine"
+      - "methyl orange"
+      - "diphenylamine, which turns red with iodide"
+    answer: 1
+    explanation: "Iodine forms an intense blue complex with starch; the colour disappears when all I_2 has been reduced by thiosulphate. Phenolphthalein and methyl orange are acid–base indicators."
+
+  - id: che-redox-090
+    topic: redox-titrations
+    subtopic: Thiosulphate
+    concept: Thiosulphate reduces iodine to iodide forming tetrathionate
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [iodometry, thiosulphate, ncert-line]
+    stem: "In I_2 + 2S_2O_3^{2-} → 2I^- + S_4O_6^{2-}, the n-factor of S_2O_3^{2-} is"
+    options:
+      - "1"
+      - "2"
+      - "4"
+      - "8"
+    answer: 0
+    explanation: "Average S goes from +2 in S_2O_3^{2-} to +2.5 in S_4O_6^{2-}: 2 × 0.5 = 1 electron per thiosulphate ion. Two thiosulphates reduce one I_2 (2 electrons)."
+
+  - id: che-redox-091
+    topic: redox-titrations
+    subtopic: Oxalic acid titration
+    concept: Moles of oxalic acid per mole of KMnO4
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [oxalic-acid, permanganate]
+    stem: "How many moles of oxalic acid are oxidised by 0.02 mol of KMnO_4 in acidic medium?"
+    options:
+      - "0.008"
+      - "0.02"
+      - "0.04"
+      - "0.05"
+    answer: 3
+    explanation: "Equivalents must match: 0.02 × 5 = n × 2, so n = 0.05 mol. This agrees with the 2 : 5 mole ratio of MnO_4^- to C_2O_4^{2-}."
+
+  - id: che-redox-092
+    topic: redox-titrations
+    subtopic: Dichromate indicator
+    concept: Diphenylamine is used in dichromate titrations
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [dichromate, indicator, ncert-line]
+    stem: "An indicator commonly used in the titration of Fe^{2+} with K_2Cr_2O_7 is"
+    options:
+      - "potassium permanganate"
+      - "starch"
+      - "phenolphthalein"
+      - "diphenylamine"
+    answer: 3
+    explanation: "Dichromate is orange and Cr^{3+} green, so the colour change is not sharp. Diphenylamine is oxidised just after the end point to give an intense blue colour."
+
+  - id: che-redox-093
+    topic: redox-titrations
+    subtopic: n-factor in different media
+    concept: Match KMnO4 medium with n-factor
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [n-factor, permanganate]
+    stem: |-
+      Match the medium in which KMnO_4 acts (List I) with its n-factor (List II).
+      List I
+      P. Strongly acidic (product Mn^{2+})
+      Q. Neutral or weakly alkaline (product MnO_2)
+      R. Strongly alkaline (product MnO_4^{2-})
+      S. Reduction to Mn_2O_3
+      List II
+      1. 1
+      2. 3
+      3. 4
+      4. 5
+    options:
+      - "P-4, Q-3, R-1, S-2"
+      - "P-4, Q-2, R-1, S-3"
+      - "P-2, Q-4, R-1, S-3"
+      - "P-4, Q-2, R-3, S-1"
+    answer: 1
+    explanation: "Mn changes +7 → +2 (5), +7 → +4 (3), +7 → +6 (1) and +7 → +3 (4). So P-4, Q-2, R-1, S-3."
+
+  - id: che-redox-094
+    topic: redox-titrations
+    subtopic: Mohr's salt
+    concept: Moles of Mohr's salt oxidised by one mole of K2Cr2O7
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [mohr-salt, dichromate]
+    stem: "One mole of acidified K_2Cr_2O_7 oxidises how many moles of Mohr's salt, FeSO_4·(NH_4)_2SO_4·6H_2O?"
+    options:
+      - "1"
+      - "3"
+      - "5"
+      - "6"
+    answer: 3
+    explanation: "Dichromate accepts 6 electrons and each Fe^{2+} gives 1, so it oxidises 6 mol of Fe^{2+}, i.e. 6 mol of Mohr's salt."
+
+  - id: che-redox-095
+    topic: electrode-processes
+    subtopic: Daniell cell
+    concept: Zinc is the anode in Daniell cell
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [daniell-cell, ncert-line]
+    stem: "In a Daniell cell, oxidation takes place at"
+    options:
+      - "the zinc electrode, which acts as the anode"
+      - "the copper electrode, which acts as the anode"
+      - "the zinc electrode, which acts as the cathode"
+      - "the salt bridge"
+    answer: 0
+    explanation: "Zn → Zn^{2+} + 2e^- occurs at the zinc electrode. The electrode where oxidation happens is by definition the anode; reduction of Cu^{2+} occurs at the copper cathode."
+
+  - id: che-redox-096
+    topic: electrode-processes
+    subtopic: Standard hydrogen electrode
+    concept: SHE is assigned zero potential
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 15
+    ncert: true
+    battle: true
+    tags: [she, ncert-line]
+    stem: "The standard hydrogen electrode is assigned a potential of"
+    options:
+      - "+1.00 V"
+      - "−0.76 V"
+      - "0.00 V"
+      - "+0.34 V"
+    answer: 2
+    explanation: "By convention the standard hydrogen electrode (Pt, H_2 at 1 bar, H^+ at unit activity) has E° = 0.00 V at all temperatures, and other potentials are measured relative to it."
+
+  - id: che-redox-097
+    topic: electrode-processes
+    subtopic: Salt bridge
+    concept: Salt bridge completes circuit and maintains neutrality
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [salt-bridge, ncert-line]
+    stem: "The main function of the salt bridge in a galvanic cell is to"
+    options:
+      - "allow electrons to flow between the solutions"
+      - "complete the inner circuit by ion flow and keep the solutions electrically neutral"
+      - "prevent the redox reaction from occurring"
+      - "supply Cu^{2+} ions to the cathode"
+    answer: 1
+    explanation: "Ions (e.g. K^+ and Cl^- or NO_3^- in agar gel) move through the salt bridge, completing the circuit and neutralising charge build-up. Electrons flow only through the external wire."
+
+  - id: che-redox-098
+    topic: electrode-processes
+    subtopic: Cell potential
+    concept: E° of Daniell cell is 1.10 V
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: "E°_{cell} = E°_{cathode} − E°_{anode}"
+    tags: [daniell-cell, emf]
+    stem: "Using E° (Zn^{2+}/Zn) = −0.76 V and E° (Cu^{2+}/Cu) = +0.34 V, the standard emf of the Daniell cell is"
+    options:
+      - "−1.10 V"
+      - "0.42 V"
+      - "−0.42 V"
+      - "1.10 V"
+    answer: 3
+    explanation: "E°_{cell} = E°_{cathode} − E°_{anode} = 0.34 − (−0.76) = 1.10 V. Adding the values directly gives the wrong 0.42 V (−0.42 V)."
+
+  - id: che-redox-099
+    topic: electrode-processes
+    subtopic: Redox couple
+    concept: Redox couple is oxidised and reduced forms together
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [redox-couple, ncert-line]
+    stem: "A redox couple is written as"
+    options:
+      - "reduced form/oxidised form, e.g. Zn/Zn^{2+}"
+      - "oxidised form/reduced form, e.g. Zn^{2+}/Zn"
+      - "anode/cathode, e.g. Zn/Cu"
+      - "cation/anion, e.g. Zn^{2+}/SO_4^{2-}"
+    answer: 1
+    explanation: "A redox couple consists of the oxidised and reduced forms of a substance taking part in a half reaction, conventionally written oxidised/reduced, such as Zn^{2+}/Zn and Cu^{2+}/Cu."
+
+  - id: che-redox-100
+    topic: electrode-processes
+    subtopic: Direction of electron flow
+    concept: Electrons flow from Zn to Cu in external circuit
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [daniell-cell, trap]
+    stem: "Which statement about a working Daniell cell is correct?"
+    options:
+      - "Electrons flow from copper to zinc through the external wire"
+      - "Conventional current flows from zinc to copper through the external wire"
+      - "The mass of the copper electrode decreases with time"
+      - "Electrons flow from zinc to copper through the external wire"
+    answer: 3
+    explanation: "Zinc is oxidised, releasing electrons that travel through the wire to copper, where Cu^{2+} is reduced and Cu deposits (so copper gains mass). Conventional current flows opposite, from copper to zinc."

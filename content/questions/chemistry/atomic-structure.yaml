@@ -2,121 +2,2730 @@ subject: chemistry
 chapter:
   slug: atomic-structure
   name: Structure of Atom
-  order: 1
+  order: 2
+  classes: [11]
   topics:
     - slug: subatomic-particles
-      name: Subatomic particles
+      name: Discovery of subatomic particles
+    - slug: atomic-models
+      name: Thomson and Rutherford models, isotopes and isobars
+    - slug: em-radiation
+      name: Wave nature of electromagnetic radiation
+    - slug: planck-photoelectric
+      name: Planck's quantum theory and photoelectric effect
+    - slug: atomic-spectra
+      name: Line spectrum of hydrogen
+    - slug: bohr-model
+      name: Bohr's model of the hydrogen atom
+    - slug: dual-nature-uncertainty
+      name: Dual behaviour of matter and uncertainty principle
+    - slug: quantum-mechanical-model
+      name: Quantum mechanical model, orbitals and nodes
     - slug: quantum-numbers
-      name: Quantum numbers and orbitals
+      name: Quantum numbers
+    - slug: electronic-configuration
+      name: Filling of orbitals and electronic configuration
 questions:
   - id: che-atom-001
     topic: subatomic-particles
+    subtopic: Cathode rays
+    concept: Cathode-ray properties are independent of gas and electrode material
     category: factual
+    format: direct
     difficulty: 1
+    time: 25
+    ncert: true
     battle: true
-    stem: Who discovered the electron through experiments with cathode rays?
+    tags: [cathode-rays, ncert-line]
+    stem: Which statement about the characteristics of cathode rays is correct?
     options:
-      - Ernest Rutherford
-      - James Chadwick
-      - J. J. Thomson
-      - Niels Bohr
+      - They depend on the nature of the gas in the discharge tube
+      - They depend on the material used for the cathode
+      - They are independent of both the gas and the electrode material
+      - They travel from the anode towards the cathode
     answer: 2
-    explanation: J. J. Thomson measured the charge-to-mass ratio of cathode rays in 1897 and showed they were streams of negatively charged particles, electrons. Chadwick later discovered the neutron.
+    explanation: Cathode rays are streams of electrons that move from cathode to anode, and their characteristics do not depend on the electrode material or the gas present. This showed electrons are a universal constituent of all atoms.
 
   - id: che-atom-002
     topic: subatomic-particles
-    category: numerical
+    subtopic: Charge on the electron
+    concept: Millikan's oil drop experiment measured the charge of an electron
+    category: factual
+    format: direct
     difficulty: 1
+    time: 20
+    ncert: true
     battle: true
-    stem: How many neutrons are there in an atom of sodium-23? (The atomic number of sodium is 11.)
+    tags: [millikan, ncert-line]
+    stem: Millikan's oil drop experiment was used to determine the
     options:
-      - "11"
-      - "12"
-      - "23"
-      - "34"
-    answer: 1
-    explanation: Neutrons = mass number − atomic number = 23 − 11 = 12.
+      - charge on the electron
+      - mass of the proton
+      - charge-to-mass ratio of the electron
+      - radius of the nucleus
+    answer: 0
+    explanation: Millikan measured the charge on oil droplets and found it was always an integral multiple of 1.6 × 10^{-19} C, the electronic charge. The e/m ratio had already been found by J. J. Thomson.
 
   - id: che-atom-003
     topic: subatomic-particles
-    category: concept
+    subtopic: Mass of the electron
+    concept: Electron mass from e/m and e
+    category: numerical
+    format: direct
     difficulty: 2
+    time: 40
+    ncert: true
     battle: true
-    stem: What did Rutherford's gold-foil experiment reveal about the atom?
+    formula: m_e = e ÷ (e/m_e)
+    tags: [e-by-m, ncert-line]
+    stem: Given e/m_e = 1.76 × 10^{11} C kg^{-1} and e = 1.60 × 10^{-19} C, the mass of an electron is about
     options:
-      - Its positive charge and most of its mass are in a tiny nucleus
-      - Electrons move in fixed circular orbits
-      - Its positive charge is spread evenly throughout
-      - It cannot be divided into smaller particles
-    answer: 0
-    explanation: Most alpha particles passed straight through the foil, but a few bounced back sharply. So the atom is mostly empty space, with its positive charge and nearly all its mass packed into a very small nucleus.
+      - 1.1 × 10^{-30} kg
+      - 2.8 × 10^{-30} kg
+      - 1.67 × 10^{-27} kg
+      - 9.1 × 10^{-31} kg
+    answer: 3
+    explanation: m_e = e ÷ (e/m_e) = 1.60 × 10^{-19} ÷ 1.76 × 10^{11} ≈ 9.1 × 10^{-31} kg. The value 1.67 × 10^{-27} kg is the mass of a proton.
 
   - id: che-atom-004
     topic: subatomic-particles
+    subtopic: Canal rays
+    concept: Largest e/m of canal-ray particles is obtained with hydrogen
     category: concept
+    format: direct
     difficulty: 2
+    time: 35
+    ncert: true
     battle: true
-    stem: Carbon-12 and carbon-14 are isotopes. In what do their atoms differ?
+    tags: [canal-rays, proton]
+    stem: In a canal-ray experiment, the positive particles have the largest charge-to-mass ratio when the discharge tube contains
     options:
-      - Number of protons
-      - Number of electrons
-      - Atomic number
-      - Number of neutrons
-    answer: 3
-    explanation: Isotopes are atoms of the same element, so they share the same number of protons (the atomic number) and, when neutral, electrons. They differ in neutrons, with 6 in carbon-12 and 8 in carbon-14.
+      - helium
+      - hydrogen
+      - neon
+      - nitrogen
+    answer: 1
+    explanation: Canal-ray particles are positive ions of the gas, so e/m depends on the gas. Hydrogen gives H^+ (a proton), the lightest positive ion, and hence the largest e/m.
 
   - id: che-atom-005
-    topic: quantum-numbers
+    topic: subatomic-particles
+    subtopic: Discovery of the neutron
+    concept: Chadwick bombarded beryllium with α-particles to discover the neutron
     category: factual
+    format: direct
     difficulty: 1
+    time: 25
+    ncert: true
     battle: true
-    stem: What is the maximum number of electrons that one orbital can hold?
+    tags: [neutron, ncert-line]
+    stem: Chadwick discovered the neutron by bombarding a thin sheet of which element with α-particles?
     options:
-      - "1"
-      - "6"
-      - "8"
-      - "2"
-    answer: 3
-    explanation: By the Pauli exclusion principle no two electrons in an atom can have all four quantum numbers the same, so an orbital holds at most two electrons, with opposite spins.
+      - Gold
+      - Nitrogen
+      - Beryllium
+      - Aluminium
+    answer: 2
+    explanation: In 1932 Chadwick bombarded beryllium with α-particles and detected electrically neutral particles slightly heavier than protons, the neutrons. Gold foil was used in Rutherford's scattering experiment.
 
   - id: che-atom-006
-    topic: quantum-numbers
-    category: numerical
-    difficulty: 2
-    battle: true
-    stem: How many orbitals are there in the shell with principal quantum number n = 3?
+    topic: subatomic-particles
+    subtopic: Canal rays
+    concept: e/m of canal rays depends on the gas because the ions differ in mass
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [canal-rays, e-by-m]
+    stem: |-
+      Assertion (A): The charge-to-mass ratio of canal-ray particles depends on the gas taken in the discharge tube.
+      Reason (R): Canal-ray particles are positive ions formed from the gas, and their masses differ from gas to gas.
     options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Unlike cathode rays, canal rays consist of positive gaseous ions. Their mass (and sometimes charge) depends on the gas, so e/m varies; R directly explains A.
+
+  - id: che-atom-007
+    topic: subatomic-particles
+    subtopic: Charge on the electron
+    concept: Number of electrons making up one coulomb
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: N = Q ÷ e
+    tags: [electron-charge]
+    stem: How many electrons together carry a total charge of 1 coulomb? (e = 1.602 × 10^{-19} C)
+    options:
+      - 1.602 × 10^{19}
+      - 6.24 × 10^{18}
+      - 6.022 × 10^{23}
+      - 9.65 × 10^{4}
+    answer: 1
+    explanation: N = 1 ÷ 1.602 × 10^{-19} ≈ 6.24 × 10^{18} electrons. 6.022 × 10^{23} is Avogadro's number and 9.65 × 10^4 C is the charge on one mole of electrons.
+
+  - id: che-atom-008
+    topic: subatomic-particles
+    subtopic: Discoverers and experiments
+    concept: Matching experiments with scientists
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [history]
+    stem: |-
+      Match List I (discovery or measurement) with List II (scientist).
+      List I: P. e/m of cathode-ray particles; Q. Charge on the electron; R. Neutron; S. Canal rays
+      List II: 1. Chadwick; 2. Goldstein; 3. Millikan; 4. J. J. Thomson
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-1, Q-3, R-4, S-2
+    answer: 2
+    explanation: Thomson measured e/m of electrons, Millikan the electronic charge, Chadwick discovered the neutron and Goldstein observed canal (anode) rays. So P-4, Q-3, R-1, S-2.
+
+  - id: che-atom-009
+    topic: subatomic-particles
+    subtopic: Thomson's e/m experiment
+    concept: Deflection in fields increases with charge and field, decreases with mass
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [e-by-m, trap]
+    stem: In Thomson's experiment, which statement about the deviation of charged particles from their path in electric or magnetic fields is INCORRECT?
+    options:
+      - The deviation is greater when the charge on the particle is greater
+      - The deviation is greater when the field strength is greater
+      - The deviation is greater when the potential across the electrodes is greater
+      - The deviation is greater when the mass of the particle is greater
+    answer: 3
+    explanation: NCERT notes that deviation increases with the magnitude of charge and with field strength, but decreases with mass because a heavier particle is harder to deflect. So heavier particles deviate less.
+
+  - id: che-atom-010
+    topic: subatomic-particles
+    subtopic: Mass of the electron
+    concept: Mass of one mole of electrons
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: M = m_e × N_A
+    tags: [mole-concept, multi-concept]
+    stem: What is the mass of one mole of electrons? (m_e = 9.1 × 10^{-31} kg, N_A = 6.022 × 10^{23} mol^{-1})
+    options:
+      - 0.548 mg
+      - 1.008 g
+      - 5.48 g
+      - 0.548 g
+    answer: 0
+    explanation: Mass = 9.1 × 10^{-31} × 6.022 × 10^{23} = 5.48 × 10^{-7} kg = 5.48 × 10^{-4} g = 0.548 mg. 1.008 g is roughly a mole of protons plus electrons (H atoms).
+
+  - id: che-atom-011
+    topic: atomic-models
+    subtopic: Thomson model
+    concept: Thomson's model is the plum pudding model
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [thomson-model, ncert-line]
+    stem: The atomic model in which electrons are embedded in a uniform sphere of positive charge is called the
+    options:
+      - planetary model
+      - plum pudding model
+      - nuclear model
+      - stationary-state model
+    answer: 1
+    explanation: Thomson pictured the atom as a sphere of uniformly spread positive charge with electrons embedded in it, like plums in a pudding or seeds in a watermelon. Rutherford's model is the nuclear (planetary) model.
+
+  - id: che-atom-012
+    topic: atomic-models
+    subtopic: Rutherford's α-scattering
+    concept: Most α-particles pass undeflected, so most of the atom is empty
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [rutherford, ncert-line]
+    stem: The observation that most α-particles passed through a gold foil undeflected shows that
+    options:
+      - the atom is electrically neutral
+      - electrons are embedded in positive charge
+      - most of the space in an atom is empty
+      - the nucleus is negatively charged
+    answer: 2
+    explanation: Since most α-particles met nothing massive or charged on their way, Rutherford concluded most of the atom is empty space. The few large deflections led to the idea of a small positive nucleus.
+
+  - id: che-atom-013
+    topic: atomic-models
+    subtopic: Rutherford's α-scattering
+    concept: Rebounding α-particles imply a tiny dense positive nucleus
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [rutherford]
+    stem: In Rutherford's experiment, a very few α-particles bounced back by nearly 180°. This showed that
+    options:
+      - electrons have negligible mass
+      - α-particles are positively charged
+      - the gold foil was not uniform
+      - the positive charge and most mass are concentrated in a very small volume
+    answer: 3
+    explanation: Only a massive, highly concentrated positive centre can repel an α-particle straight back. As only about 1 in 20,000 rebounded, this centre (the nucleus) occupies a tiny volume.
+
+  - id: che-atom-014
+    topic: atomic-models
+    subtopic: Atomic number and mass number
+    concept: Neutrons = A − Z
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: N = A − Z
+    tags: [mass-number]
+    stem: How many neutrons are present in ^{37}_{17}Cl?
+    options:
+      - "20"
+      - "17"
+      - "37"
+      - "54"
+    answer: 0
+    explanation: Number of neutrons = A − Z = 37 − 17 = 20. The atomic number 17 counts protons, not neutrons.
+
+  - id: che-atom-015
+    topic: atomic-models
+    subtopic: Atomic number and mass number
+    concept: Counting protons, electrons and neutrons in an anion
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [ions, ncert-line]
+    stem: The numbers of protons, electrons and neutrons in ^{80}_{35}Br^{−} are respectively
+    options:
+      - 35, 35, 45
+      - 35, 34, 45
+      - 35, 36, 45
+      - 36, 35, 44
+    answer: 2
+    explanation: Z = 35 gives 35 protons; the −1 charge adds one electron, giving 36 electrons; neutrons = 80 − 35 = 45. Adding the extra electron to the proton count is a common slip.
+
+  - id: che-atom-016
+    topic: atomic-models
+    subtopic: Isotopes and isobars
+    concept: Isobars have the same mass number but different atomic numbers
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [isobars]
+    stem: Which pair of nuclides are isobars?
+    options:
+      - ^{12}_6C and ^{14}_6C
+      - ^{14}_6C and ^{14}_7N
+      - ^{14}_6C and ^{16}_8O
+      - ^{1}_1H and ^{2}_1H
+    answer: 1
+    explanation: Isobars share mass number A but differ in Z; ^{14}C and ^{14}N both have A = 14. Pairs with the same Z are isotopes, and ^{14}C/^{16}O have equal neutron numbers (isotones).
+
+  - id: che-atom-017
+    topic: atomic-models
+    subtopic: Isotones
+    concept: Isotones have the same number of neutrons
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [isotones, trap]
+    stem: Which pair of nuclides are isotones (same number of neutrons)?
+    options:
+      - ^{40}_{18}Ar and ^{40}_{20}Ca
+      - ^{35}_{17}Cl and ^{37}_{17}Cl
+      - ^{3}_1H and ^{3}_2He
+      - ^{14}_6C and ^{16}_8O
+    answer: 3
+    explanation: ^{14}C has 14 − 6 = 8 neutrons and ^{16}O has 16 − 8 = 8 neutrons, so they are isotones. Ar/Ca and ^3H/^3He are isobars; the chlorine pair are isotopes.
+
+  - id: che-atom-018
+    topic: atomic-models
+    subtopic: Drawbacks of Rutherford model
+    concept: Rutherford model fails on stability because an accelerating charge radiates
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [rutherford, drawbacks, ncert-line]
+    stem: |-
+      Assertion (A): Rutherford's nuclear model cannot explain the stability of an atom.
+      Reason (R): According to electromagnetic theory, an electron revolving round the nucleus is accelerated and should continuously radiate energy and spiral into the nucleus.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: An orbiting electron undergoes centripetal acceleration; by Maxwell's theory it should lose energy as radiation and collapse into the nucleus in about 10^{-8} s. Atoms are stable, so the model fails, and R is the reason.
+
+  - id: che-atom-019
+    topic: atomic-models
+    subtopic: Size of nucleus
+    concept: Nucleus occupies about 10^{-15} of the atomic volume
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: V ∝ r^3
+    tags: [nuclear-size]
+    stem: If the radius of an atom is 10^{-10} m and that of its nucleus is 10^{-15} m, what fraction of the atom's volume does the nucleus occupy?
+    options:
+      - 10^{-5}
+      - 10^{-10}
+      - 10^{-15}
+      - 10^{-25}
+    answer: 2
+    explanation: Volume ratio = (r_nucleus ÷ r_atom)^3 = (10^{-5})^3 = 10^{-15}. Using the radius ratio 10^{-5} directly forgets that volume scales as the cube.
+
+  - id: che-atom-020
+    topic: atomic-models
+    subtopic: Rutherford's nuclear model
+    concept: Features of Rutherford's nuclear model versus Thomson's model
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [rutherford, thomson-model, confused-pair]
+    stem: |-
+      Which of the following are features of Rutherford's nuclear model of the atom?
+      I. Most of the space in the atom is empty.
+      II. The positive charge and most of the mass are concentrated in the nucleus.
+      III. Electrons are embedded in a uniform sphere of positive charge.
+      IV. Electrons move around the nucleus in circular paths called orbits.
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: Statements I, II and IV describe Rutherford's planetary model. Statement III is Thomson's plum pudding model, which the scattering experiment disproved.
+
+  - id: che-atom-021
+    topic: em-radiation
+    subtopic: c = νλ
+    concept: Frequency from wavelength
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: ν = c ÷ λ
+    tags: [frequency]
+    stem: What is the frequency of light of wavelength 600 nm? (c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 1.8 × 10^{17} Hz
+      - 2.0 × 10^{14} Hz
+      - 5.0 × 10^{12} Hz
+      - 5.0 × 10^{14} Hz
+    answer: 3
+    explanation: ν = c ÷ λ = 3.0 × 10^8 ÷ 600 × 10^{-9} = 5.0 × 10^{14} Hz. Forgetting to convert nm to m gives absurd values.
+
+  - id: che-atom-022
+    topic: em-radiation
+    subtopic: Wavenumber
+    concept: Wavenumber is the reciprocal of wavelength
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: ν̄ = 1 ÷ λ
+    tags: [wavenumber]
+    stem: The wavenumber of radiation of wavelength 500 nm is
+    options:
+      - 2.0 × 10^6 m^{-1}
+      - 5.0 × 10^{-7} m^{-1}
+      - 2.0 × 10^{-6} m^{-1}
+      - 6.0 × 10^{14} m^{-1}
+    answer: 0
+    explanation: ν̄ = 1 ÷ λ = 1 ÷ 5.0 × 10^{-7} m = 2.0 × 10^6 m^{-1} (or 2.0 × 10^4 cm^{-1}). 6.0 × 10^{14} is the frequency in Hz, not the wavenumber.
+
+  - id: che-atom-023
+    topic: em-radiation
+    subtopic: Electromagnetic spectrum
+    concept: Frequency order across the electromagnetic spectrum
+    category: factual
+    format: ordering
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [em-spectrum]
+    stem: Arrange in increasing order of frequency - X-rays, microwaves, ultraviolet, infrared.
+    options:
+      - X-rays < ultraviolet < infrared < microwaves
+      - Infrared < microwaves < ultraviolet < X-rays
+      - Microwaves < infrared < ultraviolet < X-rays
+      - Microwaves < ultraviolet < infrared < X-rays
+    answer: 2
+    explanation: Frequency rises from radio and microwaves through infrared, visible and ultraviolet to X-rays and γ-rays. So microwaves < IR < UV < X-rays; wavelength follows the reverse order.
+
+  - id: che-atom-024
+    topic: em-radiation
+    subtopic: Properties of EM waves
+    concept: All electromagnetic radiations travel at the same speed in vacuum
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [speed-of-light, ncert-line]
+    stem: In vacuum, compared with visible light, X-rays travel
+    options:
+      - faster
+      - at the same speed
+      - slower
+      - faster only at high intensity
+    answer: 1
+    explanation: All electromagnetic radiations travel in vacuum at c = 3.0 × 10^8 m s^{-1}, whatever their frequency. X-rays differ only in frequency and wavelength.
+
+  - id: che-atom-025
+    topic: em-radiation
+    subtopic: Visible region
+    concept: Visible light spans roughly 400–750 nm
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [visible-light, ncert-line]
+    stem: The approximate wavelength range of visible light is
+    options:
+      - 10–100 nm
+      - 1–10 μm
+      - 100–300 nm
+      - 400–750 nm
+    answer: 3
+    explanation: Visible light runs from violet (about 400 nm) to red (about 750 nm). Shorter wavelengths are ultraviolet; longer ones are infrared.
+
+  - id: che-atom-026
+    topic: em-radiation
+    subtopic: c = νλ
+    concept: Wavelength of a radio broadcast from its frequency
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: λ = c ÷ ν
+    tags: [radio-waves, ncert-line]
+    stem: A radio station broadcasts at 1368 kHz. What is the wavelength of its radiation? (c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 2.19 m
+      - 21.9 m
+      - 219.3 m
+      - 4.56 × 10^{-3} m
+    answer: 2
+    explanation: λ = c ÷ ν = 3.0 × 10^8 ÷ 1.368 × 10^6 = 219.3 m, typical of AM radio. Taking kHz as 10^3 is essential; a factor-of-ten slip gives 21.9 m.
+
+  - id: che-atom-027
+    topic: em-radiation
+    subtopic: Properties of EM waves
+    concept: Electric and magnetic fields are mutually perpendicular and perpendicular to propagation
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [em-waves, ncert-line]
+    stem: Which statement about electromagnetic radiation is INCORRECT?
+    options:
+      - The oscillating electric and magnetic fields are parallel to each other
+      - Electromagnetic waves do not need a medium to travel
+      - Oscillating charged particles produce oscillating electric and magnetic fields
+      - Different radiations differ in frequency and wavelength
+    answer: 0
+    explanation: The electric and magnetic field components are perpendicular to each other and to the direction of propagation. The other statements are correct NCERT descriptions of EM waves.
+
+  - id: che-atom-028
+    topic: em-radiation
+    subtopic: Wavenumber
+    concept: Wavelength from wavenumber in cm^{-1}
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: λ = 1 ÷ ν̄
+    tags: [wavenumber]
+    stem: Radiation has a wavenumber of 2.0 × 10^4 cm^{-1}. Its wavelength is
+    options:
+      - 200 nm
+      - 500 nm
+      - 50 nm
+      - 5000 nm
+    answer: 1
+    explanation: λ = 1 ÷ 2.0 × 10^4 cm^{-1} = 5.0 × 10^{-5} cm = 5.0 × 10^{-7} m = 500 nm. Unit slips between cm and m give the other options.
+
+  - id: che-atom-029
+    topic: em-radiation
+    subtopic: Wave characteristics
+    concept: Frequency and wavelength are inversely proportional
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [wavenumber, frequency]
+    stem: |-
+      Statement I: Wavenumber is the number of wavelengths per unit length, and its SI unit is m^{-1}.
+      Statement II: For electromagnetic radiation in vacuum, frequency is directly proportional to wavelength.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Statement I is the NCERT definition of wavenumber. Statement II is wrong because c = νλ with c constant, so ν is inversely proportional to λ.
+
+  - id: che-atom-030
+    topic: em-radiation
+    subtopic: c = νλ
+    concept: Graph of ν against 1/λ is a straight line through origin with slope c
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph]
+    stem: For electromagnetic radiations in vacuum, a graph of frequency ν (y-axis) against 1/λ (x-axis) is
+    options:
+      - a rectangular hyperbola
+      - a straight line parallel to the x-axis
+      - a straight line with slope 1/c
+      - a straight line through the origin with slope c
+    answer: 3
+    explanation: Since ν = c × (1/λ), ν is directly proportional to 1/λ, giving a straight line through the origin whose slope is c. A ν–λ graph, not ν–1/λ, would be a hyperbola.
+
+  - id: che-atom-031
+    topic: planck-photoelectric
+    subtopic: Energy of a photon
+    concept: E = hν for a single photon
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: E = hν
+    tags: [photon-energy]
+    stem: What is the energy of one photon of frequency 3.0 × 10^{15} Hz? (h = 6.626 × 10^{-34} J s)
+    options:
+      - 1.99 × 10^{-18} J
+      - 2.21 × 10^{-49} J
+      - 1.99 × 10^{-19} J
+      - 4.53 × 10^{48} J
+    answer: 0
+    explanation: E = hν = 6.626 × 10^{-34} × 3.0 × 10^{15} = 1.99 × 10^{-18} J. Dividing instead of multiplying gives the tiny or huge wrong values.
+
+  - id: che-atom-032
+    topic: planck-photoelectric
+    subtopic: Number of photons
+    concept: Number of photons in a given energy of monochromatic light
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: N = E_total ÷ (hc/λ)
+    tags: [photon-count]
+    stem: How many photons of wavelength 600 nm together carry 1.0 J of energy? (h = 6.626 × 10^{-34} J s, c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 3.3 × 10^{-19}
+      - 6.0 × 10^{23}
+      - 3.0 × 10^{18}
+      - 1.5 × 10^{15}
+    answer: 2
+    explanation: Energy per photon = hc/λ = (6.626 × 10^{-34} × 3.0 × 10^8) ÷ 6.0 × 10^{-7} = 3.31 × 10^{-19} J. N = 1.0 ÷ 3.31 × 10^{-19} ≈ 3.0 × 10^{18}. The first option is the energy of one photon, not the count.
+
+  - id: che-atom-033
+    topic: planck-photoelectric
+    subtopic: Photoelectric effect
+    concept: Intensity affects the number, not the energy, of photoelectrons
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [photoelectric, trap, ncert-line]
+    stem: When the intensity of light of a fixed frequency (above threshold) falling on a metal is doubled, the
+    options:
+      - kinetic energy of each photoelectron doubles
+      - number of photoelectrons emitted per second increases
+      - threshold frequency of the metal decreases
+      - work function of the metal increases
+    answer: 1
+    explanation: Brighter light means more photons per second, so more electrons are ejected, but each photon still has energy hν, so the kinetic energy of electrons is unchanged. Threshold frequency and work function are properties of the metal.
+
+  - id: che-atom-034
+    topic: planck-photoelectric
+    subtopic: Threshold frequency
+    concept: ν_0 = W_0 ÷ h
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    formula: W_0 = hν_0
+    tags: [work-function, threshold-frequency]
+    stem: The work function of a metal is 2.0 eV. What is its threshold frequency? (1 eV = 1.602 × 10^{-19} J, h = 6.626 × 10^{-34} J s)
+    options:
+      - 3.02 × 10^{14} Hz
+      - 2.42 × 10^{14} Hz
+      - 6.20 × 10^{15} Hz
+      - 4.84 × 10^{14} Hz
+    answer: 3
+    explanation: W_0 = 2.0 × 1.602 × 10^{-19} = 3.204 × 10^{-19} J; ν_0 = W_0 ÷ h = 3.204 × 10^{-19} ÷ 6.626 × 10^{-34} ≈ 4.84 × 10^{14} Hz.
+
+  - id: che-atom-035
+    topic: planck-photoelectric
+    subtopic: Einstein's photoelectric equation
+    concept: KE_max = hν − W_0
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: ½m_ev^2 = hν − W_0
+    tags: [photoelectric]
+    stem: Photons of energy 4.0 eV strike a metal of work function 2.5 eV. The maximum kinetic energy of the emitted electrons is
+    options:
+      - 1.5 eV
+      - 6.5 eV
+      - 2.5 eV
+      - 1.6 eV
+    answer: 0
+    explanation: KE_max = hν − W_0 = 4.0 − 2.5 = 1.5 eV. Adding the two energies (6.5 eV) ignores the energy spent to free the electron.
+
+  - id: che-atom-036
+    topic: planck-photoelectric
+    subtopic: Black body radiation
+    concept: An ideal black body absorbs and emits radiation of all frequencies
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [black-body, ncert-line]
+    stem: An ideal body that emits and absorbs radiation of all frequencies uniformly is called a
+    options:
+      - white body
+      - grey body
+      - black body
+      - perfect reflector
+    answer: 2
+    explanation: NCERT defines a black body as an ideal body that emits and absorbs all frequencies; its radiation is black-body radiation. Planck's quantum theory arose from explaining its spectrum.
+
+  - id: che-atom-037
+    topic: planck-photoelectric
+    subtopic: Photoelectric effect
+    concept: Caesium, with the lowest ionisation energy, emits electrons even with visible light
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [photoelectric, ncert-line]
+    stem: Which metal is used in photoelectric cells because it emits electrons even with low-frequency visible light?
+    options:
+      - Platinum
+      - Caesium
+      - Copper
+      - Iron
+    answer: 1
+    explanation: Caesium has the lowest ionisation energy (and work function) among stable metals, so even red or yellow light can eject electrons from it. Metals like platinum need ultraviolet light.
+
+  - id: che-atom-038
+    topic: planck-photoelectric
+    subtopic: Photoelectric graphs
+    concept: Slope of KE_max versus ν equals Planck's constant
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, photoelectric]
+    stem: For a metal, the maximum kinetic energy of photoelectrons is plotted against the frequency of incident light. The slope of the straight line obtained is
+    options:
+      - the work function
+      - the threshold frequency
+      - e/h
+      - Planck's constant h
+    answer: 3
+    explanation: KE_max = hν − hν_0 is a straight line in ν with slope h. The intercept on the frequency axis gives ν_0 and the extrapolated y-intercept gives −W_0.
+
+  - id: che-atom-039
+    topic: planck-photoelectric
+    subtopic: Threshold frequency
+    concept: Photon energy depends on frequency, not intensity
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [photoelectric, threshold-frequency, trap]
+    stem: |-
+      Assertion (A): No photoelectrons are emitted if the frequency of light is below the threshold frequency, however intense the light is.
+      Reason (R): The energy of a photon increases with the intensity of the light.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: A is a key photoelectric observation. R is false because a photon's energy is hν, fixed by frequency; intensity only changes the number of photons, so no single photon below ν_0 can eject an electron.
+
+  - id: che-atom-040
+    topic: planck-photoelectric
+    subtopic: Energy of a mole of photons
+    concept: Energy of one einstein (mole of photons)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: E = N_A hν
+    tags: [mole-concept, multi-concept]
+    stem: What is the energy of one mole of photons of frequency 5.0 × 10^{14} Hz? (h = 6.626 × 10^{-34} J s, N_A = 6.022 × 10^{23} mol^{-1})
+    options:
+      - 199.5 kJ
+      - 3.31 × 10^{-19} J
+      - 19.95 kJ
+      - 399 kJ
+    answer: 0
+    explanation: One photon has E = 6.626 × 10^{-34} × 5.0 × 10^{14} = 3.313 × 10^{-19} J. For a mole, 3.313 × 10^{-19} × 6.022 × 10^{23} = 1.995 × 10^5 J ≈ 199.5 kJ.
+
+  - id: che-atom-041
+    topic: atomic-spectra
+    subtopic: Spectral series
+    concept: Balmer series lies in the visible region
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [balmer, ncert-line]
+    stem: Which series of hydrogen spectral lines falls in the visible region?
+    options:
+      - Lyman
+      - Balmer
+      - Paschen
+      - Brackett
+    answer: 1
+    explanation: The Balmer series (transitions to n = 2) is the only hydrogen series with lines in the visible region. Lyman is ultraviolet; Paschen and Brackett are infrared.
+
+  - id: che-atom-042
+    topic: atomic-spectra
+    subtopic: Spectral series
+    concept: Paschen series ends at n = 3
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [paschen]
+    stem: The spectral series of hydrogen in which all transitions end in the orbit n = 3 is the
+    options:
+      - Lyman series
+      - Balmer series
+      - Pfund series
+      - Paschen series
+    answer: 3
+    explanation: Lyman ends at n = 1, Balmer at n = 2, Paschen at n = 3, Brackett at n = 4 and Pfund at n = 5.
+
+  - id: che-atom-043
+    topic: atomic-spectra
+    subtopic: Number of spectral lines
+    concept: Maximum lines from level n to ground state = n(n − 1)/2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: lines = n(n − 1)/2
+    tags: [spectral-lines]
+    stem: A sample of hydrogen atoms is excited to n = 5. The maximum number of spectral lines emitted as they return to the ground state is
+    options:
+      - "4"
+      - "5"
+      - "10"
+      - "15"
+    answer: 2
+    explanation: Maximum lines = n(n − 1)/2 = 5 × 4/2 = 10, counting every possible downward jump. Four lines would be the answer for a single atom stepping down one level at a time.
+
+  - id: che-atom-044
+    topic: atomic-spectra
+    subtopic: Rydberg formula
+    concept: Wavenumber of the first Balmer line (H_α)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ν̄ = R_H(1/n_1^2 − 1/n_2^2)
+    tags: [balmer, rydberg]
+    stem: Using R_H = 109,677 cm^{-1}, the wavenumber of the first line of the Balmer series of hydrogen is about
+    options:
+      - 15,233 cm^{-1}
+      - 27,419 cm^{-1}
+      - 82,258 cm^{-1}
+      - 5,332 cm^{-1}
+    answer: 0
+    explanation: The first Balmer line is n = 3 → 2, so ν̄ = 109,677 × (1/4 − 1/9) = 109,677 × 5/36 ≈ 15,233 cm^{-1}. 27,419 cm^{-1} is the Balmer series limit and 82,258 cm^{-1} is the first Lyman line.
+
+  - id: che-atom-045
+    topic: atomic-spectra
+    subtopic: Series limit
+    concept: Shortest wavelength of a series corresponds to n_2 = ∞
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [lyman, series-limit]
+    stem: The shortest-wavelength line in the Lyman series of hydrogen arises from the transition
+    options:
+      - n = 2 → n = 1
+      - n = 3 → n = 1
+      - n = ∞ → n = 2
+      - n = ∞ → n = 1
+    answer: 3
+    explanation: Shortest wavelength means the largest energy gap, which within the Lyman series is from n = ∞ to n = 1 (the series limit). The 2 → 1 jump gives the longest Lyman wavelength.
+
+  - id: che-atom-046
+    topic: atomic-spectra
+    subtopic: Series limit
+    concept: Balmer series limit wavenumber = R_H/4
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: ν̄_limit = R_H/n_1^2
+    tags: [balmer, series-limit]
+    stem: Taking R_H = 109,677 cm^{-1}, the wavenumber of the series limit of the Balmer series is
+    options:
+      - 109,677 cm^{-1}
+      - 27,419 cm^{-1}
+      - 12,186 cm^{-1}
+      - 15,233 cm^{-1}
+    answer: 1
+    explanation: For the series limit n_2 = ∞, so ν̄ = R_H/n_1^2 = 109,677/4 ≈ 27,419 cm^{-1}. 15,233 cm^{-1} is the first Balmer line, not the limit.
+
+  - id: che-atom-047
+    topic: atomic-spectra
+    subtopic: Emission and absorption spectra
+    concept: Line spectra are characteristic fingerprints of elements
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [line-spectrum, ncert-line]
+    stem: Which statement about atomic spectra is correct?
+    options:
+      - White light from the sun gives a line spectrum
+      - An absorption spectrum shows bright lines on a dark background
+      - Each element has a unique line emission spectrum
+      - Excited atoms emit a continuous spectrum
+    answer: 2
+    explanation: Atoms in the gas phase emit only specific wavelengths, giving a line spectrum unique to each element (its fingerprint). White light gives a continuous spectrum, and an absorption spectrum has dark lines on a bright background.
+
+  - id: che-atom-048
+    topic: atomic-spectra
+    subtopic: Spectral series
+    concept: Lower orbit n_1 for each hydrogen series
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [spectral-series]
+    stem: |-
+      Match the hydrogen spectral series (List I) with the value of n_1 (the lower orbit) in List II.
+      List I: P. Lyman; Q. Balmer; R. Paschen; S. Brackett
+      List II: 1. n_1 = 3; 2. n_1 = 1; 3. n_1 = 4; 4. n_1 = 2
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-2, Q-1, R-4, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-4, R-3, S-1
+    answer: 0
+    explanation: Lyman ends at n = 1, Balmer at 2, Paschen at 3 and Brackett at 4. With List II as given, that is P-2, Q-4, R-1, S-3.
+
+  - id: che-atom-049
+    topic: atomic-spectra
+    subtopic: Rydberg formula
+    concept: Ratio of wavelengths of first Lyman and first Balmer lines
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: 1/λ = R_H(1/n_1^2 − 1/n_2^2)
+    tags: [lyman, balmer, rydberg]
+    stem: The ratio of the wavelength of the first line of the Lyman series to that of the first line of the Balmer series of hydrogen is
+    options:
+      - "27:5"
+      - "5:27"
+      - "4:9"
+      - "3:4"
+    answer: 1
+    explanation: For Lyman (2 → 1), 1/λ ∝ 3/4; for Balmer (3 → 2), 1/λ ∝ 5/36. So λ_L/λ_B = (5/36) ÷ (3/4) = 5/27. Inverting the ratio of wavenumbers wrongly gives 27:5.
+
+  - id: che-atom-050
+    topic: atomic-spectra
+    subtopic: Number of spectral lines
+    concept: Balmer lines from atoms excited to n = 6
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [balmer, spectral-lines, trap]
+    stem: Hydrogen atoms are excited to n = 6. How many lines of the Balmer series can appear in the emission spectrum?
+    options:
+      - "15"
+      - "5"
+      - "6"
+      - "4"
+    answer: 3
+    explanation: Balmer lines end at n = 2 and can start from n = 3, 4, 5 or 6, giving 4 lines. 15 is the total number of lines of all series from n = 6.
+
+  - id: che-atom-051
+    topic: bohr-model
+    subtopic: Radius of orbits
+    concept: r_n = 52.9 n^2/Z pm
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: r_n = 52.9 n^2/Z pm
+    tags: [bohr-radius]
+    stem: The radius of the second Bohr orbit of the hydrogen atom is (r_1 = 52.9 pm)
+    options:
+      - 105.8 pm
+      - 26.45 pm
+      - 211.6 pm
+      - 476.1 pm
+    answer: 2
+    explanation: r_n = 52.9 × n^2 pm, so r_2 = 52.9 × 4 = 211.6 pm. Multiplying by n instead of n^2 gives 105.8 pm.
+
+  - id: che-atom-052
+    topic: bohr-model
+    subtopic: Energy of orbits
+    concept: E_n = −13.6 Z^2/n^2 eV
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: E_n = −13.6 Z^2/n^2 eV
+    tags: [bohr-energy]
+    stem: The energy of the electron in the third orbit of a hydrogen atom is
+    options:
+      - −1.51 eV
+      - −4.53 eV
+      - −3.40 eV
+      - −0.85 eV
+    answer: 0
+    explanation: E_3 = −13.6/3^2 = −1.51 eV. −3.40 eV is E_2 and −0.85 eV is E_4; −4.53 eV comes from dividing by n instead of n^2.
+
+  - id: che-atom-053
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: Ionisation energy of He^+ is Z^2 times that of H
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: IE = 13.6 Z^2/n^2 eV
+    tags: [hydrogen-like, ionisation-energy]
+    stem: The ionisation energy of a hydrogen atom in its ground state is 13.6 eV. The ionisation energy of He^+ in its ground state is
+    options:
+      - 27.2 eV
+      - 54.4 eV
+      - 6.8 eV
+      - 122.4 eV
+    answer: 1
+    explanation: For hydrogen-like species, IE = 13.6 Z^2/n^2 eV. For He^+ (Z = 2, n = 1), IE = 13.6 × 4 = 54.4 eV. 27.2 eV uses Z instead of Z^2; 122.4 eV is for Li^{2+}.
+
+  - id: che-atom-054
+    topic: bohr-model
+    subtopic: Velocity of electron
+    concept: Electron velocity in a Bohr orbit varies as Z/n
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: v_n ∝ Z/n
+    tags: [bohr-velocity, proportionality]
+    stem: In a hydrogen atom, the ratio of the speed of the electron in the first Bohr orbit to that in the second orbit is
+    options:
+      - "1:2"
+      - "1:4"
+      - "4:1"
+      - "2:1"
+    answer: 3
+    explanation: "In Bohr's model v_n = 2.18 × 10^6 × Z/n m s^{-1}, so v_1 : v_2 = 2 : 1. The electron moves slower in outer orbits; 4 : 1 would follow the radius ratio, which goes as n^2."
+
+  - id: che-atom-055
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: Radius of first orbit of Li^{2+} = 52.9/3 pm
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: r_n = 52.9 n^2/Z pm
+    tags: [hydrogen-like, bohr-radius]
+    stem: The radius of the first Bohr orbit of Li^{2+} (Z = 3) is about
+    options:
+      - 158.7 pm
+      - 5.88 pm
+      - 17.6 pm
+      - 52.9 pm
+    answer: 2
+    explanation: r_n = 52.9 n^2/Z pm, so for n = 1, Z = 3, r = 52.9/3 ≈ 17.6 pm. A larger nuclear charge pulls the electron closer; multiplying by Z gives 158.7 pm.
+
+  - id: che-atom-056
+    topic: bohr-model
+    subtopic: Angular momentum quantisation
+    concept: mvr = nh/2π
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: mvr = nh/2π
+    tags: [angular-momentum]
+    stem: According to Bohr, the angular momentum of an electron in the third orbit of a hydrogen atom is
+    options:
+      - 3h/2π
+      - 3h/π
+      - h/6π
+      - 9h/2π
+    answer: 0
+    explanation: Bohr postulated that angular momentum is quantised as mvr = nh/2π. For n = 3 it is 3h/2π; it grows linearly with n, not with n^2.
+
+  - id: che-atom-057
+    topic: bohr-model
+    subtopic: Limitations of Bohr model
+    concept: Bohr model does explain the hydrogen line spectrum
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [bohr-limitations, trap]
+    stem: Which of the following is NOT a limitation of Bohr's model?
+    options:
+      - It cannot explain the spectra of multi-electron atoms
+      - It cannot explain the line spectrum of the hydrogen atom
+      - It cannot explain the Zeeman and Stark effects
+      - It is inconsistent with the Heisenberg uncertainty principle
+    answer: 1
+    explanation: Bohr's model successfully explains the line spectrum of hydrogen and hydrogen-like ions. Its failures include multi-electron spectra, the splitting of lines in magnetic (Zeeman) or electric (Stark) fields, and the conflict with the uncertainty principle.
+
+  - id: che-atom-058
+    topic: bohr-model
+    subtopic: Energy of transition
+    concept: Energy emitted in the n = 2 → 1 transition of H
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: ΔE = 2.18 × 10^{-18}(1/n_f^2 − 1/n_i^2) J
+    tags: [transition-energy]
+    stem: How much energy is released when the electron of a hydrogen atom falls from n = 2 to n = 1? (E_n = −2.18 × 10^{-18}/n^2 J)
+    options:
+      - 5.45 × 10^{-19} J
+      - 2.18 × 10^{-18} J
+      - 1.09 × 10^{-18} J
+      - 1.64 × 10^{-18} J
+    answer: 3
+    explanation: ΔE = 2.18 × 10^{-18} × (1 − 1/4) = 2.18 × 10^{-18} × 3/4 ≈ 1.64 × 10^{-18} J. 2.18 × 10^{-18} J would be the ionisation energy, i.e. ∞ → 1.
+
+  - id: che-atom-059
+    topic: bohr-model
+    subtopic: Energy of orbits
+    concept: Energy gap between successive orbits decreases as n increases
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [bohr-energy, trap]
+    stem: |-
+      Assertion (A): In a hydrogen atom, the energy difference between successive orbits increases as n increases.
+      Reason (R): The energy of the electron in the nth orbit is proportional to −1/n^2.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: Since E_n ∝ −1/n^2, levels crowd together as n rises; e.g. E_2 − E_1 = 10.2 eV but E_3 − E_2 = 1.89 eV. So A is false while R is true.
+
+  - id: che-atom-060
+    topic: bohr-model
+    subtopic: Hydrogen-like species
+    concept: Comparing orbit radii of He^+ and H
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: r ∝ n^2/Z
+    tags: [hydrogen-like, proportionality]
+    stem: The ratio of the radius of the second Bohr orbit of He^+ to the radius of the first Bohr orbit of H is
+    options:
+      - "4"
+      - "1/2"
+      - "2"
+      - "1"
+    answer: 2
+    explanation: r ∝ n^2/Z. For He^+ (n = 2, Z = 2) it is 4/2 = 2; for H (n = 1, Z = 1) it is 1. The ratio is 2.
+
+  - id: che-atom-061
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength
+    concept: de Broglie wavelength of a macroscopic object is negligible
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: λ = h/mv
+    tags: [de-broglie]
+    stem: The de Broglie wavelength of a 0.1 kg ball moving at 10 m s^{-1} is (h = 6.626 × 10^{-34} J s)
+    options:
+      - 6.626 × 10^{-35} m
+      - 6.626 × 10^{-34} m
+      - 6.626 × 10^{-32} m
+      - 6.626 × 10^{-33} m
+    answer: 1
+    explanation: λ = h/mv = 6.626 × 10^{-34} ÷ (0.1 × 10) = 6.626 × 10^{-34} m. This is far too small to detect, which is why wave nature is not observed for everyday objects.
+
+  - id: che-atom-062
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength
+    concept: de Broglie wavelength of an electron
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: λ = h/mv
+    tags: [de-broglie, electron]
+    stem: What is the de Broglie wavelength of an electron (m = 9.1 × 10^{-31} kg) moving at 1.0 × 10^6 m s^{-1}? (h = 6.626 × 10^{-34} J s)
+    options:
+      - 7.28 × 10^{-10} m
+      - 7.28 × 10^{-7} m
+      - 1.37 × 10^{-9} m
+      - 7.28 × 10^{-12} m
+    answer: 0
+    explanation: λ = 6.626 × 10^{-34} ÷ (9.1 × 10^{-31} × 1.0 × 10^6) = 6.626 × 10^{-34} ÷ 9.1 × 10^{-25} ≈ 7.28 × 10^{-10} m, about 0.73 nm, comparable to atomic dimensions.
+
+  - id: che-atom-063
+    topic: dual-nature-uncertainty
+    subtopic: Significance of de Broglie relation
+    concept: Wave nature matters only for microscopic particles
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [de-broglie, ncert-line]
+    stem: Why is the wave character of a moving cricket ball not observed?
+    options:
+      - A cricket ball has no momentum
+      - de Broglie's relation applies only to charged particles
+      - Its wavelength is too small to be detected because its mass is large
+      - Its wavelength is too large to be detected
+    answer: 2
+    explanation: Since λ = h/mv and h is tiny, a large mass gives an extremely short wavelength that no instrument can detect. The relation applies to all matter, charged or not.
+
+  - id: che-atom-064
+    topic: dual-nature-uncertainty
+    subtopic: Heisenberg uncertainty principle
+    concept: Minimum uncertainty in electron velocity from Δx
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: Δx × mΔv ≥ h/4π
+    tags: [uncertainty, electron]
+    stem: The uncertainty in the position of an electron (m = 9.1 × 10^{-31} kg) is 1.0 nm. The minimum uncertainty in its velocity is about (h = 6.626 × 10^{-34} J s)
+    options:
+      - 5.8 × 10^{2} m s^{-1}
+      - 7.3 × 10^{5} m s^{-1}
+      - 5.8 × 10^{7} m s^{-1}
+      - 5.8 × 10^{4} m s^{-1}
+    answer: 3
+    explanation: Δv = h/(4π m Δx) = 6.626 × 10^{-34} ÷ (4 × 3.14 × 9.1 × 10^{-31} × 1.0 × 10^{-9}) ≈ 6.626 × 10^{-34} ÷ 1.14 × 10^{-38} ≈ 5.8 × 10^4 m s^{-1}. Leaving out 4π gives 7.3 × 10^5 m s^{-1}.
+
+  - id: che-atom-065
+    topic: dual-nature-uncertainty
+    subtopic: Heisenberg uncertainty principle
+    concept: Statement of the uncertainty principle
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: Δx·Δp_x ≥ h/4π
+    tags: [uncertainty, ncert-line]
+    stem: Heisenberg's uncertainty principle is expressed as
+    options:
+      - Δx·Δp ≤ h/4π
+      - Δx·Δp ≥ h/4π
+      - Δx·Δv ≥ h/4π
+      - Δx/Δp ≥ h/4π
+    answer: 1
+    explanation: The product of the uncertainties in position and momentum is at least h/4π. The version with Δv misses the mass, and ≤ reverses the meaning.
+
+  - id: che-atom-066
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength and kinetic energy
+    concept: λ ∝ 1/√K for a given particle
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: λ = h/√(2mK)
+    tags: [de-broglie, proportionality]
+    stem: If the kinetic energy of an electron is made four times, its de Broglie wavelength becomes
+    options:
+      - four times
+      - one-fourth
+      - half
+      - twice
+    answer: 2
+    explanation: p = √(2mK), so λ = h/√(2mK) ∝ 1/√K. Quadrupling K doubles the momentum and halves λ. One-fourth would be true if λ were proportional to 1/K.
+
+  - id: che-atom-067
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength
+    concept: At equal velocity, λ is inversely proportional to mass
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: λ = h/mv
+    tags: [de-broglie, proportionality]
+    stem: Particles A and B have masses in the ratio 1:4 and move with the same velocity. The ratio of their de Broglie wavelengths λ_A:λ_B is
+    options:
+      - "4:1"
+      - "1:4"
+      - "1:2"
+      - "2:1"
+    answer: 0
+    explanation: At equal velocity λ = h/mv ∝ 1/m, so λ_A:λ_B = m_B:m_A = 4:1. The lighter particle has the longer wavelength.
+
+  - id: che-atom-068
+    topic: dual-nature-uncertainty
+    subtopic: Evidence for wave nature
+    concept: Electron microscope uses the wave nature of electrons
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [electron-microscope, ncert-line]
+    stem: The working of the electron microscope is based on the
+    options:
+      - particle nature of light
+      - photoelectric effect
+      - Zeeman effect
+      - wave-like behaviour of electrons
+    answer: 3
+    explanation: NCERT notes that the electron microscope, which magnifies about 15 million times, is based on the wave-like behaviour of electrons predicted by de Broglie. Electron diffraction first confirmed this behaviour.
+
+  - id: che-atom-069
+    topic: dual-nature-uncertainty
+    subtopic: Significance of uncertainty principle
+    concept: Uncertainty principle rules out precise orbits
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [uncertainty, bohr-limitations]
+    stem: |-
+      Assertion (A): The concept of electrons moving in definite paths (orbits) around the nucleus is not valid.
+      Reason (R): The exact position and exact momentum of an electron cannot be determined simultaneously.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A trajectory needs exact position and velocity at every instant. The uncertainty principle forbids knowing both at once for an electron, so well-defined orbits lose meaning; R explains A.
+
+  - id: che-atom-070
+    topic: dual-nature-uncertainty
+    subtopic: de Broglie wavelength of accelerated electrons
+    concept: λ of an electron accelerated through 100 V
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: λ = h/√(2meV)
+    tags: [de-broglie, multi-concept]
+    stem: An electron at rest is accelerated through a potential difference of 100 V. Its de Broglie wavelength is about (h = 6.63 × 10^{-34} J s, m = 9.1 × 10^{-31} kg, e = 1.6 × 10^{-19} C)
+    options:
+      - 1.23 nm
+      - 0.123 nm
+      - 12.3 nm
+      - 0.0123 nm
+    answer: 1
+    explanation: KE = eV = 1.6 × 10^{-17} J; p = √(2mK) = √(2 × 9.1 × 10^{-31} × 1.6 × 10^{-17}) ≈ 5.4 × 10^{-24} kg m s^{-1}; λ = h/p ≈ 1.23 × 10^{-10} m = 0.123 nm. This matches the shortcut λ = 1.227/√V nm.
+
+  - id: che-atom-071
+    topic: quantum-mechanical-model
+    subtopic: Wave function
+    concept: "|ψ|^2 gives probability density"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [wave-function, ncert-line]
+    stem: In the quantum mechanical model, the probability of finding an electron at a point is proportional to
+    options:
+      - ψ
+      - 1/ψ
+      - "|ψ|^2"
+      - √ψ
+    answer: 2
+    explanation: The wave function ψ itself has no physical meaning and can be negative; |ψ|^2 is the probability density, which is always positive.
+
+  - id: che-atom-072
+    topic: quantum-mechanical-model
+    subtopic: Radial nodes
+    concept: Radial nodes = n − l − 1
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: radial nodes = n − l − 1
+    tags: [nodes]
+    stem: How many radial nodes does a 3s orbital have?
+    options:
+      - "0"
+      - "1"
+      - "3"
+      - "2"
+    answer: 3
+    explanation: Radial nodes = n − l − 1 = 3 − 0 − 1 = 2. An s orbital has no angular node, so all its n − 1 = 2 nodes are radial.
+
+  - id: che-atom-073
+    topic: quantum-mechanical-model
+    subtopic: Radial nodes
+    concept: Radial nodes of a 4d orbital
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: radial nodes = n − l − 1
+    tags: [nodes, trap]
+    stem: The number of radial nodes in a 4d orbital is
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "0"
+    answer: 0
+    explanation: For 4d, n = 4 and l = 2, so radial nodes = 4 − 2 − 1 = 1. The total nodes are n − 1 = 3, of which 2 are angular; picking 3 confuses total with radial nodes.
+
+  - id: che-atom-074
+    topic: quantum-mechanical-model
+    subtopic: Angular nodes
+    concept: d_{xy} has two nodal planes (xz and yz)
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [nodal-planes, d-orbitals]
+    stem: How many nodal planes pass through the nucleus of a d_{xy} orbital?
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "0"
+    answer: 1
+    explanation: A d orbital has l = 2 angular nodes. For d_{xy} these are the xz and yz planes, where the lobes (lying between the x and y axes) vanish.
+
+  - id: che-atom-075
+    topic: quantum-mechanical-model
+    subtopic: Shapes of d orbitals
+    concept: d_{z^2} has no nodal plane; its angular nodes are conical surfaces
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [d-orbitals, exception, trap]
+    stem: Which statement about d orbitals is correct?
+    options:
+      - The d_{x^2−y^2} orbital has lobes lying between the x and y axes
+      - All five 3d orbitals have exactly two nodal planes each
+      - The d_{z^2} orbital has two conical nodal surfaces instead of nodal planes
+      - The 3d orbitals have one radial node each
+    answer: 2
+    explanation: d_{z^2} still has l = 2 angular nodes, but they are cone-shaped surfaces, so it has no nodal plane. d_{x^2−y^2} has lobes along the axes, and 3d orbitals have 3 − 2 − 1 = 0 radial nodes.
+
+  - id: che-atom-076
+    topic: quantum-mechanical-model
+    subtopic: Shapes of d orbitals
+    concept: d_{x^2−y^2} lobes lie along the x and y axes
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [d-orbitals]
+    stem: Which d orbital has its four lobes lying along the x and y axes?
+    options:
+      - d_{xy}
+      - d_{yz}
+      - d_{z^2}
+      - d_{x^2−y^2}
+    answer: 3
+    explanation: The lobes of d_{x^2−y^2} point along the x and y axes. d_{xy}, d_{yz} and d_{zx} have lobes between the axes, and d_{z^2} lies along z with a ring in the xy plane.
+
+  - id: che-atom-077
+    topic: quantum-mechanical-model
+    subtopic: Size of orbitals
+    concept: Size and energy of s orbitals increase with n
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [s-orbitals]
+    stem: Arrange the 1s, 2s, 3s and 4s orbitals of an atom in increasing order of size.
+    options:
+      - 1s < 2s < 3s < 4s
+      - 4s < 3s < 2s < 1s
+      - 1s < 3s < 2s < 4s
+      - 2s < 1s < 3s < 4s
+    answer: 0
+    explanation: All s orbitals are spherical, but their size increases with n because the electron lies farther from the nucleus on average. So 1s < 2s < 3s < 4s.
+
+  - id: che-atom-078
+    topic: quantum-mechanical-model
+    subtopic: Radial probability distribution
+    concept: Number of maxima in a radial distribution curve = n − l
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [radial-distribution, graph]
+    stem: How many maxima (peaks) appear in the plot of radial probability density 4πr^2ψ^2 against distance r for a 3p orbital?
+    options:
+      - "1"
+      - "3"
+      - "2"
+      - "4"
+    answer: 2
+    explanation: The number of peaks equals n − l = 3 − 1 = 2, separated by one radial node (n − l − 1 = 1). Three peaks would be expected for 3s, not 3p.
+
+  - id: che-atom-079
+    topic: quantum-mechanical-model
+    subtopic: Degeneracy in hydrogen
+    concept: In H, orbital energy depends only on n
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [degenerate-orbitals, confused-pair]
+    stem: In a hydrogen atom, which pair of orbitals has the same energy?
+    options:
+      - 2s and 3s
+      - 1s and 2p
+      - 3p and 4s
+      - 3s and 3d
+    answer: 3
+    explanation: For a one-electron atom, energy depends only on n, so 3s, 3p and 3d are degenerate. In multi-electron atoms these would differ because of shielding.
+
+  - id: che-atom-080
+    topic: quantum-mechanical-model
+    subtopic: Orbit versus orbital
+    concept: Properties of ψ, ψ^2 and orbitals
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [wave-function, orbit-vs-orbital, confused-pair]
+    stem: |-
+      Consider the statements:
+      I. The wave function ψ can be positive or negative.
+      II. ψ^2 is always positive and gives the probability density.
+      III. An orbit and an orbital mean the same thing.
+      IV. An orbital can hold at most two electrons.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and II only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: I, II and IV are correct. An orbit is Bohr's definite circular path, whereas an orbital is a three-dimensional region of high probability described by ψ, so III is wrong.
+
+  - id: che-atom-081
+    topic: quantum-numbers
+    subtopic: Azimuthal quantum number
+    concept: l = 2 for a d subshell
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [azimuthal]
+    stem: What is the value of the azimuthal quantum number l for a d subshell?
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "0"
+    answer: 1
+    explanation: l = 0, 1, 2, 3 correspond to s, p, d, f. So a d subshell has l = 2.
+
+  - id: che-atom-082
+    topic: quantum-numbers
+    subtopic: Orbitals in a shell
+    concept: Number of orbitals in shell n = n^2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    formula: orbitals = n^2
+    tags: [shell-capacity]
+    stem: The total number of orbitals in the shell with n = 4 is
+    options:
+      - "4"
+      - "8"
+      - "16"
+      - "32"
+    answer: 2
+    explanation: A shell has n^2 orbitals, so n = 4 has 16 (one 4s, three 4p, five 4d, seven 4f). 32 is the number of electrons it can hold.
+
+  - id: che-atom-083
+    topic: quantum-numbers
+    subtopic: Allowed sets
+    concept: l must be less than n
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [allowed-values, trap]
+    stem: Which set of quantum numbers (n, l, m_l, m_s) is NOT allowed?
+    options:
+      - 3, 2, −2, +½
+      - 4, 0, 0, −½
+      - 3, 1, −1, −½
+      - 2, 2, 1, +½
+    answer: 3
+    explanation: l can take values 0 to n − 1, so for n = 2 the maximum l is 1. The set with n = 2, l = 2 is forbidden; the other sets satisfy all rules.
+
+  - id: che-atom-084
+    topic: quantum-numbers
+    subtopic: Electrons in a shell
+    concept: Maximum electrons in shell n = 2n^2
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: 2n^2
+    tags: [shell-capacity]
+    stem: The maximum number of electrons that the M shell (n = 3) can hold is
+    options:
+      - "18"
       - "9"
+      - "8"
+      - "32"
+    answer: 0
+    explanation: A shell holds 2n^2 electrons, so n = 3 holds 18. The M shell has only 8 electrons in argon, but its capacity including 3d is 18.
+
+  - id: che-atom-085
+    topic: quantum-numbers
+    subtopic: Electrons in a subshell
+    concept: n = 3, l = 1 is the 3p subshell holding 6 electrons
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [subshell-capacity]
+    stem: The maximum number of electrons in an atom that can have n = 3 and l = 1 is
+    options:
+      - "2"
+      - "6"
+      - "10"
+      - "18"
+    answer: 1
+    explanation: n = 3, l = 1 describes the 3p subshell, which has three orbitals and so holds 6 electrons. 18 counts the whole third shell.
+
+  - id: che-atom-086
+    topic: quantum-numbers
+    subtopic: Magnetic quantum number
+    concept: Counting electrons with a given n and m_l
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [magnetic, multi-concept]
+    stem: What is the maximum number of electrons in an atom that can have n = 3 and m_l = 0?
+    options:
+      - "2"
       - "3"
       - "6"
       - "18"
-    answer: 0
-    explanation: A shell has n^2 orbitals. For n = 3 that is one 3s, three 3p and five 3d orbitals, 9 in all, holding up to 18 electrons.
-
-  - id: che-atom-007
-    topic: quantum-numbers
-    category: application
-    difficulty: 3
-    battle: true
-    stem: Which set of quantum numbers (n, l, m_l) is NOT allowed?
-    options:
-      - (1, 0, 0)
-      - (2, 1, 0)
-      - (2, 2, 0)
-      - (3, 2, −2)
     answer: 2
-    explanation: l can only take the values 0 to n − 1, so l = 2 is impossible when n = 2. The other sets satisfy 0 ≤ l < n and −l ≤ m_l ≤ l.
+    explanation: In n = 3, one orbital in each of the 3s (l = 0), 3p (l = 1) and 3d (l = 2) subshells has m_l = 0. That is 3 orbitals, holding 6 electrons. Choosing 3 counts orbitals, not electrons.
 
-  - id: che-atom-008
+  - id: che-atom-087
     topic: quantum-numbers
-    category: application
-    difficulty: 2
+    subtopic: Magnetic quantum number
+    concept: m_l gives the spatial orientation of an orbital
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
     battle: true
-    stem: By the (n + l) rule, which of these orbitals is filled first?
+    tags: [magnetic]
+    stem: Which quantum number describes the orientation of an orbital in space?
     options:
+      - Principal quantum number
+      - Spin quantum number
+      - Azimuthal quantum number
+      - Magnetic quantum number
+    answer: 3
+    explanation: The magnetic quantum number m_l gives the spatial orientation of the orbital with respect to standard axes. n gives size and energy, l gives shape and m_s gives electron spin.
+
+  - id: che-atom-088
+    topic: quantum-numbers
+    subtopic: Magnetic quantum number
+    concept: Values of m_l for l = 3 = 2l + 1 = 7
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    formula: number of m_l values = 2l + 1
+    tags: [magnetic, f-orbitals]
+    stem: How many values of m_l are possible for l = 3?
+    options:
+      - "7"
+      - "3"
+      - "6"
+      - "14"
+    answer: 0
+    explanation: m_l runs from −l to +l, giving 2l + 1 = 7 values for l = 3 (the seven f orbitals). 14 is the number of electrons an f subshell can hold.
+
+  - id: che-atom-089
+    topic: quantum-numbers
+    subtopic: (n + l) rule
+    concept: Among equal n + l, the orbital with higher n has higher energy
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [n-plus-l, aufbau]
+    stem: In a multi-electron atom, which of the orbitals 4p, 5s, 3d and 4s has the highest energy?
+    options:
+      - 4p
+      - 5s
       - 3d
       - 4s
-      - 4p
-      - 4d
     answer: 1
-    explanation: Orbitals fill in order of increasing n + l. 4s has 4 + 0 = 4, 3d and 4p have 5, and 4d has 6, so 4s fills first.
+    explanation: 4p, 5s and 3d all have n + l = 5 (4s has 4). For equal n + l, the orbital with larger n is higher in energy, so 5s > 4p > 3d > 4s.
+
+  - id: che-atom-090
+    topic: quantum-numbers
+    subtopic: Meaning of quantum numbers
+    concept: What each quantum number describes
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [quantum-numbers]
+    stem: |-
+      Match each quantum number (List I) with what it describes (List II).
+      List I: P. Principal (n); Q. Azimuthal (l); R. Magnetic (m_l); S. Spin (m_s)
+      List II: 1. Orientation of the orbital; 2. Shape of the orbital; 3. Spin orientation of the electron; 4. Shell, size and energy
+    options:
+      - P-4, Q-1, R-2, S-3
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-4, Q-2, R-3, S-1
+    answer: 2
+    explanation: n identifies the shell and fixes size and energy, l fixes the subshell shape, m_l the orientation of the orbital and m_s the spin orientation. So P-4, Q-2, R-1, S-3.
+
+  - id: che-atom-091
+    topic: electronic-configuration
+    subtopic: Exceptional configurations
+    concept: Chromium is 3d^5 4s^1
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [exception, chromium]
+    stem: The ground-state electronic configuration of chromium (Z = 24) is
+    options:
+      - "[Ar] 3d^5 4s^1"
+      - "[Ar] 3d^4 4s^2"
+      - "[Ar] 3d^6"
+      - "[Ar] 3d^3 4s^2 4p^1"
+    answer: 0
+    explanation: Chromium takes 3d^5 4s^1 rather than the expected 3d^4 4s^2, because a half-filled d subshell has extra stability from symmetry and exchange energy.
+
+  - id: che-atom-092
+    topic: electronic-configuration
+    subtopic: Exceptional configurations
+    concept: Copper is 3d^{10} 4s^1
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [exception, copper]
+    stem: The ground-state electronic configuration of copper (Z = 29) is
+    options:
+      - "[Ar] 3d^9 4s^2"
+      - "[Ar] 3d^{10} 4s^1"
+      - "[Ar] 3d^{10} 4p^1"
+      - "[Ar] 3d^8 4s^2 4p^1"
+    answer: 1
+    explanation: Copper is [Ar] 3d^{10} 4s^1, not 3d^9 4s^2, because a completely filled d subshell is extra stable.
+
+  - id: che-atom-093
+    topic: electronic-configuration
+    subtopic: Hund's rule
+    concept: Pairing in 2p before each orbital is singly filled violates Hund's rule
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [hund, nitrogen]
+    stem: Writing the configuration of nitrogen as 1s^2 2s^2 2p_x^2 2p_y^1 violates
+    options:
+      - the Aufbau principle
+      - the Pauli exclusion principle
+      - Hund's rule of maximum multiplicity
+      - the (n + l) rule
+    answer: 2
+    explanation: Hund's rule says electrons pair in degenerate orbitals only after each has one electron. Nitrogen should be 2p_x^1 2p_y^1 2p_z^1. The paired electrons have opposite spins, so Pauli is not violated.
+
+  - id: che-atom-094
+    topic: electronic-configuration
+    subtopic: Configuration of ions
+    concept: Fe^{3+} (3d^5) has 5 unpaired electrons
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [ions, unpaired-electrons]
+    stem: The number of unpaired electrons in Fe^{3+} (Z of Fe = 26) is
+    options:
+      - "3"
+      - "4"
+      - "6"
+      - "5"
+    answer: 3
+    explanation: Fe is [Ar] 3d^6 4s^2; removing three electrons (both 4s first, then one 3d) gives [Ar] 3d^5, with five unpaired electrons. Removing 3d electrons before 4s would give the wrong count.
+
+  - id: che-atom-095
+    topic: electronic-configuration
+    subtopic: Pauli exclusion principle
+    concept: No two electrons share all four quantum numbers
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [pauli, ncert-line]
+    stem: The principle stating that no two electrons in an atom can have the same set of all four quantum numbers is
+    options:
+      - the Pauli exclusion principle
+      - Hund's rule
+      - the Aufbau principle
+      - the Heisenberg uncertainty principle
+    answer: 0
+    explanation: This is Pauli's exclusion principle. It limits each orbital to two electrons with opposite spins.
+
+  - id: che-atom-096
+    topic: electronic-configuration
+    subtopic: Counting electrons by subshell
+    concept: Iron has six d electrons
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [iron]
+    stem: How many electrons occupy d orbitals in a ground-state iron atom (Z = 26)?
+    options:
+      - "8"
+      - "6"
+      - "2"
+      - "10"
+    answer: 1
+    explanation: Fe is 1s^2 2s^2 2p^6 3s^2 3p^6 3d^6 4s^2, so it has 6 d electrons. 8 wrongly adds the two 4s electrons.
+
+  - id: che-atom-097
+    topic: electronic-configuration
+    subtopic: Stability of half-filled and filled subshells
+    concept: Exchange energy and symmetry stabilise half-filled and filled subshells
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [exchange-energy, ncert-line]
+    stem: |-
+      Assertion (A): Half-filled and completely filled subshells are extra stable.
+      Reason (R): Such subshells have a symmetrical distribution of electrons and maximum exchange energy.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: NCERT attributes the extra stability to symmetry and to exchange energy, which is largest when the maximum number of parallel-spin electrons can exchange positions. This explains Cr and Cu configurations.
+
+  - id: che-atom-098
+    topic: electronic-configuration
+    subtopic: Identifying elements
+    concept: "[Ne] 3s^2 3p^3 is phosphorus"
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [identify-element]
+    stem: The element with ground-state configuration [Ne] 3s^2 3p^3 is
+    options:
+      - nitrogen
+      - silicon
+      - phosphorus
+      - sulphur
+    answer: 2
+    explanation: "[Ne] contributes 10 electrons, plus 5 more gives Z = 15, which is phosphorus. Nitrogen has the same outer pattern but in the second shell (2s^2 2p^3)."
+
+  - id: che-atom-099
+    topic: electronic-configuration
+    subtopic: Aufbau order
+    concept: Filling order 4s < 3d < 4p < 5s
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [aufbau, n-plus-l]
+    stem: According to the Aufbau principle, the order in which the 3d, 4s, 4p and 5s orbitals are filled is
+    options:
+      - 3d, 4s, 4p, 5s
+      - 4s, 4p, 3d, 5s
+      - 4s, 3d, 5s, 4p
+      - 4s, 3d, 4p, 5s
+    answer: 3
+    explanation: By the (n + l) rule 4s (4) fills first; 3d, 4p and 5s all have n + l = 5 and fill in order of increasing n, giving 3d then 4p then 5s.
+
+  - id: che-atom-100
+    topic: electronic-configuration
+    subtopic: Counting electrons by quantum number
+    concept: Electrons with l = 0 in chromium
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [chromium, exception, multi-concept]
+    stem: How many electrons in a ground-state chromium atom (Z = 24) have l = 0?
+    options:
+      - "8"
+      - "7"
+      - "6"
+      - "5"
+    answer: 1
+    explanation: "Cr is 1s^2 2s^2 2p^6 3s^2 3p^6 3d^5 4s^1. Electrons with l = 0 are in s orbitals: 2 + 2 + 2 + 1 = 7. Using the expected 4s^2 configuration gives 8, ignoring chromium's exception."
+
+  - id: che-atom-101
+    topic: subatomic-particles
+    subtopic: Properties of fundamental particles
+    concept: Neutron is slightly heavier than the proton
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [fundamental-particles, ncert-line]
+    stem: Which statement about the fundamental particles is correct?
+    options:
+      - The charge on a proton is greater in magnitude than the charge on an electron
+      - The mass of a neutron is slightly greater than the mass of a proton
+      - The neutron was discovered before the proton
+      - The mass of an electron is about one-eighteenth of the mass of a proton
+    answer: 1
+    explanation: The neutron (1.675 × 10^{-27} kg) is slightly heavier than the proton (1.673 × 10^{-27} kg). Electron and proton charges are equal in magnitude, the neutron was found last (1932), and the electron is about 1/1837 of a proton's mass.
+
+  - id: che-atom-102
+    topic: subatomic-particles
+    subtopic: Cathode rays
+    concept: Cathode rays consist of material particles carrying momentum
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [cathode-rays]
+    stem: A light paddle wheel mounted in the path of cathode rays in a discharge tube starts rotating when the rays strike its blades. This shows that cathode rays
+    options:
+      - are electromagnetic waves
+      - are positively charged
+      - consist of material particles possessing momentum
+      - travel in curved paths
+    answer: 2
+    explanation: Rotation of the paddle wheel means the rays transfer momentum, so they consist of particles with mass and velocity. Their negative charge is shown separately by deflection towards the positive plate.
+
+  - id: che-atom-103
+    topic: subatomic-particles
+    subtopic: Cathode rays
+    concept: Properties of cathode rays
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [cathode-rays, ncert-line]
+    stem: |-
+      Consider the following statements about cathode rays:
+      I. In the absence of electric or magnetic fields they travel in straight lines.
+      II. They consist of negatively charged particles.
+      III. They are deflected towards the negative plate in an electric field.
+      IV. They make fluorescent materials such as zinc sulphide glow.
+      Which statements are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, II, III and IV
+      - I, II and IV only
+    answer: 3
+    explanation: Cathode rays travel in straight lines, are negatively charged and cause fluorescence (the basis of old TV tubes). Being negative, they bend towards the positive plate, so III is wrong.
+
+  - id: che-atom-104
+    topic: subatomic-particles
+    subtopic: Charge on the electron
+    concept: Charges on oil drops are integral multiples of e
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [millikan, quantisation-of-charge]
+    stem: In an oil-drop experiment the charges measured on three drops were 3.2 × 10^{-19} C, 4.8 × 10^{-19} C and 8.0 × 10^{-19} C. The largest unit of charge consistent with all three readings is
+    options:
+      - 1.6 × 10^{-19} C
+      - 3.2 × 10^{-19} C
+      - 0.8 × 10^{-19} C
+      - 4.8 × 10^{-19} C
+    answer: 0
+    explanation: The charges are 2, 3 and 5 times 1.6 × 10^{-19} C, so that is the largest common unit. 3.2 × 10^{-19} C does not divide 4.8 × 10^{-19} C exactly, while 0.8 × 10^{-19} C works but is not the largest.
+
+  - id: che-atom-105
+    topic: subatomic-particles
+    subtopic: Charge-to-mass ratio
+    concept: e/m of a proton is much smaller than that of an electron
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [e-by-m, trap]
+    stem: |-
+      Statement I: The charge-to-mass ratio of the electron is 1.758820 × 10^{11} C kg^{-1}.
+      Statement II: The charge-to-mass ratio of the proton is larger than that of the electron.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Statement I is the NCERT value of e/m_e. The proton has the same charge magnitude but about 1836 times the mass, so its e/m is about 1836 times smaller; Statement II is wrong.
+
+  - id: che-atom-106
+    topic: subatomic-particles
+    subtopic: Charge-to-mass ratio
+    concept: (e/m)_electron ÷ (e/m)_proton = m_p/m_e ≈ 1836
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [e-by-m, proportionality]
+    stem: The ratio of the specific charge (e/m) of an electron to that of a proton is approximately
+    options:
+      - "1"
+      - "1/1836"
+      - "3672"
+      - "1836"
+    answer: 3
+    explanation: Both carry charge of magnitude e, so the ratio equals m_p/m_e ≈ 1836. The lighter electron has the larger specific charge; 1/1836 inverts the ratio.
+
+  - id: che-atom-107
+    topic: subatomic-particles
+    subtopic: Charge-to-mass ratio
+    concept: e/m of an α-particle is half that of a proton
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [e-by-m, alpha-particle]
+    stem: Taking the masses of the proton and neutron as equal, the ratio of e/m of an α-particle to e/m of a proton is
+    options:
+      - "1:2"
+      - "2:1"
+      - "1:4"
+      - "4:1"
+    answer: 0
+    explanation: An α-particle (He^{2+}) has charge 2e and mass 4 units, so e/m = 2/4 = 1/2 of the proton's value (1/1). Using only the mass ratio gives 1:4.
+
+  - id: che-atom-108
+    topic: subatomic-particles
+    subtopic: Canal rays
+    concept: Canal rays are also called anode rays
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [canal-rays]
+    stem: Canal rays are also known as
+    options:
+      - cathode rays
+      - anode rays
+      - X-rays
+      - β-rays
+    answer: 1
+    explanation: Canal rays, found by Goldstein using a perforated cathode, move from the anode side towards the cathode and are called anode rays. They consist of positive ions.
+
+  - id: che-atom-109
+    topic: subatomic-particles
+    subtopic: Charge-to-mass ratio
+    concept: Deuteron and α-particle have equal e/m
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [e-by-m, multi-concept]
+    stem: Which pair of particles has the same charge-to-mass ratio? (Take proton and neutron masses as equal.)
+    options:
+      - Proton and α-particle
+      - Proton and deuteron (D^+)
+      - Deuteron (D^+) and α-particle
+      - Electron and proton
+    answer: 2
+    explanation: D^+ has charge e and mass 2 units (e/m = 1/2); He^{2+} has charge 2e and mass 4 units (e/m = 1/2). A proton has e/m = 1, so it differs from both.
+
+  - id: che-atom-110
+    topic: subatomic-particles
+    subtopic: Cathode rays
+    concept: Constant e/m of cathode rays shows electrons are universal
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [cathode-rays, e-by-m]
+    stem: |-
+      Assertion (A): Electrons are a basic constituent of all atoms.
+      Reason (R): The e/m value of cathode-ray particles is the same whatever gas or cathode material is used.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Since particles with identical e/m come out of every gas and every electrode material, they must be present in all atoms. R is the experimental basis for A.
+
+  - id: che-atom-111
+    topic: atomic-models
+    subtopic: Thomson model
+    concept: Thomson's model could not explain α-scattering
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [thomson-model]
+    stem: Which statement about Thomson's model of the atom is INCORRECT?
+    options:
+      - It explained the overall electrical neutrality of the atom
+      - It assumed that the mass of the atom is spread uniformly over the atom
+      - It explained the large-angle scattering of α-particles by gold foil
+      - It pictured electrons embedded in a sphere of positive charge
+    answer: 2
+    explanation: With positive charge spread out thinly, Thomson's atom could not deflect α-particles through large angles. Rutherford's experiment therefore disproved the model, though it did account for neutrality.
+
+  - id: che-atom-112
+    topic: atomic-models
+    subtopic: Isoelectronic species
+    concept: Isoelectronic species have the same number of electrons
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [isoelectronic]
+    stem: Which set contains only isoelectronic species?
+    options:
+      - Na^+, Mg^{2+}, F^−, O^{2−}
+      - Na^+, K^+, Cl^−, F^−
+      - Ne, Ar, Kr, Xe
+      - Li^+, Na^+, K^+, Rb^+
+    answer: 0
+    explanation: Na^+ (11 − 1), Mg^{2+} (12 − 2), F^− (9 + 1) and O^{2−} (8 + 2) each have 10 electrons. The other sets share a group or charge but not an electron count.
+
+  - id: che-atom-113
+    topic: atomic-models
+    subtopic: Atomic number and mass number
+    concept: Particle count in a cation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [ions]
+    stem: The numbers of protons, neutrons and electrons in ^{56}_{26}Fe^{3+} are respectively
+    options:
+      - 26, 30, 26
+      - 26, 30, 23
+      - 23, 30, 26
+      - 26, 33, 23
+    answer: 1
+    explanation: Z = 26 protons; neutrons = 56 − 26 = 30; a 3+ ion has lost 3 electrons, leaving 23. Losing electrons does not change protons or neutrons.
+
+  - id: che-atom-114
+    topic: atomic-models
+    subtopic: Atomic number and mass number
+    concept: Comparing electrons and neutrons in ions
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [ions, multi-concept]
+    stem: Which species has more electrons than neutrons?
+    options:
+      - ^{24}_{12}Mg^{2+}
+      - ^{19}_9F^−
+      - ^{23}_{11}Na^+
+      - ^{16}_8O^{2−}
+    answer: 3
+    explanation: O^{2−} has 10 electrons and 16 − 8 = 8 neutrons. Mg^{2+} has 10 electrons and 12 neutrons, F^− has 10 of each, and Na^+ has 10 electrons and 12 neutrons.
+
+  - id: che-atom-115
+    topic: atomic-models
+    subtopic: Atomic number and mass number
+    concept: Mass number counts nucleons
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [mass-number, ncert-line]
+    stem: The mass number of an atom is equal to the number of
+    options:
+      - protons only
+      - neutrons only
+      - protons and neutrons together
+      - protons and electrons together
+    answer: 2
+    explanation: Mass number A = protons + neutrons (the nucleons). The number of protons alone is the atomic number Z.
+
+  - id: che-atom-116
+    topic: atomic-models
+    subtopic: Isotopes, isobars and isotones
+    concept: Defining features of isotopes, isobars, isotones and isoelectronic species
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [isotopes, isobars, isotones, confused-pair]
+    stem: |-
+      Match List I with List II.
+      List I: P. Isotopes; Q. Isobars; R. Isotones; S. Isoelectronic species
+      List II: 1. Same number of electrons; 2. Same mass number; 3. Same atomic number; 4. Same number of neutrons
+    options:
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-2, R-4, S-1
+    answer: 3
+    explanation: Isotopes share Z, isobars share A, isotones share the neutron number and isoelectronic species share the electron count. So P-3, Q-2, R-4, S-1.
+
+  - id: che-atom-117
+    topic: atomic-models
+    subtopic: Mass distribution in the atom
+    concept: Electron mass is a tiny fraction of a hydrogen atom's mass
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [electron-mass]
+    stem: Taking the mass of a proton as 1837 times that of an electron, about what percentage of the mass of a hydrogen atom is due to its electron?
+    options:
+      - 0.54%
+      - 5.4%
+      - 0.054%
+      - 50%
+    answer: 2
+    explanation: Fraction = 1/(1837 + 1) ≈ 5.4 × 10^{-4}, i.e. about 0.054%. Almost all of the mass lies in the nucleus.
+
+  - id: che-atom-118
+    topic: atomic-models
+    subtopic: Rutherford's α-scattering
+    concept: A very thin gold foil (about 100 nm) was used
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [rutherford, ncert-line]
+    stem: In Rutherford's scattering experiment, α-particles were directed at a very thin foil of
+    options:
+      - gold, about 100 nm thick
+      - aluminium, about 1 mm thick
+      - silver, about 1 μm thick
+      - copper, about 0.1 mm thick
+    answer: 0
+    explanation: NCERT states that a very thin gold foil (about 100 nm) was bombarded with α-particles, and scattering was detected on a zinc sulphide screen. Gold's malleability allows such thin foils.
+
+  - id: che-atom-119
+    topic: atomic-models
+    subtopic: Isotopes
+    concept: Isotopes have the same chemical properties
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [isotopes, ncert-line]
+    stem: |-
+      Consider the statements about isotopes of an element:
+      I. They have identical chemical properties.
+      II. They differ in physical properties that depend on mass.
+      III. They have the same number of neutrons.
+      IV. Chemical properties depend on the number of electrons, which is the same for all isotopes.
+      Which are correct?
+    options:
+      - I and III only
+      - II and III only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: Isotopes have the same Z and hence the same electron count, so their chemistry is identical, while mass-dependent physical properties differ. They have different numbers of neutrons, so III is false.
+
+  - id: che-atom-120
+    topic: atomic-models
+    subtopic: Isotones
+    concept: ^{39}K and ^{40}Ca both have 20 neutrons
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [isotones]
+    stem: The nuclides ^{39}_{19}K and ^{40}_{20}Ca are
+    options:
+      - isotopes
+      - isotones
+      - isobars
+      - isoelectronic atoms
+    answer: 1
+    explanation: Neutrons are 39 − 19 = 20 in K and 40 − 20 = 20 in Ca, so they are isotones. Their Z and A both differ, ruling out isotopes and isobars.
+
+  - id: che-atom-121
+    topic: em-radiation
+    subtopic: Frequency and wavenumber
+    concept: ν = c × ν̄
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: ν = cν̄
+    tags: [wavenumber, frequency]
+    stem: Radiation has a wavenumber of 1.0 × 10^6 m^{-1}. Its frequency is (c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 3.3 × 10^{-3} Hz
+      - 3.0 × 10^{2} Hz
+      - 3.0 × 10^{14} Hz
+      - 1.0 × 10^{6} Hz
+    answer: 2
+    explanation: ν = c/λ = c × ν̄ = 3.0 × 10^8 × 1.0 × 10^6 = 3.0 × 10^{14} Hz. Dividing c by ν̄ instead gives a meaningless value.
+
+  - id: che-atom-122
+    topic: em-radiation
+    subtopic: Wavenumber
+    concept: Wavenumber of yellow light of 580 nm
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: ν̄ = 1/λ
+    tags: [wavenumber, ncert-line]
+    stem: Yellow light emitted from a sodium lamp has a wavelength of 580 nm. Its wavenumber is
+    options:
+      - 1.72 × 10^6 m^{-1}
+      - 5.17 × 10^{14} m^{-1}
+      - 5.80 × 10^{-7} m^{-1}
+      - 1.72 × 10^4 m^{-1}
+    answer: 0
+    explanation: ν̄ = 1 ÷ 580 × 10^{-9} m = 1.72 × 10^6 m^{-1}. 5.17 × 10^{14} is the frequency in s^{-1}, and 1.72 × 10^4 is the value in cm^{-1} carrying the wrong unit.
+
+  - id: che-atom-123
+    topic: em-radiation
+    subtopic: c = νλ
+    concept: Wavelength is inversely proportional to frequency
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [proportionality]
+    stem: Two electromagnetic radiations have frequencies in the ratio 3:1. The ratio of their wavelengths in vacuum is
+    options:
+      - "3:1"
+      - "9:1"
+      - "1:9"
+      - "1:3"
+    answer: 3
+    explanation: Since νλ = c for all radiations, λ ∝ 1/ν. A threefold frequency means one-third the wavelength, so the ratio is 1:3.
+
+  - id: che-atom-124
+    topic: em-radiation
+    subtopic: Limitations of wave theory
+    concept: Wave theory could not explain black-body radiation or the photoelectric effect
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [wave-theory, ncert-line]
+    stem: Which phenomenon could NOT be explained by treating light purely as an electromagnetic wave?
+    options:
+      - Diffraction of light
+      - Interference of light
+      - Ejection of electrons from a metal surface by light (photoelectric effect)
+      - Propagation of light through vacuum
+    answer: 2
+    explanation: Diffraction and interference are classic wave phenomena. The photoelectric effect, like black-body radiation, needed Planck's idea that radiation comes in quanta.
+
+  - id: che-atom-125
+    topic: em-radiation
+    subtopic: Limitations of wave theory
+    concept: Phenomena needing the quantum idea
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [wave-theory, ncert-line, multi-concept]
+    stem: |-
+      Consider the following:
+      I. Interference and diffraction of light are explained by the wave theory.
+      II. The photoelectric effect is explained by the wave theory.
+      III. The spectrum of black-body radiation is explained by quantising energy.
+      IV. The variation of heat capacity of solids with temperature could not be explained classically.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, III and IV only
+      - II, III and IV only
+      - I, II and III only
+    answer: 1
+    explanation: NCERT lists black-body radiation, the photoelectric effect, the variation of heat capacity of solids and the line spectra of atoms as phenomena classical theory could not explain. Interference and diffraction fit the wave theory, so only II is wrong.
+
+  - id: che-atom-126
+    topic: em-radiation
+    subtopic: Visible spectrum
+    concept: Wavelength order of colours in visible light
+    category: factual
+    format: ordering
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [visible-light]
+    stem: Arrange red, violet, green and yellow light in increasing order of wavelength.
+    options:
+      - Red < yellow < green < violet
+      - Violet < green < yellow < red
+      - Violet < yellow < green < red
+      - Green < violet < yellow < red
+    answer: 1
+    explanation: In VIBGYOR order wavelength rises from violet (about 400 nm) through green and yellow to red (about 750 nm). Energy and frequency follow the reverse order.
+
+  - id: che-atom-127
+    topic: em-radiation
+    subtopic: c = νλ
+    concept: Wavelength from frequency in the visible region
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: λ = c/ν
+    tags: [frequency]
+    stem: Light has a frequency of 6.0 × 10^{14} Hz. Its wavelength is (c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 200 nm
+      - 180 nm
+      - 500 nm
+      - 2000 nm
+    answer: 2
+    explanation: λ = c/ν = 3.0 × 10^8 ÷ 6.0 × 10^{14} = 5.0 × 10^{-7} m = 500 nm, green-blue light.
+
+  - id: che-atom-128
+    topic: em-radiation
+    subtopic: Frequency and wavenumber
+    concept: ν̄ = ν/c
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: ν̄ = ν/c
+    tags: [wavenumber]
+    stem: What is the wavenumber of radiation of frequency 1.5 × 10^{15} Hz? (c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 4.5 × 10^{23} m^{-1}
+      - 2.0 × 10^{-7} m^{-1}
+      - 5.0 × 10^{4} m^{-1}
+      - 5.0 × 10^{6} m^{-1}
+    answer: 3
+    explanation: ν̄ = ν/c = 1.5 × 10^{15} ÷ 3.0 × 10^8 = 5.0 × 10^6 m^{-1} (or 5.0 × 10^4 cm^{-1}). Multiplying ν by c gives the 10^{23} option.
+
+  - id: che-atom-129
+    topic: em-radiation
+    subtopic: Properties of EM waves
+    concept: Equal speed in vacuum does not explain wavelength differences
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [em-spectrum]
+    stem: |-
+      Assertion (A): X-rays have a much shorter wavelength than radio waves.
+      Reason (R): All electromagnetic radiations travel with the same speed in vacuum.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Both are true. X-rays have shorter wavelengths because their frequency is much higher; equal speed alone does not account for that, so R is not the explanation of A.
+
+  - id: che-atom-130
+    topic: em-radiation
+    subtopic: c = νλ
+    concept: Wavelength of microwave-oven radiation
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: λ = c/ν
+    tags: [microwaves]
+    stem: A household microwave oven operates at a frequency of 2.45 GHz. The wavelength of the microwaves it produces is about (c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 1.22 cm
+      - 12.2 cm
+      - 1.22 m
+      - 122 nm
+    answer: 1
+    explanation: λ = 3.0 × 10^8 ÷ 2.45 × 10^9 = 0.122 m = 12.2 cm, in the microwave region. Treating GHz as 10^{10} Hz gives 1.22 cm.
