@@ -139,6 +139,7 @@ void main() {
       expect(find.text('You'), findsOneWidget);
       expect(find.text('Riya'), findsOneWidget);
       expect(find.text('Level 6'), findsOneWidget);
+      expect(find.text('Level 4'), findsOneWidget, reason: 'mine, from the snapshot');
       expect(find.text('1548'), findsOneWidget, reason: 'their rating');
       expect(find.text('1502?'), findsOneWidget, reason: 'my Physics rating');
       expect(find.text('You 3 – 1 Riya'), findsOneWidget);
@@ -163,7 +164,7 @@ void main() {
       await _found(tester, server, match, mode: 'bot');
       expect(find.text('PRACTICE BOT'), findsOneWidget);
       expect(find.text('Practice game · not rated'), findsOneWidget);
-      expect(find.textContaining('Level'), findsNothing);
+      expect(find.text('Level 6'), findsNothing, reason: 'the bot has no level');
       expect(find.textContaining('You 3'), findsNothing, reason: 'no record against the bot');
       expect(find.text('Waiting for Practice Bot…'), findsOneWidget);
     });

@@ -4,6 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/app.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/auth/session.dart';
+import 'package:quiz_app/core/config/app_config.dart';
+import 'package:quiz_app/core/network/server_signals.dart';
 import 'package:quiz_app/core/realtime/live_providers.dart';
 import 'package:quiz_app/core/realtime/search_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -277,6 +279,55 @@ void main() {
     await tester.tap(find.text('See result'));
     await advance(tester, const Duration(milliseconds: 300));
     expect(location(container), Routes.battleMatch('m5'));
+  });
+
+  testWidgets('maintenance waits until the live game and its result are done', (tester) async {
+    usePhoneViewport(tester, height: 2400);
+    final match = MatchFrames();
+    final server = TestRealtimeServer();
+    final container = await _pump(tester, server, location: Routes.battleSearch);
+    server
+      ..push(match.found())
+      ..push(
+        match.snapshot(
+          phase: 'q_open',
+          q: 1,
+          question: match.showData(1, shownAt: serverNow()),
+        ),
+      );
+    await advance(tester, const Duration(milliseconds: 300));
+    expect(container.read(liveGameProvider), isTrue);
+
+    container.read(serverSignalsProvider.notifier).maintenance();
+    await advance(tester, const Duration(milliseconds: 300));
+    expect(location(container), Routes.battleMatch('m1'), reason: 'never interrupts the game');
+    expect(find.text('Question 1: how far does a car go?'), findsOneWidget);
+
+    server.push(match.end(result: 'win', myTotals: (140, 1)));
+    await advance(tester, const Duration(milliseconds: 500));
+    expect(find.text('Victory!'), findsOneWidget, reason: 'the result still shows');
+
+    await tester.tap(find.text('Done'));
+    await advance(tester, const Duration(milliseconds: 500));
+    expect(container.read(liveGameProvider), isFalse);
+    expect(location(container), Routes.maintenance);
+  });
+
+  testWidgets('a connection too old for the server ends the live game at once', (tester) async {
+    usePhoneViewport(tester);
+    final match = MatchFrames();
+    final server = TestRealtimeServer();
+    final container = await _pump(tester, server, location: Routes.battleSearch);
+    server
+      ..push(match.found())
+      ..push(match.snapshot(phase: 'ready_wait', endsAt: serverNow() + 10000));
+    await advance(tester, const Duration(milliseconds: 300));
+    expect(container.read(liveGameProvider), isTrue);
+
+    server.socket.closeFromServer(4426);
+    await advance(tester, const Duration(milliseconds: 500));
+    expect(container.read(liveGameProvider), isFalse);
+    expect(find.text('Time for an update'), findsOneWidget);
   });
 
   testWidgets('signing out takes the live pill and alerts away', (tester) async {

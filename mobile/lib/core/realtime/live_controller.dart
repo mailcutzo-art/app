@@ -12,6 +12,7 @@ import '../../app/live/live_hub.dart';
 import '../../app/router.dart';
 import '../../features/battle/data/battle_repository.dart';
 import '../auth/token_store.dart';
+import '../config/app_config.dart' show liveGameProvider;
 import '../network/api_client.dart';
 import '../network/server_signals.dart';
 import '../storage/prefs.dart';
@@ -114,6 +115,7 @@ class LiveController {
   RealtimeLease? _shell;
   bool _disposed = false;
   bool _pillShown = false;
+  bool _liveGame = false;
 
   /// The user asked for a game to start now (a bot game, a rematch): open it without the
   /// "Match found!" card.
@@ -258,6 +260,7 @@ class LiveController {
       ..dismiss(LiveAlertIds.rejoin(matchId))
       ..dismiss(LiveAlertIds.ended(matchId))
       ..dismiss(LiveAlertIds.rematch(matchId));
+    _syncLiveGame();
   }
 
   /// "You're already in a match" with **Go there**, for a `BUSY` answer.
@@ -298,6 +301,11 @@ class LiveController {
 
   void _onEvent(ServerEvent event) {
     if (_disposed) return;
+    _route(event);
+    _syncLiveGame();
+  }
+
+  void _route(ServerEvent event) {
     switch (event) {
       case MmQueuedEvent() ||
           MmStatusEvent() ||
@@ -476,6 +484,7 @@ class LiveController {
       default:
         break;
     }
+    _syncLiveGame();
   }
 
   void _onWelcome(WelcomeEvent welcome) {
@@ -612,7 +621,21 @@ class LiveController {
       }
       if (path == Routes.battleSearch) _hub.dismiss(LiveAlertIds.timeout);
       _syncPill();
+      _syncLiveGame();
     });
+  }
+
+  /// Tells the app gates whether a live game is on: a match in play on this device, or a match
+  /// screen (its result, its review) still open. Update and maintenance screens wait for it.
+  /// A connection that ended for good (another device, an old build) has no live game.
+  void _syncLiveGame() {
+    if (_disposed) return;
+    final live =
+        connection.state is! Terminal &&
+        (_matches.values.any((m) => !m.isOver) || Routes.isBattleMatch(_path));
+    if (live == _liveGame) return;
+    _liveGame = live;
+    _later(() => _ref.read(liveGameProvider.notifier).set(live: live));
   }
 
   /// "Searching · 0:32" on every screen but the search screen itself.

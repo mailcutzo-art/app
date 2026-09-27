@@ -84,6 +84,20 @@ void main() {
         AppGate.updateRequired,
       );
     });
+
+    test('neither interrupts a live game', () {
+      const both = ServerSignals(updateRequired: true, maintenance: true);
+      expect(decideGate(signals: both, build: 1, liveGame: true), AppGate.open);
+      expect(
+        decideGate(
+          signals: none,
+          config: const AppConfig(minBuild: 8, maintenance: true),
+          build: 7,
+          liveGame: true,
+        ),
+        AppGate.open,
+      );
+    });
   });
 
   group('ConfigController', () {

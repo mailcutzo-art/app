@@ -272,7 +272,7 @@ class _VersusViewState extends ConsumerState<_VersusView> {
                     child: _PlayerCardView(
                       avatar: me.avatar.toData(),
                       name: 'You',
-                      level: null,
+                      level: view.myCard?.level,
                       rating: myRating,
                     ),
                   ),

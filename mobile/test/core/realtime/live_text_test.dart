@@ -96,7 +96,7 @@ void main() {
       expect(reason(MatchResult.win, MatchEndReason.opponentForfeit), 'Riya left the game');
       expect(reason(MatchResult.win, MatchEndReason.left), 'Riya left the game');
       expect(reason(MatchResult.loss, MatchEndReason.left), 'You left the game');
-      expect(reason(MatchResult.win, MatchEndReason.disconnected), 'Riya was away too long');
+      expect(reason(MatchResult.win, MatchEndReason.disconnected), 'Riya left the game');
       expect(reason(MatchResult.loss, MatchEndReason.disconnected), 'You were away too long');
       expect(reason(MatchResult.win, MatchEndReason.noShow), 'Riya didn\'t show up');
       expect(reason(MatchResult.draw, MatchEndReason.endedByHost), 'The host ended the game');

@@ -63,7 +63,7 @@ abstract final class LiveText {
       MatchEndReason.forfeit => won ? '$opponent left the game' : 'You left the game',
       MatchEndReason.opponentForfeit => '$opponent left the game',
       MatchEndReason.left => won ? '$opponent left the game' : 'You left the game',
-      MatchEndReason.disconnected => won ? '$opponent was away too long' : 'You were away too long',
+      MatchEndReason.disconnected => won ? '$opponent left the game' : 'You were away too long',
       MatchEndReason.noShow => won ? '$opponent didn\'t show up' : 'You didn\'t get ready in time',
       MatchEndReason.endedByHost => 'The host ended the game',
       MatchEndReason.aborted => 'The game didn\'t start',
