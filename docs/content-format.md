@@ -51,8 +51,14 @@ Question stems, options and explanations use a tiny markup rendered natively by 
 
 Use Unicode for symbols: `θ λ Δ π μ Ω → ⇌ ° ± × ÷ ≈ ≤ ≥ √ ₹`. Don't use LaTeX in v1 content.
 Use `−` (U+2212) for minus signs in running text; inside `^{}`/`_{}` a plain `-` is converted
-automatically. A literal `*` always toggles italics, so write "antibonding π orbital" rather than
-"π*".
+automatically. Scripts nest (`d_{x^2−y^2}`, `e^{-x^2}`). A literal `*` in running text toggles
+italics, but a lone `*` inside a script is kept, so antibonding orbitals are written `σ^{*}2s`,
+`π^{*}2p`.
+
+Stems keep their line breaks, so statement, assertion–reason and match questions put one item per
+line. The app renders all of this with `QuizText` (design system); a question's `diagram` is shown
+with `QuestionFigure` (the description in a "Figure" panel until artwork exists) and the
+explanation and `formula` with `ExplanationCard`.
 
 YAML tips: quote a value that contains `: ` (colon + space) or starts with `*`, and quote options
 that look like numbers (`"12"`) so they stay text.
