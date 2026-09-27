@@ -9286,3 +9286,640 @@ questions:
       - P-2, Q-4, R-3, S-1
     answer: 1
     explanation: A uniform field never gives a net force, and the torque is zero when p is along E and pE when perpendicular. A non-uniform field gives a net force, with torque only when p is not along E.
+
+  - id: phy-ecf-441
+    topic: gauss-law
+    subtopic: Flux through parts of a cylinder
+    concept: Curved-surface flux = total flux − flux through the ends
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [gauss-law, multi-concept]
+    stem: A charge q sits inside a closed cylinder. The flux through each flat end is φ_1. The flux through the curved surface is
+    options:
+      - q/ε_0
+      - q/ε_0 − φ_1
+      - 2φ_1 − q/ε_0
+      - q/ε_0 − 2φ_1
+    answer: 3
+    explanation: Total flux through the closed cylinder is q/ε_0 = 2φ_1 + φ_curved, so φ_curved = q/ε_0 − 2φ_1.
+
+  - id: phy-ecf-442
+    topic: gauss-law
+    subtopic: Zero enclosed charge
+    concept: Zero enclosed charge does not make the field zero on the surface unless no charges exist anywhere
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [gauss-law, trap]
+    stem: |-
+      Statement I: If a closed surface encloses no charge, the electric field must be zero at every point of the surface.
+      Statement II: If there are no charges anywhere, inside or outside a closed surface, the field on the surface is zero.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: Zero enclosed charge only guarantees zero net flux; outside charges can still produce a field on the surface. With no charges anywhere, there is no source of field at all.
+
+  - id: phy-ecf-443
+    topic: gauss-law
+    subtopic: Cube with a central charge
+    concept: Total, per-face and two-face fluxes for 6 μC at a cube's centre
+    category: numerical
+    format: multi-statement
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    tags: [cube, symmetry]
+    stem: |-
+      A 6 μC charge is at the centre of a cube (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2}). Consider:
+      I. The total flux through the cube is about 6.78 × 10^5 N m^2 C^{-1}.
+      II. The flux through each face is about 1.13 × 10^5 N m^2 C^{-1}.
+      III. The flux through two opposite faces together is about 2.26 × 10^5 N m^2 C^{-1}.
+      IV. The total flux depends on the edge length of the cube.
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and IV only
+      - II and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: q/ε_0 = 6 × 10^{-6}/8.85 × 10^{-12} ≈ 6.78 × 10^5; one-sixth is 1.13 × 10^5, and two faces give twice that. The total depends only on the enclosed charge.
+
+  - id: phy-ecf-444
+    topic: gauss-law
+    subtopic: Neutral atom
+    concept: A surface enclosing a whole neutral atom has zero net flux
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [gauss-law]
+    stem: A closed surface encloses a complete neutral atom of atomic number Z. The net flux through it is
+    options:
+      - Ze/ε_0
+      - zero
+      - −Ze/ε_0
+      - 2Ze/ε_0
+    answer: 1
+    explanation: The nucleus (+Ze) and the Z electrons (−Ze) together give zero enclosed charge, so the net flux is zero.
+
+  - id: phy-ecf-445
+    topic: gauss-law
+    subtopic: Regular tetrahedron
+    concept: A charge at the centre of a regular tetrahedron sends q/4ε_0 through each face
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [symmetry]
+    stem: A point charge q is at the centre of a regular tetrahedron. The flux through one face is
+    options:
+      - q/3ε_0
+      - q/6ε_0
+      - q/4ε_0
+      - q/ε_0
+    answer: 2
+    explanation: The four faces are identical and symmetrically placed around the charge, so each receives a quarter of q/ε_0.
+
+  - id: phy-ecf-446
+    topic: gauss-law
+    subtopic: Flux for different enclosed charges
+    concept: Match charge sets with the net flux through a surface
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [gauss-law]
+    stem: |-
+      Match the charges enclosed by (or outside) a closed surface (List I) with the net flux (List II).
+      List I: P. +q and −q inside; Q. +2q inside; R. +q and −3q inside; S. +q inside and +5q outside
+      List II: 1. q/ε_0; 2. zero; 3. −2q/ε_0; 4. 2q/ε_0
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-3, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-2, Q-4, R-3, S-1
+    answer: 3
+    explanation: Net flux = (algebraic enclosed charge)/ε_0; charges outside do not count. P gives 0, Q 2q/ε_0, R −2q/ε_0 and S q/ε_0.
+
+  - id: phy-ecf-447
+    topic: gauss-law
+    subtopic: Charge surrounded by a shell
+    concept: A neutralising shell makes flux through a larger surface zero
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [spherical-shell, gauss-law]
+    stem: A point charge +q is at the centre of a thin spherical shell of radius R carrying −q. The flux through a concentric sphere of radius 2R is
+    options:
+      - zero
+      - q/ε_0
+      - −q/ε_0
+      - 2q/ε_0
+    answer: 0
+    explanation: The sphere of radius 2R encloses +q − q = 0, so the net flux through it is zero, and so is the field outside the shell.
+
+  - id: phy-ecf-448
+    topic: gauss-law
+    subtopic: Flux through the ends of a cylinder
+    concept: Flux through a disc from an on-axis charge via the solid angle
+    category: numerical
+    format: direct
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: φ = (q/2ε_0)(1 − cos α)
+    tags: [solid-angle, multi-concept]
+    stem: A closed cylinder of length 2L and radius √3 L has a point charge q at its centre. The flux through each flat end is
+    options:
+      - q/6ε_0
+      - q/4ε_0
+      - q/2ε_0
+      - q/8ε_0
+    answer: 1
+    explanation: Each end is a disc of radius √3 L at distance L, so cos α = L/√(L^2 + 3L^2) = ½. Flux = (q/2ε_0)(1 − ½) = q/4ε_0. The curved surface then gets the remaining q/2ε_0.
+
+  - id: phy-ecf-449
+    topic: gauss-law
+    subtopic: Concentric Gaussian spheres
+    concept: Flux is the same through concentric spheres of any radius
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [gauss-law]
+    stem: A point charge lies at the common centre of two spheres of radii R and 2R. The ratio of the flux through the smaller sphere to that through the larger is
+    options:
+      - "1 : 4"
+      - "1 : 2"
+      - "1 : 1"
+      - "4 : 1"
+    answer: 2
+    explanation: Both spheres enclose the same charge, so both have flux q/ε_0.
+
+  - id: phy-ecf-450
+    topic: gauss-law
+    subtopic: Generality of Gauss's law
+    concept: Gauss's law holds for any closed surface because it rests on inverse-square law and superposition
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [gauss-law, superposition]
+    stem: |-
+      Assertion (A): Gauss's law holds for any closed surface, including irregular ones, and for any distribution of charges.
+      Reason (R): It follows from the inverse-square law for a single point charge combined with the superposition principle.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: For one point charge, flux through any closed surface is q/ε_0 if enclosed and zero otherwise. Superposition extends this to any set of charges, which is why the law is general.
+
+  - id: phy-ecf-451
+    topic: gauss-applications
+    subtopic: Distance from a line charge
+    concept: r = 2kλ/E
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: E = 2kλ/r
+    tags: [line-charge]
+    stem: A long wire carries λ = 2 × 10^{-7} C m^{-1}. At what distance from it is the field 3.6 × 10^4 N C^{-1}?
+    options:
+      - 5 cm
+      - 20 cm
+      - 1 cm
+      - 10 cm
+    answer: 3
+    explanation: r = 2kλ/E = 2 × 9 × 10^9 × 2 × 10^{-7}/3.6 × 10^4 = 3600/3.6 × 10^4 = 0.1 m.
+
+  - id: phy-ecf-452
+    topic: gauss-applications
+    subtopic: Conducting versus non-conducting sphere
+    concept: Conducting sphere has zero interior field; outside, both behave as point charges
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [spherical-shell, solid-sphere, conductor]
+    stem: A conducting sphere and a uniformly charged non-conducting solid sphere have the same radius R and charge Q. Which statement is correct?
+    options:
+      - The field inside the non-conducting sphere is zero everywhere
+      - Outside, the conducting sphere produces a stronger field than the non-conducting one
+      - Inside the conducting sphere the field is zero and all its charge is on the surface
+      - The field just outside the conducting sphere is σ/2ε_0
+    answer: 2
+    explanation: In a conductor, charge moves to the surface and E = 0 inside. Outside, both spheres give kQ/r^2. The non-conducting sphere has E = kQr/R^3 inside, and the field just outside a conductor is σ/ε_0.
+
+  - id: phy-ecf-453
+    topic: gauss-applications
+    subtopic: Graph for two oppositely charged sheets
+    concept: E–x graph for ±σ sheets is a rectangular step
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [graph, plane-sheet]
+    stem: Two large parallel sheets at x = 0 and x = d carry +σ and −σ. Which describes the graph of field magnitude E against x?
+    options:
+      - σ/2ε_0 everywhere
+      - Zero for x < 0 and x > d, and a constant σ/ε_0 for 0 < x < d
+      - Rising linearly from 0 to d
+      - σ/ε_0 outside and zero between the sheets
+    answer: 1
+    explanation: The sheet fields cancel outside and add between, giving a flat step of height σ/ε_0 between the sheets and zero elsewhere.
+
+  - id: phy-ecf-454
+    topic: gauss-applications
+    subtopic: Charged ball near a sheet
+    concept: Deflection angle of a charged pendulum near a charged sheet
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: tan θ = qσ/(2ε_0 mg)
+    tags: [plane-sheet, equilibrium, multi-concept]
+    stem: A small ball of mass 1 g and charge 1 μC hangs from a thread near a large vertical sheet of uniform charge density σ. The thread makes 45° with the vertical. σ is about (g = 10 m s^{-2}, ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 8.85 × 10^{-8} C m^{-2}
+      - 1.77 × 10^{-7} C m^{-2}
+      - 3.54 × 10^{-7} C m^{-2}
+      - 1.77 × 10^{-5} C m^{-2}
+    answer: 1
+    explanation: At 45°, the horizontal electric force equals the weight, qσ/2ε_0 = mg. σ = 2ε_0mg/q = 2 × 8.85 × 10^{-12} × 10^{-2}/10^{-6} ≈ 1.77 × 10^{-7} C m^{-2}.
+
+  - id: phy-ecf-455
+    topic: gauss-applications
+    subtopic: Choosing the right surface
+    concept: A sphere is not a useful Gaussian surface for a line charge
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [gaussian-surface, line-charge]
+    stem: |-
+      Assertion (A): A spherical Gaussian surface is not useful for finding the field of an infinite line charge.
+      Reason (R): On such a sphere the field of the line is neither constant in magnitude nor everywhere normal to the surface.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Gauss's law is still true on the sphere, but E cannot be taken out of the integral, so E cannot be found from it. A coaxial cylinder matches the symmetry.
+
+  - id: phy-ecf-456
+    topic: gauss-applications
+    subtopic: Standard field expressions
+    concept: Match Gauss's-law results with their expressions
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [multi-concept]
+    stem: |-
+      Match the charge distribution (List I) with its field (List II).
+      List I: P. Infinite line charge λ, distance r; Q. Infinite thin sheet σ; R. Just outside a conductor with surface density σ; S. Outside a charged shell Q, distance r
+      List II: 1. σ/ε_0; 2. λ/2πε_0r; 3. Q/4πε_0r^2; 4. σ/2ε_0
+    options:
+      - P-2, Q-1, R-4, S-3
+      - P-3, Q-4, R-1, S-2
+      - P-2, Q-4, R-3, S-1
+      - P-2, Q-4, R-1, S-3
+    answer: 3
+    explanation: Line λ/2πε_0r, sheet σ/2ε_0, conductor surface σ/ε_0, and outside a shell Q/4πε_0r^2.
+
+  - id: phy-ecf-457
+    topic: gauss-applications
+    subtopic: Half the surface field
+    concept: A solid sphere's field equals half its surface value at R/2 and at √2 R
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [solid-sphere, multi-concept]
+    stem: For a uniformly charged non-conducting solid sphere of radius R, the field equals half its surface value at two distances from the centre. These are
+    options:
+      - R/2 and √2 R
+      - R/2 and 2R
+      - R/√2 and √2 R
+      - R/4 and 2R
+    answer: 0
+    explanation: Inside, E ∝ r, so E = E_s/2 at r = R/2. Outside, E ∝ 1/r^2, so E = E_s/2 when r^2 = 2R^2, i.e., r = √2 R.
+
+  - id: phy-ecf-458
+    topic: gauss-applications
+    subtopic: Two like sheets of unequal density
+    concept: Outside two sheets +σ and +3σ the field is 2σ/ε_0
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [plane-sheet, superposition]
+    stem: Two large parallel sheets carry +σ and +3σ. The field in the region outside both sheets is
+    options:
+      - σ/ε_0
+      - 4σ/ε_0
+      - σ/2ε_0
+      - 2σ/ε_0
+    answer: 3
+    explanation: Outside, both sheet fields point away from the pair and add, (σ + 3σ)/2ε_0 = 2σ/ε_0. Between them they partly cancel, (3σ − σ)/2ε_0 = σ/ε_0.
+
+  - id: phy-ecf-459
+    topic: gauss-applications
+    subtopic: Force near a sheet
+    concept: F = qσ/2ε_0 near a charged sheet
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: F = qσ/2ε_0
+    tags: [plane-sheet]
+    stem: A 2 μC charge is placed near a large sheet with σ = 8.85 × 10^{-8} C m^{-2}. The force on it is (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 2 × 10^{-2} N
+      - 5 × 10^{-3} N
+      - 10^{-2} N
+      - 10^4 N
+    answer: 2
+    explanation: E = σ/2ε_0 = 5000 N C^{-1}, so F = qE = 2 × 10^{-6} × 5000 = 10^{-2} N.
+
+  - id: phy-ecf-460
+    topic: gauss-applications
+    subtopic: Comparing field sources
+    concept: Rank fields of a point charge, line, sheet and dipole at 1 m
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [ordering, multi-concept]
+    stem: |-
+      Arrange in increasing order the field magnitudes at 1 m from:
+      A. a point charge of 1 nC
+      B. an infinite line with λ = 1 nC m^{-1}
+      C. an infinite sheet with σ = 1 nC m^{-2}
+      D. a short dipole of ±1 nC separated by 1 cm, at an axial point
+    options:
+      - D < A < B < C
+      - A < D < B < C
+      - D < B < A < C
+      - D < A < C < B
+    answer: 0
+    explanation: A = 9 N C^{-1}; B = 2kλ/r = 18 N C^{-1}; C = σ/2ε_0 ≈ 56 N C^{-1}; D = 2kp/r^3 = 2 × 9 × 10^9 × 10^{-11} = 0.18 N C^{-1}. So D < A < B < C.
+
+  - id: phy-ecf-461
+    topic: gauss-applications
+    subtopic: Flux around a line charge
+    concept: Flux through a coaxial cylinder = λL/ε_0
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [line-charge, gauss-law]
+    stem: A long wire carries 3 μC m^{-1}. The total flux through a closed coaxial cylinder of length 2 m around it is about (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 3.4 × 10^5 N m^2 C^{-1}
+      - 6.8 × 10^5 N m^2 C^{-1}
+      - 1.36 × 10^6 N m^2 C^{-1}
+      - zero
+    answer: 1
+    explanation: Enclosed charge = λL = 6 μC, so φ = 6 × 10^{-6}/8.85 × 10^{-12} ≈ 6.8 × 10^5 N m^2 C^{-1}, all through the curved surface.
+
+  - id: phy-ecf-462
+    topic: field-lines
+    subtopic: Unequal like charges
+    concept: Far from a system, field lines look like those of the net charge
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [field-lines, neutral-point]
+    stem: Charges +4q and +q are placed near each other. Which statement about their field lines is correct?
+    options:
+      - The neutral point lies between them, closer to +4q
+      - Some lines from +4q end on +q
+      - Far away, the lines look like those of a single point charge +5q
+      - There is no neutral point
+    answer: 2
+    explanation: At large distances the separation is negligible and the pair acts like +5q with radial lines. The neutral point lies between them, nearer +q, and like charges never exchange lines.
+
+  - id: phy-ecf-463
+    topic: field-lines
+    subtopic: Lines at large distances
+    concept: Lines reaching infinity are set by net charge
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [field-lines, multi-concept]
+    stem: |-
+      Consider:
+      I. Far from any system with net charge Q, the field lines resemble those of a point charge Q.
+      II. Far from a dipole, the field lines resemble those of a single point charge.
+      III. The number of lines going to infinity from a system with net charge +Q is proportional to Q.
+      IV. If the net charge of a system is zero, every line leaving a positive charge ends on a negative charge.
+      Which are correct?
+    options:
+      - I and II only
+      - II and III only
+      - I, II, III and IV
+      - I, III and IV only
+    answer: 3
+    explanation: Net charge governs the far pattern and the lines escaping to infinity; with zero net charge none escape. A dipole has zero net charge, so its far lines loop from + to −, unlike a point charge.
+
+  - id: phy-ecf-464
+    topic: field-lines
+    subtopic: Between parallel plates
+    concept: Lines between oppositely charged plates are parallel and evenly spaced
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [field-lines, plane-sheet]
+    stem: Away from the edges, the field lines between two large, parallel, oppositely charged plates are
+    options:
+      - parallel, equally spaced lines from the positive to the negative plate
+      - radial lines from the centre of the positive plate
+      - closed loops between the plates
+      - lines parallel to the plates
+    answer: 0
+    explanation: The field between the plates is uniform (σ/ε_0) and normal to them, so the lines are straight, parallel and evenly spaced, running from + to −.
+
+  - id: phy-ecf-465
+    topic: field-lines
+    subtopic: Lines and neutral conductors
+    concept: Field lines end on induced negative charge of a neutral conductor, and as many leave from its induced positive charge
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [field-lines, induction, conductor]
+    stem: |-
+      Assertion (A): Field lines can end on the surface of an uncharged conductor placed in an external field.
+      Reason (R): Induced negative charge on one part of the surface terminates lines, while an equal induced positive charge elsewhere emits the same number of lines.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The external field induces equal and opposite surface charges. Lines end on the negative region and start again from the positive region, so the conductor stays neutral while lines end and begin on it.
+
+  - id: phy-ecf-466
+    topic: field-lines
+    subtopic: Neutral conductor in a uniform field
+    concept: A conductor distorts a uniform field so lines meet it normally and none enter
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [field-lines, conductor]
+    stem: An uncharged metal sphere is placed in an initially uniform field. How do the field lines look near it?
+    options:
+      - They pass straight through the sphere undisturbed
+      - They bend to meet the sphere's surface at right angles, and no lines exist inside it
+      - They form closed loops around the sphere
+      - They run parallel to the sphere's surface everywhere
+    answer: 1
+    explanation: Induced surface charges cancel the field inside the metal. The lines end on the induced negative side and restart from the positive side, always meeting the surface normally.
+
+  - id: phy-ecf-467
+    topic: dipole-in-field
+    subtopic: Maximum torque numerical
+    concept: τ_max = pE for a nanocoulomb dipole
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [torque]
+    stem: A dipole of charges ±3 nC separated by 2 cm is placed in a uniform field of 5 × 10^5 N C^{-1}. The maximum torque it can experience is
+    options:
+      - 1.5 × 10^{-3} N m
+      - 6 × 10^{-11} N m
+      - 3 × 10^{-3} N m
+      - 3 × 10^{-5} N m
+    answer: 3
+    explanation: p = 3 × 10^{-9} × 0.02 = 6 × 10^{-11} C m, and τ_max = pE = 6 × 10^{-11} × 5 × 10^5 = 3 × 10^{-5} N m.
+
+  - id: phy-ecf-468
+    topic: dipole-in-field
+    subtopic: Alignment of seeds in a field
+    concept: Induced dipoles experience a torque that aligns them with the field
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [induced-dipole, torque]
+    stem: Tiny elongated grass seeds floating in oil line up along the field lines between two charged electrodes. The best explanation is that each seed
+    options:
+      - acquires a net charge and moves along the field
+      - is attracted to the nearer electrode only
+      - becomes an induced dipole and a torque turns it until it lies along the field
+      - is repelled by both electrodes equally
+    answer: 2
+    explanation: The field polarises each seed, which then behaves as a dipole. The torque p × E rotates it until p is along E, so the seeds trace out the field lines.
+
+  - id: phy-ecf-469
+    topic: dipole-in-field
+    subtopic: Torque at different angles
+    concept: τ ∝ sin θ; ratio of torques at 30° and 60°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [torque, proportionality]
+    stem: A dipole experiences a torque of 2√3 × 10^{-4} N m at 60° to a uniform field. The torque at 30° is
+    options:
+      - 6 × 10^{-4} N m
+      - 2 × 10^{-4} N m
+      - 2√3 × 10^{-4} N m
+      - 10^{-4} N m
+    answer: 1
+    explanation: τ_30/τ_60 = sin 30°/sin 60° = 1/√3, so τ_30 = 2√3 × 10^{-4}/√3 = 2 × 10^{-4} N m.
+
+  - id: phy-ecf-470
+    topic: dipole-in-field
+    subtopic: Equilibrium in a uniform field
+    concept: Two equilibrium orientations, and never a net force, in a uniform field
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [equilibrium, force]
+    stem: |-
+      Statement I: A dipole in a uniform field has two equilibrium orientations.
+      Statement II: A dipole in a uniform field never experiences a net force, whatever its orientation.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: τ = 0 at θ = 0° and 180°, the stable and unstable equilibria. The forces qE and −qE always cancel in a uniform field.
