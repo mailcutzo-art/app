@@ -1,17 +1,17 @@
-"""Validate starter content (see docs/content-format.md).
+"""Schema and quality checks for the question bank (see docs/content-format.md).
 
-Run from the repo root:
+Validate from the repo root (exits non-zero and lists every problem):
 
     uv run --with pyyaml --with pydantic python content/tools/validate.py
 
-Exits non-zero and lists every problem found.
+The backend's seed command imports ``load`` from this file, so CI and the loader share one set of
+rules and one set of models.
 """
-
-from __future__ import annotations
 
 import re
 import sys
 from collections import Counter, defaultdict
+from dataclasses import dataclass, field
 from enum import StrEnum
 from pathlib import Path
 from typing import Annotated, Literal
@@ -33,6 +33,7 @@ WORD = re.compile(r"^[A-Z]{3,12}$")
 Text = Annotated[str, Field(min_length=1)]
 Slug = Annotated[str, Field(pattern=SLUG.pattern, max_length=48)]
 Exam = Literal["neet", "jee"]
+Tone = Literal["sky", "mint", "lemon", "lavender", "peach", "rose", "lime"]
 
 
 class Category(StrEnum):
@@ -64,9 +65,29 @@ def _markup_problem(text: str) -> str | None:
     return None
 
 
-class _QuestionBase(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+class _Model(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
+
+class CatalogGoal(_Model):
+    slug: Slug
+    name: Text
+    subjects: list[Slug] = Field(min_length=1)
+
+
+class CatalogSubject(_Model):
+    slug: Slug
+    name: Text
+    tone: Tone
+    icon: Text
+
+
+class Catalog(_Model):
+    goals: list[CatalogGoal] = Field(min_length=1)
+    subjects: list[CatalogSubject] = Field(min_length=1)
+
+
+class _QuestionBase(_Model):
     id: Text
     category: Category
     stem: Annotated[str, Field(min_length=10, max_length=300)]
@@ -104,33 +125,25 @@ class PassageQuestion(_QuestionBase):
     difficulty: int | None = Field(default=None, ge=1, le=5)
 
 
-class Topic(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class Topic(_Model):
     slug: Slug
     name: Annotated[str, Field(min_length=2, max_length=60)]
 
 
-class Chapter(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    slug: Text
+class Chapter(_Model):
+    slug: Slug
     name: Text
     order: int = Field(ge=1)
     topics: list[Topic] = Field(min_length=2, max_length=8)
 
 
-class ChapterFile(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class ChapterFile(_Model):
     subject: Text
     chapter: Chapter
     questions: list[Question]
 
 
-class Passage(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class Passage(_Model):
     id: Text
     title: Text
     chapter: Slug | None = None
@@ -139,16 +152,12 @@ class Passage(BaseModel):
     questions: list[PassageQuestion] = Field(min_length=3, max_length=5)
 
 
-class PassageFile(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class PassageFile(_Model):
     subject: Text
     passages: list[Passage]
 
 
-class Word(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class Word(_Model):
     id: Text
     word: Text
     clue: Annotated[str, Field(min_length=10, max_length=200)]
@@ -162,16 +171,39 @@ class Word(BaseModel):
         return word
 
 
-class WordFile(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class WordFile(_Model):
     subject: Text
     words: list[Word]
 
 
-def _load(path: Path) -> object:
+@dataclass
+class Content:
+    """Everything that parsed. Check the problems returned alongside it before using it."""
+
+    catalog: Catalog | None = None
+    chapters: list[ChapterFile] = field(default_factory=list)
+    passages: list[PassageFile] = field(default_factory=list)
+    words: list[WordFile] = field(default_factory=list)
+
+
+def _read(path: Path) -> object:
     with path.open(encoding="utf-8") as f:
         return yaml.safe_load(f)
+
+
+def _check_catalog(catalog: Catalog) -> list[str]:
+    problems: list[str] = []
+    subjects = [s.slug for s in catalog.subjects]
+    if len(set(subjects)) != len(subjects):
+        problems.append("catalog.yaml: subject slugs repeat")
+    goals = [g.slug for g in catalog.goals]
+    if len(set(goals)) != len(goals):
+        problems.append("catalog.yaml: goal slugs repeat")
+    for goal in catalog.goals:
+        for slug in goal.subjects:
+            if slug not in subjects:
+                problems.append(f"catalog.yaml: goal {goal.slug} lists unknown subject {slug}")
+    return problems
 
 
 def _check_chapter(data: ChapterFile, where: str, exams_for_subject: set[str]) -> list[str]:
@@ -215,19 +247,24 @@ def _check_chapter(data: ChapterFile, where: str, exams_for_subject: set[str]) -
     return problems
 
 
-def main() -> int:
+def load(root: Path = ROOT) -> tuple[Content, list[str]]:
+    """Parse and check every content file under ``root``; returns what parsed and all problems."""
+    content = Content()
     problems: list[str] = []
-    catalog = _load(ROOT / "catalog.yaml")
-    subjects = {s["slug"] for s in catalog["subjects"]}  # type: ignore[index]
+    try:
+        content.catalog = Catalog.model_validate(_read(root / "catalog.yaml"))
+    except (OSError, ValidationError, yaml.YAMLError) as e:
+        return content, [f"catalog.yaml: {e}"]
+    catalog = content.catalog
+    problems.extend(_check_catalog(catalog))
+    subjects = {s.slug for s in catalog.subjects}
     exams_by_subject: dict[str, set[str]] = defaultdict(set)
-    for goal in catalog["goals"]:  # type: ignore[index]
-        for subject in goal["subjects"]:
-            exams_by_subject[subject].add(goal["slug"])
+    for goal in catalog.goals:
+        for subject in goal.subjects:
+            exams_by_subject[subject].add(goal.slug)
 
     ids: dict[str, str] = {}
     stems: dict[str, str] = {}
-    totals: Counter[str] = Counter()
-    categories: Counter[str] = Counter()
     chapters: dict[str, dict[str, str]] = defaultdict(dict)  # subject -> slug -> file
     orders: dict[str, dict[int, str]] = defaultdict(dict)
 
@@ -243,13 +280,12 @@ def main() -> int:
             issue = _markup_problem(field_text)
             if issue:
                 problems.append(f"{where}: {q.id}: {issue}")
-        categories[q.category.value] += 1
 
-    for path in sorted((ROOT / "questions").glob("*/*.yaml")):
-        where = str(path.relative_to(ROOT))
+    for path in sorted((root / "questions").glob("*/*.yaml")):
+        where = str(path.relative_to(root))
         try:
-            data = ChapterFile.model_validate(_load(path))
-        except ValidationError as e:
+            data = ChapterFile.model_validate(_read(path))
+        except (ValidationError, yaml.YAMLError) as e:
             problems.append(f"{where}: {e}")
             continue
         subject, chapter = data.subject, data.chapter
@@ -257,8 +293,6 @@ def main() -> int:
             problems.append(f"{where}: unknown subject {subject}")
         if subject != path.parent.name:
             problems.append(f"{where}: subject {subject} doesn't match folder")
-        if not SLUG.match(chapter.slug):
-            problems.append(f"{where}: bad chapter slug {chapter.slug}")
         if chapter.slug != path.stem:
             problems.append(f"{where}: file should be named {chapter.slug}.yaml")
         if chapter.slug in chapters[subject]:
@@ -280,18 +314,22 @@ def main() -> int:
             if q.battle and len(q.stem) > 180:
                 problems.append(f"{where}: {q.id} is too long for a battle question")
         problems.extend(_check_chapter(data, where, exams_by_subject[subject]))
-        totals[subject] += len(data.questions)
+        content.chapters.append(data)
 
-    for path in sorted((ROOT / "passages").glob("*.yaml")):
-        where = str(path.relative_to(ROOT))
+    passage_ids: set[str] = set()
+    for path in sorted((root / "passages").glob("*.yaml")):
+        where = str(path.relative_to(root))
         try:
-            passages = PassageFile.model_validate(_load(path))
-        except ValidationError as e:
+            passages = PassageFile.model_validate(_read(path))
+        except (ValidationError, yaml.YAMLError) as e:
             problems.append(f"{where}: {e}")
             continue
         if passages.subject not in subjects:
             problems.append(f"{where}: unknown subject {passages.subject}")
         for passage in passages.passages:
+            if passage.id in passage_ids:
+                problems.append(f"{where}: duplicate passage id {passage.id}")
+            passage_ids.add(passage.id)
             if passage.chapter and passage.chapter not in chapters[passages.subject]:
                 problems.append(
                     f"{where}: {passage.id} names chapter {passage.chapter!r}, which isn't a "
@@ -299,14 +337,15 @@ def main() -> int:
                 )
             for q in passage.questions:
                 check_question(q, where)
+        content.passages.append(passages)
 
     word_ids: set[str] = set()
     words_seen: set[str] = set()
-    for path in sorted((ROOT / "words").glob("*.yaml")):
-        where = str(path.relative_to(ROOT))
+    for path in sorted((root / "words").glob("*.yaml")):
+        where = str(path.relative_to(root))
         try:
-            words = WordFile.model_validate(_load(path))
-        except ValidationError as e:
+            words = WordFile.model_validate(_read(path))
+        except (ValidationError, yaml.YAMLError) as e:
             problems.append(f"{where}: {e}")
             continue
         if words.subject not in subjects:
@@ -318,14 +357,33 @@ def main() -> int:
                 problems.append(f"{where}: duplicate word {w.word}")
             word_ids.add(w.id)
             words_seen.add(w.word)
+        content.words.append(words)
 
+    return content, problems
+
+
+def main() -> int:
+    content, problems = load()
     for problem in problems:
         print(f"✗ {problem}")
+    totals = Counter(c.subject for c in content.chapters for _ in c.questions)
+    categories = Counter(
+        q.category.value
+        for group in (
+            [q for c in content.chapters for q in c.questions],
+            [q for f in content.passages for p in f.passages for q in p.questions],
+        )
+        for q in group
+    )
+    passage_questions = sum(len(p.questions) for f in content.passages for p in f.passages)
+    words = sum(len(f.words) for f in content.words)
     summary = ", ".join(f"{s}: {n}" for s, n in sorted(totals.items())) or "no questions"
-    mix = ", ".join(f"{c}: {n}" for c, n in sorted(categories.items()))
-    print(f"{len(ids)} questions checked ({summary}); {len(words_seen)} words.")
-    if mix:
-        print(f"Categories: {mix}.")
+    print(
+        f"{sum(totals.values())} chapter questions ({summary}), "
+        f"{passage_questions} passage questions, {words} words."
+    )
+    if categories:
+        print("Categories: " + ", ".join(f"{c}: {n}" for c, n in sorted(categories.items())) + ".")
     return 1 if problems else 0
 
 
