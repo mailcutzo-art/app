@@ -6061,3 +6061,710 @@ questions:
       - 27.9 g
     answer: 1
     explanation: O_2 accepts 4 electrons while each Fe gives 2, so 2 mol Fe (111.6 g) are oxidised per mole of O_2.
+  - id: che-elec-301
+    topic: electrochemical-cells
+    subtopic: Daniell cell
+    concept: Identifying parts of a labelled Daniell cell
+    category: concept
+    format: diagram
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    diagram: "Two beakers side by side. Left beaker: a zinc rod labelled 'Zn' dipping in solution labelled '1 M ZnSO_4'. Right beaker: a copper rod labelled 'Cu' dipping in solution labelled '1 M CuSO_4'. An inverted U-tube labelled 'X' filled with gel connects the two solutions. The rods are joined by an external wire through a voltmeter reading '1.1 V'; an arrow labelled 'e^−' on the wire points from Zn to Cu."
+    tags: [daniell-cell, salt-bridge]
+    stem: In the Daniell cell shown, the part labelled X and its contents are
+    options:
+      - a salt bridge containing KCl or KNO_3 in agar–agar gel
+      - a copper wire carrying electrons
+      - a porous pot containing concentrated H_2SO_4
+      - a hydrogen electrode dipped in 1 M HCl
+    answer: 0
+    explanation: The inverted U-tube joining the two solutions is the salt bridge, usually KCl or KNO_3 set in agar–agar gel. It completes the circuit by allowing ions, not electrons, to move.
+  - id: che-elec-302
+    topic: electrochemical-cells
+    subtopic: Discharge behaviour
+    concept: Cell potential decreases as the cell discharges
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [graph, daniell-cell]
+    stem: A Daniell cell is allowed to discharge through a resistor until it stops. Which description of the E_cell versus time graph is correct?
+    options:
+      - E_cell stays constant at 1.10 V until the zinc is used up, then drops suddenly
+      - E_cell gradually decreases and finally reaches zero when equilibrium is attained
+      - E_cell increases gradually with time
+      - E_cell falls to zero at once and then rises to 1.10 V
+    answer: 1
+    explanation: As Zn^{2+} accumulates and Cu^{2+} is removed, Q increases and E = E° − (0.059/2) log Q falls steadily, reaching zero at equilibrium (Q = K).
+  - id: che-elec-303
+    topic: electrochemical-cells
+    subtopic: Polarity
+    concept: Electrode with higher E° is the positive terminal of a galvanic cell
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [polarity]
+    stem: Standard Cu^{2+}/Cu (0.34 V) and Ag^+/Ag (0.80 V) half-cells are joined by a salt bridge and a voltmeter. Which electrode is the positive terminal?
+    options:
+      - Copper
+      - Silver
+      - Both, alternately
+      - Neither, since both E° values are positive
+    answer: 1
+    explanation: The silver half-cell has the higher reduction potential; reduction occurs there, so it is the cathode, which is the positive terminal in a galvanic cell. The voltmeter reads 0.46 V.
+  - id: che-elec-304
+    topic: electrochemical-cells
+    subtopic: Cell notation
+    concept: Conventions of writing cell notation
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [cell-notation]
+    stem: |-
+      Which conventions of cell notation are correct?
+      I. The anode is written on the left and the cathode on the right.
+      II. A single vertical line marks a boundary between phases.
+      III. Concentrations of solutions are written in brackets after the ions.
+      IV. An inert electrode such as Pt is written at the outer end of its half-cell.
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: All four are standard conventions, e.g. Pt | H_2(1 bar) | H^+(1 M) || Ag^+(0.1 M) | Ag with Pt at the outer end, anode on the left and || for the salt bridge.
+  - id: che-elec-305
+    topic: electrochemical-cells
+    subtopic: Energy conversions
+    concept: Energy conversion in different electrochemical devices
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [match, galvanic-cell, electrolytic-cell]
+    stem: |-
+      Match the device (List I) with the energy change it brings about (List II).
+      List I
+      P. Galvanic cell
+      Q. Electrolytic cell
+      R. Fuel cell
+      S. Concentration cell
+      List II
+      1. Electrical energy drives a non-spontaneous reaction
+      2. Energy of combustion of a fuel directly to electrical energy
+      3. Free energy of a spontaneous redox reaction to electrical energy
+      4. Free energy released as ions move from higher to lower concentration, to electrical energy
+    options:
+      - P-3, Q-1, R-2, S-4
+      - P-1, Q-3, R-2, S-4
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-1, R-3, S-4
+    answer: 0
+    explanation: A galvanic cell uses a spontaneous redox reaction, an electrolytic cell uses electricity to force a reaction, a fuel cell converts combustion energy directly, and a concentration cell draws energy from the concentration difference.
+  - id: che-elec-306
+    topic: electrochemical-cells
+    subtopic: Daniell cell
+    concept: Emf equals E° whenever the two ion concentrations are equal
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [daniell-cell, nernst]
+    stem: |-
+      Statement I: The emf of a Daniell cell is 1.10 V at 298 K when [Zn^{2+}] = [Cu^{2+}] = 1 M.
+      Statement II: The emf of a Daniell cell is 1.10 V at 298 K whenever [Zn^{2+}] = [Cu^{2+}], even if both are 0.01 M.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: E = 1.10 − (0.059/2) log([Zn^{2+}]/[Cu^{2+}]); when the ratio is 1, log Q = 0 and E = E° = 1.10 V at any equal concentrations.
+  - id: che-elec-307
+    topic: electrochemical-cells
+    subtopic: Conduction inside the cell
+    concept: Current inside the cell is carried by ions
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [salt-bridge, electrolytic-conduction]
+    stem: |-
+      Assertion (A): Electrons do not travel through the electrolyte solutions of a galvanic cell.
+      Reason (R): Inside the cell, current is carried by the movement of ions.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Free electrons cannot exist in aqueous solution; the circuit is completed inside the cell by ions moving through the solutions and the salt bridge. R explains A.
+  - id: che-elec-308
+    topic: electrochemical-cells
+    subtopic: Cell emf
+    concept: Cell potential is called emf when no current is drawn
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [emf, ncert-line]
+    stem: The potential difference between the electrodes of a galvanic cell is called its emf when
+    options:
+      - maximum current is drawn from the cell
+      - no current is drawn through the cell
+      - the cell is at equilibrium
+      - the salt bridge is removed
+    answer: 1
+    explanation: NCERT defines emf as the cell potential when no current is drawn; drawing current lowers the terminal potential.
+  - id: che-elec-309
+    topic: electrochemical-cells
+    subtopic: Choosing the anode
+    concept: Both negative E° values — more negative one is the anode
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [anode, trap]
+    stem: A cell is built from Fe^{2+}/Fe (E° = −0.44 V) and Zn^{2+}/Zn (E° = −0.76 V). The anode and E°_cell are
+    options:
+      - Fe, 0.32 V
+      - Zn, 1.20 V
+      - Zn, 0.32 V
+      - Fe, 1.20 V
+    answer: 2
+    explanation: Zinc has the lower reduction potential and is oxidised; E°_cell = −0.44 − (−0.76) = 0.32 V. A negative E° for both does not stop a cell from working.
+  - id: che-elec-310
+    topic: electrochemical-cells
+    subtopic: Comparing cells
+    concept: Ranking E°cell values of different cells
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [ordering, emf-calculation]
+    stem: "Using E°: Mg^{2+}/Mg −2.36, Zn^{2+}/Zn −0.76, Cu^{2+}/Cu 0.34, Ag^+/Ag 0.80 V, arrange these cells in increasing order of E°_cell: (P) Zn–Cu, (Q) Cu–Ag, (R) Zn–Ag, (S) Mg–Zn."
+    options:
+      - Q < P < R < S
+      - Q < P < S < R
+      - P < Q < R < S
+      - S < R < P < Q
+    answer: 0
+    explanation: E° values are Q 0.46 V, P 1.10 V, R 1.56 V and S 1.60 V, giving Q < P < R < S.
+  - id: che-elec-311
+    topic: electrochemical-cells
+    subtopic: Concentration cell
+    concept: A cell with E° = 0 can still deliver current
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [concentration-cell]
+    stem: Which type of cell has E°_cell = 0 yet can supply current?
+    options:
+      - A Daniell cell at standard conditions
+      - A concentration cell with unequal electrolyte concentrations
+      - A cell made of two identical SHEs
+      - A cell at chemical equilibrium
+    answer: 1
+    explanation: Both electrodes are the same couple, so E° = 0, but a difference in concentration gives a non-zero E from the Nernst term.
+  - id: che-elec-312
+    topic: electrode-potential
+    subtopic: Disproportionation
+    concept: Cu+ disproportionates in water because the combined E° is positive
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [disproportionation, multi-concept]
+    stem: Given E°(Cu^+/Cu) = +0.52 V and E°(Cu^{2+}/Cu^+) = +0.16 V, the E° for 2Cu^+(aq) → Cu^{2+}(aq) + Cu(s) and the stability of Cu^+ in water are
+    options:
+      - −0.36 V; Cu^+ is stable
+      - +0.36 V; Cu^+ is unstable
+      - +0.68 V; Cu^+ is unstable
+      - +0.36 V; Cu^+ is stable
+    answer: 1
+    explanation: Cu^+ is reduced (cathode, 0.52 V) and oxidised (anode, 0.16 V); E° = 0.52 − 0.16 = +0.36 V, so disproportionation is spontaneous and Cu^+ is unstable in aqueous solution.
+  - id: che-elec-313
+    topic: electrode-potential
+    subtopic: Standard hydrogen electrode
+    concept: Complete description of SHE
+    category: factual
+    format: multi-statement
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [she]
+    stem: |-
+      Which statements about the standard hydrogen electrode are correct?
+      I. It uses platinum coated with platinum black.
+      II. Pure H_2 gas at 1 bar is bubbled through the solution.
+      III. The concentration (activity) of H^+ is 1 M.
+      IV. Its potential is taken as 0.00 V at all temperatures.
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: All four describe the SHE as given in NCERT; it is the reference against which other electrode potentials are reported.
+  - id: che-elec-314
+    topic: electrode-potential
+    subtopic: Coexistence of species
+    concept: Species that do not react can coexist in solution
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [feasibility, multi-concept, trap]
+    stem: "Given E°: Fe^{3+}/Fe^{2+} 0.77, I_2/I^− 0.54, MnO_4^−/Mn^{2+} 1.51, Sn^{4+}/Sn^{2+} 0.15 V. Which pair can coexist in solution without reacting?"
+    options:
+      - Fe^{3+} and I^−
+      - Fe^{2+} and I_2
+      - MnO_4^− (acidic) and Fe^{2+}
+      - Fe^{3+} and Sn^{2+}
+    answer: 1
+    explanation: Fe^{2+} + I_2 would need E° = 0.54 − 0.77 = −0.23 V, so no reaction; the other pairs react because the oxidant's E° exceeds that of the reductant's couple.
+  - id: che-elec-315
+    topic: electrode-potential
+    subtopic: Interpreting E° values
+    concept: Correct interpretation of E° values for common species
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [electrochemical-series, trap]
+    stem: Which statement is correct?
+    options:
+      - Zn is a stronger oxidising agent than Cu
+      - F^− is a strong reducing agent
+      - Li^+ is a strong oxidising agent
+      - Gold does not dissolve in dilute HCl because E°(Au^{3+}/Au) is highly positive
+    answer: 3
+    explanation: Au^{3+}/Au (+1.40 V) is far above H^+/H_2, so H^+ cannot oxidise gold. Zn is a reducing agent, F^− is the weakest reductant and Li^+ is the weakest oxidant.
+  - id: che-elec-316
+    topic: electrode-potential
+    subtopic: Conjugate species
+    concept: Strong oxidant has weak conjugate reductant and vice versa
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [electrochemical-series]
+    stem: |-
+      Statement I: Since F_2 is the strongest oxidising agent, F^− is the weakest reducing agent.
+      Statement II: Since Li is the strongest reducing agent in water, Li^+ is the weakest oxidising agent.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: A couple with very high E° has a strong oxidised form and a weak reduced form; one with very low E° has a strong reduced form and a weak oxidised form. Both statements follow.
+  - id: che-elec-317
+    topic: electrode-potential
+    subtopic: Conjugate species
+    concept: Extremes of the electrochemical series
+    category: application
+    format: match
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [match, electrochemical-series, trap]
+    stem: |-
+      Match the description (List I) with the species (List II), using the electrochemical series.
+      List I
+      P. Strongest oxidising agent
+      Q. Strongest reducing agent
+      R. Weakest oxidising agent
+      S. Weakest reducing agent
+      List II
+      1. Li
+      2. F^−
+      3. F_2
+      4. Li^+
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-2, Q-1, R-4, S-3
+      - P-3, Q-1, R-2, S-4
+    answer: 0
+    explanation: F_2/F^− (+2.87 V) gives the strongest oxidant F_2 and weakest reductant F^−; Li^+/Li (−3.05 V) gives the strongest reductant Li and weakest oxidant Li^+.
+  - id: che-elec-318
+    topic: electrode-potential
+    subtopic: Halogen displacement
+    concept: E°cell for chlorine oxidising bromide
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [halogens, emf-calculation]
+    stem: "E°_cell for Cl_2 + 2Br^− → 2Cl^− + Br_2 is (E°: Cl_2/Cl^− = 1.36 V, Br_2/Br^− = 1.09 V)"
+    options:
+      - 2.45 V
+      - 0.27 V
+      - −0.27 V
+      - 0.54 V
+    answer: 1
+    explanation: Cl_2 is reduced (cathode) and Br^− oxidised (anode); E° = 1.36 − 1.09 = 0.27 V, positive, so the reaction is feasible.
+  - id: che-elec-319
+    topic: electrode-potential
+    subtopic: Selective oxidation
+    concept: Oxidant that converts Fe2+ to Fe3+ but not Mn2+ to MnO4-
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [feasibility, multi-concept]
+    stem: "Which oxidant can convert Fe^{2+} into Fe^{3+} but cannot oxidise Mn^{2+} to MnO_4^− in acid? (E°: F_2/F^− 2.87, MnO_4^−/Mn^{2+} 1.51, Cl_2/Cl^− 1.36, Fe^{3+}/Fe^{2+} 0.77, I_2/I^− 0.54 V)"
+    options:
+      - F_2
+      - I_2
+      - Cl_2
+      - Fe^{3+}
+    answer: 2
+    explanation: The oxidant's E° must lie between 0.77 V and 1.51 V. Cl_2 (1.36 V) fits; F_2 would also oxidise Mn^{2+}, and I_2 cannot oxidise Fe^{2+}.
+  - id: che-elec-320
+    topic: electrode-potential
+    subtopic: Reactivity with acids
+    concept: Negative E° metals displace hydrogen, positive ones do not
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [hydrogen-displacement]
+    stem: |-
+      Assertion (A): Zinc liberates H_2 from dilute H_2SO_4 but silver does not.
+      Reason (R): E°(Zn^{2+}/Zn) is negative whereas E°(Ag^+/Ag) is positive.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Only metals whose couples lie below H^+/H_2 (negative E°) can reduce H^+ to H_2. R explains A.
+  - id: che-elec-321
+    topic: electrode-potential
+    subtopic: Halogens
+    concept: Order of E° for halogens
+    category: factual
+    format: ordering
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [halogens, ordering]
+    stem: The increasing order of standard reduction potential of the halogens (X_2/X^−) is
+    options:
+      - F_2 < Cl_2 < Br_2 < I_2
+      - I_2 < Br_2 < Cl_2 < F_2
+      - Cl_2 < F_2 < Br_2 < I_2
+      - I_2 < Cl_2 < Br_2 < F_2
+    answer: 1
+    explanation: The values are I_2 0.54, Br_2 1.09, Cl_2 1.36 and F_2 2.87 V, so oxidising power increases up the group.
+  - id: che-elec-322
+    topic: electrode-potential
+    subtopic: Predicting displacement
+    concept: Counting solutions in which a metal dissolves
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [displacement]
+    stem: "Nickel strips (E°(Ni^{2+}/Ni) = −0.25 V) are placed in separate 1 M solutions of CuSO_4 (0.34 V), ZnSO_4 (−0.76 V), AgNO_3 (0.80 V) and MgCl_2 (−2.36 V). In how many solutions will nickel dissolve?"
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+    answer: 1
+    explanation: Ni can reduce only ions whose couples have higher E° than −0.25 V, namely Cu^{2+} and Ag^+. It cannot reduce Zn^{2+} or Mg^{2+}.
+  - id: che-elec-323
+    topic: nernst-equation
+    subtopic: Hydrogen electrode and pH
+    concept: Hydrogen electrode in 1 M NaOH
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [hydrogen-electrode, ph]
+    stem: The reduction potential of a hydrogen electrode (p_{H_2} = 1 bar) dipped in 1 M NaOH at 298 K is about
+    options:
+      - "0 V"
+      - −0.41 V
+      - −0.83 V
+      - +0.83 V
+    answer: 2
+    explanation: In 1 M NaOH the pH is 14, so E = −0.059 × 14 ≈ −0.83 V, which is the E° of 2H_2O + 2e^− → H_2 + 2OH^−.
+  - id: che-elec-324
+    topic: nernst-equation
+    subtopic: Cell emf at non-standard conditions
+    concept: Emf of an iron–hydrogen cell
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [nernst, hydrogen-electrode]
+    stem: "Calculate the emf at 298 K of Fe(s) | Fe^{2+}(0.001 M) || H^+(1 M) | H_2(g, 1 bar) | Pt. (E°(Fe^{2+}/Fe) = −0.44 V)"
+    options:
+      - 0.35 V
+      - 0.44 V
+      - 0.53 V
+      - 0.62 V
+    answer: 2
+    explanation: E° = 0 − (−0.44) = 0.44 V. For Fe + 2H^+ → Fe^{2+} + H_2, Q = 0.001 × 1/1^2, so E = 0.44 − (0.059/2) log 10^{−3} = 0.44 + 0.0885 ≈ 0.53 V.
+  - id: che-elec-325
+    topic: nernst-equation
+    subtopic: Effect of changes on emf
+    concept: Changes that raise emf of a Zn–H2 cell
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [nernst, multi-concept]
+    stem: |-
+      For the cell Zn | Zn^{2+}(1 M) || H^+(1 M) | H_2(1 bar) | Pt, which changes will increase the emf?
+      I. Adding more acid to the cathode compartment
+      II. Adding ZnSO_4 to the anode compartment
+      III. Lowering the H_2 pressure at the cathode
+      IV. Adding NaOH to the cathode compartment
+    options:
+      - I and III only
+      - II and IV only
+      - I and II only
+      - I, III and IV only
+    answer: 0
+    explanation: E = E° − (0.059/2) log([Zn^{2+}]p_{H_2}/[H^+]^2). Raising [H^+] or lowering p_{H_2} lowers Q and raises E; adding Zn^{2+} or removing H^+ with NaOH lowers E.
+  - id: che-elec-326
+    topic: nernst-equation
+    subtopic: Hydrogen electrode and pH
+    concept: Graph of hydrogen electrode potential vs pH
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, hydrogen-electrode, ph]
+    stem: A graph of the reduction potential E of a hydrogen electrode (p_{H_2} = 1 bar, 298 K) on the y-axis against pH on the x-axis is
+    options:
+      - a straight line through the origin with slope −0.059 V per pH unit
+      - a straight line through the origin with slope +0.059 V per pH unit
+      - a horizontal line at E = 0
+      - a curve that levels off at pH 7
+    answer: 0
+    explanation: E = −0.059 pH, a straight line through the origin (E = 0 at pH 0) with slope −0.059 V per unit pH.
+  - id: che-elec-327
+    topic: nernst-equation
+    subtopic: Cell emf at non-standard conditions
+    concept: Emf of hydrogen–silver cell with both concentrations non-standard
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [nernst, multi-concept]
+    stem: "Find the emf at 298 K of Pt | H_2(1 bar) | H^+(0.001 M) || Ag^+(0.01 M) | Ag. (E°(Ag^+/Ag) = 0.80 V)"
+    options:
+      - 0.741 V
+      - 0.859 V
+      - 0.918 V
+      - 0.800 V
+    answer: 1
+    explanation: H_2 + 2Ag^+ → 2H^+ + 2Ag; Q = [H^+]^2/[Ag^+]^2 = 10^{−6}/10^{−4} = 10^{−2}. E = 0.80 − (0.059/2)(−2) = 0.80 + 0.059 = 0.859 V.
+  - id: che-elec-328
+    topic: nernst-equation
+    subtopic: Concentration cell
+    concept: Concentration-cell emf is proportional to absolute temperature
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [concentration-cell, temperature]
+    stem: |-
+      Assertion (A): For fixed concentrations, the emf of a concentration cell increases as the temperature is raised.
+      Reason (R): The emf of a concentration cell is (2.303RT/nF) log(C_2/C_1), with C_2 > C_1.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: With E° = 0, the emf is entirely the Nernst term, which is directly proportional to T for a given concentration ratio. R explains A.
+  - id: che-elec-329
+    topic: nernst-equation
+    subtopic: Sensitivity to concentration
+    concept: Electrode potential changes by 0.059/n V per tenfold change
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [nernst]
+    stem: Which electrode's potential changes the most when its metal-ion concentration is changed tenfold at 298 K?
+    options:
+      - Ag^+/Ag
+      - Cu^{2+}/Cu
+      - Al^{3+}/Al
+      - Zn^{2+}/Zn
+    answer: 0
+    explanation: The change is 0.059/n V per decade; n = 1 for Ag^+/Ag gives 0.059 V, while n = 2 or 3 gives smaller changes.
+  - id: che-elec-330
+    topic: nernst-equation
+    subtopic: Effect of ion concentration
+    concept: Lowering product ion concentration raises emf above E°
+    category: numerical
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [nernst, daniell-cell]
+    stem: |-
+      Statement I: At 298 K, a Daniell cell with [Zn^{2+}] = 0.01 M and [Cu^{2+}] = 1 M has an emf greater than 1.10 V.
+      Statement II: Lowering the concentration of a product ion increases the cell emf.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: E = 1.10 − 0.0295 log(0.01/1) = 1.10 + 0.059 ≈ 1.16 V. Zn^{2+} is a product, and lowering it reduces Q, raising E.
+  - id: che-elec-331
+    topic: nernst-equation
+    subtopic: Cell emf at non-standard conditions
+    concept: Daniell cell emf at various concentrations
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [nernst, daniell-cell, match]
+    stem: |-
+      Match the Daniell cell concentrations (List I) with the emf at 298 K (List II). E° = 1.10 V.
+      List I
+      P. [Zn^{2+}] = 1 M, [Cu^{2+}] = 1 M
+      Q. [Zn^{2+}] = 0.1 M, [Cu^{2+}] = 1 M
+      R. [Zn^{2+}] = 1 M, [Cu^{2+}] = 0.1 M
+      S. [Zn^{2+}] = 1 M, [Cu^{2+}] = 0.01 M
+      List II
+      1. 1.04 V
+      2. 1.07 V
+      3. 1.10 V
+      4. 1.13 V
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+      - P-1, Q-4, R-2, S-3
+    answer: 1
+    explanation: E = 1.10 − 0.0295 log([Zn^{2+}]/[Cu^{2+}]); log Q = 0, −1, +1 and +2 give 1.10, 1.13, 1.07 and 1.04 V respectively.
+  - id: che-elec-332
+    topic: nernst-equation
+    subtopic: Finding unknown concentration
+    concept: Ag+ concentration giving a stated electrode potential
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [nernst]
+    stem: At 298 K, at what [Ag^+] will the Ag^+/Ag electrode have a potential of 0.741 V? (E° = 0.80 V)
+    options:
+      - 1 M
+      - 0.1 M
+      - 0.01 M
+      - 0.001 M
+    answer: 1
+    explanation: 0.741 = 0.80 + 0.059 log[Ag^+], so log[Ag^+] = −1 and [Ag^+] = 0.1 M.
+  - id: che-elec-333
+    topic: nernst-equation
+    subtopic: Effect of ion concentration
+    concept: Electrode potential rises with metal-ion concentration
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [nernst, ordering]
+    stem: "Arrange Cu^{2+}/Cu electrodes in increasing order of reduction potential: [Cu^{2+}] = (P) 1 M, (Q) 0.1 M, (R) 0.01 M, (S) 0.001 M."
+    options:
+      - P < Q < R < S
+      - S < R < Q < P
+      - Q < P < S < R
+      - All are equal
+    answer: 1
+    explanation: E = E° + (0.059/2) log[Cu^{2+}], so the potential increases with [Cu^{2+}]; the most dilute solution has the lowest potential.
+  - id: che-elec-334
+    topic: nernst-equation
+    subtopic: pH dependence
+    concept: pH sensitivity of dichromate electrode potential
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [ph, nernst, multi-concept]
+    stem: For Cr_2O_7^{2−} + 14H^+ + 6e^− → 2Cr^{3+} + 7H_2O, by about how much does the reduction potential fall when pH rises by one unit (other concentrations fixed, 298 K)?
+    options:
+      - 0.059 V
+      - 0.138 V
+      - 0.0098 V
+      - 0.826 V
+    answer: 1
+    explanation: E contains −(0.059/6) log(1/[H^+]^{14}) = −(0.059 × 14/6) pH ≈ −0.138 pH, so each unit rise in pH lowers E by about 0.138 V.
