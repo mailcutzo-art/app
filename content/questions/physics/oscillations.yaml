@@ -8378,3 +8378,2122 @@ questions:
     answer: 1
     explanation: The bead behaves like a pendulum of length R, so T = 2π√(R/g) = 2π√(0.04) = 2π × 0.2 = 0.4π s ≈ 1.26 s.
 
+  - id: phy-osc-401
+    topic: periodic-motion
+    subtopic: Frequency and period
+    concept: Doubling the period halves the frequency
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [period, frequency, angular-frequency]
+    stem: Which statement is correct?
+    options:
+      - Frequency in hertz is numerically equal to angular frequency in rad s^{-1}
+      - Angular frequency is independent of the period
+      - A periodic motion repeats only once, after one period
+      - If the period of a motion doubles, its frequency halves
+    answer: 3
+    explanation: ν = 1/T, so doubling T halves ν. ω = 2πν, so ω and ν differ by the factor 2π, and ω = 2π/T depends on the period. A periodic motion repeats after every interval T, not just once.
+
+  - id: phy-osc-402
+    topic: periodic-motion
+    subtopic: Period of periodic functions
+    concept: Period of sin^2(πt) + cos(πt) is 2 s
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [periodic-function, trap]
+    stem: What is the period of y = sin^2(πt) + cos(πt), with t in seconds?
+    options:
+      - 1 s
+      - 0.5 s
+      - 4 s
+      - 2 s
+    answer: 3
+    explanation: sin^2(πt) = (1 − cos 2πt)/2 has period 1 s, while cos(πt) has period 2 s. The sum repeats after the LCM, 2 s. Taking the period of the first term alone gives 1 s.
+
+  - id: phy-osc-403
+    topic: periodic-motion
+    subtopic: Identifying periodic functions
+    concept: "|cos ωt| and sin ωt + constant are periodic; ln t and sin(1/t) are not"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [periodic-function]
+    stem: |-
+      Which of the following functions of time (t > 0) are periodic?
+      I. sin(1/t)
+      II. ln t
+      III. |cos ωt|
+      IV. sin ωt + 2
+    options:
+      - I and III only
+      - III only
+      - II and IV only
+      - III and IV only
+    answer: 3
+    explanation: "|cos ωt| repeats every π/ω and sin ωt + 2 repeats every 2π/ω (a constant does not affect periodicity). sin(1/t) oscillates ever more slowly as t increases and ln t keeps growing, so neither repeats at a fixed interval."
+
+  - id: phy-osc-404
+    topic: periodic-motion
+    subtopic: Periodic motion on a closed path
+    concept: Motion that retraces a closed path in equal times is periodic
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [periodic-motion]
+    stem: |-
+      Assertion (A): A planet moving in a closed elliptical orbit around the Sun has a periodic motion.
+      Reason (R): The planet returns to the same position with the same velocity after a fixed interval of time.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A motion is periodic when its state repeats after a fixed interval. The planet's speed varies around the ellipse, but it retraces the same orbit in the same time each revolution, so R explains A.
+
+  - id: phy-osc-405
+    topic: periodic-motion
+    subtopic: Triangular displacement graph
+    concept: A triangular x–t graph means constant speed, so the motion is oscillatory but not SHM
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, oscillation-vs-shm]
+    stem: The x–t graph of a particle is a symmetric triangular wave between x = −A and x = +A (straight lines rising and falling alternately). The motion is
+    options:
+      - SHM, because it is to and fro between −A and +A
+      - oscillatory but not SHM, because the speed is constant between turning points
+      - non-periodic
+      - SHM with speed maximum at the extremes
+    answer: 1
+    explanation: Straight segments on an x–t graph mean constant speed, so the particle moves uniformly and reverses abruptly at ±A. It is periodic and oscillatory, but in SHM the speed varies continuously and is greatest at the centre.
+
+  - id: phy-osc-406
+    topic: periodic-motion
+    subtopic: Comparing angular frequencies
+    concept: Converting T, ν and ω to compare
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [angular-frequency, ordering]
+    stem: |-
+      Arrange the following oscillations in increasing order of angular frequency.
+      P. Period 2 s
+      Q. Frequency 1 Hz
+      R. Angular frequency 5 rad s^{-1}
+      S. Period 0.5 s
+    options:
+      - P, Q, R, S
+      - P, R, Q, S
+      - R, P, Q, S
+      - S, Q, R, P
+    answer: 1
+    explanation: ω = 2π/T or 2πν. P gives π ≈ 3.14, Q gives 2π ≈ 6.28, R is 5 and S gives 4π ≈ 12.6 rad s^{-1}. Increasing order is P, R, Q, S.
+
+  - id: phy-osc-407
+    topic: periodic-motion
+    subtopic: Tuning fork frequency
+    concept: Frequency of a tuning fork does not depend on how hard it is struck
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [frequency, isochronism]
+    stem: |-
+      Statement I: Striking a tuning fork harder raises its frequency.
+      Statement II: The period of an oscillation is the reciprocal of its frequency.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: A harder strike gives a larger amplitude (louder sound), but for small, simple harmonic vibrations the frequency is fixed by the prong's stiffness and mass. So Statement I is false. T = 1/ν is true.
+
+  - id: phy-osc-408
+    topic: periodic-motion
+    subtopic: Period of periodic functions
+    concept: Matching trigonometric functions with their periods
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [periodic-function]
+    stem: |-
+      Match each function in List I with its period in List II.
+      List I: P. |cos 2t|; Q. sin t + cos t; R. sin^2 t; S. sin(t/2)
+      List II: 1. π/2; 2. π; 3. 2π; 4. 4π
+    options:
+      - P-2, Q-3, R-1, S-4
+      - P-1, Q-2, R-3, S-4
+      - P-1, Q-3, R-4, S-2
+      - P-1, Q-3, R-2, S-4
+    answer: 3
+    explanation: cos 2t has period π and the modulus halves it to π/2. sin t + cos t = √2 sin(t + π/4) has period 2π. sin^2 t = (1 − cos 2t)/2 has period π. sin(t/2) has period 4π.
+
+  - id: phy-osc-409
+    topic: periodic-motion
+    subtopic: Coinciding periodic events
+    concept: Two periodic events next coincide after the LCM of their periods
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [period, lcm]
+    stem: Two lamps flash periodically, every 0.8 s and every 1.2 s. They flash together at t = 0. When do they next flash together?
+    options:
+      - 2.0 s
+      - 1.2 s
+      - 0.96 s
+      - 2.4 s
+    answer: 3
+    explanation: They coincide at common multiples of 0.8 s and 1.2 s. The least common multiple is 2.4 s (3 × 0.8 = 2 × 1.2). Adding the periods (2.0 s) is wrong.
+
+  - id: phy-osc-410
+    topic: shm-equation
+    subtopic: Superposition of SHMs
+    concept: Three equal SHMs 120° apart cancel completely
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: true
+    tags: [superposition, phasor]
+    stem: A particle is subjected to A sin ωt, A sin(ωt + 2π/3) and A sin(ωt + 4π/3) along one line. The amplitude of its motion is
+    options:
+      - 3A
+      - zero
+      - A
+      - √3 A
+    answer: 1
+    explanation: As phasors the three vectors of length A at 0°, 120° and 240° form a closed equilateral triangle, so their sum is zero. The particle stays at rest.
+
+  - id: phy-osc-411
+    topic: shm-equation
+    subtopic: Sine and cosine forms
+    concept: A sin(ωt + φ) equals A cos(ωt + φ − π/2)
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [phase-constant, shm-equation]
+    stem: An SHM is written as x = A sin(ωt + φ). Which statement is correct?
+    options:
+      - It cannot be written using a cosine function
+      - It equals A cos(ωt + φ − π/2)
+      - It equals A cos(ωt + φ + π/2)
+      - Writing it with cosine changes its period
+    answer: 1
+    explanation: sin θ = cos(θ − π/2), so A sin(ωt + φ) = A cos(ωt + φ − π/2). Choosing sine or cosine only shifts the phase constant; amplitude and period are unchanged. The +π/2 version gives −A sin(ωt + φ).
+
+  - id: phy-osc-412
+    topic: shm-equation
+    subtopic: Time to reach a negative position
+    concept: First time x = −A/2 for x = A sin ωt is 7T/12
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [time-between-positions, trap]
+    stem: A particle moves as x = 2 sin(πt/3) cm. When does it first reach x = −1 cm?
+    options:
+      - 0.5 s
+      - 3.5 s
+      - 5.5 s
+      - 2.5 s
+    answer: 1
+    explanation: sin(πt/3) = −½ first at πt/3 = 7π/6, so t = 3.5 s. (Period 6 s; it goes up to +2 cm, back to 0 at 3 s, then reaches −1 cm at 3.5 s.) 0.5 s is the time to reach +1 cm.
+
+  - id: phy-osc-413
+    topic: shm-equation
+    subtopic: Opposite-phase oscillations
+    concept: Two SHMs with phase difference π have mirror-image x–t graphs
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, phase-difference]
+    stem: On the same axes, the x–t graphs of two identical oscillators are exact mirror images of each other in the time axis. Their phase difference is
+    options:
+      - π/2
+      - π
+      - zero
+      - π/4
+    answer: 1
+    explanation: A mirror image in the time axis means x_2 = −x_1 at every instant, i.e. A sin(ωt + π) = −A sin ωt. The phase difference is π; they are in opposite phase.
+
+  - id: phy-osc-414
+    topic: shm-equation
+    subtopic: Negative amplitude sign
+    concept: x = −3 cos 2t is SHM of amplitude 3 starting at the negative extreme
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [amplitude, phase-constant, trap]
+    stem: |-
+      For x = −3 cos(2t) cm (t in s), which statements are correct?
+      I. The amplitude is 3 cm.
+      II. At t = 0 the particle is at its negative extreme.
+      III. The equation can be written as x = 3 cos(2t + π).
+      IV. The period is π s.
+    options:
+      - I and IV only
+      - II and III only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: Amplitude is a positive magnitude, 3 cm; the minus sign is a phase of π, since −cos θ = cos(θ + π). At t = 0, x = −3 cm, the negative extreme. ω = 2 rad s^{-1} gives T = π s. All four are correct.
+
+  - id: phy-osc-415
+    topic: shm-equation
+    subtopic: Starting state from the equation
+    concept: Matching sine and cosine forms with their starting states
+    category: concept
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [phase-constant, shm-equation]
+    stem: |-
+      Match each equation (List I) with the state of the particle at t = 0 (List II).
+      List I: P. x = A sin ωt; Q. x = A cos ωt; R. x = −A sin ωt; S. x = −A cos ωt
+      List II: 1. At +A, at rest; 2. At the mean position, moving in −x; 3. At −A, at rest; 4. At the mean position, moving in +x
+    options:
+      - P-4, Q-1, R-2, S-3
+      - P-1, Q-4, R-2, S-3
+      - P-4, Q-1, R-3, S-2
+      - P-2, Q-1, R-4, S-3
+    answer: 0
+    explanation: Sine forms start at x = 0; the sign of the velocity (±Aω at t = 0) gives the direction. Cosine forms start at an extreme with zero velocity; the sign gives which extreme.
+
+  - id: phy-osc-416
+    topic: shm-equation
+    subtopic: Constancy of phase difference
+    concept: Phase difference stays constant only for equal frequencies
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [phase-difference]
+    stem: |-
+      Statement I: The phase difference between two SHMs of different frequencies stays constant with time.
+      Statement II: The phase difference between two SHMs of the same frequency stays constant with time.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: The phase difference is (ω_1 − ω_2)t + (φ_1 − φ_2). It is constant only when ω_1 = ω_2. For different frequencies it grows steadily with time.
+
+  - id: phy-osc-417
+    topic: shm-equation
+    subtopic: Amplitude from timing data
+    concept: Using the time since passing the mean position and the speed to find A
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [amplitude, multi-concept]
+    stem: A particle in SHM has period 16 s. It passes through the mean position at t = 2 s, and at t = 4 s its speed is 4 m s^{-1}. What is its amplitude?
+    options:
+      - 32√2/π m
+      - 16/π m
+      - 32/π m
+      - 4√2 m
+    answer: 0
+    explanation: ω = 2π/16 = π/8 rad s^{-1}. Measuring time from the mean-position crossing, v = Aω cos(ω × 2) = Aω cos(π/4). So 4 = A(π/8)(1/√2), giving A = 32√2/π ≈ 14.4 m.
+
+  - id: phy-osc-418
+    topic: shm-equation
+    subtopic: Ordering times
+    concept: Comparing times for different parts of the SHM path
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [time-between-positions, ordering]
+    stem: |-
+      For an SHM of period T, arrange the minimum times for these movements in increasing order.
+      P. Mean position to +A
+      Q. +A to −A
+      R. −A/2 to +A/2
+      S. Mean position to +A/2
+    options:
+      - S, R, P, Q
+      - S, P, R, Q
+      - R, S, P, Q
+      - P, S, R, Q
+    answer: 0
+    explanation: S takes T/12, R takes 2 × T/12 = T/6, P takes T/4 and Q takes T/2. So S < R < P < Q.
+
+  - id: phy-osc-419
+    topic: shm-equation
+    subtopic: Separation of two oscillators
+    concept: Two antiphase SHMs of amplitude A have maximum separation 2A
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [phase-difference, superposition]
+    stem: Two particles move along the same line as x_1 = A sin ωt and x_2 = A sin(ωt + π). What is their maximum separation?
+    options:
+      - A
+      - √2 A
+      - 2A
+      - zero
+    answer: 2
+    explanation: x_1 − x_2 = A sin ωt + A sin ωt = 2A sin ωt, so the separation oscillates with amplitude 2A. They are at opposite extremes at the same instant.
+
+  - id: phy-osc-420
+    topic: shm-equation
+    subtopic: Stroboscopic photograph
+    concept: Strobe images crowd near the extremes because the particle is slow there
+    category: concept
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [velocity-position, case-study]
+    stem: A stroboscopic photograph of a block oscillating on a spring, taken with flashes at equal time intervals, shows many images close together near the two ends and few, widely spaced images near the middle. This is because
+    options:
+      - the block's speed is greatest near the ends
+      - the block's speed is smallest near the ends and greatest at the middle
+      - the block's acceleration is zero near the ends
+      - the camera flashes faster near the ends
+    answer: 1
+    explanation: Equal time intervals between images mean spacing is proportional to speed. The block is slowest near the extremes (v → 0) and fastest at the centre (v = ωA), so images crowd at the ends.
+
+  - id: phy-osc-421
+    topic: shm-equation
+    subtopic: State after a quarter period
+    concept: Adding π/2 to the phase to find the later state
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [phase, time-between-positions]
+    stem: A particle in SHM is at x = A/2 moving towards +A at t = 0. Where is it after a quarter period, and which way is it moving?
+    options:
+      - At x = (√3/2)A, moving towards the mean position
+      - At x = A, at rest
+      - At x = −A/2, moving towards −A
+      - At x = (√3/2)A, moving towards +A
+    answer: 0
+    explanation: With x = A sin θ, the initial phase is π/6 (moving towards +A). After T/4 the phase is π/6 + π/2 = 2π/3, so x = A sin(2π/3) = (√3/2)A, and cos(2π/3) < 0 means it is moving back towards the mean position. It passed +A on the way.
+
+  - id: phy-osc-422
+    topic: shm-equation
+    subtopic: Sine and cosine forms
+    concept: Sine and cosine descriptions of SHM differ only by a phase of π/2
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [phase-constant]
+    stem: |-
+      Assertion (A): The same SHM can be described either as x = A sin(ωt + φ_1) or as x = A cos(ωt + φ_2).
+      Reason (R): The sine and cosine functions differ only by a phase shift of π/2.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Since sin θ = cos(θ − π/2), choosing φ_2 = φ_1 − π/2 gives the same function. R explains why both descriptions are valid.
+
+  - id: phy-osc-423
+    topic: shm-equation
+    subtopic: Initial displacement
+    concept: sin(θ + π/2) = cos θ so x(0) equals the amplitude
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [phase-constant, shm-equation]
+    stem: A particle moves as x = 0.05 sin(10πt + π/2) m. Where is it at t = 0?
+    options:
+      - At x = 0
+      - At x = 0.025 m
+      - At x = −0.05 m
+      - At x = 0.05 m
+    answer: 3
+    explanation: sin(π/2) = 1, so x(0) = 0.05 m, the positive extreme. The equation is the same as x = 0.05 cos(10πt).
+
+  - id: phy-osc-424
+    topic: shm-circular-motion
+    subtopic: Limits of the analogy
+    concept: The reference particle's acceleration is not the SHM acceleration
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [reference-circle, trap]
+    stem: Which statement about the reference-circle model of SHM is INCORRECT?
+    options:
+      - The reference particle and the SHM have the same period
+      - The acceleration of the reference particle equals the acceleration of the SHM at every instant
+      - The SHM amplitude equals the radius of the circle
+      - The SHM's maximum speed equals the reference particle's speed
+    answer: 1
+    explanation: The reference particle always has centripetal acceleration of magnitude ω^2A, but the SHM acceleration is only its component along the diameter, ω^2x, which varies from 0 to ω^2A. They are equal only at the extremes.
+
+  - id: phy-osc-425
+    topic: shm-circular-motion
+    subtopic: Projection speed and position
+    concept: Projection speed = v_0 sin θ locates the position x = A cos θ
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [reference-circle, velocity-position]
+    stem: A reference particle moves at 10 m s^{-1} on a circle of radius A. At an instant, its projection on the x-diameter moves at 6 m s^{-1}. How far is the projection from the centre?
+    options:
+      - 0.6A
+      - 0.8A
+      - 0.36A
+      - 0.64A
+    answer: 1
+    explanation: The projection speed is v_0 sin θ, where θ is the radius angle from the x-axis, so sin θ = 0.6 and cos θ = 0.8. The projection is at x = A cos θ = 0.8A. Check, v = ω√(A^2 − x^2) = ωA × 0.6 = 6 m s^{-1}.
+
+  - id: phy-osc-426
+    topic: shm-circular-motion
+    subtopic: Combining two projections
+    concept: Plotting y-projection against x-projection recovers the circle
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, reference-circle]
+    stem: The x- and y-projections of a uniform circular motion of radius A are recorded. If y is plotted against x, the graph is
+    options:
+      - a straight line at 45°
+      - an ellipse with semi-axes A and 2A
+      - a circle of radius A
+      - a sine curve
+    answer: 2
+    explanation: x = A cos(ωt + φ) and y = A sin(ωt + φ) satisfy x^2 + y^2 = A^2, so the y–x graph is the original circle. Two perpendicular SHMs of equal amplitude and a π/2 phase difference combine into uniform circular motion.
+
+  - id: phy-osc-427
+    topic: shm-circular-motion
+    subtopic: Shadow of a whirled stone
+    concept: The shadow of a stone in horizontal circular motion executes SHM
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [reference-circle, case-study, max-speed]
+    stem: A stone whirled in a horizontal circle of radius 0.5 m completes a revolution every 0.5 s. Sunlight from the side casts its shadow on a wall, and the shadow moves to and fro. What is the shadow's maximum speed?
+    options:
+      - π m s^{-1}
+      - 0.5π m s^{-1}
+      - 4π m s^{-1}
+      - 2π m s^{-1}
+    answer: 3
+    explanation: The shadow is the projection of uniform circular motion, SHM with A = 0.5 m and ω = 2π/0.5 = 4π rad s^{-1}. v_{max} = ωA = 2π ≈ 6.3 m s^{-1}.
+
+  - id: phy-osc-428
+    topic: shm-circular-motion
+    subtopic: Projection at 120°
+    concept: Position, velocity and acceleration of the projection at 120°
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [reference-circle, velocity, acceleration]
+    stem: |-
+      A reference particle moves anticlockwise on a circle of radius A with angular speed ω. When its radius makes 120° with the +x axis, which statements about its x-projection are correct?
+      I. It is at x = −A/2.
+      II. It is moving towards the negative extreme.
+      III. Its speed is (√3/2)Aω.
+      IV. Its acceleration points in the −x direction.
+    options:
+      - I, II and III only
+      - I and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: x = A cos 120° = −A/2. The x-velocity −Aω sin 120° = −(√3/2)Aω is negative, so it moves towards −A with speed (√3/2)Aω. The acceleration −ω^2x = +ω^2A/2 points in the +x direction (towards the centre), so IV is false.
+
+  - id: phy-osc-429
+    topic: shm-circular-motion
+    subtopic: Where the projection is fastest
+    concept: The projection is fastest when the reference velocity is parallel to the diameter
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [reference-circle, max-speed]
+    stem: |-
+      Assertion (A): The projection of a uniformly rotating particle on the x-diameter moves fastest when the particle crosses the y-axis.
+      Reason (R): At that instant the particle's velocity is parallel to the x-diameter.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The projection's velocity is the x-component of the particle's velocity. On the y-axis the tangential velocity points entirely along x, so the whole speed ωA appears in the projection. R explains A.
+
+  - id: phy-osc-430
+    topic: shm-circular-motion
+    subtopic: Two reference particles
+    concept: Projections of two particles 90° apart differ by π/2 and separate by up to √2 A
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [reference-circle, phase-difference, superposition]
+    stem: Two particles move together on the same circle of radius A with equal angular speed, 90° apart. What is the maximum separation between their projections on a diameter?
+    options:
+      - A
+      - 2A
+      - √2 A
+      - A/√2
+    answer: 2
+    explanation: The projections are A cos θ and A cos(θ + 90°), so their difference is A[cos θ + sin θ] = √2 A sin(θ + 45°). Its maximum magnitude is √2 A, equal to the chord length between the two particles.
+
+  - id: phy-osc-431
+    topic: velocity-acceleration
+    subtopic: Hummingbird wing
+    concept: v_max = 2πνA for a rapidly oscillating wing tip
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [max-speed, case-study]
+    stem: A hummingbird's wing tip moves up and down in approximate SHM at 50 Hz with amplitude 2 cm. What is its maximum speed, approximately?
+    options:
+      - 1 m s^{-1}
+      - 3.1 m s^{-1}
+      - 12.6 m s^{-1}
+      - 6.3 m s^{-1}
+    answer: 3
+    explanation: v_{max} = 2πνA = 2π × 50 × 0.02 = 2π ≈ 6.3 m s^{-1}. Omitting the 2π gives 1 m s^{-1}.
+
+  - id: phy-osc-432
+    topic: velocity-acceleration
+    subtopic: Time fraction above half speed
+    concept: Speed exceeds half its maximum for two-thirds of each period
+    category: application
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [velocity, time-between-positions]
+    stem: For what fraction of each period is the speed of a particle in SHM greater than half its maximum speed?
+    options:
+      - 1/2
+      - 2/3
+      - 1/3
+      - 3/4
+    answer: 1
+    explanation: v = v_{max}|cos θ| > v_{max}/2 when |cos θ| > ½, i.e. θ within π/3 of 0 or π. This covers 4 × π/3 = 4π/3 of each 2π, i.e. 2/3 of the period.
+
+  - id: phy-osc-433
+    topic: velocity-acceleration
+    subtopic: Amplitudes of x, v and a
+    concept: Each derivative multiplies the amplitude by ω
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [max-speed, max-acceleration]
+    stem: |-
+      Statement I: The velocity amplitude of an SHM equals ω times its displacement amplitude.
+      Statement II: The acceleration amplitude of an SHM equals ω times its velocity amplitude.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: v_{max} = ωA and a_{max} = ω^2A = ω(ωA). Each time derivative of a sinusoid multiplies its amplitude by ω and advances the phase by π/2.
+
+  - id: phy-osc-434
+    topic: velocity-acceleration
+    subtopic: Inferring x(t) from v(t)
+    concept: v = −Aω sin ωt corresponds to x = A cos ωt, starting at +A
+    category: application
+    format: graph
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [graph, velocity]
+    stem: The velocity–time graph of a particle in SHM starts at zero at t = 0 and first becomes negative. Which describes the particle at t = 0?
+    options:
+      - At the mean position, moving in +x
+      - At the negative extreme, at rest
+      - At the positive extreme, at rest
+      - At the mean position, moving in −x
+    answer: 2
+    explanation: "v = 0 means the particle is at an extreme. Since the velocity then becomes negative, it is moving towards −x, so it must start from the positive extreme: x = A cos ωt with v = −Aω sin ωt."
+
+  - id: phy-osc-435
+    topic: velocity-acceleration
+    subtopic: Maximum acceleration from v_max and A
+    concept: a_max = v_max^2/A
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [max-acceleration, max-speed]
+    stem: A particle in SHM of amplitude 0.1 m has maximum speed 0.5 m s^{-1}. What is its maximum acceleration?
+    options:
+      - 5 m s^{-2}
+      - 0.05 m s^{-2}
+      - 25 m s^{-2}
+      - 2.5 m s^{-2}
+    answer: 3
+    explanation: ω = v_{max}/A = 5 rad s^{-1}, and a_{max} = ω^2A = 25 × 0.1 = 2.5 m s^{-2}. Equivalently a_{max} = v_{max}^2/A.
+
+  - id: phy-osc-436
+    topic: velocity-acceleration
+    subtopic: Maximum speed of a combined motion
+    concept: v_max = ω√(a^2 + b^2) for a sin ωt + b cos ωt
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [max-speed, superposition]
+    stem: What is the maximum speed of a particle moving as x = 3 sin 2t + 4 cos 2t (x in cm, t in s)?
+    options:
+      - 14 cm s^{-1}
+      - 5 cm s^{-1}
+      - 10 cm s^{-1}
+      - 7 cm s^{-1}
+    answer: 2
+    explanation: The motion is SHM with amplitude √(9 + 16) = 5 cm and ω = 2 rad s^{-1}, so v_{max} = ωA = 10 cm s^{-1}. Adding the separate maxima (6 + 8) gives 14, which ignores the phase difference.
+
+  - id: phy-osc-437
+    topic: velocity-acceleration
+    subtopic: Direction of velocity
+    concept: The velocity at the mean position can be in either direction
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [velocity, direction]
+    stem: Which statement about the velocity and speed of a particle in SHM is INCORRECT?
+    options:
+      - It passes each point between the extremes twice per period, with the same speed each time
+      - Its speed at a given point does not depend on its direction of motion
+      - Its velocity at the mean position is always in the +x direction
+      - Its velocity is zero at both extremes
+    answer: 2
+    explanation: The particle crosses the mean position twice per period, once moving in +x and once in −x, so its velocity there is not always in +x. The speed depends only on |x| through ω√(A^2 − x^2).
+
+  - id: phy-osc-438
+    topic: velocity-acceleration
+    subtopic: State at T/8
+    concept: At t = T/8 from the mean position x = A/√2, v = Aω/√2 and KE = PE
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [velocity, acceleration, energy-sharing]
+    stem: |-
+      A particle moves as x = A sin ωt. At t = T/8, which statements are correct?
+      I. x = A/√2
+      II. v = Aω/√2
+      III. a = −ω^2A/√2
+      IV. Its kinetic and potential energies are equal.
+    options:
+      - I and II only
+      - I, II and III only
+      - III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: At t = T/8, ωt = π/4, so x = A/√2, v = Aω cos 45° = Aω/√2 and a = −ω^2x = −ω^2A/√2. At x = A/√2 the kinetic and potential energies are each E/2. All four are correct.
+
+  - id: phy-osc-439
+    topic: velocity-acceleration
+    subtopic: Ratio of speeds
+    concept: "Speeds at A/2 and (√3/2)A are in the ratio √3 : 1"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [velocity-position]
+    stem: What is the ratio of the speed of a particle in SHM at x = A/2 to its speed at x = (√3/2)A?
+    options:
+      - "1 : √3"
+      - "√3 : 1"
+      - "3 : 1"
+      - "1 : 1"
+    answer: 1
+    explanation: "v ∝ √(A^2 − x^2). At A/2 this is (√3/2)A, and at (√3/2)A it is A/2. The ratio is √3 : 1."
+
+  - id: phy-osc-440
+    topic: velocity-acceleration
+    subtopic: Velocity at given times
+    concept: v = Aω cos ωt at t = 0, T/4, T/2 and T/6
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    tags: [velocity]
+    stem: |-
+      A particle moves as x = A sin ωt. Match each instant in List I with its velocity in List II.
+      List I: P. t = 0; Q. t = T/4; R. t = T/2; S. t = T/6
+      List II: 1. zero; 2. Aω/2; 3. −Aω; 4. +Aω
+    options:
+      - P-4, Q-1, R-3, S-2
+      - P-1, Q-4, R-3, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-4, Q-1, R-2, S-3
+    answer: 0
+    explanation: v = Aω cos ωt. At t = 0, cos 0 = 1; at T/4, cos(π/2) = 0; at T/2, cos π = −1; at T/6, cos(π/3) = ½.
+
+  - id: phy-osc-441
+    topic: velocity-acceleration
+    subtopic: Speed independent of direction
+    concept: Speed at a point depends only on |x|
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [velocity-position]
+    stem: |-
+      Assertion (A): A particle in SHM has the same speed at a given point whether it is moving towards or away from the mean position.
+      Reason (R): In SHM the speed at displacement x is ω√(A^2 − x^2), which depends only on x^2.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Energy conservation gives ½mv^2 = ½k(A^2 − x^2), which fixes the speed at each position regardless of direction. R states this and explains A.
+
+  - id: phy-osc-442
+    topic: velocity-acceleration
+    subtopic: Shaker table
+    concept: Loose objects lose contact when a_max exceeds g
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [max-acceleration, case-study, multi-concept]
+    stem: A horizontal platform vibrates vertically in SHM at 5 Hz. A coin rests loosely on it. What is the largest amplitude for which the coin never leaves the platform? (g = 10 m s^{-2}, π^2 ≈ 10)
+    options:
+      - 1 cm
+      - 2 mm
+      - 5 mm
+      - 1 mm
+    answer: 0
+    explanation: The coin stays in contact as long as the platform's downward acceleration never exceeds g, i.e. ω^2A ≤ g. ω^2 = (2π × 5)^2 = 100π^2 ≈ 1000 s^{-2}, so A ≤ 10/1000 = 0.01 m = 1 cm.
+
+  - id: phy-osc-443
+    topic: velocity-acceleration
+    subtopic: Where contact is lost
+    concept: A block on a vertically oscillating platform leaves it first at the top extreme
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: true
+    tags: [max-acceleration, normal-force]
+    stem: A block rests on a platform executing vertical SHM. As the amplitude is slowly increased, where does the block first lose contact?
+    options:
+      - At the lowest point
+      - At the mean position
+      - At the highest point
+      - Midway between the mean and lowest points
+    answer: 2
+    explanation: N = m(g + a) with a upward positive. At the highest point the acceleration is ω^2A downward, making N = m(g − ω^2A) smallest; contact is lost there first when ω^2A exceeds g. At the lowest point N is largest.
+
+  - id: phy-osc-444
+    topic: velocity-acceleration
+    subtopic: Average acceleration
+    concept: Average acceleration from extreme to mean is (2/π) a_max
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [acceleration, average]
+    stem: A particle in SHM moves from an extreme to the mean position. What is the ratio of its average acceleration over this quarter period to its maximum acceleration?
+    options:
+      - 1/2
+      - 2/π
+      - 1/√2
+      - π/4
+    answer: 1
+    explanation: Average acceleration = Δv/Δt = Aω/(T/4) = 4Aω/(2π/ω) = (2/π)Aω^2. Dividing by a_{max} = Aω^2 gives 2/π ≈ 0.64.
+
+  - id: phy-osc-445
+    topic: force-law
+    subtopic: Net force at the mean position
+    concept: A pendulum bob at the lowest point still has a net centripetal force
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [restoring-force, tension, trap]
+    stem: |-
+      Statement I: The restoring force on a spring–block oscillator is zero at the mean position.
+      Statement II: The net force on a swinging pendulum bob is zero at the lowest point of its path.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: For the block F = −kx = 0 at x = 0. The bob at the lowest point has zero tangential (restoring) force, but it is moving on a circle, so a net upward centripetal force mv^2/L acts; tension exceeds mg there. Statement II is incorrect.
+
+  - id: phy-osc-446
+    topic: force-law
+    subtopic: Period from acceleration law
+    concept: a = −(π^2/4)x gives T = 4 s
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [acceleration, period]
+    stem: A particle's acceleration is a = −(π^2/4)x in SI units. What is its period?
+    options:
+      - 2 s
+      - 4 s
+      - 8 s
+      - π/2 s
+    answer: 1
+    explanation: ω^2 = π^2/4, so ω = π/2 rad s^{-1} and T = 2π/(π/2) = 4 s.
+
+  - id: phy-osc-447
+    topic: force-law
+    subtopic: Scaling of the period
+    concept: T ∝ √(m/k); quadrupling k and doubling m gives T/√2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [spring-period, proportionality]
+    stem: A body oscillates under F = −kx with period T. If k is made four times and the mass doubled, the new period is
+    options:
+      - T/√2
+      - √2 T
+      - T/2
+      - 2T
+    answer: 0
+    explanation: T ∝ √(m/k), so T' = T√(2/4) = T/√2.
+
+  - id: phy-osc-448
+    topic: force-law
+    subtopic: Force–displacement graphs
+    concept: Only a straight line of negative slope through the origin gives SHM
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, force-law]
+    stem: |-
+      Which force–displacement (F–x) graphs lead to SHM about x = 0?
+      I. A straight line through the origin with negative slope
+      II. A straight line through the origin with positive slope
+      III. A curve F = −cx^3 through the origin
+      IV. A straight line with negative slope crossing the x-axis at x = 0
+    options:
+      - I and IV only
+      - I, III and IV only
+      - II only
+      - I and III only
+    answer: 0
+    explanation: SHM about 0 needs F = −kx, a straight line of negative slope through the origin; IV describes the same line. A positive slope pushes the body away, and −cx^3 is restoring but not linear.
+
+  - id: phy-osc-449
+    topic: force-law
+    subtopic: Two restoring forces together
+    concept: Two linear restoring forces add their constants
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [force-law, spring-combination]
+    stem: A 1 kg body is acted on at once by two restoring forces, −3x N and −6x N. What is its angular frequency?
+    options:
+      - 2 rad s^{-1}
+      - 9 rad s^{-1}
+      - √2 rad s^{-1}
+      - 3 rad s^{-1}
+    answer: 3
+    explanation: The net force is −9x, so k = 9 N m^{-1} and ω = √(9/1) = 3 rad s^{-1}. The forces add like springs in parallel.
+
+  - id: phy-osc-450
+    topic: force-law
+    subtopic: Molecular vibrations
+    concept: Estimating a bond's force constant from its vibration frequency
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: k = μ(2πν)^2
+    tags: [force-constant, case-study]
+    stem: The vibration of a diatomic molecule can be modelled as SHM of a reduced mass 1.6 × 10^{-27} kg on a spring (the bond). If the vibration frequency is 9 × 10^{13} Hz, the bond's force constant is closest to
+    options:
+      - 5 N m^{-1}
+      - 50 N m^{-1}
+      - 5000 N m^{-1}
+      - 500 N m^{-1}
+    answer: 3
+    explanation: k = μ(2πν)^2 = 1.6 × 10^{-27} × (5.65 × 10^{14})^2 ≈ 1.6 × 10^{-27} × 3.2 × 10^{29} ≈ 510 N m^{-1}. So k is about 500 N m^{-1}.
+
+  - id: phy-osc-451
+    topic: force-law
+    subtopic: Defining property
+    concept: a/x is constant and negative in SHM
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [acceleration, force-law]
+    stem: Which statement is true for every simple harmonic motion?
+    options:
+      - The acceleration is constant
+      - The ratio of acceleration to displacement is a negative constant
+      - The force is proportional to the square of displacement
+      - The ratio of speed to displacement is constant
+    answer: 1
+    explanation: a = −ω^2x, so a/x = −ω^2 is a negative constant at every position. The acceleration itself varies, and the speed is not proportional to displacement.
+
+  - id: phy-osc-452
+    topic: force-law
+    subtopic: Period from a force reading
+    concept: k from one force reading, then T = 2π√(m/k)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [force-constant, period]
+    stem: A 20 g body in SHM experiences a restoring force of 2 N when 10 cm from the mean position. What is its period, approximately?
+    options:
+      - 2 s
+      - 0.2 s
+      - 0.02 s
+      - 0.63 s
+    answer: 1
+    explanation: k = F/x = 2/0.1 = 20 N m^{-1}. T = 2π√(m/k) = 2π√(0.02/20) = 2π√0.001 ≈ 2π × 0.0316 ≈ 0.2 s. Leaving the mass in grams gives a very different answer.
+
+  - id: phy-osc-453
+    topic: force-law
+    subtopic: Constant force
+    concept: A constant force cannot produce SHM
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [force-law, trap]
+    stem: |-
+      Assertion (A): A body falling freely near the Earth's surface does not execute SHM.
+      Reason (R): The gravitational force near the surface is constant and not proportional to displacement from any fixed point.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: SHM needs a force that grows with displacement from a mean position and points back towards it. Near the surface mg is constant, so there is no restoring force of the form −kx. R explains A.
+
+  - id: phy-osc-454
+    topic: force-law
+    subtopic: Phase relations of force
+    concept: Restoring force is in phase with acceleration and π/2 from velocity
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [phase-difference, restoring-force]
+    stem: |-
+      Statement I: In SHM, the restoring force and the acceleration are always in phase.
+      Statement II: In SHM, the restoring force and the velocity differ in phase by π.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: F = ma, so force and acceleration are always in phase. The force is opposite to displacement (phase π from x), while velocity leads x by π/2, so force and velocity differ by π/2, not π.
+
+  - id: phy-osc-455
+    topic: force-law
+    subtopic: Force per unit displacement per unit mass
+    concept: k/m = ω^2 directly gives the period
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [force-constant, period]
+    stem: In an SHM, the restoring force per unit displacement per unit mass is 25 s^{-2}. What is the period?
+    options:
+      - 2π/5 s
+      - 5 s
+      - 2π s
+      - 2π/25 s
+    answer: 0
+    explanation: Restoring force per unit displacement per unit mass is k/m = ω^2 = 25 s^{-2}, so ω = 5 rad s^{-1} and T = 2π/5 s ≈ 1.26 s.
+
+  - id: phy-osc-456
+    topic: energy-shm
+    subtopic: Amplitude from a state
+    concept: E = ½kx^2 + ½mv^2 at any instant gives the amplitude
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [total-energy, amplitude, multi-concept]
+    stem: A 1 kg block on a spring of constant 100 N m^{-1} is 3 cm from equilibrium and moving at 0.4 m s^{-1}. What is its amplitude?
+    options:
+      - 3 cm
+      - 4 cm
+      - 5 cm
+      - 7 cm
+    answer: 2
+    explanation: E = ½ × 100 × 0.0009 + ½ × 1 × 0.16 = 0.045 + 0.08 = 0.125 J. A = √(2E/k) = √(0.25/100) = 0.05 m = 5 cm. Equivalently A^2 = x^2 + (v/ω)^2 = 9 + 16 cm^2.
+
+  - id: phy-osc-457
+    topic: energy-shm
+    subtopic: Doubling the energy
+    concept: Doubling E requires √2 times the amplitude
+    category: numerical
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [total-energy, amplitude]
+    stem: To double the total energy of a spring–block oscillator, which change is correct?
+    options:
+      - Double the amplitude
+      - Double the mass, keeping the amplitude the same
+      - Increase the amplitude by a factor √2
+      - Halve the spring constant, keeping the amplitude the same
+    answer: 2
+    explanation: E = ½kA^2, so √2 times the amplitude doubles E. Doubling A gives 4E, changing the mass has no effect, and halving k halves E.
+
+  - id: phy-osc-458
+    topic: energy-shm
+    subtopic: Energy graphs
+    concept: Features of KE, PE and total energy graphs in SHM
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [graph, energy-sharing]
+    stem: |-
+      For SHM, which statements about energy graphs are correct?
+      I. The KE–x and PE–x parabolas cross at x = ±A/√2.
+      II. The KE–t and PE–t graphs cross four times per period.
+      III. The PE–x graph has its minimum at the extreme positions.
+      IV. The total energy–t graph is a horizontal line.
+    options:
+      - I and III only
+      - II and IV only
+      - I, II and III only
+      - I, II and IV only
+    answer: 3
+    explanation: KE = PE at x = ±A/√2 (I), and each of those points is passed twice per period, so the time graphs cross four times (II). Total energy is constant (IV). PE = ½kx^2 is minimum at x = 0, not at the extremes, so III is false.
+
+  - id: phy-osc-459
+    topic: energy-shm
+    subtopic: Total energy from PE at A/2
+    concept: PE at A/2 is one-quarter of E
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [energy-sharing]
+    stem: The potential energy of a particle in SHM is 2 J at half its amplitude. What is its total energy?
+    options:
+      - 4 J
+      - 8 J
+      - 2 J
+      - 6 J
+    answer: 1
+    explanation: PE ∝ x^2, so at A/2 the PE is E/4. E = 4 × 2 = 8 J. Assuming PE ∝ x gives 4 J.
+
+  - id: phy-osc-460
+    topic: energy-shm
+    subtopic: Block hitting a spring
+    concept: Contact time with a spring is half a period; compression A = v/ω
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [spring-period, case-study, multi-concept]
+    stem: A 2 kg block sliding at 1 m s^{-1} on a smooth floor hits a light spring (k = 200 N m^{-1}) fixed to a wall, compresses it and rebounds. For how long is the block in contact with the spring?
+    options:
+      - 0.2π s
+      - 0.05π s
+      - 0.1 s
+      - 0.1π s
+    answer: 3
+    explanation: While in contact the block executes half an SHM cycle (compress and return), so the contact time is T/2 = π√(m/k) = π√(2/200) = 0.1π s ≈ 0.31 s. The maximum compression is v/ω = 1/10 = 0.1 m, but the contact time does not depend on the speed.
+
+  - id: phy-osc-461
+    topic: energy-shm
+    subtopic: Energy ratios
+    concept: "KE : PE is 3 : 1 at A/2 and 1 : 1 at A/√2"
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [energy-sharing]
+    stem: |-
+      Statement I: At x = A/2 the ratio of kinetic to potential energy in SHM is 3 : 1.
+      Statement II: At x = A/√2 the kinetic and potential energies are equal.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "KE : PE = (A^2 − x^2) : x^2. At A/2 this is (3/4) : (1/4) = 3 : 1, and at A/√2 it is (1/2) : (1/2) = 1 : 1."
+
+  - id: phy-osc-462
+    topic: energy-shm
+    subtopic: Amplitude from energy
+    concept: Doubling the energy multiplies amplitude by √2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [total-energy, amplitude]
+    stem: The energy given to a spring oscillator is doubled. By what factor does its amplitude change?
+    options:
+      - √2
+      - "4"
+      - 1/√2
+      - "2"
+    answer: 0
+    explanation: A = √(2E/k), so A ∝ √E. Doubling E multiplies A by √2.
+
+  - id: phy-osc-463
+    topic: energy-shm
+    subtopic: PE a ninth of total
+    concept: PE = E/9 at x = A/3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [energy-sharing]
+    stem: At what displacement is the potential energy of a particle in SHM one-ninth of its total energy?
+    options:
+      - A/9
+      - A/3
+      - A/√3
+      - 2√2A/3
+    answer: 1
+    explanation: PE/E = x^2/A^2 = 1/9, so x = A/3. A/9 assumes PE ∝ x.
+
+  - id: phy-osc-464
+    topic: energy-shm
+    subtopic: Energy ratios at positions
+    concept: KE/PE = (A^2 − x^2)/x^2 at various positions
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [energy-sharing]
+    stem: |-
+      For a particle in SHM, match each position (List I) with the ratio KE/PE there (List II).
+      List I: P. x = A/2; Q. x = A/√2; R. x = A/3; S. x = 2A/√5
+      List II: 1. 1; 2. 3; 3. 8; 4. 1/4
+    options:
+      - P-2, Q-1, R-4, S-3
+      - P-1, Q-2, R-3, S-4
+      - P-3, Q-1, R-2, S-4
+      - P-2, Q-1, R-3, S-4
+    answer: 3
+    explanation: KE/PE = A^2/x^2 − 1. P gives 4 − 1 = 3; Q gives 2 − 1 = 1; R gives 9 − 1 = 8; S gives 5/4 − 1 = 1/4.
+
+  - id: phy-osc-465
+    topic: energy-shm
+    subtopic: Heavier block, same spring
+    concept: Same k and A give the same energy; a heavier block moves slower
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [total-energy, max-speed, trap]
+    stem: |-
+      Assertion (A): On the same spring and with the same amplitude, a heavier block has a smaller maximum speed.
+      Reason (R): The heavier block has a smaller total energy of oscillation.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: E = ½kA^2 is the same for both blocks, so R is false. The same energy ½mv_{max}^2 shared by a larger mass means a smaller v_{max}, so A is true.
+
+  - id: phy-osc-466
+    topic: energy-shm
+    subtopic: Spring energy on a vertical spring
+    concept: Elastic PE at the lowest point includes the static extension
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [vertical-spring, potential-energy, trap]
+    stem: A 1 kg block hangs from a spring (k = 100 N m^{-1}) and oscillates vertically with amplitude 5 cm. What is the elastic potential energy stored in the spring at the lowest point? (g = 10 m s^{-2})
+    options:
+      - 0.125 J
+      - 0.5 J
+      - 0.625 J
+      - 1.125 J
+    answer: 3
+    explanation: The static extension is mg/k = 0.1 m, so at the lowest point the spring is stretched 0.1 + 0.05 = 0.15 m. Elastic PE = ½ × 100 × 0.15^2 = 1.125 J. 0.125 J is ½kA^2, the oscillation energy measured from equilibrium, not the spring's stored energy.
+
+  - id: phy-osc-467
+    topic: energy-shm
+    subtopic: Energy and frequency
+    concept: At fixed amplitude and mass, halving frequency quarters the energy
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [total-energy, proportionality]
+    stem: For a particle of fixed mass oscillating with fixed amplitude, the frequency is halved. The energy of oscillation becomes
+    options:
+      - half
+      - one-fourth
+      - twice
+      - unchanged
+    answer: 1
+    explanation: E = 2π^2mν^2A^2 ∝ ν^2 at fixed m and A, so halving ν gives E/4.
+
+  - id: phy-osc-468
+    topic: energy-shm
+    subtopic: Ways to change energy
+    concept: Energy of a spring oscillator depends on k and A only
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [total-energy]
+    stem: |-
+      Which of these would increase the total energy of a spring–block oscillator?
+      I. Increasing the amplitude on the same spring
+      II. Using a heavier block with the same spring and amplitude
+      III. Using a stiffer spring with the same amplitude
+      IV. Giving the block an extra push in its direction of motion as it passes the mean position
+    options:
+      - I and II only
+      - II and III only
+      - I, III and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: E = ½kA^2 rises with larger A (I) or larger k at the same A (III). An extra push adds kinetic energy and so increases the amplitude (IV). Mass does not appear in ½kA^2, so II leaves E unchanged.
+
+  - id: phy-osc-469
+    topic: energy-shm
+    subtopic: Vertical spring potential energy
+    concept: Combined PE of a vertical spring–block system is minimum at equilibrium
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, vertical-spring, potential-energy]
+    stem: For a block on a vertical spring, the sum of elastic and gravitational potential energy is plotted against the block's position. The graph is
+    options:
+      - a parabola with its minimum at the spring's natural length
+      - a straight line
+      - a parabola with its minimum at the equilibrium position, where kΔl = mg
+      - a parabola with its maximum at the equilibrium position
+    answer: 2
+    explanation: ½ky^2 − mgy (y measured down from natural length) is a parabola whose minimum is at y = mg/k, the equilibrium position. About that point it equals ½k(y − Δl)^2 plus a constant, which is why the motion is SHM about the equilibrium.
+
+  - id: phy-osc-470
+    topic: spring-mass
+    subtopic: Spring oscillator in orbit
+    concept: A spring oscillator works the same in an orbiting satellite
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [spring-period, effective-g]
+    stem: Which statement about oscillators inside an orbiting satellite and on the Moon is correct?
+    options:
+      - A spring–block system does not oscillate in an orbiting satellite
+      - A simple pendulum has the same period in an orbiting satellite as on Earth
+      - A spring–block system oscillates with the same period on Earth and in an orbiting satellite
+      - A spring–block system has a longer period on the Moon than on Earth
+    answer: 2
+    explanation: The spring's restoring force −kx does not depend on gravity, so T = 2π√(m/k) is the same everywhere. A pendulum needs gravity and does not oscillate in an orbiting satellite.
+
+  - id: phy-osc-471
+    topic: spring-mass
+    subtopic: Unequal pieces in parallel
+    concept: Pieces cut in ratio 2:3 have constants 5k/2 and 5k/3
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [spring-cutting, spring-combination]
+    stem: "A spring of constant k is cut into two pieces with lengths in the ratio 2 : 3, and the pieces are joined in parallel. What is the effective spring constant?"
+    options:
+      - k
+      - 5k
+      - 6k/25
+      - 25k/6
+    answer: 3
+    explanation: The pieces are 2/5 and 3/5 of the length, with constants 5k/2 and 5k/3. In parallel, 5k/2 + 5k/3 = 25k/6. Joined in series they would simply give back k; 6k/25 is the reciprocal slip.
+
+  - id: phy-osc-472
+    topic: spring-mass
+    subtopic: Stiffer spring
+    concept: Quadrupling k halves the period
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [spring-period, proportionality]
+    stem: A block has period 0.5 s on a spring. On a spring four times as stiff, the period is
+    options:
+      - 2 s
+      - 0.25 s
+      - 0.125 s
+      - 1 s
+    answer: 1
+    explanation: T ∝ 1/√k, so four times the stiffness halves the period to 0.25 s. 0.125 s assumes T ∝ 1/k.
+
+  - id: phy-osc-473
+    topic: spring-mass
+    subtopic: Trampoline
+    concept: Period from static sag, T = 2π√(Δl/g)
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [vertical-spring, case-study]
+    stem: A child standing still on a trampoline makes it sag by 0.15 m. Treating the trampoline as a spring, what is the period of small vertical bounces? (g = 10 m s^{-2})
+    options:
+      - 0.24 s
+      - 1.2 s
+      - 0.77 s
+      - 0.94 s
+    answer: 2
+    explanation: k/m = g/Δl, so T = 2π√(Δl/g) = 2π√(0.015) ≈ 2π × 0.122 ≈ 0.77 s. The child's mass is not needed.
+
+  - id: phy-osc-474
+    topic: spring-mass
+    subtopic: Different masses, same spring
+    concept: Same k and A give the same energy but different v_max and a_max
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [spring-period, max-speed, max-acceleration]
+    stem: |-
+      Blocks of mass m and 4m are attached to identical springs and set oscillating with the same amplitude. Which statements are correct?
+      I. They have the same total energy.
+      II. They have the same period.
+      III. The heavier block has half the maximum speed of the lighter one.
+      IV. They have the same maximum acceleration.
+    options:
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+      - I and III only
+    answer: 3
+    explanation: E = ½kA^2 is the same (I). ω = √(k/m) halves for 4m, so the period doubles (II false), v_{max} = ωA halves (III true) and a_{max} = ω^2A becomes one-quarter (IV false).
+
+  - id: phy-osc-475
+    topic: spring-mass
+    subtopic: Half spring
+    concept: A half spring is twice as stiff, so the period falls
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [spring-cutting]
+    stem: |-
+      Assertion (A): A block oscillates with a shorter period on half of a spring than on the whole spring.
+      Reason (R): Each half of a spring has twice the spring constant of the whole spring.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: For the same load, each half stretches half as much, so its constant is 2k. T = 2π√(m/2k) = T/√2 is shorter. R explains A.
+
+  - id: phy-osc-476
+    topic: spring-mass
+    subtopic: Compensating changes
+    concept: Halving both k and m leaves the frequency unchanged
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [spring-frequency, spring-combination]
+    stem: A block oscillates at frequency f on a spring. The spring is replaced by two such springs in series and the mass is halved. The new frequency is
+    options:
+      - f
+      - 2f
+      - √2 f
+      - f/2
+    answer: 0
+    explanation: Series gives k/2, and the mass becomes m/2, so k/m is unchanged and the frequency stays f.
+
+  - id: phy-osc-477
+    topic: spring-mass
+    subtopic: Comparing springs from F–x graphs
+    concept: Slopes of F–x graphs give k; T ∝ 1/√k
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, force-constant, spring-period]
+    stem: "The force–extension graphs of springs X and Y are straight lines through the origin; the slope for Y is four times that for X. The same block is hung on each in turn. What is T_X : T_Y?"
+    options:
+      - "1 : 4"
+      - "4 : 1"
+      - "1 : 2"
+      - "2 : 1"
+    answer: 3
+    explanation: "The slope is the spring constant, so k_Y = 4k_X. T ∝ 1/√k gives T_X : T_Y = √4 : 1 = 2 : 1. The softer spring X has the longer period."
+
+  - id: phy-osc-478
+    topic: spring-mass
+    subtopic: Ordering periods
+    concept: Pieces of a spring and a series pair ordered by period
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [spring-cutting, spring-combination, ordering]
+    stem: |-
+      The same block is hung from each arrangement made from springs of constant k. Arrange them in increasing order of period.
+      P. The whole spring
+      Q. One-quarter of the spring
+      R. Two whole springs in series
+      S. Half of the spring
+    options:
+      - Q, S, P, R
+      - R, P, S, Q
+      - S, Q, P, R
+      - Q, P, S, R
+    answer: 0
+    explanation: Constants are k (P), 4k (Q), k/2 (R) and 2k (S). T ∝ 1/√k, so the stiffest gives the shortest period, Q < S < P < R.
+
+  - id: phy-osc-479
+    topic: spring-mass
+    subtopic: Energy in combined springs
+    concept: In series the softer spring stores more energy; in parallel the stiffer one does
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [spring-combination, potential-energy]
+    stem: |-
+      Statement I: When two springs in series are stretched, the softer spring stores more elastic energy.
+      Statement II: When two springs in parallel are stretched, the stiffer spring stores more elastic energy.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: In series both carry the same force F, and U = F^2/2k is larger for smaller k. In parallel both have the same extension x, and U = ½kx^2 is larger for larger k.
+
+  - id: phy-osc-480
+    topic: spring-mass
+    subtopic: Maximum spring force
+    concept: Maximum spring force on a vertical oscillator is mg + kA
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [vertical-spring, restoring-force]
+    stem: A 1 kg block oscillates vertically on a spring (k = 100 N m^{-1}) with amplitude 5 cm. What is the maximum force exerted by the spring? (g = 10 m s^{-2})
+    options:
+      - 5 N
+      - 15 N
+      - 5 N upward and 5 N downward
+      - 10 N
+    answer: 1
+    explanation: At the lowest point the extension is mg/k + A = 0.1 + 0.05 = 0.15 m, so the spring force is 100 × 0.15 = 15 N = mg + kA. kA = 5 N is only the net restoring force there.
+
+  - id: phy-osc-481
+    topic: spring-mass
+    subtopic: Bullet embedded in a block
+    concept: Momentum conservation gives v, then A = v/ω
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [momentum-conservation, amplitude, multi-concept]
+    stem: A 10 g bullet moving at 100 m s^{-1} embeds itself in a 0.99 kg block resting on a smooth floor and attached to a spring (k = 100 N m^{-1}) fixed to a wall. What is the amplitude of the resulting oscillation?
+    options:
+      - 1 m
+      - 0.01 m
+      - 0.5 m
+      - 0.1 m
+    answer: 3
+    explanation: Momentum conservation gives v = (0.01 × 100)/1.00 = 1 m s^{-1}. With M = 1 kg, ω = √(100/1) = 10 rad s^{-1}, and the block starts at the mean position, so A = v/ω = 0.1 m.
+
+  - id: phy-osc-482
+    topic: spring-mass
+    subtopic: Oscillator parameters
+    concept: ω, T, v_max and E for a given spring–block system
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: false
+    battle: false
+    tags: [spring-period, max-speed, total-energy]
+    stem: |-
+      A 1 kg block on a spring of constant 400 N m^{-1} oscillates with amplitude 5 cm. Match List I with List II.
+      List I: P. Angular frequency; Q. Period; R. Maximum speed; S. Total energy
+      List II: 1. 0.5 J; 2. 1 m s^{-1}; 3. π/10 s; 4. 20 rad s^{-1}
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-4, Q-3, R-2, S-1
+    answer: 3
+    explanation: ω = √(400/1) = 20 rad s^{-1}; T = 2π/20 = π/10 s; v_{max} = ωA = 20 × 0.05 = 1 m s^{-1}; E = ½ × 400 × 0.0025 = 0.5 J.
+
+  - id: phy-osc-483
+    topic: simple-pendulum
+    subtopic: Dependence on g
+    concept: Doubling g reduces the period by √2, not by half
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [pendulum-period, proportionality, trap]
+    stem: Which statement about a simple pendulum (small oscillations) is INCORRECT?
+    options:
+      - Quadrupling the length doubles the period
+      - Doubling g halves the period
+      - Changing the bob's mass does not change the period
+      - The frequency is proportional to √g
+    answer: 1
+    explanation: T ∝ 1/√g, so doubling g divides the period by √2, not 2. The other statements follow from T = 2π√(L/g).
+
+  - id: phy-osc-484
+    topic: simple-pendulum
+    subtopic: Pendulum on a freely sliding cart
+    concept: On a cart sliding freely down a smooth incline, g_eff = g cos θ
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [effective-g, non-inertial-frame, multi-concept]
+    stem: A simple pendulum of length L hangs inside a cart that slides freely down a smooth incline of angle θ. Its period of small oscillations is
+    options:
+      - 2π√(L/g)
+      - 2π√(L/(g sin θ))
+      - infinite
+      - 2π√(L/(g cos θ))
+    answer: 3
+    explanation: In the cart's frame a pseudo-force mg sin θ acts up the incline and cancels the down-slope component of gravity, leaving an effective gravity g cos θ perpendicular to the incline. So T = 2π√(L/(g cos θ)).
+
+  - id: phy-osc-485
+    topic: simple-pendulum
+    subtopic: Why mass cancels
+    concept: Mass cancels because gravitational and inertial mass are equal
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [pendulum-period, multi-concept]
+    stem: |-
+      Assertion (A): The period of a simple pendulum does not depend on the mass of the bob.
+      Reason (R): The mass in the gravitational restoring force equals the mass that resists acceleration (inertial mass), so it cancels.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The restoring torque is m_g gL θ and the moment of inertia is m_i L^2. Since m_g = m_i, they cancel to give ω^2 = g/L. R explains A.
+
+  - id: phy-osc-486
+    topic: simple-pendulum
+    subtopic: Linear graph with g
+    concept: T^2 is proportional to 1/g
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, effective-g]
+    stem: A pendulum of fixed length is taken to places with different g. Which plot is a straight line through the origin?
+    options:
+      - T against g
+      - T^2 against 1/g
+      - T^2 against g
+      - T against 1/g
+    answer: 1
+    explanation: T^2 = 4π^2L/g, so T^2 is proportional to 1/g with slope 4π^2L. T against 1/g is a curve because T ∝ 1/√g.
+
+  - id: phy-osc-487
+    topic: simple-pendulum
+    subtopic: Energy of a pendulum
+    concept: Pendulum energy mgL(1 − cos θ_0) ≈ ½mgLθ_0^2
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [pendulum-energy, small-angle]
+    stem: |-
+      A pendulum of length L and bob mass m swings with a small angular amplitude θ_0. Which statements are correct?
+      I. Its total energy is mgL(1 − cos θ_0).
+      II. For small θ_0 the energy is approximately ½mgLθ_0^2.
+      III. Doubling θ_0 (still small) doubles the energy.
+      IV. Its maximum speed is approximately θ_0√(gL).
+    options:
+      - I and III only
+      - II and III only
+      - I, II and III only
+      - I, II and IV only
+    answer: 3
+    explanation: Energy = mgh with h = L(1 − cos θ_0) (I), and 1 − cos θ_0 ≈ θ_0^2/2 gives II. Then ½mv^2 = ½mgLθ_0^2 gives v = θ_0√(gL) (IV). Energy ∝ θ_0^2, so doubling θ_0 quadruples it; III is false.
+
+  - id: phy-osc-488
+    topic: simple-pendulum
+    subtopic: Sand pendulum trace
+    concept: A leaking sand pendulum over a moving belt draws the x–t sinusoid
+    category: concept
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, case-study]
+    stem: A funnel of sand swings as a pendulum with small amplitude above a sheet of paper pulled at constant speed perpendicular to the swing. The trail of sand on the paper is
+    options:
+      - a straight line
+      - a sine curve
+      - a set of equally spaced dots
+      - a circle
+    answer: 1
+    explanation: The paper's steady motion turns distance along the paper into time, while the funnel's position across it is x = A sin ωt. The sand therefore traces the displacement–time graph of SHM, a sine curve.
+
+  - id: phy-osc-489
+    topic: simple-pendulum
+    subtopic: Pendulum on another planet
+    concept: g ∝ M/R^2 on another planet changes the period
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [effective-g, multi-concept]
+    stem: A seconds pendulum (period 2 s on Earth) is taken to a planet with twice the Earth's mass and twice its radius. What is its period there?
+    options:
+      - 2√2 s
+      - √2 s
+      - 4 s
+      - 2 s
+    answer: 0
+    explanation: g ∝ M/R^2, so g' = g × 2/4 = g/2. T ∝ 1/√g gives T' = 2 × √2 = 2√2 s ≈ 2.83 s.
+
+  - id: phy-osc-490
+    topic: simple-pendulum
+    subtopic: Ordering effective g
+    concept: Comparing periods through g_eff in various frames
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [effective-g, ordering, non-inertial-frame]
+    stem: |-
+      The same pendulum is placed in each situation. Arrange them in decreasing order of period.
+      P. Lift accelerating downward at g/2
+      Q. Stationary lift
+      R. Lift accelerating upward at g/2
+      S. Car accelerating horizontally at g
+    options:
+      - P, Q, R, S
+      - R, S, Q, P
+      - P, S, Q, R
+      - P, Q, S, R
+    answer: 3
+    explanation: g_{eff} is g/2 (P), g (Q), 1.5g (R) and √2 g ≈ 1.41g (S). Period ∝ 1/√g_{eff}, so the order of decreasing period is P > Q > S > R.
+
+  - id: phy-osc-491
+    topic: simple-pendulum
+    subtopic: Tension at the extreme
+    concept: At the extreme, tension is mg cos θ_0, not mg
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [tension, extreme-position, trap]
+    stem: |-
+      Statement I: At an extreme position, a pendulum bob has zero speed but non-zero acceleration.
+      Statement II: At an extreme position, the tension in the string equals mg.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: At the extreme v = 0 but the tangential acceleration g sin θ_0 is maximum (Statement I). With v = 0 there is no centripetal term, so the tension balances only the radial component of weight, T = mg cos θ_0, which is less than mg.
+
+  - id: phy-osc-492
+    topic: simple-pendulum
+    subtopic: Combined changes
+    concept: Doubling L and halving g doubles T
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [pendulum-period, proportionality]
+    stem: The length of a simple pendulum is doubled and it is taken where g is half as large. Its period becomes
+    options:
+      - T
+      - 2T
+      - 4T
+      - √2 T
+    answer: 1
+    explanation: T ∝ √(L/g), so T' = T√(2/(1/2)) = T√4 = 2T.
+
+  - id: phy-osc-493
+    topic: simple-pendulum
+    subtopic: Effects of changes on the period
+    concept: Matching changes in L, g and m with new periods
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [pendulum-period, proportionality]
+    stem: |-
+      A simple pendulum has period T. Match each change in List I with the new period in List II.
+      List I: P. Length made 4 times; Q. g made 4 times; R. Bob mass made 4 times; S. Length made 2 times
+      List II: 1. T; 2. 2T; 3. T/2; 4. √2 T
+    options:
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-2, Q-1, R-3, S-4
+      - P-2, Q-3, R-1, S-4
+    answer: 3
+    explanation: T ∝ √(L/g). 4L gives 2T; 4g gives T/2; mass has no effect; 2L gives √2 T.
+
+  - id: phy-osc-494
+    topic: simple-pendulum
+    subtopic: Linear amplitude
+    concept: Arc amplitude = Lθ_0
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [angular-shm, amplitude]
+    stem: A 2 m long pendulum swings with angular amplitude 0.05 rad. What is the linear (arc) amplitude of the bob?
+    options:
+      - 1 cm
+      - 2.5 cm
+      - 10 cm
+      - 5 cm
+    answer: 2
+    explanation: Arc length s = Lθ = 2 × 0.05 = 0.1 m = 10 cm. The angle must be in radians for this relation.
+
+  - id: phy-osc-495
+    topic: simple-pendulum
+    subtopic: Lift at constant velocity
+    concept: Uniform velocity of the frame does not change the period
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [effective-g, non-inertial-frame, trap]
+    stem: A pendulum hangs in a lift. Which statement is correct?
+    options:
+      - Its period is longer when the lift moves down at constant speed
+      - Its period is shorter when the lift moves up at constant speed
+      - Its period is infinite when the lift moves down at constant speed
+      - Its period is unchanged when the lift moves up or down at constant speed
+    answer: 3
+    explanation: A frame moving with constant velocity is inertial, so g_{eff} = g and the period is unchanged. Only acceleration of the lift changes the effective g.
+
+  - id: phy-osc-496
+    topic: simple-pendulum
+    subtopic: Pendulum in an accelerating car
+    concept: New equilibrium angle tan θ = a/g in a horizontally accelerating car
+    category: numerical
+    format: diagram
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    diagram: "A car moving to the right with an arrow labelled acceleration a = g/√3. From the roof hangs a simple pendulum whose string, at rest relative to the car, is tilted backwards (towards the rear of the car) at an angle θ from the vertical; a dashed vertical line from the pivot marks the vertical. The bob hangs at the lower end of the tilted string."
+    tags: [effective-g, non-inertial-frame]
+    stem: As shown, a pendulum hangs at rest relative to a car accelerating horizontally at a = g/√3. About what angle from the vertical does it oscillate, and what is g_eff?
+    options:
+      - 60°, 2g
+      - 30°, g/√3
+      - 45°, √2 g
+      - 30°, 2g/√3
+    answer: 3
+    explanation: In the car's frame a pseudo-force ma acts backwards, so the string settles at tan θ = a/g = 1/√3, θ = 30°. The effective gravity is √(g^2 + a^2) = g√(1 + 1/3) = 2g/√3, and the bob oscillates about the tilted position.
+
+  - id: phy-osc-497
+    topic: other-shm-systems
+    subtopic: Period formulas
+    concept: Which period formula is misstated
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [u-tube, floating-body, earth-tunnel]
+    stem: Which formula is INCORRECT for small oscillations (symbols have their usual meanings)?
+    options:
+      - Liquid column of total length L in a U-tube, T = 2π√(L/2g)
+      - Bead near the bottom of a smooth bowl of radius R, T = 2π√(2R/g)
+      - Body in a tunnel through a uniform Earth, T = 2π√(R/g)
+      - Floating cylinder with submerged depth h, T = 2π√(h/g)
+    answer: 1
+    explanation: A bead near the bottom of a smooth spherical bowl moves like a pendulum of length R, so T = 2π√(R/g). The other three formulas are correct.
+
+  - id: phy-osc-498
+    topic: other-shm-systems
+    subtopic: Tunnel through the Earth
+    concept: Time from the surface to depth R/2 is T/6
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [earth-tunnel, time-between-positions]
+    stem: A ball is dropped from rest into a smooth diametral tunnel through the Earth (period of oscillation about 84 min). How long does it take to fall to half the distance to the centre, i.e. r = R/2?
+    options:
+      - About 14 min
+      - About 21 min
+      - About 10.5 min
+      - About 7 min
+    answer: 0
+    explanation: Starting from the extreme r = R, r = R cos ωt reaches R/2 when ωt = π/3, i.e. t = T/6 ≈ 84/6 = 14 min. Assuming uniform motion would give T/8 ≈ 10.5 min.
+
+  - id: phy-osc-499
+    topic: other-shm-systems
+    subtopic: Tunnel through the Earth
+    concept: Maximum speed at the centre, where the net force is zero
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [earth-tunnel, mean-position]
+    stem: |-
+      Assertion (A): A body dropped into a smooth tunnel through a uniform Earth has its greatest speed at the Earth's centre.
+      Reason (R): The gravitational force on the body is zero at the Earth's centre, which is the mean position of its SHM.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Inside the Earth the force −(mg/R)r speeds the body up all the way to the centre, where it becomes zero; beyond the centre it slows the body. So the speed peaks at the mean position, and R explains A.
+
+  - id: phy-osc-500
+    topic: other-shm-systems
+    subtopic: Bobbing buoy
+    concept: Buoy period from k = Aρg
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [floating-body, buoyancy, case-study]
+    stem: A 1000 kg cylindrical buoy with a uniform horizontal cross-section of 2 m^2 floats upright in water (density 1000 kg m^{-3}). A passing wave pushes it down slightly. What is the period of its vertical bobbing, approximately? (g = 10 m s^{-2})
+    options:
+      - 0.45 s
+      - 2.8 s
+      - 1.4 s
+      - 0.7 s
+    answer: 2
+    explanation: k = Aρg = 2 × 1000 × 10 = 2 × 10^4 N m^{-1}. T = 2π√(m/k) = 2π√(1000/20000) = 2π√0.05 ≈ 2π × 0.224 ≈ 1.4 s. Equivalently the submerged depth is 0.5 m and T = 2π√(0.5/10).
+
