@@ -24,3 +24,5 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - name: Validate
         run: uv run --python 3.11 --with pyyaml --with pydantic python content/tools/validate.py
+      - name: Export seed
+        run: uv run --python 3.11 --with pyyaml python content/tools/export_seed.py
