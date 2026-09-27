@@ -9046,3 +9046,432 @@ questions:
       - S < Q < P < R
     answer: 2
     explanation: Convert to wavelength - S 1000 nm, P 700 nm, Q 500 nm (c/ν), R 400 nm (1/ν̄). Wavenumber rises as λ falls, so S < P < Q < R.
+
+  - id: che-atom-431
+    topic: planck-photoelectric
+    subtopic: Energy of a photon
+    concept: Wavelength from photon energy
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: λ = hc/E
+    tags: [photon-energy]
+    stem: A photon has an energy of 3.03 × 10^{-19} J. Its wavelength is about (h = 6.626 × 10^{-34} J s, c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 486 nm
+      - 434 nm
+      - 656 nm
+      - 1520 nm
+    answer: 2
+    explanation: λ = hc/E = 1.988 × 10^{-25} ÷ 3.03 × 10^{-19} ≈ 6.56 × 10^{-7} m = 656 nm, red light.
+
+  - id: che-atom-432
+    topic: planck-photoelectric
+    subtopic: Threshold frequency
+    concept: A photon below the work function ejects no electron
+    category: application
+    format: case
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [photoelectric, trap]
+    stem: Very intense light whose photons each carry 2.0 eV falls on a metal of work function 2.5 eV. What happens?
+    options:
+      - Electrons are emitted with 0.5 eV kinetic energy
+      - Electrons are emitted because the light is very intense
+      - No electrons are emitted
+      - Electrons are emitted after a time delay
+    answer: 2
+    explanation: Each photon must individually supply at least the work function. 2.0 eV < 2.5 eV, so no electron can escape, however intense the light or long the exposure.
+
+  - id: che-atom-433
+    topic: planck-photoelectric
+    subtopic: Number of photons
+    concept: Equal energy delivered by longer-wavelength light needs more photons
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: N = Eλ/hc
+    tags: [photon-count, proportionality]
+    stem: Two lamps deliver the same total energy, one as 400 nm light and the other as 800 nm light. The ratio of the number of photons from the 400 nm lamp to that from the 800 nm lamp is
+    options:
+      - "2:1"
+      - "1:1"
+      - "4:1"
+      - "1:2"
+    answer: 3
+    explanation: N = E_total/(hc/λ) ∝ λ for equal energy. So N_{400}/N_{800} = 400/800 = 1:2; each 400 nm photon carries twice the energy, so half as many are needed.
+
+  - id: che-atom-434
+    topic: planck-photoelectric
+    subtopic: Planck's quantum theory
+    concept: Two true but unrelated facts about quanta and black bodies
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [quantum-theory, black-body]
+    stem: |-
+      Assertion (A): The energy of a quantum of radiation is given by E = hν.
+      Reason (R): An ideal black body absorbs all the radiation falling on it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Both statements are true. E = hν is Planck's postulate about quanta, which does not follow from a black body being a perfect absorber, so R does not explain A.
+
+  - id: che-atom-435
+    topic: planck-photoelectric
+    subtopic: Work function
+    concept: W_0 = photon energy − KE_max
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: W_0 = hc/λ − KE_max
+    tags: [work-function]
+    stem: Light of wavelength 250 nm ejects electrons with a maximum kinetic energy of 2.0 eV from a metal. The work function of the metal is (hc = 1240 eV nm)
+    options:
+      - 4.96 eV
+      - 2.96 eV
+      - 6.96 eV
+      - 2.00 eV
+    answer: 1
+    explanation: Photon energy = 1240/250 = 4.96 eV, so W_0 = 4.96 − 2.0 = 2.96 eV. Adding instead of subtracting gives 6.96 eV.
+
+  - id: che-atom-436
+    topic: planck-photoelectric
+    subtopic: Black body radiation
+    concept: Black-body radiation depends only on temperature
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [black-body, ncert-line]
+    stem: Which statement about an ideal black body is correct?
+    options:
+      - It reflects all the radiation falling on it
+      - It emits only visible light
+      - The radiation it emits depends only on its temperature
+      - The radiation it emits depends on its chemical composition
+    answer: 2
+    explanation: NCERT notes that a black body in thermal equilibrium emits radiation whose frequency distribution depends only on temperature. It absorbs (not reflects) all radiation and emits across all frequencies.
+
+  - id: che-atom-437
+    topic: planck-photoelectric
+    subtopic: Number of photons
+    concept: Power of a source from its photon rate
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: P = N hc/λ
+    tags: [photon-count, multi-concept]
+    stem: A lamp emits 1.0 × 10^{20} photons per second of wavelength 500 nm. Its power output as light is about (h = 6.626 × 10^{-34} J s, c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 3.98 W
+      - 398 W
+      - 3.98 × 10^{-19} W
+      - 39.8 W
+    answer: 3
+    explanation: Energy per photon = hc/λ = 1.988 × 10^{-25} ÷ 5.0 × 10^{-7} = 3.98 × 10^{-19} J. Power = 1.0 × 10^{20} × 3.98 × 10^{-19} ≈ 39.8 W.
+
+  - id: che-atom-438
+    topic: planck-photoelectric
+    subtopic: Photoelectric graphs
+    concept: Work function from the frequency-axis intercept
+    category: numerical
+    format: graph
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: W_0 = hν_0
+    tags: [graph, work-function]
+    stem: A graph of KE_max of photoelectrons against frequency of light for a metal is a straight line that meets the frequency axis at 6.0 × 10^{14} Hz. The work function of the metal is about (h = 6.626 × 10^{-34} J s, 1 eV = 1.602 × 10^{-19} J)
+    options:
+      - 2.48 eV
+      - 3.98 eV
+      - 1.24 eV
+      - 6.0 eV
+    answer: 0
+    explanation: The intercept is ν_0, so W_0 = hν_0 = 6.626 × 10^{-34} × 6.0 × 10^{14} ≈ 3.98 × 10^{-19} J ≈ 2.48 eV. 3.98 is the joule mantissa mislabelled as eV.
+
+  - id: che-atom-439
+    topic: planck-photoelectric
+    subtopic: Threshold frequency
+    concept: Higher-frequency light gives faster photoelectrons
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [photoelectric, threshold-frequency]
+    stem: Green light ejects electrons from a certain metal, but red light of any intensity does not. What happens when blue light falls on the metal?
+    options:
+      - No electrons are emitted
+      - Electrons are emitted with greater maximum kinetic energy than with green light
+      - Electrons are emitted with the same kinetic energy as with green light
+      - Electrons are emitted only if the blue light is very intense
+    answer: 1
+    explanation: Blue light has a higher frequency than green, which is already above threshold. Blue photons therefore eject electrons, and since KE_max = hν − W_0, with more kinetic energy.
+
+  - id: che-atom-440
+    topic: planck-photoelectric
+    subtopic: Important constants
+    concept: Values of h, c, R_H and a_0
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [constants]
+    stem: |-
+      Match the constant (List I) with its value (List II).
+      List I: P. Planck's constant h; Q. Speed of light c; R. Rydberg constant R_H; S. Bohr radius a_0
+      List II: 1. 52.9 pm; 2. 1.097 × 10^7 m^{-1}; 3. 3.0 × 10^8 m s^{-1}; 4. 6.626 × 10^{-34} J s
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+    answer: 2
+    explanation: h = 6.626 × 10^{-34} J s, c = 3.0 × 10^8 m s^{-1}, R_H = 1.097 × 10^7 m^{-1} (109,677 cm^{-1}) and a_0 = 52.9 pm. So P-4, Q-3, R-2, S-1.
+
+  - id: che-atom-441
+    topic: atomic-spectra
+    subtopic: Rydberg formula
+    concept: Wavelength of the first Brackett line
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: 1/λ = R_H(1/16 − 1/25)
+    tags: [brackett, rydberg]
+    stem: Taking R_H = 1.097 × 10^7 m^{-1}, the wavelength of the first line of the Brackett series of hydrogen is about
+    options:
+      - 1.46 μm
+      - 1.88 μm
+      - 4.05 μm
+      - 7.46 μm
+    answer: 2
+    explanation: The first Brackett line is 5 → 4. 1/λ = 1.097 × 10^7 × (1/16 − 1/25) = 1.097 × 10^7 × 9/400 ≈ 2.47 × 10^5 m^{-1}, so λ ≈ 4.05 × 10^{-6} m = 4.05 μm (infrared). 1.88 μm is the first Paschen line.
+
+  - id: che-atom-442
+    topic: atomic-spectra
+    subtopic: Identifying transitions
+    concept: The 410 nm Balmer line comes from n = 6
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: 1/λ = R_H(1/4 − 1/n^2)
+    tags: [balmer, rydberg]
+    stem: A Balmer line of hydrogen has a wavelength of 410 nm. From which level does the transition start? (R_H = 1.097 × 10^7 m^{-1})
+    options:
+      - n = 4
+      - n = 5
+      - n = 7
+      - n = 6
+    answer: 3
+    explanation: 1/λ = 2.44 × 10^6 m^{-1}; dividing by R_H gives 0.222 = 1/4 − 1/n^2, so 1/n^2 ≈ 0.028 = 1/36 and n = 6. The 5 → 2 line is at 434 nm.
+
+  - id: che-atom-443
+    topic: atomic-spectra
+    subtopic: Origin of line spectra
+    concept: Many lines arise because different atoms make different jumps
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [line-spectrum, spectral-lines]
+    stem: |-
+      Assertion (A): The emission spectrum of hydrogen contains many lines although a hydrogen atom has only one electron.
+      Reason (R): In a sample containing a very large number of atoms, different atoms undergo different electronic transitions.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Each atom makes one jump at a time, but among billions of excited atoms all allowed transitions occur, producing many lines together. R explains A.
+
+  - id: che-atom-444
+    topic: atomic-spectra
+    subtopic: Number of spectral lines
+    concept: Lyman lines from atoms excited to n = 5
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [lyman, spectral-lines]
+    stem: Hydrogen atoms are excited to n = 5. How many lines of the Lyman series can appear in their emission spectrum?
+    options:
+      - "10"
+      - "4"
+      - "5"
+      - "3"
+    answer: 1
+    explanation: Lyman lines end at n = 1 and can start from n = 2, 3, 4 or 5, so there are 4. 10 is the total number of lines of all series.
+
+  - id: che-atom-445
+    topic: atomic-spectra
+    subtopic: Spectral series
+    concept: Pfund ends at n = 5; Brackett is infrared
+    category: factual
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [spectral-series, trap]
+    stem: |-
+      Statement I: In the Pfund series of hydrogen, all transitions end at n = 5.
+      Statement II: The Brackett series of hydrogen lies in the ultraviolet region.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Pfund ends at n_1 = 5, which is correct. Brackett (n_1 = 4) involves small energy gaps and lies in the infrared, so Statement II is false.
+
+  - id: che-atom-446
+    topic: atomic-spectra
+    subtopic: Rydberg constant
+    concept: R_H in energy units converts to 1.097 × 10^7 m^{-1}
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    formula: R_H(m^{-1}) = R_H(J)/hc
+    tags: [rydberg, units, multi-concept]
+    stem: In energy units the Rydberg constant is 2.18 × 10^{-18} J. What is its value as a wavenumber? (h = 6.626 × 10^{-34} J s, c = 3.0 × 10^8 m s^{-1})
+    options:
+      - 3.29 × 10^{15} m^{-1}
+      - 1.097 × 10^{9} m^{-1}
+      - 1.097 × 10^{5} m^{-1}
+      - 1.097 × 10^{7} m^{-1}
+    answer: 3
+    explanation: ν̄ = E/hc = 2.18 × 10^{-18} ÷ (6.626 × 10^{-34} × 3.0 × 10^8) ≈ 1.097 × 10^7 m^{-1} = 109,677 cm^{-1}. 3.29 × 10^{15} is E/h, the value in Hz.
+
+  - id: che-atom-447
+    topic: atomic-spectra
+    subtopic: Series limit
+    concept: Paschen series limit is about 820 nm
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: λ_limit = n_1^2/R_H
+    tags: [paschen, series-limit]
+    stem: The series-limit wavelength of the Paschen series of hydrogen is about (R_H = 1.097 × 10^7 m^{-1})
+    options:
+      - 820 nm
+      - 1875 nm
+      - 365 nm
+      - 91 nm
+    answer: 0
+    explanation: λ = n_1^2/R_H = 9 ÷ 1.097 × 10^7 ≈ 8.2 × 10^{-7} m = 820 nm. 1875 nm is the longest Paschen line (4 → 3), not the limit.
+
+  - id: che-atom-448
+    topic: atomic-spectra
+    subtopic: Comparing hydrogen lines
+    concept: Wavelength order of key hydrogen lines
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [spectral-series, series-limit]
+    stem: |-
+      Arrange in increasing order of wavelength:
+      P. Lyman series limit
+      Q. First line of the Balmer series (H_α)
+      R. Balmer series limit
+      S. First line of the Lyman series
+    options:
+      - P < S < R < Q
+      - S < P < R < Q
+      - P < R < S < Q
+      - Q < R < S < P
+    answer: 0
+    explanation: Lyman limit 91.2 nm < Lyman first line 121.6 nm < Balmer limit 364.6 nm < H_α 656 nm. Within a series, the limit has the shortest wavelength.
+
+  - id: che-atom-449
+    topic: atomic-spectra
+    subtopic: Spectral series
+    concept: Features of hydrogen spectral series
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [spectral-series, series-limit, multi-concept]
+    stem: |-
+      Which statements about the hydrogen spectrum are correct?
+      I. In principle, each series contains an infinite number of lines converging to a limit.
+      II. The H_α line of the Balmer series is red.
+      III. The series-limit energy of a series equals the energy needed to ionise the atom from the level n_1 of that series.
+      IV. The first line of the Paschen series has a shorter wavelength than the first line of the Balmer series.
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: I, II and III are correct; the series limit (∞ → n_1) photon carries exactly the ionisation energy from n_1. The first Paschen line (1875 nm) is longer than H_α (656 nm), so IV is false.
+
+  - id: che-atom-450
+    topic: atomic-spectra
+    subtopic: Series limit
+    concept: Balmer limit energy equals ionisation energy from n = 2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: E = hcν̄
+    tags: [series-limit, ionisation-energy, multi-concept]
+    stem: The series limit of the Balmer series of hydrogen has a wavenumber of 27,419 cm^{-1}. What is the energy needed to ionise a hydrogen atom from its n = 2 level? (hc = 1.988 × 10^{-25} J m, 1 eV = 1.602 × 10^{-19} J)
+    options:
+      - 3.4 eV
+      - 13.6 eV
+      - 1.51 eV
+      - 10.2 eV
+    answer: 0
+    explanation: E = hcν̄ = 1.988 × 10^{-25} × 2.7419 × 10^6 m^{-1} ≈ 5.45 × 10^{-19} J ≈ 3.4 eV. This equals 13.6/2^2 eV; 10.2 eV is the 1 → 2 excitation energy.
