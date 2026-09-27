@@ -88,20 +88,35 @@ class RatingDelta extends StatelessWidget {
 
 /// Coin amount with the coin icon.
 class CoinAmount extends StatelessWidget {
-  const CoinAmount({super.key, required this.amount, this.style, this.iconSize = 18});
+  const CoinAmount({
+    super.key,
+    required this.amount,
+    this.style,
+    this.iconSize = 18,
+    this.signed = false,
+  });
 
   final int amount;
   final TextStyle? style;
   final double iconSize;
 
+  /// Shows the amount as a change: "+10" for coins won, "−5" for coins spent.
+  final bool signed;
+
   @override
   Widget build(BuildContext context) {
+    final count = formatCount(amount.abs());
+    final label = switch (amount) {
+      > 0 when signed => '+$count',
+      < 0 => signed ? '−$count' : formatCount(amount),
+      _ => count,
+    };
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         HugeIcon(AppIcons.coins, size: iconSize, color: context.colors.coin),
         const SizedBox(width: 4),
-        Text(formatCount(amount), style: style ?? context.text.numericMedium),
+        Text(label, style: style ?? context.text.numericMedium),
       ],
     );
   }

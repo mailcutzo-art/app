@@ -14,11 +14,7 @@ Widget _bar(int selected, {required bool reduceMotion}) => MaterialApp(
     child: child!,
   ),
   home: Scaffold(
-    bottomNavigationBar: FloatingNavBar(
-      items: _items,
-      selectedIndex: selected,
-      onSelected: (_) {},
-    ),
+    bottomNavigationBar: FloatingNavBar(items: _items, selectedIndex: selected, onSelected: (_) {}),
   ),
 );
 

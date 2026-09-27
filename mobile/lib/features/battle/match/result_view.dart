@@ -409,16 +409,11 @@ class _Rewards extends StatelessWidget {
               Expanded(
                 child: _RewardTile(
                   label: 'Coins',
-                  value: Row(
-                    children: [
-                      HugeIcon(AppIcons.coins, size: 20, color: colors.coin),
-                      const SizedBox(width: 4),
-                      NumberTicker(
-                        value: coins.delta,
-                        prefix: coins.delta > 0 ? '+' : '',
-                        style: text.numericMedium,
-                      ),
-                    ],
+                  value: CoinAmount(
+                    amount: coins.delta,
+                    signed: true,
+                    iconSize: 20,
+                    style: text.numericMedium,
                   ),
                   footer: 'Balance ${formatCount(coins.balance)}',
                 ),
