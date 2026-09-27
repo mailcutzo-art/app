@@ -100,7 +100,7 @@ v1. Breaking changes get a new endpoint, `/v2/ws`, served alongside v1 for at le
 | `BAD_REQUEST` | Malformed payload or invalid values |
 | `NOT_FOUND` | Unknown match, room, code or tournament |
 | `NOT_ALLOWED` | Not a participant, not the host, blocked, room locked, age restriction |
-| `BUSY` | Already queued, playing, in a room or in a running tournament. `details.active` says where |
+| `BUSY` | Already queued, playing, in a room, or in a tournament that starts within 5 minutes or is running. `details.active = {"kind": "queue" \| "match" \| "room" \| "tournament", "id", "title"}` says where, so the app can offer **Go there** |
 | `ALREADY_MATCHED` | A cancel lost the race with a match being found. `details.match_id` |
 | `INSUFFICIENT_COINS` | Casual entry or room fee can't be paid |
 | `COOLDOWN` | Queueing blocked for a while (repeated aborts). `details.until` |
@@ -147,8 +147,9 @@ Server → client (channel `u`):
 | `mm.queued` | `{"ticket_id", "mode", "subject", "chapter", "joined_at"}` |
 | `mm.status` | `{"waited_s": 17, "widened": true, "window": 250 \| null}`. Sent when something changes: the search widens to the whole subject at 15 s, or the rating range grows |
 | `mm.timeout` | `{"waited_s": 45, "options": ["keep", "bot", "invite", "cancel"]}`. `bot` is offered only for casual and unrated play, never for rated |
-| `mm.cancelled` | `{"reason": "user" \| "timeout" \| "disconnected" \| "cooldown"}`. Any hold is released |
-| `mm.found` | `{"match_id", "ch": "m:<id>", "mode", "opponent": {…player card…}, "sources": [{"chapter": "kinematics", "count": 4}, {"chapter": "laws-of-motion", "count": 3}], "bot": false}` |
+| `mm.cancelled` | `{"reason": "user" \| "timeout" \| "disconnected" \| "cooldown", "refunded": 5}`. Any hold is released, and `refunded` says how many coins came back (0 for rated). `timeout` means no one was found in 105 s; `disconnected` means the app was away for more than 10 s. Also kept in the inbox |
+| `mm.requeued` | `{"reason": "opponent_not_ready" \| "match_failed", "waited_s": 31}`. The found match fell through and the ticket is back at the front of the queue with its original waiting time. The app says "Your opponent didn't join. Searching again…" |
+| `mm.found` | `{"match_id", "ch": "m:<id>", "mode", "opponent": {…player card…, "rating": {…}, "record": {"wins": 3, "losses": 1, "draws": 0}}, "sources": [{"chapter": "kinematics", "name": "Motion in a Straight Line", "count": 4}, {"chapter": "laws-of-motion", "name": "Laws of Motion", "count": 3}], "bot": false}`. `record` is your head-to-head record against this opponent. The app shows the found screen wherever the user is |
 
 - **Wait rules.** After 15 s the search also accepts players from other chapters of the same
   subject, and `sources` then splits the questions (4 + 3). "Keep searching" after `mm.timeout`
@@ -172,6 +173,7 @@ Client → server:
 | `ans.submit` | `{"match_id", "q": 3, "opt": "k2P9x", "el_ms": 6240}` | `opt` is the option id from `q.show`. `el_ms` is the client's measured time since the question appeared (advisory, section 7). Resent with the same `id` if no `ans.ack` arrives within 2 s |
 | `emote` | `{"match_id", "e": "gg" \| "nice" \| "wow" \| "oops"}` | At most 1 every 3 s and 10 per match |
 | `match.forfeit` | `{"match_id"}` | Leaves and loses |
+| `match.rematch` | `{"match_id", "accept": true}` | Casual Quick Battle only, within 15 s of `match.end`, and at most 3 in a row. When both accept, a new `mm.found` arrives (a new 5-coin entry is held first) |
 | `sync` | `{"ch": "m:<id>", "last_seq": 41}` | Sent after a `seq` gap. The server replays or sends a snapshot |
 
 Server → client (channel `m:<match_id>`, with `seq`):
@@ -187,13 +189,17 @@ Server → client (channel `m:<match_id>`, with `seq`):
 | `opp.conn` | `{"uid", "state": "connected" \| "reconnecting" \| "left", "grace_until": 1790000031000}` |
 | `emote` | `{"uid", "e": "gg"}` |
 | `match.end` | `{"result": "win" \| "loss" \| "draw", "reason": "normal" \| "forfeit" \| "opponent_forfeit" \| "aborted" \| "voided", "totals": {…}, "ranking": [["<uid>"], …]}`. `result` is from the receiver's point of view |
-| `match.settled` | `{"rating": {"scope": "physics", "before": "1502?", "after": "1518?", "delta": 16} \| null, "coins": {"delta": 10, "balance": 245}, "xp": {"delta": 30, "level": 4, "into_level": 120, "for_next": 250}, "missions": [{"id", "progress", "target", "done"}]}` |
+| `match.settled` | `{"rating": {"scope": "physics", "before": "1502?", "after": "1518?", "delta": 16} \| null, "rank": {"board": "rating:physics", "before": 47, "after": 42} \| {"board": "rating:physics", "games_to_rank": 6} \| null, "coins": {"delta": 10, "balance": 245}, "xp": {"delta": 30, "level": 4, "into_level": 120, "for_next": 250, "level_up": false}, "missions": [{"id", "title", "progress", "target", "done"}], "streak": {"days": 5, "extended": true}, "achievements": [{"id", "title"}], "tip": {"message", "action", "params"} \| null}` |
+| `rematch.status` | `{"match_id", "state": "offered" \| "accepted" \| "declined" \| "expired", "by": "<uid>"}` |
 
 - **Question timing.** `q.show` is sent about 400 ms before `shown_at`, so every client has it
   before it goes live. The client keeps the question hidden until its synced clock reaches
   `shown_at`, then starts the countdown ring from `deadline_at`.
 - **Early advance.** When everyone has answered, the server moves to `q_reveal` early. Otherwise
   it waits until `deadline_at` plus a 250 ms grace.
+- **Group standings.** In group battles with the between-questions leaderboard on, `q.reveal` also
+  carries `"standings": [{"uid", "points", "place", "change"}]`. `match.end.ranking` is the final
+  order for the podium screen.
 - **After the match.** `ref` in `q.reveal` identifies the question in this match. Once the match is
   finished, `GET /v1/matches/{id}/review` returns every question with its explanation and bookmark
   state.
@@ -261,6 +267,11 @@ Server → client (channel `r:<room_id>`, with `seq`):
   leaderboard between questions, and who can join.
 - **Codes.** Codes use Crockford base32 and expire 10 minutes after the lobby empties or closes.
 - **Code guesses.** Wrong codes are rate-limited per user (5 a minute, 30 an hour).
+- **Invites** are created over REST (`docs/api-play.md`) and delivered live on `u`:
+  - `invite.received {"invite_id", "from": card, "kind", "room_id", "subject", "expires_at"}`
+    shows a banner with Accept/Decline on any screen.
+  - `invite.updated {"invite_id", "status": "accepted" \| "declined" \| "expired" \| "cancelled"}`
+    goes to both sides.
 
 ## 9. Tournaments
 
@@ -268,9 +279,21 @@ Server → client (channel `r:<room_id>`, with `seq`):
   `sub` with the current `t.standings`, then sends updates at most every 2 s.
 - `t.standings {"round": 3, "rows": [{"rank", "uid", "name", "points", "bh_c1", …}], "me": {…}}`.
 - `t.round {"round": 3, "status": "pairing" \| "live" \| "done", "starts_at", "ends_at"}`.
-- **Pairings.** Your own pairing arrives on `u`:
-  `t.pairing {"tournament_id", "round", "match_id", "ch": "m:<id>", "opponent": {…}, "ready_by": <ms>}`,
-  or `{"bye": true}`. You have 90 s to send `match.ready`.
+- **Your own events on `u`:**
+
+  | Type | When |
+  |---|---|
+  | `t.check_in {"tournament_id", "title", "closes_at"}` | The check-in window opened. Opening the connection during the window checks you in automatically |
+  | `t.checked_in {"tournament_id"}` | You are checked in |
+  | `t.pairing {"tournament_id", "round", "match_id", "ch": "m:<id>", "opponent": {…}, "ready_by": <ms>}` | Your game for this round. You have 90 s to send `match.ready`; the app shows a full-screen "Join" wherever the user is |
+  | `t.bye {"tournament_id", "round", "points": 1}` | You have a bye this round |
+  | `t.finished {"tournament_id", "rank", "players", "points", "prize": 120, "xp": 50}` | Final result. Also kept in the inbox |
+  | `t.cancelled {"tournament_id", "reason": "not_enough_players" \| "admin", "refunded": 15}` | The tournament was cancelled; fees are refunded |
+
+## 9a. Inbox updates
+
+`notify {"id", "kind", "title", "body", "action", "unread": 4}` on `u` delivers every new inbox item
+live, so the bell badge updates at once. The full inbox is REST (`docs/api-play.md`).
 
 ## 10. Resuming after a reconnect
 
