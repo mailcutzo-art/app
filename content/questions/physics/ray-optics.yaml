@@ -9130,3 +9130,558 @@ questions:
     answer: 1
     explanation: "Refraction angle: sin r = sin 60°/√3 = 1/2, r = 30°. The reflected ray makes 60° with the normal above the surface, the refracted ray 30° below, so the angle between them is 180° − 60° − 30° = 90°."
 
+  - id: phy-ray-426
+    topic: total-internal-reflection
+    subtopic: Where TIR is possible
+    concept: TIR is possible only from a higher to a lower refractive index
+    category: application
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [tir-conditions]
+    stem: For which pair of media (light travelling from the first to the second) is total internal reflection possible?
+    options:
+      - Air (1.0) to water (1.33)
+      - Water (1.33) to crown glass (1.52)
+      - Flint glass (1.65) to water (1.33)
+      - Crown glass (1.52) to diamond (2.42)
+    answer: 2
+    explanation: "TIR needs the first medium to have the larger index. Only flint glass to water satisfies this (sin C = 1.33/1.65 ≈ 0.81); the others go from lower to higher index."
+
+  - id: phy-ray-427
+    topic: total-internal-reflection
+    subtopic: Optical fibre facts
+    concept: Evaluating statements about optical fibres
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [optical-fibre]
+    stem: |-
+      About optical fibres:
+      I. They are made of high-quality glass or quartz.
+      II. The core has a higher refractive index than the cladding.
+      III. Light can follow a gently curved fibre.
+      IV. Light loses a large fraction of its energy at each reflection inside the fibre.
+      Which are correct?
+    options:
+      - I and IV only
+      - I, II and III only
+      - II and III only
+      - I, II, III and IV
+    answer: 1
+    explanation: "Fibres use high-quality glass or quartz with a denser core, and TIR guides light around gentle bends. TIR is essentially loss-free, so IV is false; that is why fibres carry signals over long distances."
+
+  - id: phy-ray-428
+    topic: total-internal-reflection
+    subtopic: Critical angle from speeds
+    concept: sin C = v_denser/v_rarer
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: sin C = v_1/v_2
+    tags: [critical-angle, speed-of-light]
+    stem: Light travels at 2.0 × 10^8 m s^{-1} in medium A and 2.5 × 10^8 m s^{-1} in medium B. The sine of the critical angle for light going from A to B is
+    options:
+      - "0.8"
+      - "1.25"
+      - "0.64"
+      - "0.5"
+    answer: 0
+    explanation: "sin C = n_B/n_A = v_A/v_B = 2.0/2.5 = 0.8 (C ≈ 53°). 1.25 is the inverse and cannot be a sine."
+
+  - id: phy-ray-429
+    topic: total-internal-reflection
+    subtopic: Critical angles of common pairs
+    concept: Matching interfaces with their critical angles
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    formula: sin C = n_2/n_1
+    tags: [critical-angle]
+    stem: |-
+      Match the interface (List I) with its approximate critical angle (List II).
+      List I: P. Glass (1.5) to air; Q. Water (4/3) to air; R. Diamond (2.42) to air; S. Glass (1.5) to water (4/3)
+      List II: 1. 24.4°; 2. 62.7°; 3. 48.6°; 4. 41.8°
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-4, Q-3, R-2, S-1
+      - P-1, Q-3, R-4, S-2
+    answer: 1
+    explanation: "sin C = 2/3 (41.8°) for glass-air, 3/4 (48.6°) for water-air, 1/2.42 (24.4°) for diamond-air and 8/9 (62.7°) for glass-water."
+
+  - id: phy-ray-430
+    topic: total-internal-reflection
+    subtopic: Leakage at sharp bends
+    concept: Sharp bends make light meet the core boundary below the critical angle
+    category: application
+    format: case
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [optical-fibre, critical-angle]
+    stem: A technician notices that light leaks out of an optical fibre wherever it is bent very sharply. The best explanation is that at a sharp bend
+    options:
+      - the core becomes optically rarer than the cladding
+      - the frequency of light changes
+      - the fibre starts to absorb all colours
+      - rays strike the core-cladding boundary at angles smaller than the critical angle and are partly refracted out
+    answer: 3
+    explanation: "Bending tilts the boundary relative to the rays, so some rays meet it at less than C. TIR fails for them and they escape. The indices and frequency are unchanged."
+
+  - id: phy-ray-431
+    topic: total-internal-reflection
+    subtopic: Cause of mirage
+    concept: A mirage involves TIR in air, not reflection from water vapour
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [mirage, trap]
+    stem: |-
+      Statement I: A mirage is caused by reflection of sunlight from a layer of water vapour near the ground.
+      Statement II: A mirage involves total internal reflection in layers of air with different temperatures.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "No water or vapour layer is involved. Hot air near the ground has a lower refractive index, so rays from the sky bend upward and are totally reflected, producing the watery-looking inverted image."
+
+  - id: phy-ray-432
+    topic: total-internal-reflection
+    subtopic: Reflected fraction versus angle
+    concept: Reflected fraction jumps to 100% at the critical angle and stays there
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, critical-angle]
+    stem: For light inside glass meeting a glass-air surface, the fraction of light reflected is plotted against the angle of incidence from 0° to 90°. The graph
+    options:
+      - is small at first, rises steeply near the critical angle and equals 100% for all angles beyond it
+      - rises linearly from 0 at 0° to 100% at 90°
+      - stays at 50% at all angles
+      - is 100% at 0° and falls to zero at the critical angle
+    answer: 0
+    explanation: "At small angles most light is transmitted and only a few per cent is reflected. The reflected fraction climbs sharply as i approaches C, and for i ≥ C all the light is reflected."
+
+  - id: phy-ray-433
+    topic: total-internal-reflection
+    subtopic: Water to glass
+    concept: No TIR is possible for light going from water into glass
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [tir-conditions]
+    stem: |-
+      Assertion (A): A ray travelling in water cannot be totally internally reflected at a water-glass boundary.
+      Reason (R): Glass is optically denser than water.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Going into a denser medium the ray bends towards the normal and always has a refracted path, so TIR is impossible. R gives exactly this reason."
+
+  - id: phy-ray-434
+    topic: total-internal-reflection
+    subtopic: Critical angle and surrounding medium
+    concept: A denser surrounding medium raises the critical angle of glass
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: sin C = n_surrounding/n_glass
+    tags: [critical-angle, ordering]
+    stem: A glass block (n = 1.5) is surrounded in turn by air (1.0), glycerine (1.47) and water (1.33). Arrange the critical angles at the glass surface in increasing order.
+    options:
+      - Glycerine < water < air
+      - Air < water < glycerine
+      - Water < air < glycerine
+      - Air < glycerine < water
+    answer: 1
+    explanation: "sin C = n_outside/1.5: 0.67 in air (≈42°), 0.89 in water (≈63°) and 0.98 in glycerine (≈79°). The closer the outside index is to the glass, the larger C."
+
+  - id: phy-ray-435
+    topic: total-internal-reflection
+    subtopic: Glass covered by liquid
+    concept: Critical angle at a glass-liquid interface
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: sin C = n_l/n_g
+    tags: [critical-angle]
+    stem: A glass plate (n = 1.6) is covered with a liquid of refractive index 1.2. The sine of the critical angle for light going from glass to liquid is
+    options:
+      - "0.625"
+      - "0.83"
+      - "0.8"
+      - "0.75"
+    answer: 3
+    explanation: "sin C = 1.2/1.6 = 0.75 (C ≈ 48.6°). 0.625 = 1/1.6 is the glass-air value."
+
+  - id: phy-ray-436
+    topic: spherical-refraction
+    subtopic: Single-surface imaging statements
+    concept: Evaluating statements on images formed by one refracting surface
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [spherical-surface, image-formation]
+    stem: |-
+      For refraction from air into glass at a single spherical surface:
+      I. A concave surface always gives a virtual image of a real object in air.
+      II. A convex surface gives a real image if the object is beyond its first focus.
+      III. A plane surface gives an image at the same distance as the object.
+      IV. The magnification is n_1v/(n_2u).
+      Which are correct?
+    options:
+      - I, II and IV only
+      - II and III only
+      - I and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: "A concave air-glass surface has negative power, so real objects give virtual images (I). II mirrors the convex-lens rule. A plane surface gives v = (n_2/n_1)u, not v = u, so III is false. IV is the standard magnification."
+
+  - id: phy-ray-437
+    topic: spherical-refraction
+    subtopic: Fish in a bowl looks bigger
+    concept: A curved water surface magnifies a fish seen through it
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [spherical-surface, magnification]
+    stem: |-
+      Assertion (A): A goldfish near the centre of a spherical bowl appears larger than it actually is.
+      Reason (R): The curved water-air surface acts as a refracting surface that produces a magnified virtual image.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "For an object inside the water near the centre, the single-surface formula gives a virtual image with m = n_1v/(n_2u) > 1 (equal to 4/3 at the centre). So the fish looks larger, as R explains."
+
+  - id: phy-ray-438
+    topic: spherical-refraction
+    subtopic: Fish at the centre of a bowl
+    concept: Object at the centre of a water sphere appears in place but magnified n times
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: m = n_1 v/(n_2 u)
+    tags: [glass-sphere, magnification]
+    stem: A small fish is at the centre of a spherical bowl of water (n = 4/3), radius 15 cm. Neglecting the thin glass, the fish appears
+    options:
+      - at the centre, same size
+      - 11.25 cm from the near wall, same size
+      - 20 cm from the near wall, magnified 4/3
+      - at the centre, magnified 4/3 times
+    answer: 3
+    explanation: "Rays from the centre are radial, so v = u = −15 cm and the fish appears at the centre. m = n_1v/(n_2u) = (4/3)(−15)/(1 × −15) = 4/3, so it looks 4/3 times larger."
+
+  - id: phy-ray-439
+    topic: spherical-refraction
+    subtopic: Nature of images by surfaces
+    concept: Matching refracting-surface situations with the image produced
+    category: application
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: n_2/v − n_1/u = (n_2 − n_1)/R
+    tags: [spherical-surface, image-formation]
+    stem: |-
+      Air to glass (n = 1.5). Match the situation (List I) with the image (List II).
+      List I: P. Convex surface R = 10 cm, object 30 cm away; Q. Convex surface R = 10 cm, object 20 cm away; R. Concave surface R = 20 cm, object 20 cm away; S. Plane surface, object 20 cm away
+      List II: 1. At infinity; 2. Virtual, 30 cm from surface; 3. Virtual, 20 cm from surface; 4. Real, 90 cm inside glass
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-4, Q-1, R-3, S-2
+      - P-1, Q-4, R-3, S-2
+      - P-4, Q-1, R-2, S-3
+    answer: 1
+    explanation: "P: 1.5/v = 1/20 − 1/30, v = 90 cm real. Q: object at the first focus (20 cm), image at infinity. R: 1.5/v = −1/40 − 1/20, v = −20 cm, virtual. S: plane surface, v = 1.5 × (−20) = −30 cm, virtual."
+
+  - id: phy-ray-440
+    topic: spherical-refraction
+    subtopic: Common errors with the formula
+    concept: Identifying the incorrect statement about spherical refraction
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [spherical-surface, sign-convention, trap]
+    stem: Which statement about the formula n_2/v − n_1/u = (n_2 − n_1)/R is INCORRECT?
+    options:
+      - n_1 is the refractive index of the medium containing the object.
+      - The formula can be used for light going from glass into air.
+      - The formula reduces to the thin-lens result without further steps if n_1 = n_2.
+      - R is measured from the pole to the centre of curvature with the usual sign convention.
+    answer: 2
+    explanation: "If n_1 = n_2 the surface simply has no effect (v = u). The thin-lens formula needs the single-surface formula applied twice. The other statements are correct uses of the formula."
+
+  - id: phy-ray-441
+    topic: spherical-refraction
+    subtopic: Image distance versus object distance
+    concept: v tends to infinity as the object nears the first focus and to f_2 for distant objects
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, spherical-surface]
+    stem: For a convex air-glass surface (first focal length f_1, second focal length f_2), the image distance v inside the glass is plotted against object distance |u| for |u| > f_1. The graph
+    options:
+      - falls from very large values near |u| = f_1 towards f_2 as |u| becomes large
+      - rises steadily from zero
+      - is a straight line of slope 1.5
+      - is constant at f_2
+    answer: 0
+    explanation: "When the object is near the first focus, the refracted rays are nearly parallel and v is very large. For very distant objects the rays arrive parallel and focus at f_2, so v decreases towards f_2."
+
+  - id: phy-ray-442
+    topic: spherical-refraction
+    subtopic: Ball lens
+    concept: Focal length of a ball lens measured from its centre is nR/2(n − 1)
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: f = nR/(2(n − 1))
+    tags: [glass-sphere, multi-concept]
+    stem: A tiny glass bead (n = 1.5) of radius 2 mm is used as a lens to couple laser light into a fibre. Using f = nR/(2(n − 1)) measured from the centre of the sphere, a parallel beam is focused at what distance from the centre?
+    options:
+      - 2 mm
+      - 4 mm
+      - 1 mm
+      - 3 mm
+    answer: 3
+    explanation: "f = 1.5 × 2 mm/(2 × 0.5) = 3 mm from the centre, i.e. 1 mm beyond the back surface. The same result follows from two single-surface refractions."
+
+  - id: phy-ray-443
+    topic: spherical-refraction
+    subtopic: Focal lengths and power of a surface
+    concept: A single refracting surface has unequal focal lengths; its power depends on both media
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [spherical-surface, power, focal-length]
+    stem: |-
+      Statement I: A single spherical refracting surface has equal focal lengths on its two sides.
+      Statement II: The power of the surface, (n_2 − n_1)/R, depends on the media on both sides.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "The focal lengths are in the ratio n_1 : n_2 (e.g. 20 cm and 30 cm for air-glass, R = 10 cm), so Statement I is false. The power involves n_2 − n_1, so it depends on both media."
+
+  - id: phy-ray-444
+    topic: spherical-refraction
+    subtopic: Comparing surface powers
+    concept: Ranking refracting surfaces by power (n − 1)/R
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: P = (n − 1)/R
+    tags: [power, ordering]
+    stem: |-
+      Light enters from air through a convex surface in each case:
+      W: glass (1.5), R = 20 cm
+      X: water (4/3), R = 10 cm
+      Y: glass (1.5), R = 10 cm
+      Z: diamond (2.4), R = 10 cm
+      Arrange them in increasing order of power.
+    options:
+      - X < W < Y < Z
+      - W < X < Y < Z
+      - W < Y < X < Z
+      - X < Y < W < Z
+    answer: 1
+    explanation: "P = (n − 1)/R: W = 0.5/0.2 = 2.5 D, X = (1/3)/0.1 ≈ 3.3 D, Y = 5 D, Z = 1.4/0.1 = 14 D."
+
+  - id: phy-ray-445
+    topic: thin-lenses
+    subtopic: Lens maker's formula statements
+    concept: Evaluating statements based on the lens maker's formula
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    formula: 1/f = (n_21 − 1)(1/R_1 − 1/R_2)
+    tags: [lens-makers-formula]
+    stem: |-
+      Based on the lens maker's formula:
+      I. Reversing a lens (turning it around) does not change its focal length.
+      II. A lens made of a material with n equal to that of the surroundings has infinite focal length.
+      III. An equiconvex lens with n = 1.5 has f = R.
+      IV. The focal length is independent of the wavelength of light.
+      Which are correct?
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: "Reversing swaps R_1 and R_2 and flips their signs, leaving (1/R_1 − 1/R_2) unchanged (I). n_21 = 1 gives zero power (II). For n = 1.5 and R_1 = −R_2 = R, 1/f = 0.5 × 2/R, so f = R (III). n depends on wavelength, so IV is false."
+
+  - id: phy-ray-446
+    topic: thin-lenses
+    subtopic: Images by lenses
+    concept: Matching lens and object position with the image formed
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [convex-lens, concave-lens, image-formation]
+    stem: |-
+      Match the lens and object position (List I) with the image (List II).
+      List I: P. Convex lens, object at 2F_1; Q. Convex lens, object between F_1 and O; R. Concave lens, object anywhere; S. Convex lens, object at infinity
+      List II: 1. Point-sized, real, at F_2; 2. Virtual, erect, diminished; 3. Real, inverted, same size; 4. Virtual, erect, magnified
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-2, R-4, S-1
+      - P-1, Q-4, R-2, S-3
+      - P-4, Q-3, R-2, S-1
+    answer: 0
+    explanation: "Object at 2F_1 gives a same-size inverted image at 2F_2; inside F_1 the image is virtual and magnified; a concave lens always gives a virtual diminished image; parallel rays focus to a point at F_2."
+
+  - id: phy-ray-447
+    topic: thin-lenses
+    subtopic: Lenses in different media
+    concept: Choosing the correct statement about a glass lens in different liquids
+    category: application
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    formula: 1/f = (n_l/n_m − 1)(1/R_1 − 1/R_2)
+    tags: [lens-in-medium]
+    stem: A biconvex glass lens (n = 1.5) is placed in various liquids. Which statement is correct?
+    options:
+      - In water (1.33) it becomes diverging.
+      - In a liquid of index 1.5 its focal length becomes zero.
+      - In a liquid of index 1.7 it becomes diverging.
+      - Its focal length is the same in every liquid.
+    answer: 2
+    explanation: "With n_l/n_m < 1 (1.5/1.7), the factor becomes negative and the lens diverges. In water it still converges (longer f); in a liquid of equal index f becomes infinite, not zero."
+
+  - id: phy-ray-448
+    topic: thin-lenses
+    subtopic: Lens with a mirror behind it
+    concept: Tracing an image through a lens, a plane mirror and back through the lens
+    category: numerical
+    format: direct
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: 1/v − 1/u = 1/f
+    tags: [convex-lens, plane-mirror, multi-concept]
+    stem: An object is 30 cm in front of a convex lens (f = 20 cm). A plane mirror is placed 40 cm behind the lens, perpendicular to the axis. After reflection, the light passes back through the lens. Where is the final image formed?
+    options:
+      - At infinity
+      - 20 cm from the lens, on the object side
+      - At the object's position
+      - 60 cm from the lens, on the mirror side
+    answer: 0
+    explanation: "The lens alone would image the object 60 cm behind it, i.e. 20 cm behind the mirror. The mirror turns this into a real image 20 cm in front of the mirror, which is 20 cm from the lens: the lens focus. Light from it leaves the lens parallel, so the final image is at infinity."
+
+  - id: phy-ray-449
+    topic: thin-lenses
+    subtopic: Imaging a window on a wall
+    concept: Focal length from a lens projecting a window image onto a wall
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    formula: 1/f = 1/v − 1/u
+    tags: [convex-lens, experiment]
+    stem: A student holds a convex lens 30 cm from a wall and obtains a sharp image of a window 3 m away from the lens. The focal length of the lens is about
+    options:
+      - 30 cm
+      - 27.3 cm
+      - 33 cm
+      - 25 cm
+    answer: 1
+    explanation: "u = −300 cm, v = +30 cm: 1/f = 1/30 + 1/300 = 11/300, f ≈ 27.3 cm. Treating the window as at infinity (f = 30 cm) is only an approximation."
+
+  - id: phy-ray-450
+    topic: thin-lenses
+    subtopic: Reversing a lens
+    concept: A thin lens has the same focal length whichever face faces the light
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 50
+    ncert: true
+    battle: false
+    tags: [lens-makers-formula]
+    stem: |-
+      Assertion (A): A thin plano-convex lens has the same focal length whether its plane or its curved face is turned towards the object.
+      Reason (R): Turning a lens round interchanges R_1 and R_2 and reverses their signs, leaving (1/R_1 − 1/R_2) unchanged.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Curved face first: R_1 = +R, R_2 = ∞, giving 1/R. Plane face first: R_1 = ∞, R_2 = −R, giving again 1/R. So f is unchanged, as R explains (aberrations differ, but f does not)."
+
