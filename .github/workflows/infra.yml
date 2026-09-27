@@ -1,0 +1,75 @@
+name: infra
+
+on:
+  push:
+    paths:
+      - "infra/**"
+      - "backend/**"
+      - ".github/workflows/infra.yml"
+  pull_request:
+    paths:
+      - "infra/**"
+      - "backend/**"
+      - ".github/workflows/infra.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: infra-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  compose:
+    name: Docker Compose smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate .env
+        run: ./init-env.sh lan
+
+      - name: Build and start
+        run: docker compose up -d --build
+
+      - name: Wait until ready
+        run: |
+          for _ in $(seq 90); do
+            if curl -fsS http://localhost:8080/readyz; then exit 0; fi
+            sleep 2
+          done
+          echo "Backend did not become ready" >&2
+          exit 1
+
+      - name: Check routes through Caddy
+        run: |
+          curl -fsS http://localhost:8080/healthz
+          curl -fsS http://localhost:8080/v1/config
+          # The realtime WebSocket must reach rt and upgrade.
+          key=$(openssl rand -base64 16)
+          status=$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 \
+            -H 'Connection: Upgrade' -H 'Upgrade: websocket' \
+            -H 'Sec-WebSocket-Version: 13' -H "Sec-WebSocket-Key: $key" \
+            http://localhost:8080/v1/ws || true)
+          echo "WebSocket upgrade status: $status"
+          test "$status" = 101
+          # Postgres and Redis must not be published on the host.
+          for target in "postgres 5432" "redis 6379"; do
+            if docker compose port $target >/dev/null 2>&1; then
+              echo "$target is published on the host" >&2
+              exit 1
+            fi
+          done
+
+      - name: Logs
+        if: failure()
+        run: docker compose logs --no-color
+
+      - name: Stop
+        if: always()
+        run: docker compose down -v

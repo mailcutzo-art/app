@@ -7,6 +7,7 @@ Live quiz battles, Swiss tournaments and practice for NEET and JEE aspirants.
 | Mobile app | Flutter 3.47 (Dart 3.13), Android first | [`mobile/`](mobile/) |
 | Design system | Flutter package: tokens, theme, Hugeicons, motion, widgets | [`mobile/packages/design_system/`](mobile/packages/design_system/) |
 | Backend | Python FastAPI (`api`, `rt` realtime, `worker`), PostgreSQL 16, Redis 7 | [`backend/`](backend/) |
+| Deployment | Docker Compose: Caddy, api, rt, worker, PostgreSQL, Redis | [`infra/`](infra/) |
 | Plan | Architecture, feature specs, security, phases | [`docs/plan.md`](docs/plan.md) |
 
 ## Status

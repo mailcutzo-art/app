@@ -1,0 +1,42 @@
+# Caddy terminates TLS and routes requests: the realtime WebSocket goes to rt, everything else
+# to api. SITE_ADDRESS is either a domain name (automatic HTTPS from Let's Encrypt) or ":80"
+# (plain HTTP, for testing on your own network). Both variables are set in docker-compose.yml.
+
+{
+	# Nothing reconfigures Caddy at runtime, so its admin API stays off.
+	admin off
+}
+
+{$SITE_ADDRESS} {
+	encode zstd gzip
+
+	request_body {
+		max_size 1MB
+	}
+
+	header {
+		-Server
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+		X-Frame-Options DENY
+		# Browsers ignore this over plain HTTP; over HTTPS it pins the domain to HTTPS.
+		Strict-Transport-Security "max-age=31536000"
+	}
+
+	# The admin panel can be limited to a few IP addresses (ADMIN_ALLOW_IPS). It also requires
+	# a Google account with the admin role.
+	@admin_blocked {
+		path /admin /admin/*
+		not remote_ip {$ADMIN_ALLOW_IPS}
+	}
+	respond @admin_blocked 404
+
+	@realtime path /v1/ws /v1/ws/*
+	handle @realtime {
+		reverse_proxy rt:8000
+	}
+
+	handle {
+		reverse_proxy api:8000
+	}
+}
