@@ -476,22 +476,25 @@ class _BottomBar extends StatelessWidget {
         ),
       );
     }
+    final switcher = AnimatedSwitcher(
+      duration: duration,
+      switchInCurve: AppMotion.emphasized,
+      transitionBuilder: (child, animation) => FadeTransition(
+        opacity: animation,
+        child: SlideTransition(
+          position: Tween(begin: const Offset(0, 0.3), end: Offset.zero).animate(animation),
+          child: child,
+        ),
+      ),
+      child: child,
+    );
+    // A zero-length AnimatedSize (reduced motion) re-dirties itself mid-layout.
+    if (duration == Duration.zero) return switcher;
     return AnimatedSize(
       duration: duration,
       curve: AppMotion.emphasized,
       alignment: Alignment.bottomCenter,
-      child: AnimatedSwitcher(
-        duration: duration,
-        switchInCurve: AppMotion.emphasized,
-        transitionBuilder: (child, animation) => FadeTransition(
-          opacity: animation,
-          child: SlideTransition(
-            position: Tween(begin: const Offset(0, 0.3), end: Offset.zero).animate(animation),
-            child: child,
-          ),
-        ),
-        child: child,
-      ),
+      child: switcher,
     );
   }
 }
