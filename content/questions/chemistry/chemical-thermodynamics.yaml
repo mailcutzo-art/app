@@ -7268,3 +7268,751 @@ questions:
     answer: 2
     explanation: ΔS = (ΔH − ΔG)/T = (−50 + 35) × 1000/300 = −15 000/300 = −50 J K^{-1} mol^{-1}.
 
+  - id: che-thermo-351
+    topic: gibbs-equilibrium
+    subtopic: Mixture exactly at equilibrium
+    concept: ΔG = 0 when RT ln Q cancels ΔG°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [reaction-quotient, equilibrium]
+    stem: For a reaction at 300 K, ΔG° = −5.74 kJ mol^{-1}. What is ΔG in a mixture with Q = 10? (2.303RT = 5.74 kJ mol^{-1})
+    options:
+      - "−11.48 kJ mol^{-1}"
+      - "−5.74 kJ mol^{-1}"
+      - Zero
+      - +5.74 kJ mol^{-1}
+    answer: 2
+    explanation: ΔG = ΔG° + 2.303RT log Q = −5.74 + 5.74 × 1 = 0. So the mixture is already at equilibrium, consistent with K = 10 for this ΔG°.
+
+  - id: che-thermo-352
+    topic: gibbs-equilibrium
+    subtopic: ΔG° from small K
+    concept: ΔG° for K = 10^{−5} at 298 K
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [gibbs-equilibrium]
+    stem: A reaction has K = 1.0 × 10^{−5} at 298 K. What is ΔG°? (2.303RT = 5.7 kJ mol^{-1} at 298 K)
+    options:
+      - "−28.5 kJ mol^{-1}"
+      - "+5.7 kJ mol^{-1}"
+      - +28.5 kJ mol^{-1}
+      - +2.85 kJ mol^{-1}
+    answer: 2
+    explanation: ΔG° = −2.303RT log K = −5.7 × (−5) = +28.5 kJ mol^{-1}. A very small K gives a large positive ΔG°.
+
+  - id: che-thermo-353
+    topic: gibbs-equilibrium
+    subtopic: K and ΔG° qualitative
+    concept: K > 1 corresponds to negative ΔG°
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [gibbs-equilibrium]
+    stem: |-
+      Statement I: If K for a reaction at 298 K is 2.5 × 10^{3}, ΔG° at 298 K is negative.
+      Statement II: If ΔG° is positive, no product at all is present at equilibrium.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: K > 1 makes ln K positive, so ΔG° = −RT ln K is negative. A positive ΔG° means K < 1, but K is never zero, so some product is always present at equilibrium.
+
+  - id: che-thermo-354
+    topic: gibbs-equilibrium
+    subtopic: K at 298 K from ΔH° and ΔS°
+    concept: Calculating K from standard ΔH° and ΔS° at 298 K
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [gibbs-equilibrium, multi-concept]
+    stem: For a reaction at 298 K, ΔH° = −40.0 kJ mol^{-1} and ΔS° = −38.3 J K^{-1} mol^{-1}. What is log K? (2.303RT = 5.706 kJ mol^{-1})
+    options:
+      - "7.0"
+      - "−5.0"
+      - "5.0"
+      - "2.0"
+    answer: 2
+    explanation: ΔG° = −40.0 − 298 × (−0.0383) = −40.0 + 11.41 = −28.59 kJ mol^{-1}. log K = 28.59/5.706 ≈ 5.0. Ignoring the entropy term gives log K ≈ 7.
+
+  - id: che-thermo-355
+    topic: gibbs-equilibrium
+    subtopic: Effect of temperature on K for exothermic reaction
+    concept: For ΔH° < 0 and ΔS° < 0, K decreases with rising temperature
+    category: application
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [temperature-dependence, gibbs-equilibrium]
+    stem: |-
+      Assertion (A): For N_2(g) + 3H_2(g) ⇌ 2NH_3(g) (ΔH° < 0, ΔS° < 0), the equilibrium constant decreases as temperature increases.
+      Reason (R): With a negative ΔS°, raising T makes ΔG° = ΔH° − TΔS° less negative, which lowers K.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The −TΔS° term is positive and grows with T, so ΔG° rises and ln K = −ΔG°/RT falls. This matches the fact that heat shifts an exothermic equilibrium backward. R explains A.
+
+  - id: che-thermo-356
+    topic: gibbs-equilibrium
+    subtopic: Relating ΔG, ΔG°, Q and K
+    concept: Matching conditions to direction of reaction
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [reaction-quotient]
+    stem: |-
+      Match List I with List II.
+      List I: P. Q < K  Q. Q = K  R. Q > K  S. ΔG° = 0
+      List II: 1. ΔG = 0, at equilibrium  2. ΔG > 0, reverse reaction spontaneous  3. ΔG < 0, forward reaction spontaneous  4. K = 1
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-2, Q-1, R-3, S-4
+      - P-3, Q-1, R-2, S-4
+      - P-1, Q-3, R-2, S-4
+    answer: 2
+    explanation: ΔG = RT ln(Q/K), so Q < K gives ΔG < 0 (forward), Q = K gives ΔG = 0 (equilibrium) and Q > K gives ΔG > 0 (reverse). ΔG° = −RT ln K = 0 means K = 1.
+
+  - id: che-thermo-357
+    topic: gibbs-equilibrium
+    subtopic: Graph of ΔG vs extent of reaction
+    concept: Gibbs energy is minimum at equilibrium
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [equilibrium, graph]
+    stem: A graph shows the Gibbs energy G of a reaction mixture (y-axis) against extent of reaction from pure reactants to pure products (x-axis). The curve falls from both ends to a single lowest point. What does this lowest point represent?
+    options:
+      - "The point of fastest reaction rate"
+      - "The point where ΔG° = 0"
+      - The equilibrium composition, where ΔG = 0
+      - The point where all reactants have been converted
+    answer: 2
+    explanation: At constant T and p the mixture moves downhill in G from either side and settles at the minimum, where the slope (ΔG) is zero. This is the equilibrium composition, which usually lies between pure reactants and pure products.
+
+  - id: che-thermo-358
+    topic: gibbs-spontaneity
+    subtopic: ΔG vs T graph
+    concept: Reading crossover temperature from ΔG–T graph
+    category: application
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [gibbs-temperature-graph, crossover-temperature]
+    stem: On a ΔG (y-axis, kJ mol^{-1}) versus T (x-axis, K) graph, a reaction gives a straight line starting at +60 at T = 0 and crossing the T-axis at 400 K. Which conclusion is correct?
+    options:
+      - "ΔH = −60 kJ mol^{-1} and the reaction is spontaneous below 400 K"
+      - "ΔS = −150 J K^{-1} mol^{-1}"
+      - ΔH = +60 kJ mol^{-1}, ΔS = +150 J K^{-1} mol^{-1}, and the reaction is spontaneous above 400 K
+      - The reaction is never spontaneous
+    answer: 2
+    explanation: The intercept at T = 0 gives ΔH = +60 kJ mol^{-1}. The line falls to zero at 400 K, so ΔS = ΔH/T = 60 000/400 = +150 J K^{-1} mol^{-1}. Beyond 400 K, ΔG is negative and the reaction is spontaneous.
+
+  - id: che-thermo-359
+    topic: gibbs-spontaneity
+    subtopic: Validity of ΔG criterion
+    concept: ΔG < 0 criterion applies at constant T and p
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [spontaneity]
+    stem: Which statement about the Gibbs energy criterion for spontaneity is correct?
+    options:
+      - "ΔG < 0 predicts spontaneity under any conditions, even if T changes"
+      - "ΔG refers to the surroundings, not the system"
+      - ΔG of the system predicts spontaneity at constant temperature and pressure
+      - ΔG > 0 means the reaction is spontaneous in the forward direction
+    answer: 2
+    explanation: The criterion ΔG_{sys} < 0 is derived from ΔS_{total} > 0 for processes at constant T and p. It uses only system properties, which is its advantage. ΔG > 0 means the reverse is spontaneous.
+
+  - id: che-thermo-360
+    topic: gibbs-spontaneity
+    subtopic: Spontaneous but slow
+    concept: Rusting is thermodynamically favoured but kinetically slow
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [kinetics-vs-thermodynamics]
+    stem: A mixture of H_2 and O_2 can remain unchanged for years at room temperature, but explodes when a spark is applied. What explains this?
+    options:
+      - "The reaction has a positive ΔG at room temperature"
+      - "The spark changes ΔG from positive to negative"
+      - The reaction has a large negative ΔG but a high activation energy, so it is very slow until initiated
+      - The reaction is endothermic
+    answer: 2
+    explanation: Forming water from H_2 and O_2 has a large negative ΔG, so it is spontaneous. It does not proceed noticeably because of a high activation energy; the spark supplies energy to start it. Thermodynamics does not predict rate.
+
+  - id: che-thermo-361
+    topic: gibbs-spontaneity
+    subtopic: Sign analysis
+    concept: Which set of ΔH, ΔS, T gives non-spontaneous reaction
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [spontaneity, multi-concept]
+    stem: |-
+      Which of the following reactions are spontaneous at 300 K?
+      I. ΔH = −20 kJ mol^{-1}, ΔS = −100 J K^{-1} mol^{-1}
+      II. ΔH = +10 kJ mol^{-1}, ΔS = +50 J K^{-1} mol^{-1}
+      III. ΔH = −10 kJ mol^{-1}, ΔS = +20 J K^{-1} mol^{-1}
+      IV. ΔH = +5 kJ mol^{-1}, ΔS = −10 J K^{-1} mol^{-1}
+    options:
+      - I and III only
+      - II and III only
+      - III only
+      - I, II and III only
+    answer: 1
+    explanation: ΔG at 300 K is I = −20 + 30 = +10 (no), II = 10 − 15 = −5 (yes), III = −10 − 6 = −16 (yes), IV = 5 + 3 = +8 (no). Only II and III are spontaneous.
+
+  - id: che-thermo-362
+    topic: gibbs-spontaneity
+    subtopic: Reverse reaction spontaneity
+    concept: If ΔG > 0 for forward, reverse reaction has ΔG < 0
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [spontaneity, reverse-reaction]
+    stem: A reaction has ΔG = +25 kJ mol^{-1} under certain conditions. Under the same conditions the reverse reaction
+    options:
+      - Is at equilibrium
+      - Is non-spontaneous with ΔG = +25 kJ mol^{-1}
+      - Is spontaneous with ΔG = −25 kJ mol^{-1}
+      - Cannot be predicted
+    answer: 2
+    explanation: Reversing a process reverses the sign of ΔG, so the reverse reaction has ΔG = −25 kJ mol^{-1} and is spontaneous.
+
+  - id: che-thermo-363
+    topic: entropy
+    subtopic: Entropy changes in physical processes
+    concept: Matching processes to sign of ΔS_{sys}
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [entropy-change]
+    stem: |-
+      Match List I with List II.
+      List I: P. Condensation of steam  Q. Evaporation of ether  R. Heating a gas at constant volume  S. Crystallisation of NaCl from brine
+      List II: 1. ΔS > 0, liquid to vapour  2. ΔS < 0, vapour to liquid  3. ΔS < 0, ions become ordered  4. ΔS > 0, greater molecular motion
+    options:
+      - P-1, Q-2, R-4, S-3
+      - P-2, Q-1, R-3, S-4
+      - P-2, Q-1, R-4, S-3
+      - P-3, Q-1, R-4, S-2
+    answer: 2
+    explanation: Condensation and crystallisation create order (ΔS < 0), evaporation creates disorder (ΔS > 0), and heating increases molecular motion and entropy.
+
+  - id: che-thermo-364
+    topic: entropy
+    subtopic: Entropy statements
+    concept: Assessing statements about entropy and spontaneity
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [second-law, entropy]
+    stem: |-
+      Consider the statements:
+      I. For a spontaneous process in an isolated system, ΔS > 0.
+      II. The entropy of the system can decrease in a spontaneous process.
+      III. ΔS_{total} is negative for a spontaneous process.
+      IV. Entropy of the universe tends to increase.
+      Which are correct?
+    options:
+      - I and III only
+      - II and III only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: In an isolated system ΔS must be positive for spontaneity, and the entropy of the universe keeps increasing. The system's entropy can fall if the surroundings gain more. III contradicts the second law.
+
+  - id: che-thermo-365
+    topic: entropy
+    subtopic: Entropy of vaporisation for 2 mol
+    concept: Entropy change for vaporising a given mass of liquid
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [phase-change, extensive]
+    stem: The enthalpy of vaporisation of ethanol (M = 46 g mol^{-1}) is 38.6 kJ mol^{-1} at its boiling point of 351 K. What is ΔS for vaporising 92 g of ethanol at 351 K?
+    options:
+      - "+110 J K^{-1}"
+      - "+55 J K^{-1}"
+      - +220 J K^{-1}
+      - −220 J K^{-1}
+    answer: 2
+    explanation: 92 g is 2 mol. ΔS per mole = 38 600/351 ≈ 110 J K^{-1} mol^{-1}, so for 2 mol ΔS ≈ +220 J K^{-1}.
+
+  - id: che-thermo-366
+    topic: entropy
+    subtopic: Irreversible vs reversible entropy
+    concept: Entropy change of the system is the same for reversible and irreversible paths
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [state-function, entropy]
+    stem: |-
+      Statement I: For an ideal gas expanding isothermally from V_1 to V_2, ΔS_{sys} is the same whether the expansion is reversible or free.
+      Statement II: For the free expansion, ΔS_{total} is greater than zero, while for the reversible expansion ΔS_{total} = 0.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: S is a state function, so ΔS_{sys} = nR ln(V_2/V_1) for both. In the reversible path the surroundings lose exactly that much entropy (ΔS_{total} = 0); in free expansion no heat flows, so ΔS_{surr} = 0 and ΔS_{total} > 0.
+
+  - id: che-thermo-367
+    topic: lattice-born-haber
+    subtopic: Born–Haber diagram reading
+    concept: Reading the Born–Haber enthalpy diagram
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: true
+    diagram: "Born–Haber enthalpy level diagram for NaCl. Bottom level: NaCl(s). Level labelled Na(s) + ½Cl_2(g) lies 411 kJ above NaCl(s). Upward arrows from Na(s) + ½Cl_2(g): +108 kJ to Na(g) + ½Cl_2(g); +121 kJ to Na(g) + Cl(g); +496 kJ to Na^+(g) + e^− + Cl(g). Downward arrow −349 kJ to Na^+(g) + Cl^−(g). A long arrow labelled L connects Na^+(g) + Cl^−(g) down to NaCl(s)."
+    battle: false
+    tags: [born-haber, enthalpy-diagram]
+    stem: In the Born–Haber diagram shown, what is the size of the arrow L between Na^+(g) + Cl^−(g) and NaCl(s)?
+    options:
+      - "376 kJ"
+      - "1485 kJ"
+      - 787 kJ
+      - 411 kJ
+    answer: 2
+    explanation: Na^+(g) + Cl^−(g) lies 108 + 121 + 496 − 349 = 376 kJ above Na(s) + ½Cl_2(g), which in turn is 411 kJ above NaCl(s). So L = 376 + 411 = 787 kJ, the lattice enthalpy of NaCl.
+
+  - id: che-thermo-368
+    topic: lattice-born-haber
+    subtopic: Stability of ionic compounds
+    concept: Lattice enthalpy is the major driving force for forming ionic solids
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [lattice-enthalpy, born-haber]
+    stem: |-
+      Assertion (A): Na(g) + Cl(g) → Na^+(g) + Cl^−(g) is endothermic.
+      Reason (R): The ionisation enthalpy of Na (+496 kJ mol^{-1}) is larger in magnitude than the electron gain enthalpy of Cl (−349 kJ mol^{-1}).
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Transferring the electron costs 496 − 349 = +147 kJ mol^{-1}, so forming gaseous ions is endothermic. It is the large lattice energy released afterwards that makes NaCl formation exothermic overall. R explains A.
+
+  - id: che-thermo-369
+    topic: lattice-born-haber
+    subtopic: Born–Haber cycle signs
+    concept: Classifying steps of Born–Haber cycle for MgO
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [born-haber, electron-gain-enthalpy]
+    stem: |-
+      In the Born–Haber cycle for MgO, which steps are endothermic?
+      I. Mg(g) → Mg^{2+}(g) + 2e^−
+      II. O(g) + e^− → O^−(g)
+      III. O^−(g) + e^− → O^{2−}(g)
+      IV. Mg^{2+}(g) + O^{2−}(g) → MgO(s)
+    options:
+      - I and II only
+      - I and III only
+      - II and IV only
+      - III and IV only
+    answer: 1
+    explanation: Removing electrons from Mg always needs energy, and adding a second electron to the negative O^− ion is endothermic due to repulsion. The first electron gain of O is exothermic, and forming the lattice from ions releases energy.
+
+  - id: che-thermo-370
+    topic: bond-enthalpy
+    subtopic: Bond enthalpies and reaction type
+    concept: Matching reactions to their enthalpy type
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [bond-enthalpy, enthalpy-terms]
+    stem: |-
+      Match List I with List II.
+      List I: P. Cl_2(g) → 2Cl(g)  Q. CH_4(g) → C(g) + 4H(g)  R. ½H_2(g) + ½Cl_2(g) → HCl(g)  S. HCl(g) → H(g) + Cl(g)
+      List II: 1. Enthalpy of atomisation of methane  2. Bond dissociation enthalpy of Cl–Cl  3. Bond dissociation enthalpy of H–Cl  4. Enthalpy of formation of HCl
+    options:
+      - P-2, Q-1, R-3, S-4
+      - P-1, Q-2, R-4, S-3
+      - P-2, Q-1, R-4, S-3
+      - P-2, Q-4, R-1, S-3
+    answer: 2
+    explanation: Breaking Cl_2 into atoms is its bond dissociation enthalpy; breaking all bonds of CH_4 is its atomisation; forming 1 mol of HCl from elements is its enthalpy of formation; breaking HCl into atoms is the H–Cl bond enthalpy.
+
+  - id: che-thermo-371
+    topic: bond-enthalpy
+    subtopic: Estimating ΔfH from bond data
+    concept: ΔfH of CH_4 from atomisation and bond enthalpy data
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [bond-enthalpy, atomisation, multi-concept]
+    stem: ΔsubH of C(graphite) = +717, H–H = 436 and mean C–H = 416 kJ mol^{-1}. Estimate ΔfH of CH_4(g).
+    options:
+      - "+75 kJ mol^{-1}"
+      - "−947 kJ mol^{-1}"
+      - −75 kJ mol^{-1}
+      - −231 kJ mol^{-1}
+    answer: 2
+    explanation: C(graphite) + 2H_2 → CH_4. Energy in = 717 + 2 × 436 = 1589 kJ; energy out = 4 × 416 = 1664 kJ. ΔfH = 1589 − 1664 = −75 kJ mol^{-1}, close to the experimental −74.8.
+
+  - id: che-thermo-372
+    topic: bond-enthalpy
+    subtopic: Why ΔfH of graphite-based compounds needs sublimation
+    concept: Bond enthalpy calculations need gaseous atoms, so sublimation of carbon is included
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [bond-enthalpy, atomisation]
+    stem: |-
+      Statement I: To estimate ΔfH of a hydrocarbon from bond enthalpies, the enthalpy of atomisation of graphite must be included.
+      Statement II: Bond enthalpies refer to breaking bonds in gaseous molecules to give gaseous atoms.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Carbon's reference state is solid graphite, so it must first be converted to gaseous atoms (atomisation) before bond enthalpies can be applied. This works because bond enthalpies are defined for gaseous species.
+
+  - id: che-thermo-373
+    topic: hess-law
+    subtopic: Enthalpy diagram endothermic
+    concept: Interpreting an enthalpy level diagram with an intermediate
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [enthalpy-diagram]
+    stem: An enthalpy level diagram shows reactants A at 0 kJ, an intermediate B at +80 kJ and products C at +30 kJ. What are ΔH for A → B, B → C and A → C?
+    options:
+      - "+80, +50, +130 kJ"
+      - "−80, +50, −30 kJ"
+      - +80, −50, +30 kJ
+      - +80, −30, +50 kJ
+    answer: 2
+    explanation: ΔH = H(final) − H(initial). A → B = 80 − 0 = +80 kJ; B → C = 30 − 80 = −50 kJ; A → C = 30 − 0 = +30 kJ, which also equals 80 + (−50).
+
+  - id: che-thermo-374
+    topic: hess-law
+    subtopic: ΔrH from ΔfH with fractional coefficients
+    concept: Enthalpy of combustion of CO from formation data
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [enthalpy-of-formation]
+    stem: ΔfH° of CO(g) = −110.5 and CO_2(g) = −393.5 kJ mol^{-1}. What is ΔcH° of CO(g)?
+    options:
+      - "−504.0 kJ mol^{-1}"
+      - "+283.0 kJ mol^{-1}"
+      - −283.0 kJ mol^{-1}
+      - −393.5 kJ mol^{-1}
+    answer: 2
+    explanation: CO + ½O_2 → CO_2. ΔcH° = −393.5 − (−110.5) = −283.0 kJ mol^{-1}.
+
+  - id: che-thermo-375
+    topic: hess-law
+    subtopic: Hess's law and state functions
+    concept: Multiple-path equality checks on a thermochemical cycle
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [hess-law, cycle]
+    stem: |-
+      A → B has ΔH_1, B → C has ΔH_2, C → D has ΔH_3 and A → D directly has ΔH_4. Which relations are correct?
+      I. ΔH_4 = ΔH_1 + ΔH_2 + ΔH_3
+      II. ΔH_1 + ΔH_2 + ΔH_3 − ΔH_4 = 0
+      III. ΔH for D → B = −(ΔH_2 + ΔH_3)
+      IV. ΔH for A → C = ΔH_4 − ΔH_3
+    options:
+      - I and II only
+      - I, II and III only
+      - III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: By Hess's law ΔH_4 = ΔH_1 + ΔH_2 + ΔH_3, so I and II hold. D → B is the reverse of B → C → D, giving III. A → C = A → D minus C → D, giving IV.
+
+  - id: che-thermo-376
+    topic: reaction-enthalpies
+    subtopic: Enthalpy terms classification
+    concept: Endothermic and exothermic enthalpy terms
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [enthalpy-terms]
+    stem: Which of the following enthalpy changes is always negative?
+    options:
+      - "Enthalpy of solution"
+      - "Enthalpy of formation"
+      - Enthalpy of hydration of an ion
+      - Enthalpy of neutralisation of a weak acid by a weak base, which is always zero
+    answer: 2
+    explanation: Hydration always releases energy. Enthalpies of solution and formation can be positive or negative (e.g. NH_4Cl dissolves endothermically, C_2H_2 has a positive ΔfH), and neutralisation of a weak acid by a weak base is exothermic, not zero.
+
+  - id: che-thermo-377
+    topic: reaction-enthalpies
+    subtopic: Enthalpy of dilution
+    concept: Heat evolved on dilution from enthalpies of solution
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [enthalpy-of-dilution]
+    stem: The enthalpy of solution of 1 mol HCl(g) in 10 mol water is −69.5 kJ and in 40 mol water is −72.8 kJ. What is the enthalpy of dilution when the first solution is diluted with 30 mol of water?
+    options:
+      - "+3.3 kJ"
+      - "−142.3 kJ"
+      - −3.3 kJ
+      - −72.8 kJ
+    answer: 2
+    explanation: Enthalpy of dilution = −72.8 − (−69.5) = −3.3 kJ. Further dilution releases a little more heat as the ions become more completely hydrated.
+
+  - id: che-thermo-378
+    topic: reaction-enthalpies
+    subtopic: Formation enthalpy of gaseous atoms
+    concept: ΔfH° of H(g) is half the H–H bond enthalpy
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [enthalpy-of-formation, atomisation]
+    stem: The H–H bond enthalpy is 436 kJ mol^{-1}. What is the standard enthalpy of formation of H(g)?
+    options:
+      - "+436 kJ mol^{-1}"
+      - "0 kJ mol^{-1}"
+      - +218 kJ mol^{-1}
+      - −218 kJ mol^{-1}
+    answer: 2
+    explanation: "ΔfH°(H, g) refers to ½H_2(g) → H(g), which breaks half a mole of H–H bonds: 436/2 = +218 kJ mol^{-1}."
+
+  - id: che-thermo-379
+    topic: reaction-enthalpies
+    subtopic: Enthalpy of neutralisation value for HF
+    concept: Neutralisation of HF is more exothermic than −57.1 due to hydration of F^−
+    category: application
+    format: assertion-reason
+    difficulty: 5
+    time: 60
+    ncert: false
+    battle: false
+    tags: [neutralisation, exception]
+    stem: |-
+      Assertion (A): The enthalpy of neutralisation of HF by NaOH is more negative than −57.1 kJ mol^{-1}.
+      Reason (R): The small F^− ion has a very large hydration enthalpy, which releases extra energy.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Although HF is a weak acid, its neutralisation releases about −68 kJ mol^{-1}. The strong hydration of the small F^− ion releases more energy than is needed to ionise HF. R explains this exception.
+
+  - id: che-thermo-380
+    topic: heat-capacity-calorimetry
+    subtopic: ΔU in adiabatic change
+    concept: ΔU = nC_vΔT also gives adiabatic work
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [adiabatic, heat-capacity, multi-concept]
+    stem: Two moles of a monoatomic ideal gas expand adiabatically and their temperature falls from 400 K to 300 K. What is the work done by the gas? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - "1663 J"
+      - "4157 J"
+      - 2494 J
+      - 1247 J
+    answer: 2
+    explanation: ΔU = nC_vΔT = 2 × 1.5 × 8.314 × (−100) ≈ −2494 J. With q = 0, w = ΔU = −2494 J, so the gas does 2494 J of work.
+
+  - id: che-thermo-381
+    topic: heat-capacity-calorimetry
+    subtopic: Choosing calorimeter
+    concept: Matching calorimeter type to measured quantity
+    category: concept
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [calorimetry]
+    stem: |-
+      Match List I with List II.
+      List I: P. Bomb calorimeter  Q. Coffee-cup calorimeter  R. C_{cal} = q/ΔT  S. q = mcΔT
+      List II: 1. Heat absorbed by a known mass of water  2. Measures ΔU at constant volume  3. Measures ΔH at constant pressure  4. Calorimeter constant
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-2, Q-3, R-1, S-4
+      - P-2, Q-3, R-4, S-1
+      - P-4, Q-3, R-2, S-1
+    answer: 2
+    explanation: A sealed bomb works at constant volume (ΔU); an open cup at constant pressure (ΔH). The calorimeter constant is heat per degree rise, and mcΔT gives the heat taken up by a known mass of water.
+
+  - id: che-thermo-382
+    topic: heat-capacity-calorimetry
+    subtopic: Water's high specific heat
+    concept: High specific heat of water moderates temperature changes
+    category: application
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [specific-heat, water]
+    stem: |-
+      Assertion (A): Water is widely used as a coolant in car radiators.
+      Reason (R): Water has a high specific heat capacity, so it absorbs a lot of heat with a small rise in temperature.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: With c ≈ 4.18 J g^{-1} K^{-1}, water can carry away large amounts of heat per kilogram per degree. R explains why it is an effective coolant.
+
+  - id: che-thermo-383
+    topic: enthalpy
+    subtopic: ΔH–ΔU relation
+    concept: Finding Δn_g from given ΔH and ΔU
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [delta-h-delta-u]
+    stem: For a reaction at 300 K, ΔH = −10.0 kJ mol^{-1} and ΔU = −5.0 kJ mol^{-1}. What is Δn_g? (R = 8.314 J K^{-1} mol^{-1})
+    options:
+      - "+2"
+      - "−1"
+      - −2
+      - "+1"
+    answer: 2
+    explanation: Δn_gRT = ΔH − ΔU = −5.0 kJ. Δn_g = −5000/(8.314 × 300) ≈ −2. The gaseous moles fall by two.
+
+  - id: che-thermo-384
+    topic: enthalpy
+    subtopic: Enthalpy of reaction and physical states
+    concept: Different ΔH for same reaction with water as liquid or vapour
+    category: application
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [thermochemical-equation, phase-change]
+    stem: For H_2(g) + ½O_2(g) → H_2O, which statement is correct?
+    options:
+      - "ΔH is the same whether H_2O is liquid or gas"
+      - "ΔH is more negative when water vapour is formed"
+      - ΔH is more negative when liquid water is formed, by the enthalpy of condensation
+      - ΔH is zero because hydrogen and oxygen are elements
+    answer: 2
+    explanation: Forming liquid water includes condensation of the vapour, which releases about 44 kJ mol^{-1} more heat. So ΔH is −285.8 kJ mol^{-1} for liquid and about −241.8 kJ mol^{-1} for vapour.
+
+  - id: che-thermo-385
+    topic: first-law
+    subtopic: Energy transfer comparison
+    concept: Comparing ΔU of different processes
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [first-law]
+    stem: Arrange the processes in increasing order of ΔU. P - q = +40 J, w = −60 J; Q - q = −20 J, w = +50 J; R - q = +30 J, w = +10 J; S - q = −10 J, w = −20 J.
+    options:
+      - S < P < Q < R
+      - P < S < Q < R
+      - S < P < R < Q
+      - S < Q < P < R
+    answer: 0
+    explanation: ΔU = q + w gives P = −20 J, Q = +30 J, R = +40 J and S = −30 J, so the increasing order is S < P < Q < R.
+

@@ -8578,3 +8578,555 @@ questions:
     answer: 2
     explanation: "At the near point m = (f_o/f_e)(1 + f_e/D), greater than f_o/f_e. The eyepiece must then be slightly closer to the intermediate image (u_e < f_e), so the tube is a little shorter than f_o + f_e."
 
+  - id: phy-ray-401
+    topic: reflection-mirrors
+    subtopic: Object approaching a concave mirror
+    concept: Sequence of image changes as an object moves from infinity to the pole of a concave mirror
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [concave-mirror, image-formation]
+    stem: |-
+      An object moves along the axis from very far away up to the pole of a concave mirror. Consider:
+      I. The real image moves from F out towards infinity as the object comes from infinity to F.
+      II. The image is the same size as the object when the object is at C.
+      III. Once the object is inside F, the image jumps to behind the mirror and is erect.
+      IV. As the object moves from F to the pole, the virtual image grows larger.
+      Which are correct?
+    options:
+      - I and IV only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "I, II and III describe the standard sequence. Inside F the virtual image is largest just inside F and shrinks towards the object size (m → 1) as the object reaches the pole, so IV is false."
+
+  - id: phy-ray-402
+    topic: reflection-mirrors
+    subtopic: Magnification ranges
+    concept: Matching object ranges with magnification ranges for a concave mirror
+    category: concept
+    format: match
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: m = f/(f − u)
+    tags: [concave-mirror, magnification]
+    stem: |-
+      For a concave mirror of focal length f, match the object distance |u| (List I) with the magnification (List II).
+      List I: P. |u| > 2f; Q. |u| = 2f; R. f < |u| < 2f; S. |u| < f
+      List II: 1. m = −1; 2. m > +1; 3. m < −1; 4. −1 < m < 0
+    options:
+      - P-4, Q-1, R-3, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-4, Q-2, R-3, S-1
+      - P-1, Q-4, R-3, S-2
+    answer: 0
+    explanation: "Beyond C the real image is inverted and diminished (−1 < m < 0); at C, m = −1; between F and C it is inverted and enlarged (m < −1); inside F it is erect and enlarged (m > 1)."
+
+  - id: phy-ray-403
+    topic: reflection-mirrors
+    subtopic: Checking results for a concave mirror
+    concept: Identifying the correct result for an object between F and C
+    category: numerical
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: 1/v + 1/u = 1/f
+    tags: [concave-mirror, mirror-formula]
+    stem: An object is 15 cm in front of a concave mirror of focal length 10 cm. Which statement is correct?
+    options:
+      - The image is virtual and 30 cm behind the mirror.
+      - The image is real, 30 cm in front, and the same size as the object.
+      - The image is real, 6 cm in front, and diminished.
+      - The image is real, 30 cm in front, inverted and twice the object size.
+    answer: 3
+    explanation: "1/v = −1/10 + 1/15 = −1/30, v = −30 cm (real, in front). m = −v/u = −2: inverted and twice as large."
+
+  - id: phy-ray-404
+    topic: reflection-mirrors
+    subtopic: Object-image separation
+    concept: Using m and the object-image separation to find f of a concave mirror
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: m = −v/u
+    tags: [concave-mirror, magnification, multi-concept]
+    stem: A concave mirror forms a real image twice the size of the object. The object and image are 45 cm apart. The focal length of the mirror is
+    options:
+      - 30 cm
+      - 15 cm
+      - 45 cm
+      - 22.5 cm
+    answer: 0
+    explanation: "Real image, |v| = 2|u|, both in front: separation |v| − |u| = |u| = 45 cm, so u = −45 cm, v = −90 cm. 1/f = −1/90 − 1/45 = −3/90, f = −30 cm."
+
+  - id: phy-ray-405
+    topic: reflection-mirrors
+    subtopic: Virtual images by a concave mirror
+    concept: A concave mirror's virtual images are always magnified
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [concave-mirror, virtual-image, trap]
+    stem: |-
+      Assertion (A): A concave mirror can form a virtual image smaller than a real object.
+      Reason (R): A concave mirror forms a virtual image only when the object lies between its pole and focus, and that image is magnified.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "For u inside F, m = f/(f − u) > 1, so every virtual image of a real object in a concave mirror is enlarged. R is true and shows A is false; diminished virtual images come from convex mirrors."
+
+  - id: phy-ray-406
+    topic: reflection-mirrors
+    subtopic: Makeup mirror
+    concept: Radius of curvature from an erect magnified image
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: m = −v/u, 1/f = 1/v + 1/u
+    tags: [concave-mirror, virtual-image]
+    stem: A woman 20 cm from a makeup mirror sees an erect image of her face 1.5 times its actual size. The radius of curvature of the mirror is
+    options:
+      - 60 cm
+      - 120 cm
+      - 40 cm
+      - 80 cm
+    answer: 1
+    explanation: "m = +1.5 = −v/u with u = −20 cm gives v = +30 cm. 1/f = 1/30 − 1/20 = −1/60, so f = −60 cm (concave) and R = 2|f| = 120 cm."
+
+  - id: phy-ray-407
+    topic: reflection-mirrors
+    subtopic: Minimum object-image distance
+    concept: For a concave mirror the object-real image distance can be zero; for a convex lens its minimum is 4f
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [concave-mirror, convex-lens, multi-concept]
+    stem: |-
+      Statement I: For a concave mirror, the distance between an object and its real image can be zero.
+      Statement II: For a convex lens, the distance between an object and its real image can never be less than 4f.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "With the object at C, the mirror's real image forms at C itself, so the separation is zero. For a lens, object and real image are on opposite sides and their separation is least (4f) when u = v = 2f."
+
+  - id: phy-ray-408
+    topic: reflection-mirrors
+    subtopic: v–u curve and the line v = u
+    concept: The v–u curve of a concave mirror meets the line v = u at the centre of curvature
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, concave-mirror]
+    stem: For a concave mirror of focal length f, v is plotted against u using Cartesian signs. The curve for real images crosses the straight line v = u at
+    options:
+      - u = v = −f
+      - u = v = −2f
+      - u = v = 0
+      - it never crosses that line
+    answer: 1
+    explanation: "Setting v = u in 1/v + 1/u = 1/f gives 2/u = 1/f, so u = v = 2f (−2f in Cartesian signs for a concave mirror): the object at C images onto itself."
+
+  - id: phy-ray-409
+    topic: reflection-mirrors
+    subtopic: Convex mirror properties
+    concept: Evaluating statements about convex mirrors
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [convex-mirror]
+    stem: |-
+      For a convex mirror and a real object:
+      I. The image always lies between the pole and the focus.
+      II. The magnification is always less than 1.
+      III. It is used in shops as a security mirror because of its wide field of view.
+      IV. The image moves to infinity when the object is at the focus.
+      Which are correct?
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: "A convex mirror's virtual image stays between P and F and is always diminished, giving a wide view useful for security and vehicles. It has no real focus in front for the object to occupy, and the image never goes to infinity; IV is false."
+
+  - id: phy-ray-410
+    topic: reflection-mirrors
+    subtopic: Focal length from image size
+    concept: f of a convex mirror from object and image heights
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    formula: m = −v/u
+    tags: [convex-mirror, magnification]
+    stem: A 5 cm tall object is 30 cm in front of a convex mirror, and its image is 2 cm tall. The focal length of the mirror is
+    options:
+      - 12 cm
+      - 30 cm
+      - 8.6 cm
+      - 20 cm
+    answer: 3
+    explanation: "m = 2/5 = 0.4 = −v/u, so v = 0.4 × 30 = +12 cm. 1/f = 1/12 − 1/30 = 3/60, so f = +20 cm."
+
+  - id: phy-ray-411
+    topic: reflection-mirrors
+    subtopic: Mirrors at right angles
+    concept: Two perpendicular mirrors form three images
+    category: application
+    format: case
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: n = 360°/θ − 1
+    tags: [plane-mirror, multiple-images]
+    stem: A tailor's shop has two plane mirrors meeting at 90°. How many images of a customer standing between them are seen?
+    options:
+      - "3"
+      - "4"
+      - "2"
+      - "1"
+    answer: 0
+    explanation: "360°/90° = 4 (even), so the number of images is 4 − 1 = 3. The middle image is formed by two reflections."
+
+  - id: phy-ray-412
+    topic: reflection-mirrors
+    subtopic: Mirror terminology
+    concept: Matching terms for spherical mirrors with definitions
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [spherical-mirror, definitions]
+    stem: |-
+      Match the term (List I) with its meaning (List II) for a spherical mirror.
+      List I: P. Pole; Q. Centre of curvature; R. Principal focus; S. Aperture
+      List II: 1. Diameter of the reflecting surface; 2. Point where paraxial rays parallel to the axis meet (or appear to) after reflection; 3. Centre of the sphere of which the mirror is a part; 4. Geometric centre of the mirror surface
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-3, R-2, S-1
+    answer: 3
+    explanation: "The pole is the mirror's geometric centre, C is the centre of its sphere, F is where parallel paraxial rays converge or appear to diverge from, and the aperture is the size of the reflecting surface."
+
+  - id: phy-ray-413
+    topic: reflection-mirrors
+    subtopic: Moving a plane mirror
+    concept: Moving a plane mirror by x shifts the image by 2x
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [plane-mirror, image-shift]
+    stem: A plane mirror is moved 5 cm away from a stationary object. The image of the object shifts by
+    options:
+      - 5 cm
+      - 10 cm
+      - 2.5 cm
+      - 15 cm
+    answer: 1
+    explanation: "The object-mirror distance rises by 5 cm, and the image stays equally far behind the mirror, so the image moves 5 + 5 = 10 cm from its old position."
+
+  - id: phy-ray-414
+    topic: reflection-mirrors
+    subtopic: Signs of quantities
+    concept: Identifying the incorrect sign statement in the Cartesian convention for mirrors
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [sign-convention, trap]
+    stem: Using the Cartesian sign convention with light incident from the left, which statement is INCORRECT?
+    options:
+      - The object distance for a real object is negative.
+      - The focal length of a concave mirror is negative.
+      - The image distance of a virtual image formed by a mirror is positive.
+      - The height of an inverted image is positive.
+    answer: 3
+    explanation: "Heights above the axis are positive and below are negative, so an inverted image of an upright object has negative height. The other three statements follow from the convention."
+
+  - id: phy-ray-415
+    topic: refraction-plane
+    subtopic: Glass slab properties
+    concept: Evaluating statements about refraction through a glass slab
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [glass-slab, lateral-shift, normal-shift]
+    stem: |-
+      For a parallel-sided glass slab in air:
+      I. The emergent ray is parallel to the incident ray.
+      II. An object viewed normally through it appears nearer by t(1 − 1/n).
+      III. The lateral shift is maximum at grazing incidence and equals t.
+      IV. The slab changes the frequency of the light passing through it.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: "I and II are standard results. As i → 90°, d = t sin(i − r)/cos r → t cos r/cos r = t, so III is true. Frequency never changes, so IV is false."
+
+  - id: phy-ray-416
+    topic: refraction-plane
+    subtopic: Formulae of plane refraction
+    concept: Matching refraction quantities with their expressions
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [apparent-depth, lateral-shift, normal-shift]
+    stem: |-
+      Match the quantity (List I) with its expression (List II), for a slab or layer of thickness t and index n in air.
+      List I: P. Apparent depth; Q. Normal shift; R. Lateral shift; S. Speed of light in the medium
+      List II: 1. t sin(i − r)/cos r; 2. c/n; 3. t/n; 4. t(1 − 1/n)
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-4, R-1, S-3
+    answer: 1
+    explanation: "Apparent depth = t/n; normal shift = t − t/n = t(1 − 1/n); lateral shift = t sin(i − r)/cos r; speed = c/n."
+
+  - id: phy-ray-417
+    topic: refraction-plane
+    subtopic: Multiple parallel layers
+    concept: n sin θ is conserved, so only the first and last media matter
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: n_1 sin θ_1 = n_k sin θ_k
+    tags: [snells-law, multi-concept]
+    stem: A ray in air at 60° incidence passes through several parallel layers and travels at 30° to the normal in the last layer. The refractive index of the last layer is
+    options:
+      - √2
+      - "1.5"
+      - "2"
+      - √3
+    answer: 3
+    explanation: "n sin θ is the same in every layer: 1 × sin 60° = n sin 30°, so n = (√3/2)/(1/2) = √3. The middle layers do not matter."
+
+  - id: phy-ray-418
+    topic: refraction-plane
+    subtopic: Normal shift and colour
+    concept: Normal shift is larger for violet because n is larger
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [normal-shift, colours]
+    stem: |-
+      Statement I: A slab laid on printed text raises the letters by t(1 − 1/n), whatever the eye's distance from the slab.
+      Statement II: For the same slab, violet letters appear raised more than red letters.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "The normal shift depends only on t and n, not on where the observer is. Since n is larger for violet, t(1 − 1/n) is larger, so violet letters appear raised slightly more."
+
+  - id: phy-ray-419
+    topic: refraction-plane
+    subtopic: Swimmer's legs
+    concept: Submerged parts look shorter due to apparent depth
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: apparent depth = real depth/n
+    tags: [apparent-depth, everyday-refraction]
+    stem: A person standing in a clear pool, waist-deep, looks down at her legs. The water is 1.2 m deep (n = 4/3). Her feet appear to be
+    options:
+      - 1.2 m below the surface, legs normal length
+      - 0.9 m below the surface, legs looking shorter
+      - 1.6 m below the surface, legs looking longer
+      - 0.3 m below the surface
+    answer: 1
+    explanation: "Looking nearly straight down, apparent depth = 1.2/(4/3) = 0.9 m. The feet appear raised by 0.3 m, so the legs look short. 0.3 m is the shift, not the apparent depth."
+
+  - id: phy-ray-420
+    topic: refraction-plane
+    subtopic: Oblique viewing
+    concept: A pool looks even shallower when viewed obliquely
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [apparent-depth, trap]
+    stem: |-
+      Assertion (A): A pool viewed obliquely appears shallower than when viewed from directly above.
+      Reason (R): The relation apparent depth = real depth/n holds only for near-normal viewing.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Both are true. For oblique viewing the emerging rays are bent more strongly, and their backward extensions meet at a shallower point, so the pool looks shallower than h/n. R merely states the limit of the simple formula; it does not explain why oblique viewing reduces the apparent depth."
+
+  - id: phy-ray-421
+    topic: refraction-plane
+    subtopic: Wavelength from frequency
+    concept: λ in a medium equals c/(n f)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: λ = c/(n f)
+    tags: [wavelength, frequency]
+    stem: Light of frequency 5 × 10^14 Hz travels through glass of refractive index 1.5. Its wavelength in the glass is
+    options:
+      - 400 nm
+      - 600 nm
+      - 900 nm
+      - 300 nm
+    answer: 0
+    explanation: "In air λ = c/f = 600 nm; in glass it is 600/1.5 = 400 nm. Frequency is unchanged."
+
+  - id: phy-ray-422
+    topic: refraction-plane
+    subtopic: Speed versus refractive index
+    concept: Speed in a medium is inversely proportional to n
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    formula: v = c/n
+    tags: [graph, speed-of-light]
+    stem: The speed v of light in different media is plotted against their refractive index n. The curve is
+    options:
+      - a straight line through the origin
+      - a rectangular hyperbola, vn = c
+      - a straight line of negative slope
+      - a parabola
+    answer: 1
+    explanation: "v = c/n means vn = constant = c, a rectangular hyperbola. A plot of v against 1/n would be a straight line through the origin."
+
+  - id: phy-ray-423
+    topic: refraction-plane
+    subtopic: Speed in different media
+    concept: Ranking speed of light by refractive index
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [speed-of-light, ordering]
+    stem: Arrange the speed of light in diamond (2.42), crown glass (1.52), water (1.33) and air (1.0003) in increasing order.
+    options:
+      - Air < water < glass < diamond
+      - Glass < diamond < water < air
+      - Water < glass < diamond < air
+      - Diamond < glass < water < air
+    answer: 3
+    explanation: "v = c/n, so the largest n gives the lowest speed: diamond < glass < water < air."
+
+  - id: phy-ray-424
+    topic: refraction-plane
+    subtopic: Laws of refraction
+    concept: Evaluating statements on the laws of refraction and reversibility
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [snells-law, reversibility]
+    stem: |-
+      Consider:
+      I. If a ray goes from medium 1 to medium 2 along a path, a ray sent backward retraces the same path.
+      II. n_12 × n_21 = 1.
+      III. The ratio sin i/sin r depends on the angle of incidence.
+      IV. A ray entering a denser medium always slows down.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "Reversibility gives I and hence II. The Snell ratio is constant for a given pair of media and colour, so III is false. A denser (higher n) medium has lower speed, so IV is true."
+
+  - id: phy-ray-425
+    topic: refraction-plane
+    subtopic: Reflected and refracted rays
+    concept: Angle between reflected and refracted rays for i = 60°, n = √3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: angle = 180° − i − r
+    tags: [snells-law, multi-concept]
+    stem: A ray in air falls at 60° on a glass surface (n = √3); part is reflected and part refracted. The angle between the reflected and refracted rays is
+    options:
+      - 60°
+      - 90°
+      - 120°
+      - 30°
+    answer: 1
+    explanation: "Refraction angle: sin r = sin 60°/√3 = 1/2, r = 30°. The reflected ray makes 60° with the normal above the surface, the refracted ray 30° below, so the angle between them is 180° − 60° − 30° = 90°."
+

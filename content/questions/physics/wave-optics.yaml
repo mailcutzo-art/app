@@ -8222,3 +8222,307 @@ questions:
     answer: 2
     explanation: Limit of resolution 1.22λ/D is smaller for shorter wavelength, so a blue filter gives finer resolution than red or infrared.
 
+  - id: phy-wop-387
+    topic: polarisation
+    subtopic: Polarisation by scattering
+    concept: Light scattered at 90° is plane polarised because the dipoles cannot radiate along their oscillation
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [scattering, sky-polarisation]
+    stem: |-
+      Assertion (A): Unpolarised sunlight scattered by air molecules through 90° is plane polarised.
+      Reason (R): Charges oscillating along the direction of observation do not radiate towards the observer.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Molecules oscillate in the two directions perpendicular to the incident beam. Viewed at 90°, the oscillation along the line of sight sends no light to the observer, so only the other component reaches him and the light is plane polarised. R explains A.
+
+  - id: phy-wop-388
+    topic: polarisation
+    subtopic: Malus law in sequence
+    concept: Polarised light through two analysers at successive angles
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: I = I_0 cos^2θ_1 cos^2θ_2
+    tags: [malus-law, multi-concept]
+    stem: Plane-polarised light of intensity I_0 passes through a polaroid whose axis is at 30° to the plane of polarisation, and then through a second polaroid whose axis is at 90° to the original plane of polarisation. The final intensity is
+    options:
+      - zero
+      - 3I_0/16
+      - 3I_0/4
+      - I_0/16
+    answer: 1
+    explanation: After the first, I_0cos^2 30° = 3I_0/4. The second is at 60° to the first polaroid, so I = (3I_0/4)cos^2 60° = 3I_0/16. It is not zero, because the light was re-polarised by the first polaroid.
+
+  - id: phy-wop-389
+    topic: polarisation
+    subtopic: Uses of polaroids
+    concept: Applications of polaroids
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [polaroid-uses]
+    stem: |-
+      Which of the following are applications of polaroids?
+      I. Sunglasses that reduce glare
+      II. Variable-intensity windows using two polaroids
+      III. Viewing 3D films
+      IV. Increasing the frequency of light
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: Polaroids cut polarised glare, control intensity when one is rotated relative to another, and separate the two images of 3D films. They cannot change the frequency of light.
+
+  - id: phy-wop-390
+    topic: polarisation
+    subtopic: Brewster law
+    concept: Brewster angle for glass of μ = 1.5
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: i_B = tan^{-1} μ
+    tags: [brewster-angle, glass]
+    stem: The polarising angle for glass of refractive index 1.5 is about
+    options:
+      - 42°
+      - 56°
+      - 34°
+      - 48°
+    answer: 1
+    explanation: tan i_B = 1.5 gives i_B ≈ 56.3°. 42° is the critical angle of glass (sin C = 1/1.5), a commonly confused value.
+
+  - id: phy-wop-391
+    topic: polarisation
+    subtopic: Brewster law
+    concept: At Brewster angle reflected intensity is small, not zero or maximum
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [brewster-angle, trap]
+    stem: Which statement about light incident on glass at the Brewster angle is INCORRECT?
+    options:
+      - The reflected light is completely plane polarised
+      - The angle between reflected and refracted rays is 90°
+      - All the incident light is reflected
+      - tan i_B equals the refractive index of glass
+    answer: 2
+    explanation: At the Brewster angle only part of the perpendicular component is reflected; most of the light is refracted. The other statements are correct.
+
+  - id: phy-wop-392
+    topic: polarisation
+    subtopic: Malus law
+    concept: Analyser angle for 75% transmission
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: cos^2θ = I/I_0
+    tags: [malus-law, angle]
+    stem: An analyser transmits 75% of the plane-polarised light falling on it. The angle between its axis and the plane of polarisation is
+    options:
+      - 60°
+      - 30°
+      - 45°
+      - 41°
+    answer: 1
+    explanation: cos^2θ = 0.75 gives cos θ = √3/2 and θ = 30°. 60° would transmit only 25%.
+
+  - id: phy-wop-393
+    topic: polarisation
+    subtopic: Two polaroids
+    concept: Matching angle between two polaroids with transmitted intensity of unpolarised light
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: I = (I_0/2)cos^2θ
+    tags: [malus-law, unpolarised-light]
+    stem: |-
+      Unpolarised light of intensity I_0 falls on two polaroids. Match the angle between their axes (List I) with the emergent intensity (List II).
+      List I: P. 0°; Q. 30°; R. 60°; S. 90°
+      List II: 1. I_0/8; 2. zero; 3. I_0/2; 4. 3I_0/8
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 0
+    explanation: I = (I_0/2)cos^2θ gives I_0/2 at 0° (P-3), 3I_0/8 at 30° (Q-4), I_0/8 at 60° (R-1) and zero at 90° (S-2).
+
+  - id: phy-wop-394
+    topic: polarisation
+    subtopic: Brewster law
+    concept: Refractive index from refraction angle at Brewster incidence
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: i_B = 90° − r, μ = tan i_B
+    tags: [brewster-angle, multi-concept]
+    stem: Light incident on a medium at the Brewster angle is refracted at 35°. The refractive index of the medium is
+    options:
+      - tan 35° ≈ 0.70
+      - sin 55°/sin 35° ≈ 1.2
+      - tan 55° ≈ 1.43
+      - 1/sin 35° ≈ 1.74
+    answer: 2
+    explanation: At the Brewster angle i_B + r = 90°, so i_B = 55°, and μ = tan i_B = tan 55° ≈ 1.43. Note sin 55°/sin 35° equals tan 55° as well, but it is 1.43, not 1.2.
+
+  - id: phy-wop-395
+    topic: polarisation
+    subtopic: Brewster law
+    concept: Brewster angle depends on wavelength; reflected intensity is not maximum there
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [brewster-angle, dispersion]
+    stem: |-
+      Statement I: The Brewster angle for a given glass is slightly different for red and violet light.
+      Statement II: The intensity of reflected light is maximum at the Brewster angle.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: tan i_B = μ and μ depends on wavelength (dispersion), so i_B differs slightly by colour (I correct). At i_B the component in the plane of incidence is not reflected at all, so reflected intensity is low, not maximum (II incorrect).
+
+  - id: phy-wop-396
+    topic: polarisation
+    subtopic: Everyday polarisation
+    concept: LCD screens emit polarised light
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [lcd, real-life]
+    stem: A person wearing polaroid sunglasses looks at a phone's LCD screen and finds that the screen goes almost dark when the head is tilted by 90°. This shows that
+    options:
+      - LCD screens emit unpolarised light
+      - the sunglasses change the frequency of light
+      - the LCD light is diffracted by the lenses
+      - light from the LCD screen is plane polarised
+    answer: 3
+    explanation: Near-extinction on rotating the analyser (the sunglass lens) by 90° is the signature of plane-polarised light, as given by Malus law. Unpolarised light would not change in intensity with rotation.
+
+  - id: phy-wop-397
+    topic: polarisation
+    subtopic: Two polaroids
+    concept: Doubling the angle between polaroids from 30° to 60°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: I = (I_0/2)cos^2θ
+    tags: [malus-law]
+    stem: Two polaroids at 30° transmit 3/8 of incident unpolarised light. If the angle between them is made 60°, the fraction transmitted becomes
+    options:
+      - 3/16
+      - 1/4
+      - 1/8
+      - 3/4
+    answer: 2
+    explanation: Fraction = ½cos^2θ; at 60° it is ½ × ¼ = 1/8. Simply halving 3/8 (3/16) is wrong because intensity depends on cos^2θ, not θ.
+
+  - id: phy-wop-398
+    topic: polarisation
+    subtopic: Polaroid and unpolarised light
+    concept: Transmitted intensity vs angle for unpolarised light is constant at I_0/2
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [graph, unpolarised-light]
+    stem: A single polaroid is rotated through 360° in a beam of unpolarised light of intensity I_0. The graph of transmitted intensity against angle of rotation is
+    options:
+      - a cos^2θ curve between 0 and I_0
+      - a horizontal straight line at I_0/2
+      - a horizontal line at I_0
+      - a sin^2θ curve between 0 and I_0/2
+    answer: 1
+    explanation: Unpolarised light has no preferred direction, so the polaroid always transmits I_0/2 whatever its orientation. A cos^2θ variation needs polarised incident light.
+
+  - id: phy-wop-399
+    topic: polarisation
+    subtopic: Brewster law
+    concept: Brewster angle increases with refractive index
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: i_B = tan^{-1} μ
+    tags: [brewster-angle]
+    stem: |-
+      Arrange the Brewster angles for light incident from air in increasing order:
+      P. Diamond (μ = 2.42)   Q. Water (μ = 1.33)   R. Glass (μ = 1.5)   S. A medium with μ = √3
+      
+    options:
+      - Q, R, S, P
+      - P, S, R, Q
+      - Q, S, R, P
+      - R, Q, S, P
+    answer: 0
+    explanation: i_B = tan^{-1}μ increases with μ, so the order is water (53°), glass (56°), √3 medium (60°) and diamond (about 68°).
+
+  - id: phy-wop-400
+    topic: polarisation
+    subtopic: Uses of polaroids
+    concept: 3D films use two perpendicular polarisations
+    category: application
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [3d-film, polaroid-uses]
+    stem: |-
+      Statement I: In one method of 3D film projection, the two images are projected with mutually perpendicular polarisations.
+      Statement II: The viewer's glasses have polaroids with perpendicular axes, so each eye receives only one of the two images.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Each image passes only through the lens whose axis matches its polarisation and is blocked by the other, so each eye sees a slightly different view, giving depth. Both statements are correct.
+

@@ -6417,3 +6417,2176 @@ questions:
     answer: 0
     explanation: "First test one way (Q), then reversed (P), then compare readings and look for light or a decaying reading (R), and finally conclude (S)."
 
+  - id: phy-exp-301
+    topic: vernier-callipers
+    subtopic: "Reading"
+    concept: "Reading with 0.05 mm least count"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "Reading = MSR + n × LC"
+    tags: [reading]
+    stem: "A Vernier callipers of least count 0.05 mm shows a main scale reading of 25 mm, with the 13th Vernier division coinciding. The reading is"
+    options:
+      - "25.13 mm"
+      - "25.65 mm"
+      - "26.3 mm"
+      - "25.39 mm"
+    answer: 1
+    explanation: "Reading = 25 + 13 × 0.05 = 25 + 0.65 = 25.65 mm."
+
+  - id: phy-exp-302
+    topic: vernier-callipers
+    subtopic: "Least count statement"
+    concept: "Correct expression for least count"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "LC = MSD/N"
+    tags: [least-count]
+    stem: "For a Vernier callipers in which N Vernier divisions equal (N − 1) main scale divisions, which statement is correct?"
+    options:
+      - "LC = 1 VSD − 1 MSD"
+      - "LC = (value of 1 MSD)/N"
+      - "LC = N × (value of 1 MSD)"
+      - "LC is equal to the value of one Vernier division"
+    answer: 1
+    explanation: "N VSD = (N − 1) MSD gives 1 VSD = (1 − 1/N) MSD, so LC = 1 MSD − 1 VSD = MSD/N. 1 VSD − 1 MSD is negative, and one VSD is almost one MSD, not the least count."
+
+  - id: phy-exp-303
+    topic: vernier-callipers
+    subtopic: "Uses"
+    concept: "Quantities measurable with a Vernier callipers"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [uses]
+    stem: |-
+      Which of the following can be measured sensibly with a Vernier callipers of LC 0.1 mm?
+      I. External diameter of a steel ball
+      II. Internal diameter of a test tube
+      III. Depth of a small beaker
+      IV. Thickness of a human hair
+    options:
+      - "I, II, III and IV"
+      - "I and IV only"
+      - "II, III and IV only"
+      - "I, II and III only"
+    answer: 3
+    explanation: "A hair is about 0.05–0.1 mm thick, comparable to or smaller than the least count, so a Vernier cannot measure it meaningfully. The other three are standard Vernier measurements."
+
+  - id: phy-exp-304
+    topic: vernier-callipers
+    subtopic: "Positive zero error"
+    concept: "Direction of Vernier zero for positive error"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [zero-error, trap]
+    stem: |-
+      Assertion (A): A Vernier callipers with a positive zero error gives readings larger than the true values.
+      Reason (R): A positive zero error means that, with the jaws closed, the Vernier zero lies to the left of the main-scale zero.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 2
+    explanation: "A positive zero error makes every reading too large, so A is true. But it corresponds to the Vernier zero lying to the RIGHT of the main-scale zero; to the left gives a negative error, so R is false."
+
+  - id: phy-exp-305
+    topic: vernier-callipers
+    subtopic: "Density of a sphere"
+    concept: "Density from Vernier diameter and mass"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "ρ = 6m/(πd^3)"
+    tags: [density, multi-concept]
+    stem: "The diameter of a metal sphere measured with a Vernier callipers is 2.00 cm and its mass is 33.5 g. Its density is about"
+    options:
+      - "2.0 g cm^{−3}"
+      - "4.0 g cm^{−3}"
+      - "8.0 g cm^{−3}"
+      - "16 g cm^{−3}"
+    answer: 2
+    explanation: "Volume = πd^3/6 = 3.14 × 8/6 ≈ 4.19 cm^3. Density = 33.5/4.19 ≈ 8.0 g cm^{−3}. Using the diameter as the radius gives 1.0 g cm^{−3}; using r^3 instead of 4r^3/3 leads to other wrong values."
+
+  - id: phy-exp-306
+    topic: vernier-callipers
+    subtopic: "Error in density"
+    concept: "Percentage error in density of a sphere"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "Δρ/ρ = Δm/m + 3Δd/d"
+    tags: [error-analysis]
+    stem: "For the sphere above, the diameter 2.00 cm is measured with LC 0.01 cm and the mass 33.5 g with an uncertainty of 0.1 g. The maximum percentage error in the density is about"
+    options:
+      - "0.8%"
+      - "1.8%"
+      - "1.2%"
+      - "3.3%"
+    answer: 1
+    explanation: "Δρ/ρ = Δm/m + 3Δd/d = 0.1/33.5 + 3 × 0.01/2.00 ≈ 0.3% + 1.5% = 1.8%. The diameter's error is tripled because V ∝ d^3."
+
+  - id: phy-exp-307
+    topic: vernier-callipers
+    subtopic: "Positive zero error"
+    concept: "Corrected reading with Vernier zero to the right"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "Corrected = observed − zero error"
+    tags: [zero-error]
+    stem: "With the jaws closed, the Vernier zero (10 divisions, LC 0.01 cm) lies to the right of the main-scale zero and the 4th Vernier division coincides. For a rod, the main scale reads 1.5 cm and the 6th division coincides. The corrected length is"
+    options:
+      - "1.50 cm"
+      - "1.60 cm"
+      - "1.56 cm"
+      - "1.52 cm"
+    answer: 3
+    explanation: "Zero error = +4 × 0.01 = +0.04 cm. Observed = 1.5 + 0.06 = 1.56 cm. Corrected = 1.56 − 0.04 = 1.52 cm."
+
+  - id: phy-exp-308
+    topic: vernier-callipers
+    subtopic: "Random and systematic errors"
+    concept: "Averaging reduces random but not zero error"
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [errors]
+    stem: |-
+      Statement I: The precision of a single Vernier reading is limited by its least count.
+      Statement II: Taking the mean of many readings reduces random errors but does not remove a zero error.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 0
+    explanation: "The least count sets the resolution of a single reading. Averaging cancels random scatter, but a zero error shifts every reading equally and must be corrected separately. Both statements are correct."
+
+  - id: phy-exp-309
+    topic: screw-gauge
+    subtopic: "Reading"
+    concept: "Reading with half-mm on linear scale"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "Reading = LSR + n × LC"
+    tags: [reading]
+    stem: "A screw gauge (LC 0.01 mm) shows a linear scale reading of 5.5 mm and a circular scale reading of 17. The reading is"
+    options:
+      - "5.17 mm"
+      - "5.517 mm"
+      - "6.7 mm"
+      - "5.67 mm"
+    answer: 3
+    explanation: "Reading = 5.5 + 17 × 0.01 = 5.5 + 0.17 = 5.67 mm."
+
+  - id: phy-exp-310
+    topic: screw-gauge
+    subtopic: "Principle"
+    concept: "Statements on screw gauge principle"
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: "LC = pitch/N"
+    tags: [pitch, least-count]
+    stem: |-
+      Which statements about a screw gauge are correct?
+      I. The pitch is the linear distance moved in one rotation of the thimble.
+      II. The least count equals pitch divided by the number of circular divisions.
+      III. Increasing the number of circular divisions increases the least count.
+      IV. It works by converting a large rotation into a small linear advance.
+    options:
+      - "I, II, III and IV"
+      - "I and III only"
+      - "II, III and IV only"
+      - "I, II and IV only"
+    answer: 3
+    explanation: "More divisions make the least count smaller, so III is wrong. The rest describe the screw principle correctly."
+
+  - id: phy-exp-311
+    topic: screw-gauge
+    subtopic: "Least count and divisions"
+    concept: "LC decreases with more divisions"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "LC = pitch/N"
+    tags: [least-count, trap]
+    stem: |-
+      Assertion (A): The least count of a screw gauge increases if the number of circular scale divisions is increased.
+      Reason (R): The least count of a screw gauge is pitch/N, where N is the number of circular divisions.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 3
+    explanation: "From LC = pitch/N, increasing N decreases the least count, so A is false while R is true."
+
+  - id: phy-exp-312
+    topic: screw-gauge
+    subtopic: "Volume of a wire"
+    concept: "Volume from screw-gauge diameter"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    formula: "V = πd^2 L/4"
+    tags: [volume]
+    stem: "A wire of length 50.0 cm has a diameter of 0.50 mm measured with a screw gauge. Its volume is about"
+    options:
+      - "0.98 cm^3"
+      - "0.39 cm^3"
+      - "0.025 cm^3"
+      - "0.098 cm^3"
+    answer: 3
+    explanation: "V = πd^2 L/4 = 3.14 × (0.050 cm)^2 × 50.0/4 = 3.14 × 0.0025 × 12.5 ≈ 0.098 cm^3. Using the diameter as radius gives four times this, 0.39 cm^3."
+
+  - id: phy-exp-313
+    topic: screw-gauge
+    subtopic: "Negative zero error"
+    concept: "Corrected thickness with −0.02 mm error"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "Corrected = observed − zero error"
+    tags: [zero-error]
+    stem: "A screw gauge of LC 0.01 mm has a zero error of −0.02 mm. For a metal sheet the linear scale reads 2 mm and the circular scale 8 divisions. The thickness of the sheet is"
+    options:
+      - "2.06 mm"
+      - "2.08 mm"
+      - "2.10 mm"
+      - "2.80 mm"
+    answer: 2
+    explanation: "Observed = 2 + 0.08 = 2.08 mm. Corrected = 2.08 − (−0.02) = 2.10 mm."
+
+  - id: phy-exp-314
+    topic: screw-gauge
+    subtopic: "Terms"
+    concept: "Matching screw gauge terms with meanings"
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [terms]
+    stem: |-
+      Match each screw gauge term (List I) with its meaning (List II).
+      List I: P. Pitch; Q. Least count; R. Zero error; S. Backlash error
+      List II: 1. Lost motion of the screw when the direction of rotation is reversed; 2. Pitch divided by the number of circular divisions; 3. Reading shown when the studs are in contact; 4. Linear distance moved per rotation
+    options:
+      - "P-4, Q-2, R-3, S-1"
+      - "P-2, Q-4, R-3, S-1"
+      - "P-4, Q-3, R-2, S-1"
+      - "P-4, Q-2, R-1, S-3"
+    answer: 0
+    explanation: "Pitch is the advance per turn; LC = pitch/N; the reading with studs touching is the zero error; and backlash is the lost motion on reversing."
+
+  - id: phy-exp-315
+    topic: screw-gauge
+    subtopic: "Sheet thickness"
+    concept: "Incorrect practice for sheet thickness"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [sheet-thickness, precautions]
+    stem: "While measuring the thickness of a metal sheet with a screw gauge, which practice is INCORRECT?"
+    options:
+      - "Taking readings at several places on the sheet"
+      - "Advancing the screw with the ratchet until it clicks"
+      - "Always approaching the final position by turning in the same direction"
+      - "Tightening the thimble hard so that the sheet is firmly clamped for every reading"
+    answer: 3
+    explanation: "Excess pressure deforms the sheet and strains the screw; the ratchet is meant to give uniform light contact. The other practices reduce errors."
+
+  - id: phy-exp-316
+    topic: screw-gauge
+    subtopic: "Pitch from LC"
+    concept: "Pitch = LC × N"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "pitch = LC × N"
+    tags: [pitch]
+    stem: "A screw gauge has 100 circular divisions and a least count of 0.01 mm. Its pitch is"
+    options:
+      - "0.1 mm"
+      - "10 mm"
+      - "0.5 mm"
+      - "1 mm"
+    answer: 3
+    explanation: "Pitch = LC × N = 0.01 × 100 = 1 mm."
+
+  - id: phy-exp-317
+    topic: simple-pendulum
+    subtopic: "Rate of decay"
+    concept: "Rate of amplitude decrease ∝ amplitude"
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: "dA/dt = −(b/2m)A"
+    tags: [damping, graph]
+    stem: "On the amplitude–time graph of a damped pendulum, the magnitude of the slope at any instant is"
+    options:
+      - "constant throughout"
+      - "proportional to the amplitude at that instant"
+      - "proportional to the square of the time"
+      - "largest when the amplitude is smallest"
+    answer: 1
+    explanation: "For A = A_0 e^{−bt/2m}, dA/dt = −(b/2m)A, so the curve is steepest at the start (large amplitude) and flattens as A decreases."
+
+  - id: phy-exp-318
+    topic: simple-pendulum
+    subtopic: "Energy time constant"
+    concept: "Energy decays twice as fast as amplitude"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "E = E_0 e^{−bt/m}"
+    tags: [energy, damping]
+    stem: "The amplitude of a damped pendulum falls to 1/e of its initial value in 100 s. The energy of oscillation falls to 1/e of its initial value in"
+    options:
+      - "200 s"
+      - "100 s"
+      - "50 s"
+      - "25 s"
+    answer: 2
+    explanation: "A ∝ e^{−t/100} gives E ∝ A^2 ∝ e^{−t/50}, so the energy falls to 1/e in 50 s."
+
+  - id: phy-exp-319
+    topic: simple-pendulum
+    subtopic: "Procedure"
+    concept: "Correct steps in the damping experiment"
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [procedure]
+    stem: |-
+      Which steps are correct in the experiment to study dissipation of energy of a simple pendulum?
+      I. The bob is given a small initial amplitude.
+      II. The amplitude is noted at regular intervals of time (or after fixed numbers of oscillations).
+      III. Timing is started as the bob passes an extreme position or the mean position consistently.
+      IV. The bob is pulled to about 60° so that the decay is easier to see.
+    options:
+      - "I, II, III and IV"
+      - "II and IV only"
+      - "I and IV only"
+      - "I, II and III only"
+    answer: 3
+    explanation: "A 60° amplitude makes the motion non-simple-harmonic and the period amplitude-dependent, so IV is wrong."
+
+  - id: phy-exp-320
+    topic: simple-pendulum
+    subtopic: "Energy and amplitude"
+    concept: "Energy ∝ amplitude squared"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "E ∝ A^2"
+    tags: [energy, trap]
+    stem: |-
+      Assertion (A): The energy of a lightly damped pendulum decreases exponentially with time.
+      Reason (R): The energy of oscillation is directly proportional to the amplitude.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 2
+    explanation: "Since A decays exponentially and E ∝ A^2, E also decays exponentially, so A is true. R is false: energy is proportional to the square of the amplitude."
+
+  - id: phy-exp-321
+    topic: simple-pendulum
+    subtopic: "Correct statement"
+    concept: "Damped pendulum energy and frequency"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [damping]
+    stem: "Which statement about a simple pendulum oscillating in air is correct?"
+    options:
+      - "Its energy increases because air pushes the bob"
+      - "Its frequency decreases in step with the amplitude"
+      - "Its amplitude remains constant but its energy decreases"
+      - "Its amplitude decreases but its frequency remains practically unchanged"
+    answer: 3
+    explanation: "Light damping reduces the amplitude and energy but barely changes the frequency."
+
+  - id: phy-exp-322
+    topic: simple-pendulum
+    subtopic: "Half-life from ln A graph"
+    concept: "Halving time = ln 2 divided by magnitude of slope"
+    category: numerical
+    format: graph
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "t_{1/2} = ln 2/k"
+    tags: [graph, damping]
+    stem: "The graph of ln A against t for a damped pendulum is a straight line of slope −0.01 s^{−1}. The time in which the amplitude halves is about"
+    options:
+      - "50 s"
+      - "140 s"
+      - "100 s"
+      - "69 s"
+    answer: 3
+    explanation: "ln A = ln A_0 − 0.01t. For A = A_0/2, 0.01t = ln 2 = 0.693, so t ≈ 69 s."
+
+  - id: phy-exp-323
+    topic: simple-pendulum
+    subtopic: "Medium"
+    concept: "Pendulum in oil damps faster"
+    category: concept
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [damping, medium]
+    stem: "Two identical pendulums start with equal amplitude, one in air and one with its bob immersed in oil. Which is observed?"
+    options:
+      - "The pendulum in oil oscillates with increasing amplitude"
+      - "Both decay at the same rate"
+      - "The amplitude in air decays faster"
+      - "The amplitude in oil decays much faster"
+    answer: 3
+    explanation: "Oil is far more viscous than air, so the damping force and energy loss per oscillation are much greater."
+
+  - id: phy-exp-324
+    topic: simple-pendulum
+    subtopic: "Shape of decay"
+    concept: "Amplitude falls faster initially"
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: true
+    tags: [damping, trap]
+    stem: |-
+      Statement I: The amplitude of a damped pendulum decreases linearly with time.
+      Statement II: The amplitude decreases more rapidly at the beginning than later.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 3
+    explanation: "The decay is exponential, not linear, so Statement I is wrong. In exponential decay, the absolute fall per second is largest when the amplitude is largest, so Statement II is correct."
+
+  - id: phy-exp-325
+    topic: metre-scale-moments
+    subtopic: "Unknown mass"
+    concept: "Balance with 30 g at 10 cm"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "m_1 d_1 = m_2 d_2"
+    tags: [moments]
+    stem: "A metre scale balances at the 50 cm mark. A 30 g mass at the 10 cm mark balances an unknown mass at the 70 cm mark. The unknown mass is"
+    options:
+      - "15 g"
+      - "30 g"
+      - "60 g"
+      - "45 g"
+    answer: 2
+    explanation: "Arms: 40 cm and 20 cm. m × 20 = 30 × 40, so m = 60 g."
+
+  - id: phy-exp-326
+    topic: metre-scale-moments
+    subtopic: "Quantities needed"
+    concept: "What is needed to find an unknown mass"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [procedure]
+    stem: |-
+      To find an unknown mass using a metre scale and the principle of moments, which of the following must be known or measured?
+      I. The position of the centre of gravity of the scale (or the mass of the scale, if not supported there)
+      II. The distances of both masses from the knife edge
+      III. The value of g at the place
+      IV. The value of the known mass
+    options:
+      - "I and III only"
+      - "I, II and IV only"
+      - "II, III and IV only"
+      - "I, II, III and IV"
+    answer: 1
+    explanation: "g cancels from the balance equation, so III is not needed."
+
+  - id: phy-exp-327
+    topic: metre-scale-moments
+    subtopic: "Balance point of the scale"
+    concept: "Balancing locates CG for any scale"
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [centre-of-gravity]
+    stem: |-
+      Assertion (A): When a metre scale alone balances on a knife edge, the knife edge is directly below its centre of gravity.
+      Reason (R): The centre of gravity of a uniform scale lies at its geometric centre.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 1
+    explanation: "A is true for any scale, uniform or not: at balance the weight produces no torque, so it must act through the knife edge. R is also true but is not the reason, since A does not rely on uniformity."
+
+  - id: phy-exp-328
+    topic: metre-scale-moments
+    subtopic: "Three moments"
+    concept: "Balance including scale weight and two masses"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "Σ τ_{clockwise} = Σ τ_{anticlockwise}"
+    tags: [moments, multi-concept]
+    stem: "A uniform metre scale of mass 100 g is supported at the 60 cm mark. A 50 g mass hangs at the 20 cm mark. What mass hung at the 100 cm mark keeps the scale horizontal?"
+    options:
+      - "50 g"
+      - "25 g"
+      - "75 g"
+      - "100 g"
+    answer: 2
+    explanation: "Anticlockwise moments about 60 cm: 50 × 40 + 100 × 10 = 3000 g cm (the scale's weight acts at 50 cm). Clockwise: m × 40. So m = 75 g."
+
+  - id: phy-exp-329
+    topic: metre-scale-moments
+    subtopic: "Incorrect statement"
+    concept: "Method not limited to uniform scales"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [moments]
+    stem: "Which statement about the principle of moments experiment is INCORRECT?"
+    options:
+      - "The result does not depend on the value of g"
+      - "The masses may be hung on opposite sides of the knife edge"
+      - "The scale's own weight produces no moment when it is supported at its centre of gravity"
+      - "The method works only if the metre scale is perfectly uniform"
+    answer: 3
+    explanation: "A non-uniform scale can be used by supporting it at its actual centre of gravity (found by balancing) or by including its weight's moment."
+
+  - id: phy-exp-330
+    topic: metre-scale-moments
+    subtopic: "Pan mass"
+    concept: "Mass of pan must be included"
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [moments, errors]
+    stem: "In the metre-scale experiment, a student places the unknown object in a light plastic pan of mass 5 g hanging from a loop, but ignores the pan. Balancing gives 45 g as the object's mass. The actual mass of the object is"
+    options:
+      - "50 g"
+      - "45 g"
+      - "40 g"
+      - "35 g"
+    answer: 2
+    explanation: "The calculated 45 g is the mass hanging at that point, which includes the pan. The object's mass is 45 − 5 = 40 g."
+
+  - id: phy-exp-331
+    topic: metre-scale-moments
+    subtopic: "Terms"
+    concept: "Matching terms in the moments experiment"
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [moments, terms]
+    stem: |-
+      Match each term (List I) with its meaning (List II).
+      List I: P. Moment of a force; Q. Rotational equilibrium; R. Translational equilibrium; S. Centre of gravity
+      List II: 1. Net force is zero; 2. Point through which the weight acts; 3. Force × perpendicular distance from the axis; 4. Net torque is zero
+    options:
+      - "P-3, Q-4, R-1, S-2"
+      - "P-4, Q-3, R-1, S-2"
+      - "P-3, Q-1, R-4, S-2"
+      - "P-3, Q-4, R-2, S-1"
+    answer: 0
+    explanation: "Moment = force × perpendicular distance; rotational equilibrium needs zero net torque; translational equilibrium needs zero net force; the weight acts through the centre of gravity."
+
+  - id: phy-exp-332
+    topic: metre-scale-moments
+    subtopic: "SI moment"
+    concept: "Moment of a hanging mass in N m"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "τ = mgd"
+    tags: [moments, units]
+    stem: "A 50 g mass hangs 20 cm from the knife edge. Taking g = 9.8 m s^{−2}, its moment about the edge is"
+    options:
+      - "0.098 N m"
+      - "9.8 N m"
+      - "1000 N m"
+      - "0.98 N m"
+    answer: 0
+    explanation: "τ = mgd = 0.050 × 9.8 × 0.20 = 0.098 N m. Using grams and centimetres directly gives the absurd 1000 N m."
+
+  - id: phy-exp-333
+    topic: youngs-modulus
+    subtopic: "Y numerical"
+    concept: "Y with radius given"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: true
+    battle: false
+    formula: "Y = FL/(πr^2 Δl)"
+    tags: [youngs-modulus]
+    stem: "A wire of length 2.0 m and radius 0.5 mm extends by 1.0 mm when a load of 8 kg is added. Taking g = 10 m s^{−2}, Young's modulus is about"
+    options:
+      - "5.1 × 10^{10} Pa"
+      - "1.0 × 10^{11} Pa"
+      - "8.0 × 10^{11} Pa"
+      - "2.0 × 10^{11} Pa"
+    answer: 3
+    explanation: "A = π(0.5 × 10^{−3})^2 ≈ 7.85 × 10^{−7} m^2. Y = FL/(AΔl) = 80 × 2.0/(7.85 × 10^{−7} × 10^{−3}) ≈ 2.0 × 10^{11} Pa. Using the diameter instead of the radius gives the answer four times too small."
+
+  - id: phy-exp-334
+    topic: youngs-modulus
+    subtopic: "Graph interpretation"
+    concept: "Statements about load–extension graph"
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [graph]
+    stem: |-
+      Extension (y-axis) is plotted against load (x-axis) in Searle's experiment. Which statements are correct?
+      I. Within the elastic limit the graph is a straight line.
+      II. Its slope is used to calculate Young's modulus.
+      III. A non-zero intercept may indicate a kink or slack in the wire at the start.
+      IV. Beyond the elastic limit, the extension increases more slowly than the load.
+    options:
+      - "I, II, III and IV"
+      - "I and IV only"
+      - "II and III only"
+      - "I, II and III only"
+    answer: 3
+    explanation: "Beyond the elastic limit, the extension increases faster than in proportion to the load, so IV is wrong."
+
+  - id: phy-exp-335
+    topic: youngs-modulus
+    subtopic: "Length dependence"
+    concept: "Y does not depend on the wire's length"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [youngs-modulus, trap]
+    stem: |-
+      Assertion (A): The value of Y obtained with Searle's apparatus depends on the length of the wire used.
+      Reason (R): Under the same load, a longer wire of the same material and thickness extends more.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 3
+    explanation: "Δl ∝ L, so the strain Δl/L and hence Y are unchanged; A is false. R is true."
+
+  - id: phy-exp-336
+    topic: youngs-modulus
+    subtopic: "Strain"
+    concept: "Longitudinal strain from extension"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "strain = Δl/L"
+    tags: [strain]
+    stem: "A 2.0 m wire extends by 0.8 mm in Searle's experiment. The longitudinal strain is"
+    options:
+      - "4 × 10^{−3}"
+      - "4 × 10^{−4}"
+      - "1.6 × 10^{−3}"
+      - "2.5 × 10^{−3}"
+    answer: 1
+    explanation: "Strain = Δl/L = 0.8 × 10^{−3}/2.0 = 4 × 10^{−4}."
+
+  - id: phy-exp-337
+    topic: youngs-modulus
+    subtopic: "Reference wire"
+    concept: "Role of the reference wire"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [searle, reference-wire]
+    stem: "Which statement about the reference (compensating) wire in Searle's apparatus is correct?"
+    options:
+      - "It carries the increasing load together with the experimental wire"
+      - "It is made of a different material so that its extension can be compared"
+      - "It is identical to the experimental wire and carries a constant load, cancelling effects of temperature and support yielding"
+      - "It is used to measure the diameter of the experimental wire"
+    answer: 2
+    explanation: "The reference wire is of the same material and length and carries only a fixed dead load, so common changes cancel in the spirit-level comparison."
+
+  - id: phy-exp-338
+    topic: youngs-modulus
+    subtopic: "Temperature error"
+    concept: "Thermal expansion without a reference wire"
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "ΔL = αLΔT"
+    tags: [temperature, errors]
+    stem: "Suppose Searle's experiment were done with a single steel wire (α = 1.2 × 10^{−5} K^{−1}) of length 2 m and no reference wire, and the room temperature rose by 5 K during the experiment. The extension due to heating would be about"
+    options:
+      - "0.012 mm"
+      - "1.2 mm"
+      - "0.12 mm"
+      - "0.6 mm"
+    answer: 2
+    explanation: "ΔL = αLΔT = 1.2 × 10^{−5} × 2 × 5 = 1.2 × 10^{−4} m = 0.12 mm, a large fraction of a typical elastic extension of ~0.5 mm. The reference wire cancels this."
+
+  - id: phy-exp-339
+    topic: youngs-modulus
+    subtopic: "Changing parameters"
+    concept: "Matching changes with effect on extension"
+    category: application
+    format: match
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: "Δl = FL/(πr^2 Y)"
+    tags: [proportionality]
+    stem: |-
+      For a wire under a fixed load, match each change (List I) with the resulting extension (List II), all else unchanged.
+      List I: P. Length doubled; Q. Diameter doubled; R. Diameter halved; S. Material with twice the Young's modulus
+      List II: 1. Half; 2. Four times; 3. One-fourth; 4. Twice
+    options:
+      - "P-4, Q-3, R-1, S-2"
+      - "P-4, Q-2, R-3, S-1"
+      - "P-1, Q-3, R-2, S-4"
+      - "P-4, Q-3, R-2, S-1"
+    answer: 3
+    explanation: "Δl ∝ L/(d^2 Y): doubling L doubles Δl; doubling d gives 1/4; halving d gives 4 times; doubling Y halves Δl."
+
+  - id: phy-exp-340
+    topic: youngs-modulus
+    subtopic: "Misconceptions"
+    concept: "Loading to breaking; steel vs copper"
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [youngs-modulus]
+    stem: |-
+      Statement I: In Searle's experiment the load should be increased until the wire breaks, to get more readings.
+      Statement II: Young's modulus of steel is smaller than that of copper.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 1
+    explanation: "Loads must stay well within the elastic limit, so Statement I is wrong. Steel (about 2 × 10^{11} Pa) has a larger Young's modulus than copper (about 1.1 × 10^{11} Pa), so Statement II is also wrong."
+
+  - id: phy-exp-341
+    topic: surface-tension-viscosity
+    subtopic: "Radius tripled"
+    concept: "h ∝ 1/r"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "h ∝ 1/r"
+    tags: [capillary-rise]
+    stem: "Water rises 6 cm in a capillary tube. In a tube of three times the radius, it rises"
+    options:
+      - "18 cm"
+      - "2 cm"
+      - "3 cm"
+      - "0.67 cm"
+    answer: 1
+    explanation: "h ∝ 1/r, so tripling the radius gives 6/3 = 2 cm."
+
+  - id: phy-exp-342
+    topic: surface-tension-viscosity
+    subtopic: "Factors"
+    concept: "What affects capillary rise"
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: "h = 2T cos θ/(rρg)"
+    tags: [capillary-rise]
+    stem: |-
+      The height of capillary rise of a liquid depends on which of the following?
+      I. Radius of the capillary bore
+      II. Surface tension of the liquid
+      III. Density of the liquid
+      IV. Length of the tube projecting above the liquid, provided it is sufficient
+    options:
+      - "I, II and III only"
+      - "I and IV only"
+      - "II, III and IV only"
+      - "I, II, III and IV"
+    answer: 0
+    explanation: "From h = 2T cos θ/(rρg), h depends on r, T, θ and ρ. If the tube is long enough, the projecting length does not affect the height reached."
+
+  - id: phy-exp-343
+    topic: surface-tension-viscosity
+    subtopic: "Wider tube"
+    concept: "Rise is smaller in wider tube"
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: "h ∝ 1/r"
+    tags: [capillary-rise, trap]
+    stem: |-
+      Assertion (A): Water rises higher in a wider capillary tube.
+      Reason (R): The height of capillary rise is inversely proportional to the radius of the tube.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 3
+    explanation: "Since h ∝ 1/r, water rises higher in a narrower tube; A is false and R is true."
+
+  - id: phy-exp-344
+    topic: surface-tension-viscosity
+    subtopic: "Non-zero contact angle"
+    concept: "T with cos θ"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "T = rhρg/(2 cos θ)"
+    tags: [capillary-rise, contact-angle]
+    stem: "A liquid of density 800 kg m^{−3} with angle of contact 60° rises 2.0 cm in a capillary of radius 0.5 mm. Taking g = 10 m s^{−2}, its surface tension is"
+    options:
+      - "0.04 N m^{−1}"
+      - "0.08 N m^{−1}"
+      - "0.16 N m^{−1}"
+      - "0.02 N m^{−1}"
+    answer: 1
+    explanation: "T = rhρg/(2 cos θ) = (0.5 × 10^{−3} × 0.02 × 800 × 10)/(2 × 0.5) = 0.08/1 = 0.08 N m^{−1}. Ignoring cos θ gives 0.04 N m^{−1}."
+
+  - id: phy-exp-345
+    topic: surface-tension-viscosity
+    subtopic: "Viscosity method"
+    concept: "Incorrect statement about the terminal-velocity method"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [viscosity]
+    stem: "Which statement about finding viscosity by the terminal-velocity method is INCORRECT?"
+    options:
+      - "The time to fall between two marks is measured with a stopwatch"
+      - "The radius of the ball is measured with a screw gauge"
+      - "The ball should be released from well above the liquid surface so that it enters with high speed"
+      - "The temperature of the liquid should be noted"
+    answer: 2
+    explanation: "The ball is released gently at the surface along the axis; dropping it from a height causes splashing and turbulence. The other statements are correct practice."
+
+  - id: phy-exp-346
+    topic: surface-tension-viscosity
+    subtopic: "Fall times"
+    concept: "Time ∝ 1/r^2 for same material"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "t ∝ 1/r^2"
+    tags: [terminal-velocity]
+    stem: "A steel ball of radius r takes 8 s to fall between two marks in glycerine at terminal velocity. A steel ball of radius 2r takes"
+    options:
+      - "4 s"
+      - "16 s"
+      - "2 s"
+      - "1 s"
+    answer: 2
+    explanation: "v_t ∝ r^2, so time between fixed marks ∝ 1/r^2: 8/4 = 2 s."
+
+  - id: phy-exp-347
+    topic: surface-tension-viscosity
+    subtopic: "Graph"
+    concept: "v_t against (ρ − σ) is linear"
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: true
+    formula: "v_t = 2r^2(ρ − σ)g/(9η)"
+    tags: [graph, terminal-velocity]
+    stem: "Balls of the same radius but different densities ρ are dropped in the same liquid of density σ. The graph of terminal velocity against (ρ − σ) is"
+    options:
+      - "a straight line through the origin"
+      - "a parabola"
+      - "a rectangular hyperbola"
+      - "a horizontal line"
+    answer: 0
+    explanation: "For fixed r and η, v_t ∝ (ρ − σ), a straight line through the origin."
+
+  - id: phy-exp-348
+    topic: surface-tension-viscosity
+    subtopic: "Formulas and effects"
+    concept: "Matching experiments with results"
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [multi-concept]
+    stem: |-
+      Match List I with List II.
+      List I: P. Capillary rise with θ = 0; Q. Terminal velocity method; R. Adding soap to water; S. Warming glycerine
+      List II: 1. Viscosity decreases; 2. T = rhρg/2; 3. Surface tension decreases; 4. η = 2r^2(ρ − σ)g/(9v)
+    options:
+      - "P-2, Q-4, R-3, S-1"
+      - "P-4, Q-2, R-3, S-1"
+      - "P-2, Q-4, R-1, S-3"
+      - "P-2, Q-3, R-4, S-1"
+    answer: 0
+    explanation: "The capillary formula with θ = 0 is T = rhρg/2; Stokes' law gives η; soap lowers surface tension; heating lowers a liquid's viscosity."
+
+  - id: phy-exp-349
+    topic: surface-tension-viscosity
+    subtopic: "Tall jar"
+    concept: "Tall jar allows terminal velocity and long timing distance"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [procedure]
+    stem: "A tall jar is used in the viscosity experiment mainly so that"
+    options:
+      - "the ball reaches terminal velocity and then falls through a long measured distance"
+      - "the liquid remains cool"
+      - "the ball does not touch the bottom"
+      - "the liquid's density is uniform"
+    answer: 0
+    explanation: "The upper part lets the ball reach terminal velocity; the long lower part makes the timed interval long, reducing the percentage error in timing."
+
+  - id: phy-exp-350
+    topic: resonance-tube
+    subtopic: "Speed from l_1 and e"
+    concept: "v = 4f(l_1 + e)"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "v = 4f(l_1 + e)"
+    tags: [speed-of-sound]
+    stem: "A 500 Hz fork gives first resonance at 16.0 cm in a tube whose end correction is 1.0 cm. The speed of sound is"
+    options:
+      - "320 m s^{−1}"
+      - "340 m s^{−1}"
+      - "360 m s^{−1}"
+      - "170 m s^{−1}"
+    answer: 1
+    explanation: "λ = 4(16.0 + 1.0) = 68.0 cm; v = 500 × 0.68 = 340 m s^{−1}."
+
+  - id: phy-exp-351
+    topic: resonance-tube
+    subtopic: "Procedure"
+    concept: "Correct steps in resonance tube"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [procedure]
+    stem: |-
+      Which statements about the resonance tube procedure are correct?
+      I. Resonance occurs when the natural frequency of the air column equals the frequency of the fork.
+      II. The water level is lowered gradually from the top of the tube.
+      III. The level is moved up and down around the loudest position to locate it accurately.
+      IV. The prongs of the fork should touch the water surface.
+    options:
+      - "I, II and III only"
+      - "II and IV only"
+      - "I and IV only"
+      - "I, II, III and IV"
+    answer: 0
+    explanation: "The fork is held just above the open end of the tube, never touching the water, so IV is wrong."
+
+  - id: phy-exp-352
+    topic: resonance-tube
+    subtopic: "End correction dependence"
+    concept: "e depends on radius, not frequency"
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "e ≈ 0.6r"
+    tags: [end-correction]
+    stem: |-
+      Statement I: The end correction of a resonance tube increases with the frequency of the fork.
+      Statement II: The end correction increases with the radius of the tube.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 3
+    explanation: "e ≈ 0.6r depends on the tube's radius, not on the frequency. Statement I is wrong and Statement II is correct."
+
+  - id: phy-exp-353
+    topic: resonance-tube
+    subtopic: "End correction from v"
+    concept: "e = λ/4 − l_1"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "e = v/(4f) − l_1"
+    tags: [end-correction]
+    stem: "With a 512 Hz fork, the first resonance occurs at 15.6 cm. If the speed of sound is known to be 340 m s^{−1}, the end correction is about"
+    options:
+      - "0.5 cm"
+      - "1.0 cm"
+      - "1.5 cm"
+      - "2.0 cm"
+    answer: 1
+    explanation: "λ = 340/512 ≈ 0.664 m, so λ/4 ≈ 16.6 cm. e = 16.6 − 15.6 = 1.0 cm."
+
+  - id: phy-exp-354
+    topic: resonance-tube
+    subtopic: "Resonance facts"
+    concept: "Incorrect statement about resonance tube"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [resonance]
+    stem: "Which statement about the resonance tube experiment is INCORRECT?"
+    options:
+      - "The air column behaves like a pipe closed at one end"
+      - "Successive resonance lengths differ by λ/2"
+      - "The first resonance length is exactly λ/4 with no correction needed"
+      - "The speed of sound depends on the room temperature"
+    answer: 2
+    explanation: "The antinode forms slightly above the open end, so l_1 + e = λ/4; l_1 alone is shorter than λ/4."
+
+  - id: phy-exp-355
+    topic: resonance-tube
+    subtopic: "Unknown frequency"
+    concept: "Frequency from λ/2 comparison"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: true
+    formula: "f ∝ 1/(l_2 − l_1)"
+    tags: [frequency]
+    stem: "With a 256 Hz fork, (l_2 − l_1) in a resonance tube is 66 cm. With an unknown fork, it is 33 cm. The unknown frequency is"
+    options:
+      - "128 Hz"
+      - "384 Hz"
+      - "512 Hz"
+      - "1024 Hz"
+    answer: 2
+    explanation: "l_2 − l_1 = λ/2 = v/(2f), so f ∝ 1/(l_2 − l_1). Halving the difference doubles f: 512 Hz."
+
+  - id: phy-exp-356
+    topic: resonance-tube
+    subtopic: "Relations"
+    concept: "Matching resonance tube relations"
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [formulas]
+    stem: |-
+      Match each quantity (List I) with its expression (List II).
+      List I: P. Wavelength; Q. End correction from two resonances; R. Speed of sound; S. End correction from tube diameter d
+      List II: 1. 0.3d; 2. 2f(l_2 − l_1); 3. (l_2 − 3l_1)/2; 4. 2(l_2 − l_1)
+    options:
+      - "P-4, Q-3, R-2, S-1"
+      - "P-2, Q-3, R-4, S-1"
+      - "P-4, Q-1, R-2, S-3"
+      - "P-3, Q-4, R-2, S-1"
+    answer: 0
+    explanation: "λ = 2(l_2 − l_1); e = (l_2 − 3l_1)/2; v = fλ = 2f(l_2 − l_1); and e ≈ 0.3d."
+
+  - id: phy-exp-357
+    topic: resonance-tube
+    subtopic: "Temperature effect"
+    concept: "Resonance length grows with √T"
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "v ∝ √T"
+    tags: [temperature, multi-concept]
+    stem: "A resonance tube experiment done at 15 °C (288 K) is repeated at 30 °C (303 K) with the same fork. The resonance lengths (plus end correction) increase by about"
+    options:
+      - "1.3%"
+      - "5%"
+      - "2.6%"
+      - "10%"
+    answer: 2
+    explanation: "v ∝ √T, and λ = v/f. √(303/288) = √1.052 ≈ 1.026, so the lengths increase by about 2.6%."
+
+  - id: phy-exp-358
+    topic: method-of-mixtures
+    subtopic: "Heat gained"
+    concept: "Q = mcΔT"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "Q = mcΔT"
+    tags: [calorimetry]
+    stem: "The heat absorbed by 200 g of water (c = 4.2 J g^{−1} K^{−1}) whose temperature rises by 5 K is"
+    options:
+      - "840 J"
+      - "4200 J"
+      - "1000 J"
+      - "8400 J"
+    answer: 1
+    explanation: "Q = mcΔT = 200 × 4.2 × 5 = 4200 J."
+
+  - id: phy-exp-359
+    topic: method-of-mixtures
+    subtopic: "Assumptions"
+    concept: "Assumptions of the method of mixtures"
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [assumptions]
+    stem: |-
+      Which assumptions are made in the method of mixtures?
+      I. No heat is exchanged with the surroundings.
+      II. Specific heats remain constant over the temperature range.
+      III. The solid is at the temperature of the steam when it is dropped.
+      IV. The calorimeter has an infinite heat capacity.
+    options:
+      - "I, II and III only"
+      - "I and IV only"
+      - "II and IV only"
+      - "I, II, III and IV"
+    answer: 0
+    explanation: "The calorimeter's heat capacity is finite and is included via its mass and specific heat; if it were infinite, no temperature change would occur. IV is wrong."
+
+  - id: phy-exp-360
+    topic: method-of-mixtures
+    subtopic: "Why water"
+    concept: "Water used because of known high specific heat"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [calorimetry]
+    stem: |-
+      Assertion (A): Water is commonly used as the liquid in the method of mixtures to find the specific heat of a solid.
+      Reason (R): Water is a good conductor of heat.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 2
+    explanation: "Water is used because its specific heat is large and accurately known, and it is cheap and safe; A is true. Water is actually a poor conductor, so R is false."
+
+  - id: phy-exp-361
+    topic: method-of-mixtures
+    subtopic: "Mixing with calorimeter"
+    concept: "Final temperature with water equivalent"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    formula: "(m + W)(T_1 − θ) = m_2(θ − T_2)"
+    tags: [calorimeter]
+    stem: "A calorimeter of water equivalent 20 g contains 100 g of water at 60 °C. 60 g of water at 0 °C is added. Neglecting losses, the final temperature is"
+    options:
+      - "30 °C"
+      - "37.5 °C"
+      - "45 °C"
+      - "40 °C"
+    answer: 3
+    explanation: "Heat lost by (100 + 20) g-equivalent at 60 °C equals heat gained by 60 g: 120(60 − θ) = 60θ, so 7200 = 180θ and θ = 40 °C. Ignoring the calorimeter gives 37.5 °C."
+
+  - id: phy-exp-362
+    topic: method-of-mixtures
+    subtopic: "Calorimetry facts"
+    concept: "Correct statement about method of mixtures"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [calorimetry]
+    stem: "Which statement about the method of mixtures is correct?"
+    options:
+      - "A solid of larger specific heat produces a smaller rise in water temperature, other things being equal"
+      - "The final temperature of the mixture always lies between the initial temperatures of the solid and the water"
+      - "The mass of the water does not affect the final temperature"
+      - "The specific heat found does not depend on the mass of the solid"
+    answer: 1
+    explanation: "Heat flows from hot to cold until equilibrium, so θ lies between the two initial temperatures. A larger c gives a larger rise; water mass does affect θ; and the fourth option wrongly suggests the mass can be ignored in the calculation."
+
+  - id: phy-exp-363
+    topic: method-of-mixtures
+    subtopic: "Numerical"
+    concept: "c of a solid with large mass"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "m_s c_s(T_s − θ) = m_w c_w(θ − T_w)"
+    tags: [calorimetry]
+    stem: "500 g of a solid at 90 °C is placed in 400 g of water at 25 °C, and the final temperature is 30 °C. Neglecting the calorimeter, the specific heat of the solid is (c_w = 4.2 J g^{−1} K^{−1})"
+    options:
+      - "0.14 J g^{−1} K^{−1}"
+      - "0.28 J g^{−1} K^{−1}"
+      - "0.42 J g^{−1} K^{−1}"
+      - "0.56 J g^{−1} K^{−1}"
+    answer: 1
+    explanation: "Heat gained by water = 400 × 4.2 × 5 = 8400 J. Heat lost = 500 × c × 60 = 30000c. c = 0.28 J g^{−1} K^{−1}."
+
+  - id: phy-exp-364
+    topic: method-of-mixtures
+    subtopic: "Units"
+    concept: "Matching thermal quantities with SI units"
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Match each quantity (List I) with its SI unit (List II).
+      List I: P. Heat capacity; Q. Specific heat capacity; R. Water equivalent; S. Heat
+      List II: 1. J; 2. kg; 3. J kg^{−1} K^{−1}; 4. J K^{−1}
+    options:
+      - "P-4, Q-3, R-2, S-1"
+      - "P-3, Q-4, R-2, S-1"
+      - "P-4, Q-3, R-1, S-2"
+      - "P-2, Q-3, R-4, S-1"
+    answer: 0
+    explanation: "Heat capacity is J K^{−1}, specific heat J kg^{−1} K^{−1}, water equivalent is a mass (kg) and heat is energy (J)."
+
+  - id: phy-exp-365
+    topic: method-of-mixtures
+    subtopic: "Splashing"
+    concept: "Loss of water makes c too large"
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [errors]
+    stem: "While dropping the hot solid into the calorimeter, some of the cold water splashes out immediately, but the student uses the original mass of water in the calculation. The specific heat of the solid obtained will be"
+    options:
+      - "too large"
+      - "too small"
+      - "unaffected"
+      - "zero"
+    answer: 0
+    explanation: "Less water actually absorbs the heat, so the temperature rise is larger than otherwise, and the student multiplies this larger rise by a mass that is too big. The heat 'gained' is overestimated, so c_s comes out too large."
+
+  - id: phy-exp-366
+    topic: metre-bridge-ohms-law
+    subtopic: "Unknown in right gap"
+    concept: "X = R(100 − l)/l"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "R/X = l/(100 − l)"
+    tags: [wheatstone]
+    stem: "In a metre bridge, a 5 Ω resistance is in the left gap and the unknown X in the right gap. The null point is at 40 cm from the left end. X is"
+    options:
+      - "3.3 Ω"
+      - "7.5 Ω"
+      - "5.0 Ω"
+      - "12.5 Ω"
+    answer: 1
+    explanation: "R/X = l/(100 − l) = 40/60, so X = 5 × 60/40 = 7.5 Ω."
+
+  - id: phy-exp-367
+    topic: metre-bridge-ohms-law
+    subtopic: "Resistivity steps"
+    concept: "Steps in finding resistivity"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "ρ = πr^2 X/L"
+    tags: [resistivity, procedure]
+    stem: |-
+      Which steps are needed to find the resistivity of the material of a wire with a metre bridge?
+      I. Measure the length of the wire used in the gap.
+      II. Measure its diameter with a screw gauge at several places.
+      III. Find its resistance X from the balance point.
+      IV. Repeat with a longer wire because resistivity changes with length.
+    options:
+      - "I, II and III only"
+      - "I and IV only"
+      - "II and IV only"
+      - "I, II, III and IV"
+    answer: 0
+    explanation: "ρ = πr^2 X/L needs L, r and X. Resistivity is a material property independent of length, so IV is wrong."
+
+  - id: phy-exp-368
+    topic: metre-bridge-ohms-law
+    subtopic: "Emf and balance"
+    concept: "Null point does not depend on emf"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [wheatstone, trap]
+    stem: |-
+      Assertion (A): The balance point of a metre bridge shifts if the emf of the cell is doubled.
+      Reason (R): The balance condition depends only on the ratio of resistances.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 3
+    explanation: "Since balance depends only on X/R = l/(100 − l), changing the emf only changes the currents, not the null point. A is false and R is true."
+
+  - id: phy-exp-369
+    topic: metre-bridge-ohms-law
+    subtopic: "After interchange"
+    concept: "X from the null point after interchange"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "X/R = (100 − l)/l"
+    tags: [wheatstone]
+    stem: "In a metre bridge, R = 10 Ω is in the left gap and X in the right gap. The null point is at 60.5 cm from the left end. X is about"
+    options:
+      - "15.3 Ω"
+      - "6.5 Ω"
+      - "16.5 Ω"
+      - "10 Ω"
+    answer: 1
+    explanation: "R/X = l/(100 − l) = 60.5/39.5, so X = 10 × 39.5/60.5 ≈ 6.5 Ω."
+
+  - id: phy-exp-370
+    topic: metre-bridge-ohms-law
+    subtopic: "Ohm's law"
+    concept: "Incorrect statement about V–I experiment"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [ohms-law]
+    stem: "Which statement about the Ohm's law experiment is INCORRECT?"
+    options:
+      - "The V–I graph for a metallic wire at constant temperature is a straight line through the origin"
+      - "The slope of the V (y-axis) – I (x-axis) graph gives the conductance"
+      - "The voltmeter is connected in parallel with the wire"
+      - "A rheostat is used to change the current"
+    answer: 1
+    explanation: "The slope ΔV/ΔI of the V–I graph is the resistance; conductance is the reciprocal."
+
+  - id: phy-exp-371
+    topic: metre-bridge-ohms-law
+    subtopic: "Resistivity from graph"
+    concept: "ρ from slope of R–L graph"
+    category: numerical
+    format: graph
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "ρ = slope × πr^2"
+    tags: [resistivity, graph]
+    stem: "Resistance R of different lengths L of a uniform wire of radius 0.2 mm is found with a metre bridge. The R–L graph has slope 5 Ω m^{−1}. The resistivity is about"
+    options:
+      - "6.3 × 10^{−7} Ω m"
+      - "2.0 × 10^{−7} Ω m"
+      - "1.6 × 10^{−6} Ω m"
+      - "2.5 × 10^{−6} Ω m"
+    answer: 0
+    explanation: "R = ρL/A, so slope = ρ/A and ρ = 5 × π(2 × 10^{−4})^2 = 5 × 1.26 × 10^{−7} ≈ 6.3 × 10^{−7} Ω m."
+
+  - id: phy-exp-372
+    topic: metre-bridge-ohms-law
+    subtopic: "R–L graph"
+    concept: "Resistance proportional to length"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: "R = ρL/A"
+    tags: [graph, resistivity]
+    stem: "For a uniform wire, the graph of resistance R against length L is"
+    options:
+      - "a straight line through the origin with slope ρ/A"
+      - "a rectangular hyperbola"
+      - "a parabola"
+      - "a straight line with slope A/ρ"
+    answer: 0
+    explanation: "R = (ρ/A)L, a straight line through the origin with slope ρ/A."
+
+  - id: phy-exp-373
+    topic: metre-bridge-ohms-law
+    subtopic: "Errors and remedies"
+    concept: "Matching metre bridge errors with remedies"
+    category: concept
+    format: match
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [errors, precautions]
+    stem: |-
+      Match each problem in a metre bridge experiment (List I) with its remedy (List II).
+      List I: P. End errors; Q. Heating of the wire; R. Extra resistance at the terminals; S. Scraping of the wire
+      List II: 1. Tap the jockey instead of sliding it; 2. Interchange X and R and average; 3. Pass current only while taking readings; 4. Tighten plugs and clean the ends of wires
+    options:
+      - "P-2, Q-3, R-4, S-1"
+      - "P-3, Q-2, R-4, S-1"
+      - "P-2, Q-4, R-3, S-1"
+      - "P-2, Q-3, R-1, S-4"
+    answer: 0
+    explanation: "Interchanging cancels end errors; brief currents avoid heating; clean, tight connections remove contact resistance; tapping the jockey avoids scraping."
+
+  - id: phy-exp-374
+    topic: metre-bridge-ohms-law
+    subtopic: "Voltmeter resistance"
+    concept: "Finite voltmeter resistance lowers measured R"
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: "R_measured = RR_V/(R + R_V)"
+    tags: [ohms-law, errors]
+    stem: "In the Ohm's law experiment, the voltmeter is connected directly across the wire and the ammeter is in the main line. Because the voltmeter has a finite resistance, the value of V/I obtained is"
+    options:
+      - "slightly larger than the true resistance of the wire"
+      - "slightly smaller than the true resistance of the wire"
+      - "exactly equal to it"
+      - "equal to the voltmeter resistance"
+    answer: 1
+    explanation: "The ammeter reads the wire current plus the small voltmeter current, so I is too large and V/I equals R in parallel with R_V, slightly less than R."
+
+  - id: phy-exp-375
+    topic: galvanometer-half-deflection
+    subtopic: "Numerical"
+    concept: "G = RS/(R − S) with moderate R"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "G = RS/(R − S)"
+    tags: [half-deflection]
+    stem: "In the half-deflection method, R = 2000 Ω and S = 40 Ω. The galvanometer resistance is about"
+    options:
+      - "40.0 Ω"
+      - "39.2 Ω"
+      - "40.8 Ω"
+      - "50 Ω"
+    answer: 2
+    explanation: "G = RS/(R − S) = 2000 × 40/1960 ≈ 40.8 Ω."
+
+  - id: phy-exp-376
+    topic: galvanometer-half-deflection
+    subtopic: "Precautions"
+    concept: "Correct precautions in half-deflection method"
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [precautions]
+    stem: |-
+      Which precautions are correct in the half-deflection method?
+      I. A high resistance is inserted from the resistance box before closing the key.
+      II. All plugs in the resistance boxes are tight.
+      III. The shunt key K_2 is closed before the first deflection is noted.
+      IV. Deflections are read with the eye directly above the pointer.
+    options:
+      - "I, II and IV only"
+      - "I and III only"
+      - "II, III and IV only"
+      - "I, II, III and IV"
+    answer: 0
+    explanation: "The first deflection θ is noted with K_2 open (no shunt); the shunt is added afterwards, so III is wrong."
+
+  - id: phy-exp-377
+    topic: galvanometer-half-deflection
+    subtopic: "Role of shunt"
+    concept: "Shunt does not carry all the current"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [half-deflection]
+    stem: |-
+      Assertion (A): When the galvanometer deflection is exactly halved by a shunt in this method (R ≫ G), the shunt resistance is nearly equal to the galvanometer resistance.
+      Reason (R): Once the shunt is connected, it carries all of the current and the galvanometer carries none.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 2
+    explanation: "At half deflection the current splits almost equally between G and S, which requires S ≈ G; A is true. The galvanometer still carries half its earlier current, so R is false."
+
+  - id: phy-exp-378
+    topic: galvanometer-half-deflection
+    subtopic: "Figure of merit"
+    concept: "k with measured G"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "k = E/((R + G)θ)"
+    tags: [figure-of-merit]
+    stem: "A 1.5 V cell of negligible internal resistance is connected in series with a 4950 Ω resistance and a galvanometer of resistance 50 Ω; the deflection is 30 divisions. The figure of merit is"
+    options:
+      - "1 × 10^{−5} A per division"
+      - "3 × 10^{−4} A per division"
+      - "1 × 10^{−4} A per division"
+      - "5 × 10^{−5} A per division"
+    answer: 0
+    explanation: "I = 1.5/5000 = 3 × 10^{−4} A; k = 3 × 10^{−4}/30 = 1 × 10^{−5} A per division."
+
+  - id: phy-exp-379
+    topic: galvanometer-half-deflection
+    subtopic: "Incorrect statement"
+    concept: "Half-deflection method misconceptions"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [half-deflection]
+    stem: "Which statement about the half-deflection method is INCORRECT?"
+    options:
+      - "It uses the galvanometer's own deflection to find its resistance"
+      - "The shunt is connected in parallel with the galvanometer"
+      - "The method requires the galvanometer to have zero resistance"
+      - "G = RS/(R − S), which reduces to G ≈ S when R ≫ S"
+    answer: 2
+    explanation: "The method measures the galvanometer's non-zero resistance; it does not require G to be zero."
+
+  - id: phy-exp-380
+    topic: galvanometer-half-deflection
+    subtopic: "Full-scale current"
+    concept: "Full-scale current from figure of merit"
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 55
+    ncert: true
+    battle: true
+    formula: "I_g = kN"
+    tags: [figure-of-merit]
+    stem: "A galvanometer has 30 divisions on each side of zero and a figure of merit of 1 × 10^{−5} A per division. The current for full-scale deflection is"
+    options:
+      - "3 × 10^{−4} A"
+      - "3 × 10^{−6} A"
+      - "1 × 10^{−5} A"
+      - "3 × 10^{−5} A"
+    answer: 0
+    explanation: "I_g = kN = 1 × 10^{−5} × 30 = 3 × 10^{−4} A."
+
+  - id: phy-exp-381
+    topic: galvanometer-half-deflection
+    subtopic: "Graph"
+    concept: "θ against 1/(R + G) is linear"
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: "θ = E/(k(R + G))"
+    tags: [graph, figure-of-merit]
+    stem: "For a galvanometer in series with a variable resistance R and a cell of emf E, the deflection θ is plotted against 1/(R + G). The graph is a straight line through the origin with slope"
+    options:
+      - "E/k"
+      - "k/E"
+      - "Ek"
+      - "G/k"
+    answer: 0
+    explanation: "θ = I/k = E/[k(R + G)], so θ is proportional to 1/(R + G) with slope E/k."
+
+  - id: phy-exp-382
+    topic: galvanometer-half-deflection
+    subtopic: "Numerical case"
+    concept: "G with moderately high R"
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "G = RS/(R − S)"
+    tags: [half-deflection]
+    stem: "A student gets half deflection with S = 60 Ω when R = 3000 Ω. The galvanometer resistance is about"
+    options:
+      - "58.8 Ω"
+      - "60.0 Ω"
+      - "61.2 Ω"
+      - "64.0 Ω"
+    answer: 2
+    explanation: "G = RS/(R − S) = 3000 × 60/2940 ≈ 61.2 Ω. Taking G ≈ S (60 Ω) would underestimate it by about 2%."
+
+  - id: phy-exp-383
+    topic: optics-experiments
+    subtopic: "Concave mirror"
+    concept: "f from coincidence at C"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "f = R/2"
+    tags: [concave-mirror]
+    stem: "A pin placed 24 cm in front of a concave mirror coincides with its own inverted image with no parallax. The focal length of the mirror is"
+    options:
+      - "24 cm"
+      - "12 cm"
+      - "48 cm"
+      - "6 cm"
+    answer: 1
+    explanation: "Coincidence without parallax occurs at the centre of curvature, so R = 24 cm and f = 12 cm."
+
+  - id: phy-exp-384
+    topic: optics-experiments
+    subtopic: "Prism procedure"
+    concept: "Steps in plotting i–δ graph"
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [prism, procedure]
+    stem: |-
+      Which steps are part of the experiment to plot the i–δ graph for a prism?
+      I. Pins are fixed on the incident ray drawn at angle i to the normal.
+      II. Two more pins are fixed in line with the images of the first two pins seen through the prism.
+      III. The experiment is repeated for several angles of incidence, roughly 30° to 60°.
+      IV. δ is measured between the incident ray produced forward and the emergent ray.
+    options:
+      - "I, II and III only"
+      - "II and IV only"
+      - "I, III and IV only"
+      - "I, II, III and IV"
+    answer: 3
+    explanation: "All four are standard steps: tracing incident and emergent rays with pins, repeating for several i, and measuring the angle between the produced incident ray and the emergent ray."
+
+  - id: phy-exp-385
+    topic: optics-experiments
+    subtopic: "Real image of convex lens"
+    concept: "Convex lens forms real image only beyond F"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [convex-lens, trap]
+    stem: |-
+      Assertion (A): In the u–v method, a convex lens forms a real image that can be located with a pin only when the object is beyond its focus.
+      Reason (R): A convex lens always forms a real image.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 2
+    explanation: "For an object inside the focus, the convex lens forms a virtual, magnified image that cannot be located on a pin; so A is true and R is false."
+
+  - id: phy-exp-386
+    topic: optics-experiments
+    subtopic: "Convex mirror placement"
+    concept: "Where to place convex mirror"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: true
+    battle: false
+    formula: "distance = image distance − R"
+    tags: [convex-mirror]
+    stem: "A convex lens forms a real image of a pin 50 cm from the lens. A convex mirror of focal length 10 cm is to be placed between them so that the image of the pin coincides with the pin. The mirror should be placed at a distance from the lens of"
+    options:
+      - "40 cm"
+      - "20 cm"
+      - "30 cm"
+      - "45 cm"
+    answer: 2
+    explanation: "The lens image must be at the mirror's centre of curvature, R = 2f = 20 cm behind the mirror. So the mirror is at 50 − 20 = 30 cm from the lens."
+
+  - id: phy-exp-387
+    topic: optics-experiments
+    subtopic: "Travelling microscope"
+    concept: "Correct expression from three readings"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: "n = (R_3 − R_1)/(R_3 − R_2)"
+    tags: [travelling-microscope]
+    stem: "A travelling microscope gives readings R_1 (mark without slab), R_2 (mark seen through slab) and R_3 (top of slab). Which statement is correct?"
+    options:
+      - "The real thickness is R_2 − R_1"
+      - "The apparent thickness is R_3 − R_1"
+      - "The refractive index is (R_3 − R_1)/(R_3 − R_2)"
+      - "The normal shift is R_3 − R_2"
+    answer: 2
+    explanation: "Real thickness = R_3 − R_1; apparent thickness = R_3 − R_2; shift = R_2 − R_1. Their ratio gives n = (R_3 − R_1)/(R_3 − R_2)."
+
+  - id: phy-exp-388
+    topic: optics-experiments
+    subtopic: "Refractive index of liquid"
+    concept: "Real and apparent depth of a liquid"
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: "n = real depth/apparent depth"
+    tags: [travelling-microscope, liquid]
+    stem: "A travelling microscope reads 1.00 cm when focused on a mark at the bottom of an empty beaker, 3.00 cm when focused on the same mark after filling with a liquid, and 9.00 cm when focused on powder sprinkled on the liquid surface. The refractive index of the liquid is"
+    options:
+      - "1.25"
+      - "1.50"
+      - "1.33"
+      - "1.60"
+    answer: 2
+    explanation: "Real depth = 9.00 − 1.00 = 8.00 cm; apparent depth = 9.00 − 3.00 = 6.00 cm; n = 8/6 ≈ 1.33."
+
+  - id: phy-exp-389
+    topic: optics-experiments
+    subtopic: "Reading the 1/v–1/u graph"
+    concept: "f from intercept"
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "intercept = 1/f"
+    tags: [graph, convex-lens]
+    stem: "On the 1/v against 1/|u| graph for a convex lens, the straight line cuts each axis at 0.05 cm^{−1}. The focal length of the lens is"
+    options:
+      - "5 cm"
+      - "20 cm"
+      - "10 cm"
+      - "40 cm"
+    answer: 1
+    explanation: "Each intercept equals 1/f, so f = 1/0.05 = 20 cm."
+
+  - id: phy-exp-390
+    topic: optics-experiments
+    subtopic: "Special techniques"
+    concept: "Matching optics experiments with techniques"
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [techniques]
+    stem: |-
+      Match each experiment (List I) with the special technique it uses (List II).
+      List I: P. Focal length of a convex mirror; Q. Focal length of a concave mirror; R. Refractive index of a glass slab; S. i–δ graph of a prism
+      List II: 1. Pins to trace incident and emergent rays; 2. Lycopodium powder on the top surface; 3. An auxiliary convex lens; 4. A single pin coinciding with its image at C
+    options:
+      - "P-3, Q-4, R-2, S-1"
+      - "P-4, Q-3, R-2, S-1"
+      - "P-3, Q-2, R-4, S-1"
+      - "P-3, Q-4, R-1, S-2"
+    answer: 0
+    explanation: "A convex mirror needs an auxiliary convex lens; a concave mirror uses the single-pin method at C; a slab's top face is marked with lycopodium; a prism's rays are traced with pins."
+
+  - id: phy-exp-391
+    topic: optics-experiments
+    subtopic: "Using parallax rule"
+    concept: "Pin moving against the eye is nearer"
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [parallax]
+    stem: "While locating the image formed by a convex lens, the image pin appears to move opposite to the direction of the eye's sideways motion relative to the image. To remove the parallax, the image pin should be"
+    options:
+      - "moved away from the eye (towards the lens)"
+      - "moved towards the eye (away from the lens)"
+      - "raised higher"
+      - "left in place, since parallax is removed"
+    answer: 0
+    explanation: "The object that moves against the eye is the nearer one, so the pin is nearer to the eye than the image. It must be moved away from the eye, towards the image position."
+
+  - id: phy-exp-392
+    topic: diodes-and-components
+    subtopic: "Dynamic resistance"
+    concept: "r_d from two points"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: true
+    formula: "r_d = ΔV/ΔI"
+    tags: [dynamic-resistance]
+    stem: "On a diode's forward characteristic, the current rises from 20 mA to 30 mA as the voltage rises from 0.75 V to 0.80 V. The dynamic resistance is"
+    options:
+      - "2.5 Ω"
+      - "5 Ω"
+      - "27 Ω"
+      - "50 Ω"
+    answer: 1
+    explanation: "r_d = ΔV/ΔI = 0.05/0.010 = 5 Ω."
+
+  - id: phy-exp-393
+    topic: diodes-and-components
+    subtopic: "Precautions"
+    concept: "Diode characteristic precautions"
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [precautions]
+    stem: |-
+      Which precautions are correct while drawing diode characteristics?
+      I. The forward current should not exceed the rated value of the diode.
+      II. A current-limiting resistance is used in series.
+      III. For an ordinary diode, the reverse voltage is taken well beyond its breakdown voltage to see the full curve.
+      IV. A microammeter is used for the reverse current.
+    options:
+      - "I, II and IV only"
+      - "I and III only"
+      - "II, III and IV only"
+      - "I, II, III and IV"
+    answer: 0
+    explanation: "Taking an ordinary diode beyond breakdown can destroy it, so III is wrong."
+
+  - id: phy-exp-394
+    topic: diodes-and-components
+    subtopic: "Zener use"
+    concept: "Zener regulates in reverse bias"
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [zener, trap]
+    stem: |-
+      Assertion (A): A Zener diode is used as a voltage regulator in forward bias.
+      Reason (R): Beyond breakdown, the voltage across a reverse-biased Zener diode stays nearly constant.
+    options:
+      - "Both A and R are true and R is the correct explanation of A"
+      - "Both A and R are true but R is not the correct explanation of A"
+      - "A is true but R is false"
+      - "A is false but R is true"
+    answer: 3
+    explanation: "Regulation uses the constant voltage in reverse breakdown, so A is false and R is true."
+
+  - id: phy-exp-395
+    topic: diodes-and-components
+    subtopic: "Zener with load"
+    concept: "Currents in a Zener circuit with load"
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 115
+    ncert: false
+    battle: false
+    formula: "I_Z = I_S − I_L"
+    tags: [zener, circuit]
+    stem: "A 12 V supply feeds a Zener diode (V_Z = 8 V) through a 100 Ω series resistor, with a 400 Ω load across the Zener. The current through the Zener is"
+    options:
+      - "40 mA"
+      - "20 mA"
+      - "30 mA"
+      - "10 mA"
+    answer: 1
+    explanation: "Series current = (12 − 8)/100 = 40 mA; load current = 8/400 = 20 mA; Zener current = 40 − 20 = 20 mA."
+
+  - id: phy-exp-396
+    topic: diodes-and-components
+    subtopic: "Capacitor test"
+    concept: "Correct statement about a capacitor test"
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [identification, capacitor]
+    stem: "Which statement correctly describes a capacitor tested with a multimeter on the resistance range?"
+    options:
+      - "It shows zero resistance permanently in both directions"
+      - "It shows a momentary deflection that falls back towards infinite resistance, in either direction"
+      - "It conducts only in one direction and glows"
+      - "It shows the same finite resistance in both directions"
+    answer: 1
+    explanation: "The meter's battery charges the capacitor, giving a brief current that decays to zero; reversing the leads repeats it."
+
+  - id: phy-exp-397
+    topic: diodes-and-components
+    subtopic: "Ge vs Si"
+    concept: "Ge characteristic rises at lower voltage"
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: true
+    tags: [graph, knee-voltage]
+    stem: "The forward characteristics of a germanium and a silicon diode are drawn on the same axes. Compared with the silicon curve, the germanium curve"
+    options:
+      - "rises steeply at a lower voltage (about 0.3 V)"
+      - "rises steeply at a higher voltage"
+      - "is a straight line through the origin"
+      - "lies below the voltage axis"
+    answer: 0
+    explanation: "The cut-in voltage is about 0.3 V for Ge and 0.7 V for Si, so the Ge curve turns up earlier."
+
+  - id: phy-exp-398
+    topic: diodes-and-components
+    subtopic: "LED and resistor"
+    concept: "LED in reverse; resistor bidirectional"
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [identification]
+    stem: |-
+      Statement I: An LED glows when it is reverse biased.
+      Statement II: A resistor shows different readings when the multimeter leads are reversed.
+    options:
+      - "Both Statement I and Statement II are correct"
+      - "Both Statement I and Statement II are incorrect"
+      - "Statement I is correct but Statement II is incorrect"
+      - "Statement I is incorrect but Statement II is correct"
+    answer: 1
+    explanation: "An LED glows only in forward bias, and a resistor gives the same reading both ways. Both statements are incorrect."
+
+  - id: phy-exp-399
+    topic: diodes-and-components
+    subtopic: "Reverse bias circuit"
+    concept: "Higher voltage source for reverse bias"
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [circuit]
+    stem: "For the reverse characteristic of a p–n junction diode, a battery of higher voltage and a voltmeter of larger range are used than for the forward characteristic because"
+    options:
+      - "the reverse current is large"
+      - "appreciable changes in reverse behaviour appear only at voltages of several volts or more"
+      - "the diode conducts better in reverse"
+      - "the microammeter needs a higher voltage to work"
+    answer: 1
+    explanation: "Forward conduction happens below 1 V, but the reverse current stays tiny over a wide range of several volts, so a larger voltage range is needed to trace it."
+
+  - id: phy-exp-400
+    topic: diodes-and-components
+    subtopic: "Graph features"
+    concept: "Matching features of characteristic curves"
+    category: concept
+    format: match
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    tags: [graph, multi-concept]
+    stem: |-
+      Match each feature of the diode or Zener characteristic (List I) with its description (List II).
+      List I: P. Knee voltage; Q. Reverse saturation current; R. Zener breakdown voltage; S. Dynamic resistance
+      List II: 1. ΔV/ΔI on the curve; 2. Reverse voltage at which current rises sharply; 3. Small current due to minority carriers; 4. Forward voltage beyond which current rises sharply
+    options:
+      - "P-4, Q-3, R-2, S-1"
+      - "P-2, Q-3, R-4, S-1"
+      - "P-4, Q-1, R-2, S-3"
+      - "P-3, Q-4, R-2, S-1"
+    answer: 0
+    explanation: "Knee voltage marks the start of steep forward conduction; reverse saturation current comes from minority carriers; V_Z marks the sharp reverse rise; dynamic resistance is ΔV/ΔI."
+

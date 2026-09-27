@@ -5332,3 +5332,430 @@ questions:
       - no deviation, since the value lies between the pure values
     answer: 2
     explanation: "The Raoult prediction is 0.5 × 200 + 0.5 × 100 = 150 mm Hg. The observed 170 mm Hg is higher, which is positive deviation. Lying between the pure values does not by itself make a solution ideal."
+
+  - id: che-sol-252
+    topic: relative-lowering-vp
+    subtopic: Exact form of Raoult's law
+    concept: Molar mass using (p° − p)/p = n_2/n_1
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: (p° − p)/p = n_2/n_1
+    tags: [rlvp, molar-mass]
+    stem: 10 g of a non-volatile solute is dissolved in 90 g of water, and the vapour pressure falls from 25.0 to 24.5 mm Hg. Using (p° − p)/p = n_2/n_1, the molar mass of the solute is
+    options:
+      - 49 g mol^{-1}
+      - 196 g mol^{-1}
+      - 98 g mol^{-1}
+      - 9.8 g mol^{-1}
+    answer: 2
+    explanation: "(25.0 − 24.5)/24.5 = n_2/5 with n_water = 90/18 = 5 mol. So n_2 = 5 × 0.5/24.5 = 0.102 mol and M = 10/0.102 ≈ 98 g mol^{-1}."
+
+  - id: che-sol-253
+    topic: relative-lowering-vp
+    subtopic: Exact form of Raoult's law
+    concept: Correct forms of Raoult's law for a non-volatile solute
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [rlvp, formula]
+    stem: For a solution of a non-volatile solute (moles n_2) in a solvent (moles n_1), which relation is exactly correct?
+    options:
+      - (p° − p)/p° = n_1/(n_1 + n_2)
+      - (p° − p)/p = n_2/n_1
+      - (p° − p)/p = n_2/(n_1 + n_2)
+      - p/p° = n_2/n_1
+    answer: 1
+    explanation: "From p = x_1p°, (p° − p)/p° = n_2/(n_1 + n_2). Rearranging gives p°/p = (n_1 + n_2)/n_1, so (p° − p)/p = n_2/n_1 exactly. The first option uses the solvent's mole fraction instead of the solute's."
+
+  - id: che-sol-254
+    topic: relative-lowering-vp
+    subtopic: Effect of solvent
+    concept: For equal molality, RLVP is larger in a solvent of larger molar mass
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    formula: x_2 = m/(m + 1000/M_1)
+    tags: [rlvp, molality, multi-concept]
+    stem: 1 molal solutions of the same non-volatile non-electrolyte are made in water (M = 18) and in benzene (M = 78). Which statement about their relative lowering of vapour pressure is correct?
+    options:
+      - They are equal because the molality is the same
+      - It is larger in water because water is more polar
+      - It is larger in benzene because 1 kg of benzene contains fewer moles
+      - It is zero in benzene because benzene is non-polar
+    answer: 2
+    explanation: "Relative lowering equals x_2 = m/(m + 1000/M_1). 1 kg benzene is only 12.8 mol versus 55.5 mol for water, so x_2 and the relative lowering are larger in benzene. Equal molality does not mean equal mole fraction in different solvents."
+
+  - id: che-sol-255
+    topic: relative-lowering-vp
+    subtopic: Everyday observations
+    concept: Pure water evaporates faster than salt water at the same temperature
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [rlvp, evaporation]
+    stem: A dish of pure water and a dish of sea water of the same area are kept side by side in the sun. Which evaporates faster, and why?
+    options:
+      - Sea water, because salt absorbs heat
+      - Both evaporate at the same rate
+      - Sea water, because salt raises its vapour pressure
+      - Pure water, because dissolved salts lower the vapour pressure of sea water
+    answer: 3
+    explanation: "Dissolved salts lower the vapour pressure of sea water, so fewer water molecules escape per unit time. Pure water, with the higher vapour pressure, evaporates faster."
+
+  - id: che-sol-256
+    topic: relative-lowering-vp
+    subtopic: Effect of solvent
+    concept: At fixed molality the relative lowering depends on the solvent's molar mass
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [rlvp, trap]
+    stem: |-
+      Statement I: For a given molality of a non-volatile solute, the relative lowering of vapour pressure depends on the molar mass of the solvent.
+      Statement II: The relative lowering of vapour pressure equals the mole fraction of the solute.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Relative lowering = x_2 (Statement II). At fixed molality, x_2 = m/(m + 1000/M_1), which depends on the molar mass of the solvent, so Statement I is also correct. At fixed mole fraction, however, it would be the same in every solvent."
+
+  - id: che-sol-257
+    topic: relative-lowering-vp
+    subtopic: Mole ratio from lowering
+    concept: A 10% lowering corresponds to a solute:solvent mole ratio of 1:9
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: (p° − p)/p° = n_2/(n_1 + n_2)
+    tags: [rlvp]
+    stem: A non-volatile solute lowers the vapour pressure of a solvent by 10%. The ratio of moles of solute to moles of solvent is
+    options:
+      - "1 : 10"
+      - "1 : 9"
+      - "9 : 1"
+      - "1 : 11"
+    answer: 1
+    explanation: "x_2 = 0.1, so n_2/(n_1 + n_2) = 0.1, giving n_1 = 9n_2. The ratio n_2 : n_1 is 1 : 9. 1 : 10 confuses the solute : solvent ratio with the mole fraction."
+
+  - id: che-sol-258
+    topic: relative-lowering-vp
+    subtopic: Properties of RLVP
+    concept: RLVP is colligative, equals x_2 and does not depend on p°
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [rlvp, colligative]
+    stem: |-
+      Consider the statements about the relative lowering of vapour pressure (RLVP) of an ideal dilute solution of a non-volatile solute.
+      I. It is a colligative property.
+      II. It is practically independent of temperature.
+      III. It equals the mole fraction of the solute.
+      IV. It is directly proportional to the vapour pressure of the pure solvent.
+      Which statements are correct?
+    options:
+      - I, II and III only
+      - I and III only
+      - III and IV only
+      - I, II and IV only
+    answer: 0
+    explanation: "RLVP = x_2, a colligative quantity; mole fractions do not change with temperature, so it is practically temperature independent. The absolute lowering Δp = x_2p° depends on p°, but the relative lowering does not, so IV is wrong."
+
+  - id: che-sol-259
+    topic: relative-lowering-vp
+    subtopic: Absolute lowering
+    concept: Same x_2 gives larger absolute lowering in the more volatile solvent
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [rlvp]
+    stem: |-
+      Assertion (A): For the same mole fraction of a non-volatile solute, the absolute lowering of vapour pressure is larger in a solvent with a higher vapour pressure.
+      Reason (R): The lowering of vapour pressure Δp = x_2p_1°.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Since Δp = x_2p_1°, at fixed x_2 the lowering scales with p_1°. A solvent with a higher vapour pressure therefore shows a larger absolute lowering, though the relative lowering is the same. R explains A."
+
+  - id: che-sol-260
+    topic: relative-lowering-vp
+    subtopic: Vapour pressure–composition graph
+    concept: Vapour pressure of solution falls linearly with solute mole fraction
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [rlvp, graph]
+    stem: For ideal solutions of a non-volatile solute, a plot of the vapour pressure of the solution (y-axis) against the mole fraction of solute x_2 (x-axis) is
+    options:
+      - a straight line rising from 0 at x_2 = 0 to p_1° at x_2 = 1
+      - a horizontal line at p_1°
+      - a straight line falling from p_1° at x_2 = 0 to zero at x_2 = 1
+      - a curve with a minimum at x_2 = 0.5
+    answer: 2
+    explanation: "p = x_1p_1° = (1 − x_2)p_1°. This is a straight line with intercept p_1° and slope −p_1°, reaching zero at x_2 = 1, since a non-volatile solute contributes no vapour."
+
+  - id: che-sol-261
+    topic: elevation-boiling-point
+    subtopic: Molar mass from ΔT_b
+    concept: Molar mass from boiling point elevation in chloroform
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: M_2 = (K_b × w_2 × 1000)/(ΔT_b × w_1)
+    tags: [kb, molar-mass]
+    stem: 1.5 g of a non-volatile non-electrolyte dissolved in 25 g of chloroform raises its boiling point by 0.726 K. If K_b of chloroform is 3.63 K kg mol^{-1}, the molar mass of the solute is
+    options:
+      - 150 g mol^{-1}
+      - 600 g mol^{-1}
+      - 75 g mol^{-1}
+      - 300 g mol^{-1}
+    answer: 3
+    explanation: "m = 0.726/3.63 = 0.2 mol kg^{-1}. Moles in 0.025 kg = 0.005 mol, so M = 1.5/0.005 = 300 g mol^{-1}."
+
+  - id: che-sol-262
+    topic: elevation-boiling-point
+    subtopic: Mixture of solutes
+    concept: Total molality of solute particles decides ΔT_b
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: ΔT_b = K_b Σm
+    tags: [kb, mixture]
+    stem: 0.1 mol of glucose and 0.2 mol of urea are dissolved together in 1 kg of water. The elevation in boiling point is (K_b = 0.52 K kg mol^{-1})
+    options:
+      - 0.052 K
+      - 0.104 K
+      - 0.156 K
+      - 0.312 K
+    answer: 2
+    explanation: "Colligative properties depend on the total number of solute particles. Total molality = 0.3 mol kg^{-1}, so ΔT_b = 0.52 × 0.3 = 0.156 K."
+
+  - id: che-sol-263
+    topic: elevation-boiling-point
+    subtopic: Electrolytes
+    concept: ΔT_b of NaCl solution with i = 2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: ΔT_b = iK_b m
+    tags: [kb, vant-hoff-factor]
+    stem: What is the boiling point elevation of a 0.1 m aqueous NaCl solution, assuming complete dissociation? (K_b = 0.52 K kg mol^{-1})
+    options:
+      - 0.104 K
+      - 0.052 K
+      - 0.156 K
+      - 0.026 K
+    answer: 0
+    explanation: "NaCl gives 2 ions, so i = 2 and ΔT_b = 2 × 0.52 × 0.1 = 0.104 K. Ignoring dissociation gives 0.052 K."
+
+  - id: che-sol-264
+    topic: elevation-boiling-point
+    subtopic: Ebullioscopic constant
+    concept: Calculating K_b of benzene from its enthalpy of vaporisation
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: K_b = R M_1 T_b^2/(1000 Δ_{vap}H)
+    tags: [kb, thermodynamics, multi-concept]
+    stem: Benzene (M_1 = 78 g mol^{-1}) boils at 353 K with Δ_{vap}H = 30.8 kJ mol^{-1}. Using K_b = R M_1 T_b^2/(1000 Δ_{vap}H) with R = 8.314 J K^{-1} mol^{-1}, K_b of benzene is about
+    options:
+      - 0.52 K kg mol^{-1}
+      - 26.2 K kg mol^{-1}
+      - 5.12 K kg mol^{-1}
+      - 2.62 K kg mol^{-1}
+    answer: 3
+    explanation: "K_b = (8.314 × 78 × 353^2)/(1000 × 30800) = (648.5 × 124609)/(3.08 × 10^7) ≈ 2.62 K kg mol^{-1}, close to the tabulated 2.53. 5.12 is K_f of benzene."
+
+  - id: che-sol-265
+    topic: elevation-boiling-point
+    subtopic: Comparing solutions
+    concept: Equal masses of solutes; smallest molar mass gives highest boiling point
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [kb, comparison]
+    stem: 5 g each of urea (M = 60), glucose (M = 180), sucrose (M = 342) and glycerol (M = 92) are dissolved separately in 100 g of water. Which solution has the highest boiling point?
+    options:
+      - Glucose
+      - Sucrose
+      - Urea
+      - Glycerol
+    answer: 2
+    explanation: "For equal masses, the solute with the smallest molar mass gives the most moles and the largest molality. Urea (M = 60) therefore gives the largest ΔT_b and the highest boiling point."
+
+  - id: che-sol-266
+    topic: elevation-boiling-point
+    subtopic: ΔT_b graph
+    concept: ΔT_b against molality is a straight line with slope K_b
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [kb, graph]
+    stem: For dilute solutions of a non-volatile non-electrolyte, a plot of ΔT_b (y-axis) against molality m (x-axis) is
+    options:
+      - a straight line through the origin with slope 1/K_b
+      - a straight line through the origin with slope K_b
+      - a curve that levels off at high molality
+      - a straight line with intercept equal to the boiling point of the solvent
+    answer: 1
+    explanation: "ΔT_b = K_b m is a direct proportion, so the plot is a straight line through the origin with slope K_b."
+
+  - id: che-sol-267
+    topic: elevation-boiling-point
+    subtopic: Required solute mass
+    concept: Mass of glucose needed for a given elevation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: n_2 = ΔT_b × w_1(kg)/K_b
+    tags: [kb, glucose]
+    stem: What mass of glucose (M = 180 g mol^{-1}) must be dissolved in 250 g of water to raise its boiling point by 0.26 K? (K_b = 0.52 K kg mol^{-1})
+    options:
+      - 90 g
+      - 45 g
+      - 11.25 g
+      - 22.5 g
+    answer: 3
+    explanation: "Required molality = 0.26/0.52 = 0.5 mol kg^{-1}. Moles in 0.25 kg = 0.125 mol, and mass = 0.125 × 180 = 22.5 g. Using 1 kg of water gives 90 g."
+
+  - id: che-sol-268
+    topic: elevation-boiling-point
+    subtopic: Factors affecting ΔT_b
+    concept: Changes that increase boiling point elevation
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [kb]
+    stem: |-
+      Which of the following changes will increase the elevation of boiling point of a solution of a non-volatile non-electrolyte?
+      I. Dissolving more solute in the same mass of solvent
+      II. Using a larger mass of the same solvent for the same solute
+      III. Using a solvent with a larger K_b at the same molality
+      IV. Using a solute of larger molar mass at the same mass of solute
+    options:
+      - I and III only
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+    answer: 0
+    explanation: "ΔT_b = K_b m. More solute raises m (I) and a larger K_b raises ΔT_b (III). More solvent lowers m (II), and a larger molar mass at the same mass means fewer moles (IV)."
+
+  - id: che-sol-269
+    topic: elevation-boiling-point
+    subtopic: Ebullioscopic constant
+    concept: K_b ∝ T_b^2 and ∝ 1/Δ_{vap}H
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [kb, thermodynamics]
+    stem: |-
+      Statement I: The ebullioscopic constant of a solvent is directly proportional to the square of its boiling point.
+      Statement II: The ebullioscopic constant of a solvent is inversely proportional to its enthalpy of vaporisation.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "K_b = R M_1 T_b^2/(1000 Δ_{vap}H). K_b is proportional to T_b^2 and inversely proportional to Δ_{vap}H, so both statements are correct."
+
+  - id: che-sol-270
+    topic: elevation-boiling-point
+    subtopic: Determining K_b
+    concept: Using one experiment to predict ΔT_b in another
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔT_b = K_b m
+    tags: [kb]
+    stem: 0.1 mol of a non-electrolyte in 500 g of solvent X raises its boiling point by 0.5 K. By how much will 0.3 mol of the same solute in 1 kg of X raise the boiling point?
+    options:
+      - 1.5 K
+      - 0.75 K
+      - 0.25 K
+      - 3.0 K
+    answer: 1
+    explanation: "First, m = 0.1/0.5 = 0.2 mol kg^{-1}, so K_b = 0.5/0.2 = 2.5 K kg mol^{-1}. Second, m = 0.3 mol kg^{-1} and ΔT_b = 2.5 × 0.3 = 0.75 K. Scaling only the moles gives 1.5 K."
+
+  - id: che-sol-271
+    topic: depression-freezing-point
+    subtopic: Calculating depression
+    concept: Freezing point of an ethylene glycol solution
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ΔT_f = K_f m
+    tags: [kf, antifreeze]
+    stem: 3.1 g of ethylene glycol (M = 62 g mol^{-1}) is dissolved in 100 g of water. The freezing point of the solution is (K_f = 1.86 K kg mol^{-1})
+    options:
+      - −0.093 °C
+      - −0.93 °C
+      - −1.86 °C
+      - −0.465 °C
+    answer: 1
+    explanation: "Moles = 3.1/62 = 0.05; m = 0.05/0.1 = 0.5 mol kg^{-1}. ΔT_f = 1.86 × 0.5 = 0.93 K, so the solution freezes at −0.93 °C."
