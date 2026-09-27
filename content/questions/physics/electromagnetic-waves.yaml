@@ -1,0 +1,2012 @@
+subject: physics
+chapter:
+  slug: electromagnetic-waves
+  name: Electromagnetic Waves
+  order: 22
+  classes: [12]
+  topics:
+    - slug: displacement-current
+      name: Displacement current and Ampere–Maxwell law
+    - slug: maxwell-equations
+      name: Maxwell's equations
+    - slug: sources-of-em-waves
+      name: Sources of electromagnetic waves
+    - slug: nature-of-em-waves
+      name: Nature and propagation of electromagnetic waves
+    - slug: energy-momentum
+      name: Energy, intensity, momentum and radiation pressure
+    - slug: radio-microwaves
+      name: Radio waves and microwaves
+    - slug: infrared-visible-uv
+      name: Infrared, visible and ultraviolet rays
+    - slug: xrays-gamma
+      name: X-rays and gamma rays
+    - slug: em-spectrum
+      name: The electromagnetic spectrum as a whole
+questions:
+  - id: phy-emw-001
+    topic: displacement-current
+    subtopic: Definition of displacement current
+    concept: Displacement current i_d = ε_0 dΦ_E/dt
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: i_d = ε_0 dΦ_E/dt
+    tags: [displacement-current, ncert-line]
+    stem: The displacement current through a surface is given by
+    options:
+      - μ_0 dΦ_E/dt
+      - ε_0 dΦ_B/dt
+      - ε_0 dΦ_E/dt
+      - (1/μ_0) dΦ_E/dt
+    answer: 2
+    explanation: Maxwell defined the displacement current as i_d = ε_0 dΦ_E/dt, where Φ_E is the electric flux. It involves the permittivity ε_0 and the changing electric (not magnetic) flux.
+  - id: phy-emw-002
+    topic: displacement-current
+    subtopic: Displacement current in a capacitor
+    concept: i_d = C dV/dt for a charging capacitor
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: i_d = C dV/dt
+    tags: [capacitor, displacement-current]
+    stem: The potential difference across a 2 μF capacitor changes at a rate of 5 × 10^3 V s^{-1}. The displacement current between its plates is
+    options:
+      - 1 mA
+      - 10 mA
+      - 100 mA
+      - 0.4 mA
+    answer: 1
+    explanation: For a capacitor, i_d = ε_0 dΦ_E/dt = C dV/dt = 2 × 10^{-6} × 5 × 10^3 = 10^{-2} A = 10 mA.
+  - id: phy-emw-003
+    topic: displacement-current
+    subtopic: Displacement current from flux change
+    concept: Calculating i_d from rate of change of electric flux
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: i_d = ε_0 dΦ_E/dt
+    tags: [displacement-current]
+    stem: The electric flux through a surface changes at 1.13 × 10^{11} V m s^{-1}. The displacement current through the surface is about (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - "0.10 A"
+      - "10 A"
+      - "0.01 A"
+      - "1.0 A"
+    answer: 3
+    explanation: i_d = ε_0 dΦ_E/dt = 8.85 × 10^{-12} × 1.13 × 10^{11} ≈ 1.0 A.
+  - id: phy-emw-004
+    topic: displacement-current
+    subtopic: Currents in a charging capacitor
+    concept: Between the plates only displacement current flows, equal to the conduction current in wires
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [capacitor, displacement-current, ncert-line]
+    stem: A parallel plate capacitor is being charged by a steady current I. Which statement about the region between the plates is correct?
+    options:
+      - The displacement current there equals I and the conduction current is zero
+      - The conduction current there equals I and the displacement current is zero
+      - Both conduction and displacement currents there are zero
+      - Both conduction and displacement currents there equal I
+    answer: 0
+    explanation: No charges cross the gap, so the conduction current between the plates is zero. The changing electric field gives a displacement current ε_0 dΦ_E/dt = dq/dt = I, so the total current stays continuous.
+  - id: phy-emw-005
+    topic: displacement-current
+    subtopic: Condition for displacement current
+    concept: Displacement current needs a time-varying electric field
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [displacement-current, trap]
+    stem: In a region where the electric field is steady (constant in time), the displacement current is
+    options:
+      - equal to the conduction current
+      - maximum
+      - zero
+      - equal to ε_0 E
+    answer: 2
+    explanation: i_d = ε_0 dΦ_E/dt; if E does not change with time, dΦ_E/dt = 0 and the displacement current is zero, however large E is.
+  - id: phy-emw-006
+    topic: displacement-current
+    subtopic: Displacement current in a capacitor
+    concept: i_d = ε_0 A dE/dt between parallel plates
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: i_d = ε_0 A dE/dt
+    tags: [capacitor, displacement-current]
+    stem: The electric field between the plates of a parallel plate capacitor of plate area 0.05 m^2 increases at 10^{12} V m^{-1} s^{-1}. The displacement current between the plates is about
+    options:
+      - "0.44 A"
+      - "4.4 A"
+      - "0.044 A"
+      - "44 A"
+    answer: 0
+    explanation: Φ_E = EA, so i_d = ε_0 A dE/dt = 8.85 × 10^{-12} × 0.05 × 10^{12} ≈ 0.44 A.
+  - id: phy-emw-007
+    topic: displacement-current
+    subtopic: Magnetic field between capacitor plates
+    concept: B = μ_0 i r/(2πR^2) inside the region between circular plates
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: B = μ_0 i_d r/(2πR^2) for r < R
+    tags: [capacitor, ampere-maxwell, multi-concept]
+    stem: A capacitor with circular plates of radius 10 cm is charged by a current of 0.2 A. The magnetic field at a point 5 cm from the axis, in the region between the plates, is
+    options:
+      - 4 × 10^{-7} T
+      - 1 × 10^{-7} T
+      - 8 × 10^{-7} T
+      - 2 × 10^{-7} T
+    answer: 3
+    explanation: The displacement current enclosed by a loop of radius r is i r^2/R^2. Ampere–Maxwell law gives B·2πr = μ_0 i r^2/R^2, so B = (μ_0/2π) i r/R^2 = 2 × 10^{-7} × 0.2 × 0.05/0.01 = 2 × 10^{-7} T. Using the full current i with r gives the wrong 8 × 10^{-7} T.
+  - id: phy-emw-008
+    topic: displacement-current
+    subtopic: Magnetic field between capacitor plates
+    concept: B rises linearly with r inside the plate region, then falls as 1/r outside
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, capacitor, ampere-maxwell]
+    stem: A capacitor with circular plates of radius R is being charged by a steady current. How does the magnetic field B in the gap vary with distance r from the axis?
+    options:
+      - B is constant for r < R and falls as 1/r for r > R
+      - B increases linearly with r up to r = R and then falls as 1/r
+      - B falls as 1/r everywhere
+      - B is zero for r < R and falls as 1/r^2 for r > R
+    answer: 1
+    explanation: Inside, the enclosed displacement current grows as r^2, so B·2πr ∝ r^2 and B ∝ r. Outside, all of it is enclosed, so B = μ_0 i/(2πr) ∝ 1/r. The peak is at r = R.
+  - id: phy-emw-009
+    topic: displacement-current
+    subtopic: Need for displacement current
+    concept: Ampere's law without displacement current fails for a charging capacitor
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [ampere-maxwell, capacitor, ncert-line]
+    stem: |-
+      Assertion (A): Ampere's circuital law in its original form gives inconsistent results for a loop around the wire of a charging capacitor.
+      Reason (R): A surface bounded by the same loop can pass between the plates, where the conduction current is zero.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: For the same loop, a flat surface cut by the wire encloses current i, while a pot-shaped surface through the gap encloses none, giving B = 0 — a contradiction. This is exactly why Maxwell added the displacement current, so R explains A.
+  - id: phy-emw-010
+    topic: displacement-current
+    subtopic: History
+    concept: Maxwell introduced the displacement current
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [history, ncert-line]
+    stem: Who introduced the concept of displacement current to make Ampere's law consistent?
+    options:
+      - Faraday
+      - Ampere
+      - Maxwell
+      - Hertz
+    answer: 2
+    explanation: James Clerk Maxwell noticed the inconsistency in Ampere's law for a charging capacitor and added the displacement current term ε_0 dΦ_E/dt.
+  - id: phy-emw-011
+    topic: displacement-current
+    subtopic: Units of displacement current
+    concept: Displacement current has the unit ampere
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [units, displacement-current]
+    stem: The SI unit of displacement current is
+    options:
+      - volt metre
+      - ampere
+      - coulomb
+      - weber per second
+    answer: 1
+    explanation: ε_0 dΦ_E/dt has units (C^2 N^{-1} m^{-2})(N C^{-1} m^2 s^{-1}) = C s^{-1} = A, the same as conduction current.
+  - id: phy-emw-012
+    topic: displacement-current
+    subtopic: Displacement current with AC voltage
+    concept: Peak i_d = C V_0 ω for a sinusoidal voltage
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: i_d = C dV/dt
+    tags: [capacitor, ac, multi-concept]
+    stem: A 5 μF capacitor is connected across a source V = 200 sin(100t) volt. The maximum displacement current between its plates is
+    options:
+      - "1 A"
+      - "0.1 A"
+      - "0.01 A"
+      - "10 A"
+    answer: 1
+    explanation: i_d = C dV/dt = C V_0 ω cos ωt, so the peak value is C V_0 ω = 5 × 10^{-6} × 200 × 100 = 0.1 A.
+  - id: phy-emw-013
+    topic: displacement-current
+    subtopic: Ampere–Maxwell law
+    concept: Correct form of Ampere–Maxwell law
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: ∮B·dl = μ_0 i_c + μ_0 ε_0 dΦ_E/dt
+    tags: [ampere-maxwell, ncert-line]
+    stem: The Ampere–Maxwell law is written as
+    options:
+      - ∮B·dl = μ_0 i_c
+      - ∮B·dl = μ_0 i_c + ε_0 dΦ_B/dt
+      - ∮B·dl = μ_0 ε_0 i_c + dΦ_E/dt
+      - ∮B·dl = μ_0 i_c + μ_0 ε_0 dΦ_E/dt
+    answer: 3
+    explanation: Maxwell's generalisation is ∮B·dl = μ_0(i_c + i_d) with i_d = ε_0 dΦ_E/dt, i.e. μ_0 i_c + μ_0 ε_0 dΦ_E/dt.
+  - id: phy-emw-014
+    topic: displacement-current
+    subtopic: Properties of displacement current
+    concept: Properties of displacement current
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [displacement-current]
+    stem: |-
+      Consider the following statements about displacement current:
+      I. It is produced by a time-varying electric field.
+      II. It produces a magnetic field just like a conduction current.
+      III. It involves the actual flow of charges across the gap of a capacitor.
+      IV. The sum of conduction and displacement currents is continuous around a circuit.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: Displacement current arises from a changing electric field (I), is a source of magnetic field (II) and makes the total current continuous (IV). No charges actually cross the gap, so III is false.
+  - id: phy-emw-015
+    topic: displacement-current
+    subtopic: Displacement current from flux change
+    concept: Rate of change of electric flux from given i_d
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: dΦ_E/dt = i_d/ε_0
+    tags: [displacement-current]
+    stem: A displacement current of 8.85 mA flows through a surface. The rate of change of electric flux through it is (ε_0 = 8.85 × 10^{-12} SI units)
+    options:
+      - 10^{12} V m s^{-1}
+      - 10^6 V m s^{-1}
+      - 10^9 V m s^{-1}
+      - 10^3 V m s^{-1}
+    answer: 2
+    explanation: dΦ_E/dt = i_d/ε_0 = 8.85 × 10^{-3}/8.85 × 10^{-12} = 10^9 V m s^{-1}.
+  - id: phy-emw-016
+    topic: displacement-current
+    subtopic: Partial displacement current
+    concept: Displacement current through part of the plate area scales as r^2/R^2
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: i_d(r) = I r^2/R^2
+    tags: [capacitor, displacement-current, trap]
+    stem: A capacitor with circular plates of radius R is charged by a current of 2 A. The displacement current through a circular area of radius R/2 between the plates, coaxial with them, is
+    options:
+      - "2 A"
+      - "1 A"
+      - "0.25 A"
+      - "0.5 A"
+    answer: 3
+    explanation: The field between the plates is uniform, so the flux (and hence i_d) through an area is proportional to that area. Area ratio (R/2)^2/R^2 = 1/4, so i_d = 2/4 = 0.5 A. Taking the ratio of radii instead gives the wrong 1 A.
+  - id: phy-emw-017
+    topic: maxwell-equations
+    subtopic: Gauss's law for magnetism
+    concept: ∮B·dA = 0 expresses absence of magnetic monopoles
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: ∮B·dA = 0
+    tags: [maxwell-equations, monopole]
+    stem: Which of Maxwell's equations expresses the fact that isolated magnetic poles do not exist?
+    options:
+      - ∮E·dA = Q/ε_0
+      - ∮B·dA = 0
+      - ∮E·dl = −dΦ_B/dt
+      - ∮B·dl = μ_0 i_c + μ_0 ε_0 dΦ_E/dt
+    answer: 1
+    explanation: The net magnetic flux through any closed surface is zero, ∮B·dA = 0, because magnetic field lines form closed loops and there is no magnetic charge (monopole).
+  - id: phy-emw-018
+    topic: maxwell-equations
+    subtopic: Physical meaning of the four equations
+    concept: Matching each Maxwell equation to its law
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [maxwell-equations, match]
+    stem: |-
+      Match List I (equation) with List II (law).
+      List I:
+      P. ∮E·dA = Q/ε_0
+      Q. ∮B·dA = 0
+      R. ∮E·dl = −dΦ_B/dt
+      S. ∮B·dl = μ_0 i_c + μ_0 ε_0 dΦ_E/dt
+      List II:
+      1. Faraday's law of induction
+      2. Gauss's law for electricity
+      3. Ampere–Maxwell law
+      4. Gauss's law for magnetism
+    options:
+      - P-2, Q-4, R-3, S-1
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-4, R-1, S-3
+      - P-2, Q-1, R-4, S-3
+    answer: 2
+    explanation: Gauss's law for electricity relates electric flux to charge (P-2); zero magnetic flux is Gauss's law for magnetism (Q-4); induced emf from changing magnetic flux is Faraday's law (R-1); the magnetic circulation from currents and changing electric flux is the Ampere–Maxwell law (S-3).
+  - id: phy-emw-019
+    topic: maxwell-equations
+    subtopic: Faraday's law in Maxwell's form
+    concept: A changing magnetic flux produces a circulating electric field
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: ∮E·dl = −dΦ_B/dt
+    tags: [maxwell-equations, faraday]
+    stem: The Maxwell equation ∮E·dl = −dΦ_B/dt states that
+    options:
+      - a changing electric field produces a magnetic field
+      - electric field lines begin and end on charges
+      - a changing magnetic field produces an electric field
+      - magnetic field lines are always closed
+    answer: 2
+    explanation: "This is Faraday's law: the line integral of E round a loop (the emf) equals minus the rate of change of magnetic flux, so a changing B produces an E field."
+  - id: phy-emw-020
+    topic: maxwell-equations
+    subtopic: Gauss's law for electricity
+    concept: Electric flux through closed surface = Q/ε_0
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: Φ_E = Q/ε_0
+    tags: [gauss-law, maxwell-equations]
+    stem: A closed surface encloses a charge of 8.85 μC. The net electric flux through it is (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 10^6 N m^2 C^{-1}
+      - 10^{-6} N m^2 C^{-1}
+      - 10^{12} N m^2 C^{-1}
+      - 10^5 N m^2 C^{-1}
+    answer: 0
+    explanation: By Gauss's law, Φ_E = Q/ε_0 = 8.85 × 10^{-6}/8.85 × 10^{-12} = 10^6 N m^2 C^{-1}.
+  - id: phy-emw-021
+    topic: maxwell-equations
+    subtopic: Dimensions of μ_0ε_0
+    concept: μ_0ε_0 has dimensions of 1/speed^2
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: c = 1/√(μ_0ε_0)
+    tags: [dimensions, speed-of-light]
+    stem: The dimensional formula of μ_0ε_0 is
+    options:
+      - "[L T^{-1}]"
+      - "[L^2 T^{-2}]"
+      - "[L^{-1} T]"
+      - "[L^{-2} T^2]"
+    answer: 3
+    explanation: Since c = 1/√(μ_0ε_0), μ_0ε_0 = 1/c^2, whose dimensions are [L^{-2} T^2]. [L^{-1} T] would be the dimension of √(μ_0ε_0).
+  - id: phy-emw-022
+    topic: maxwell-equations
+    subtopic: Symmetry between E and B
+    concept: Changing E produces B and changing B produces E
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [maxwell-equations, symmetry]
+    stem: |-
+      Statement I: According to Maxwell, a time-varying electric field produces a magnetic field.
+      Statement II: According to Faraday, a time-varying magnetic field produces an electric field.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Faraday's law says a changing magnetic field induces an electric field; Maxwell's displacement current means a changing electric field produces a magnetic field. This mutual generation is what sustains an electromagnetic wave.
+  - id: phy-emw-023
+    topic: maxwell-equations
+    subtopic: Lorentz force
+    concept: Force on a charge in E and B fields is q(E + v × B)
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: F = q(E + v × B)
+    tags: [lorentz-force, ncert-line]
+    stem: Along with Maxwell's equations, which expression gives the force on a charge q moving with velocity v in fields E and B?
+    options:
+      - F = q(E + v × B)
+      - F = q(v × E + B)
+      - F = qE × B
+      - F = q(E × v + B)
+    answer: 0
+    explanation: The Lorentz force F = q(E + v × B) combines the electric force qE and the magnetic force q v × B. NCERT lists it with the four Maxwell equations as the basic laws of electromagnetism.
+  - id: phy-emw-024
+    topic: maxwell-equations
+    subtopic: Maxwell's prediction
+    concept: Maxwell predicted EM waves travelling at 1/√(μ_0ε_0), equal to the speed of light
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [history, speed-of-light, ncert-line]
+    stem: What major conclusion did Maxwell draw from his equations?
+    options:
+      - Light consists of particles called photons
+      - Magnetic monopoles must exist
+      - Light is an electromagnetic wave travelling at 1/√(μ_0ε_0)
+      - Electromagnetic waves need a medium to travel
+    answer: 2
+    explanation: Maxwell's equations predicted waves of coupled E and B fields with speed 1/√(μ_0ε_0) ≈ 3 × 10^8 m s^{-1}, equal to the measured speed of light, so he concluded that light is an electromagnetic wave.
+  - id: phy-emw-025
+    topic: maxwell-equations
+    subtopic: Displacement current term
+    concept: Only the Ampere–Maxwell law contains the displacement current term
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [maxwell-equations, displacement-current]
+    stem: The term μ_0ε_0 dΦ_E/dt appears in which of Maxwell's equations?
+    options:
+      - Gauss's law for electricity
+      - Faraday's law
+      - Gauss's law for magnetism
+      - Ampere–Maxwell law
+    answer: 3
+    explanation: μ_0ε_0 dΦ_E/dt = μ_0 i_d is Maxwell's addition to Ampere's circuital law, giving the Ampere–Maxwell law.
+  - id: phy-emw-026
+    topic: sources-of-em-waves
+    subtopic: Fields of a stationary charge
+    concept: A stationary charge produces only an electrostatic field
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [sources, ncert-line]
+    stem: A charge at rest produces
+    options:
+      - only a magnetic field
+      - only an electric field
+      - both electric and magnetic fields
+      - electromagnetic waves
+    answer: 1
+    explanation: A stationary charge produces only an electrostatic field. Moving charges add a magnetic field, and only accelerated charges radiate electromagnetic waves.
+  - id: phy-emw-027
+    topic: sources-of-em-waves
+    subtopic: Uniformly moving charge
+    concept: A charge moving with constant velocity does not radiate
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [sources, trap]
+    stem: A charge moving with uniform velocity produces
+    options:
+      - an electric field only
+      - a magnetic field only
+      - electromagnetic waves only
+      - electric and magnetic fields but no electromagnetic waves
+    answer: 3
+    explanation: A uniformly moving charge constitutes a steady current, so it has both E and B fields, but its fields do not radiate away. Radiation needs acceleration.
+  - id: phy-emw-028
+    topic: sources-of-em-waves
+    subtopic: Accelerated charges
+    concept: Accelerated charges are the source of EM waves
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [sources, ncert-line]
+    stem: |-
+      Assertion (A): An electron revolving in a circle at constant speed radiates electromagnetic waves (classically).
+      Reason (R): Only charges with nonzero acceleration radiate electromagnetic waves.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Uniform circular motion has centripetal acceleration, so classically the electron radiates. R states the general rule and explains A.
+  - id: phy-emw-029
+    topic: sources-of-em-waves
+    subtopic: Frequency of radiation
+    concept: EM wave frequency equals the frequency of the oscillating charge
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: λ = c/ν
+    tags: [sources, frequency]
+    stem: A charge oscillates about its mean position at 10^9 Hz. The wavelength of the electromagnetic waves it produces is
+    options:
+      - "0.3 m"
+      - "3 m"
+      - "30 m"
+      - "0.03 m"
+    answer: 0
+    explanation: The radiated wave has the same frequency as the oscillating charge, so λ = c/ν = 3 × 10^8/10^9 = 0.3 m.
+  - id: phy-emw-030
+    topic: sources-of-em-waves
+    subtopic: Experimental discovery
+    concept: Hertz first demonstrated EM waves experimentally in 1887
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [history, ncert-line]
+    stem: Who first produced and detected electromagnetic waves experimentally (1887)?
+    options:
+      - Maxwell
+      - Marconi
+      - J.C. Bose
+      - Hertz
+    answer: 3
+    explanation: Heinrich Hertz in 1887 produced and detected electromagnetic waves using an oscillating spark-gap circuit, confirming Maxwell's prediction.
+  - id: phy-emw-031
+    topic: sources-of-em-waves
+    subtopic: J.C. Bose's work
+    concept: J.C. Bose produced EM waves of wavelength 25 mm to 5 mm
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [history, ncert-line]
+    stem: Jagadish Chandra Bose succeeded in producing electromagnetic waves of much shorter wavelength than Hertz, in the range
+    options:
+      - 25 m to 5 m
+      - 25 mm to 5 mm
+      - 25 nm to 5 nm
+      - 25 km to 5 km
+    answer: 1
+    explanation: NCERT notes that J.C. Bose produced electromagnetic waves of wavelength in the range 25 mm to 5 mm, far shorter than Hertz's waves.
+  - id: phy-emw-032
+    topic: sources-of-em-waves
+    subtopic: Limits of circuit oscillators
+    concept: Visible light needs ~10^{14} Hz, too high for LC circuits
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [sources, application]
+    stem: Why can visible light not be produced by an ordinary LC oscillator circuit?
+    options:
+      - Visible light is not an electromagnetic wave
+      - LC circuits cannot accelerate charges
+      - The frequency needed, about 10^{14} Hz, is far beyond what such circuits can reach
+      - Visible light needs a material medium to propagate
+    answer: 2
+    explanation: Visible light has frequencies of about 4 × 10^{14} to 7 × 10^{14} Hz. Even modern electronic circuits reach only about 10^{11} Hz, so light comes from atomic and molecular transitions instead.
+  - id: phy-emw-033
+    topic: nature-of-em-waves
+    subtopic: Transverse nature
+    concept: E, B and direction of propagation are mutually perpendicular
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [transverse, ncert-line]
+    stem: In an electromagnetic wave, the electric field, the magnetic field and the direction of propagation are
+    options:
+      - all parallel to one another
+      - mutually perpendicular
+      - E and B parallel, both perpendicular to propagation
+      - E along propagation, B perpendicular to it
+    answer: 1
+    explanation: "Electromagnetic waves are transverse: E ⊥ B, and both are perpendicular to the direction of propagation, which lies along E × B."
+  - id: phy-emw-034
+    topic: nature-of-em-waves
+    subtopic: Relation between E and B amplitudes
+    concept: E_0 = c B_0
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: E_0 = c B_0
+    tags: [amplitude-ratio]
+    stem: The magnetic field amplitude of an electromagnetic wave in vacuum is 2 × 10^{-8} T. Its electric field amplitude is
+    options:
+      - "6 V m^{-1}"
+      - "0.6 V m^{-1}"
+      - "60 V m^{-1}"
+      - "1.5 × 10^{-16} V m^{-1}"
+    answer: 0
+    explanation: E_0 = c B_0 = 3 × 10^8 × 2 × 10^{-8} = 6 V m^{-1}.
+  - id: phy-emw-035
+    topic: nature-of-em-waves
+    subtopic: Relation between E and B amplitudes
+    concept: B_0 = E_0/c
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: B_0 = E_0/c
+    tags: [amplitude-ratio]
+    stem: The electric field amplitude of a light wave in vacuum is 30 V m^{-1}. The amplitude of its magnetic field is
+    options:
+      - 10^{-6} T
+      - 9 × 10^9 T
+      - 10^{-8} T
+      - 10^{-7} T
+    answer: 3
+    explanation: B_0 = E_0/c = 30/(3 × 10^8) = 10^{-7} T.
+  - id: phy-emw-036
+    topic: nature-of-em-waves
+    subtopic: Direction of B
+    concept: Propagation is along E × B
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [direction, cross-product]
+    stem: An electromagnetic wave travels along the +x direction and its electric field oscillates along the y-axis. Its magnetic field oscillates along the
+    options:
+      - x-axis
+      - y-axis
+      - z-axis
+      - line y = z
+    answer: 2
+    explanation: B must be perpendicular to both E (y) and the propagation direction (x), so it lies along the z-axis; with E along +ĵ, E × B along +î needs B along +k̂.
+  - id: phy-emw-037
+    topic: nature-of-em-waves
+    subtopic: Direction of B
+    concept: For E along +x and propagation along +z, B is along +y
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [direction, cross-product, trap]
+    stem: At an instant, the electric field of a plane electromagnetic wave travelling along +z points along +x. The magnetic field at that point and instant points along
+    options:
+      - −y
+      - +y
+      - −x
+      - +z
+    answer: 1
+    explanation: The propagation direction is along E × B. With E along +î, we need î × B̂ = +k̂, which holds for B̂ = +ĵ (î × ĵ = k̂). Choosing −y would send the wave along −z.
+  - id: phy-emw-038
+    topic: nature-of-em-waves
+    subtopic: Phase of E and B
+    concept: E and B in an EM wave in vacuum are in phase
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [phase, trap]
+    stem: In a plane electromagnetic wave travelling in vacuum, the electric and magnetic fields
+    options:
+      - differ in phase by π/2
+      - differ in phase by π
+      - are in phase
+      - differ in phase by π/4
+    answer: 2
+    explanation: E = E_0 sin(kx − ωt) and B = B_0 sin(kx − ωt) have the same phase, so they reach their maxima and zeros together. The π/2 difference is a common confusion with LC circuits.
+  - id: phy-emw-039
+    topic: nature-of-em-waves
+    subtopic: Speed in a medium
+    concept: v = c/√(μ_r ε_r)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: v = 1/√(με) = c/√(μ_r ε_r)
+    tags: [speed-in-medium]
+    stem: The speed of an electromagnetic wave in a non-magnetic medium of relative permittivity 4 is
+    options:
+      - 6 × 10^8 m s^{-1}
+      - 0.75 × 10^8 m s^{-1}
+      - 3 × 10^8 m s^{-1}
+      - 1.5 × 10^8 m s^{-1}
+    answer: 3
+    explanation: v = c/√(μ_r ε_r) = 3 × 10^8/√(1 × 4) = 1.5 × 10^8 m s^{-1}. Dividing by ε_r instead of √ε_r gives the wrong 0.75 × 10^8.
+  - id: phy-emw-040
+    topic: nature-of-em-waves
+    subtopic: Refractive index
+    concept: n = √(μ_r ε_r)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: n = √(μ_r ε_r)
+    tags: [refractive-index, speed-in-medium]
+    stem: A non-magnetic transparent medium has relative permittivity 2.25 at optical frequencies. Its refractive index is
+    options:
+      - "2.25"
+      - "1.5"
+      - "1.33"
+      - "5.06"
+    answer: 1
+    explanation: n = c/v = √(μ_r ε_r) = √(1 × 2.25) = 1.5.
+  - id: phy-emw-041
+    topic: nature-of-em-waves
+    subtopic: Reading the wave equation
+    concept: Wave speed v = ω/k from a field equation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: v = ω/k = νλ
+    tags: [wave-equation, speed-in-medium, trap]
+    stem: The electric field of an electromagnetic wave in a medium is E_y = 50 sin[2π(10^8 t − x)] V m^{-1}, with x in metre and t in second. The speed of the wave in the medium is
+    options:
+      - 3 × 10^8 m s^{-1}
+      - 2π × 10^8 m s^{-1}
+      - 10^8 m s^{-1}
+      - 0.5 × 10^8 m s^{-1}
+    answer: 2
+    explanation: Comparing with sin(ωt − kx), ω = 2π × 10^8 rad s^{-1} and k = 2π m^{-1}, so v = ω/k = 10^8 m s^{-1}. The wave is in a medium, so assuming c = 3 × 10^8 m s^{-1} is the trap.
+  - id: phy-emw-042
+    topic: nature-of-em-waves
+    subtopic: Wave number
+    concept: k = ω/c in vacuum
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: k = ω/c
+    tags: [wave-equation]
+    stem: An electromagnetic wave in vacuum has angular frequency 6 × 10^8 rad s^{-1}. Its angular wave number k is
+    options:
+      - "2 rad m^{-1}"
+      - "0.5 rad m^{-1}"
+      - "18 rad m^{-1}"
+      - "π rad m^{-1}"
+    answer: 0
+    explanation: k = ω/c = 6 × 10^8/3 × 10^8 = 2 rad m^{-1}.
+  - id: phy-emw-043
+    topic: nature-of-em-waves
+    subtopic: No medium required
+    concept: EM waves propagate through vacuum
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [propagation, ncert-line]
+    stem: Unlike sound waves, electromagnetic waves
+    options:
+      - need a material medium to travel
+      - are longitudinal
+      - can travel through vacuum
+      - always travel slower in vacuum than in air
+    answer: 2
+    explanation: Electromagnetic waves are self-sustaining oscillations of E and B fields, so they need no material medium and travel fastest in vacuum.
+  - id: phy-emw-044
+    topic: nature-of-em-waves
+    subtopic: Speed in vacuum
+    concept: Speed in vacuum is the same for all wavelengths
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [speed-of-light, trap]
+    stem: Which statement about electromagnetic waves in vacuum is correct?
+    options:
+      - Gamma rays travel faster than radio waves
+      - Radio waves travel faster than gamma rays
+      - All electromagnetic waves travel with the same speed
+      - The speed depends on the intensity of the wave
+    answer: 2
+    explanation: In vacuum every electromagnetic wave, from radio to gamma, travels at c = 1/√(μ_0ε_0) ≈ 3 × 10^8 m s^{-1}, independent of wavelength and intensity.
+  - id: phy-emw-045
+    topic: nature-of-em-waves
+    subtopic: Dimensions of E/B
+    concept: E/B has dimensions of speed
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [dimensions]
+    stem: The ratio of electric field magnitude to magnetic field magnitude, E/B, has the dimensions of
+    options:
+      - speed
+      - acceleration
+      - time
+      - inverse speed
+    answer: 0
+    explanation: For an EM wave E = cB, so E/B has dimensions of speed. Independently, qE and qvB are both forces, so E/B = v.
+  - id: phy-emw-046
+    topic: nature-of-em-waves
+    subtopic: Behaviour in external fields
+    concept: EM waves are not deflected by electric or magnetic fields
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: false
+    tags: [propagation]
+    stem: |-
+      Assertion (A): Electromagnetic waves are not deflected by electric or magnetic fields.
+      Reason (R): Electromagnetic waves carry no electric charge.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Deflection by E or B needs a charge on which forces qE or qv × B can act. EM waves are uncharged field oscillations, so they pass straight through such fields; R explains A.
+  - id: phy-emw-047
+    topic: nature-of-em-waves
+    subtopic: Entering a medium
+    concept: Frequency stays constant while speed and wavelength decrease
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [speed-in-medium, trap]
+    stem: When light passes from vacuum into glass, which quantity does NOT change?
+    options:
+      - Wavelength
+      - Speed
+      - Frequency
+      - Wave number
+    answer: 2
+    explanation: Frequency is set by the source and stays the same; speed falls to c/n, and so wavelength (and hence wave number) changes.
+  - id: phy-emw-048
+    topic: nature-of-em-waves
+    subtopic: Entering a medium
+    concept: λ_medium = λ_0/n
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: λ = λ_0/n
+    tags: [speed-in-medium, refractive-index]
+    stem: Light of wavelength 600 nm in vacuum enters glass of refractive index 1.5. Its wavelength inside the glass is
+    options:
+      - 900 nm
+      - 600 nm
+      - 300 nm
+      - 400 nm
+    answer: 3
+    explanation: Frequency is unchanged and speed becomes c/n, so λ = λ_0/n = 600/1.5 = 400 nm.
+  - id: phy-emw-049
+    topic: nature-of-em-waves
+    subtopic: Transverse nature
+    concept: Polarisation shows the transverse nature of EM waves
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [transverse, polarisation]
+    stem: Which phenomenon confirms that electromagnetic waves are transverse?
+    options:
+      - Reflection
+      - Polarisation
+      - Interference
+      - Diffraction
+    answer: 1
+    explanation: Only transverse waves can be polarised. Reflection, interference and diffraction occur for longitudinal waves such as sound too.
+  - id: phy-emw-050
+    topic: nature-of-em-waves
+    subtopic: Reading the wave equation
+    concept: Finding E_0 from B_0 in a given wave equation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: E_0 = c B_0
+    tags: [wave-equation, amplitude-ratio]
+    stem: The magnetic field of a wave in vacuum is B_y = 2 × 10^{-7} sin(0.5 × 10^3 x + 1.5 × 10^{11} t) T. The amplitude of the electric field is
+    options:
+      - "60 V m^{-1}"
+      - "6 V m^{-1}"
+      - "600 V m^{-1}"
+      - "30 V m^{-1}"
+    answer: 0
+    explanation: E_0 = c B_0 = 3 × 10^8 × 2 × 10^{-7} = 60 V m^{-1}. (Check ω/k = 1.5 × 10^{11}/500 = 3 × 10^8 m s^{-1}, confirming vacuum.)
+  - id: phy-emw-051
+    topic: nature-of-em-waves
+    subtopic: Reading the wave equation
+    concept: Sign of kx and ωt terms gives the direction of travel
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [wave-equation, direction]
+    stem: The wave B_y = 2 × 10^{-7} sin(0.5 × 10^3 x + 1.5 × 10^{11} t) T travels along
+    options:
+      - +x
+      - −x
+      - +y
+      - −y
+    answer: 1
+    explanation: A wave of the form sin(kx + ωt) keeps constant phase when x decreases as t increases, so it moves along −x. The y in B_y only gives the direction of the magnetic field.
+  - id: phy-emw-052
+    topic: nature-of-em-waves
+    subtopic: Reading the wave equation
+    concept: Wavelength from k = 2π/λ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: λ = 2π/k
+    tags: [wave-equation]
+    stem: For the wave B_y = 2 × 10^{-7} sin(0.5 × 10^3 x + 1.5 × 10^{11} t) T, the wavelength is about
+    options:
+      - 2 mm
+      - 0.5 cm
+      - 1.26 cm
+      - 12.6 m
+    answer: 2
+    explanation: k = 0.5 × 10^3 m^{-1}, so λ = 2π/k = 6.28/500 ≈ 1.26 × 10^{-2} m = 1.26 cm. Using λ = 1/k gives 2 mm, which forgets the 2π.
+  - id: phy-emw-053
+    topic: energy-momentum
+    subtopic: Average energy density
+    concept: Average energy density u = ½ε_0E_0^2
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: u_avg = ½ε_0E_0^2
+    tags: [energy-density]
+    stem: The time-averaged total energy density of a plane electromagnetic wave with electric field amplitude E_0 is
+    options:
+      - ¼ε_0E_0^2
+      - ε_0E_0^2
+      - 2ε_0E_0^2
+      - ½ε_0E_0^2
+    answer: 3
+    explanation: Instantaneous u = ε_0E^2 (electric and magnetic parts are equal), and the average of sin^2 is ½, so u_avg = ½ε_0E_0^2. ¼ε_0E_0^2 is only the electric share.
+  - id: phy-emw-054
+    topic: energy-momentum
+    subtopic: Sharing of energy
+    concept: Electric and magnetic energy densities are equal
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [energy-density, trap]
+    stem: In a plane electromagnetic wave in vacuum, the ratio of the average electric energy density to the average magnetic energy density is
+    options:
+      - c
+      - 1/c
+      - "1"
+      - c^2
+    answer: 2
+    explanation: u_E = ½ε_0E^2 and u_B = B^2/2μ_0. With E = cB and c^2 = 1/μ_0ε_0, u_E = ½ε_0c^2B^2 = B^2/2μ_0 = u_B, so the ratio is 1 even though E is numerically c times B.
+  - id: phy-emw-055
+    topic: energy-momentum
+    subtopic: Intensity from field amplitude
+    concept: I = ½ε_0cE_0^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: I = ½ε_0cE_0^2
+    tags: [intensity]
+    stem: The electric field amplitude of a plane electromagnetic wave is 100 V m^{-1}. Its intensity is about
+    options:
+      - 26.6 W m^{-2}
+      - 13.3 W m^{-2}
+      - 1.33 W m^{-2}
+      - 0.13 W m^{-2}
+    answer: 1
+    explanation: I = ½ε_0cE_0^2 = 0.5 × 8.85 × 10^{-12} × 3 × 10^8 × 10^4 ≈ 13.3 W m^{-2}. Forgetting the ½ gives 26.6 W m^{-2}.
+  - id: phy-emw-056
+    topic: energy-momentum
+    subtopic: Radiation pressure
+    concept: Pressure on a perfect absorber P = I/c
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: P = I/c
+    tags: [radiation-pressure]
+    stem: Light of intensity 900 W m^{-2} falls normally on a perfectly absorbing surface. The radiation pressure on it is
+    options:
+      - 6 × 10^{-6} N m^{-2}
+      - 3 × 10^{-4} N m^{-2}
+      - 3 × 10^{-6} N m^{-2}
+      - 2.7 × 10^{11} N m^{-2}
+    answer: 2
+    explanation: For a perfect absorber P = I/c = 900/(3 × 10^8) = 3 × 10^{-6} N m^{-2}. 6 × 10^{-6} would apply to a perfect reflector.
+  - id: phy-emw-057
+    topic: energy-momentum
+    subtopic: Momentum transfer
+    concept: Momentum delivered on complete absorption p = U/c
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: p = U/c
+    tags: [momentum]
+    stem: A surface completely absorbs 30 J of electromagnetic energy incident normally on it. The momentum delivered to the surface is
+    options:
+      - 10^{-7} kg m s^{-1}
+      - 2 × 10^{-7} kg m s^{-1}
+      - 9 × 10^9 kg m s^{-1}
+      - 10^{-8} kg m s^{-1}
+    answer: 0
+    explanation: For total absorption p = U/c = 30/(3 × 10^8) = 10^{-7} kg m s^{-1}. For total reflection it would be doubled.
+  - id: phy-emw-058
+    topic: energy-momentum
+    subtopic: Momentum transfer
+    concept: Perfect reflection transfers 2U/c
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: p = 2U/c
+    tags: [momentum, reflection]
+    stem: Electromagnetic radiation of energy U falls normally on a perfectly reflecting surface. The momentum delivered to the surface is
+    options:
+      - U/c
+      - zero
+      - U/2c
+      - 2U/c
+    answer: 3
+    explanation: The wave's momentum U/c is reversed on reflection, so the change in momentum is U/c − (−U/c) = 2U/c, and this is transferred to the surface.
+  - id: phy-emw-059
+    topic: energy-momentum
+    subtopic: Intensity of a point source
+    concept: I = P/(4πr^2)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: I = P/4πr^2
+    tags: [intensity, point-source]
+    stem: A point source radiates 100 W uniformly in all directions. The intensity at 2 m from it is about
+    options:
+      - 8 W m^{-2}
+      - 2 W m^{-2}
+      - 4 W m^{-2}
+      - 25 W m^{-2}
+    answer: 1
+    explanation: I = P/(4πr^2) = 100/(4π × 4) ≈ 2 W m^{-2}.
+  - id: phy-emw-060
+    topic: energy-momentum
+    subtopic: Fields from a light bulb
+    concept: E_rms from intensity of an isotropic source
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: I = cε_0E_{rms}^2
+    tags: [intensity, rms-field, multi-concept]
+    stem: About 5% of the power of a 100 W bulb is emitted as visible light, uniformly in all directions. The rms electric field of this light at 1 m from the bulb is about
+    options:
+      - 1.2 V m^{-1}
+      - 17 V m^{-1}
+      - 12 V m^{-1}
+      - 150 V m^{-1}
+    answer: 2
+    explanation: I = 5/(4π × 1^2) ≈ 0.40 W m^{-2}. Since I = cε_0E_{rms}^2, E_{rms} = √(0.40/(3 × 10^8 × 8.85 × 10^{-12})) = √150 ≈ 12 V m^{-1}. 17 V m^{-1} is the peak value.
+  - id: phy-emw-061
+    topic: energy-momentum
+    subtopic: Intensity and energy density
+    concept: I = u_avg c
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: I = u c
+    tags: [intensity, energy-density]
+    stem: The average energy density of a plane electromagnetic wave in vacuum is 10^{-6} J m^{-3}. Its intensity is
+    options:
+      - 300 W m^{-2}
+      - 3 × 10^{-14} W m^{-2}
+      - 150 W m^{-2}
+      - 3 W m^{-2}
+    answer: 0
+    explanation: Energy flows at speed c, so I = u c = 10^{-6} × 3 × 10^8 = 300 W m^{-2}.
+  - id: phy-emw-062
+    topic: energy-momentum
+    subtopic: Radiation force
+    concept: Force on a reflector F = 2IA/c
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = 2IA/c
+    tags: [radiation-pressure, reflection]
+    stem: Sunlight of intensity 1.2 kW m^{-2} falls normally on a perfectly reflecting sheet of area 2 m^2. The force exerted on the sheet is
+    options:
+      - 8 × 10^{-6} N
+      - 4 × 10^{-6} N
+      - 1.6 × 10^{-5} N
+      - 3.2 × 10^{-5} N
+    answer: 2
+    explanation: For a perfect reflector P = 2I/c, so F = 2IA/c = 2 × 1200 × 2/(3 × 10^8) = 1.6 × 10^{-5} N. The absorber formula would give 8 × 10^{-6} N.
+  - id: phy-emw-063
+    topic: energy-momentum
+    subtopic: Units of radiation pressure
+    concept: Radiation pressure and energy density have the same dimensions
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [dimensions, radiation-pressure, energy-density]
+    stem: |-
+      Statement I: Radiation pressure has the same dimensions as energy density.
+      Statement II: The pressure exerted by a wave on a perfect absorber equals its intensity multiplied by c.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: N m^{-2} = J m^{-3}, so pressure and energy density share dimensions (for an absorber P = u_avg). The pressure is I/c, not Ic, so Statement II is wrong.
+  - id: phy-emw-064
+    topic: energy-momentum
+    subtopic: Radiation pressure in daily life
+    concept: Radiation pressure of sunlight is too small to feel
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [radiation-pressure, ncert-line]
+    stem: We do not feel any push when sunlight falls on our hand because
+    options:
+      - sunlight carries no momentum
+      - the momentum carried is very small, as p = U/c with c very large
+      - the skin reflects all the momentum
+      - radiation pressure acts only in vacuum
+    answer: 1
+    explanation: Electromagnetic waves do carry momentum, p = U/c. Because c is so large, the momentum (and hence force) from ordinary light is extremely small.
+  - id: phy-emw-065
+    topic: energy-momentum
+    subtopic: Energy density from B
+    concept: Average energy density u = B_0^2/2μ_0
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: u_avg = B_0^2/2μ_0
+    tags: [energy-density]
+    stem: The magnetic field amplitude of a plane electromagnetic wave is 2 × 10^{-8} T. The average total energy density of the wave is about
+    options:
+      - 1.6 × 10^{-10} J m^{-3}
+      - 3.2 × 10^{-10} J m^{-3}
+      - 8 × 10^{-11} J m^{-3}
+      - 1.6 × 10^{-16} J m^{-3}
+    answer: 0
+    explanation: u_avg = B_0^2/(2μ_0) = (4 × 10^{-16})/(2 × 4π × 10^{-7}) ≈ 1.6 × 10^{-10} J m^{-3}. 8 × 10^{-11} is only the magnetic share.
+  - id: phy-emw-066
+    topic: energy-momentum
+    subtopic: Intensity and amplitude
+    concept: I ∝ E_0^2
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [intensity, proportionality]
+    stem: If the electric field amplitude of an electromagnetic wave is doubled, its intensity becomes
+    options:
+      - double
+      - half
+      - unchanged
+      - four times
+    answer: 3
+    explanation: I = ½ε_0cE_0^2 ∝ E_0^2, so doubling E_0 multiplies the intensity by 4.
+  - id: phy-emw-067
+    topic: energy-momentum
+    subtopic: Electric share of energy
+    concept: Average electric energy density is ¼ε_0E_0^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: u_E,avg = ¼ε_0E_0^2
+    tags: [energy-density, trap]
+    stem: A plane electromagnetic wave has E_0 = 200 V m^{-1}. The average energy density associated with its electric field alone is about
+    options:
+      - 1.77 × 10^{-7} J m^{-3}
+      - 8.85 × 10^{-8} J m^{-3}
+      - 3.54 × 10^{-7} J m^{-3}
+      - 4.4 × 10^{-8} J m^{-3}
+    answer: 1
+    explanation: u_E = ½ε_0E^2 and the average of E^2 is E_0^2/2, so u_E,avg = ¼ε_0E_0^2 = 0.25 × 8.85 × 10^{-12} × 4 × 10^4 = 8.85 × 10^{-8} J m^{-3}. The total is twice this.
+  - id: phy-emw-068
+    topic: energy-momentum
+    subtopic: Instantaneous energy density
+    concept: Instantaneous total energy density u = ε_0E^2
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: u = ε_0E^2 = B^2/μ_0
+    tags: [energy-density]
+    stem: At a point where the instantaneous electric field of an electromagnetic wave is E, the instantaneous total energy density is
+    options:
+      - ½ε_0E^2
+      - ε_0E^2
+      - 2ε_0E^2
+      - ¼ε_0E^2
+    answer: 1
+    explanation: u = ½ε_0E^2 + B^2/2μ_0, and the two parts are equal at every instant, so u = ε_0E^2.
+  - id: phy-emw-069
+    topic: energy-momentum
+    subtopic: Point source and field amplitude
+    concept: For a point source E_0 ∝ 1/r
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [point-source, proportionality, trap]
+    stem: At 1 m from an isotropic point source the electric field amplitude is E. At 2 m from the source it is
+    options:
+      - E/4
+      - E/√2
+      - E/2
+      - E
+    answer: 2
+    explanation: I ∝ 1/r^2 and I ∝ E_0^2, so E_0 ∝ 1/r. Doubling r halves the amplitude. E/4 is the change in intensity, not amplitude.
+  - id: phy-emw-070
+    topic: radio-microwaves
+    subtopic: AM broadcast band
+    concept: AM band is 530 kHz to 1710 kHz
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [radio, ncert-line]
+    stem: The AM (amplitude modulated) radio band, according to NCERT, extends from
+    options:
+      - 88 MHz to 108 MHz
+      - 54 MHz to 890 MHz
+      - 530 kHz to 1710 kHz
+      - 1 GHz to 300 GHz
+    answer: 2
+    explanation: The AM band is 530 kHz to 1710 kHz. 88–108 MHz is the FM band, and 54–890 MHz is used by television.
+  - id: phy-emw-071
+    topic: radio-microwaves
+    subtopic: FM broadcast band
+    concept: FM band is 88 MHz to 108 MHz
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [radio, ncert-line]
+    stem: The FM radio band extends from
+    options:
+      - 88 MHz to 108 MHz
+      - 530 kHz to 1710 kHz
+      - 54 MHz to 88 MHz
+      - 2.4 GHz to 2.5 GHz
+    answer: 0
+    explanation: FM radio broadcasts use 88 MHz to 108 MHz.
+  - id: phy-emw-072
+    topic: radio-microwaves
+    subtopic: Microwave ovens
+    concept: Microwave oven frequency matches a resonant frequency of water molecules
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [microwave, application, ncert-line]
+    stem: Microwave ovens heat food efficiently because
+    options:
+      - microwaves ionise the food molecules
+      - the microwave frequency is chosen to match a resonant frequency of water molecules
+      - microwaves are strongly reflected by food
+      - microwaves have the highest energy among electromagnetic waves
+    answer: 1
+    explanation: The oven's frequency (about 2.45 GHz) is chosen to match a resonant frequency of water molecules, so energy is transferred efficiently to their kinetic energy and the food warms up. Microwaves are non-ionising.
+  - id: phy-emw-073
+    topic: radio-microwaves
+    subtopic: Radar
+    concept: Radar uses microwaves
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [microwave, radar, ncert-line]
+    stem: Radar systems used in aircraft navigation work with
+    options:
+      - infrared rays
+      - microwaves
+      - ultraviolet rays
+      - X-rays
+    answer: 1
+    explanation: Microwaves, with their short wavelengths, are suited to radar used in aircraft navigation and also for speed guns.
+  - id: phy-emw-074
+    topic: radio-microwaves
+    subtopic: Television band
+    concept: TV broadcasts use 54 MHz to 890 MHz
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [radio, television, ncert-line]
+    stem: Television waves, according to NCERT, lie in the frequency range
+    options:
+      - 530 kHz to 1710 kHz
+      - 54 MHz to 890 MHz
+      - 4 × 10^{14} Hz to 7 × 10^{14} Hz
+      - 3 GHz to 30 GHz
+    answer: 1
+    explanation: Television waves range from 54 MHz to 890 MHz; the FM band (88–108 MHz) lies inside this range.
+  - id: phy-emw-075
+    topic: radio-microwaves
+    subtopic: Cellular phones
+    concept: Mobile phones use the UHF band
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [radio, ncert-line]
+    stem: Cellular phones use radio waves to transmit voice in the
+    options:
+      - low frequency (LF) band
+      - medium wave band
+      - ultra high frequency (UHF) band
+      - extremely low frequency band
+    answer: 2
+    explanation: NCERT states that cellular phones use radio waves in the ultrahigh frequency (UHF) band.
+  - id: phy-emw-076
+    topic: radio-microwaves
+    subtopic: Wavelength of FM waves
+    concept: λ = c/ν for an FM station
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    formula: λ = c/ν
+    tags: [radio, wavelength]
+    stem: An FM station broadcasts at 100 MHz. The wavelength of its waves is
+    options:
+      - "30 m"
+      - "0.3 m"
+      - "300 m"
+      - "3 m"
+    answer: 3
+    explanation: λ = c/ν = 3 × 10^8/10^8 = 3 m.
+  - id: phy-emw-077
+    topic: radio-microwaves
+    subtopic: Microwave wavelength range
+    concept: Microwaves span 0.1 m to 1 mm
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [microwave, ncert-line]
+    stem: The approximate wavelength range of microwaves is
+    options:
+      - 0.1 m to 1 mm
+      - 1 mm to 700 nm
+      - more than 0.1 m
+      - 400 nm to 1 nm
+    answer: 0
+    explanation: NCERT's table gives microwaves as 0.1 m to 1 mm. Longer than 0.1 m is radio; 1 mm to 700 nm is infrared.
+  - id: phy-emw-078
+    topic: radio-microwaves
+    subtopic: Production of radio waves
+    concept: Radio waves come from accelerated charges in conducting wires
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [radio, sources, ncert-line]
+    stem: Radio waves are produced by
+    options:
+      - rapid acceleration and deceleration of charges in conducting wires
+      - vibration of atoms and molecules in hot bodies
+      - radioactive decay of nuclei
+      - inner-shell electron transitions in heavy atoms
+    answer: 0
+    explanation: Radio waves are produced by the accelerated motion of charges in conducting wires such as transmitting antennas. Hot bodies give infrared, nuclei give gamma rays and inner-shell transitions give X-rays.
+  - id: phy-emw-079
+    topic: infrared-visible-uv
+    subtopic: Infrared as heat waves
+    concept: Infrared waves are called heat waves
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [infrared, ncert-line]
+    stem: Which electromagnetic waves are often called heat waves?
+    options:
+      - Ultraviolet rays
+      - Microwaves
+      - Infrared waves
+      - X-rays
+    answer: 2
+    explanation: Infrared waves are produced by hot bodies and molecules and readily raise the internal energy (temperature) of substances they fall on, so they are called heat waves.
+  - id: phy-emw-080
+    topic: infrared-visible-uv
+    subtopic: Greenhouse effect
+    concept: Greenhouse effect traps infrared radiation
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [infrared, greenhouse, ncert-line]
+    stem: The greenhouse effect keeps the earth warm mainly by trapping
+    options:
+      - infrared radiation re-emitted by the earth
+      - ultraviolet radiation from the sun
+      - microwaves from the sun
+      - gamma rays from space
+    answer: 0
+    explanation: The earth absorbs visible light and re-radiates longer-wavelength infrared, which greenhouse gases such as CO_2 and water vapour trap, keeping the surface warm.
+  - id: phy-emw-081
+    topic: infrared-visible-uv
+    subtopic: Uses of infrared
+    concept: TV remote controls use infrared
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [infrared, uses, ncert-line]
+    stem: Remote switches of household electronic systems such as TVs work with
+    options:
+      - ultraviolet rays
+      - infrared rays
+      - microwaves
+      - gamma rays
+    answer: 1
+    explanation: Infrared LEDs in remote controls send coded pulses to the receiver, as NCERT mentions.
+  - id: phy-emw-082
+    topic: infrared-visible-uv
+    subtopic: Visible range
+    concept: Visible frequencies span about 4 × 10^{14} to 7 × 10^{14} Hz
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [visible, ncert-line]
+    stem: The frequency range of visible light is approximately
+    options:
+      - 4 × 10^{12} Hz to 7 × 10^{12} Hz
+      - 4 × 10^{16} Hz to 7 × 10^{16} Hz
+      - 4 × 10^9 Hz to 7 × 10^9 Hz
+      - 4 × 10^{14} Hz to 7 × 10^{14} Hz
+    answer: 3
+    explanation: Visible light spans about 700 nm to 400 nm, i.e. ν = c/λ from about 4 × 10^{14} Hz to 7 × 10^{14} Hz.
+  - id: phy-emw-083
+    topic: infrared-visible-uv
+    subtopic: Ozone layer
+    concept: Ozone layer absorbs most solar UV
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [ultraviolet, ozone, ncert-line]
+    stem: Most of the ultraviolet radiation from the sun is absorbed in the atmosphere by
+    options:
+      - nitrogen
+      - carbon dioxide
+      - ozone
+      - water vapour
+    answer: 2
+    explanation: The ozone layer, about 40–50 km up, absorbs most of the sun's UV radiation and protects life on earth.
+  - id: phy-emw-084
+    topic: infrared-visible-uv
+    subtopic: LASIK surgery
+    concept: UV lasers are used in LASIK eye surgery
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ultraviolet, uses, ncert-line]
+    stem: LASIK (laser-assisted in situ keratomileusis) eye surgery uses
+    options:
+      - infrared lasers
+      - ultraviolet lasers
+      - X-ray beams
+      - microwave beams
+    answer: 1
+    explanation: UV radiation has very short wavelength and can be focussed into very narrow beams for high-precision applications such as LASIK eye surgery.
+  - id: phy-emw-085
+    topic: infrared-visible-uv
+    subtopic: Welding goggles
+    concept: Welders use special glass to block UV from arcs
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [ultraviolet, safety, ncert-line]
+    stem: Welders wear goggles or face masks with special glass windows while arc welding. The main purpose is to protect their eyes from the large amount of
+    options:
+      - infrared radiation
+      - microwaves
+      - ultraviolet radiation
+      - gamma rays
+    answer: 2
+    explanation: Welding arcs produce a large amount of UV radiation, which damages the eyes; the special glass absorbs it.
+  - id: phy-emw-086
+    topic: infrared-visible-uv
+    subtopic: Vision in other animals
+    concept: Snakes detect infrared; bees see some ultraviolet
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [infrared, ultraviolet, ncert-line, trap]
+    stem: Which statement about the vision of other creatures is correct, according to NCERT?
+    options:
+      - Bees can detect infrared waves and snakes can see ultraviolet
+      - Snakes can detect infrared waves and bees can see some ultraviolet
+      - Both bees and snakes detect only microwaves
+      - Neither bees nor snakes can detect anything outside the visible range
+    answer: 1
+    explanation: NCERT notes that snakes can detect infrared waves, while insects such as bees can see into the ultraviolet. The first option swaps the two.
+  - id: phy-emw-087
+    topic: infrared-visible-uv
+    subtopic: Uses of ultraviolet
+    concept: UV lamps kill germs in water purifiers
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [ultraviolet, uses, ncert-line]
+    stem: Water purifiers kill germs using
+    options:
+      - ultraviolet lamps
+      - infrared lamps
+      - radio waves
+      - microwaves
+    answer: 0
+    explanation: UV radiation damages the genetic material of microorganisms, so UV lamps are used to kill germs in water purifiers.
+  - id: phy-emw-088
+    topic: infrared-visible-uv
+    subtopic: Uses of infrared
+    concept: Infrared used in physical therapy and earth-observation satellites
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [infrared, uses, ncert-line]
+    stem: |-
+      Infrared radiation is used in:
+      I. physical therapy (infrared lamps)
+      II. earth satellites for army purposes and observing crop growth
+      III. killing germs in water purifiers
+      IV. diagnosing bone fractures
+      Which are correct?
+    options:
+      - I and III only
+      - II and IV only
+      - I, II and III only
+      - I and II only
+    answer: 3
+    explanation: Infrared lamps are used in physical therapy and infrared detectors in earth satellites. Killing germs uses UV and bone imaging uses X-rays.
+  - id: phy-emw-089
+    topic: infrared-visible-uv
+    subtopic: UV wavelength range
+    concept: UV spans about 400 nm to 1 nm
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ultraviolet, ncert-line]
+    stem: In NCERT's table of the electromagnetic spectrum, ultraviolet rays have wavelengths from about
+    options:
+      - 700 nm to 400 nm
+      - 1 mm to 700 nm
+      - 400 nm to 1 nm
+      - 1 nm to 10^{-3} nm
+    answer: 2
+    explanation: Ultraviolet lies between visible light (ending at 400 nm) and X-rays (starting near 1 nm), i.e. 400 nm to 1 nm.
+  - id: phy-emw-090
+    topic: xrays-gamma
+    subtopic: Production of X-rays
+    concept: X-rays are produced by bombarding a metal target with fast electrons
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [x-rays, ncert-line]
+    stem: A common way of producing X-rays is to
+    options:
+      - heat a metal filament to red heat
+      - bombard a metal target with high-energy electrons
+      - pass current through a gas at low pressure
+      - allow a radioactive nucleus to decay
+    answer: 1
+    explanation: In an X-ray tube, high-energy electrons strike a metal target and X-rays are emitted. Radioactive decay gives gamma rays.
+  - id: phy-emw-091
+    topic: xrays-gamma
+    subtopic: Origin of gamma rays
+    concept: Gamma rays come from nuclear reactions and radioactive nuclei
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [gamma-rays, ncert-line]
+    stem: Gamma rays are produced in
+    options:
+      - LC oscillator circuits
+      - hot bodies and vibrating molecules
+      - nuclear reactions and radioactive nuclei
+      - welding arcs
+    answer: 2
+    explanation: Gamma rays have nuclear origin; they are emitted in nuclear reactions and by radioactive nuclei.
+  - id: phy-emw-092
+    topic: xrays-gamma
+    subtopic: Medical uses
+    concept: Gamma rays destroy cancer cells; X-rays are diagnostic
+    category: factual
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [x-rays, gamma-rays, uses, ncert-line]
+    stem: |-
+      Statement I: X-rays are used as a diagnostic tool in medicine and also as a treatment for certain forms of cancer.
+      Statement II: Gamma rays are used in medicine to destroy cancer cells.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "NCERT states both uses: X-rays for diagnosis and some cancer treatment, and gamma rays to destroy cancer cells."
+  - id: phy-emw-093
+    topic: xrays-gamma
+    subtopic: Hazards of X-rays
+    concept: X-rays damage living tissue, so exposure must be limited
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [x-rays, safety]
+    stem: Unnecessary or over-exposure to X-rays should be avoided because they
+    options:
+      - heat the body excessively
+      - damage or destroy living tissues and organisms
+      - are strongly absorbed by the ozone layer
+      - cause the skin to glow
+    answer: 1
+    explanation: X-rays are highly energetic and ionising; they damage or destroy living tissue and organisms, so exposure is kept as low as possible.
+  - id: phy-emw-094
+    topic: xrays-gamma
+    subtopic: X-ray wavelength range
+    concept: X-rays span about 1 nm to 10^{-3} nm
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [x-rays, ncert-line]
+    stem: According to NCERT's spectrum table, X-rays have wavelengths from about
+    options:
+      - 1 nm to 10^{-3} nm
+      - 400 nm to 1 nm
+      - less than 10^{-3} nm
+      - 1 mm to 700 nm
+    answer: 0
+    explanation: X-rays lie between ultraviolet (above about 1 nm) and gamma rays (below about 10^{-3} nm).
+  - id: phy-emw-095
+    topic: xrays-gamma
+    subtopic: Highest frequency
+    concept: Gamma rays have the highest frequency in the EM spectrum
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [gamma-rays, spectrum-order]
+    stem: Which radiation lies at the highest-frequency end of the electromagnetic spectrum?
+    options:
+      - X-rays
+      - Ultraviolet rays
+      - Microwaves
+      - Gamma rays
+    answer: 3
+    explanation: Gamma rays have the shortest wavelengths (below about 10^{-3} nm) and hence the highest frequencies.
+  - id: phy-emw-096
+    topic: em-spectrum
+    subtopic: Order of wavelengths
+    concept: Ordering bands by increasing wavelength
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [spectrum-order]
+    stem: Arrange in increasing order of wavelength — P. microwaves, Q. ultraviolet, R. X-rays, S. infrared.
+    options:
+      - R, Q, S, P
+      - Q, R, S, P
+      - R, Q, P, S
+      - P, S, Q, R
+    answer: 0
+    explanation: Wavelength increases from X-rays to ultraviolet to infrared to microwaves, i.e. R < Q < S < P.
+  - id: phy-emw-097
+    topic: em-spectrum
+    subtopic: Identifying a band
+    concept: λ = 1 cm is a microwave with ν = 3 × 10^{10} Hz
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: ν = c/λ
+    tags: [identify-band, frequency]
+    stem: An electromagnetic wave has a wavelength of 1 cm in vacuum. Its frequency and type are
+    options:
+      - 3 × 10^8 Hz, radio wave
+      - 3 × 10^{12} Hz, infrared
+      - 3 × 10^{10} Hz, microwave
+      - 3 × 10^{10} Hz, radio wave
+    answer: 2
+    explanation: ν = c/λ = 3 × 10^8/10^{-2} = 3 × 10^{10} Hz. A wavelength of 1 cm lies in the microwave range (0.1 m to 1 mm).
+  - id: phy-emw-098
+    topic: em-spectrum
+    subtopic: Common properties
+    concept: All EM waves share the same speed in vacuum
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [speed-of-light]
+    stem: Which property is the same for radio waves and gamma rays travelling in vacuum?
+    options:
+      - Frequency
+      - Wavelength
+      - Speed
+      - Energy per photon
+    answer: 2
+    explanation: All electromagnetic waves travel at c ≈ 3 × 10^8 m s^{-1} in vacuum; their frequency, wavelength and photon energy differ enormously.
+  - id: phy-emw-099
+    topic: em-spectrum
+    subtopic: Sources of each band
+    concept: Matching bands to their sources
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [sources, match]
+    stem: |-
+      Match List I (radiation) with List II (typical source).
+      List I:
+      P. Radio waves
+      Q. Infrared
+      R. X-rays
+      S. Gamma rays
+      List II:
+      1. Radioactive nuclei
+      2. Hot bodies and vibrating molecules
+      3. Accelerated charges in antennas
+      4. Fast electrons striking a metal target
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-2, R-4, S-1
+    answer: 3
+    explanation: Radio waves come from antennas (P-3), infrared from hot bodies (Q-2), X-rays from electrons hitting a target (R-4) and gamma rays from nuclei (S-1).
+  - id: phy-emw-100
+    topic: em-spectrum
+    subtopic: Division of the spectrum
+    concept: Bands overlap; the division is by source and detection, not sharp boundaries
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [spectrum-order, ncert-line]
+    stem: |-
+      Assertion (A): There are no sharp boundaries between neighbouring regions of the electromagnetic spectrum.
+      Reason (R): The regions differ mainly in the way the waves are produced and detected, and some overlap.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The spectrum is continuous; bands are named by how the radiation is produced and detected, and the ranges overlap (e.g. X-rays and gamma rays). So R explains A.
