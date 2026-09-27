@@ -949,7 +949,7 @@ questions:
     concept: Distance before stopping = v^2/(2μg)
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 45
     ncert: true
     battle: true
@@ -1567,7 +1567,7 @@ questions:
     concept: ½mv^2 = ½kx_m^2 gives maximum compression
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 40
     ncert: true
     battle: true
@@ -1645,7 +1645,7 @@ questions:
     concept: Released compressed spring converts ½kx^2 into KE
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 40
     ncert: true
     battle: true
@@ -1983,7 +1983,7 @@ questions:
     concept: Direction cosine from dot product with a unit vector
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 35
     ncert: true
     battle: true
@@ -2040,7 +2040,7 @@ questions:
     concept: cos θ from components
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 35
     ncert: true
     battle: true
@@ -4549,7 +4549,7 @@ questions:
     concept: For equal K, v ∝ 1/√m
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 35
     ncert: false
     battle: true
@@ -4652,7 +4652,7 @@ questions:
     concept: K = mg sin θ × d
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 40
     ncert: false
     battle: true
@@ -5203,7 +5203,7 @@ questions:
     concept: v^2 = u^2 + 2gh for any direction of throw
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 35
     ncert: false
     battle: true
@@ -5463,7 +5463,7 @@ questions:
     concept: P_avg = ΔK/t
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 40
     ncert: false
     battle: true
@@ -5758,7 +5758,7 @@ questions:
     concept: Equal masses sticking lose half the KE
     category: numerical
     format: direct
-    difficulty: 2
+    difficulty: 3
     time: 35
     ncert: true
     battle: true
@@ -7345,3 +7345,1146 @@ questions:
       - a curve depending on the wire's shape
     answer: 2
     explanation: ½mv^2 = mg(H − h), so v^2 = 2gH − 2gh, a straight line of slope −2g whatever the shape of the wire.
+  - id: phy-wep-365
+    topic: spring-energy
+    subtopic: Energy in a spring–block oscillator
+    concept: At x = A/2, K = 3U
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [spring-block, multi-concept]
+    stem: |-
+      A block on a smooth floor oscillates on a spring of force constant k between x = −A and x = +A. Consider:
+      I. At maximum compression the block's kinetic energy is zero.
+      II. At the natural length the spring's potential energy is zero and the kinetic energy is maximum.
+      III. The total mechanical energy is ½kA^2.
+      IV. At x = A/2 the kinetic and potential energies are equal.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: E = ½kA^2 throughout. At x = A/2, U = ½k(A/2)^2 = E/4, so K = 3E/4 = 3U. K = U occurs at x = A/√2, so IV is false.
+  - id: phy-wep-366
+    topic: spring-energy
+    subtopic: Sign of spring potential energy
+    concept: With zero at natural length, spring PE is never negative
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [spring-pe]
+    stem: |-
+      Assertion (A): Taking its zero at the natural length, the potential energy of an ideal spring is never negative.
+      Reason (R): The spring potential energy is ½kx^2 with k > 0.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: x^2 ≥ 0 and k > 0, so ½kx^2 ≥ 0 for both extension and compression. R explains A.
+  - id: phy-wep-367
+    topic: spring-energy
+    subtopic: Work by spring in successive stretches
+    concept: W_s from x to 2x = −(3/2)kx^2
+    category: numerical
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [sign-of-work]
+    stem: |-
+      Statement I: When a spring is stretched from its natural length by x, the work done by the spring force is −½kx^2.
+      Statement II: When it is stretched further from x to 2x, the work done by the spring force is −(3/2)kx^2.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: W_s = −½k(x_f^2 − x_i^2). From 0 to x this is −½kx^2, and from x to 2x it is −½k(4x^2 − x^2) = −(3/2)kx^2.
+  - id: phy-wep-368
+    topic: spring-energy
+    subtopic: Dimensions of related quantities
+    concept: Dimensional formulae in the chapter
+    category: factual
+    format: match
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [dimensions]
+    stem: |-
+      Match List I with List II.
+      List I:
+      P. Spring constant
+      Q. Elastic potential energy
+      R. Power
+      S. Linear momentum
+      List II:
+      1. [MLT^{-1}]
+      2. [ML^2T^{-3}]
+      3. [MT^{-2}]
+      4. [ML^2T^{-2}]
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-2, R-4, S-1
+      - P-3, Q-4, R-2, S-1
+    answer: 3
+    explanation: k = F/x = [MT^{-2}]; energy = [ML^2T^{-2}]; power = energy/time = [ML^2T^{-3}]; momentum = [MLT^{-1}].
+  - id: phy-wep-369
+    topic: spring-energy
+    subtopic: Work from area of spring F–x graph
+    concept: Trapezium area between two extensions
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [f-x-graph]
+    stem: The force needed to stretch a spring is F = 200x N (x in m). Using the area under the F–x graph, the work needed to increase its extension from 0.1 m to 0.3 m is
+    options:
+      - 4 J
+      - 8 J
+      - 9 J
+      - 16 J
+    answer: 1
+    explanation: The area is a trapezium with parallel sides 20 N and 60 N and width 0.2 m, so W = ½(20 + 60) × 0.2 = 8 J, the same as ½k(0.09 − 0.01).
+  - id: phy-wep-370
+    topic: spring-energy
+    subtopic: Springs in parallel
+    concept: Parallel springs add their constants
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [multi-concept]
+    stem: A block is attached to two springs in parallel with constants 100 N m^{-1} and 300 N m^{-1}. When the block is displaced 0.1 m, the total energy stored in the springs is
+    options:
+      - 1 J
+      - 4 J
+      - 0.5 J
+      - 2 J
+    answer: 3
+    explanation: Both springs stretch 0.1 m, so U = ½(100 + 300)(0.1)^2 = 200 × 0.01 = 2 J.
+  - id: phy-wep-371
+    topic: spring-energy
+    subtopic: Catapult
+    concept: ½kx^2 = ½mv^2 for a stretched cord
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [spring-pe]
+    stem: The rubber cord of a catapult behaves like a spring of force constant 500 N m^{-1}. It is pulled back 0.2 m and releases a 10 g stone. Assuming all the stored energy goes to the stone, its speed is about
+    options:
+      - 20 m s^{-1}
+      - 31.6 m s^{-1}
+      - 44.7 m s^{-1}
+      - 63.2 m s^{-1}
+    answer: 2
+    explanation: ½kx^2 = ½ × 500 × 0.04 = 10 J = ½ × 0.01 × v^2, so v^2 = 2000 and v ≈ 44.7 m s^{-1}. Dropping the ½ from the spring energy gives 63.2 m s^{-1}.
+  - id: phy-wep-372
+    topic: spring-energy
+    subtopic: Stiffness and stored energy
+    concept: For the same force the softer spring stores more energy
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [trap]
+    stem: Which statement about ideal springs is incorrect?
+    options:
+      - The work done by a spring force on a block moving along a line depends only on the initial and final extensions
+      - Two springs stretched by the same force store equal energy only if their force constants are equal
+      - If two springs are stretched by the same force, the stiffer spring stores more energy
+      - If two springs are stretched by the same amount, the stiffer spring stores more energy
+    answer: 2
+    explanation: For the same force U = F^2/2k, so the stiffer spring stores less energy. For the same extension U = ½kx^2, so the stiffer spring stores more.
+  - id: phy-wep-373
+    topic: spring-energy
+    subtopic: Comparing stored energies
+    concept: U = ½kx^2 = F^2/2k
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [spring-pe]
+    stem: |-
+      Arrange the energies stored in these springs in increasing order:
+      P. k = 100 N m^{-1}, extension 0.2 m
+      Q. k = 400 N m^{-1}, extension 0.05 m
+      R. k = 50 N m^{-1}, stretched by a 10 N force
+      S. k = 800 N m^{-1}, extension 0.1 m
+    options:
+      - Q, R, P, S
+      - R, Q, P, S
+      - Q, P, R, S
+      - Q, R, S, P
+    answer: 0
+    explanation: P = ½ × 100 × 0.04 = 2 J; Q = ½ × 400 × 0.0025 = 0.5 J; R = 100/100 = 1 J; S = ½ × 800 × 0.01 = 4 J. So Q < R < P < S.
+  - id: phy-wep-374
+    topic: spring-energy
+    subtopic: Maximum spring force
+    concept: F_max = k x_max with x_max from energy
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [spring-block]
+    stem: A 1 kg block moving at 4 m s^{-1} on a smooth floor hits a spring of force constant 400 N m^{-1}. The maximum force the spring exerts on the block is
+    options:
+      - 40 N
+      - 80 N
+      - 160 N
+      - 20 N
+    answer: 1
+    explanation: x_max = v√(m/k) = 4 × (1/20) = 0.2 m, so F_max = kx_max = 400 × 0.2 = 80 N.
+  - id: phy-wep-375
+    topic: power
+    subtopic: Relations for power
+    concept: P = F·v, W = ∫P dt, P_avg = W/t
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [instantaneous-power, average-power]
+    stem: |-
+      Consider the statements:
+      I. Instantaneous power P = F·v.
+      II. Work done in an interval is W = ∫P dt.
+      III. Average power is total work divided by total time.
+      IV. Power delivered by a force can never be negative.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: A force opposing the velocity, such as friction or braking, delivers negative power, so IV is false. I–III are the standard definitions.
+  - id: phy-wep-376
+    topic: power
+    subtopic: Power in various situations
+    concept: Evaluating P = Fv cos θ
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    tags: [instantaneous-power]
+    stem: |-
+      Match List I with List II (g = 10 m s^{-2}).
+      List I:
+      P. Power of gravity on a 1 kg body 1 s after it is dropped from rest
+      Q. A 5 N force at 60° to a velocity of 4 m s^{-1}
+      R. Power to lift 2 kg at a steady 2 m s^{-1}
+      S. Power of the centripetal force in uniform circular motion
+      List II:
+      1. 0
+      2. 10 W
+      3. 40 W
+      4. 100 W
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-3, Q-2, R-4, S-1
+      - P-4, Q-2, R-1, S-3
+    answer: 1
+    explanation: P = mg × gt = 10 × 10 = 100 W; Fv cos 60° = 5 × 4 × 0.5 = 10 W; mgv = 20 × 2 = 40 W; the centripetal force is perpendicular to v, giving 0.
+  - id: phy-wep-377
+    topic: power
+    subtopic: Electrical energy consumption
+    concept: Energy = power × time in kWh
+    category: numerical
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Statement I: 1 kWh = 3.6 × 10^6 J.
+      Statement II: A 100 W bulb that glows for 10 hours consumes 1 kWh of energy.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: 1 kWh = 1000 W × 3600 s = 3.6 × 10^6 J, and 100 W × 10 h = 1000 Wh = 1 kWh.
+  - id: phy-wep-378
+    topic: power
+    subtopic: Top speed at constant power
+    concept: At maximum speed the driving force equals resistance
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [constant-power]
+    stem: |-
+      Assertion (A): A car driven at constant engine power on a level road reaches its maximum speed when the driving force equals the total resistance.
+      Reason (R): At the maximum speed the acceleration of the car is zero.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: As v rises, the driving force P/v falls. Speed stops rising when the acceleration becomes zero, i.e. when P/v equals the resistance. R explains A.
+  - id: phy-wep-379
+    topic: power
+    subtopic: Speed at constant power from rest
+    concept: Pt = ½mv^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [constant-power]
+    stem: A 1000 kg car starts from rest and its engine delivers a constant 20 kW. Ignoring friction, its speed after 10 s is
+    options:
+      - 10 m s^{-1}
+      - 20 m s^{-1}
+      - 200 m s^{-1}
+      - 14 m s^{-1}
+    answer: 1
+    explanation: Energy delivered = Pt = 2 × 10^5 J = ½ × 1000 × v^2, so v^2 = 400 and v = 20 m s^{-1}.
+  - id: phy-wep-380
+    topic: power
+    subtopic: P against v at constant force
+    concept: P = Fv is linear in v with slope F
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [instantaneous-power]
+    stem: A constant force acts on a body along its direction of motion. The graph of the power delivered against the body's speed is
+    options:
+      - a parabola through the origin
+      - a horizontal line
+      - a straight line through the origin with slope equal to the force
+      - a rectangular hyperbola
+    answer: 2
+    explanation: P = Fv with F constant, a straight line through the origin whose slope is F. At constant power, by contrast, F against v is a hyperbola.
+  - id: phy-wep-381
+    topic: power
+    subtopic: Power against friction
+    concept: Power needed at constant speed against friction = fv
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [constant-velocity]
+    stem: Which statement about power and the rate of doing work is correct?
+    options:
+      - 1 W equals 1 J min^{-1}
+      - Power is a vector along the velocity
+      - A force that does zero total work over an interval can have a non-zero average power over that interval
+      - A car moving at constant speed v against a resistance f needs its engine to deliver power fv
+    answer: 3
+    explanation: At constant speed the driving force equals f, so P = fv. 1 W = 1 J s^{-1}; power is a scalar; and average power is total work divided by time, so zero work gives zero average power.
+  - id: phy-wep-382
+    topic: power
+    subtopic: Escalator
+    concept: Power output = total mgh per unit time
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [average-power]
+    stem: An escalator carries 20 people, each of mass 50 kg, up a height of 10 m every minute. The minimum power output of its motor is (g = 10 m s^{-2})
+    options:
+      - 100 kW
+      - 1.67 kW
+      - 10 kW
+      - 167 W
+    answer: 1
+    explanation: Work per minute = 20 × 50 × 10 × 10 = 1.0 × 10^5 J, so P = 10^5/60 ≈ 1.67 kW. Forgetting to divide by 60 s gives 100 kW.
+  - id: phy-wep-383
+    topic: power
+    subtopic: Filling an overhead tank
+    concept: P = mgh/t with t in seconds
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [pump]
+    stem: A pump fills an overhead tank of 2000 L capacity, 10 m above the ground, in 5 minutes. The power delivered to the water is (g = 10 m s^{-2}, 1 L of water = 1 kg)
+    options:
+      - 40 kW
+      - 4 kW
+      - 667 W
+      - 200 W
+    answer: 2
+    explanation: mgh = 2000 × 10 × 10 = 2 × 10^5 J in 300 s, so P ≈ 667 W. Dividing by 5 instead of 300 gives 40 kW.
+  - id: phy-wep-384
+    topic: power
+    subtopic: Units of power
+    concept: Sizes of erg s^{-1}, W, hp and kW
+    category: factual
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Arrange in increasing order of magnitude:
+      P. 1 kW
+      Q. 1 hp
+      R. 1 erg s^{-1}
+      S. 1 W
+    options:
+      - R, S, P, Q
+      - S, R, Q, P
+      - R, S, Q, P
+      - R, Q, S, P
+    answer: 2
+    explanation: 1 erg s^{-1} = 10^{-7} W, then 1 W, 1 hp = 746 W and 1 kW = 1000 W.
+  - id: phy-wep-385
+    topic: power
+    subtopic: Zero power
+    concept: F ⊥ v gives zero power
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [instantaneous-power]
+    stem: A force F = (2î + 3ĵ) N acts on a particle moving with velocity v = (3î − 2ĵ) m s^{-1}. The power delivered by the force is
+    options:
+      - 12 W
+      - 5 W
+      - −12 W
+      - zero
+    answer: 3
+    explanation: P = F·v = 6 − 6 = 0. The force is perpendicular to the velocity, so it changes only the direction of motion at this instant.
+  - id: phy-wep-386
+    topic: power
+    subtopic: Maximum speed and resistance laws
+    concept: Constant resistance gives v_max = P/f; resistance ∝ v gives v_max ∝ √P
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [constant-power, multi-concept]
+    stem: |-
+      Statement I: For a car with fixed engine power moving against a constant resistance, doubling the resistance halves the maximum speed.
+      Statement II: If the resistance is proportional to speed, doubling the engine power doubles the maximum speed.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: At top speed P = f v_max, so with constant f, v_max = P/f and doubling f halves it. If f = bv, then P = bv_max^2 and v_max ∝ √P, so doubling P raises v_max by √2 only.
+  - id: phy-wep-387
+    topic: collisions
+    subtopic: Elastic collision with a heavier target
+    concept: Velocities and energy transfer for m hitting 2m
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [elastic, multi-concept]
+    stem: |-
+      A ball of mass m moving at u collides head-on elastically with a ball of mass 2m at rest. Consider:
+      I. The first ball rebounds with speed u/3.
+      II. The second ball moves forward with speed 2u/3.
+      III. The fraction of kinetic energy transferred to the second ball is 8/9.
+      IV. The relative speed of separation is u.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: v_1 = (m − 2m)u/3m = −u/3 and v_2 = 2mu/3m = 2u/3. Energy transferred = ½(2m)(4u^2/9) ÷ ½mu^2 = 8/9. Separation speed = 2u/3 + u/3 = u. All four hold.
+  - id: phy-wep-388
+    topic: collisions
+    subtopic: Coefficient of restitution from rebound
+    concept: e = √(h'/h)
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [restitution]
+    stem: |-
+      A ball is dropped from height h onto a floor. Match the rebound (List I) with the coefficient of restitution (List II).
+      List I:
+      P. Rebounds to height h
+      Q. Does not rebound
+      R. Rebounds to h/4
+      S. Rebounds to 0.81h
+      List II:
+      1. 0
+      2. 0.5
+      3. 0.9
+      4. 1
+    options:
+      - P-4, Q-1, R-3, S-2
+      - P-1, Q-4, R-2, S-3
+      - P-4, Q-1, R-2, S-3
+      - P-4, Q-2, R-1, S-3
+    answer: 2
+    explanation: e = √(h'/h), giving 1, 0, √(1/4) = 0.5 and √0.81 = 0.9.
+  - id: phy-wep-389
+    topic: collisions
+    subtopic: Conservation laws in collisions
+    concept: Momentum always conserved; KE only in elastic
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [ncert-line, trap]
+    stem: |-
+      Statement I: In an elastic collision, both total linear momentum and total kinetic energy are conserved.
+      Statement II: In an inelastic collision, neither total linear momentum nor total kinetic energy is conserved.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Momentum is conserved in every collision of an isolated system; only the kinetic energy is not conserved in an inelastic collision.
+  - id: phy-wep-390
+    topic: collisions
+    subtopic: Two-fragment explosion
+    concept: Fragments move oppositely with v ∝ 1/m
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [explosion]
+    stem: |-
+      Assertion (A): When a bomb at rest explodes into two fragments, they fly apart in opposite directions with speeds inversely proportional to their masses.
+      Reason (R): The total momentum of the fragments remains zero.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: m_1v_1 + m_2v_2 = 0 requires the velocities to be opposite with m_1v_1 = m_2v_2, i.e. v ∝ 1/m. R explains A.
+  - id: phy-wep-391
+    topic: collisions
+    subtopic: Two-dimensional collision
+    concept: Momentum components give the target's velocity; compare KE
+    category: application
+    format: diagram
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    diagram: Top view on a smooth table with x-axis to the right and y-axis up. Before collision, a 1 kg ball moves along +x at 4 m s^{-1} towards a 2 kg ball at rest at the origin. After collision, the 1 kg ball moves along +y at 2 m s^{-1}; the 2 kg ball moves off below the x-axis with unknown velocity v.
+    tags: [two-dimensional, multi-concept]
+    stem: As shown, a 1 kg ball moving at 4 m s^{-1} along +x strikes a 2 kg ball at rest and then moves along +y at 2 m s^{-1}. The speed of the 2 kg ball after the collision, and the nature of the collision, are
+    options:
+      - √5 m s^{-1}, elastic
+      - 2 m s^{-1}, elastic
+      - √5 m s^{-1}, inelastic
+      - 3 m s^{-1}, inelastic
+    answer: 2
+    explanation: x-momentum 4 = 2v_x gives v_x = 2; y-momentum 0 = 2 + 2v_y gives v_y = −1, so v = √5 m s^{-1}. KE before = 8 J; after = 2 + ½ × 2 × 5 = 7 J, so 1 J is lost and the collision is inelastic.
+  - id: phy-wep-392
+    topic: collisions
+    subtopic: Kinetic energy before and after collisions
+    concept: KE can stay equal (elastic) or increase (explosions)
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [trap]
+    stem: Which statement about collisions and explosions is incorrect?
+    options:
+      - In every collision, the total kinetic energy after the collision is less than before
+      - Momentum is conserved in an explosion of a body at rest
+      - In an explosion, the total kinetic energy increases at the expense of internal energy
+      - In a perfectly inelastic collision, the loss of kinetic energy is the maximum possible for given masses and initial velocities
+    answer: 0
+    explanation: In an elastic collision the final KE equals the initial KE, so the first statement is not true for every collision. The others are correct.
+  - id: phy-wep-393
+    topic: collisions
+    subtopic: Colliding pendulum bobs
+    concept: Equal-mass elastic collision transfers all motion
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [elastic, ncert-line, pendulum]
+    stem: Two identical pendulum bobs A and B hang side by side from strings of equal length, just touching. A is pulled aside to 30° and released, and it collides elastically with B. What happens?
+    options:
+      - Both bobs swing together to 15°
+      - A rebounds to 30° while B stays at rest
+      - Both bobs swing forward, each to 30°
+      - A comes to rest and B swings up to 30°
+    answer: 3
+    explanation: In a 1D elastic collision equal masses exchange velocities, so A stops and B moves off with A's speed and rises to the same height, i.e. 30°. The process then repeats in reverse.
+  - id: phy-wep-394
+    topic: collisions
+    subtopic: KE loss depends on target mass
+    concept: Loss = ½ (m_1m_2/(m_1 + m_2)) u^2
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [perfectly-inelastic, energy-loss]
+    stem: |-
+      A 2 kg ball moving at 6 m s^{-1} strikes a ball of mass M at rest and sticks to it. Arrange the kinetic energy lost in increasing order for:
+      P. M = 1 kg
+      Q. M = 2 kg
+      R. M = 4 kg
+      S. M = 0.5 kg
+    options:
+      - S, P, Q, R
+      - P, S, Q, R
+      - S, Q, P, R
+      - R, Q, P, S
+    answer: 0
+    explanation: Loss = ½ × 2M/(2 + M) × 36. S gives 7.2 J, P 12 J, Q 18 J and R 24 J. A heavier target at rest absorbs a larger share.
+  - id: phy-wep-395
+    topic: collisions
+    subtopic: Coefficient of restitution
+    concept: e depends on materials; 0 ≤ e ≤ 1
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [restitution]
+    stem: |-
+      Consider the statements about the coefficient of restitution e:
+      I. e = 1 for a perfectly elastic collision.
+      II. For ordinary collisions 0 ≤ e ≤ 1.
+      III. e depends on the materials of the colliding bodies.
+      IV. e equals the ratio of final to initial kinetic energy.
+      Which are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: e is a ratio of relative speeds (separation/approach), not energies. For a ball on a fixed floor the energy ratio is e^2.
+  - id: phy-wep-396
+    topic: collisions
+    subtopic: Inelastic collision followed by spring compression
+    concept: Momentum for impact, then energy for compression
+    category: application
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [perfectly-inelastic, spring-block, multi-concept]
+    stem: A 1 kg lump of clay moving at 6 m s^{-1} hits and sticks to a 2 kg block attached to a horizontal spring (k = 300 N m^{-1}) on a smooth floor. The maximum compression of the spring is
+    options:
+      - 0.2 m
+      - 0.35 m
+      - 0.1 m
+      - 0.4 m
+    answer: 0
+    explanation: Momentum gives v = 6/3 = 2 m s^{-1}. Then ½ × 3 × 4 = 6 J = ½ × 300 × x^2, so x = 0.2 m. Using the clay's initial 18 J gives about 0.35 m, ignoring the loss in the sticking.
+  - id: phy-wep-397
+    topic: collisions
+    subtopic: Momentum–time graphs
+    concept: Individual momenta change but their sum stays constant
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ncert-line]
+    stem: Two bodies collide head-on in an isolated system. Their individual momenta p_1 and p_2 are plotted against time through the collision. Which description is correct?
+    options:
+      - Both p_1 and p_2 stay constant throughout
+      - p_1 and p_2 change, but the graph of p_1 + p_2 is a horizontal line
+      - p_1 + p_2 falls to a minimum during contact and then recovers
+      - p_1 + p_2 rises during contact
+    answer: 1
+    explanation: The internal forces are equal and opposite at every instant, so dp_1/dt = −dp_2/dt and the total momentum is constant throughout the collision.
+  - id: phy-wep-398
+    topic: collisions
+    subtopic: Right-angle rule for equal masses
+    concept: Perpendicular recoil needs elastic collision, equal masses, target at rest
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [two-dimensional, trap]
+    stem: |-
+      Statement I: When a moving ball collides obliquely and elastically with an identical ball at rest, they move off at right angles to each other.
+      Statement II: This right-angle result holds even if the collision is inelastic.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The right angle comes from combining u = v_1 + v_2 with u^2 = v_1^2 + v_2^2. If KE is lost, u^2 > v_1^2 + v_2^2, so v_1·v_2 > 0 and the angle is less than 90°.
+  - id: phy-wep-399
+    topic: collisions
+    subtopic: Bullet passing through a block
+    concept: Momentum conservation when bullet emerges
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [bullet]
+    stem: A 20 g bullet moving at 300 m s^{-1} passes through a 1 kg block at rest on a smooth surface and emerges at 100 m s^{-1}. The speed of the block afterwards is
+    options:
+      - 6 m s^{-1}
+      - 2 m s^{-1}
+      - 4 m s^{-1}
+      - 8 m s^{-1}
+    answer: 2
+    explanation: 0.02 × 300 = 0.02 × 100 + 1 × v, so v = 6 − 2 = 4 m s^{-1}. Kinetic energy is not conserved; much of it becomes heat.
+  - id: phy-wep-400
+    topic: collisions
+    subtopic: Collision of bodies with equal KE
+    concept: Equal K, larger mass has larger momentum
+    category: application
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [momentum-ke, multi-concept]
+    stem: |-
+      Assertion (A): A heavy truck and a light car with equal kinetic energies collide head-on and stick together; the wreck moves in the truck's original direction.
+      Reason (R): For equal kinetic energy, momentum p = √(2mK) is larger for the heavier body.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The truck has more momentum, so the net momentum, which is conserved, points along the truck's motion, and the wreck moves that way. R explains A.
+
+  - id: phy-wep-401
+    topic: scalar-product
+    subtopic: Difference of unit vectors
+    concept: "|A − B|^2 = 2 − 2cos θ for unit vectors"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [unit-vectors, magnitude]
+    stem: A and B are unit vectors and |A − B| = 1. The angle between A and B is
+    options:
+      - 30°
+      - 90°
+      - 120°
+      - 60°
+    answer: 3
+    explanation: "|A − B|^2 = 1 + 1 − 2cos θ = 1 gives cos θ = 1/2, so θ = 60°. The value 120° would make |A + B| = 1 instead."
+  - id: phy-wep-402
+    topic: scalar-product
+    subtopic: Physical quantities as dot products
+    concept: Work, power and KE can be written as scalar products
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ncert-line]
+    stem: |-
+      Which of these quantities can be written as a scalar product of two vectors?
+      I. Work, as F·d
+      II. Power, as F·v
+      III. Kinetic energy, as ½m v·v
+      IV. Linear momentum
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: Work, power and ½m v·v = ½mv^2 are scalars formed from dot products. Momentum mv is a vector (a scalar times a vector), not a dot product.
+  - id: phy-wep-403
+    topic: scalar-product
+    subtopic: Unknown component from projection
+    concept: Projection A·B/|B| set equal to a given value
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [projection]
+    stem: The projection of A = 2î + mĵ + k̂ on B = î + 2ĵ − 2k̂ is 2 units. The value of m is
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "6"
+    answer: 2
+    explanation: A·B/|B| = (2 + 2m − 2)/3 = 2m/3 = 2, so m = 3. Forgetting to divide by |B| = 3 gives m = 1.
+  - id: phy-wep-404
+    topic: scalar-product
+    subtopic: Zero dot product
+    concept: A·B = 0 does not mean A or B is zero
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [trap, perpendicular]
+    stem: |-
+      Assertion (A): If A·B = 0, then either A or B must be a zero vector.
+      Reason (R): A·B = AB cos θ.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: AB cos θ is zero also when θ = 90°, so two non-zero perpendicular vectors have zero dot product. A is false; R is the definition.
+  - id: phy-wep-405
+    topic: scalar-product
+    subtopic: Angles between given vectors
+    concept: cos θ from dot products of simple vectors
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    tags: [angle-between-vectors]
+    stem: |-
+      Match each pair of vectors (List I) with the angle between them (List II).
+      List I:
+      P. î and î + ĵ
+      Q. î + ĵ and î − ĵ
+      R. î and −î
+      S. î + ĵ + k̂ and î
+      List II:
+      1. 90°
+      2. 180°
+      3. 45°
+      4. cos^{-1}(1/√3)
+    options:
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-1, R-2, S-4
+      - P-4, Q-1, R-2, S-3
+      - P-3, Q-1, R-4, S-2
+    answer: 1
+    explanation: cos θ = 1/√2 (45°), 0 (90°), −1 (180°) and 1/√3 respectively.
+  - id: phy-wep-406
+    topic: scalar-product
+    subtopic: Variation with angle
+    concept: A·B = AB cos θ follows a cosine curve
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [angle-between-vectors]
+    stem: The magnitudes of A and B are fixed and the angle θ between them is varied from 0° to 180°. The graph of A·B against θ
+    options:
+      - rises from zero to AB
+      - stays constant at AB
+      - falls from AB to −AB, passing through zero at 90°
+      - falls from AB to zero at 180°
+    answer: 2
+    explanation: A·B = AB cos θ, which falls from +AB at 0° through zero at 90° to −AB at 180°.
+  - id: phy-wep-407
+    topic: work-constant-force
+    subtopic: Displacement along a given direction
+    concept: d = (distance) × unit vector; then W = F·d
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [components]
+    stem: A constant force F = 10î N acts on a particle that moves 5 m in the direction of the vector 3î + 4ĵ. The work done by F is
+    options:
+      - 50 J
+      - 40 J
+      - 30 J
+      - 150 J
+    answer: 2
+    explanation: The displacement is 5 × (3î + 4ĵ)/5 = 3î + 4ĵ m, so W = 10 × 3 = 30 J. Using the full 5 m along x gives 50 J.
+  - id: phy-wep-408
+    topic: work-constant-force
+    subtopic: Constant velocity and work
+    concept: Net work zero at constant velocity, but individual forces do work
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [net-work, constant-velocity]
+    stem: A crate is dragged across a rough floor at constant velocity. Which statement is correct?
+    options:
+      - No force does any work on the crate
+      - The net work on the crate is zero, but the pulling force and friction each do non-zero work
+      - The pulling force does zero work because the velocity is constant
+      - Friction does positive work on the crate
+    answer: 1
+    explanation: The pull does positive work and friction an equal amount of negative work, so W_net = ΔK = 0. Constant velocity means zero net force, not zero individual forces.
+  - id: phy-wep-409
+    topic: work-constant-force
+    subtopic: Works on a block dragged at constant velocity
+    concept: Sum of works zero; normal and gravity do no work on level floor
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [net-work, friction]
+    stem: |-
+      A block is pulled at constant velocity across a level rough floor by a force inclined above the horizontal. Consider:
+      I. The work done by the pulling force equals the magnitude of the work done by friction.
+      II. The net work done on the block is zero.
+      III. The normal force does no work.
+      IV. Gravity does negative work.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: With ΔK = 0 and gravity and normal force perpendicular to the horizontal motion, the pull's positive work exactly cancels friction's negative work. Gravity does zero work on a level floor.
+  - id: phy-wep-410
+    topic: work-constant-force
+    subtopic: Work done by friction over time
+    concept: Kinematics gives displacement; W_f = −f s
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    tags: [friction, ncert-line, multi-concept]
+    stem: A 2 kg body initially at rest on a table is pushed by a horizontal 7 N force. The coefficient of kinetic friction is 0.1 (g = 9.8 m s^{-2}). The work done by friction in the first 10 s is about
+    options:
+      - −247 J
+      - −196 J
+      - −882 J
+      - −126 J
+    answer: 0
+    explanation: f = 0.1 × 2 × 9.8 = 1.96 N, a = (7 − 1.96)/2 = 2.52 m s^{-2} and s = ½ × 2.52 × 100 = 126 m. W_f = −1.96 × 126 ≈ −247 J. This is an NCERT exercise; the applied force does 882 J.
+  - id: phy-wep-411
+    topic: work-constant-force
+    subtopic: Action–reaction and work
+    concept: Third-law pairs need not do equal and opposite work
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 50
+    ncert: true
+    battle: false
+    tags: [frame-dependence, trap]
+    stem: |-
+      Statement I: The work done by a force on a body depends on the frame of reference.
+      Statement II: The work done by a force on a body is always equal and opposite to the work done by its reaction force on the other body.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Displacements differ between frames, so I is true. The action and reaction act on bodies with different displacements; road friction on a skidding cycle does negative work, but its reaction does none on the stationary road.
+  - id: phy-wep-412
+    topic: work-constant-force
+    subtopic: Smooth horizontal motion at constant velocity
+    concept: No net work needed to keep constant velocity on a smooth surface
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [constant-velocity]
+    stem: |-
+      Assertion (A): No work needs to be done to keep a body moving at constant velocity along a smooth horizontal surface.
+      Reason (R): No net force is needed to maintain a constant velocity.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Without friction no horizontal force is required (Newton's first law), so no force acts along the motion and no work is done. R explains A.
+  - id: phy-wep-413
+    topic: work-constant-force
+    subtopic: Comparing work done against gravity
+    concept: Slow lifting work = mgh; horizontal carrying = 0
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [gravity]
+    stem: |-
+      Arrange the work done by the person in increasing order (g = 10 m s^{-2}, all motions slow and frictionless):
+      P. Lifting 10 kg through 2 m
+      Q. Pushing 5 kg 6 m up a 30° incline
+      R. Carrying 20 kg 50 m horizontally
+      S. Lifting 4 kg through 4 m
+    options:
+      - R, S, Q, P
+      - R, Q, P, S
+      - Q, R, S, P
+      - R, Q, S, P
+    answer: 3
+    explanation: Slow motion means W = mgh. P = 200 J, Q = 5 × 10 × 3 = 150 J, R = 0 and S = 160 J. So R < Q < S < P.
+  - id: phy-wep-414
+    topic: work-constant-force
+    subtopic: Units in the chapter
+    concept: SI and practical units of work, power and k
+    category: factual
+    format: match
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Match each quantity with its unit.
+      List I:
+      P. Work
+      Q. Power
+      R. Electrical energy (commercial)
+      S. Spring constant
+      List II:
+      1. N m^{-1}
+      2. kWh
+      3. watt
+      4. joule
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+    answer: 2
+    explanation: Work is in joules, power in watts, commercial electrical energy in kWh and spring constant in N m^{-1}.
+  - id: phy-wep-415
+    topic: work-constant-force
+    subtopic: Friction around a closed path
+    concept: Work by friction over a closed path = −f × path length
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [friction, closed-path]
+    stem: A 2 kg block is dragged once round a 3 m × 4 m rectangle on a rough floor (μ = 0.2) and returns to its start. The total work done by friction is (g = 10 m s^{-2})
+    options:
+      - −28 J
+      - zero
+      - −56 J
+      - −20 J
+    answer: 2
+    explanation: Friction (4 N) always opposes the motion, so W = −4 × 14 m = −56 J. It is not zero, since friction is non-conservative. Using half the perimeter gives −28 J.
+  - id: phy-wep-416
+    topic: work-constant-force
+    subtopic: Work–displacement graph
+    concept: Slope of W–d graph = F cos θ
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [angle]
+    stem: A constant force F acts at an angle θ to the straight-line displacement of a body. The slope of the graph of work done against displacement is
+    options:
+      - F
+      - F sin θ
+      - F/cos θ
+      - F cos θ
+    answer: 3
+    explanation: W = (F cos θ)d, a straight line through the origin with slope F cos θ, the component of force along the displacement.
+  - id: phy-wep-417
+    topic: work-constant-force
+    subtopic: Hoisting a load
+    concept: Net work of tension and gravity gives the speed
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [net-work]
+    stem: A 10 kg load at rest is hoisted 2 m by a rope with a constant tension of 150 N. Its speed at the end is (g = 10 m s^{-2})
+    options:
+      - √20 m s^{-1}
+      - √60 m s^{-1}
+      - 10 m s^{-1}
+      - √40 m s^{-1}
+    answer: 0
+    explanation: W_T = 300 J and W_g = −200 J, so W_net = 100 J = ½ × 10 × v^2, giving v = √20 ≈ 4.5 m s^{-1}. Using only the tension's work gives √60.

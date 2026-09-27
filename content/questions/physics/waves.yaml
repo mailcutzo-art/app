@@ -7670,3 +7670,832 @@ questions:
       - A is false but R is true
     answer: 0
     explanation: "With a node at one end and an antinode at the other, the length must be an odd multiple of λ/4, L = (2n − 1)λ/4, giving only odd harmonics (like a closed pipe). R explains A."
+
+  - id: phy-wav-362
+    topic: strings-standing
+    subtopic: Fixed–free string
+    concept: Fundamental of a fixed–free string is v/4L
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: f_1 = v/4L
+    tags: [boundary-conditions]
+    stem: A 1 m string is fixed at one end and attached to a massless ring free to slide on a smooth rod at the other. If waves travel at 200 m s^{-1}, its fundamental frequency is
+    options:
+      - 100 Hz
+      - 200 Hz
+      - 50 Hz
+      - 25 Hz
+    answer: 2
+    explanation: "Node at the fixed end, antinode at the free end: L = λ/4, so λ = 4 m and f = 200/4 = 50 Hz. Treating both ends as fixed gives 100 Hz."
+
+  - id: phy-wav-363
+    topic: strings-standing
+    subtopic: Amplitude near a node
+    concept: At λ/8 from a node the amplitude is 2a sin(π/4) = √2 a
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: A(x) = 2a|sin kx|
+    tags: [amplitude, nodes]
+    stem: A standing wave is formed by two waves each of amplitude a. The amplitude of a particle at a distance λ/8 from a node is
+    options:
+      - a
+      - √2 a
+      - 2a
+      - a/√2
+    answer: 1
+    explanation: "Measured from a node, amplitude = 2a|sin kx| with kx = (2π/λ)(λ/8) = π/4. So 2a sin 45° = √2 a."
+
+  - id: phy-wav-364
+    topic: strings-standing
+    subtopic: Same fork, higher mode
+    concept: To resonate in the 2nd harmonic with the same fork, length doubles
+    category: application
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: f = nv/2L
+    tags: [sonometer, harmonics]
+    stem: A sonometer wire of length L resonates in its fundamental mode with a tuning fork. At the same tension, for the wire to resonate with the same fork in its second harmonic, its vibrating length must be
+    options:
+      - L/2
+      - L/√2
+      - √2 L
+      - 2L
+    answer: 3
+    explanation: "Resonance needs n v/2L' = v/2L. With n = 2, L' = 2L: a wire twice as long vibrates in two loops at the same frequency."
+
+  - id: phy-wav-365
+    topic: strings-standing
+    subtopic: Straight-string instants
+    concept: A standing-wave string is straight twice per period
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [standing-waves, time]
+    stem: Snapshots of a string vibrating in a standing wave of period T are drawn over one cycle. The time interval between successive instants when the whole string is straight is
+    options:
+      - T/2
+      - T
+      - T/4
+      - 2T
+    answer: 0
+    explanation: "y = 2a sin kx cos ωt is zero everywhere when cos ωt = 0, i.e. at t = T/4, 3T/4, …, so the string is straight every T/2. Maximum displacement also occurs every T/2."
+
+  - id: phy-wav-366
+    topic: strings-standing
+    subtopic: Laws of the sonometer
+    concept: Frequency is inversely proportional to vibrating length
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [sonometer, laws-of-strings]
+    stem: For a sonometer wire vibrating in its fundamental mode, which statement is correct?
+    options:
+      - The frequency is directly proportional to the tension
+      - The frequency is directly proportional to the diameter of the wire
+      - The frequency is inversely proportional to the vibrating length
+      - The frequency is directly proportional to √μ
+    answer: 2
+    explanation: "f = (1/2L)√(T/μ): inversely proportional to L, proportional to √T (not T), and inversely proportional to √μ and hence to the diameter."
+
+  - id: phy-wav-367
+    topic: strings-standing
+    subtopic: Speed from fundamental
+    concept: v = 2Lf_1
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: v = 2Lf_1
+    tags: [fundamental, wave-speed]
+    stem: A 60 cm string fixed at both ends has a fundamental frequency of 400 Hz. The speed of waves on the string is
+    options:
+      - 240 m s^{-1}
+      - 480 m s^{-1}
+      - 960 m s^{-1}
+      - 667 m s^{-1}
+    answer: 1
+    explanation: "Fundamental: λ = 2L = 1.2 m, so v = fλ = 400 × 1.2 = 480 m s^{-1}. Using λ = L gives 240 m s^{-1}."
+
+  - id: phy-wav-368
+    topic: strings-standing
+    subtopic: Forcing a node
+    concept: Touching at L/3 allows only modes with a node there (n = 3, 6, …)
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [harmonics, nodes, trap]
+    stem: A string with fundamental frequency f is touched lightly at a point one-third of its length from one end, forcing a node there. The lowest frequency at which it can now vibrate is
+    options:
+      - f
+      - 3f/2
+      - 3f
+      - 2f
+    answer: 2
+    explanation: "Allowed modes must have nodes at x = L/3, i.e. L/3 must be a multiple of λ/2. The largest wavelength is λ = 2L/3, which is the third harmonic, 3f. The second harmonic has a node at L/2, not L/3."
+
+  - id: phy-wav-369
+    topic: strings-standing
+    subtopic: Analysing y = 2A sin kx cos ωt
+    concept: Components, antinode amplitude, no energy flow, flat at T/4
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [standing-wave-equation, multi-concept]
+    stem: |-
+      For the standing wave y = 2A sin kx cos ωt, consider:
+      I. It is the sum of A sin(kx − ωt) and A sin(kx + ωt).
+      II. Particles at x = λ/4 oscillate with amplitude 2A.
+      III. Energy flows steadily along +x.
+      IV. At t = T/4 every particle is at its mean position.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II, III and IV only
+      - II and IV only
+    answer: 0
+    explanation: "sin(kx − ωt) + sin(kx + ωt) = 2 sin kx cos ωt (I true). At x = λ/4, sin kx = 1 (II true). A standing wave carries no net energy (III false). At t = T/4, cos ωt = 0 (IV true)."
+
+  - id: phy-wav-370
+    topic: strings-standing
+    subtopic: Frequencies of modes
+    concept: f_n = nv/2L for a 1 m string with v = 200 m s^{-1}
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: f_n = nv/2L
+    tags: [match, harmonics]
+    stem: |-
+      A 1 m string fixed at both ends carries waves at 200 m s^{-1}. Match the wavelength of the mode (List I) with its frequency (List II).
+      List I: P. 2 m  Q. 1 m  R. 0.5 m  S. 2/3 m
+      List II: 1. 100 Hz  2. 200 Hz  3. 300 Hz  4. 400 Hz
+    options:
+      - P-1, Q-2, R-3, S-4
+      - P-2, Q-1, R-4, S-3
+      - P-1, Q-4, R-2, S-3
+      - P-1, Q-2, R-4, S-3
+    answer: 3
+    explanation: "f = v/λ: 200/2 = 100 Hz, 200/1 = 200 Hz, 200/0.5 = 400 Hz, 200/(2/3) = 300 Hz. These are the 1st, 2nd, 4th and 3rd harmonics."
+
+  - id: phy-wav-371
+    topic: strings-standing
+    subtopic: Node spacing and frequency
+    concept: Node spacing λ/2 is geometric; frequency equality is a separate fact
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [nodes, frequency]
+    stem: |-
+      Assertion (A): The distance between two consecutive nodes of a stationary wave is λ/2.
+      Reason (R): The frequency of a stationary wave is the same as that of the component travelling waves.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Nodes occur where sin kx = 0, i.e. kx = nπ, spaced π/k = λ/2 (A true). R is also true, but node spacing follows from the spatial factor sin kx, not from the frequency."
+
+  - id: phy-wav-372
+    topic: strings-standing
+    subtopic: Antinode spacing
+    concept: Adjacent antinodes are L/n apart in the nth harmonic
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [antinodes]
+    stem: A 1.5 m string fixed at both ends vibrates in its third harmonic. The distance between adjacent antinodes is
+    options:
+      - 1.0 m
+      - 0.75 m
+      - 0.25 m
+      - 0.5 m
+    answer: 3
+    explanation: "Third harmonic: 3 loops over 1.5 m, each loop λ/2 = 0.5 m. Adjacent antinodes are λ/2 = 0.5 m apart, the same as adjacent nodes."
+
+  - id: phy-wav-373
+    topic: strings-standing
+    subtopic: Second harmonic frequency
+    concept: f_2 = v/L with v = √(T/μ)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: f_2 = (2/2L)√(T/μ)
+    tags: [harmonics, multi-concept]
+    stem: A wire 1 m long and of mass 10 g is fixed at both ends under a tension of 400 N. The frequency of its second harmonic is
+    options:
+      - 200 Hz
+      - 100 Hz
+      - 400 Hz
+      - 20 Hz
+    answer: 0
+    explanation: "μ = 0.01 kg m^{-1}, v = √(400/0.01) = 200 m s^{-1}. f_1 = v/2L = 100 Hz, so f_2 = 200 Hz."
+
+  - id: phy-wav-374
+    topic: strings-standing
+    subtopic: Longest wavelength and overtones
+    concept: Fundamental has the longest wavelength; overtones of a string are all harmonics
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [fundamental, overtones]
+    stem: |-
+      Statement I: For a string fixed at both ends, the fundamental mode has the longest possible wavelength, equal to twice the length.
+      Statement II: Every overtone of such a string is an integral multiple (harmonic) of the fundamental.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "L = nλ/2 makes λ = 2L the largest wavelength (n = 1). All allowed frequencies are nf_1, so overtones are harmonics. Both statements are correct."
+
+  - id: phy-wav-375
+    topic: strings-standing
+    subtopic: Fixed–free amplitude profile
+    concept: A fixed–free string's fundamental is a quarter sine, maximum at the free end
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, boundary-conditions]
+    stem: A string is fixed at x = 0 and free at x = L. In its fundamental mode, the graph of amplitude against x
+    options:
+      - is zero at both ends and maximum at L/2
+      - rises from zero at x = 0 to a maximum at x = L (a quarter of a sine wave)
+      - is maximum at x = 0 and zero at x = L
+      - is constant along the string
+    answer: 1
+    explanation: "The fixed end is a node and the free end an antinode, with L = λ/4. So the amplitude rises as sin(πx/2L), from zero to its maximum at the free end."
+
+  - id: phy-wav-376
+    topic: organ-pipes
+    subtopic: Second overtone of closed pipe
+    concept: Closed pipe second overtone = 5f_1
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [overtones, closed-pipe]
+    stem: A closed organ pipe has a fundamental frequency of 100 Hz. The frequency of its second overtone is
+    options:
+      - 300 Hz
+      - 500 Hz
+      - 200 Hz
+      - 400 Hz
+    answer: 1
+    explanation: "Closed pipe modes: f, 3f, 5f, … The second overtone is 5f = 500 Hz. 300 Hz is the first overtone."
+
+  - id: phy-wav-377
+    topic: organ-pipes
+    subtopic: First overtones compared
+    concept: First overtones of closed and open pipes of equal length are 3v/4L and v/L
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [overtones, open-pipe, closed-pipe]
+    stem: A closed pipe and an open pipe have the same length. The ratio of the frequency of the first overtone of the closed pipe to that of the open pipe is
+    options:
+      - "1 : 2"
+      - "3 : 2"
+      - "3 : 4"
+      - "2 : 3"
+    answer: 2
+    explanation: "Closed: first overtone 3v/4L. Open: first overtone 2v/2L = v/L. Ratio = 3/4. Comparing fundamentals would give 1 : 2."
+
+  - id: phy-wav-378
+    topic: organ-pipes
+    subtopic: Resonance with end correction
+    concept: λ/4 = L_1 + e
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: λ = 4(L_1 + e)
+    tags: [resonance-tube, end-correction]
+    stem: In a resonance tube experiment with a 340 Hz fork, the first resonance occurs at an air column of 24 cm. If the end correction is 1 cm, the speed of sound is
+    options:
+      - 340 m s^{-1}
+      - 326 m s^{-1}
+      - 354 m s^{-1}
+      - 170 m s^{-1}
+    answer: 0
+    explanation: "The effective length L + e = 25 cm equals λ/4, so λ = 1 m and v = 340 × 1 = 340 m s^{-1}. Ignoring e gives 326 m s^{-1}."
+
+  - id: phy-wav-379
+    topic: organ-pipes
+    subtopic: Nodes and antinodes in a closed pipe
+    concept: Open end of a closed pipe is a pressure node
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [closed-pipe, pressure]
+    stem: For a pipe closed at one end, which statement is correct?
+    options:
+      - The closed end is a displacement antinode
+      - Its fundamental wavelength is 2L
+      - It can produce even harmonics when blown hard
+      - Its open end is a pressure node
+    answer: 3
+    explanation: "At the open end the air is at atmospheric pressure (pressure node, displacement antinode). The closed end is a displacement node, the fundamental wavelength is 4L, and only odd harmonics are allowed."
+
+  - id: phy-wav-380
+    topic: organ-pipes
+    subtopic: Pressure nodes in an open pipe
+    concept: In an open pipe's second harmonic, pressure nodes are at 0, L/2 and L
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [graph, pressure, open-pipe]
+    stem: A pipe of length L, open at both ends, vibrates in its second harmonic. A graph of pressure-variation amplitude against position shows pressure nodes at
+    options:
+      - x = L/4 and 3L/4
+      - x = L/2 only
+      - x = 0, L/2 and L
+      - x = 0 and L only
+    answer: 2
+    explanation: "In the second harmonic L = λ, displacement antinodes are at 0, L/2 and L, and displacement nodes at L/4 and 3L/4. Pressure nodes coincide with displacement antinodes: x = 0, L/2, L."
+
+  - id: phy-wav-381
+    topic: organ-pipes
+    subtopic: Which frequency resonates
+    concept: A closed pipe resonates only at odd multiples of v/4L
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: f = (2n − 1)v/4L
+    tags: [closed-pipe, harmonics]
+    stem: A 1 m tube closed at one end contains air in which sound travels at 320 m s^{-1}. Which of these frequencies will make it resonate?
+    options:
+      - 240 Hz
+      - 160 Hz
+      - 320 Hz
+      - 480 Hz
+    answer: 0
+    explanation: "f_1 = 320/4 = 80 Hz, and only odd multiples resonate: 80, 240, 400, 560 Hz … Of the options only 240 Hz (3f_1) works; 160, 320 and 480 Hz are even multiples."
+
+  - id: phy-wav-382
+    topic: organ-pipes
+    subtopic: Resonance lengths and temperature
+    concept: For a fixed fork, resonance lengths grow with temperature since λ ∝ v
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [temperature, resonance-tube]
+    stem: |-
+      Assertion (A): In a resonance tube experiment with a fixed tuning fork, the resonance lengths are larger on a hotter day.
+      Reason (R): The wavelength of sound of a given frequency increases with temperature because the speed of sound increases.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Resonance occurs at L ≈ λ/4, 3λ/4 … With v ∝ √T and f fixed, λ = v/f grows on a hot day, so the resonance lengths increase. R explains A."
+
+  - id: phy-wav-383
+    topic: organ-pipes
+    subtopic: Closing an open pipe
+    concept: Closing one end halves f_1; first overtone becomes 3f_1(closed)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    tags: [open-pipe, closed-pipe, overtones]
+    stem: An open pipe has a fundamental of 400 Hz. One end is now closed. The frequency of the first overtone of the closed pipe is
+    options:
+      - 800 Hz
+      - 1200 Hz
+      - 400 Hz
+      - 600 Hz
+    answer: 3
+    explanation: "Closing one end: f_1 = v/4L = 400/2 = 200 Hz. The first overtone of a closed pipe is 3f_1 = 600 Hz."
+
+  - id: phy-wav-384
+    topic: organ-pipes
+    subtopic: Comparing pipe families
+    concept: Equal fundamentals, harmonic sets and specific modes of pipes
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [open-pipe, closed-pipe, multi-concept]
+    stem: |-
+      Consider a closed pipe of length L and open pipes as stated:
+      I. An open pipe of length 2L has the same fundamental as the closed pipe.
+      II. The closed pipe and an open pipe of length 2L have the same set of harmonics.
+      III. The second harmonic of an open pipe of length L is four times the closed pipe's fundamental.
+      IV. The third harmonic of the closed pipe is 3v/4L.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: "Open 2L: v/4L, same fundamental (I true), but it has all harmonics while the closed pipe has only odd ones (II false). Open L: second harmonic v/L = 4 × v/4L (III true). Closed: 3rd harmonic 3v/4L (IV true)."
+
+  - id: phy-wav-385
+    topic: organ-pipes
+    subtopic: Mode frequencies
+    concept: Closed v/4L, 3v/4L; open v/2L, v/L
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [match, pipes]
+    stem: |-
+      For pipes of length L (speed of sound v), match List I with List II.
+      List I: P. Closed pipe, fundamental  Q. Closed pipe, first overtone  R. Open pipe, fundamental  S. Open pipe, first overtone
+      List II: 1. v/L  2. 3v/4L  3. v/2L  4. v/4L
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-3, Q-2, R-4, S-1
+      - P-4, Q-2, R-1, S-3
+    answer: 1
+    explanation: "Closed: v/4L and 3v/4L (odd harmonics). Open: v/2L and 2v/2L = v/L (all harmonics)."
+
+  - id: phy-wav-386
+    topic: organ-pipes
+    subtopic: Predicting second resonance
+    concept: L_2 = λ·3/4 − e
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: L_2 + e = 3(L_1 + e)
+    tags: [resonance-tube, end-correction]
+    stem: With a 500 Hz fork (v = 340 m s^{-1}), the first resonance in a resonance tube is found at 16 cm. The second resonance will be found at
+    options:
+      - 48 cm
+      - 51 cm
+      - 52 cm
+      - 50 cm
+    answer: 3
+    explanation: "λ = 68 cm, so L_1 + e = 17 cm and e = 1 cm. L_2 = 3λ/4 − e = 51 − 1 = 50 cm. 48 cm (3L_1) ignores the end correction."
+
+  - id: phy-wav-387
+    topic: organ-pipes
+    subtopic: Bottle whistle
+    concept: Adding water shortens the air column and raises the pitch
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [closed-pipe, everyday]
+    stem: Blowing across the mouth of a bottle produces a note. As water is poured into the bottle, the pitch of the note
+    options:
+      - rises, because the air column becomes shorter
+      - falls, because water is denser than air
+      - stays the same, because the bottle's size is unchanged
+      - falls, because the air column becomes shorter
+    answer: 0
+    explanation: "The bottle acts as a closed pipe with f ≈ v/4L. Water shortens the air column, so the frequency (pitch) rises."
+
+  - id: phy-wav-388
+    topic: organ-pipes
+    subtopic: Lighter gas in a pipe
+    concept: Gas of one-fourth density (same γ and P) doubles v and f
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: f ∝ v = √(γP/ρ)
+    tags: [gas, density]
+    stem: A closed pipe filled with air has a fundamental of 200 Hz. It is filled instead with a gas having the same γ but one-fourth the density at the same pressure. The fundamental becomes
+    options:
+      - 100 Hz
+      - 400 Hz
+      - 800 Hz
+      - 50 Hz
+    answer: 1
+    explanation: "v = √(γP/ρ) doubles when ρ becomes one-fourth, and f ∝ v, so f = 400 Hz."
+
+  - id: phy-wav-389
+    topic: organ-pipes
+    subtopic: End correction facts
+    concept: End correction lengthens the effective column and depends on radius
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [end-correction]
+    stem: |-
+      Statement I: Because of end correction, the effective length of the vibrating air column is slightly greater than the measured length.
+      Statement II: The end correction is independent of the radius of the tube.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "The antinode forms just outside the open end, so the effective length is L + e (I correct). e ≈ 0.6r (0.3d), so it depends on the radius (II incorrect)."
+
+  - id: phy-wav-390
+    topic: beats
+    subtopic: Percentage mistuning
+    concept: 1% mistuning of 300 Hz gives 3 beats s^{-1}
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [beat-frequency]
+    stem: A tuning fork is 1% higher in frequency than a standard 300 Hz fork. Sounded together, they produce
+    options:
+      - 1 beat per second
+      - 30 beats per second
+      - 3 beats per second
+      - 6 beats per second
+    answer: 2
+    explanation: "The fork has frequency 303 Hz, so the beat frequency is 303 − 300 = 3 Hz."
+
+  - id: phy-wav-391
+    topic: beats
+    subtopic: Octave forks
+    concept: 256 Hz and 512 Hz differ too much to give audible beats
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [persistence-of-hearing, trap]
+    stem: |-
+      Assertion (A): No beats are heard when tuning forks of 256 Hz and 512 Hz are sounded together.
+      Reason (R): Beats occur only when the two frequencies are exactly equal.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: "A 256 Hz difference is far too large for the ear to follow as waxing and waning, so no beats are heard (A true). Beats need slightly different frequencies; equal frequencies give zero beats, so R is false."
+
+  - id: phy-wav-392
+    topic: beats
+    subtopic: Beats with an organ pipe
+    concept: Shortening a pipe raises its frequency; beats falling means it was below the fork
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [pipes, beats, multi-concept]
+    stem: An open organ pipe produces 6 beats s^{-1} with a 256 Hz tuning fork. When the pipe is shortened slightly, the beat frequency decreases. The original frequency of the pipe was
+    options:
+      - 262 Hz
+      - 250 Hz
+      - 244 Hz
+      - 268 Hz
+    answer: 1
+    explanation: "The pipe was 250 or 262 Hz. Shortening raises f = v/2L. Beats fall only if the pipe approaches 256 Hz from below, so it was 250 Hz."
+
+  - id: phy-wav-393
+    topic: beats
+    subtopic: Envelope of beats
+    concept: With unequal amplitudes the resultant amplitude swings between |a_1 − a_2| and a_1 + a_2
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [beats, amplitude]
+    stem: Two sound waves of amplitudes a_1 > a_2 and slightly different frequencies superpose. Which statement about the resultant is correct?
+    options:
+      - Its amplitude stays constant at a_1 + a_2
+      - Its amplitude varies between zero and a_1 + a_2
+      - Its frequency equals |f_1 − f_2|
+      - Its amplitude varies periodically between a_1 − a_2 and a_1 + a_2
+    answer: 3
+    explanation: "As the waves drift in and out of phase, the amplitude swings between a_1 + a_2 (in phase) and a_1 − a_2 (antiphase). It reaches zero only for equal amplitudes. The tone itself is at the mean frequency."
+
+  - id: phy-wav-394
+    topic: beats
+    subtopic: Temperature-induced beats
+    concept: Heating one of two identical pipes by ΔT gives Δf ≈ f ΔT/2T
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: Δf/f = ½ ΔT/T
+    tags: [temperature, pipes, multi-concept]
+    stem: Two identical organ pipes each sound 400 Hz at 27 °C. The air in one is warmed to 30 °C. The number of beats heard per second is about
+    options:
+      - "2"
+      - "4"
+      - "1"
+      - "6"
+    answer: 0
+    explanation: "f ∝ √T: Δf/f ≈ ½ × 3/300 = 0.5%. Δf ≈ 0.005 × 400 = 2 Hz, so about 2 beats per second."
+
+  - id: phy-wav-395
+    topic: beats
+    subtopic: Properties and uses of beats
+    concept: Beat frequency and period; raising both frequencies equally leaves beats unchanged
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [beats]
+    stem: |-
+      Consider:
+      I. Beat frequency is |f_1 − f_2|.
+      II. Beat period is 1/|f_1 − f_2|.
+      III. Beats can be used to find an unknown frequency.
+      IV. Raising both frequencies by the same amount increases the beat frequency.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I and IV only
+    answer: 1
+    explanation: "I, II and III are standard. Adding the same amount to both frequencies leaves their difference, and so the beat frequency, unchanged; IV is false."
+
+  - id: phy-wav-396
+    topic: beats
+    subtopic: Beats counted over time
+    concept: 12 beats in 3 s gives 4 Hz
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [beat-frequency]
+    stem: A 440 Hz fork and a second fork produce 12 beats in 3 s. A possible frequency of the second fork is
+    options:
+      - 444 Hz
+      - 452 Hz
+      - 437 Hz
+      - 428 Hz
+    answer: 0
+    explanation: "Beat frequency = 12/3 = 4 Hz, so the second fork is 436 or 444 Hz. Using 12 Hz directly gives 452 or 428 Hz."
+
+  - id: phy-wav-397
+    topic: beats
+    subtopic: Loading the unknown fork
+    concept: Loading lowers frequency; beats falling means the unknown was higher
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [loading, multi-concept]
+    stem: |-
+      An unknown fork X gives 4 beats s^{-1} with a 288 Hz fork. When X is loaded with a little wax, it gives 2 beats s^{-1}.
+      Statement I: The original frequency of X is 292 Hz.
+      Statement II: Loading reduced the frequency of X by about 2 Hz.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Loading lowers X. If X were 284 Hz it would move further from 288 Hz and the beats would increase; they decreased, so X = 292 Hz and after loading ≈ 290 Hz, a drop of about 2 Hz. Both statements are correct."
+
+  - id: phy-wav-398
+    topic: beats
+    subtopic: Maximum to minimum time
+    concept: A maximum and the next minimum are half a beat period apart
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: Δt = 1/(2|f_1 − f_2|)
+    tags: [beat-period]
+    stem: Sources of 256 Hz and 260 Hz sound together. The time between a maximum of loudness and the next minimum is
+    options:
+      - 0.25 s
+      - 4 s
+      - 0.5 s
+      - 0.125 s
+    answer: 3
+    explanation: "Beat period = 1/4 s = 0.25 s, the time between successive maxima. A minimum lies midway, so maximum to next minimum is 0.125 s."
+
+  - id: phy-wav-399
+    topic: beats
+    subtopic: Comparing beat frequencies
+    concept: Beat frequency is the difference, not related to the frequencies' size
+    category: numerical
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [ordering]
+    stem: "Arrange the pairs by beat frequency, increasing: P (256 Hz, 260 Hz); Q (512 Hz, 515 Hz); R (100 Hz, 106 Hz); S (440 Hz, 441 Hz)."
+    options:
+      - S < P < Q < R
+      - R < P < Q < S
+      - S < Q < P < R
+      - Q < S < P < R
+    answer: 2
+    explanation: "Beat frequencies: P 4 Hz, Q 3 Hz, R 6 Hz, S 1 Hz. Increasing: S (1) < Q (3) < P (4) < R (6)."
+
+  - id: phy-wav-400
+    topic: beats
+    subtopic: Origin of beats
+    concept: Beats are alternate constructive and destructive interference in time
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [beats, interference]
+    stem: Which statement about beats is correct?
+    options:
+      - Beats are produced only by transverse waves
+      - The periodic waxing and waning of loudness results from alternate constructive and destructive interference at the listener
+      - The beat frequency equals the average of the two frequencies
+      - Beats are heard only if the two waves have exactly equal amplitudes
+    answer: 1
+    explanation: "At a fixed point the two waves drift in and out of phase, giving loud (constructive) and soft (destructive) sound alternately. Beats occur for sound (longitudinal) too; the beat frequency is the difference; unequal amplitudes still give beats."

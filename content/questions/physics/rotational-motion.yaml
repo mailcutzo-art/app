@@ -8454,3 +8454,2193 @@ questions:
     answer: 0
     explanation: "Gravity acts at the centre of mass and the normal force passes through it, so there is no torque about the centre; ω stays zero and the sphere slides. Friction is what makes rolling possible."
 
+  - id: phy-rot-401
+    topic: centre-of-mass
+    subtopic: Standard results check
+    concept: Recalling COM positions of curved bodies
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [standard-com, confused-pair]
+    stem: |-
+      For uniform bodies of radius R, consider the distance of the centre of mass from the centre of curvature.
+      I. Semicircular ring: 2R/π
+      II. Solid hemisphere: 3R/8
+      III. Thin hollow hemisphere: 3R/8
+      IV. Semicircular disc: 4R/3π
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "A thin hollow hemisphere has its centre of mass at R/2, not 3R/8 (that is the solid hemisphere). The other three values are correct."
+
+  - id: phy-rot-402
+    topic: centre-of-mass
+    subtopic: x_{cm}–t graph
+    concept: Equal and opposite momenta keep the COM at rest
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [graph, com-fixed]
+    stem: A 1 kg particle moves at 4 m s^{-1} towards a 2 kg particle moving at 2 m s^{-1} towards it, along the same line, with no external forces. The graph of the x-coordinate of their centre of mass against time is
+    options:
+      - a straight line of positive slope
+      - a parabola
+      - a straight line of negative slope
+      - a horizontal straight line
+    answer: 3
+    explanation: "Total momentum = 1 × 4 − 2 × 2 = 0, so v_{cm} = 0 and x_{cm} stays constant: a horizontal line, before and after any collision."
+
+  - id: phy-rot-403
+    topic: centre-of-mass
+    subtopic: Man on a plank
+    concept: Displacement of a walker relative to the ground on a free plank
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [man-on-boat, com-fixed, multi-concept]
+    stem: A 60 kg man walks from one end to the other of a 90 kg plank 4 m long lying on a frictionless floor. How far does the man move relative to the floor?
+    options:
+      - 2.4 m
+      - 1.6 m
+      - 4 m
+      - 2.67 m
+    answer: 0
+    explanation: "The centre of mass stays fixed: the plank moves back x = 60 × 4/150 = 1.6 m, so the man moves 4 − 1.6 = 2.4 m forward relative to the floor. 1.6 m is the plank's shift."
+
+  - id: phy-rot-404
+    topic: centre-of-mass
+    subtopic: Bent rods
+    concept: Bending a rod into an arc or ring moves its COM
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [semicircular-ring, symmetry]
+    stem: |-
+      Statement I: A uniform rod bent into a semicircle of radius R has its centre of mass on the axis of symmetry, 2R/π from the centre.
+      Statement II: If the same rod is bent into a complete circle, its centre of mass is at the centre of the circle.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "A semicircular arc has y_{cm} = 2R/π on its symmetry axis; a full ring is symmetric about its centre, so its centre of mass is there (in empty space)."
+
+  - id: phy-rot-405
+    topic: centre-of-mass
+    subtopic: Isolated two-particle system
+    concept: Both particles move towards (or away from) the fixed COM together
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [two-particle, com-fixed]
+    stem: Two particles form an isolated system whose centre of mass is at rest. Which statement is correct?
+    options:
+      - The centre of mass lies at the midpoint between them
+      - The centre of mass moves towards the heavier particle
+      - If one particle moves towards the centre of mass, the other must also move towards it
+      - Their centre of mass changes velocity when they collide
+    answer: 2
+    explanation: "With the centre of mass fixed at the origin, m_1r_1 = −m_2r_2 at all times, so if r_1 shrinks, r_2 must shrink too. The centre of mass is midway only for equal masses."
+
+  - id: phy-rot-406
+    topic: centre-of-mass
+    subtopic: Negative coordinates
+    concept: Centre of mass with particles on both sides of the origin
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [com-position, sign]
+    stem: "A 2 kg particle is at (1 m, 2 m) and a 3 kg particle is at (−1 m, −2 m). Where is their centre of mass?"
+    options:
+      - (0, 0)
+      - (0.2 m, 0.4 m)
+      - (−1 m, −2 m)
+      - (−0.2 m, −0.4 m)
+    answer: 3
+    explanation: "x_{cm} = (2 − 3)/5 = −0.2 m and y_{cm} = (4 − 6)/5 = −0.4 m. It lies on the side of the heavier particle; (0, 0) would need equal masses."
+
+  - id: phy-rot-407
+    topic: centre-of-mass
+    subtopic: Deformable bodies
+    concept: COM moves relative to the body when the body deforms
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [com-properties]
+    stem: |-
+      Assertion (A): The centre of mass of a gymnast shifts relative to her body when she bends.
+      Reason (R): The position of the centre of mass depends on how the mass is distributed.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Bending redistributes mass, so the mass-weighted average position moves; in a deep bend it can even lie outside the body. R explains A."
+
+  - id: phy-rot-408
+    topic: motion-of-centre-of-mass
+    subtopic: COM in different situations
+    concept: Motion of the COM under various external conditions
+    category: application
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [internal-forces, explosion]
+    stem: |-
+      Match each situation (List I) with the motion of the system's centre of mass (List II).
+      List I:
+      P. A shell explodes in mid-air
+      Q. Two skaters at rest push each other apart
+      R. Two carts moving on a frictionless track collide
+      S. A single ball thrown vertically upward
+      List II:
+      1. Stays at rest
+      2. Continues along the original parabola
+      3. Moves vertically with acceleration g
+      4. Moves with constant velocity
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-2, Q-1, R-4, S-3
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-1, R-3, S-4
+    answer: 1
+    explanation: "Explosion: only gravity is external, so the parabola continues. Skaters: no external horizontal force and initially at rest. Carts: constant v_{cm}. Ball: free fall along a vertical line."
+
+  - id: phy-rot-409
+    topic: centre-of-mass
+    subtopic: U-shaped frame
+    concept: COM of three rods forming a U
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    diagram: "Three identical uniform rods, each of length L and mass m, form a U shape: a horizontal base from (0, 0) to (L, 0), a left upright from (0, 0) to (0, L) and a right upright from (L, 0) to (L, L). The top is open. Axes x and y with origin at the bottom-left corner."
+    tags: [composite-body, u-shape]
+    stem: Three identical uniform rods of length L form a U, as shown, with the open side at the top. Where is the centre of mass of the U?
+    options:
+      - (L/2, L/2)
+      - (L/2, L/4)
+      - (L/2, L/3)
+      - (L/3, L/3)
+    answer: 2
+    explanation: "Rod centres: (L/2, 0), (0, L/2), (L, L/2). x_{cm} = (L/2 + 0 + L)/3 = L/2; y_{cm} = (0 + L/2 + L/2)/3 = L/3."
+
+  - id: phy-rot-410
+    topic: motion-of-centre-of-mass
+    subtopic: Walking on a boat
+    concept: Consequences of a fixed COM for a man and boat
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [man-on-boat, com-fixed]
+    stem: |-
+      A man walks along a boat floating at rest on still water (ignore water resistance). Consider:
+      I. The boat moves opposite to the man.
+      II. The centre of mass of man plus boat stays fixed.
+      III. The boat moves the same distance as the man relative to the water.
+      IV. When the man stops, the boat stops.
+      Which are correct?
+    options:
+      - I and II only
+      - II and III only
+      - I, II and III only
+      - I, II and IV only
+    answer: 3
+    explanation: "Total momentum stays zero: the boat moves oppositely, the centre of mass is fixed, and when the man stops so does the boat. Distances are inversely proportional to the masses, not equal."
+
+  - id: phy-rot-411
+    topic: motion-of-centre-of-mass
+    subtopic: Pushed blocks
+    concept: a_{cm} = F/M for blocks in contact
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [acceleration-cm]
+    stem: A 30 N horizontal force pushes two blocks of 2 kg and 4 kg in contact on a smooth floor. What is the acceleration of their centre of mass?
+    options:
+      - 15 m s^{-2}
+      - 5 m s^{-2}
+      - 7.5 m s^{-2}
+      - 10 m s^{-2}
+    answer: 1
+    explanation: "a_{cm} = F_{ext}/M = 30/6 = 5 m s^{-2}. The contact forces between the blocks are internal."
+
+  - id: phy-rot-412
+    topic: motion-of-centre-of-mass
+    subtopic: Zero momentum, non-zero energy
+    concept: A system with v_{cm} = 0 can still have kinetic energy
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [momentum-system]
+    stem: |-
+      Statement I: The centre of mass of a system can be at rest while all its particles are moving.
+      Statement II: A system can have non-zero total kinetic energy while its total linear momentum is zero.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Two equal masses moving apart with equal speeds have P = 0 (so v_{cm} = 0) but kinetic energy mv^2. Both statements hold."
+
+  - id: phy-rot-413
+    topic: motion-of-centre-of-mass
+    subtopic: Pulling on a rope
+    concept: Two skaters pulling on a rope meet at their COM
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [com-fixed, internal-forces]
+    stem: A 50 kg girl and a 70 kg boy stand 12 m apart on smooth ice holding a light rope. They pull the rope until they meet. How far from the girl's starting point do they meet?
+    options:
+      - 5 m
+      - 6 m
+      - 7 m
+      - 8.4 m
+    answer: 2
+    explanation: "They meet at the fixed centre of mass: distance from the girl = 70 × 12/120 = 7 m. The lighter girl moves farther; 5 m is the boy's distance."
+
+  - id: phy-rot-414
+    topic: motion-of-centre-of-mass
+    subtopic: What accelerates a car
+    concept: Only external forces (road friction) change the car's momentum
+    category: application
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [internal-forces, friction, trap]
+    stem: Which force actually changes the velocity of the centre of mass of a car as it speeds up on a road?
+    options:
+      - The force of the engine on the pistons
+      - The friction force of the road on the tyres
+      - The force of passengers pushing on their seats
+      - The force of the crankshaft on the wheels
+    answer: 1
+    explanation: "Engine, crankshaft and passenger forces are internal to the car. The engine turns the wheels, but it is the road's external friction on the tyres that accelerates the centre of mass."
+
+  - id: phy-rot-415
+    topic: motion-of-centre-of-mass
+    subtopic: Frictionless road
+    concept: No external horizontal force means no acceleration of the car
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [internal-forces, friction]
+    stem: |-
+      Assertion (A): A car cannot accelerate on a perfectly frictionless horizontal road however powerful its engine.
+      Reason (R): Only external forces can change the velocity of the centre of mass of a system.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "The engine's forces are internal; without road friction there is no external horizontal force, so the wheels just spin and v_{cm} stays unchanged. R explains A."
+
+  - id: phy-rot-416
+    topic: motion-of-centre-of-mass
+    subtopic: Three-fragment explosion
+    concept: Third fragment balances the vector sum of the other momenta
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [explosion, vectors, multi-concept]
+    stem: A 9 kg bomb at rest explodes into three 3 kg pieces. Two of them fly off at 4 m s^{-1} at right angles to each other. What is the speed of the third piece?
+    options:
+      - 4 m s^{-1}
+      - 8 m s^{-1}
+      - 2√2 m s^{-1}
+      - 4√2 m s^{-1}
+    answer: 3
+    explanation: "The two momenta (12 kg m s^{-1} each, perpendicular) add to 12√2. The third piece must carry an equal and opposite momentum: v = 12√2/3 = 4√2 ≈ 5.7 m s^{-1}."
+
+  - id: phy-rot-417
+    topic: motion-of-centre-of-mass
+    subtopic: y_{cm}–t graph
+    concept: COM height of free-falling bodies varies parabolically
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, free-fall]
+    stem: One ball is thrown upward while another is dropped from a height at the same instant. The graph of the height of their centre of mass against time (while both are in flight) is
+    options:
+      - a parabola opening downward
+      - a straight line
+      - a horizontal line
+      - a parabola opening upward
+    answer: 0
+    explanation: "a_{cm} = −g throughout, so y_{cm} = y_0 + v_{0}t − ½gt^2, a downward-opening parabola, just like a single projectile."
+
+  - id: phy-rot-418
+    topic: motion-of-centre-of-mass
+    subtopic: Rocket in free space
+    concept: COM of rocket plus exhaust keeps constant velocity
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [rocket, internal-forces]
+    stem: A rocket fires its engine far out in space, away from any gravity. What happens to the centre of mass of the rocket plus all the exhaust gas?
+    options:
+      - It accelerates forward with the rocket
+      - It accelerates backward with the gas
+      - It keeps moving with constant velocity
+      - It stops moving
+    answer: 2
+    explanation: "The thrust is an internal force between rocket and gas. With no external force, the centre of mass of the whole system keeps its initial velocity."
+
+  - id: phy-rot-419
+    topic: vector-product
+    subtopic: Evaluating cross products
+    concept: Cross products of several vector pairs
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [cross-product, unit-vectors]
+    stem: |-
+      Match each vector pair (List I) with A × B (List II).
+      List I:
+      P. A = î, B = ĵ
+      Q. A = ĵ, B = k̂
+      R. A = 2î, B = 3î
+      S. A = î + ĵ, B = î − ĵ
+      List II:
+      1. Null vector
+      2. −2k̂
+      3. î
+      4. k̂
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-1, R-3, S-2
+      - P-4, Q-3, R-1, S-2
+    answer: 3
+    explanation: "î × ĵ = k̂; ĵ × k̂ = î; parallel vectors give zero; (î + ĵ) × (î − ĵ) = (1 × (−1) − 1 × 1)k̂ = −2k̂."
+
+  - id: phy-rot-420
+    topic: vector-product
+    subtopic: Variation with angle
+    concept: "|A × B| varies as sin θ, maximum at 90°"
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [graph, cross-product-magnitude]
+    stem: For two vectors of fixed magnitudes, |A × B| is plotted against the angle θ between them from 0° to 180°. The graph is
+    options:
+      - a straight line rising from 0 to AB
+      - a sine-shaped arch, zero at 0° and 180° and maximum AB at 90°
+      - a cosine curve falling from AB to −AB
+      - a horizontal line at AB
+    answer: 1
+    explanation: "|A × B| = AB sin θ: zero for parallel and antiparallel vectors, maximum at 90°. The cosine curve describes A · B."
+
+  - id: phy-rot-421
+    topic: vector-product
+    subtopic: Torque by components
+    concept: Only the perpendicular component of r contributes
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [torque, cross-product]
+    stem: What is (2î + 3ĵ) × 4î?
+    options:
+      - −12k̂
+      - 12k̂
+      - 8k̂
+      - 8î − 12ĵ
+    answer: 0
+    explanation: "2î × 4î = 0 and 3ĵ × 4î = 12(ĵ × î) = −12k̂. The î component contributes nothing because it is parallel to 4î."
+
+  - id: phy-rot-422
+    topic: vector-product
+    subtopic: Quantities defined by cross products
+    concept: Identifying vector-product definitions
+    category: factual
+    format: multi-statement
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [axial-vectors, dot-vs-cross]
+    stem: |-
+      Which of these quantities are defined through a vector product?
+      I. Torque
+      II. Angular momentum
+      III. Linear velocity of a point of a rotating body (in terms of ω and r)
+      IV. Work
+    options:
+      - I and II only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: "τ = r × F, L = r × p and v = ω × r are vector products. Work W = F · s is a scalar product."
+
+  - id: phy-rot-423
+    topic: vector-product
+    subtopic: Direction and zero value
+    concept: A × B is normal to the plane; antiparallel vectors give zero
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [direction, parallel-vectors]
+    stem: |-
+      Statement I: The vector A × B lies in the plane containing A and B.
+      Statement II: The vector product of two antiparallel vectors is zero.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "A × B is perpendicular to the plane of A and B, so Statement I is false. For antiparallel vectors θ = 180° and sin 180° = 0, so Statement II is true."
+
+  - id: phy-rot-424
+    topic: vector-product
+    subtopic: Dot from cross
+    concept: Finding A · B from |A × B| and magnitudes
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [identity, dot-vs-cross]
+    stem: "Vectors A and B have magnitudes 2 and 5, and |A × B| = 8. What can A · B be?"
+    options:
+      - ±6
+      - ±8
+      - ±10
+      - ±4
+    answer: 0
+    explanation: "(A · B)^2 = A^2B^2 − |A × B|^2 = 100 − 64 = 36, so A · B = ±6 (sin θ = 0.8, cos θ = ±0.6)."
+
+  - id: phy-rot-425
+    topic: vector-product
+    subtopic: Comparing magnitudes
+    concept: Ranking cross-product magnitudes
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [ordering, determinant]
+    stem: "Arrange in increasing order of magnitude: P = î × (î + ĵ), Q = (î + ĵ) × (î − ĵ), R = 3î × 2ĵ, S = (î + ĵ + k̂) × k̂."
+    options:
+      - P < Q < S < R
+      - P < S < Q < R
+      - S < P < Q < R
+      - P < S < R < Q
+    answer: 1
+    explanation: "P = k̂ (1); S = î × k̂ + ĵ × k̂ = −ĵ + î (√2); Q = −2k̂ (2); R = 6k̂ (6). So P < S < Q < R."
+
+  - id: phy-rot-426
+    topic: vector-product
+    subtopic: Geometric meaning
+    concept: "|A × B| as base × height"
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [area]
+    stem: |-
+      Assertion (A): The magnitude of A × B equals the area of the parallelogram with A and B as adjacent sides.
+      Reason (R): |A × B| = A(B sin θ), which is base × perpendicular height of that parallelogram.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Taking A as the base, B sin θ is the perpendicular height, so AB sin θ is exactly the parallelogram's area. R explains A."
+
+  - id: phy-rot-427
+    topic: vector-product
+    subtopic: Sum of products
+    concept: Unit vector along a sum of cross products
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [unit-vectors, unit-vector]
+    stem: What is the unit vector along (î × ĵ) + (ĵ × k̂)?
+    options:
+      - (î + ĵ)/√2
+      - (î + ĵ + k̂)/√3
+      - (k̂ − î)/√2
+      - (î + k̂)/√2
+    answer: 3
+    explanation: "î × ĵ = k̂ and ĵ × k̂ = î, so the sum is î + k̂ with magnitude √2. The unit vector is (î + k̂)/√2."
+
+  - id: phy-rot-428
+    topic: rotational-kinematics
+    subtopic: Definitions
+    concept: Defining relations of rotational kinematics
+    category: factual
+    format: match
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [angular-kinematics, definitions]
+    stem: |-
+      Match each quantity (List I) with its defining relation (List II).
+      List I:
+      P. Angular velocity
+      Q. Angular acceleration
+      R. Linear speed of a particle at distance r
+      S. Centripetal acceleration of that particle
+      List II:
+      1. ωr
+      2. dω/dt
+      3. ω^2r
+      4. dθ/dt
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-2, R-1, S-3
+      - P-1, Q-2, R-4, S-3
+    answer: 2
+    explanation: "ω = dθ/dt, α = dω/dt, v = ωr and a_c = ω^2r = v^2/r."
+
+  - id: phy-rot-429
+    topic: rotational-kinematics
+    subtopic: Area under a falling ω–t line
+    concept: Angle turned while decelerating uniformly to rest
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, angular-displacement]
+    stem: The ω–t graph of a wheel is a straight line falling from 10 rad s^{-1} at t = 0 to zero at t = 5 s. Through what angle does the wheel turn in this time?
+    options:
+      - 25 rad
+      - 50 rad
+      - 2 rad
+      - 12.5 rad
+    answer: 0
+    explanation: "Angle = area of the triangle = ½ × 5 × 10 = 25 rad. 50 rad treats the area as a rectangle; 2 rad s^{-2} is the deceleration."
+
+  - id: phy-rot-430
+    topic: rotational-kinematics
+    subtopic: Uniform angular acceleration from rest
+    concept: How linear and angular quantities scale with time
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [proportionality, centripetal]
+    stem: |-
+      A wheel starts from rest with constant angular acceleration. For a point on its rim, consider:
+      I. The angle turned is proportional to t^2.
+      II. The angular velocity is proportional to t.
+      III. The centripetal acceleration is proportional to t^2.
+      IV. The tangential acceleration is proportional to t.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "θ = ½αt^2 and ω = αt; a_c = ω^2r = α^2t^2r grows as t^2. The tangential acceleration αr is constant, so IV is false."
+
+  - id: phy-rot-431
+    topic: rotational-kinematics
+    subtopic: Fan speeding up
+    concept: Revolutions during uniform spin-up
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [revolutions, rpm-conversion]
+    stem: A ceiling fan is switched on and its speed rises uniformly from rest to 300 rpm in 10 s. How many revolutions does it make in those 10 s?
+    options:
+      - "50"
+      - "3000"
+      - "150"
+      - "25"
+    answer: 3
+    explanation: "300 rpm = 5 rev s^{-1}. The average rate is 2.5 rev s^{-1}, so in 10 s it makes 25 revolutions. 50 assumes full speed throughout."
+
+  - id: phy-rot-432
+    topic: rotational-kinematics
+    subtopic: Successive seconds
+    concept: Angles in successive equal intervals from rest are in the ratio 1 to 3 to 5
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [nth-second, ratio]
+    stem: A wheel starts from rest with uniform angular acceleration. In what ratio are the angles it turns in the 1st, 2nd and 3rd seconds?
+    options:
+      - "1 : 2 : 3"
+      - "1 : 3 : 5"
+      - "1 : 4 : 9"
+      - "1 : 1 : 1"
+    answer: 1
+    explanation: "Total angles after 1, 2, 3 s are proportional to 1, 4, 9, so the angles in each second are 1, 3 and 5 units. 1 : 4 : 9 is the cumulative angle."
+
+  - id: phy-rot-433
+    topic: rotational-kinematics
+    subtopic: Uniform rotation
+    concept: Different points have different linear velocities
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [rigid-body, trap]
+    stem: A rigid disc rotates uniformly about its fixed axis. Which statement is INCORRECT?
+    options:
+      - Every point of the disc has the same linear velocity
+      - Every point has the same angular velocity
+      - A point on the rim moves faster than a point near the axis
+      - Points on the axis are at rest
+    answer: 0
+    explanation: "v = ωr, so points at different radii (and on different sides) have different linear velocities. Angular velocity is common to all points."
+
+  - id: phy-rot-434
+    topic: rotational-kinematics
+    subtopic: α from ω and θ
+    concept: α = (ω^2 − ω_0^2)/2θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [angular-kinematics]
+    stem: A wheel's angular speed increases uniformly from 2 rad s^{-1} to 6 rad s^{-1} while it turns through 8 rad. What is its angular acceleration?
+    options:
+      - 0.5 rad s^{-2}
+      - 4 rad s^{-2}
+      - 1 rad s^{-2}
+      - 2 rad s^{-2}
+    answer: 3
+    explanation: "α = (36 − 4)/(2 × 8) = 32/16 = 2 rad s^{-2}. Forgetting the factor 2 gives 4."
+
+  - id: phy-rot-435
+    topic: rotational-kinematics
+    subtopic: Latitude and speed
+    concept: Speed due to Earth's spin falls as cos λ
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [earth-rotation, ordering]
+    stem: "Arrange in increasing order the linear speed due to the Earth's spin of a point at: the equator (P), 30° latitude (Q), 60° latitude (R), the North Pole (S)."
+    options:
+      - S < R < Q < P
+      - P < Q < R < S
+      - S < Q < R < P
+      - R < S < Q < P
+    answer: 0
+    explanation: "All points share ω, but the radius of their circle is R cos λ. So v ∝ cos λ: zero at the pole, largest at the equator."
+
+  - id: phy-rot-436
+    topic: rotational-kinematics
+    subtopic: Radian and units
+    concept: The radian is a dimensionless derived unit
+    category: factual
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [units, dimensions]
+    stem: |-
+      Statement I: Angular velocity has the unit rad s^{-1} and dimensional formula [T^{-1}].
+      Statement II: The radian is one of the seven SI base units.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Angle is arc/radius, dimensionless, so ω has dimensions [T^{-1}]. The radian is a dimensionless derived unit, not a base unit."
+
+  - id: phy-rot-437
+    topic: torque-angular-momentum
+    subtopic: Pushing a door
+    concept: Torque depends on force, lever arm and angle
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [torque-magnitude, door]
+    stem: |-
+      A door is hinged along a vertical edge. Match each horizontal push (List I) with its torque about the hinge (List II).
+      List I:
+      P. 10 N towards the hinge along the door
+      Q. 10 N perpendicular to the door, 1 m from the hinge
+      R. 10 N perpendicular to the door, 0.25 m from the hinge
+      S. 10 N at 30° to the door, 1 m from the hinge
+      List II:
+      1. 5 N m
+      2. Zero
+      3. 10 N m
+      4. 2.5 N m
+    options:
+      - P-2, Q-1, R-4, S-3
+      - P-2, Q-3, R-4, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-2, Q-3, R-1, S-4
+    answer: 1
+    explanation: "τ = rF sin θ: along the door, sin 0° = 0; 1 × 10 = 10 N m; 0.25 × 10 = 2.5 N m; 1 × 10 × sin 30° = 5 N m."
+
+  - id: phy-rot-438
+    topic: torque-angular-momentum
+    subtopic: L–t graph with a maximum
+    concept: Torque is zero where L is at a maximum
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, torque-angular-momentum-relation]
+    stem: The angular momentum of a wheel about its axis rises, reaches a maximum at t = 2 s and then falls. What is the torque on it at t = 2 s?
+    options:
+      - Maximum
+      - Equal to L divided by 2 s
+      - Zero
+      - Negative and largest in magnitude
+    answer: 2
+    explanation: "τ = dL/dt is the slope of the L–t graph, which is zero at the peak. Torque changes sign there, from speeding up to slowing down."
+
+  - id: phy-rot-439
+    topic: torque-angular-momentum
+    subtopic: Torque from a trajectory
+    concept: τ = r × F with F from the second derivative of r
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [calculus, torque]
+    stem: "A 1 kg particle moves with r = (t î + t^2 ĵ) m. What torque acts on it about the origin at t = 3 s?"
+    options:
+      - 18k̂ N m
+      - 2k̂ N m
+      - −6k̂ N m
+      - 6k̂ N m
+    answer: 3
+    explanation: "a = d^2r/dt^2 = 2ĵ, so F = 2ĵ N. τ = r × F = t î × 2ĵ + t^2 ĵ × 2ĵ = 2t k̂ = 6k̂ N m at t = 3 s."
+
+  - id: phy-rot-440
+    topic: torque-angular-momentum
+    subtopic: Torque facts
+    concept: Properties of torque including force parallel to the axis
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [torque, dimensions]
+    stem: |-
+      Consider these statements about torque.
+      I. It has the same dimensions as work.
+      II. It is a scalar quantity.
+      III. Its SI unit is N m.
+      IV. A force parallel to a fixed axis produces no torque about that axis.
+      Which are correct?
+    options:
+      - I, III and IV only
+      - I and II only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: "Torque shares [ML^2T^{-2}] with work and is measured in N m. It is a vector (r × F), so II is false. A force parallel to the axis has no component that turns the body about it."
+
+  - id: phy-rot-441
+    topic: torque-angular-momentum
+    subtopic: Longer spanner
+    concept: Doubling the lever arm halves the force needed
+    category: application
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [spanner, moment-arm]
+    stem: A mechanic replaces his spanner with one twice as long, applying force at the end in the same way. The force needed to produce the same torque becomes
+    options:
+      - twice as large
+      - half as large
+      - unchanged
+      - four times as large
+    answer: 1
+    explanation: "τ = F × r; for the same τ with r doubled, F is halved."
+
+  - id: phy-rot-442
+    topic: torque-angular-momentum
+    subtopic: Motion towards a point
+    concept: L about a point is zero for motion directly towards it
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [angular-momentum-particle]
+    stem: |-
+      Assertion (A): A particle moving straight towards a point O has zero angular momentum about O.
+      Reason (R): Its position vector from O and its momentum are antiparallel, so r × p = 0.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "With r and p along the same line, sin 180° = 0 and L = r × p = 0. R explains A."
+
+  - id: phy-rot-443
+    topic: torque-angular-momentum
+    subtopic: Torque from L(t)
+    concept: τ = dL/dt for a given L(t)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [calculus, torque-angular-momentum-relation]
+    stem: The angular momentum of a flywheel varies as L = (4t^2 + 2) kg m^2 s^{-1}. What torque acts on it at t = 2 s?
+    options:
+      - 18 N m
+      - 8 N m
+      - 4 N m
+      - 16 N m
+    answer: 3
+    explanation: "τ = dL/dt = 8t = 16 N m at t = 2 s. 18 is the value of L itself."
+
+  - id: phy-rot-444
+    topic: torque-angular-momentum
+    subtopic: L of a rigid body
+    concept: L = Iω along the axis for rotation about a symmetry axis
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [angular-momentum-rigid, ncert-line]
+    stem: A uniform disc spins about its symmetry axis, which is fixed. Which statement about its angular momentum is correct?
+    options:
+      - It is zero because the centre of mass is at rest
+      - It points along a radius of the disc
+      - It equals Iω and points along the axis of rotation
+      - It depends on the choice of a point on the rim
+    answer: 2
+    explanation: "For rotation about a symmetry axis, L = Iω along the axis. A body can have angular momentum even when its centre of mass is at rest."
+
+  - id: phy-rot-445
+    topic: torque-angular-momentum
+    subtopic: Oblique force
+    concept: τ = rF sin θ with θ = 60°
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [torque-magnitude]
+    stem: A 40 N force acts at a point 0.5 m from an axis, at 60° to the position vector. What is the torque about the axis?
+    options:
+      - 10√3 N m
+      - 10 N m
+      - 20 N m
+      - 20√3 N m
+    answer: 0
+    explanation: "τ = rF sin 60° = 0.5 × 40 × √3/2 = 10√3 ≈ 17.3 N m. Using cos 60° gives 10 N m."
+
+  - id: phy-rot-446
+    topic: rigid-body-equilibrium
+    subtopic: Forearm as a lever
+    concept: Muscle force needed with a short lever arm
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [lever, biomechanics, application]
+    stem: A person holds a 5 kg load in the hand with the forearm horizontal. The biceps pulls vertically upward 4 cm from the elbow and the load is 32 cm from the elbow. Ignoring the forearm's weight, what force must the biceps exert? (g = 10 m s^{-2})
+    options:
+      - 50 N
+      - 6.25 N
+      - 200 N
+      - 400 N
+    answer: 3
+    explanation: "Moments about the elbow: F × 4 = 50 × 32, so F = 400 N. The short muscle lever arm means the muscle force is eight times the load."
+
+  - id: phy-rot-447
+    topic: rigid-body-equilibrium
+    subtopic: Overhanging rod
+    concept: Reactions when a support is not at the end
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [beam-reactions, principle-of-moments]
+    stem: A uniform rod AB, 3 m long and weighing 60 N, rests horizontally on a support at A and another support C, 1 m from B. What is the reaction at A?
+    options:
+      - 30 N
+      - 15 N
+      - 45 N
+      - 20 N
+    answer: 1
+    explanation: "C is 2 m from A; the weight acts 1.5 m from A, i.e. 0.5 m from C. Moments about C: R_A × 2 = 60 × 0.5, so R_A = 15 N and R_C = 45 N."
+
+  - id: phy-rot-448
+    topic: rigid-body-equilibrium
+    subtopic: Centre of gravity facts
+    concept: A ring's CG lies in empty space
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [centre-of-gravity, trap]
+    stem: Which statement about the centre of gravity is INCORRECT?
+    options:
+      - A body supported at its centre of gravity experiences no net gravitational torque
+      - In a uniform gravitational field it coincides with the centre of mass
+      - A freely suspended body comes to rest with it directly below the support
+      - For a ring it lies on the material of the ring
+    answer: 3
+    explanation: "A ring's centre of gravity is at its centre, where there is no material. The other statements are correct."
+
+  - id: phy-rot-449
+    topic: rigid-body-equilibrium
+    subtopic: Metre rule experiment
+    concept: Basis of the metre-rule moments experiment
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [metre-rule, experimental]
+    stem: |-
+      In the experiment to find an unknown mass using a uniform metre rule balanced on a knife-edge:
+      I. The rule's weight acts at its 50 cm mark.
+      II. With the knife-edge at 50 cm, the rule's own weight gives no moment.
+      III. The unknown mass is found using the principle of moments.
+      IV. The rule must be non-uniform for the method to work.
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "For a uniform rule the weight acts at the middle, so balancing there removes its moment and m_1d_1 = m_2d_2 gives the unknown. Non-uniformity would only complicate it."
+
+  - id: phy-rot-450
+    topic: rigid-body-equilibrium
+    subtopic: Seesaw graph
+    concept: Balancing distance is inversely proportional to mass
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, principle-of-moments, proportionality]
+    stem: A fixed load on one side of a seesaw is balanced by children of different masses m sitting at distance d on the other side. The graph of d against m is
+    options:
+      - a straight line through the origin
+      - a straight line with negative slope
+      - a rectangular hyperbola
+      - a parabola
+    answer: 2
+    explanation: "Balance needs m × d = constant moment, so d ∝ 1/m: a rectangular hyperbola."
+
+  - id: phy-rot-451
+    topic: rigid-body-equilibrium
+    subtopic: What makes a couple
+    concept: Equal and opposite collinear forces are not a couple
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [couple, trap]
+    stem: |-
+      Statement I: Any two equal and opposite forces acting on a body form a couple.
+      Statement II: The moment of a couple equals one of the forces multiplied by the perpendicular distance between their lines of action.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "If the two forces act along the same line they cancel completely and give no torque, so they are not a couple. For a couple, the moment is F × d."
+
+  - id: phy-rot-452
+    topic: rigid-body-equilibrium
+    subtopic: Two-force equilibrium
+    concept: Two forces balance only if equal, opposite and collinear
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [equilibrium, couple]
+    stem: |-
+      Assertion (A): A rigid body acted on by only two forces is in equilibrium only if the forces are equal, opposite and along the same line.
+      Reason (R): Equal and opposite forces with different lines of action form a couple, which produces a net torque.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Zero net force needs the forces to be equal and opposite; zero net torque then needs them collinear, since otherwise they form a couple. R explains the collinearity requirement in A."
+
+  - id: phy-rot-453
+    topic: rigid-body-equilibrium
+    subtopic: Suspending a loaded rod
+    concept: Suspension point at the combined centre of mass
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [suspension, com-position, multi-concept]
+    stem: A uniform 1 kg rod 1 m long has a 2 kg mass fixed at one end. Where should a single string be tied so that the rod hangs horizontally?
+    options:
+      - At the midpoint
+      - 25 cm from the loaded end
+      - About 16.7 cm from the loaded end
+      - 33.3 cm from the loaded end
+    answer: 2
+    explanation: "The string must be above the combined centre of mass: x = (1 × 0.5 + 2 × 0)/3 = 1/6 m ≈ 16.7 cm from the loaded end."
+
+  - id: phy-rot-454
+    topic: rigid-body-equilibrium
+    subtopic: Comparing torques on a door
+    concept: Ranking torques from force, lever arm and angle
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [torque-magnitude, ordering]
+    stem: "Arrange these pushes on a door in increasing order of torque about the hinges: P, 20 N perpendicular at 0.5 m; Q, 30 N at 30° to the door at 1 m; R, 50 N along the door towards the hinge; S, 10 N perpendicular at 0.8 m."
+    options:
+      - R < P < S < Q
+      - S < R < P < Q
+      - R < S < Q < P
+      - R < S < P < Q
+    answer: 3
+    explanation: "Torques: P = 10 N m, Q = 30 × 1 × sin 30° = 15 N m, R = 0 (along the door), S = 8 N m. So R < S < P < Q."
+
+  - id: phy-rot-455
+    topic: moment-of-inertia
+    subtopic: Rod with end masses
+    concept: I of a rod plus point masses about its centre
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [composite-body, point-masses]
+    stem: A 1 kg uniform rod 1 m long carries 0.5 kg point masses at both ends. What is the moment of inertia about a perpendicular axis through its centre?
+    options:
+      - 1/3 kg m^2
+      - 1/4 kg m^2
+      - 1/12 kg m^2
+      - 7/12 kg m^2
+    answer: 0
+    explanation: "Rod: 1/12 kg m^2; masses: 2 × 0.5 × 0.5^2 = 0.25 kg m^2. Total = 1/12 + 3/12 = 1/3 kg m^2."
+
+  - id: phy-rot-456
+    topic: moment-of-inertia
+    subtopic: I–R graph
+    concept: I ∝ R^2 at fixed mass
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, proportionality]
+    stem: For discs of the same mass but different radii, the moment of inertia about the central axis is plotted against radius R. The graph is
+    options:
+      - a straight line through the origin
+      - a parabola through the origin
+      - a rectangular hyperbola
+      - a horizontal line
+    answer: 1
+    explanation: "I = MR^2/2 with M fixed is proportional to R^2, a parabola through the origin. A plot of I against R^2 would be a straight line."
+
+  - id: phy-rot-457
+    topic: moment-of-inertia
+    subtopic: Raw and boiled eggs
+    concept: Liquid interior raises effective I and resists spin
+    category: application
+    format: case
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [application, rotational-inertia]
+    stem: A raw egg and a hard-boiled egg of the same size and mass are spun on a table with the same twist. Which spins faster, and why?
+    options:
+      - The raw egg, because its liquid interior has less inertia
+      - Both equally, since their masses are equal
+      - The boiled egg, because its contents rotate as one rigid body
+      - The raw egg, because the liquid lubricates the shell
+    answer: 2
+    explanation: "In the boiled egg the whole body turns together. In the raw egg the liquid does not follow the shell at once and sloshes outward, raising the effective moment of inertia and dissipating energy, so it spins slower."
+
+  - id: phy-rot-458
+    topic: moment-of-inertia
+    subtopic: Comparing various axes
+    concept: Ordering I for bodies about central and tangent axes
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [ordering, parallel-axis, multi-concept]
+    stem: "For bodies of equal mass M and radius R, arrange in increasing order: P, a ring about its central axis; Q, a disc about its central axis; R, a solid sphere about a tangent; S, a hollow sphere about a tangent."
+    options:
+      - P < Q < R < S
+      - Q < P < R < S
+      - Q < P < S < R
+      - Q < R < P < S
+    answer: 1
+    explanation: "Coefficients of MR^2: Q = 0.5, P = 1, R = 1.4, S ≈ 1.67. So Q < P < R < S."
+
+  - id: phy-rot-459
+    topic: moment-of-inertia
+    subtopic: Rotational inertia
+    concept: Spreading mass outward increases I
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [moi-concept]
+    stem: |-
+      Statement I: Moment of inertia measures a body's resistance to changes in its rotational motion.
+      Statement II: For a fixed mass, moving the mass farther from the axis decreases the moment of inertia.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "I plays the role of inertia in rotation. Since I = Σmr^2, moving mass outward increases I, so Statement II is false."
+
+  - id: phy-rot-460
+    topic: moment-of-inertia
+    subtopic: Scaling a wire ring
+    concept: For a ring of fixed wire, I ∝ R^3
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: true
+    tags: [scaling, ring, trap]
+    stem: A ring is made of wire with a fixed mass per unit length. If the ring's radius is doubled, by what factor does its moment of inertia about its central axis grow?
+    options:
+      - "2"
+      - "4"
+      - "16"
+      - "8"
+    answer: 3
+    explanation: "M = 2πRλ ∝ R, so I = MR^2 ∝ R^3 and doubling R gives 8 times. 4 assumes the mass stays the same."
+
+  - id: phy-rot-461
+    topic: moment-of-inertia
+    subtopic: Central-axis results
+    concept: Standard moments of inertia about central axes
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [standard-moi]
+    stem: |-
+      Consider these moments of inertia about the body's own central axis.
+      I. Uniform disc: MR^2/2
+      II. Thin hollow cylinder: MR^2
+      III. Solid cylinder: MR^2/2
+      IV. Thin rod about its own length: practically zero
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: "All four are standard results: a solid cylinder is a stack of discs (MR^2/2), a thin hollow cylinder has all its mass at R, and a thin rod's mass lies on its own axis."
+
+  - id: phy-rot-462
+    topic: moment-of-inertia
+    subtopic: Flywheels store energy
+    concept: Large I at high ω stores large kinetic energy
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [flywheel, rotational-ke]
+    stem: |-
+      Assertion (A): A heavy flywheel can store a large amount of energy.
+      Reason (R): Rotational kinetic energy ½Iω^2 is large when both I and ω are large.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "A flywheel with its mass at the rim has large I; spun fast, its ½Iω^2 is large, and it releases this energy smoothly. R explains A."
+
+  - id: phy-rot-463
+    topic: moment-of-inertia
+    subtopic: Rod about an end
+    concept: k = L/√3 for a rod about an end
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [radius-of-gyration, rod]
+    stem: What is the radius of gyration of a uniform rod 0.6 m long about a perpendicular axis through one end?
+    options:
+      - About 0.35 m
+      - 0.2 m
+      - 0.3 m
+      - About 0.17 m
+    answer: 0
+    explanation: "I = ML^2/3 = Mk^2, so k = L/√3 = 0.6/1.732 ≈ 0.35 m. About the centre it would be L/(2√3) ≈ 0.17 m."
+
+  - id: phy-rot-464
+    topic: axes-theorems
+    subtopic: Tangent axes
+    concept: Moments of inertia about tangents for four bodies
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [parallel-axis, tangent, multi-concept]
+    stem: |-
+      Match each body and tangent axis (List I) with its moment of inertia (List II).
+      List I:
+      P. Disc, tangent in its plane
+      Q. Ring, tangent perpendicular to its plane
+      R. Solid sphere, any tangent
+      S. Hollow sphere, any tangent
+      List II:
+      1. 7MR^2/5
+      2. 2MR^2
+      3. 5MR^2/3
+      4. 5MR^2/4
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-1, Q-2, R-4, S-3
+    answer: 2
+    explanation: "Disc: MR^2/4 + MR^2 = 5MR^2/4. Ring: MR^2 + MR^2 = 2MR^2. Solid sphere: 2/5 + 1 = 7/5. Hollow sphere: 2/3 + 1 = 5/3."
+
+  - id: phy-rot-465
+    topic: axes-theorems
+    subtopic: Rectangular plate numerical
+    concept: I_z = M(a^2 + b^2)/12 for a rectangular plate
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [perpendicular-axis, rectangle]
+    stem: A 1.2 kg rectangular plate measures 0.3 m × 0.4 m. What is its moment of inertia about an axis through its centre perpendicular to its plane?
+    options:
+      - 0.05 kg m^2
+      - 0.025 kg m^2
+      - 0.1 kg m^2
+      - 0.0125 kg m^2
+    answer: 1
+    explanation: "I = M(a^2 + b^2)/12 = 1.2 × (0.09 + 0.16)/12 = 1.2 × 0.25/12 = 0.025 kg m^2."
+
+  - id: phy-rot-466
+    topic: axes-theorems
+    subtopic: Correct use of the theorems
+    concept: Perpendicular diameters of a disc satisfy I_z = I_x + I_y
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [perpendicular-axis, parallel-axis]
+    stem: Which statement about the theorems of parallel and perpendicular axes is correct?
+    options:
+      - For a disc, the moment of inertia about the central normal axis equals the sum of those about any two perpendicular diameters
+      - For a solid sphere, I_z = I_x + I_y for three perpendicular diameters
+      - The parallel axis theorem is I = I_{cm} − Md^2
+      - The parallel axis theorem needs the two axes to be perpendicular
+    answer: 0
+    explanation: "For a plane lamina like a disc, I_z = I_x + I_y for any perpendicular pair of in-plane axes through the point. The sphere is not a lamina; the parallel axis theorem uses a plus sign and parallel axes."
+
+  - id: phy-rot-467
+    topic: axes-theorems
+    subtopic: Square plate about an edge
+    concept: Parallel axis theorem for a square plate about an edge
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [parallel-axis, square-plate]
+    stem: What is the moment of inertia of a uniform square plate of mass M and side a about one of its edges?
+    options:
+      - Ma^2/12
+      - Ma^2/6
+      - 2Ma^2/3
+      - Ma^2/3
+    answer: 3
+    explanation: "About the central line parallel to the edge, I = Ma^2/12. Shifting by a/2: Ma^2/12 + Ma^2/4 = Ma^2/3."
+
+  - id: phy-rot-468
+    topic: axes-theorems
+    subtopic: Door about its hinges
+    concept: A door behaves like a rod about its end for the hinge axis
+    category: application
+    format: case
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [door, parallel-axis]
+    stem: A uniform door of mass M, width w and height h swings on vertical hinges along one edge. What is its moment of inertia about the hinge line?
+    options:
+      - M(w^2 + h^2)/3
+      - Mw^2/12
+      - Mw^2/3
+      - Mh^2/3
+    answer: 2
+    explanation: "Every vertical strip is at the same distance from the hinge line, so the height does not matter: the door behaves like a rod of length w about its end, I = Mw^2/3."
+
+  - id: phy-rot-469
+    topic: axes-theorems
+    subtopic: Equal moments of inertia
+    concept: Recognising pairs with equal I
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [perpendicular-axis, multi-concept]
+    stem: |-
+      Which pairs have equal moments of inertia (same M, R or side a)?
+      I. A ring about a diameter and a disc about its central normal axis
+      II. A square plate about a diagonal and about a central line parallel to a side
+      III. A solid sphere about a diameter and a disc about a diameter
+      IV. A rod about an end and a rod about its centre
+    options:
+      - I and III only
+      - I and II only
+      - II and IV only
+      - II only
+    answer: 1
+    explanation: "I: MR^2/2 each. II: both Ma^2/12 by the perpendicular axis theorem. III: 2MR^2/5 versus MR^2/4. IV: ML^2/3 versus ML^2/12."
+
+  - id: phy-rot-470
+    topic: axes-theorems
+    subtopic: In-plane tangents
+    concept: Ring and disc about in-plane tangents differ
+    category: numerical
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [parallel-axis, tangent, confused-pair]
+    stem: |-
+      Statement I: The moment of inertia of a ring about a tangent in its plane is 3MR^2/2.
+      Statement II: The moment of inertia of a disc about a tangent in its plane is 3MR^2/2.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Ring: MR^2/2 + MR^2 = 3MR^2/2. Disc: MR^2/4 + MR^2 = 5MR^2/4; its 3MR^2/2 is for the tangent perpendicular to its plane."
+
+  - id: phy-rot-471
+    topic: axes-theorems
+    subtopic: Tangent ratio for spheres
+    concept: Ratio of tangent moments of hollow and solid spheres
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [parallel-axis, sphere, ratio]
+    stem: A thin hollow sphere and a solid sphere have equal mass and radius. What is the ratio of their moments of inertia about a tangent (hollow to solid)?
+    options:
+      - "5 : 3"
+      - "3 : 5"
+      - "21 : 25"
+      - "25 : 21"
+    answer: 3
+    explanation: "Hollow: 5MR^2/3; solid: 7MR^2/5. Ratio = (5/3)/(7/5) = 25/21. 5 : 3 compares the central values."
+
+  - id: phy-rot-472
+    topic: axes-theorems
+    subtopic: Disc about four axes
+    concept: Ordering I of a disc about diameter, central, and tangent axes
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [ordering, disc]
+    stem: "Arrange the moments of inertia of a uniform disc in increasing order: P, about a diameter; Q, about the central normal axis; R, about a tangent in its plane; S, about a tangent perpendicular to its plane."
+    options:
+      - P < Q < R < S
+      - Q < P < R < S
+      - P < Q < S < R
+      - P < R < Q < S
+    answer: 0
+    explanation: "P = MR^2/4, Q = MR^2/2, R = 5MR^2/4, S = 3MR^2/2."
+
+  - id: phy-rot-473
+    topic: rotational-dynamics
+    subtopic: Potter's wheel
+    concept: KE gained after a torque acts for a time
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [angular-impulse, rotational-ke]
+    stem: A potter applies a steady torque of 10 N m for 3 s to a wheel (I = 5 kg m^2) initially at rest, then lets go. Neglecting friction, what kinetic energy does the wheel have afterwards?
+    options:
+      - 30 J
+      - 90 J
+      - 180 J
+      - 45 J
+    answer: 1
+    explanation: "Angular impulse 10 × 3 = 30 = Iω gives ω = 6 rad s^{-1}. K = ½ × 5 × 36 = 90 J."
+
+  - id: phy-rot-474
+    topic: rotational-dynamics
+    subtopic: τ–t graph
+    concept: Area under τ–t graph is the change in angular momentum
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, angular-impulse]
+    stem: A graph of torque against time is drawn for a wheel. What does the area under this graph represent?
+    options:
+      - The work done on the wheel
+      - The angular acceleration
+      - The rotational kinetic energy
+      - The change in angular momentum
+    answer: 3
+    explanation: "∫τ dt = ΔL, the angular impulse. Work would be the area under a τ–θ graph."
+
+  - id: phy-rot-475
+    topic: rotational-dynamics
+    subtopic: Rotational laws
+    concept: Rotational counterparts of Newton's laws
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [newtons-second-law-rotation, trap]
+    stem: |-
+      Consider the following for a rigid body rotating about a fixed axis.
+      I. With zero net external torque, its angular velocity stays constant.
+      II. The net external torque equals Iα.
+      III. Internal torques cancel in pairs.
+      IV. Its rotational kinetic energy can change with no work done on it.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: "For a rigid body about a fixed axis (constant I), zero torque means constant ω, τ = Iα, and internal torques cancel. By the work–energy theorem, KE changes only when net work is done, so IV is false."
+
+  - id: phy-rot-476
+    topic: rotational-dynamics
+    subtopic: Rod about its end
+    concept: KE of a rod rotating about one end
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [rotational-ke, rod]
+    stem: A 3 kg uniform rod 2 m long rotates at 3 rad s^{-1} about a perpendicular axis through one end. What is its kinetic energy?
+    options:
+      - 18 J
+      - 4.5 J
+      - 36 J
+      - 9 J
+    answer: 0
+    explanation: "I = ML^2/3 = 3 × 4/3 = 4 kg m^2. K = ½ × 4 × 9 = 18 J. Using ML^2/12 = 1 kg m^2 gives 4.5 J."
+
+  - id: phy-rot-477
+    topic: rotational-dynamics
+    subtopic: Relations check
+    concept: Power is τω, not τ/ω
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [power, trap]
+    stem: Which relation for rotation about a fixed axis is INCORRECT?
+    options:
+      - Angular impulse = τΔt = ΔL
+      - Power = τ/ω
+      - Work = τθ for constant torque
+      - Rotational KE = L^2/2I
+    answer: 1
+    explanation: "P = dW/dt = τ dθ/dt = τω. τ/ω does not even have the unit of power."
+
+  - id: phy-rot-478
+    topic: rotational-dynamics
+    subtopic: More analogues
+    concept: Linear–rotational analogues of work, KE, impulse and momentum
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [analogy]
+    stem: |-
+      Match each linear expression (List I) with its rotational analogue (List II).
+      List I:
+      P. Work F s
+      Q. Kinetic energy ½mv^2
+      R. Impulse FΔt
+      S. Momentum mv
+      List II:
+      1. τθ
+      2. Iω
+      3. τΔt
+      4. ½Iω^2
+    options:
+      - P-1, Q-4, R-3, S-2
+      - P-1, Q-2, R-3, S-4
+      - P-3, Q-4, R-1, S-2
+      - P-1, Q-4, R-2, S-3
+    answer: 0
+    explanation: "Replace F by τ, s by θ, m by I and v by ω: work τθ, KE ½Iω^2, angular impulse τΔt and angular momentum Iω."
+
+  - id: phy-rot-479
+    topic: rotational-dynamics
+    subtopic: Stopping a flywheel
+    concept: Larger L needs a longer time under the same braking torque
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [angular-impulse, flywheel]
+    stem: |-
+      Assertion (A): With the same braking torque, a flywheel of larger moment of inertia takes longer to stop from the same angular speed.
+      Reason (R): Its angular momentum Iω is larger, and the stopping time equals Iω divided by the torque.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "τΔt = ΔL = Iω, so Δt = Iω/τ grows with I. R explains A."
+
+  - id: phy-rot-480
+    topic: rotational-dynamics
+    subtopic: String pulled off a cylinder
+    concept: Acceleration of the string equals αR
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [tangential-force, cylinder, multi-concept]
+    stem: A string wound on a solid cylinder (mass 2 kg, radius 0.1 m) mounted on a fixed frictionless axle is pulled with a steady 10 N force. What is the linear acceleration of the string?
+    options:
+      - 5 m s^{-2}
+      - 100 m s^{-2}
+      - 10 m s^{-2}
+      - 20 m s^{-2}
+    answer: 2
+    explanation: "α = FR/I = 1/(0.5 × 2 × 0.01) = 100 rad s^{-2}. The string unwinds at a = αR = 10 m s^{-2}. 100 is α, not a."
+
+  - id: phy-rot-481
+    topic: rotational-dynamics
+    subtopic: Effective force components
+    concept: Force components parallel to the axis do not rotate the body about it
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [fixed-axis, torque]
+    stem: |-
+      Statement I: For a body free to rotate about a fixed axis, only the torque component along the axis changes its angular speed.
+      Statement II: A force parallel to the fixed axis cannot rotate the body about that axis.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Torque components perpendicular to the axis are balanced by the bearings; the axial component gives τ = Iα. A force parallel to the axis gives a torque perpendicular to it, so it cannot spin the body about the axis."
+
+  - id: phy-rot-482
+    topic: angular-momentum-conservation
+    subtopic: Effect on angular speed
+    concept: Predicting ω changes under conservation of L
+    category: application
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [conservation]
+    stem: |-
+      Match each situation (List I) with what happens to the angular speed (List II). No external torque acts.
+      List I:
+      P. A skater pulls her arms in
+      Q. A child walks from the centre to the edge of a turntable
+      R. A spinning disc is placed on a coaxial disc at rest
+      S. A person stands still on a steadily rotating platform
+      List II:
+      1. Becomes an intermediate common value
+      2. Unchanged
+      3. Decreases
+      4. Increases
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-1, R-3, S-2
+      - P-4, Q-3, R-1, S-2
+    answer: 3
+    explanation: "Smaller I raises ω (P); larger I lowers ω (Q); coupled discs share a common ω between the two (R); nothing changes I in S, so ω is unchanged."
+
+  - id: phy-rot-483
+    topic: angular-momentum-conservation
+    subtopic: Ring placed on a disc
+    concept: Common ω when a ring is set on a spinning disc
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [coupled-discs]
+    stem: A disc of mass M and radius R spins at ω. A ring of the same mass and radius, initially not rotating, is gently placed on it coaxially and they rotate together. What is the final angular speed?
+    options:
+      - ω/2
+      - ω/3
+      - 2ω/3
+      - ω/4
+    answer: 1
+    explanation: "(MR^2/2)ω = (MR^2/2 + MR^2)ω', so ω' = ω/3. ω/2 treats the ring as another disc."
+
+  - id: phy-rot-484
+    topic: angular-momentum-conservation
+    subtopic: Polar ice melting
+    concept: Mass moving towards the equator lengthens the day
+    category: application
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [earth-rotation, conservation]
+    stem: If the polar ice caps melted and the water spread towards the equator, which statement would be correct?
+    options:
+      - The Earth's moment of inertia would increase and the day would become longer
+      - The Earth's moment of inertia would decrease and the day would become shorter
+      - The Earth's angular momentum would increase
+      - The length of the day would not change
+    answer: 0
+    explanation: "Mass moving from near the axis (poles) to far from it (equator) raises I. With L = Iω conserved, ω falls, so the day lengthens slightly."
+
+  - id: phy-rot-485
+    topic: angular-momentum-conservation
+    subtopic: Whirlpools
+    concept: Fluid spirals faster as it moves inward
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [application, conservation]
+    stem: Water swirling slowly in a basin spins much faster as it approaches the drain hole. Which principle best explains this?
+    options:
+      - Conservation of linear momentum
+      - Conservation of mass alone
+      - Conservation of angular momentum
+      - Newton's third law alone
+    answer: 2
+    explanation: "Each parcel of water keeps roughly m v r constant as r decreases, so its speed around the drain increases, just as a skater spins faster when pulling in her arms."
+
+  - id: phy-rot-486
+    topic: angular-momentum-conservation
+    subtopic: Coupled discs
+    concept: What is and is not conserved when discs couple
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [coupled-discs, energy-loss]
+    stem: |-
+      A spinning disc is dropped onto a coaxial disc at rest; they slip and then rotate together. Consider:
+      I. The total angular momentum is conserved.
+      II. The total kinetic energy is conserved.
+      III. The friction between the discs is an internal force.
+      IV. The final angular speed is less than the first disc's initial speed.
+      Which are correct?
+    options:
+      - I and II only
+      - II and III only
+      - I, II and III only
+      - I, III and IV only
+    answer: 3
+    explanation: "Friction between the discs is internal, so L is conserved and the common ω is lower than the first disc's. Kinetic energy is partly converted to heat by the slipping, so II is false."
+
+  - id: phy-rot-487
+    topic: angular-momentum-conservation
+    subtopic: ω–I graph
+    concept: At constant L, ω ∝ 1/I
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, proportionality]
+    stem: A body with constant angular momentum changes its moment of inertia. The graph of its angular velocity ω against I is
+    options:
+      - a straight line with positive slope
+      - a rectangular hyperbola
+      - a straight line with negative slope
+      - a parabola
+    answer: 1
+    explanation: "Iω = L is constant, so ω = L/I: a rectangular hyperbola."
+
+  - id: phy-rot-488
+    topic: angular-momentum-conservation
+    subtopic: Mass moving outward
+    concept: KE falls while L stays constant as I increases
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [ke-change, turntable]
+    stem: |-
+      A bead slides slowly outward along a spoke of a freely rotating wheel.
+      Statement I: The rotational kinetic energy of the wheel–bead system decreases.
+      Statement II: The angular momentum of the wheel–bead system decreases.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "No external torque acts about the axis, so L is constant. As I rises, K = L^2/2I falls (energy goes into the bead's radial motion or friction)."
+
+  - id: phy-rot-489
+    topic: angular-momentum-conservation
+    subtopic: Satellite in an ellipse
+    concept: v_pr_p = v_ar_a for a satellite
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [orbit, conservation]
+    stem: A satellite in an elliptical orbit moves at 8 km s^{-1} at 7000 km from the Earth's centre (perigee). What is its speed at apogee, 14000 km from the centre?
+    options:
+      - 4 km s^{-1}
+      - 16 km s^{-1}
+      - 2 km s^{-1}
+      - 5.7 km s^{-1}
+    answer: 0
+    explanation: "At perigee and apogee v ⟂ r, so v_pr_p = v_ar_a: v_a = 8 × 7000/14000 = 4 km s^{-1}."
+
+  - id: phy-rot-490
+    topic: angular-momentum-conservation
+    subtopic: Orbital vs spin angular momentum
+    concept: Orbital L about the Sun is constant because gravity is central
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [central-force, trap]
+    stem: |-
+      Assertion (A): The Earth's orbital angular momentum about the Sun stays constant.
+      Reason (R): The Earth spins about its own axis once a day.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Orbital L is constant because the Sun's gravitational pull is central, giving zero torque about the Sun. The Earth's daily spin is a separate fact that does not explain it."
+
+  - id: phy-rot-491
+    topic: rolling-motion
+    subtopic: Total KE of rolling bodies
+    concept: Total KE as a multiple of mv^2 for rolling bodies
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [rolling-ke, multi-concept]
+    stem: |-
+      Match each body rolling without slipping at speed v (List I) with its total kinetic energy (List II).
+      List I:
+      P. Ring
+      Q. Disc
+      R. Solid sphere
+      S. Hollow sphere
+      List II:
+      1. (5/6)mv^2
+      2. (7/10)mv^2
+      3. mv^2
+      4. (3/4)mv^2
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 2
+    explanation: "K = ½mv^2(1 + k^2/R^2): ring ½ × 2 = 1; disc ½ × 3/2 = 3/4; solid sphere ½ × 7/5 = 7/10; hollow sphere ½ × 5/3 = 5/6."
+
+  - id: phy-rot-492
+    topic: rolling-motion
+    subtopic: Hollow or solid?
+    concept: Distinguishing identical-looking balls by rolling them
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [incline-race, application]
+    stem: Two balls look identical and have equal mass and radius, but one is hollow and one solid. How can you tell them apart?
+    options:
+      - Weigh them on a balance
+      - Drop them from a height and see which lands first
+      - Measure their diameters
+      - Roll them down the same incline; the one reaching the bottom first is solid
+    answer: 3
+    explanation: "Equal masses and sizes defeat weighing and dropping (both fall at g). On an incline the solid ball (k^2/R^2 = 2/5) accelerates faster than the hollow one (2/3)."
+
+  - id: phy-rot-493
+    topic: rolling-motion
+    subtopic: Heights reached
+    concept: Height reached rolling up is proportional to 1 + k^2/R^2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [incline, ratio]
+    stem: A disc and a ring roll without slipping at the same speed on level ground and then roll up the same incline. What is the ratio of the heights they reach (disc to ring)?
+    options:
+      - "1 : 1"
+      - "3 : 4"
+      - "4 : 3"
+      - "2 : 3"
+    answer: 1
+    explanation: "h = v^2(1 + k^2/R^2)/2g: disc 3v^2/4g, ring v^2/g. Ratio = 3/4. The ring has more rotational energy to convert, so it climbs higher."
+
+  - id: phy-rot-494
+    topic: rolling-motion
+    subtopic: What the acceleration depends on
+    concept: Rolling acceleration depends only on shape factor and angle
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [incline, proportionality]
+    stem: |-
+      For a body rolling without slipping down an incline, consider:
+      I. Its acceleration does not depend on its mass.
+      II. Its acceleration does not depend on its radius.
+      III. Its acceleration depends on the ratio k^2/R^2.
+      IV. Static friction is necessary for the rolling.
+      Which are correct?
+    options:
+      - I, II, III and IV
+      - I and III only
+      - III and IV only
+      - I, II and III only
+    answer: 0
+    explanation: "a = g sin θ/(1 + k^2/R^2) contains neither m nor R separately, only the shape factor. Friction supplies the torque that keeps ω = v/R."
+
+  - id: phy-rot-495
+    topic: rolling-motion
+    subtopic: Energy graph
+    concept: K_{rot} vs K_{trans} lines have slope k^2/R^2
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, energy-fraction]
+    stem: For several rolling bodies, rotational KE is plotted against translational KE as their speed varies. Each gives a straight line through the origin. Which body gives the steepest line?
+    options:
+      - Solid sphere
+      - Disc
+      - Ring
+      - Hollow sphere
+    answer: 2
+    explanation: "K_{rot}/K_{trans} = k^2/R^2, the slope. It is largest (1) for the ring, then hollow sphere (2/3), disc (1/2) and solid sphere (2/5)."
+
+  - id: phy-rot-496
+    topic: rolling-motion
+    subtopic: Speed of a rim point
+    concept: Speed of a rim point = ω × distance from the contact point
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [instantaneous-axis, rim-velocity]
+    stem: A wheel of radius R rolls without slipping with centre speed v. A point on the rim is at an angle of 60° from the contact point, measured at the centre. What is its speed?
+    options:
+      - v/2
+      - v
+      - √3 v
+      - 2v
+    answer: 1
+    explanation: "Its distance from the contact point is the chord 2R sin 30° = R, so speed = ωR = v. At 180° (the top) the chord is 2R and speed 2v."
+
+  - id: phy-rot-497
+    topic: rolling-motion
+    subtopic: Work by friction
+    concept: Static friction does no work in pure rolling
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [friction-rolling, trap]
+    stem: For a ball rolling without slipping down a rough incline, which statement is INCORRECT?
+    options:
+      - Gravity does positive work on it
+      - The normal force does no work on it
+      - Its total mechanical energy is conserved
+      - Friction does negative work and dissipates energy
+    answer: 3
+    explanation: "The contact point is momentarily at rest, so static friction does no work and mechanical energy is conserved. Friction only redistributes energy between translation and rotation."
+
+  - id: phy-rot-498
+    topic: rolling-motion
+    subtopic: Energy split comparison
+    concept: A solid sphere has less rotational than translational KE
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [energy-fraction, confused-pair]
+    stem: |-
+      Statement I: For a rolling ring, the translational and rotational kinetic energies are equal.
+      Statement II: For a rolling solid sphere, the rotational kinetic energy exceeds the translational kinetic energy.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "K_{rot}/K_{trans} = k^2/R^2: 1 for a ring, 2/5 for a solid sphere. So the sphere's rotational KE is less than its translational KE."
+
+  - id: phy-rot-499
+    topic: rolling-motion
+    subtopic: Translational share
+    concept: Translational KE of a rolling sphere is 5/7 of the total
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [energy-fraction, sphere]
+    stem: A solid sphere rolling without slipping has total kinetic energy 14 J. What is its translational kinetic energy?
+    options:
+      - 10 J
+      - 4 J
+      - 7 J
+      - 9.8 J
+    answer: 0
+    explanation: "K_{trans} : K_{rot} = 5 : 2, so K_{trans} = (5/7) × 14 = 10 J and K_{rot} = 4 J."
+
+  - id: phy-rot-500
+    topic: rolling-motion
+    subtopic: Speeds at the bottom
+    concept: Ordering final speeds of rolling bodies from the same height
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [incline, ordering]
+    stem: "A solid sphere (P), a ring (Q), a disc (R) and a hollow sphere (S) roll without slipping from rest down the same height. Arrange their speeds at the bottom in increasing order."
+    options:
+      - P < R < S < Q
+      - Q < R < S < P
+      - S < Q < R < P
+      - Q < S < R < P
+    answer: 3
+    explanation: "v^2 = 2gh/(1 + k^2/R^2). Shape factors: ring 1, hollow sphere 2/3, disc 1/2, solid sphere 2/5. Larger factor means lower speed: Q < S < R < P."
+
