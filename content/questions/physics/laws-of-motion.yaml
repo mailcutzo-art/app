@@ -2,121 +2,4232 @@ subject: physics
 chapter:
   slug: laws-of-motion
   name: Laws of Motion
-  order: 2
+  order: 4
+  classes: [11]
   topics:
-    - slug: newtons-laws
-      name: Newton's laws
+    - slug: inertia-first-law
+      name: Aristotle's fallacy, inertia and Newton's first law
+    - slug: second-law-momentum
+      name: Momentum and Newton's second law
+    - slug: impulse
+      name: Impulse and impulsive forces
+    - slug: third-law
+      name: Newton's third law of motion
+    - slug: momentum-conservation
+      name: Conservation of momentum
+    - slug: equilibrium-concurrent-forces
+      name: Equilibrium of a particle
+    - slug: common-forces
+      name: Common forces in mechanics and apparent weight
+    - slug: connected-bodies
+      name: Solving problems with connected bodies
     - slug: friction
       name: Friction
+    - slug: circular-motion
+      name: Circular motion and banking of roads
 questions:
   - id: phy-lom-001
-    topic: newtons-laws
-    category: concept
+    topic: inertia-first-law
+    subtopic: Aristotle's fallacy
+    concept: Aristotle wrongly held that a force is needed to maintain uniform motion
+    category: factual
+    format: direct
     difficulty: 1
+    time: 25
+    ncert: true
     battle: true
-    stem: Passengers lurch forward when a moving bus brakes suddenly. Which law explains this?
+    tags: [aristotle, ncert-line]
+    stem: According to Aristotle's view of motion, which statement was believed to be true?
     options:
-      - Newton's second law
-      - Newton's first law (inertia)
-      - Newton's third law
-      - The law of gravitation
+      - A body moves with uniform velocity when no force acts on it
+      - An external force is required to keep a body in uniform motion
+      - Force produces acceleration, not velocity
+      - All bodies fall with the same acceleration in vacuum
     answer: 1
-    explanation: By inertia (Newton's first law), the passengers' bodies keep moving forward while the bus, and their feet on its floor, slow down.
+    explanation: Aristotle held that an external force is needed to keep a body moving uniformly. Galileo showed this is wrong; a force is needed only because friction opposes motion, and with no net force a body keeps its velocity.
 
   - id: phy-lom-002
-    topic: newtons-laws
-    category: numerical
-    difficulty: 1
-    battle: true
-    stem: A net force of 10 N acts on a 2 kg block. What is its acceleration?
+    topic: inertia-first-law
+    subtopic: Galileo's inclined planes
+    concept: On a frictionless horizontal plane a ball would move forever
+    category: concept
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [galileo, inclined-plane]
+    stem: In Galileo's double inclined plane experiment, a ball rolls down one smooth plane and up a second. As the slope of the second plane is reduced towards zero, what does Galileo conclude?
     options:
-      - 5 m s^{-2}
-      - 20 m s^{-2}
-      - 0.2 m s^{-2}
-      - 12 m s^{-2}
-    answer: 0
-    explanation: From F = ma, a = F/m = 10 N ÷ 2 kg = 5 m s^{-2}.
+      - The ball stops sooner because it has less height to climb
+      - The ball travels a shorter distance on the second plane
+      - The ball would travel indefinitely on a frictionless horizontal plane
+      - The ball needs a continuous push to keep moving on the horizontal plane
+    answer: 2
+    explanation: The ball always tends to rise to its original height. As the second slope decreases, it travels farther; on a horizontal frictionless plane it can never regain that height, so it keeps moving forever. This is the germ of the law of inertia.
 
   - id: phy-lom-003
-    topic: newtons-laws
-    category: concept
-    difficulty: 3
+    topic: inertia-first-law
+    subtopic: Measure of inertia
+    concept: Mass is the quantitative measure of inertia
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
     battle: true
-    stem: A book rests on a table. By Newton's third law, which force is the reaction to the book's weight?
+    tags: [inertia, mass]
+    stem: Which physical quantity is a measure of the inertia of a body?
     options:
-      - The table's upward push on the book
-      - The book's downward push on the table
-      - Friction between the book and the table
-      - The book's gravitational pull on the Earth
+      - Velocity
+      - Weight
+      - Momentum
+      - Mass
     answer: 3
-    explanation: Action and reaction act on different bodies and are the same kind of force. The weight is the Earth pulling the book, so its pair is the book pulling the Earth. The table's push balances the weight but is not its reaction.
+    explanation: Inertia is the resistance of a body to a change in its state of rest or uniform motion, and mass measures it. Weight depends on g and momentum depends on velocity, so neither measures inertia.
 
   - id: phy-lom-004
-    topic: newtons-laws
-    category: numerical
-    difficulty: 2
+    topic: inertia-first-law
+    subtopic: Inertia of rest
+    concept: Beating a carpet removes dust by inertia of rest
+    category: application
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
     battle: true
-    stem: A 0.5 kg ball moving at 4 m s^{-1} is stopped in 0.1 s. What average force stops it?
+    tags: [inertia-of-rest]
+    stem: Dust comes out of a carpet when it is beaten with a stick. This is best explained by
     options:
-      - 2 N
-      - 0.2 N
-      - 20 N
-      - 40 N
-    answer: 2
-    explanation: Force equals the rate of change of momentum, F = Δp/Δt = (0.5 × 4)/0.1 = 20 N.
+      - inertia of rest of the dust particles
+      - inertia of motion of the dust particles
+      - Newton's third law acting on the carpet
+      - the friction between dust and carpet
+    answer: 0
+    explanation: The carpet is suddenly set into motion while the dust particles, by inertia of rest, tend to remain where they were, so they separate from the carpet. Friction actually holds dust on, it does not remove it.
 
   - id: phy-lom-005
-    topic: newtons-laws
-    category: factual
-    difficulty: 1
-    battle: true
-    stem: Which quantity measures how much inertia a body has?
+    topic: inertia-first-law
+    subtopic: Net force and state of motion
+    concept: Zero net force does not mean zero forces
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [first-law, trap]
+    stem: |-
+      Statement I: A body moving with constant velocity in a straight line has zero net external force on it.
+      Statement II: A body at rest must have no forces acting on it.
     options:
-      - Mass
-      - Weight
-      - Velocity
-      - Acceleration
-    answer: 0
-    explanation: Inertia is a body's resistance to a change in its motion, and mass measures it. The larger the mass, the smaller the acceleration a given force produces.
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: By the first law, constant velocity means zero acceleration and hence zero net force, so Statement I is correct. A body at rest may have several forces acting (a book on a table feels weight and normal force); only their resultant must be zero, so Statement II is incorrect.
 
   - id: phy-lom-006
-    topic: friction
+    topic: inertia-first-law
+    subtopic: Motion in free space
+    concept: With no net force a spaceship keeps constant velocity
     category: concept
-    difficulty: 2
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
     battle: true
-    stem: Why is it harder to start a heavy box sliding than to keep it sliding?
+    tags: [first-law, trap]
+    stem: A spaceship far from all stars moves at 5 km s^{-1} and its engines are switched off. What happens to its motion?
     options:
-      - Kinetic friction is greater than static friction
-      - The box gets lighter once it moves
-      - Maximum static friction is greater than kinetic friction
-      - Air resistance acts only at the start
-    answer: 2
-    explanation: Limiting static friction (μ_s N) is larger than kinetic friction (μ_k N) because μ_s > μ_k, so more force is needed to start the motion than to keep it going.
+      - It gradually slows down and stops
+      - It moves in a circle
+      - It speeds up slowly
+      - It continues at 5 km s^{-1} in a straight line
+    answer: 3
+    explanation: With negligible external force there is no acceleration, so by the first law the ship keeps moving with the same velocity. The idea that it slows down is Aristotle's error; no force is needed to maintain motion.
 
   - id: phy-lom-007
-    topic: friction
-    category: numerical
+    topic: inertia-first-law
+    subtopic: Inertia of direction
+    concept: Passengers are thrown outward when a vehicle turns
+    category: concept
+    format: assertion-reason
     difficulty: 2
-    battle: true
-    stem: A 10 kg block slides on a floor where the coefficient of kinetic friction is 0.2. Taking g = 10 m s^{-2}, what is the friction force?
+    time: 40
+    ncert: true
+    battle: false
+    tags: [inertia-of-direction]
+    stem: |-
+      Assertion (A): When a bus takes a sharp left turn, a standing passenger tends to fall towards the right.
+      Reason (R): A body tends to continue moving in its original direction unless an external force changes it.
     options:
-      - 2 N
-      - 50 N
-      - 200 N
-      - 20 N
-    answer: 3
-    explanation: Kinetic friction f = μ_k N = μ_k mg = 0.2 × 10 × 10 = 20 N.
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The bus turns left but the passenger's body, by inertia of direction, tries to continue straight ahead, which relative to the bus is towards the right. R is the first law and directly explains A.
 
   - id: phy-lom-008
-    topic: friction
+    topic: inertia-first-law
+    subtopic: Identifying zero net force
+    concept: Uniform circular motion needs a net force
     category: application
+    format: multi-statement
     difficulty: 3
-    battle: true
-    stem: A block rests on a rough incline. If the incline is made slightly steeper and the block still does not slide, what happens to the friction on it?
+    time: 60
+    ncert: true
+    battle: false
+    tags: [first-law, net-force, trap]
+    stem: |-
+      In which of these cases is the net force on the body zero?
+      I. A raindrop falling with constant (terminal) speed
+      II. A cork floating at rest on water
+      III. A car moving at constant speed around a circular track
+      IV. A kite held stationary in the sky
     options:
-      - It decreases
-      - It increases
-      - It stays the same
-      - It becomes zero
+      - I and II only
+      - II and IV only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: In I, II and IV the velocity is constant (or zero), so the net force is zero. In III the direction of velocity changes continuously; a centripetal net force is required, so III is excluded.
+
+  - id: phy-lom-009
+    topic: inertia-first-law
+    subtopic: Content of the first law
+    concept: First law defines force qualitatively and inertial frames
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [first-law, inertial-frame]
+    stem: Newton's first law of motion gives
+    options:
+      - a quantitative measure of force
+      - a qualitative definition of force and the idea of inertia
+      - the relation between action and reaction
+      - the law of conservation of momentum
     answer: 1
-    explanation: At rest, static friction exactly balances the weight's component along the slope, mg sin θ. That component grows with θ, so friction grows too, until it reaches its limit and the block slips.
+    explanation: The first law tells us what a force does (changes the state of rest or uniform motion) and introduces inertia, a qualitative definition. The quantitative measure F = dp/dt comes from the second law.
+
+  - id: phy-lom-010
+    topic: inertia-first-law
+    subtopic: Coin and card experiment
+    concept: A coin falls into the glass when the card is flicked away
+    category: application
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [inertia-of-rest, experiment]
+    stem: A coin rests on a card placed over the mouth of a glass. When the card is flicked sharply sideways, the coin drops into the glass. The best explanation is that
+    options:
+      - the flick exerts a large downward force on the coin
+      - the coin has inertia of motion and moves with the card
+      - friction between card and coin is very large
+      - the coin tends to stay at rest while the card is removed quickly, then gravity pulls it down
+    answer: 3
+    explanation: The quick flick acts for a very short time, so the small friction cannot give the coin appreciable horizontal velocity. By inertia of rest the coin stays in place and then falls under gravity. A large friction would drag the coin with the card instead.
+
+  - id: phy-lom-011
+    topic: second-law-momentum
+    subtopic: F = ma
+    concept: Acceleration from net force and mass
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: F = ma
+    tags: [second-law]
+    stem: A net force of 20 N acts on a 5 kg body. What is its acceleration?
+    options:
+      - 100 m s^{-2}
+      - 0.25 m s^{-2}
+      - 4 m s^{-2}
+      - 15 m s^{-2}
+    answer: 2
+    explanation: a = F/m = 20/5 = 4 m s^{-2}. Multiplying (100) or dividing the wrong way (0.25) are the usual slips.
+
+  - id: phy-lom-012
+    topic: second-law-momentum
+    subtopic: Force as rate of change of momentum
+    concept: Average force equals change in momentum over time
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: F = Δp/Δt
+    tags: [second-law, momentum]
+    stem: The momentum of a body increases from 20 kg m s^{-1} to 50 kg m s^{-1} in 3 s. What is the average force on it?
+    options:
+      - 10 N
+      - 30 N
+      - 23.3 N
+      - 90 N
+    answer: 0
+    explanation: F = Δp/Δt = (50 − 20)/3 = 10 N. Using the final momentum alone gives 16.7 N or other wrong values; only the change matters.
+
+  - id: phy-lom-013
+    topic: second-law-momentum
+    subtopic: Units of momentum
+    concept: Momentum has units kg m s^-1, equivalent to N s
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units, momentum]
+    stem: Which of the following is a correct SI unit of linear momentum?
+    options:
+      - N s^{-1}
+      - kg m s^{-2}
+      - N s
+      - J s
+    answer: 2
+    explanation: p = mv has unit kg m s^{-1}. Since 1 N = 1 kg m s^{-2}, 1 N s = 1 kg m s^{-1}. kg m s^{-2} is the newton (force) and J s is the unit of angular momentum.
+
+  - id: phy-lom-014
+    topic: second-law-momentum
+    subtopic: Time-varying velocity
+    concept: Force from a velocity that depends on time
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = m dv/dt
+    tags: [calculus, second-law]
+    stem: The velocity of a 2 kg particle moving along a line is v = 3t^2 m s^{-1}, with t in seconds. What force acts on it at t = 2 s?
+    options:
+      - 12 N
+      - 24 N
+      - 6 N
+      - 48 N
+    answer: 1
+    explanation: a = dv/dt = 6t = 12 m s^{-2} at t = 2 s, so F = ma = 2 × 12 = 24 N. The value 12 N forgets the mass, and 24 N is not obtained by using v = 12 m s^{-1} directly.
+
+  - id: phy-lom-015
+    topic: second-law-momentum
+    subtopic: Momentum as a function of time
+    concept: F = dp/dt for polynomial momentum
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: F = dp/dt
+    tags: [calculus, momentum]
+    stem: The momentum of a particle is p = (2t^2 + 3t) kg m s^{-1}. What force acts on it at t = 2 s?
+    options:
+      - 14 N
+      - 7 N
+      - 8 N
+      - 11 N
+    answer: 3
+    explanation: F = dp/dt = 4t + 3 = 4 × 2 + 3 = 11 N. The value 14 N is the momentum itself at t = 2 s, not its rate of change.
+
+  - id: phy-lom-016
+    topic: second-law-momentum
+    subtopic: p–t graph
+    concept: Slope of a momentum–time graph is force
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [graph, momentum]
+    stem: The momentum–time graph of a body is a straight line with positive slope not passing through the origin. The force on the body is
+    options:
+      - constant and non-zero
+      - zero
+      - increasing uniformly with time
+      - decreasing uniformly with time
+    answer: 0
+    explanation: Force equals the slope dp/dt. A straight line has constant slope, so the force is constant; a non-zero intercept only means the body had initial momentum.
+
+  - id: phy-lom-017
+    topic: second-law-momentum
+    subtopic: Momentum and kinetic energy
+    concept: p = √(2mK) for bodies with equal kinetic energy
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: p = √(2mK)
+    tags: [momentum, kinetic-energy]
+    stem: Two bodies of masses 1 kg and 4 kg have equal kinetic energies. What is the ratio of their momenta?
+    options:
+      - "1 : 4"
+      - "4 : 1"
+      - "1 : 16"
+      - "1 : 2"
+    answer: 3
+    explanation: "p = √(2mK), so with equal K, p ∝ √m. The ratio is √1 : √4 = 1 : 2. The ratio 1 : 4 wrongly assumes p ∝ m."
+
+  - id: phy-lom-018
+    topic: second-law-momentum
+    subtopic: Machine gun recoil force
+    concept: Force = number per second × momentum of each bullet
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = n m v
+    tags: [variable-mass, momentum]
+    stem: A machine gun fires 10 bullets per second, each of mass 20 g, with a speed of 500 m s^{-1}. What average force must be applied to hold the gun steady?
+    options:
+      - 10 N
+      - 100 N
+      - 1000 N
+      - 50 N
+    answer: 1
+    explanation: Momentum given to bullets per second = n m v = 10 × 0.020 × 500 = 100 kg m s^{-2} = 100 N. The same force must be supplied to the gun to hold it in place. Forgetting to convert 20 g into 0.020 kg gives 100 000 N type errors.
+
+  - id: phy-lom-019
+    topic: second-law-momentum
+    subtopic: Consistency of the laws
+    concept: Second law contains the first law as the case F = 0
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [second-law, first-law]
+    stem: Which statement about Newton's second law is correct?
+    options:
+      - It applies only to bodies moving with constant velocity
+      - It is consistent with the first law, since F = 0 gives zero acceleration
+      - The force at an instant depends on the past history of motion
+      - Acceleration and net force can point in different directions for a point particle
+    answer: 1
+    explanation: Setting F = 0 in F = ma gives a = 0, which is the first law. The second law is a local relation (force at an instant decides acceleration at that instant, not history) and a is always along the net force.
+
+  - id: phy-lom-020
+    topic: second-law-momentum
+    subtopic: Conveyor belt
+    concept: Extra force needed = v × (dm/dt) for mass added to a moving belt
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: F = v dm/dt
+    tags: [variable-mass, multi-concept]
+    stem: Sand drops vertically at the rate of 2 kg s^{-1} onto a conveyor belt moving horizontally at a constant 3 m s^{-1}. What extra horizontal force is needed to keep the belt moving at constant speed?
+    options:
+      - 1.5 N
+      - 3 N
+      - 6 N
+      - 12 N
+    answer: 2
+    explanation: Each second 2 kg of sand gains horizontal velocity 3 m s^{-1}, so the rate of change of momentum is v dm/dt = 3 × 2 = 6 N. Even though the belt's velocity is constant, the system's momentum grows because its mass grows.
+
+  - id: phy-lom-021
+    topic: impulse
+    subtopic: Dimensions of impulse
+    concept: Impulse has the same dimensions as momentum
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [dimensions, impulse]
+    stem: Impulse has the same dimensional formula as
+    options:
+      - force
+      - linear momentum
+      - work
+      - power
+    answer: 1
+    explanation: Impulse = F Δt = Δp, so it has the dimensions of momentum, [M L T^{-1}]. Force is [M L T^{-2}], and work is [M L^2 T^{-2}].
+
+  - id: phy-lom-022
+    topic: impulse
+    subtopic: Ball hit back by a bat
+    concept: Reversal of velocity doubles the momentum change
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: J = m(v − u)
+    tags: [impulse, trap]
+    stem: A 0.15 kg ball moving at 20 m s^{-1} is hit straight back along its path with the same speed. What is the magnitude of the impulse on the ball?
+    options:
+      - zero
+      - 3 N s
+      - 1.5 N s
+      - 6 N s
+    answer: 3
+    explanation: Taking the final direction as positive, J = m(v − u) = 0.15 × (20 − (−20)) = 6 N s. Zero would be the answer only if we wrongly subtract speeds instead of velocities.
+
+  - id: phy-lom-023
+    topic: impulse
+    subtopic: Catching a cricket ball
+    concept: Increasing the time of impact reduces the force
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [impulse, ncert-line]
+    stem: A fielder pulls his hands backward while catching a fast cricket ball in order to
+    options:
+      - reduce the change in momentum of the ball
+      - increase the force on the hands
+      - increase the time of impact and so reduce the force
+      - reduce the impulse given to the ball
+    answer: 2
+    explanation: The ball must be brought to rest, so its change of momentum (and the impulse) is fixed. Moving the hands back increases the stopping time, and since F = Δp/Δt, the average force on the hands decreases.
+
+  - id: phy-lom-024
+    topic: impulse
+    subtopic: F–t graph
+    concept: Impulse is the area under a force–time graph
+    category: numerical
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    formula: J = area under F–t graph
+    tags: [graph, impulse]
+    stem: The force on a ball during a collision rises linearly from 0 to 100 N in 0.01 s and then falls linearly back to 0 in the next 0.01 s. What impulse does the ball receive?
+    options:
+      - 1 N s
+      - 2 N s
+      - 0.5 N s
+      - 4 N s
+    answer: 0
+    explanation: The F–t graph is a triangle of base 0.02 s and height 100 N. Area = ½ × 0.02 × 100 = 1 N s. Using base × height without the ½ gives 2 N s.
+
+  - id: phy-lom-025
+    topic: impulse
+    subtopic: Rebound from floor
+    concept: Impulse on a ball that falls and rebounds to a lower height
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    formula: v = √(2gh)
+    tags: [impulse, multi-concept]
+    stem: A 0.2 kg ball is dropped from a height of 5 m onto a floor and rebounds to a height of 1.25 m. What impulse does the floor give the ball? (g = 10 m s^{-2})
+    options:
+      - 1 N s
+      - 2 N s
+      - 3 N s
+      - 5 N s
+    answer: 2
+    explanation: Speed on striking = √(2 × 10 × 5) = 10 m s^{-1} downward; speed on leaving = √(2 × 10 × 1.25) = 5 m s^{-1} upward. Impulse = 0.2 × (5 − (−10)) = 3 N s upward. Subtracting speeds gives the wrong value 1 N s.
+
+  - id: phy-lom-026
+    topic: impulse
+    subtopic: Oblique impact on a wall
+    concept: Only the normal component of momentum reverses
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: J = 2mv cos θ
+    tags: [impulse, oblique]
+    stem: A 0.5 kg ball strikes a smooth wall with speed 4 m s^{-1} at 60° to the normal and rebounds with the same speed at 60° to the normal. What is the magnitude of the impulse on the ball?
+    options:
+      - 4 N s
+      - 2√3 N s
+      - 1 N s
+      - 2 N s
+    answer: 3
+    explanation: The component parallel to the wall is unchanged; the normal component mv cos 60° reverses. J = 2mv cos 60° = 2 × 0.5 × 4 × 0.5 = 2 N s. Using sin 60° gives 2√3 N s, a common slip.
+
+  - id: phy-lom-027
+    topic: impulse
+    subtopic: Safety design
+    concept: Soft landing surfaces increase stopping time
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [impulse, application]
+    stem: |-
+      Assertion (A): A high jumper lands on a thick foam bed rather than on hard ground.
+      Reason (R): The foam reduces the change in momentum of the jumper during landing.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: The jumper must come to rest either way, so the change in momentum is the same; R is false. The foam increases the stopping time, which reduces the average force F = Δp/Δt, and that is why A is sensible.
+
+  - id: phy-lom-028
+    topic: impulse
+    subtopic: Average force
+    concept: Average stopping force from Δp/Δt
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: F = Δp/Δt
+    tags: [impulse, average-force]
+    stem: A 0.5 kg ball moving at 10 m s^{-1} is stopped by a wall in 0.05 s. What is the average force exerted by the wall?
+    options:
+      - 100 N
+      - 250 N
+      - 25 N
+      - 50 N
+    answer: 0
+    explanation: F = Δp/Δt = (0.5 × 10)/0.05 = 5/0.05 = 100 N. Dividing 5 by 0.05 incorrectly as 5 × 0.05 or as 50 is the usual arithmetic trap.
+
+  - id: phy-lom-029
+    topic: third-law
+    subtopic: Action and reaction
+    concept: Action and reaction act on different bodies
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [third-law, ncert-line]
+    stem: Action and reaction forces of Newton's third law
+    options:
+      - act on the same body and cancel each other
+      - act on different bodies and never cancel each other
+      - act on the same body but at different instants
+      - are unequal when the bodies have unequal masses
+    answer: 1
+    explanation: The pair forces act on two different bodies, so they cannot cancel each other. They are equal in magnitude, opposite in direction and simultaneous, whatever the masses.
+
+  - id: phy-lom-030
+    topic: third-law
+    subtopic: Horse and cart
+    concept: The cart moves because the net force on it is non-zero, not because the pair is unbalanced
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [third-law, trap]
+    stem: A horse pulls a cart and both accelerate forward on a road. Which statement is correct?
+    options:
+      - The horse pulls the cart harder than the cart pulls the horse
+      - The cart pulls the horse with a force equal in magnitude to the horse's pull on the cart
+      - The action–reaction pair cancels, so motion is impossible
+      - The horse accelerates because the cart's pull on it is forward
+    answer: 1
+    explanation: By the third law the two forces are always equal and opposite. They act on different bodies, so they do not cancel. The system accelerates because the ground pushes the horse forward (friction) more than it resists the cart.
+
+  - id: phy-lom-031
+    topic: third-law
+    subtopic: Identifying reaction pairs
+    concept: Reaction of the weight of a book is the book's pull on the Earth
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [third-law, trap]
+    stem: A book rests on a table. The reaction force to the Earth's gravitational pull on the book is
+    options:
+      - the normal force of the table on the book
+      - the force of the book on the table
+      - the book's gravitational pull on the Earth
+      - the weight of the table
+    answer: 2
+    explanation: A third-law pair involves the same two bodies and the same type of force. Earth pulls the book gravitationally, so the reaction is the book's gravitational pull on the Earth. The normal force balances the weight but is not its reaction pair.
+
+  - id: phy-lom-032
+    topic: third-law
+    subtopic: Walking
+    concept: The ground pushes us forward when we push it backward
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [third-law, friction]
+    stem: When a person walks forward on the ground, the external force that moves the person forward is
+    options:
+      - the force of the person's feet on the ground
+      - the person's weight
+      - the forward frictional force of the ground on the feet
+      - the normal force of the ground
+    answer: 2
+    explanation: The foot pushes the ground backward; by the third law the ground pushes the foot forward through friction. That forward push on the person is what accelerates the person. The person's push acts on the ground, not on the person.
+
+  - id: phy-lom-033
+    topic: third-law
+    subtopic: Rocket propulsion
+    concept: Rocket moves by ejecting gases backward
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [third-law, rocket]
+    stem: A rocket can accelerate in outer space where there is no air because
+    options:
+      - the exhaust gases push against the surrounding air
+      - it pushes gases backward and the gases push it forward
+      - gravity is absent in space
+      - its mass remains constant
+    answer: 1
+    explanation: The rocket exerts a backward force on the exhaust gases, and they exert an equal forward force on the rocket (third law; equivalently momentum conservation). No air is needed to push against.
+
+  - id: phy-lom-034
+    topic: third-law
+    subtopic: Earth and apple
+    concept: Gravitational pair forces are equal in magnitude
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [third-law, trap]
+    stem: The Earth pulls a falling apple with a force of 1 N. The force exerted by the apple on the Earth is
+    options:
+      - negligible because the Earth is very massive
+      - 1 N directed away from the apple
+      - 1 N directed towards the apple
+      - 1 N directed towards the apple only after it hits the ground
+    answer: 2
+    explanation: By the third law the apple pulls the Earth with 1 N towards the apple, at every instant. The Earth's acceleration is negligible because its mass is huge, not because the force is small.
+
+  - id: phy-lom-035
+    topic: third-law
+    subtopic: Properties of action–reaction
+    concept: Features of third-law force pairs
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [third-law]
+    stem: |-
+      Consider these statements about action and reaction forces.
+      I. They are equal in magnitude and opposite in direction.
+      II. They act on the same body.
+      III. They act simultaneously; neither is the cause of the other.
+      IV. The law holds only when the bodies are at rest.
+      Which are correct?
+    options:
+      - I and III only
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+    answer: 0
+    explanation: Action and reaction are equal, opposite and simultaneous (I and III). They act on different bodies (II false) and the law holds for bodies at rest or moving, accelerated or not (IV false).
+
+  - id: phy-lom-036
+    topic: third-law
+    subtopic: Swimming
+    concept: A swimmer pushes water backward to move forward
+    category: application
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [third-law]
+    stem: A swimmer moves forward through water mainly because
+    options:
+      - water pushes the swimmer forward when the swimmer pushes it backward
+      - buoyancy pushes the swimmer forward
+      - the swimmer's weight acts forward
+      - water offers no resistance
+    answer: 0
+    explanation: The swimmer's hands and feet push water backward and the water exerts an equal and opposite (forward) force on the swimmer, which is the third law in action. Buoyancy acts vertically upward.
+
+  - id: phy-lom-037
+    topic: third-law
+    subtopic: Push between skaters
+    concept: Equal forces give accelerations inversely proportional to mass
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: a = F/m
+    tags: [third-law, ratio]
+    stem: "Two skaters of masses 40 kg and 60 kg on smooth ice push each other. What is the ratio of their accelerations (40 kg : 60 kg)?"
+    options:
+      - "2 : 3"
+      - "3 : 2"
+      - "1 : 1"
+      - "4 : 9"
+    answer: 1
+    explanation: "The forces on them are equal and opposite (third law), so a ∝ 1/m. a_{40} : a_{60} = 60 : 40 = 3 : 2. The option 2 : 3 is the ratio of masses, not accelerations."
+
+  - id: phy-lom-038
+    topic: third-law
+    subtopic: Magnets on a table
+    concept: Forces between interacting bodies are equal even for different masses
+    category: application
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [third-law, trap]
+    stem: |-
+      A large magnet and a small iron nail attract each other.
+      Statement I: The magnet exerts a larger force on the nail than the nail exerts on the magnet.
+      Statement II: The nail, if free, has a larger acceleration than the magnet.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: By the third law the two forces are equal in magnitude, so Statement I is incorrect. With equal forces the smaller mass (the nail) has the larger acceleration, so Statement II is correct.
+
+  - id: phy-lom-039
+    topic: momentum-conservation
+    subtopic: Recoil of a gun
+    concept: Recoil velocity from momentum conservation
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: MV = mv
+    tags: [recoil, conservation]
+    stem: A 5 kg gun fires a 50 g bullet with a muzzle speed of 400 m s^{-1}. What is the recoil speed of the gun?
+    options:
+      - 40 m s^{-1}
+      - 0.4 m s^{-1}
+      - 4 m s^{-1}
+      - 8 m s^{-1}
+    answer: 2
+    explanation: Initial momentum is zero, so MV = mv, V = (0.05 × 400)/5 = 4 m s^{-1}, opposite to the bullet. Forgetting to convert 50 g to 0.05 kg gives 4000 m s^{-1} type errors.
+
+  - id: phy-lom-040
+    topic: momentum-conservation
+    subtopic: Explosion into two parts
+    concept: Fragments of a body at rest share KE inversely as mass
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: m_1v_1 = m_2v_2, K = p^2/2m
+    tags: [explosion, kinetic-energy, multi-concept]
+    stem: "A bomb at rest explodes into two fragments whose masses are in the ratio 1 : 3. What is the ratio of their kinetic energies (lighter : heavier)?"
+    options:
+      - "1 : 3"
+      - "1 : 9"
+      - "3 : 1"
+      - "9 : 1"
+    answer: 2
+    explanation: "The fragments have equal and opposite momenta p. K = p^2/2m, so K ∝ 1/m, giving K_1 : K_2 = 3 : 1. The lighter piece carries more energy; 9 : 1 is the square of the ratio and is wrong."
+
+  - id: phy-lom-041
+    topic: momentum-conservation
+    subtopic: Jumping off a boat
+    concept: Man and boat initially at rest acquire equal and opposite momenta
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: m_1v_1 = m_2v_2
+    tags: [conservation]
+    stem: A 60 kg man jumps horizontally with 2 m s^{-1} from a 40 kg boat at rest on still water. With what speed does the boat move back? (Neglect water resistance.)
+    options:
+      - 1.33 m s^{-1}
+      - 2 m s^{-1}
+      - 1.2 m s^{-1}
+      - 3 m s^{-1}
+    answer: 3
+    explanation: Total momentum stays zero, so 60 × 2 = 40 × v, giving v = 3 m s^{-1}. The value 1.33 comes from inverting the mass ratio.
+
+  - id: phy-lom-042
+    topic: momentum-conservation
+    subtopic: Perfectly inelastic collision
+    concept: Common velocity when two bodies stick together
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: m_1u_1 = (m_1 + m_2)v
+    tags: [collision, conservation]
+    stem: A 2 kg trolley moving at 3 m s^{-1} collides with and sticks to a 1 kg trolley at rest. What is their common velocity?
+    options:
+      - 1 m s^{-1}
+      - 2 m s^{-1}
+      - 3 m s^{-1}
+      - 1.5 m s^{-1}
+    answer: 1
+    explanation: Momentum is conserved, 2 × 3 = (2 + 1)v, so v = 2 m s^{-1}. Kinetic energy is not conserved in such a collision, but momentum is.
+
+  - id: phy-lom-043
+    topic: momentum-conservation
+    subtopic: Explosion into three parts
+    concept: Vector momentum conservation in two dimensions
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Σp = 0
+    tags: [explosion, vectors, multi-concept]
+    stem: A shell at rest explodes into three equal pieces. Two pieces fly off at right angles to each other, each with speed v. What is the speed of the third piece?
+    options:
+      - v
+      - 2v
+      - v/√2
+      - √2 v
+    answer: 3
+    explanation: The third piece must cancel the resultant momentum of the other two. Their momenta are perpendicular, each mv, so the resultant is √2 mv. The third piece of mass m therefore moves at √2 v, opposite to that resultant. Adding the speeds directly gives 2v.
+
+  - id: phy-lom-044
+    topic: momentum-conservation
+    subtopic: Condition for conservation
+    concept: Momentum is conserved when net external force is zero
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [conservation, ncert-line]
+    stem: The total linear momentum of a system of particles remains constant when
+    options:
+      - the net external force on the system is zero
+      - the internal forces are zero
+      - the kinetic energy is constant
+      - all particles move with the same speed
+    answer: 0
+    explanation: dP/dt = F_{ext}, so P is constant when the net external force is zero. Internal forces cancel in third-law pairs and never change total momentum, whatever their size.
+
+  - id: phy-lom-045
+    topic: momentum-conservation
+    subtopic: Bullet embedded in block
+    concept: Block velocity after a bullet embeds in it
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: mu = (m + M)v
+    tags: [collision, conservation]
+    stem: A 10 g bullet moving at 500 m s^{-1} embeds itself in a 1.99 kg wooden block resting on a frictionless surface. What is the speed of the block just after?
+    options:
+      - 5 m s^{-1}
+      - 0.5 m s^{-1}
+      - 2.5 m s^{-1}
+      - 25 m s^{-1}
+    answer: 2
+    explanation: Momentum conservation gives 0.01 × 500 = (0.01 + 1.99)v, so v = 5/2 = 2.5 m s^{-1}. Forgetting to include the bullet's mass would still give nearly 2.5; forgetting the gram conversion gives 25 or larger values.
+
+  - id: phy-lom-046
+    topic: momentum-conservation
+    subtopic: Gun recoil reasoning
+    concept: Recoil follows from momentum conservation, not from mass difference
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [recoil, conservation]
+    stem: |-
+      Assertion (A): A gun recoils backward when a bullet is fired.
+      Reason (R): The gun is much heavier than the bullet.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Both are true. The gun recoils because the total momentum of gun and bullet must stay zero (or because the bullet pushes the gun back by the third law). The greater mass only explains why the recoil speed is small, not why recoil happens.
+
+  - id: phy-lom-047
+    topic: momentum-conservation
+    subtopic: Astronaut returning to ship
+    concept: Throwing an object away gives the thrower opposite momentum
+    category: application
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [conservation, application]
+    stem: An astronaut floating at rest in space, a few metres from her spaceship, has a spanner in her hand. How can she move towards the ship?
+    options:
+      - Throw the spanner towards the ship
+      - Throw the spanner away from the ship
+      - Swing her arms in circles
+      - Hold the spanner firmly and kick her legs
+    answer: 1
+    explanation: Total momentum of astronaut + spanner stays zero. If she throws the spanner away from the ship, she gains equal and opposite momentum, which is towards the ship. Internal motions like swinging the arms cannot change her centre-of-mass velocity.
+
+  - id: phy-lom-048
+    topic: momentum-conservation
+    subtopic: Released spring
+    concept: Blocks pushed apart by a spring have equal and opposite momenta
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: m_1v_1 = m_2v_2
+    tags: [conservation, spring]
+    stem: Blocks of 2 kg and 3 kg on a smooth floor are pushed apart by a compressed spring. If the 2 kg block moves off at 6 m s^{-1}, what is the speed of the 3 kg block?
+    options:
+      - 9 m s^{-1}
+      - 6 m s^{-1}
+      - 3 m s^{-1}
+      - 4 m s^{-1}
+    answer: 3
+    explanation: The system starts at rest, so 2 × 6 = 3 × v and v = 4 m s^{-1}. The value 9 m s^{-1} comes from inverting the ratio.
+
+  - id: phy-lom-049
+    topic: equilibrium-concurrent-forces
+    subtopic: Three forces in equilibrium
+    concept: Three forces balance only if each is not larger than the sum of the other two
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [equilibrium, triangle-law]
+    stem: Which set of three forces acting on a particle can keep it in equilibrium?
+    options:
+      - 3 N, 4 N, 8 N
+      - 5 N, 7 N, 12 N
+      - 2 N, 3 N, 6 N
+      - 1 N, 2 N, 4 N
+    answer: 1
+    explanation: Three forces can balance only if they can form a closed triangle (a degenerate straight line is allowed), so the largest must not exceed the sum of the other two. 12 = 5 + 7 works with the forces collinear; in the other sets the largest force is bigger than the sum of the other two.
+
+  - id: phy-lom-050
+    topic: equilibrium-concurrent-forces
+    subtopic: Horizontal pull on a hanging weight
+    concept: Horizontal force needed to hold a string at an angle
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    formula: F = W tan θ
+    tags: [equilibrium, tension]
+    stem: A 10 N weight hangs from a string. A horizontal force F holds it so that the string makes 45° with the vertical. What are F and the tension T?
+    options:
+      - F = 10 N, T = 10√2 N
+      - F = 10√2 N, T = 10 N
+      - F = 5 N, T = 5√2 N
+      - F = 10 N, T = 10 N
+    answer: 0
+    explanation: Vertically T cos 45° = 10 N, so T = 10√2 N. Horizontally T sin 45° = F, so F = 10 N. Taking T = W ignores the tilt of the string.
+
+  - id: phy-lom-051
+    topic: equilibrium-concurrent-forces
+    subtopic: Weight on two strings
+    concept: Symmetric strings share the weight through vertical components
+    category: numerical
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: 2T cos θ = W
+    diagram: A point O from which a 100 N weight hangs vertically. Two strings go from O up to two hooks on a horizontal ceiling, one to the upper left and one to the upper right. Each string makes an angle of 60° with the vertical line through O. Label each string T.
+    tags: [equilibrium, tension]
+    stem: A 100 N weight hangs from two strings as shown, each making 60° with the vertical. What is the tension in each string?
+    options:
+      - 50 N
+      - 100 N
+      - 57.7 N
+      - 200 N
+    answer: 1
+    explanation: Vertical balance gives 2T cos 60° = 100, so T = 100/(2 × 0.5) = 100 N. Simply splitting the weight equally (50 N) ignores the angle; the tension exceeds half the weight when the strings are tilted.
+
+  - id: phy-lom-052
+    topic: equilibrium-concurrent-forces
+    subtopic: Condition for equilibrium
+    concept: Vector sum of concurrent forces must be zero
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [equilibrium, ncert-line]
+    stem: A particle acted on by several concurrent forces is in equilibrium if
+    options:
+      - all the forces are equal in magnitude
+      - the vector sum of all the forces is zero
+      - the forces are all perpendicular to each other
+      - the algebraic sum of the magnitudes is zero
+    answer: 1
+    explanation: Equilibrium of a particle requires the net (vector) force to be zero, i.e. the sums of components along each axis are zero. Magnitudes are always positive, so their algebraic sum cannot be zero.
+
+  - id: phy-lom-053
+    topic: equilibrium-concurrent-forces
+    subtopic: Equilibrant
+    concept: Equilibrant of two perpendicular forces
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    formula: R = √(F_1^2 + F_2^2)
+    tags: [equilibrium, vectors]
+    stem: Forces of 3 N and 4 N act at right angles on a particle. What single extra force will keep it in equilibrium?
+    options:
+      - 7 N along the 4 N force
+      - 1 N opposite to the 4 N force
+      - 5 N opposite to the resultant of the two
+      - 5 N along the resultant of the two
+    answer: 2
+    explanation: The resultant is √(3^2 + 4^2) = 5 N. The equilibrant is equal in size and opposite in direction to the resultant, so 5 N opposite to it.
+
+  - id: phy-lom-054
+    topic: equilibrium-concurrent-forces
+    subtopic: Removing one force
+    concept: If one force of a balanced set is removed, net force equals its negative
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [equilibrium]
+    stem: A particle is in equilibrium under several forces. If one force of 10 N acting due north is removed, the net force on the particle becomes
+    options:
+      - zero
+      - 10 N due north
+      - 10 N due south
+      - 20 N due south
+    answer: 2
+    explanation: Before removal, the other forces together equal 10 N due south (they balance the removed force). After removal only they remain, so the net force is 10 N due south.
+
+  - id: phy-lom-055
+    topic: equilibrium-concurrent-forces
+    subtopic: Equilibrium and motion
+    concept: Equilibrium includes uniform motion
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [equilibrium, trap]
+    stem: Which statement about a particle in translational equilibrium is correct?
+    options:
+      - It must be at rest
+      - It may be moving with constant velocity
+      - It must be moving with constant acceleration
+      - Only one force can act on it
+    answer: 1
+    explanation: Zero net force means zero acceleration, so the particle is either at rest or moving uniformly in a straight line. Many forces can act as long as they add to zero.
+
+  - id: phy-lom-056
+    topic: equilibrium-concurrent-forces
+    subtopic: Horizontal rope with weight
+    concept: A rope with a hanging load can never be perfectly horizontal
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [equilibrium, tension]
+    stem: |-
+      Assertion (A): However large the tension, a rope with a weight hung at its midpoint cannot be stretched perfectly horizontal.
+      Reason (R): The vertical components of the tensions in the two halves must balance the weight.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Balance gives 2T sin θ = W, where θ is the angle each half makes with the horizontal. If θ = 0 the left side is zero and cannot balance W, so the rope always sags; T = W/(2 sin θ) becomes infinite as θ → 0. R directly explains A.
+
+  - id: phy-lom-057
+    topic: equilibrium-concurrent-forces
+    subtopic: Block on a smooth incline
+    concept: Horizontal force to hold a block on a smooth incline
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = mg tan θ
+    tags: [equilibrium, incline]
+    stem: A 2 kg block is held at rest on a smooth incline of 30° by a horizontal force F. What is F? (g = 10 m s^{-2})
+    options:
+      - 10 N
+      - 20√3 N
+      - 20/√3 N
+      - 20 N
+    answer: 2
+    explanation: Along the incline, F cos 30° = mg sin 30°, so F = mg tan 30° = 20/√3 ≈ 11.5 N. The value 10 N is mg sin 30°, the force needed if F were applied parallel to the incline.
+
+  - id: phy-lom-058
+    topic: equilibrium-concurrent-forces
+    subtopic: Resolving forces
+    concept: Component method for equilibrium of three forces
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [equilibrium, components]
+    stem: A particle is in equilibrium under three forces. One is 6 N along +x, another is 8 N along +y. What is the third force?
+    options:
+      - 10 N along the line 53° below the −x axis
+      - 10 N along the line 37° below the −x axis
+      - 14 N along −x
+      - 10 N along the line 53° above the +x axis
+    answer: 0
+    explanation: The third force is (−6, −8) N, of magnitude 10 N. Its angle below the −x axis satisfies tan φ = 8/6, so φ = 53°. 37° would correspond to tan φ = 6/8.
+
+  - id: phy-lom-059
+    topic: common-forces
+    subtopic: Normal force with extra push
+    concept: Normal force increases when a body is pushed down
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [normal-force]
+    stem: A 5 kg block rests on a floor and is pushed vertically down with a 20 N force. What is the normal force from the floor? (g = 10 m s^{-2})
+    options:
+      - 50 N
+      - 30 N
+      - 70 N
+      - 20 N
+    answer: 2
+    explanation: Vertical balance gives N = mg + 20 = 50 + 20 = 70 N. The normal force is not always equal to mg; it adjusts to whatever is needed.
+
+  - id: phy-lom-060
+    topic: common-forces
+    subtopic: Apparent weight in a lift
+    concept: Apparent weight in a lift accelerating upward is m(g + a)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: N = m(g + a)
+    tags: [lift, apparent-weight]
+    stem: A 60 kg man stands on a weighing scale in a lift accelerating upward at 2 m s^{-2}. What does the scale read? (g = 10 m s^{-2})
+    options:
+      - 480 N
+      - 600 N
+      - 720 N
+      - 1200 N
+    answer: 2
+    explanation: N − mg = ma, so N = m(g + a) = 60 × 12 = 720 N. The value 480 N is for downward acceleration.
+
+  - id: phy-lom-061
+    topic: common-forces
+    subtopic: Free fall
+    concept: Apparent weight is zero in free fall
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [lift, weightlessness]
+    stem: The cable of a lift breaks and it falls freely. The reading of a weighing scale on its floor, carrying a person, becomes
+    options:
+      - equal to the true weight
+      - twice the true weight
+      - half the true weight
+      - zero
+    answer: 3
+    explanation: With a = g downward, N = m(g − a) = 0. The person and scale fall together, so the scale presses on nothing; this is apparent weightlessness. Gravity still acts, so the true weight is unchanged.
+
+  - id: phy-lom-062
+    topic: common-forces
+    subtopic: Spring force
+    concept: Spring force is a restoring force proportional to extension
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: F = −kx
+    tags: [spring, hooke]
+    stem: For a spring stretched by x, the spring force is F = −kx. The negative sign indicates that the force
+    options:
+      - decreases as x increases
+      - is always attractive
+      - opposes the displacement from the natural length
+      - does no work
+    answer: 2
+    explanation: The spring force is a restoring force, always directed opposite to the displacement from natural length. Its magnitude increases with x.
+
+  - id: phy-lom-063
+    topic: common-forces
+    subtopic: Tension in a string
+    concept: Tension is the same throughout a massless string
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [tension, massless-string]
+    stem: Why is the tension the same at every point of a light (massless) inextensible string passing over a frictionless pulley?
+    options:
+      - Because the string is inextensible
+      - Because any net force on a massless segment would produce infinite acceleration
+      - Because the pulley is fixed
+      - Because gravity does not act on strings
+    answer: 1
+    explanation: For any piece of a massless string, net force = (mass)(acceleration) = 0, so tensions on its two ends must be equal. Inextensibility gives equal accelerations of the bodies, not equal tension.
+
+  - id: phy-lom-064
+    topic: common-forces
+    subtopic: Origin of contact forces
+    concept: Contact forces arise from electromagnetic interactions
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [contact-force, ncert-line]
+    stem: Contact forces such as friction and the normal reaction are ultimately due to
+    options:
+      - gravitational forces between molecules
+      - electromagnetic forces between charged constituents of matter
+      - nuclear forces between atoms
+      - weak nuclear forces
+    answer: 1
+    explanation: NCERT notes that contact forces arise from electrical forces between the charged constituents of the surfaces in contact. Gravity is far too weak at molecular level, and nuclear forces have extremely short range.
+
+  - id: phy-lom-065
+    topic: common-forces
+    subtopic: Spring balance in a lift
+    concept: Spring balance reading in a lift accelerating downward
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: T = m(g − a)
+    tags: [lift, spring-balance]
+    stem: A 5 kg mass hangs from a spring balance in a lift accelerating downward at 2 m s^{-2}. What does the balance read? (g = 10 m s^{-2})
+    options:
+      - 40 N
+      - 50 N
+      - 60 N
+      - 10 N
+    answer: 0
+    explanation: mg − T = ma, so T = m(g − a) = 5 × 8 = 40 N. The balance reads less than the true weight (50 N) while accelerating downward.
+
+  - id: phy-lom-066
+    topic: common-forces
+    subtopic: Lift at constant velocity
+    concept: Uniform velocity of a lift does not change apparent weight
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [lift, trap]
+    stem: A lift is moving upward with a constant speed of 3 m s^{-1}. A 50 kg person inside stands on a scale. What does the scale read? (g = 10 m s^{-2})
+    options:
+      - 650 N
+      - 350 N
+      - 500 N
+      - 150 N
+    answer: 2
+    explanation: At constant velocity, a = 0, so N = mg = 500 N. Only acceleration changes the apparent weight; the speed of 3 m s^{-1} is a distractor.
+
+  - id: phy-lom-067
+    topic: common-forces
+    subtopic: Apparent weight table
+    concept: Apparent weight for different states of a lift
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [lift, apparent-weight]
+    stem: |-
+      A person of true weight W is in a lift. Match the motion of the lift (List I) with the apparent weight (List II).
+      List I
+      P. Moving up with constant speed
+      Q. Accelerating upward at g/2
+      R. Accelerating downward at g/2
+      S. Falling freely
+      List II
+      1. Zero
+      2. W/2
+      3. W
+      4. 3W/2
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-1, Q-4, R-2, S-3
+      - P-3, Q-4, R-1, S-2
+    answer: 1
+    explanation: Apparent weight = m(g + a) with a positive upward. Constant speed gives W; upward g/2 gives 3W/2; downward g/2 gives W/2; free fall gives zero. So P-3, Q-4, R-2, S-1.
+
+  - id: phy-lom-068
+    topic: common-forces
+    subtopic: Normal force on an incline
+    concept: Normal force on a block on an incline is mg cos θ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: N = mg cos θ
+    tags: [normal-force, incline]
+    stem: A 4 kg block rests on an incline of 60°. What is the normal force on it? (g = 10 m s^{-2})
+    options:
+      - 40 N
+      - 20√3 N
+      - 20 N
+      - 80 N
+    answer: 2
+    explanation: Perpendicular to the incline, N = mg cos 60° = 40 × 0.5 = 20 N. Using sin 60° gives 20√3 N, which is the component along the incline.
+
+  - id: phy-lom-069
+    topic: connected-bodies
+    subtopic: Blocks in contact
+    concept: Contact force between two pushed blocks
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: N = m_2F/(m_1 + m_2)
+    tags: [contact-force, connected-bodies]
+    stem: Blocks of 2 kg and 3 kg touch on a smooth floor. A 10 N horizontal push acts on the 2 kg block. What is the contact force between them?
+    options:
+      - 4 N
+      - 10 N
+      - 5 N
+      - 6 N
+    answer: 3
+    explanation: Common acceleration a = 10/5 = 2 m s^{-2}. The contact force alone accelerates the 3 kg block, so N = 3 × 2 = 6 N. The value 4 N would apply if the push acted on the 3 kg block instead.
+
+  - id: phy-lom-070
+    topic: connected-bodies
+    subtopic: Atwood machine
+    concept: Acceleration and tension in an Atwood machine
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: a = (m_1 − m_2)g/(m_1 + m_2), T = 2m_1m_2g/(m_1 + m_2)
+    tags: [atwood, pulley]
+    stem: Masses of 3 kg and 2 kg hang from a light string over a smooth, light pulley. What are the acceleration and tension? (g = 10 m s^{-2})
+    options:
+      - 2 m s^{-2}, 24 N
+      - 2 m s^{-2}, 25 N
+      - 10 m s^{-2}, 20 N
+      - 5 m s^{-2}, 24 N
+    answer: 0
+    explanation: a = (3 − 2) × 10/(3 + 2) = 2 m s^{-2}. For the 2 kg mass, T − 20 = 2 × 2, so T = 24 N (check with 3 kg; 30 − T = 6). 25 N is the average of the weights and is wrong.
+
+  - id: phy-lom-071
+    topic: connected-bodies
+    subtopic: Block on table with hanging mass
+    concept: Smooth table block pulled by a hanging mass
+    category: numerical
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: a = m_2g/(m_1 + m_2)
+    diagram: A 4 kg block rests on a smooth horizontal table. A light string attached to it runs horizontally to a smooth pulley fixed at the right edge of the table, then hangs vertically down, supporting a 1 kg block in the air. Label the blocks 4 kg and 1 kg.
+    tags: [pulley, connected-bodies]
+    stem: In the arrangement shown, the table and pulley are smooth. What is the tension in the string? (g = 10 m s^{-2})
+    options:
+      - 10 N
+      - 2 N
+      - 8 N
+      - 12.5 N
+    answer: 2
+    explanation: a = m_2g/(m_1 + m_2) = 10/5 = 2 m s^{-2}. The tension alone accelerates the 4 kg block, T = 4 × 2 = 8 N. It is less than the hanging weight (10 N) because the hanging block accelerates downward.
+
+  - id: phy-lom-072
+    topic: connected-bodies
+    subtopic: Heavy rope
+    concept: Tension in a uniform rope pulled by a force at one end
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: T(x) = F(1 − x/L)
+    tags: [massive-rope, multi-concept]
+    stem: A uniform rope of length L lies on a smooth horizontal floor and is pulled at one end by a horizontal force F. What is the tension at a distance x from the pulled end?
+    options:
+      - F
+      - Fx/L
+      - F(1 − x/L)
+      - F/2
+    answer: 2
+    explanation: The whole rope accelerates with a = F/M. The part beyond the point, of mass M(L − x)/L, is accelerated by the tension there, so T = M(L − x)/L × F/M = F(1 − x/L). It equals F at the pulled end and zero at the free end.
+
+  - id: phy-lom-073
+    topic: connected-bodies
+    subtopic: Atwood machine in a lift
+    concept: In an accelerating lift, g is replaced by g + a
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: a_{rel} = (m_1 − m_2)(g + a)/(m_1 + m_2)
+    tags: [atwood, lift, pseudo-force, multi-concept]
+    stem: An Atwood machine with masses 3 kg and 1 kg hangs from the ceiling of a lift accelerating upward at 2 m s^{-2}. What is the acceleration of the masses relative to the lift? (g = 10 m s^{-2})
+    options:
+      - 5 m s^{-2}
+      - 6 m s^{-2}
+      - 4 m s^{-2}
+      - 7 m s^{-2}
+    answer: 1
+    explanation: In the lift frame, the effective gravity is g + a = 12 m s^{-2}. a_{rel} = (3 − 1) × 12/(3 + 1) = 6 m s^{-2}. Using g alone gives 5 m s^{-2}.
+
+  - id: phy-lom-074
+    topic: connected-bodies
+    subtopic: Chain of blocks
+    concept: Force between blocks in a row pushed at one end
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [connected-bodies, contact-force]
+    stem: Five identical 1 kg blocks are placed in a row on a smooth floor. A 10 N horizontal force pushes the first block. What force does the second block exert on the third?
+    options:
+      - 8 N
+      - 4 N
+      - 6 N
+      - 2 N
+    answer: 2
+    explanation: a = 10/5 = 2 m s^{-2}. Blocks 3, 4 and 5 (3 kg) are pushed by block 2, so the force is 3 × 2 = 6 N.
+
+  - id: phy-lom-075
+    topic: connected-bodies
+    subtopic: Two blocks tied by a string
+    concept: Tension in the connecting string when the front block is pulled
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: T = m_1F/(m_1 + m_2)
+    tags: [tension, connected-bodies]
+    stem: Blocks A (4 kg) and B (6 kg) on a smooth floor are tied by a light string. B is pulled by 20 N away from A. What is the tension in the string?
+    options:
+      - 12 N
+      - 20 N
+      - 10 N
+      - 8 N
+    answer: 3
+    explanation: a = 20/10 = 2 m s^{-2}. The string pulls only A, so T = 4 × 2 = 8 N. The value 12 N is the net force on B, not the tension.
+
+  - id: phy-lom-076
+    topic: connected-bodies
+    subtopic: Free-body diagrams
+    concept: Choosing the system for a free-body diagram
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [free-body-diagram]
+    stem: While drawing a free-body diagram of one block in a system of connected blocks, which step is correct?
+    options:
+      - Include the forces the block exerts on the other bodies
+      - Include only external forces on that block, from all other bodies
+      - Include the internal forces between its own molecules
+      - Include the reactions of the forces acting on the block
+    answer: 1
+    explanation: A free-body diagram shows all forces acting on the chosen body by other bodies. Forces the body exerts on others (the reactions) act on those bodies and are left out, and internal forces cancel.
+
+  - id: phy-lom-077
+    topic: connected-bodies
+    subtopic: Man pulling himself up
+    concept: A man on a platform pulling a rope over a pulley
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [pulley, multi-concept]
+    stem: A 60 kg painter sits on a 15 kg platform hung from a rope that passes over a fixed smooth pulley, and pulls down on the free end himself. With what force must he pull to rise at constant speed? (g = 10 m s^{-2})
+    options:
+      - 750 N
+      - 375 N
+      - 600 N
+      - 450 N
+    answer: 1
+    explanation: Take man + platform as the system. Two rope segments pull it up with tension T each (one at the platform, one in his hands). At constant speed 2T = 75 × 10, so T = 375 N; his pull equals T. Forgetting the second segment gives 750 N.
+
+  - id: phy-lom-078
+    topic: connected-bodies
+    subtopic: Block on block with pull
+    concept: Tension in a string between a hanging mass and a block on a smooth incline
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [incline, pulley]
+    stem: A 2 kg block on a smooth 30° incline is tied by a string over a pulley at the top to a hanging 3 kg block. What is the acceleration of the system? (g = 10 m s^{-2})
+    options:
+      - 4 m s^{-2}
+      - 6 m s^{-2}
+      - 2 m s^{-2}
+      - 5 m s^{-2}
+    answer: 0
+    explanation: Driving force = 3g − 2g sin 30° = 30 − 10 = 20 N. Total mass 5 kg, so a = 4 m s^{-2} with the hanging block going down. Ignoring the component of the 2 kg block's weight gives 6 m s^{-2}.
+
+  - id: phy-lom-079
+    topic: friction
+    subtopic: Static friction
+    concept: Static friction adjusts itself up to a limiting value
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [static-friction, ncert-line]
+    stem: The force of static friction on a body at rest on a horizontal surface
+    options:
+      - is always equal to μ_sN
+      - adjusts to balance the applied force, up to a maximum of μ_sN
+      - is always zero
+      - is greater than the applied force
+    answer: 1
+    explanation: Static friction is self-adjusting; it equals the applied horizontal force until that force exceeds the limiting value μ_sN. μ_sN is the maximum, not the value at every instant.
+
+  - id: phy-lom-080
+    topic: friction
+    subtopic: Kinetic vs static
+    concept: Coefficient of kinetic friction is less than that of static friction
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [kinetic-friction]
+    stem: For a given pair of surfaces, how do the coefficients of static (μ_s) and kinetic (μ_k) friction usually compare?
+    options:
+      - μ_k > μ_s
+      - μ_k = μ_s always
+      - μ_k < μ_s
+      - μ_k = 2μ_s
+    answer: 2
+    explanation: Kinetic friction is generally smaller than limiting static friction, so μ_k < μ_s. That is why it is harder to start an object moving than to keep it moving.
+
+  - id: phy-lom-081
+    topic: friction
+    subtopic: Friction below the limit
+    concept: Friction equals applied force when the block does not move
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [static-friction, trap]
+    stem: A 10 kg box on a floor (μ_s = 0.4) is pushed horizontally with 20 N and does not move. What is the friction force on it? (g = 10 m s^{-2})
+    options:
+      - 40 N
+      - 20 N
+      - 4 N
+      - 0 N
+    answer: 1
+    explanation: Limiting friction is μ_s mg = 40 N. Since 20 N is less than this, the box stays at rest and friction just balances the push, 20 N. Writing 40 N confuses the limit with the actual friction.
+
+  - id: phy-lom-082
+    topic: friction
+    subtopic: Angle of repose
+    concept: tan θ_r = μ_s
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: μ_s = tan θ_r
+    tags: [angle-of-repose]
+    stem: A block just begins to slide on an incline when its angle reaches the angle of repose. If μ_s = 1/√3, what is this angle?
+    options:
+      - 30°
+      - 45°
+      - 60°
+      - 15°
+    answer: 0
+    explanation: At the angle of repose mg sin θ = μ_s mg cos θ, so tan θ = μ_s = 1/√3, giving θ = 30°. Choosing 60° comes from confusing tan with cot.
+
+  - id: phy-lom-083
+    topic: friction
+    subtopic: Deceleration by kinetic friction
+    concept: Stopping distance on a rough surface
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: a = μ_kg, v^2 = u^2 − 2as
+    tags: [kinetic-friction, kinematics]
+    stem: A block slides on a horizontal floor with an initial speed of 10 m s^{-1}. If μ_k = 0.5, how far does it slide before stopping? (g = 10 m s^{-2})
+    options:
+      - 5 m
+      - 20 m
+      - 10 m
+      - 2 m
+    answer: 2
+    explanation: Deceleration a = μ_k g = 5 m s^{-2}. s = u^2/2a = 100/10 = 10 m. The mass cancels, so it is not needed.
+
+  - id: phy-lom-084
+    topic: friction
+    subtopic: Rolling friction
+    concept: Rolling friction is much smaller than sliding friction
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [rolling-friction, ncert-line]
+    stem: Ball bearings are used in machines mainly because
+    options:
+      - rolling friction is much smaller than sliding friction
+      - they increase the normal force
+      - they increase static friction
+      - they remove all friction completely
+    answer: 0
+    explanation: Ball bearings convert sliding friction into rolling friction, which is much smaller. Friction is reduced, not removed.
+
+  - id: phy-lom-085
+    topic: friction
+    subtopic: Box on an accelerating truck
+    concept: Maximum acceleration before a box slips is μ_s g
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    formula: a_{max} = μ_s g
+    tags: [static-friction, application]
+    stem: A box lies on the flat bed of a truck. If μ_s = 0.15 between box and bed, what is the maximum acceleration of the truck for the box not to slip? (g = 10 m s^{-2})
+    options:
+      - 0.15 m s^{-2}
+      - 1.5 m s^{-2}
+      - 15 m s^{-2}
+      - 6.7 m s^{-2}
+    answer: 1
+    explanation: Static friction alone accelerates the box, so ma ≤ μ_s mg, giving a_{max} = 0.15 × 10 = 1.5 m s^{-2}. The mass of the box is not needed.
+
+  - id: phy-lom-086
+    topic: friction
+    subtopic: Block pressed against a wall
+    concept: Minimum horizontal push to hold a block against a wall
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: μF ≥ mg
+    tags: [static-friction, wall]
+    stem: A 2 kg block is held against a vertical wall by a horizontal force F. If μ_s = 0.5 between block and wall, what is the minimum F that prevents it from sliding down? (g = 10 m s^{-2})
+    options:
+      - 10 N
+      - 20 N
+      - 40 N
+      - 80 N
+    answer: 2
+    explanation: The normal force equals F, and friction μF must balance mg. So F_{min} = mg/μ = 20/0.5 = 40 N. Multiplying by μ instead of dividing gives 10 N.
+
+  - id: phy-lom-087
+    topic: friction
+    subtopic: Pulling vs pushing
+    concept: Pulling at an angle reduces normal force and friction
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [friction, lawn-roller]
+    stem: It is easier to pull a lawn roller than to push it with the handle at the same angle to the horizontal because
+    options:
+      - pulling increases the normal force
+      - pushing reduces the weight of the roller
+      - the upward component of the pull reduces the normal force and hence friction
+      - friction does not act while pulling
+    answer: 2
+    explanation: While pulling, the vertical component of the force acts upward, reducing N and so the friction μN. While pushing, the vertical component acts downward, increasing N and friction.
+
+  - id: phy-lom-088
+    topic: friction
+    subtopic: Laws of friction
+    concept: Limiting friction is independent of area of contact
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [laws-of-friction, ncert-line]
+    stem: Which statement about sliding friction between two dry surfaces is correct?
+    options:
+      - It is directly proportional to the area of contact
+      - It is, to a good approximation, independent of the area of contact
+      - It is independent of the normal force
+      - It increases in proportion to the speed of sliding
+    answer: 1
+    explanation: Empirically, friction is proportional to the normal force and nearly independent of the apparent area of contact, and kinetic friction is nearly independent of speed.
+
+  - id: phy-lom-089
+    topic: friction
+    subtopic: Sliding down a rough incline
+    concept: Acceleration on a rough incline is g(sin θ − μ_k cos θ)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: a = g(sin θ − μ_k cos θ)
+    tags: [incline, kinetic-friction]
+    stem: A block slides down an incline of 37° with μ_k = 0.5. What is its acceleration? (g = 10 m s^{-2}, sin 37° = 0.6, cos 37° = 0.8)
+    options:
+      - 6 m s^{-2}
+      - 4 m s^{-2}
+      - 2 m s^{-2}
+      - 10 m s^{-2}
+    answer: 2
+    explanation: a = g(sin θ − μ_k cos θ) = 10(0.6 − 0.5 × 0.8) = 10 × 0.2 = 2 m s^{-2}. Ignoring friction gives 6 m s^{-2}.
+
+  - id: phy-lom-090
+    topic: friction
+    subtopic: Friction as a helper
+    concept: Friction is necessary for walking and driving
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [friction, ncert-line]
+    stem: |-
+      Assertion (A): A car cannot accelerate on a perfectly frictionless road.
+      Reason (R): Friction always opposes motion, so it can never help motion.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: The road's friction on the tyres is the external forward force that accelerates a car, so without it the car cannot accelerate (A true). Friction opposes relative motion between surfaces, not motion itself; here it drives the car, so R is false.
+
+  - id: phy-lom-091
+    topic: circular-motion
+    subtopic: Car on a level curve
+    concept: Friction provides centripetal force on a flat curve
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [centripetal-force, friction]
+    stem: When a car goes round a flat (unbanked) curve at constant speed, the centripetal force is provided by
+    options:
+      - the weight of the car
+      - the engine's forward force
+      - static friction between tyres and road
+      - the normal reaction of the road
+    answer: 2
+    explanation: On a level road the only horizontal force towards the centre is the static friction on the tyres. Weight and normal force are vertical and cancel each other.
+
+  - id: phy-lom-092
+    topic: circular-motion
+    subtopic: Maximum speed on a level curve
+    concept: v_max = √(μ_s r g)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: v_{max} = √(μ_s rg)
+    tags: [circular-motion, friction]
+    stem: A car turns on a level circular road of radius 40 m. If μ_s = 0.4, what is the maximum safe speed? (g = 10 m s^{-2})
+    options:
+      - 4 m s^{-1}
+      - 16 m s^{-1}
+      - 40 m s^{-1}
+      - 12.6 m s^{-1}
+    answer: 3
+    explanation: v_{max} = √(μ_s rg) = √(0.4 × 40 × 10) = √160 ≈ 12.6 m s^{-1}. Forgetting the square root gives 160, and 16 comes from μ r alone.
+
+  - id: phy-lom-093
+    topic: circular-motion
+    subtopic: Ideal banking angle
+    concept: tan θ = v^2/(rg) for a frictionless banked road
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: tan θ = v^2/(rg)
+    tags: [banking]
+    stem: A road curve of radius 40 m is to be banked so that cars at 20 m s^{-1} need no friction. What should the banking angle be? (g = 10 m s^{-2})
+    options:
+      - 30°
+      - 45°
+      - 60°
+      - 37°
+    answer: 1
+    explanation: tan θ = v^2/(rg) = 400/400 = 1, so θ = 45°. The mass of the car does not enter.
+
+  - id: phy-lom-094
+    topic: circular-motion
+    subtopic: String breaks
+    concept: A body moves tangentially when centripetal force vanishes
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [centripetal-force, inertia-of-direction]
+    stem: A stone tied to a string is whirled in a horizontal circle. If the string suddenly breaks, the stone moves
+    options:
+      - radially outward
+      - radially inward
+      - along the tangent at the point of breaking
+      - in a spiral path
+    answer: 2
+    explanation: Once the string breaks there is no horizontal force, so by the first law the stone continues with its velocity at that instant, which is along the tangent. It does not fly radially outward; that is a common misconception.
+
+  - id: phy-lom-095
+    topic: circular-motion
+    subtopic: Centripetal force value
+    concept: F = mv^2/r
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: F = mv^2/r
+    tags: [centripetal-force]
+    stem: A 0.5 kg ball moves in a horizontal circle of radius 2 m at 4 m s^{-1}. What centripetal force acts on it?
+    options:
+      - 2 N
+      - 4 N
+      - 8 N
+      - 1 N
+    answer: 1
+    explanation: F = mv^2/r = 0.5 × 16/2 = 4 N. Using v instead of v^2 gives 1 N.
+
+  - id: phy-lom-096
+    topic: circular-motion
+    subtopic: Cyclist on a curve
+    concept: Lean angle of a cyclist satisfies tan θ = v^2/(rg)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: tan θ = v^2/(rg)
+    tags: [cyclist, circular-motion]
+    stem: A cyclist rides at 10 m s^{-1} round a level curve of radius 10√3 m. At what angle to the vertical must he lean? (g = 10 m s^{-2})
+    options:
+      - 60°
+      - 45°
+      - 30°
+      - 15°
+    answer: 2
+    explanation: tan θ = v^2/(rg) = 100/(10√3 × 10) = 1/√3, so θ = 30° from the vertical. Choosing 60° confuses the angle with the horizontal.
+
+  - id: phy-lom-097
+    topic: circular-motion
+    subtopic: Banked road with friction
+    concept: Maximum speed on a banked road with friction
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: v_{max}^2 = rg(μ + tan θ)/(1 − μ tan θ)
+    tags: [banking, friction, multi-concept]
+    stem: A curve of radius 100 m is banked with tan θ = 0.75, and μ_s = 0.25 between tyres and road. What is the maximum safe speed, approximately? (g = 10 m s^{-2})
+    options:
+      - 27 m s^{-1}
+      - 31.6 m s^{-1}
+      - 35 m s^{-1}
+      - 40 m s^{-1}
+    answer: 2
+    explanation: v_{max}^2 = rg(μ + tan θ)/(1 − μ tan θ) = 1000 × 1/(1 − 0.1875) = 1000/0.8125 ≈ 1231, so v ≈ 35 m s^{-1}. Without friction, v = √(1000 × 0.75) ≈ 27 m s^{-1}; 31.6 m s^{-1} ignores the denominator.
+
+  - id: phy-lom-098
+    topic: circular-motion
+    subtopic: Car over a hump
+    concept: Normal force at the top of a convex bridge is mg − mv^2/r
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: N = mg − mv^2/r
+    tags: [circular-motion, normal-force]
+    stem: A 1000 kg car crosses the top of a convex bridge of radius 20 m at 10 m s^{-1}. What is the normal force on it at the top? (g = 10 m s^{-2})
+    options:
+      - 15 000 N
+      - 10 000 N
+      - 5000 N
+      - zero
+    answer: 2
+    explanation: At the top, mg − N = mv^2/r, so N = 10 000 − 1000 × 100/20 = 10 000 − 5000 = 5000 N. Adding instead of subtracting gives 15 000 N, which applies at the bottom of a dip.
+
+  - id: phy-lom-099
+    topic: circular-motion
+    subtopic: Conical pendulum
+    concept: Tension in a conical pendulum string is mg/cos θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: T cos θ = mg
+    tags: [conical-pendulum]
+    stem: A 0.2 kg bob moves in a horizontal circle as a conical pendulum, its string making 60° with the vertical. What is the tension in the string? (g = 10 m s^{-2})
+    options:
+      - 1 N
+      - 2 N
+      - 4 N
+      - 2√3 N
+    answer: 2
+    explanation: Vertical balance gives T cos 60° = mg, so T = 2/0.5 = 4 N. The horizontal component T sin 60° supplies the centripetal force.
+
+  - id: phy-lom-100
+    topic: circular-motion
+    subtopic: Why roads are banked
+    concept: Banking lets the normal force supply centripetal force
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [banking]
+    stem: |-
+      Assertion (A): Curved roads are banked (the outer edge raised).
+      Reason (R): On a banked road the horizontal component of the normal force contributes to the centripetal force, reducing dependence on friction.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Tilting the road tilts the normal force towards the centre, so N sin θ helps provide mv^2/r. This lowers the friction needed and wear of tyres, which is why roads are banked.
+
+
+  - id: phy-lom-101
+    topic: inertia-first-law
+    subtopic: Jumping from a moving bus
+    concept: Running forward after landing avoids falling because of inertia of motion
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [inertia-of-motion]
+    stem: A person jumping out of a moving bus is advised to run forward for a few steps after landing. Why?
+    options:
+      - To gain extra momentum
+      - To increase the friction on the feet
+      - To reduce the weight of the body
+      - Because the upper body keeps moving forward by inertia while the feet are stopped
+    answer: 3
+    explanation: On landing, the feet stop because of friction, but the upper body continues forward due to inertia of motion, so the person tends to fall forward. Running forward keeps the feet moving with the body until it slows down.
+
+  - id: phy-lom-102
+    topic: inertia-first-law
+    subtopic: Comparing inertia
+    concept: Greater mass means greater inertia
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [inertia, mass]
+    stem: A rubber ball and a stone of the same size are at rest. Which has more inertia?
+    options:
+      - The stone, because it has greater mass
+      - The rubber ball, because it is elastic
+      - Both, because they have equal volumes
+      - Neither, because bodies at rest have no inertia
+    answer: 0
+    explanation: Inertia depends only on mass, not on size or elasticity. The stone is heavier, so it has greater inertia. Bodies at rest also have inertia (inertia of rest).
+
+  - id: phy-lom-103
+    topic: inertia-first-law
+    subtopic: Why moving bodies stop
+    concept: Bodies stop in daily life because of external opposing forces
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [galileo, aristotle, friction]
+    stem: A ball rolled on the floor slows down and stops. Which statement correctly explains this?
+    options:
+      - Every moving body naturally comes to rest when the push is removed
+      - The ball's inertia is used up as it moves
+      - Its velocity decreases because no force acts on it after release
+      - External forces like friction and air resistance act opposite to its motion
+    answer: 3
+    explanation: The state of uniform motion changes only if a net external force acts. Friction from the floor and air resistance provide that force. The idea that motion needs a continuous push is Aristotle's fallacy, and inertia is not used up.
+
+  - id: phy-lom-104
+    topic: inertia-first-law
+    subtopic: Examples of inertia of motion
+    concept: Distinguishing inertia of rest from inertia of motion
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [inertia-of-motion, inertia-of-rest]
+    stem: |-
+      Which of the following are examples of inertia of motion?
+      I. A long jumper runs a distance before taking the jump.
+      II. A ball thrown vertically up in a train moving with uniform velocity returns to the thrower's hand.
+      III. Dust flies off a blanket when it is shaken.
+      IV. A standing passenger falls backward when a bus starts suddenly.
+    options:
+      - I and II only
+      - I, II and III only
+      - III and IV only
+      - II and IV only
+    answer: 0
+    explanation: In I and II the body keeps its state of motion (the jumper's forward speed, the ball's horizontal velocity equal to that of the train). III and IV are examples of inertia of rest, where part of a body stays at rest while the rest is set in motion.
+
+  - id: phy-lom-105
+    topic: inertia-first-law
+    subtopic: Ball in a uniformly moving train
+    concept: A ball tossed in a uniformly moving train returns to the hand
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [inertia-of-motion, inertial-frame]
+    stem: A passenger in a train moving with constant velocity throws a ball vertically up. Where does it land (ignore air)?
+    options:
+      - Behind the passenger
+      - In front of the passenger
+      - To one side of the passenger
+      - Back in the passenger's hand
+    answer: 3
+    explanation: The ball shares the train's horizontal velocity and no horizontal force acts on it, so it keeps pace with the passenger and falls back into the hand. The train is an inertial frame, so the motion looks the same as on the ground.
+
+  - id: phy-lom-106
+    topic: inertia-first-law
+    subtopic: Ball in an accelerating train
+    concept: In an accelerating train a dropped ball falls behind
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [non-inertial-frame, trap]
+    stem: A ball is dropped from the roof inside a train that is accelerating forward. Relative to the point directly below the release point, the ball lands
+    options:
+      - behind it
+      - exactly at it
+      - ahead of it
+      - to one side of it
+    answer: 0
+    explanation: After release the ball keeps the horizontal velocity the train had at that instant, but the train then speeds up. So the floor moves ahead and the ball lands behind the point below its release.
+
+  - id: phy-lom-107
+    topic: inertia-first-law
+    subtopic: Inertial frames
+    concept: An inertial frame is one in which the first law holds
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [inertial-frame]
+    stem: An inertial frame of reference is one
+    options:
+      - that is always at rest
+      - that rotates with the Earth
+      - that moves with constant acceleration
+      - in which Newton's first law holds
+    answer: 3
+    explanation: A frame in which a body with no net force stays at rest or moves uniformly is inertial. Any frame moving with constant velocity relative to it is also inertial; accelerating or rotating frames are not.
+
+  - id: phy-lom-108
+    topic: inertia-first-law
+    subtopic: Earth as a frame
+    concept: The Earth is only approximately inertial
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [inertial-frame]
+    stem: |-
+      Statement I: A frame attached to the Earth's surface is strictly an inertial frame.
+      Statement II: For most laboratory-scale experiments, a frame fixed to the Earth can be treated as inertial.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: The Earth rotates about its axis and revolves round the Sun, so a frame on it has small accelerations and is not strictly inertial. These accelerations are small, so for most everyday experiments it is a good approximation to an inertial frame.
+
+  - id: phy-lom-109
+    topic: inertia-first-law
+    subtopic: Stopping heavy vehicles
+    concept: Greater mass means greater inertia and harder to stop
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [inertia, momentum]
+    stem: |-
+      Assertion (A): It is harder to stop a loaded truck than a bicycle moving with the same speed.
+      Reason (R): The loaded truck has much greater inertia and momentum.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: For the same speed, the truck's much larger mass gives it much greater inertia and momentum, so a larger force or longer time is needed to stop it. R correctly explains A.
+
+  - id: phy-lom-110
+    topic: inertia-first-law
+    subtopic: Sudden jerk vs slow pull
+    concept: A sudden jerk breaks the lower thread because of the inertia of the mass
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [inertia-of-rest, multi-concept]
+    stem: A heavy ball hangs from a ceiling by thread A, and an identical thread B hangs below the ball. If B is pulled down slowly, one thread breaks; if B is jerked suddenly, the other breaks. Which is correct?
+    options:
+      - Slow pull breaks B; sudden jerk breaks A
+      - Both methods break A
+      - Both methods break B
+      - Slow pull breaks A; sudden jerk breaks B
+    answer: 3
+    explanation: With a slow pull, A carries the ball's weight plus the pull, so A reaches its breaking tension first. With a sudden jerk, the ball's inertia prevents it from moving appreciably in the short time, so the tension is not transmitted to A and B snaps.
+
+  - id: phy-lom-111
+    topic: second-law-momentum
+    subtopic: Accelerometer bob
+    concept: Bob hanging in an accelerating car tilts with tan θ = a/g
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: tan θ = a/g
+    tags: [accelerometer, pseudo-force]
+    stem: A small bob hangs by a string from the roof of a car accelerating horizontally. The string makes 37° with the vertical. What is the car's acceleration? (g = 10 m s^{-2}, tan 37° = 0.75)
+    options:
+      - 7.5 m s^{-2}
+      - 6 m s^{-2}
+      - 8 m s^{-2}
+      - 13.3 m s^{-2}
+    answer: 0
+    explanation: The horizontal component T sin θ gives the bob acceleration a, and T cos θ = mg. So tan θ = a/g and a = 10 × 0.75 = 7.5 m s^{-2}. Using cot gives 13.3 m s^{-2}.
+
+  - id: phy-lom-112
+    topic: second-law-momentum
+    subtopic: Force to change speed
+    concept: F = mΔv/Δt for a car
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: F = m(v − u)/t
+    tags: [second-law]
+    stem: What constant net force will increase the speed of a 1000 kg car from 10 m s^{-1} to 20 m s^{-1} in 5 s?
+    options:
+      - 4000 N
+      - 1000 N
+      - 20 000 N
+      - 2000 N
+    answer: 3
+    explanation: a = (20 − 10)/5 = 2 m s^{-2}, so F = 1000 × 2 = 2000 N. Using the final speed alone (20/5) gives 4000 N.
+
+  - id: phy-lom-113
+    topic: second-law-momentum
+    subtopic: Combined mass
+    concept: Same force on combined masses gives a = a_1a_2/(a_1 + a_2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: 1/a = 1/a_1 + 1/a_2
+    tags: [second-law, ratio]
+    stem: A force gives mass m_1 an acceleration of 10 m s^{-2} and mass m_2 an acceleration of 15 m s^{-2}. What acceleration does it give m_1 + m_2 together?
+    options:
+      - 6 m s^{-2}
+      - 12.5 m s^{-2}
+      - 25 m s^{-2}
+      - 5 m s^{-2}
+    answer: 0
+    explanation: m_1 = F/10 and m_2 = F/15, so m_1 + m_2 = F/6 and a = 6 m s^{-2}. Averaging the accelerations (12.5) is wrong because mass, not acceleration, adds.
+
+  - id: phy-lom-114
+    topic: second-law-momentum
+    subtopic: Time-dependent force
+    concept: Velocity from a force that grows linearly with time
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: v = ∫(F/m) dt
+    tags: [calculus, second-law]
+    stem: A force F = 6t newton (t in seconds) acts on a 2 kg body initially at rest. What is its speed at t = 2 s?
+    options:
+      - 12 m s^{-1}
+      - 6 m s^{-1}
+      - 3 m s^{-1}
+      - 24 m s^{-1}
+    answer: 1
+    explanation: a = F/m = 3t, so v = ∫3t dt = 1.5t^2 = 1.5 × 4 = 6 m s^{-1}. Treating the force as constant at its t = 2 s value (12 N) gives 12 m s^{-1}, which is wrong.
+
+  - id: phy-lom-115
+    topic: second-law-momentum
+    subtopic: Force from a v–t graph
+    concept: Net force equals mass times slope of the v–t graph
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = m × slope of v–t graph
+    tags: [graph, second-law]
+    stem: A 2 kg body's velocity rises uniformly from 0 to 10 m s^{-1} in the first 2 s, stays at 10 m s^{-1} from 2 s to 5 s, and falls uniformly to zero from 5 s to 7 s. What is the net force on it between 5 s and 7 s?
+    options:
+      - +10 N
+      - zero
+      - −5 N
+      - −10 N
+    answer: 3
+    explanation: Slope from 5 s to 7 s is (0 − 10)/2 = −5 m s^{-2}, so F = 2 × (−5) = −10 N, opposite to the motion. −5 N is the acceleration without multiplying by mass.
+
+  - id: phy-lom-116
+    topic: second-law-momentum
+    subtopic: Direction of force and acceleration
+    concept: A force opposite to velocity decelerates the body
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [second-law, direction]
+    stem: A body moves due north while the net force on it acts due south. What happens?
+    options:
+      - It slows down while still moving north
+      - It immediately starts moving south
+      - It speeds up towards the north
+      - It turns east
+    answer: 0
+    explanation: Acceleration is along the net force, here south, which is opposite to the velocity. So the body slows down; it moves south only after its velocity becomes zero, if the force continues.
+
+  - id: phy-lom-117
+    topic: second-law-momentum
+    subtopic: Dimensions of force
+    concept: Dimensional formula of force is [M L T^-2]
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [dimensions]
+    stem: What is the dimensional formula of force?
+    options:
+      - "[M L T^{-1}]"
+      - "[M L^2 T^{-2}]"
+      - "[M L^{-1} T^{-2}]"
+      - "[M L T^{-2}]"
+    answer: 3
+    explanation: F = ma, so its dimensions are [M][L T^{-2}] = [M L T^{-2}]. [M L T^{-1}] is momentum and [M L^2 T^{-2}] is energy.
+
+  - id: phy-lom-118
+    topic: second-law-momentum
+    subtopic: Two perpendicular forces
+    concept: Acceleration from the resultant of perpendicular forces
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: a = F_{net}/m
+    tags: [second-law, vectors]
+    stem: Forces of 6 N east and 8 N north act on a 2 kg body. What is the magnitude of its acceleration?
+    options:
+      - 5 m s^{-2}
+      - 7 m s^{-2}
+      - 1 m s^{-2}
+      - 10 m s^{-2}
+    answer: 0
+    explanation: Net force = √(6^2 + 8^2) = 10 N, so a = 10/2 = 5 m s^{-2}. Adding the forces as scalars gives 14 N and 7 m s^{-2}.
+
+  - id: phy-lom-119
+    topic: second-law-momentum
+    subtopic: Force perpendicular to velocity
+    concept: A force perpendicular to velocity changes only its direction
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [second-law, vectors]
+    stem: A force acts on a moving particle always perpendicular to its velocity. Which statement is correct?
+    options:
+      - The speed of the particle increases steadily
+      - The particle moves in a straight line
+      - The force does not change the momentum
+      - The magnitude of velocity stays constant while its direction changes
+    answer: 3
+    explanation: A force perpendicular to velocity has no component along the motion, so the speed does not change; it only changes the direction, as in uniform circular motion. Momentum is a vector, so it does change.
+
+  - id: phy-lom-120
+    topic: second-law-momentum
+    subtopic: Direction of net force
+    concept: Direction of net force in different motions
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [second-law, direction]
+    stem: |-
+      Match the motion (List I) with the direction of the net force on the body (List II).
+      List I
+      P. Car moving at constant velocity
+      Q. Stone in uniform circular motion
+      R. Car braking on a straight road
+      S. Projectile at the top of its path (no air)
+      List II
+      1. Vertically downward
+      2. Opposite to the velocity
+      3. Towards the centre
+      4. No net force
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-1, Q-3, R-2, S-4
+      - P-4, Q-3, R-1, S-2
+    answer: 1
+    explanation: Constant velocity needs no net force (P-4). Uniform circular motion needs a centripetal force (Q-3). Braking decelerates, so force is opposite to velocity (R-2). A projectile has only gravity acting, vertically downward (S-1).
+
+  - id: phy-lom-121
+    topic: impulse
+    subtopic: Impulse and change of velocity
+    concept: Impulse divided by mass gives change in velocity
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: J = FΔt = mΔv
+    tags: [impulse]
+    stem: A constant force of 50 N acts on a 2 kg body for 0.1 s. By how much does its velocity change?
+    options:
+      - 25 m s^{-1}
+      - 10 m s^{-1}
+      - 5 m s^{-1}
+      - 2.5 m s^{-1}
+    answer: 3
+    explanation: Impulse = 50 × 0.1 = 5 N s, which equals mΔv, so Δv = 5/2 = 2.5 m s^{-1}. The value 5 is the impulse, not the velocity change.
+
+  - id: phy-lom-122
+    topic: impulse
+    subtopic: Area under F–t graph
+    concept: Final speed from the area of a composite F–t graph
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: mv = area under F–t graph
+    tags: [graph, impulse]
+    stem: A 3 kg body at rest is acted on by a force that stays at 10 N for 2 s and then decreases linearly to zero over the next 2 s. What is its final speed?
+    options:
+      - 10 m s^{-1}
+      - 6.7 m s^{-1}
+      - 13.3 m s^{-1}
+      - 5 m s^{-1}
+    answer: 0
+    explanation: Impulse = rectangle + triangle = 10 × 2 + ½ × 10 × 2 = 30 N s. v = 30/3 = 10 m s^{-1}. Taking only the rectangle gives 6.7 m s^{-1}.
+
+  - id: phy-lom-123
+    topic: impulse
+    subtopic: Impulsive forces
+    concept: An impulsive force is large and acts for a very short time
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [impulse, ncert-line]
+    stem: For an impulsive force, such as a bat striking a ball, which quantity is usually measured instead of the force itself?
+    options:
+      - The work done
+      - The duration of contact
+      - The acceleration
+      - The change in momentum
+    answer: 3
+    explanation: An impulsive force is very large and acts for a very short, hard-to-measure time, so its value is not easily found. The product of force and time, the impulse, equals the measurable change in momentum.
+
+  - id: phy-lom-124
+    topic: impulse
+    subtopic: Falling glass
+    concept: A soft surface increases collision time and lowers force
+    category: application
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [impulse, application]
+    stem: A glass dropped on a concrete floor breaks, but one dropped from the same height on a thick carpet does not. Which statement explains this?
+    options:
+      - The carpet increases the time of impact, so the average force is smaller
+      - The carpet reduces the glass's change in momentum to zero
+      - The concrete gives the glass a smaller impulse
+      - The glass falls more slowly towards the carpet
+    answer: 0
+    explanation: The glass arrives with the same speed and is stopped in both cases, so the change in momentum is the same. The carpet stretches the stopping time, and F = Δp/Δt is reduced below the breaking force.
+
+  - id: phy-lom-125
+    topic: impulse
+    subtopic: Time of contact
+    concept: Stopping time from momentum and average force
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: Δt = Δp/F
+    tags: [impulse]
+    stem: A goalkeeper stops a 0.4 kg ball moving at 15 m s^{-1} with an average force of 60 N. How long does the stopping take?
+    options:
+      - 0.4 s
+      - 1 s
+      - 0.01 s
+      - 0.1 s
+    answer: 3
+    explanation: Δp = 0.4 × 15 = 6 N s, so Δt = 6/60 = 0.1 s.
+
+  - id: phy-lom-126
+    topic: impulse
+    subtopic: Impulse of gravity on a projectile
+    concept: Change in momentum of a projectile over its flight is vertical
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Δp = 2mu sin θ
+    tags: [impulse, projectile, multi-concept]
+    stem: A 0.5 kg ball is projected with speed 20 m s^{-1} at 30° to the horizontal and lands at the same level. What is the magnitude of its change in momentum over the flight?
+    options:
+      - 20 N s
+      - 10 N s
+      - 10√3 N s
+      - zero
+    answer: 1
+    explanation: The horizontal component is unchanged; the vertical component reverses from +u sin θ to −u sin θ. Δp = 2mu sin 30° = 2 × 0.5 × 20 × 0.5 = 10 N s, directed downward. Zero would be the change in speed, not momentum.
+
+  - id: phy-lom-127
+    topic: impulse
+    subtopic: Force of a water jet
+    concept: Force of a jet stopped by a wall is ρAv^2
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: F = ρAv^2
+    tags: [variable-mass, impulse, multi-concept]
+    stem: A water jet of cross-section 1 cm^2 strikes a wall normally at 10 m s^{-1} and the water comes to rest (does not splash back). What force does the jet exert on the wall? (density of water = 1000 kg m^{-3})
+    options:
+      - 1 N
+      - 100 N
+      - 0.1 N
+      - 10 N
+    answer: 3
+    explanation: Mass striking per second = ρAv = 1000 × 10^{-4} × 10 = 1 kg s^{-1}. Each kilogram loses momentum 10 kg m s^{-1}, so F = ρAv^2 = 10 N. Using ρAv alone gives 1 N.
+
+  - id: phy-lom-128
+    topic: impulse
+    subtopic: Properties of impulse
+    concept: Impulse is a vector equal to change of momentum and area under F–t
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [impulse]
+    stem: |-
+      Which statements about impulse are correct?
+      I. It equals the change in momentum of the body.
+      II. It is a vector quantity.
+      III. It has the same SI unit as force.
+      IV. It equals the area under the force–time graph.
+    options:
+      - I, II and IV only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: Impulse = FΔt = Δp, a vector, and graphically the area under F–t. Its unit is N s, not N, so III is wrong.
+
+  - id: phy-lom-129
+    topic: impulse
+    subtopic: Deflected ball
+    concept: Impulse when a ball is turned through 90° at the same speed
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: J = |p_f − p_i|
+    tags: [impulse, vectors, trap]
+    stem: A 0.2 kg ball moving east at 10 m s^{-1} is struck so that it moves north at 10 m s^{-1}. What is the magnitude of the impulse on it?
+    options:
+      - zero
+      - 4 N s
+      - 2 N s
+      - 2√2 N s
+    answer: 3
+    explanation: p_i = 2 N s east and p_f = 2 N s north. The change is a vector of magnitude √(2^2 + 2^2) = 2√2 N s, directed north-west. The speed is unchanged, but the momentum is not, so zero is a trap.
+
+  - id: phy-lom-130
+    topic: impulse
+    subtopic: Impulse and time
+    concept: The impulse needed to stop a ball equals its momentum, regardless of time
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [impulse]
+    stem: |-
+      Assertion (A): When a moving ball is caught and brought to rest, the impulse on the hand equals the ball's initial momentum in magnitude.
+      Reason (R): Impulse depends only on the force and not on the time for which it acts.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: The ball's momentum changes from p to 0, so the impulse magnitude is p; the hand receives an equal and opposite impulse (A true). Impulse is F × Δt, so it depends on time as well as force (R false).
+
+  - id: phy-lom-131
+    topic: third-law
+    subtopic: Spring balances in series
+    concept: Two joined spring balances read the same force
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [third-law, spring-balance, trap]
+    stem: Two light spring balances are hooked together and their free ends are pulled apart with 10 N each. What does each balance read?
+    options:
+      - 10 N
+      - 5 N
+      - 20 N
+      - 0 N
+    answer: 0
+    explanation: Each balance is pulled with 10 N at both ends (the other balance pulls back with an equal force by the third law), so each reads 10 N. Adding the pulls to get 20 N is the classic mistake.
+
+  - id: phy-lom-132
+    topic: third-law
+    subtopic: Tug of war
+    concept: Tension in a rope pulled by equal forces at both ends
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [tension, trap]
+    stem: In a tug of war, each team pulls the rope with 500 N and the rope does not move. What is the tension in the rope?
+    options:
+      - 1000 N
+      - zero
+      - 250 N
+      - 500 N
+    answer: 3
+    explanation: The tension at any point equals the pull transmitted through it, which is 500 N. The two pulls act on the rope at different ends; they do not add up to 1000 N, and they balance so the rope is in equilibrium.
+
+  - id: phy-lom-133
+    topic: third-law
+    subtopic: Bird in a closed cage
+    concept: A hovering bird's weight is transmitted to the cage through the air
+    category: application
+    format: case
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [third-law, trap]
+    stem: A bird sits in an airtight cage placed on a weighing scale. The bird then flies and hovers steadily at a fixed height inside. How does the scale reading change?
+    options:
+      - It stays the same
+      - It decreases by the bird's weight
+      - It increases slightly
+      - It becomes zero
+    answer: 0
+    explanation: To hover, the bird pushes air downward with a force equal to its weight (third law), and this push is passed through the air to the floor of the closed cage. Since the system's centre of mass is not accelerating, the scale reads the same total weight.
+
+  - id: phy-lom-134
+    topic: third-law
+    subtopic: Identifying reaction pairs
+    concept: Matching each force with its third-law partner
+    category: application
+    format: match
+    difficulty: 2
+    time: 60
+    ncert: true
+    battle: false
+    tags: [third-law]
+    stem: |-
+      Match each force (List I) with its reaction (List II).
+      List I
+      P. Earth's pull on a book
+      Q. Table's upward push on the book
+      R. Floor's forward friction on a walker's foot
+      S. Rocket's backward push on exhaust gases
+      List II
+      1. Gases' forward push on the rocket
+      2. Book's pull on the Earth
+      3. Foot's backward push on the floor
+      4. Book's downward push on the table
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-2, Q-4, R-1, S-3
+      - P-2, Q-4, R-3, S-1
+      - P-2, Q-3, R-4, S-1
+    answer: 2
+    explanation: Reaction pairs involve the same two bodies with the roles swapped. Earth–book gravity pairs with book–Earth (P-2); table on book pairs with book on table (Q-4); floor on foot with foot on floor (R-3); rocket on gas with gas on rocket (S-1).
+
+  - id: phy-lom-135
+    topic: third-law
+    subtopic: Internal forces
+    concept: Internal forces cannot accelerate a system
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [internal-forces, third-law]
+    stem: |-
+      Assertion (A): A person sitting inside a car on a frictionless surface cannot set the car moving by pushing hard on its dashboard.
+      Reason (R): Internal forces occur in equal and opposite pairs and cannot change the total momentum of a system.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The push on the dashboard and the dashboard's push on the person (transmitted through the seat) are internal to the person + car system and cancel in pairs. With no external horizontal force the system's momentum stays zero, so R explains A.
+
+  - id: phy-lom-136
+    topic: third-law
+    subtopic: Nature of reaction forces
+    concept: Action and reaction are of the same nature, including non-contact forces
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [third-law, trap]
+    stem: |-
+      Statement I: Newton's third law applies to non-contact forces such as gravitational and electric forces.
+      Statement II: The weight of a book on a table and the normal force on it form an action–reaction pair of different nature.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The third law holds for all forces, contact or not, so I is correct. Weight and normal force act on the same body (the book) and merely balance each other; they are not a third-law pair, and a pair is always of the same nature, so II is incorrect.
+
+  - id: phy-lom-137
+    topic: third-law
+    subtopic: Truck and fly
+    concept: Equal forces but unequal velocity changes in a collision
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [third-law, trap]
+    stem: A fly hits the windscreen of a fast-moving truck. Which statement about the collision is correct?
+    options:
+      - The truck exerts a larger force on the fly
+      - Both forces are equal, but the fly's velocity changes much more
+      - Both forces are equal, and both velocity changes are equal
+      - The fly exerts a larger force because it is hit harder
+    answer: 1
+    explanation: Third law gives equal and opposite forces for the same duration, so equal impulses. The fly's mass is tiny, so its velocity change Δv = J/m is enormous compared with the truck's.
+
+  - id: phy-lom-138
+    topic: third-law
+    subtopic: Jumping up
+    concept: While jumping, the ground pushes up with more than body weight
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [normal-force, third-law]
+    stem: While a person pushes off the ground to jump vertically up, the normal force of the ground on the person is
+    options:
+      - zero
+      - equal to the person's weight
+      - less than the person's weight
+      - greater than the person's weight
+    answer: 3
+    explanation: The person accelerates upward during the push, so N − mg = ma > 0 and N > mg. The person pushes down harder on the ground, and by the third law the ground pushes back equally hard.
+
+  - id: phy-lom-139
+    topic: third-law
+    subtopic: Earth's acceleration
+    concept: The Earth's acceleration due to a person is negligible
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [third-law, gravity]
+    stem: A 50 kg person falls freely from a wall. What is the magnitude of the Earth's acceleration towards the person? (mass of Earth = 6 × 10^{24} kg, g = 10 m s^{-2})
+    options:
+      - 8.3 × 10^{-23} m s^{-2}
+      - 10 m s^{-2}
+      - zero
+      - 1.2 × 10^{-22} m s^{-2}
+    answer: 0
+    explanation: The person pulls the Earth with a force equal to the person's weight, 500 N. a = 500/(6 × 10^{24}) ≈ 8.3 × 10^{-23} m s^{-2}. It is not zero, only immeasurably small.
+
+  - id: phy-lom-140
+    topic: third-law
+    subtopic: Push between blocks
+    concept: Force by B on A equals force by A on B
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [third-law]
+    stem: Block A pushes block B with a force of 5 N towards the east. What force does B exert on A?
+    options:
+      - 5 N towards the east
+      - Zero
+      - More than 5 N towards the west
+      - 5 N towards the west
+    answer: 3
+    explanation: By the third law, B pushes A with an equal force in the opposite direction, 5 N west, whatever the masses or motion of the blocks.
+
+  - id: phy-lom-141
+    topic: momentum-conservation
+    subtopic: Fission fragments
+    concept: Fragments from rest move with speeds inversely proportional to mass
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    formula: m_1v_1 = m_2v_2
+    tags: [explosion]
+    stem: "A body at rest splits into two parts with masses in the ratio 2 : 1. What is the ratio of their speeds (heavier : lighter)?"
+    options:
+      - "2 : 1"
+      - "4 : 1"
+      - "1 : 1"
+      - "1 : 2"
+    answer: 3
+    explanation: "Initial momentum is zero, so the parts move oppositely with equal momenta. Then v ∝ 1/m, giving 1 : 2 for heavier : lighter."
+
+  - id: phy-lom-142
+    topic: momentum-conservation
+    subtopic: Car hits a stationary truck
+    concept: Velocity of wreck in a perfectly inelastic collision
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: m_1u_1 = (m_1 + m_2)v
+    tags: [collision]
+    stem: A 1000 kg car moving at 20 m s^{-1} crashes into a stationary 3000 kg truck and they move off together. What is their common speed?
+    options:
+      - 5 m s^{-1}
+      - 6.7 m s^{-1}
+      - 10 m s^{-1}
+      - 15 m s^{-1}
+    answer: 0
+    explanation: 1000 × 20 = 4000 v, so v = 5 m s^{-1}. Dividing by the truck's mass only gives 6.7 m s^{-1}.
+
+  - id: phy-lom-143
+    topic: momentum-conservation
+    subtopic: Head-on sticking collision
+    concept: Signs matter when bodies move towards each other
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: m_1u_1 + m_2u_2 = (m_1 + m_2)v
+    tags: [collision, trap]
+    stem: A 2 kg ball moving right at 4 m s^{-1} collides head-on with a 3 kg ball moving left at 2 m s^{-1}, and they stick together. What is their velocity after collision?
+    options:
+      - 2.8 m s^{-1} to the right
+      - 0.4 m s^{-1} to the left
+      - zero
+      - 0.4 m s^{-1} to the right
+    answer: 3
+    explanation: Taking right as positive, 2 × 4 + 3 × (−2) = 5v, so v = 2/5 = 0.4 m s^{-1} to the right. Ignoring the sign of the second velocity gives 2.8 m s^{-1}.
+
+  - id: phy-lom-144
+    topic: momentum-conservation
+    subtopic: Man walking on a plank
+    concept: Relative velocity combined with momentum conservation
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [conservation, relative-velocity, multi-concept]
+    stem: A 60 kg man stands on a 40 kg plank resting on frictionless ice. He starts walking at 2 m s^{-1} relative to the plank. What is the speed of the plank relative to the ice?
+    options:
+      - 1.2 m s^{-1}
+      - 0.8 m s^{-1}
+      - 3 m s^{-1}
+      - 2 m s^{-1}
+    answer: 0
+    explanation: Let the man's ground velocity be v and the plank's V. v − V = 2 and 60v + 40V = 0. Then V = −1.5v, so 2.5v = 2, v = 0.8 m s^{-1} and V = −1.2 m s^{-1}. Treating 2 m s^{-1} as the ground speed gives the wrong answer 3 m s^{-1}.
+
+  - id: phy-lom-145
+    topic: momentum-conservation
+    subtopic: Falling ball and the Earth
+    concept: Momentum is conserved only for the system that includes the Earth
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [conservation, system]
+    stem: A ball falls freely towards the Earth. Which statement is correct?
+    options:
+      - The ball's momentum is conserved because no force acts on it
+      - Momentum conservation fails during free fall
+      - The Earth's momentum stays exactly constant
+      - The total momentum of the ball + Earth system is conserved
+    answer: 3
+    explanation: Gravity is an external force on the ball, so its momentum grows. For the ball + Earth system, gravity is internal, so the total momentum is conserved; the Earth gains an equal and opposite (tiny-velocity) momentum.
+
+  - id: phy-lom-146
+    topic: momentum-conservation
+    subtopic: Explosion of a moving body
+    concept: If one half stops, the other carries all the momentum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: Mu = m_1v_1 + m_2v_2
+    tags: [explosion]
+    stem: A body moving at 10 m s^{-1} explodes into two equal halves. If one half comes to rest just after, what is the velocity of the other?
+    options:
+      - 20 m s^{-1} in the original direction
+      - 10 m s^{-1} in the original direction
+      - 5 m s^{-1} in the original direction
+      - 20 m s^{-1} opposite to the original direction
+    answer: 0
+    explanation: M × 10 = (M/2) × 0 + (M/2)v, so v = 20 m s^{-1} in the original direction. Momentum, not speed, is shared, so 10 m s^{-1} is wrong.
+
+  - id: phy-lom-147
+    topic: momentum-conservation
+    subtopic: Projectile explodes at the top
+    concept: At the top only horizontal momentum exists
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [explosion, projectile, multi-concept]
+    stem: A shell is fired at 50 m s^{-1} at 60° to the horizontal. At the highest point it breaks into two equal pieces; one falls vertically down from rest. What is the speed of the other piece just after?
+    options:
+      - 25 m s^{-1}
+      - 100 m s^{-1}
+      - 50√3 m s^{-1}
+      - 50 m s^{-1}
+    answer: 3
+    explanation: "At the top the shell's velocity is horizontal, u cos 60° = 25 m s^{-1}. Momentum conservation: M × 25 = (M/2) × 0 + (M/2)v, so v = 50 m s^{-1}. Using the launch speed 50 gives 100 m s^{-1}."
+
+  - id: phy-lom-148
+    topic: momentum-conservation
+    subtopic: Rain falling into a cart
+    concept: Added mass with zero horizontal momentum reduces speed
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [variable-mass, conservation]
+    stem: An open cart rolls on a frictionless horizontal track while rain falls vertically into it. What happens to the cart's speed?
+    options:
+      - It increases
+      - It decreases
+      - It stays constant
+      - It first increases and then decreases
+    answer: 1
+    explanation: Horizontal momentum of cart + collected water is conserved because no horizontal external force acts. The rain adds mass but no horizontal momentum, so the speed must fall.
+
+  - id: phy-lom-149
+    topic: momentum-conservation
+    subtopic: Comparing recoil speeds
+    concept: Recoil speed = mv/M for different guns
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 90
+    ncert: false
+    battle: false
+    formula: V = mv/M
+    tags: [recoil, ordering]
+    stem: |-
+      Arrange these guns in increasing order of recoil speed.
+      I. 4 kg gun firing a 20 g bullet at 400 m s^{-1}
+      II. 5 kg gun firing a 50 g bullet at 300 m s^{-1}
+      III. 2 kg gun firing a 10 g bullet at 300 m s^{-1}
+      IV. 10 kg gun firing a 100 g bullet at 500 m s^{-1}
+    options:
+      - I < III < II < IV
+      - III < II < I < IV
+      - III < I < II < IV
+      - IV < II < I < III
+    answer: 2
+    explanation: V = mv/M gives I = 8/4 = 2, II = 15/5 = 3, III = 3/2 = 1.5 and IV = 50/10 = 5 m s^{-1}. So III < I < II < IV.
+
+  - id: phy-lom-150
+    topic: momentum-conservation
+    subtopic: Rocket thrust
+    concept: Thrust = (rate of mass ejection) × exhaust speed
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: F = u dm/dt
+    tags: [rocket, thrust]
+    stem: A rocket ejects gas at 0.5 kg s^{-1} with an exhaust speed of 1000 m s^{-1} relative to it. What is the thrust?
+    options:
+      - 2000 N
+      - 50 N
+      - 500 N
+      - 1000 N
+    answer: 2
+    explanation: Thrust = u × dm/dt = 1000 × 0.5 = 500 N. The ejected gas receives this momentum per second, and the rocket receives an equal and opposite force.
+
+  - id: phy-lom-151
+    topic: equilibrium-concurrent-forces
+    subtopic: Three equal forces
+    concept: Three equal forces balance at 120° to each other
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [equilibrium, vectors]
+    stem: Three forces of equal magnitude acting on a particle keep it in equilibrium. What is the angle between any two of them?
+    options:
+      - 120°
+      - 90°
+      - 60°
+      - 180°
+    answer: 0
+    explanation: For three equal forces to form a closed triangle, the triangle must be equilateral, so each pair of forces is at 180° − 60° = 120° to each other.
+
+  - id: phy-lom-152
+    topic: equilibrium-concurrent-forces
+    subtopic: Mass on a rope pulled sideways
+    concept: Angle of a rope when a hanging weight is pulled horizontally
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: tan θ = F/W
+    tags: [equilibrium, tension]
+    stem: A 6 kg mass hangs from a light rope fixed to the ceiling. A horizontal force of 50 N is applied at the point where the mass is attached. What angle does the rope make with the vertical in equilibrium? (g = 10 m s^{-2})
+    options:
+      - 30°
+      - 50°
+      - 37°
+      - about 40° (tan θ = 5/6)
+    answer: 3
+    explanation: T sin θ = 50 and T cos θ = 60, so tan θ = 5/6 ≈ 0.83 and θ ≈ 40°. Swapping the components gives about 50°.
+
+  - id: phy-lom-153
+    topic: equilibrium-concurrent-forces
+    subtopic: Picture frame on a nail
+    concept: Tension when a frame hangs from a nail with strings inclined to the horizontal
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: 2T sin θ = W
+    tags: [equilibrium, tension]
+    stem: A 20 N picture hangs from a nail by a string; each side of the string makes 30° with the horizontal. What is the tension in the string?
+    options:
+      - 10 N
+      - 11.5 N
+      - 40 N
+      - 20 N
+    answer: 3
+    explanation: Vertical balance gives 2T sin 30° = 20, so T = 20 N. Using cos 30° (angle with the vertical) gives about 11.5 N, which is wrong here because the angle is with the horizontal.
+
+  - id: phy-lom-154
+    topic: equilibrium-concurrent-forces
+    subtopic: Lami's theorem
+    concept: Each force is proportional to the sine of the angle between the other two
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: F_1/sin α = F_2/sin β = F_3/sin γ
+    tags: [lami, equilibrium]
+    stem: According to Lami's theorem, for three concurrent forces in equilibrium, each force is proportional to the
+    options:
+      - sine of the angle between the other two forces
+      - cosine of the angle between the other two forces
+      - sine of the angle it makes with the resultant
+      - square of the sum of the other two forces
+    answer: 0
+    explanation: Lami's theorem gives F_1/sin α = F_2/sin β = F_3/sin γ, where α is the angle between F_2 and F_3, and so on. It follows from the sine rule for the closed force triangle.
+
+  - id: phy-lom-155
+    topic: equilibrium-concurrent-forces
+    subtopic: 5-12-13 forces
+    concept: Angle between two balanced forces from Pythagoras
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [equilibrium, vectors]
+    stem: Forces of 5 N, 12 N and 13 N act on a particle and keep it in equilibrium. What is the angle between the 5 N and 12 N forces?
+    options:
+      - 60°
+      - 90°
+      - 120°
+      - 180°
+    answer: 1
+    explanation: The 5 N and 12 N forces must have a resultant of 13 N. Since 5^2 + 12^2 = 13^2, they are perpendicular.
+
+  - id: phy-lom-156
+    topic: equilibrium-concurrent-forces
+    subtopic: Component conditions
+    concept: Equilibrium means zero sum of components along each axis
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [equilibrium, components]
+    stem: |-
+      A particle is in equilibrium under several coplanar forces. Which statements must be true?
+      I. The sum of the x-components of the forces is zero.
+      II. The sum of the y-components of the forces is zero.
+      III. All the forces have equal magnitudes.
+      IV. The particle is at rest.
+    options:
+      - I, II and IV only
+      - I, II and III only
+      - III and IV only
+      - I and II only
+    answer: 3
+    explanation: Zero net force means ΣF_x = 0 and ΣF_y = 0. The forces need not be equal, and the particle could also move with constant velocity, so III and IV are not required.
+
+  - id: phy-lom-157
+    topic: equilibrium-concurrent-forces
+    subtopic: Two masses in a vertical chain
+    concept: Upper string carries the weight of everything below it
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [tension, equilibrium]
+    stem: A 1 kg block hangs from the ceiling by string A, and a 2 kg block hangs below it by string B. What are the tensions in A and B? (g = 10 m s^{-2})
+    options:
+      - A = 30 N, B = 20 N
+      - A = 10 N, B = 20 N
+      - A = 20 N, B = 10 N
+      - A = 30 N, B = 30 N
+    answer: 0
+    explanation: B supports only the 2 kg block, so T_B = 20 N. A supports both blocks, so T_A = 30 N.
+
+  - id: phy-lom-158
+    topic: equilibrium-concurrent-forces
+    subtopic: Two unequal strings
+    concept: Tensions in two strings inclined at 30° and 60° to the ceiling
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    diagram: A horizontal ceiling. From a knot K, a 100 N weight hangs vertically. String 1 goes from K up to the left and makes 30° with the ceiling; string 2 goes from K up to the right and makes 60° with the ceiling. The two strings are perpendicular to each other. Label the tensions T_1 and T_2.
+    tags: [equilibrium, tension, lami]
+    stem: In the arrangement shown, what are the tensions T_1 (string at 30° to the ceiling) and T_2 (string at 60° to the ceiling)?
+    options:
+      - T_1 = 86.6 N, T_2 = 50 N
+      - T_1 = 50 N, T_2 = 50 N
+      - T_1 = 100 N, T_2 = 100 N
+      - T_1 = 50 N, T_2 = 86.6 N
+    answer: 3
+    explanation: Horizontal balance gives T_1 cos 30° = T_2 cos 60°, so T_2 = √3 T_1. Vertical balance gives T_1 sin 30° + T_2 sin 60° = 100, i.e. 0.5T_1 + 1.5T_1 = 100, so T_1 = 50 N and T_2 = 86.6 N. The steeper string carries more tension.
+
+  - id: phy-lom-159
+    topic: equilibrium-concurrent-forces
+    subtopic: Nature of balanced forces
+    concept: Three non-parallel forces in equilibrium must be coplanar and concurrent
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [equilibrium]
+    stem: |-
+      Statement I: A body in equilibrium can have several forces acting on it.
+      Statement II: If three non-parallel forces keep a particle in equilibrium, they must lie in one plane.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Equilibrium only needs the vector sum to be zero, so many forces may act (I correct). For three forces, the third must be equal and opposite to the resultant of the other two, which lies in their plane, so all three are coplanar (II correct).
+
+  - id: phy-lom-160
+    topic: equilibrium-concurrent-forces
+    subtopic: Holding a block on a smooth incline
+    concept: Force parallel to the incline needed is mg sin θ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: F = mg sin θ
+    tags: [incline, equilibrium]
+    stem: What force parallel to a smooth 30° incline is needed to hold a 5 kg block at rest on it? (g = 10 m s^{-2})
+    options:
+      - 50 N
+      - 43.3 N
+      - 10 N
+      - 25 N
+    answer: 3
+    explanation: Along the incline, F = mg sin 30° = 50 × 0.5 = 25 N. The value 43.3 N is mg cos 30°, the normal force.
+
+  - id: phy-lom-161
+    topic: common-forces
+    subtopic: Hooke's law
+    concept: Spring force = kx
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: F = kx
+    tags: [spring]
+    stem: A spring of force constant 200 N m^{-1} is stretched by 5 cm. What is the magnitude of the spring force?
+    options:
+      - 10 N
+      - 1000 N
+      - 40 N
+      - 4 N
+    answer: 0
+    explanation: F = kx = 200 × 0.05 = 10 N. Forgetting to convert 5 cm to 0.05 m gives 1000 N.
+
+  - id: phy-lom-162
+    topic: common-forces
+    subtopic: Cutting a spring
+    concept: Cutting a spring in half doubles its force constant
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [spring, trap]
+    stem: A spring of force constant k is cut into two equal halves. What is the force constant of each half?
+    options:
+      - k/2
+      - k
+      - k/4
+      - 2k
+    answer: 3
+    explanation: For the same force, each half stretches only half as much as the whole spring, so k' = F/(x/2) = 2k. Shorter springs are stiffer.
+
+  - id: phy-lom-163
+    topic: common-forces
+    subtopic: Lift slowing while going up
+    concept: Decelerating upward motion means acceleration is downward
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: N = m(g − a)
+    tags: [lift, trap]
+    stem: A lift moving upward slows down at 2 m s^{-2}. What does a scale inside read for a 60 kg man? (g = 10 m s^{-2})
+    options:
+      - 720 N
+      - 480 N
+      - 600 N
+      - 120 N
+    answer: 1
+    explanation: Slowing down while moving up means the acceleration is 2 m s^{-2} downward. N = m(g − a) = 60 × 8 = 480 N. Seeing "upward" and using g + a gives 720 N.
+
+  - id: phy-lom-164
+    topic: common-forces
+    subtopic: Monkey climbing a rope
+    concept: Maximum upward acceleration limited by rope strength
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: T − mg = ma
+    tags: [tension, rope]
+    stem: A rope can withstand a maximum tension of 300 N. What is the greatest upward acceleration with which a 20 kg monkey can climb it? (g = 10 m s^{-2})
+    options:
+      - 5 m s^{-2}
+      - 15 m s^{-2}
+      - 10 m s^{-2}
+      - 2 m s^{-2}
+    answer: 0
+    explanation: T − mg = ma gives 300 − 200 = 20a, so a = 5 m s^{-2}. Dividing 300 by 20 without subtracting the weight gives 15 m s^{-2}.
+
+  - id: phy-lom-165
+    topic: common-forces
+    subtopic: Monkey sliding down a rope
+    concept: Tension while sliding down with acceleration
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: mg − T = ma
+    tags: [tension, rope]
+    stem: A 20 kg monkey slides down a vertical rope with an acceleration of 4 m s^{-2}. What is the tension in the rope? (g = 10 m s^{-2})
+    options:
+      - 280 N
+      - 200 N
+      - 80 N
+      - 120 N
+    answer: 3
+    explanation: mg − T = ma gives T = 20 × (10 − 4) = 120 N. The rope pulls less than the monkey's weight because the monkey accelerates downward.
+
+  - id: phy-lom-166
+    topic: common-forces
+    subtopic: Mass and weight
+    concept: Mass is unchanged on the Moon but weight is about one-sixth
+    category: factual
+    format: statements
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: false
+    tags: [weight, mass]
+    stem: An astronaut goes from the Earth to the Moon. Which statement is correct?
+    options:
+      - Both mass and weight become about one-sixth
+      - Mass becomes one-sixth; weight stays the same
+      - Both mass and weight stay the same
+      - Mass stays the same; weight becomes about one-sixth
+    answer: 3
+    explanation: Mass (inertia) is a property of the body and does not change. Weight = mg, and g on the Moon is about one-sixth of that on Earth.
+
+  - id: phy-lom-167
+    topic: common-forces
+    subtopic: Scale reading vs time in a lift
+    concept: Finding the height travelled from scale readings
+    category: numerical
+    format: graph
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [lift, graph, kinematics, multi-concept]
+    stem: A 50 kg person stands on a scale in a lift that starts from rest. The scale reads 600 N for the first 2 s, 500 N for the next 6 s and 400 N for the last 2 s, after which the lift is at rest. How far does the lift travel? (g = 10 m s^{-2})
+    options:
+      - 32 m
+      - 24 m
+      - 40 m
+      - 28 m
+    answer: 0
+    explanation: 600 N gives a = +2 m s^{-2} for 2 s, so v = 4 m s^{-1} and s = 4 m. Then 6 s at 4 m s^{-1} gives 24 m. Finally a = −2 m s^{-2} for 2 s brings it to rest over 4 m. Total 4 + 24 + 4 = 32 m upward.
+
+  - id: phy-lom-168
+    topic: common-forces
+    subtopic: Normal force with an inclined pull
+    concept: Upward component of a pull reduces the normal force
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: N = mg − F sin θ
+    tags: [normal-force]
+    stem: A 10 kg block on a horizontal floor is pulled by a 50 N force at 37° above the horizontal. What is the normal force on it? (g = 10 m s^{-2}, sin 37° = 0.6)
+    options:
+      - 100 N
+      - 130 N
+      - 60 N
+      - 70 N
+    answer: 3
+    explanation: N + F sin 37° = mg, so N = 100 − 30 = 70 N. Adding the component (as for a push) gives 130 N.
+
+  - id: phy-lom-169
+    topic: common-forces
+    subtopic: Normal force is not always mg
+    concept: Normal force adjusts and can differ from weight
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [normal-force, trap]
+    stem: |-
+      Assertion (A): The normal force on a body resting on a surface is always equal to its weight.
+      Reason (R): The normal force acts perpendicular to the surface of contact.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: The normal force is perpendicular to the surface (R true), but its size depends on the situation; on an incline it is mg cos θ, in an accelerating lift it is m(g ± a), so A is false.
+
+  - id: phy-lom-170
+    topic: common-forces
+    subtopic: Spring between accelerating blocks
+    concept: Spring force when two blocks accelerate together
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [spring, connected-bodies]
+    stem: Blocks of 2 kg and 3 kg on a smooth floor are joined by a light spring. A 10 N force pulls the 3 kg block, and both move with the same acceleration. What is the force in the spring?
+    options:
+      - 10 N
+      - 4 N
+      - 6 N
+      - 5 N
+    answer: 1
+    explanation: Common acceleration a = 10/5 = 2 m s^{-2}. The spring alone accelerates the 2 kg block, so its force is 2 × 2 = 4 N. The value 6 N would be the net force on the 3 kg block.
+
+  - id: phy-lom-171
+    topic: connected-bodies
+    subtopic: Atwood machine
+    concept: Tension in an Atwood machine with 5 kg and 3 kg
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: T = 2m_1m_2g/(m_1 + m_2)
+    tags: [atwood]
+    stem: Masses of 5 kg and 3 kg are connected by a light string over a smooth pulley. What is the tension in the string? (g = 10 m s^{-2})
+    options:
+      - 40 N
+      - 30 N
+      - 50 N
+      - 37.5 N
+    answer: 3
+    explanation: T = 2m_1m_2g/(m_1 + m_2) = 2 × 5 × 3 × 10/8 = 37.5 N. It lies between the two weights (30 N and 50 N); the average 40 N is not correct.
+
+  - id: phy-lom-172
+    topic: connected-bodies
+    subtopic: Train of three blocks
+    concept: Tensions in strings between three pulled blocks
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [tension, connected-bodies]
+    stem: Blocks of 1 kg, 2 kg and 3 kg on a smooth floor are tied in a line by light strings. The 3 kg block is pulled by 12 N. What are the tensions in the string between 1 kg and 2 kg (T_1) and between 2 kg and 3 kg (T_2)?
+    options:
+      - T_1 = 2 N, T_2 = 6 N
+      - T_1 = 6 N, T_2 = 2 N
+      - T_1 = 4 N, T_2 = 8 N
+      - T_1 = 2 N, T_2 = 4 N
+    answer: 0
+    explanation: a = 12/6 = 2 m s^{-2}. T_1 pulls only the 1 kg block, T_1 = 2 N. T_2 pulls the 1 kg and 2 kg blocks, T_2 = 3 × 2 = 6 N.
+
+  - id: phy-lom-173
+    topic: connected-bodies
+    subtopic: Rough table with hanging mass
+    concept: Acceleration and tension with friction on the table
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [pulley, friction, multi-concept]
+    stem: A 4 kg block on a horizontal table (μ_k = 0.25) is tied by a light string over a smooth pulley at the edge to a hanging 2 kg block. What is the tension in the string once they move? (g = 10 m s^{-2})
+    options:
+      - 20 N
+      - 16.7 N
+      - 13.3 N
+      - 10 N
+    answer: 1
+    explanation: Driving force = 20 − 0.25 × 40 = 10 N; a = 10/6 ≈ 1.67 m s^{-2}. For the hanging block, T = 2(10 − 1.67) ≈ 16.7 N. Taking T equal to its weight (20 N) ignores its acceleration.
+
+  - id: phy-lom-174
+    topic: connected-bodies
+    subtopic: Movable pulley constraint
+    concept: A load on a movable pulley moves half the distance of the free end
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [pulley, constraint]
+    stem: A load hangs from a single movable pulley supported by a rope; one end of the rope is fixed and the other end is pulled up. If the free end moves up 2 m, how far does the load rise?
+    options:
+      - 4 m
+      - 2 m
+      - 0.5 m
+      - 1 m
+    answer: 3
+    explanation: Both rope segments supporting the pulley must shorten equally, so pulling 2 m of rope shortens each by 1 m and the load rises 1 m. Correspondingly, its acceleration is half that of the free end.
+
+  - id: phy-lom-175
+    topic: connected-bodies
+    subtopic: Lift cable tension
+    concept: Cable tension for lift plus load accelerating upward
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: T = (M + m)(g + a)
+    tags: [lift, tension]
+    stem: A 500 kg lift carries a 100 kg load and accelerates upward at 1 m s^{-2}. What is the tension in its cable? (g = 10 m s^{-2})
+    options:
+      - 6600 N
+      - 6000 N
+      - 5400 N
+      - 5500 N
+    answer: 0
+    explanation: T − (M + m)g = (M + m)a, so T = 600 × 11 = 6600 N. Ignoring the acceleration gives 6000 N.
+
+  - id: phy-lom-176
+    topic: connected-bodies
+    subtopic: Breaking string
+    concept: Maximum acceleration for a string of given breaking strength
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: T − mg = ma
+    tags: [tension]
+    stem: A string can bear at most 60 N. What is the maximum upward acceleration with which a 4 kg block can be lifted by it? (g = 10 m s^{-2})
+    options:
+      - 15 m s^{-2}
+      - 10 m s^{-2}
+      - 2.5 m s^{-2}
+      - 5 m s^{-2}
+    answer: 3
+    explanation: 60 − 40 = 4a, so a = 5 m s^{-2}. Using 60/4 = 15 m s^{-2} forgets that part of the tension balances the weight.
+
+  - id: phy-lom-177
+    topic: connected-bodies
+    subtopic: Stacked boxes in a lift
+    concept: Contact force between stacked boxes in an accelerating lift
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [lift, contact-force]
+    stem: A 2 kg box sits on a 3 kg box on the floor of a lift accelerating upward at 2 m s^{-2}. What force does the lower box exert on the upper one? (g = 10 m s^{-2})
+    options:
+      - 20 N
+      - 24 N
+      - 60 N
+      - 16 N
+    answer: 1
+    explanation: For the upper box, N − mg = ma, so N = 2 × 12 = 24 N. 20 N is its weight at rest and 16 N is for downward acceleration.
+
+  - id: phy-lom-178
+    topic: connected-bodies
+    subtopic: Chain of links lifted
+    concept: Force between links of a chain lifted with acceleration
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [connected-bodies, chain]
+    stem: A chain of five links, each of mass 0.1 kg, is lifted vertically by pulling the top link with a constant acceleration of 2.5 m s^{-2}. What force does the top link exert on the link just below it? (g = 10 m s^{-2})
+    options:
+      - 6.25 N
+      - 1.25 N
+      - 3.75 N
+      - 5 N
+    answer: 3
+    explanation: The top link supports and accelerates the four links below it, total 0.4 kg. F = 0.4 × (10 + 2.5) = 5 N. The value 6.25 N is the pull on the whole chain.
+
+  - id: phy-lom-179
+    topic: connected-bodies
+    subtopic: Tension in an Atwood machine
+    concept: Tension lies between the two weights
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [atwood]
+    stem: Two unequal masses m_1 > m_2 hang from a light string over a smooth pulley and are released. Which statement about the tension T is correct?
+    options:
+      - m_2g < T < m_1g
+      - T = m_1g
+      - T = (m_1 + m_2)g
+      - T = (m_1 − m_2)g
+    answer: 0
+    explanation: The lighter mass accelerates upward, so T > m_2g; the heavier one accelerates downward, so T < m_1g. Hence the tension lies between the two weights.
+
+  - id: phy-lom-180
+    topic: connected-bodies
+    subtopic: Couplings in a train
+    concept: Coupling tension decreases towards the rear of a train
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [tension, ordering]
+    stem: "An engine pulls three identical wagons on a smooth track with constant acceleration. T_1, T_2 and T_3 are the tensions in the couplings engine–wagon 1, wagon 1–wagon 2 and wagon 2–wagon 3. What is T_1 : T_2 : T_3?"
+    options:
+      - "1 : 2 : 3"
+      - "1 : 1 : 1"
+      - "3 : 2 : 1"
+      - "9 : 4 : 1"
+    answer: 2
+    explanation: "Each coupling accelerates all the wagons behind it. T_1 pulls 3 wagons, T_2 pulls 2 and T_3 pulls 1, so T_1 : T_2 : T_3 = 3 : 2 : 1."
+
+  - id: phy-lom-181
+    topic: friction
+    subtopic: Block set in motion
+    concept: Once sliding, kinetic friction decides the acceleration
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [kinetic-friction, trap]
+    stem: A 5 kg block rests on a floor with μ_s = 0.5 and μ_k = 0.4. A horizontal force of 30 N is applied. What is its acceleration? (g = 10 m s^{-2})
+    options:
+      - zero
+      - 1 m s^{-2}
+      - 6 m s^{-2}
+      - 2 m s^{-2}
+    answer: 3
+    explanation: Limiting friction is 0.5 × 50 = 25 N < 30 N, so the block moves. Then kinetic friction 0.4 × 50 = 20 N acts, giving a = (30 − 20)/5 = 2 m s^{-2}. Using static friction gives 1 m s^{-2}.
+
+  - id: phy-lom-182
+    topic: friction
+    subtopic: Coefficient of friction
+    concept: Coefficient of friction is dimensionless
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [dimensions, friction]
+    stem: What are the units of the coefficient of friction?
+    options:
+      - It has no units
+      - N
+      - N m^{-1}
+      - kg m s^{-2}
+    answer: 0
+    explanation: μ = f/N is a ratio of two forces, so it is dimensionless and has no units.
+
+  - id: phy-lom-183
+    topic: friction
+    subtopic: Friction vs applied force graph
+    concept: Friction rises with applied force up to the limit, then drops to kinetic value
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [graph, static-friction, kinetic-friction]
+    stem: A horizontal force F on a block at rest is increased slowly from zero. Which describes the graph of friction f against F?
+    options:
+      - f is constant at μ_kN for all F
+      - f = F up to μ_sN, then drops to a nearly constant μ_kN
+      - f increases continuously in proportion to F for all F
+      - f is zero until F = μ_sN and then jumps to μ_sN
+    answer: 1
+    explanation: Static friction matches the applied force (a 45° line) until it reaches the limit μ_sN. Once sliding starts, friction falls to the smaller kinetic value μ_kN and stays nearly constant.
+
+  - id: phy-lom-184
+    topic: friction
+    subtopic: Block at rest on an incline
+    concept: Static friction on a resting block equals mg sin θ, not μmg cos θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [static-friction, incline, trap]
+    stem: A 2 kg block rests on a 30° incline with μ_s = 0.8. What is the friction force on it? (g = 10 m s^{-2})
+    options:
+      - 10 N
+      - 13.9 N
+      - 16 N
+      - 17.3 N
+    answer: 0
+    explanation: The block is at rest, so friction balances the component of weight along the incline, mg sin 30° = 10 N. μ_s mg cos 30° ≈ 13.9 N is only the maximum possible friction.
+
+  - id: phy-lom-185
+    topic: friction
+    subtopic: Pushing up a rough incline
+    concept: Force needed = mg(sin θ + μ cos θ)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = mg(sin θ + μ cos θ)
+    tags: [incline, friction]
+    stem: What minimum force parallel to a 37° incline is needed to move a 10 kg block up it at constant speed if μ_k = 0.5? (g = 10 m s^{-2}, sin 37° = 0.6)
+    options:
+      - 60 N
+      - 20 N
+      - 40 N
+      - 100 N
+    answer: 3
+    explanation: Friction acts down the incline when the block moves up. F = mg(sin θ + μ cos θ) = 100(0.6 + 0.5 × 0.8) = 100 N. Subtracting friction gives 20 N, which is the force for sliding down.
+
+  - id: phy-lom-186
+    topic: friction
+    subtopic: Two stacked blocks
+    concept: Maximum force on the lower block so that blocks move together
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    diagram: A 3 kg block B lies on a smooth horizontal floor. A 2 kg block A rests on top of B. The coefficient of static friction between A and B is 0.4. A horizontal force F acts to the right on the lower block B only.
+    tags: [static-friction, connected-bodies, multi-concept]
+    stem: In the arrangement shown, what is the maximum force F that can be applied to B so that A does not slip on B? (g = 10 m s^{-2})
+    options:
+      - 20 N
+      - 8 N
+      - 12 N
+      - 50 N
+    answer: 0
+    explanation: Only friction from B accelerates A, so the maximum common acceleration is μ_s g = 4 m s^{-2}. Then F = (2 + 3) × 4 = 20 N. 8 N is just the maximum friction force on A.
+
+  - id: phy-lom-187
+    topic: friction
+    subtopic: Facts about friction
+    concept: Friction can exceed μ = 1 and static friction can be zero
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [friction, trap]
+    stem: |-
+      Consider these statements about friction.
+      I. Kinetic friction is proportional to the normal force.
+      II. The coefficient of friction can be greater than 1 for some surfaces.
+      III. Friction always opposes the motion of a body relative to the ground.
+      IV. The static friction on a body at rest can be zero.
+      Which are correct?
+    options:
+      - I and III only
+      - II and III only
+      - I, III and IV only
+      - I, II and IV only
+    answer: 3
+    explanation: I is the basic law of kinetic friction. II is true (e.g. rubber on dry rough surfaces). IV is true when no force tends to move the body. III is false; friction opposes relative motion between surfaces and can act along the motion, as for a box on an accelerating truck.
+
+  - id: phy-lom-188
+    topic: friction
+    subtopic: Braking distance
+    concept: Stopping distance by friction is proportional to u^2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: s = u^2/(2μg)
+    tags: [kinetic-friction, proportionality]
+    stem: A car braking with locked wheels stops in 20 m from a certain speed. From double that speed, on the same road, it would stop in
+    options:
+      - 20 m
+      - 40 m
+      - 60 m
+      - 80 m
+    answer: 3
+    explanation: Deceleration μg is fixed, so s = u^2/(2μg) ∝ u^2. Doubling the speed makes the distance four times, 80 m.
+
+  - id: phy-lom-189
+    topic: friction
+    subtopic: Highly polished surfaces
+    concept: Excessive polishing increases adhesion and friction
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [friction, trap]
+    stem: |-
+      Assertion (A): Polishing two surfaces beyond a certain limit can increase the friction between them.
+      Reason (R): Very smooth surfaces have a larger true area of molecular contact, so intermolecular adhesion increases.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Friction arises from molecular bonding at the points of true contact. Ordinary polishing reduces friction, but extremely smooth surfaces come into close contact over a larger area, so adhesive forces and friction increase. R explains A.
+
+  - id: phy-lom-190
+    topic: friction
+    subtopic: Block on a wall, large push
+    concept: Friction equals weight when the push exceeds the minimum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [static-friction, trap, wall]
+    stem: A block of weight 10 N is pressed against a vertical wall by a horizontal force of 50 N. If μ_s = 0.5, what is the friction force on the block?
+    options:
+      - 25 N
+      - 50 N
+      - 5 N
+      - 10 N
+    answer: 3
+    explanation: Maximum friction is 0.5 × 50 = 25 N, which is more than needed. The block is at rest, so friction just balances its weight, 10 N. 25 N is only the limit.
+
+  - id: phy-lom-191
+    topic: circular-motion
+    subtopic: Nature of centripetal force
+    concept: Centripetal force is along the radius and does no work
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [centripetal-force]
+    stem: For a body in uniform circular motion, which statement about the centripetal force is correct?
+    options:
+      - It is directed towards the centre and does no work on the body
+      - It is directed along the velocity
+      - It is a new kind of force produced by circular motion
+      - It increases the speed of the body
+    answer: 0
+    explanation: The centripetal force points towards the centre, perpendicular to the velocity, so it does no work and the speed stays constant. It is not a new force; it is provided by tension, friction, gravity or normal force.
+
+  - id: phy-lom-192
+    topic: circular-motion
+    subtopic: Speed and required friction
+    concept: Required centripetal force scales as v^2
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    formula: F = mv^2/r
+    tags: [proportionality, friction]
+    stem: A car takes a level curve at speed v. If it takes the same curve at speed 2v, the friction force required becomes
+    options:
+      - the same
+      - twice as large
+      - half as large
+      - four times as large
+    answer: 3
+    explanation: The friction must supply mv^2/r, which is proportional to v^2. Doubling v needs four times the friction, which is why speeding round bends is dangerous.
+
+  - id: phy-lom-193
+    topic: circular-motion
+    subtopic: Design speed of a banked road
+    concept: Speed at which no friction is needed
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: v = √(rg tan θ)
+    tags: [banking]
+    stem: A road of radius 30 m is banked at 37°. At what speed can a car take it with no friction needed? (g = 10 m s^{-2}, tan 37° = 0.75)
+    options:
+      - 15 m s^{-1}
+      - 20 m s^{-1}
+      - 17.3 m s^{-1}
+      - 225 m s^{-1}
+    answer: 0
+    explanation: v^2 = rg tan θ = 30 × 10 × 0.75 = 225, so v = 15 m s^{-1}. 225 is v^2, not v.
+
+  - id: phy-lom-194
+    topic: circular-motion
+    subtopic: Raised outer rail
+    concept: Height of outer rail on a curved railway track
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: h ≈ d v^2/(rg)
+    tags: [banking, railway, multi-concept]
+    stem: A railway curve has radius 400 m and the distance between the rails is 1.5 m. By how much should the outer rail be raised above the inner for a train at 20 m s^{-1} to need no lateral force? (g = 10 m s^{-2}; use sin θ ≈ tan θ)
+    options:
+      - 1.5 cm
+      - 10 cm
+      - 30 cm
+      - 15 cm
+    answer: 3
+    explanation: tan θ = v^2/(rg) = 400/4000 = 0.1. For a small angle, h ≈ d tan θ = 1.5 × 0.1 = 0.15 m = 15 cm.
+
+  - id: phy-lom-195
+    topic: circular-motion
+    subtopic: Maximum speed with a string
+    concept: String tension limits the speed in circular motion
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: T = mv^2/r
+    tags: [tension, circular-motion]
+    stem: A 1 kg stone is whirled in a horizontal circle of radius 1 m on a string that breaks at 100 N tension. What is the maximum speed? (Ignore gravity.)
+    options:
+      - 10 m s^{-1}
+      - 100 m s^{-1}
+      - 1 m s^{-1}
+      - 31.6 m s^{-1}
+    answer: 0
+    explanation: mv^2/r = 100 gives v^2 = 100 and v = 10 m s^{-1}. 100 m s^{-1} forgets the square root.
+
+  - id: phy-lom-196
+    topic: circular-motion
+    subtopic: Sources of centripetal force
+    concept: Different forces act as centripetal force in different situations
+    category: factual
+    format: match
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [centripetal-force]
+    stem: |-
+      Match the situation (List I) with the force providing centripetal force (List II).
+      List I
+      P. Car turning on a level road
+      Q. Moon orbiting the Earth
+      R. Electron orbiting a nucleus (Bohr model)
+      S. Stone whirled on a string
+      List II
+      1. Tension
+      2. Electrostatic attraction
+      3. Static friction
+      4. Gravitational attraction
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-1, Q-4, R-2, S-3
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 2
+    explanation: Friction turns the car (P-3), gravity keeps the Moon in orbit (Q-4), electrostatic attraction holds the electron (R-2) and tension pulls the stone inward (S-1).
+
+  - id: phy-lom-197
+    topic: circular-motion
+    subtopic: Coin on a turntable
+    concept: Coin stays if μg ≥ ω^2r
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: μ_s g = ω^2 r
+    tags: [friction, turntable]
+    stem: A coin placed 0.2 m from the centre of a horizontal turntable just begins to slip. If μ_s = 0.4, what is the angular speed of the turntable? (g = 10 m s^{-2})
+    options:
+      - 2 rad s^{-1}
+      - 2√5 rad s^{-1}
+      - 20 rad s^{-1}
+      - √2 rad s^{-1}
+    answer: 1
+    explanation: At the limit, μ_s mg = mω^2r, so ω^2 = 0.4 × 10/0.2 = 20 and ω = 2√5 ≈ 4.5 rad s^{-1}. 20 is ω^2.
+
+  - id: phy-lom-198
+    topic: circular-motion
+    subtopic: Centrifugal force
+    concept: Centrifugal force is a pseudo force in a rotating frame
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [pseudo-force, trap]
+    stem: |-
+      Statement I: In an inertial frame, the net force on a body in uniform circular motion is directed towards the centre.
+      Statement II: In an inertial frame, an outward centrifugal force acts on the body and balances the centripetal force.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: In an inertial frame, the net force is centripetal and unbalanced, which is why the body accelerates towards the centre (I correct). The centrifugal force appears only as a pseudo force in the rotating frame; if it balanced the centripetal force, there would be no circular motion (II incorrect).
+
+  - id: phy-lom-199
+    topic: circular-motion
+    subtopic: Rotor ride
+    concept: Friction from the wall must balance weight in a rotating drum
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: μmω^2r ≥ mg
+    tags: [friction, rotor, multi-concept]
+    stem: In a rotor ride, a person stands against the inner wall of a vertical drum of radius 2 m, and the floor is removed once the drum rotates fast enough. If μ_s = 0.5, what is the minimum angular speed needed? (g = 10 m s^{-2})
+    options:
+      - 1 rad s^{-1}
+      - 10 rad s^{-1}
+      - 2.2 rad s^{-1}
+      - 3.2 rad s^{-1}
+    answer: 3
+    explanation: The wall's normal force provides the centripetal force N = mω^2r, and friction μN must balance mg. So ω^2 = g/(μr) = 10/(0.5 × 2) = 10 and ω ≈ 3.2 rad s^{-1}. 10 is ω^2.
+
+  - id: phy-lom-200
+    topic: circular-motion
+    subtopic: F vs v graph
+    concept: Centripetal force varies as v^2 (parabola)
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [graph, proportionality]
+    stem: For a body of fixed mass moving in a circle of fixed radius, the graph of centripetal force against speed is
+    options:
+      - a straight line through the origin
+      - a parabola through the origin
+      - a rectangular hyperbola
+      - a horizontal straight line
+    answer: 1
+    explanation: F = mv^2/r, so F ∝ v^2; its graph against v is a parabola starting at the origin. A straight line would be F against v^2.
+

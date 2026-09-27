@@ -1,0 +1,4182 @@
+subject: physics
+chapter:
+  slug: motion-in-a-plane
+  name: Motion in a Plane
+  order: 3
+  classes: [11]
+  topics:
+    - slug: scalars-vectors
+      name: Scalars, vectors and their types
+    - slug: vector-addition
+      name: Addition and subtraction of vectors
+    - slug: resolution-components
+      name: Resolution of vectors and unit vectors
+    - slug: vector-products
+      name: Scalar and vector products
+    - slug: position-velocity
+      name: Position, displacement and velocity in a plane
+    - slug: constant-acceleration-2d
+      name: Acceleration and motion with constant acceleration
+    - slug: relative-velocity-2d
+      name: Relative velocity in two dimensions
+    - slug: projectile-oblique
+      name: Projectile motion (oblique projection)
+    - slug: projectile-horizontal
+      name: Horizontal projection and trajectory
+    - slug: circular-motion
+      name: Uniform circular motion
+questions:
+  - id: phy-mip-001
+    topic: scalars-vectors
+    subtopic: Identifying vectors
+    concept: Displacement is a vector while current, work and pressure are scalars
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [vector-quantity, trap]
+    stem: Which of the following physical quantities is a vector?
+    options:
+      - Electric current
+      - Work
+      - Displacement
+      - Pressure
+    answer: 2
+    explanation: Displacement has magnitude and direction and adds by the triangle law, so it is a vector. Electric current has a direction of flow but does not obey vector addition, so it is a scalar; work and pressure are scalars too.
+
+  - id: phy-mip-002
+    topic: scalars-vectors
+    subtopic: Scalar or vector test
+    concept: Current is scalar because it does not obey the law of vector addition
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [electric-current, trap]
+    stem: Electric current has both magnitude and a direction, yet it is treated as a scalar. Why?
+    options:
+      - Its direction is fixed by convention only
+      - It does not obey the laws of vector addition
+      - Its magnitude can never be negative
+      - It is an SI base quantity
+    answer: 1
+    explanation: A quantity is a vector only if it has magnitude and direction AND combines by the triangle (parallelogram) law. Currents meeting at a junction simply add algebraically, whatever the angle between the wires, so current is a scalar. Being a base quantity has nothing to do with it.
+
+  - id: phy-mip-003
+    topic: scalars-vectors
+    subtopic: Equality of vectors
+    concept: Equal vectors have the same magnitude and the same direction
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [equal-vectors, ncert-line]
+    stem: Two vectors A and B are said to be equal if and only if they have
+    options:
+      - the same magnitude only
+      - the same magnitude and the same direction
+      - the same magnitude and the same initial point
+      - the same magnitude, direction and initial point
+    answer: 1
+    explanation: Equal vectors have the same magnitude and the same direction. A vector can be shifted parallel to itself, so the initial points need not coincide; the same magnitude alone is not enough.
+
+  - id: phy-mip-004
+    topic: scalars-vectors
+    subtopic: Null vector
+    concept: Zero vector has zero magnitude and no definite direction
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [null-vector, ncert-line]
+    stem: A null (zero) vector has
+    options:
+      - unit magnitude and no direction
+      - zero magnitude and a direction along the x-axis
+      - zero magnitude and a direction opposite to the original vector
+      - zero magnitude and no definite direction
+    answer: 3
+    explanation: The zero vector 0 has zero magnitude, and its direction cannot be specified. It appears, for example, as A + (−A) or as the displacement of a body that returns to its starting point.
+
+  - id: phy-mip-005
+    topic: scalars-vectors
+    subtopic: Multiplication by a real number
+    concept: Multiplying a vector by a negative number reverses its direction and scales its magnitude
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [scalar-multiplication]
+    stem: A vector A is multiplied by −3. The resulting vector has
+    options:
+      - magnitude 3|A| and direction opposite to A
+      - magnitude 3|A| and the same direction as A
+      - magnitude −3|A| and the same direction as A
+      - magnitude |A|/3 and direction opposite to A
+    answer: 0
+    explanation: Multiplying by λ scales the magnitude by |λ| and keeps the direction if λ > 0, reverses it if λ < 0. So −3A has magnitude 3|A| and points opposite to A. A magnitude can never be negative.
+
+  - id: phy-mip-006
+    topic: scalars-vectors
+    subtopic: Identifying vectors
+    concept: Velocity and acceleration are vectors; mass and time are scalars
+    category: factual
+    format: multi-statement
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: false
+    tags: [vector-quantity]
+    stem: |-
+      Which of the following are vector quantities?
+      I. Velocity
+      II. Mass
+      III. Acceleration
+      IV. Time
+    options:
+      - I only
+      - I, II and III only
+      - I and III only
+      - II and IV only
+    answer: 2
+    explanation: Velocity and acceleration need a direction to be specified, so they are vectors. Mass and time are fully specified by a number and a unit, so they are scalars.
+
+  - id: phy-mip-007
+    topic: scalars-vectors
+    subtopic: Unit vectors
+    concept: A unit vector has magnitude one and no dimensions or units
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [unit-vector, ncert-line]
+    stem: Which is true of a unit vector?
+    options:
+      - It has magnitude 1 and carries the unit of the original vector
+      - It has magnitude 1 and has no dimensions or units
+      - It has zero magnitude and indicates only direction
+      - Its magnitude depends on the vector it is drawn from
+    answer: 1
+    explanation: A unit vector Â = A/|A| has magnitude exactly 1 and is dimensionless; its only job is to specify direction. The units belong to the magnitude |A|.
+
+  - id: phy-mip-008
+    topic: scalars-vectors
+    subtopic: Position and displacement vectors
+    concept: Position vector depends on origin but displacement does not
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [position-vector, displacement]
+    stem: |-
+      Assertion (A): The position vector of a point changes if the origin is shifted.
+      Reason (R): The displacement vector between two points does not depend on the choice of origin.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: The position vector is drawn from the origin, so shifting the origin changes it (A is true). Displacement r₂ − r₁ is unchanged because the shift cancels (R is true). But R talks about displacement, not about why position vectors change, so R does not explain A.
+
+  - id: phy-mip-009
+    topic: scalars-vectors
+    subtopic: Multiplication by a scalar quantity
+    concept: Velocity vector times a time interval gives a displacement vector
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [scalar-multiplication]
+    stem: A constant velocity vector is multiplied by a time interval Δt. The result is
+    options:
+      - a scalar distance
+      - a velocity vector
+      - an acceleration vector
+      - a displacement vector
+    answer: 3
+    explanation: Multiplying a vector by a scalar with dimensions gives a vector of a new physical quantity in the same direction. Velocity × time = displacement, which is still a vector along v.
+
+  - id: phy-mip-010
+    topic: vector-addition
+    subtopic: Perpendicular vectors
+    concept: Resultant of perpendicular vectors is √(A^2 + B^2)
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: R = √(A^2 + B^2)
+    tags: [resultant]
+    stem: Forces of 3 N and 4 N act on a body at right angles to each other. What is the magnitude of their resultant?
+    options:
+      - 1 N
+      - 5 N
+      - 7 N
+      - 12 N
+    answer: 1
+    explanation: For perpendicular vectors R = √(3^2 + 4^2) = √25 = 5 N. 7 N would need the forces to be parallel and 1 N antiparallel.
+
+  - id: phy-mip-011
+    topic: vector-addition
+    subtopic: Range of the resultant
+    concept: Resultant of two vectors lies between |A − B| and A + B
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: "|A − B| ≤ R ≤ A + B"
+    tags: [resultant, range-of-resultant]
+    stem: Two forces of 6 N and 8 N act at a point. Which of the following CANNOT be the magnitude of their resultant?
+    options:
+      - 2 N
+      - 10 N
+      - 14 N
+      - 15 N
+    answer: 3
+    explanation: The resultant lies between |8 − 6| = 2 N (antiparallel) and 8 + 6 = 14 N (parallel). 2 N, 10 N and 14 N are possible; 15 N exceeds the maximum.
+
+  - id: phy-mip-012
+    topic: vector-addition
+    subtopic: Equal vectors at an angle
+    concept: Two equal vectors at 120° give a resultant equal to either
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: R = 2A cos(θ/2)
+    tags: [resultant, equal-vectors]
+    stem: Two vectors each of magnitude A are inclined at 120° to each other. What is the magnitude of their resultant?
+    options:
+      - √3 A
+      - A/2
+      - A
+      - 2A
+    answer: 2
+    explanation: For equal vectors R = 2A cos(θ/2) = 2A cos 60° = A. √3 A would be the answer for 60°, a common slip.
+
+  - id: phy-mip-013
+    topic: vector-addition
+    subtopic: Equal vectors at an angle
+    concept: Finding angle from resultant of equal vectors
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: R = 2F cos(θ/2)
+    tags: [resultant, equal-vectors]
+    stem: Two forces, each of magnitude F, have a resultant of magnitude √3 F. What is the angle between them?
+    options:
+      - 60°
+      - 30°
+      - 90°
+      - 120°
+    answer: 0
+    explanation: 2F cos(θ/2) = √3 F gives cos(θ/2) = √3/2, so θ/2 = 30° and θ = 60°. At 120° the resultant would be F, and at 90° it would be √2 F.
+
+  - id: phy-mip-014
+    topic: vector-addition
+    subtopic: Triangle law
+    concept: Three vectors summing to zero form a closed triangle
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [triangle-law]
+    stem: Three non-zero vectors satisfy A + B + C = 0. Which statement must be true?
+    options:
+      - All three vectors are parallel
+      - The three vectors are mutually perpendicular
+      - The three vectors have equal magnitudes
+      - The three vectors, placed head to tail, form a closed triangle
+    answer: 3
+    explanation: If A + B + C = 0, placing them head to tail returns to the starting point, so they form a closed triangle (they must also lie in one plane). They need not be equal, perpendicular or parallel.
+
+  - id: phy-mip-015
+    topic: vector-addition
+    subtopic: Vector subtraction
+    concept: "|A − B| = 2A sin(θ/2) for equal vectors"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: "|A − B| = √(A^2 + B^2 − 2AB cos θ)"
+    tags: [vector-subtraction, trap]
+    stem: Two vectors A and B each have magnitude A and are inclined at 60°. What is the magnitude of A − B?
+    options:
+      - √3 A
+      - A
+      - 2A
+      - zero
+    answer: 1
+    explanation: "|A − B|^2 = A^2 + A^2 − 2A^2 cos 60° = A^2, so |A − B| = A. √3 A is the magnitude of A + B, which is the usual mix-up."
+
+  - id: phy-mip-016
+    topic: vector-addition
+    subtopic: Laws of vector addition
+    concept: Vector subtraction is not commutative
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [commutative-law]
+    stem: For two non-zero, non-parallel vectors A and B, which statement is INCORRECT?
+    options:
+      - A − B = B − A
+      - A + B = B + A
+      - (A + B) + C = A + (B + C)
+      - A − B = A + (−B)
+    answer: 0
+    explanation: Vector addition is commutative and associative, and subtraction is defined as adding the negative vector. But A − B = −(B − A), so A − B equals B − A only if A = B; the first statement is wrong.
+
+  - id: phy-mip-017
+    topic: vector-addition
+    subtopic: Direction of resultant
+    concept: Resultant of equal vectors bisects the angle between them
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: tan α = B sin θ/(A + B cos θ)
+    tags: [direction-of-resultant]
+    stem: Two forces of 10 N each act at a point with an angle of 60° between them. What angle does the resultant make with either force?
+    options:
+      - 30°
+      - 60°
+      - 45°
+      - 15°
+    answer: 0
+    explanation: tan α = 10 sin 60°/(10 + 10 cos 60°) = 5√3/15 = 1/√3, so α = 30°. For equal vectors the resultant always bisects the angle between them.
+
+  - id: phy-mip-018
+    topic: vector-addition
+    subtopic: Maximum and minimum resultant
+    concept: Using A + B and A − B to find the perpendicular resultant
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: R_{max} = A + B, R_{min} = A − B
+    tags: [resultant, multi-concept]
+    stem: The maximum and minimum magnitudes of the resultant of two forces are 17 N and 7 N. What is the resultant when the two forces act at right angles?
+    options:
+      - 10 N
+      - 12 N
+      - 13 N
+      - 24 N
+    answer: 2
+    explanation: A + B = 17 and A − B = 7 give A = 12 N and B = 5 N. At right angles R = √(144 + 25) = 13 N.
+
+  - id: phy-mip-019
+    topic: vector-addition
+    subtopic: Sum and difference equal
+    concept: "|A + B| = |A − B| implies A ⊥ B"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [perpendicular-vectors]
+    stem: If |A + B| = |A − B| for two non-zero vectors, the angle between A and B is
+    options:
+      - 60°
+      - 90°
+      - 0°
+      - 180°
+    answer: 1
+    explanation: Squaring, A^2 + B^2 + 2AB cos θ = A^2 + B^2 − 2AB cos θ, so cos θ = 0 and θ = 90°. The diagonals of the parallelogram are then equal, i.e. it is a rectangle.
+
+  - id: phy-mip-020
+    topic: vector-addition
+    subtopic: Zero resultant of three forces
+    concept: Three forces can balance only if each is at most the sum of the other two
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [equilibrium, triangle-law]
+    stem: Which set of three forces acting at a point can give a zero resultant?
+    options:
+      - 2 N, 3 N, 6 N
+      - 1 N, 2 N, 4 N
+      - 5 N, 5 N, 11 N
+      - 4 N, 6 N, 9 N
+    answer: 3
+    explanation: Three forces can form a closed triangle only if the largest is not more than the sum of the other two. 9 ≤ 4 + 6 works, while 6 > 5, 4 > 3 and 11 > 10 fail.
+
+  - id: phy-mip-021
+    topic: resolution-components
+    subtopic: Magnitude from components
+    concept: "|A| = √(A_x^2 + A_y^2)"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: "|A| = √(A_x^2 + A_y^2)"
+    tags: [magnitude]
+    stem: What is the magnitude of the vector A = 3î + 4ĵ?
+    options:
+      - "7"
+      - "5"
+      - √7
+      - "25"
+    answer: 1
+    explanation: "|A| = √(3^2 + 4^2) = √25 = 5. Adding the components (7) ignores that they are perpendicular."
+
+  - id: phy-mip-022
+    topic: resolution-components
+    subtopic: Rectangular components
+    concept: y-component of a vector is A sin θ
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: A_y = A sin θ
+    tags: [components]
+    stem: A force of 10 N acts at 30° above the positive x-axis. What is its y-component?
+    options:
+      - 5 N
+      - 5√3 N
+      - 10 N
+      - 2.5 N
+    answer: 0
+    explanation: F_y = F sin 30° = 10 × ½ = 5 N. 5√3 N is the x-component F cos 30°.
+
+  - id: phy-mip-023
+    topic: resolution-components
+    subtopic: Unit vector along a given vector
+    concept: Unit vector = A/|A|
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: Â = A/|A|
+    tags: [unit-vector]
+    stem: What is the unit vector along 3î + 4ĵ?
+    options:
+      - 3î + 4ĵ
+      - (3î + 4ĵ)/7
+      - 0.6î + 0.8ĵ
+      - 0.8î + 0.6ĵ
+    answer: 2
+    explanation: Divide the vector by its magnitude 5 to get 0.6î + 0.8ĵ, whose magnitude is √(0.36 + 0.64) = 1. Dividing by 7 does not give magnitude 1.
+
+  - id: phy-mip-024
+    topic: resolution-components
+    subtopic: Direction cosines
+    concept: Direction cosine of î + ĵ + k̂ along each axis is 1/√3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: cos α = A_x/|A|
+    tags: [direction-cosines]
+    stem: What angle does the vector î + ĵ + k̂ make with the x-axis?
+    options:
+      - 45°
+      - 60°
+      - cos^{-1}(1/3)
+      - cos^{-1}(1/√3)
+    answer: 3
+    explanation: "|A| = √3, so cos α = A_x/|A| = 1/√3 and α = cos^{-1}(1/√3) ≈ 54.7°. Using 1/3 forgets the square root in the magnitude."
+
+  - id: phy-mip-025
+    topic: resolution-components
+    subtopic: Component versus magnitude
+    concept: A rectangular component can never exceed the magnitude of the vector
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [components]
+    stem: |-
+      Assertion (A): A rectangular component of a vector cannot be larger than the magnitude of the vector.
+      Reason (R): A_x = A cos θ and |cos θ| ≤ 1.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Each rectangular component equals the magnitude times the cosine of the angle with that axis, and a cosine never exceeds 1 in size. So R directly explains A.
+
+  - id: phy-mip-026
+    topic: resolution-components
+    subtopic: Adding by components
+    concept: Add vectors component by component, then find magnitude
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [analytical-addition]
+    stem: If A = 2î + 3ĵ and B = î − ĵ, what is the magnitude of A + B?
+    options:
+      - "5"
+      - √5
+      - √13
+      - "13"
+    answer: 2
+    explanation: A + B = 3î + 2ĵ, so |A + B| = √(9 + 4) = √13. Forgetting the square root gives 13.
+
+  - id: phy-mip-027
+    topic: resolution-components
+    subtopic: Direction cosines
+    concept: cos^2 α + cos^2 β + cos^2 γ = 1
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: cos^2 α + cos^2 β + cos^2 γ = 1
+    tags: [direction-cosines]
+    stem: A vector makes an angle of 60° with the x-axis and 45° with the y-axis. What angle (acute) does it make with the z-axis?
+    options:
+      - 60°
+      - 90°
+      - 45°
+      - 30°
+    answer: 0
+    explanation: cos^2 γ = 1 − cos^2 60° − cos^2 45° = 1 − ¼ − ½ = ¼, so cos γ = ½ and γ = 60°.
+
+  - id: phy-mip-028
+    topic: resolution-components
+    subtopic: Finding an unknown vector
+    concept: Required vector = target − given vector
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [analytical-addition]
+    stem: What vector must be added to 3î + 4ĵ so that the resultant is 5î?
+    options:
+      - 2î + 4ĵ
+      - 2î − 4ĵ
+      - −2î + 4ĵ
+      - 8î + 4ĵ
+    answer: 1
+    explanation: The required vector is 5î − (3î + 4ĵ) = 2î − 4ĵ. The y-component must cancel the +4ĵ, so it has to be negative.
+
+  - id: phy-mip-029
+    topic: resolution-components
+    subtopic: Scaling a vector
+    concept: "|λA| = |λ||A|"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [magnitude, trap]
+    stem: If A = 4î − 3ĵ, what is the magnitude of −2A?
+    options:
+      - "5"
+      - "−10"
+      - "10"
+      - "20"
+    answer: 2
+    explanation: "|A| = 5, so |−2A| = 2 × 5 = 10. The minus sign only reverses direction; a magnitude is never negative."
+
+  - id: phy-mip-030
+    topic: resolution-components
+    subtopic: Unit vectors
+    concept: cos θ î + sin θ ĵ is a unit vector for every θ
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [unit-vector]
+    stem: The vector n = cos θ î + sin θ ĵ is
+    options:
+      - a unit vector only when θ = 45°
+      - a null vector when θ = 90°
+      - always along the x-axis
+      - a unit vector for every value of θ
+    answer: 3
+    explanation: "|n| = √(cos^2 θ + sin^2 θ) = 1 for all θ, so n is a unit vector making angle θ with the x-axis. At θ = 90° it equals ĵ, not zero."
+
+  - id: phy-mip-031
+    topic: resolution-components
+    subtopic: Components in other quadrants
+    concept: Sign of components depends on quadrant
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [components, trap]
+    stem: A force of 20 N acts at 150° measured anticlockwise from the positive x-axis. What is its x-component?
+    options:
+      - 10√3 N
+      - −10√3 N
+      - −10 N
+      - 10 N
+    answer: 1
+    explanation: F_x = 20 cos 150° = 20 × (−√3/2) = −10√3 N. The vector points into the second quadrant, so the x-component is negative; +10 N is the y-component.
+
+  - id: phy-mip-032
+    topic: vector-products
+    subtopic: Dot product in components
+    concept: A·B = A_xB_x + A_yB_y + A_zB_z
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: A·B = A_xB_x + A_yB_y + A_zB_z
+    tags: [dot-product]
+    stem: If A = î + 2ĵ + 3k̂ and B = 2î − ĵ + k̂, what is A·B?
+    options:
+      - "3"
+      - "5"
+      - "−1"
+      - "7"
+    answer: 0
+    explanation: A·B = (1)(2) + (2)(−1) + (3)(1) = 2 − 2 + 3 = 3.
+
+  - id: phy-mip-033
+    topic: vector-products
+    subtopic: Perpendicularity condition
+    concept: Perpendicular vectors have zero dot product
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [dot-product, perpendicular-vectors]
+    stem: For what value of p are A = 2î + pĵ + k̂ and B = 3î − 2ĵ + 4k̂ perpendicular?
+    options:
+      - "3"
+      - "5"
+      - "−5"
+      - "2"
+    answer: 1
+    explanation: A·B = 6 − 2p + 4 = 0 gives p = 5.
+
+  - id: phy-mip-034
+    topic: vector-products
+    subtopic: Cross products of unit vectors
+    concept: k̂ × ĵ = −î (cyclic order reversed)
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [cross-product, trap]
+    stem: What is k̂ × ĵ?
+    options:
+      - î
+      - −î
+      - k̂
+      - zero
+    answer: 1
+    explanation: In cyclic order ĵ × k̂ = î. Reversing the order reverses the sign, so k̂ × ĵ = −î.
+
+  - id: phy-mip-035
+    topic: vector-products
+    subtopic: Equal dot and cross products
+    concept: "|A × B| = A·B implies θ = 45°"
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [dot-product, cross-product]
+    stem: If |A × B| = A·B for two non-zero vectors, the angle between them is
+    options:
+      - 0°
+      - 30°
+      - 60°
+      - 45°
+    answer: 3
+    explanation: AB sin θ = AB cos θ gives tan θ = 1, so θ = 45°.
+
+  - id: phy-mip-036
+    topic: vector-products
+    subtopic: Magnitude of cross product
+    concept: "|A × B| = AB sin θ"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: "|A × B| = AB sin θ"
+    tags: [cross-product]
+    stem: Two vectors of magnitudes 3 and 4 are inclined at 30°. What is the magnitude of their cross product?
+    options:
+      - 6√3
+      - "12"
+      - "6"
+      - "3"
+    answer: 2
+    explanation: "|A × B| = 3 × 4 × sin 30° = 6. 6√3 uses cos 30°, which gives the dot product instead."
+
+  - id: phy-mip-037
+    topic: vector-products
+    subtopic: Area of parallelogram
+    concept: Area of parallelogram = |A × B|
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: Area = |A × B|
+    tags: [cross-product, area]
+    stem: Find the area of the parallelogram whose adjacent sides are A = î + 2ĵ and B = 3î + ĵ (in m).
+    options:
+      - 7 m^2
+      - 10 m^2
+      - √50 m^2
+      - 5 m^2
+    answer: 3
+    explanation: A × B = (1 × 1 − 2 × 3)k̂ = −5k̂, so the area is |A × B| = 5 m^2. The sign only gives the orientation.
+
+  - id: phy-mip-038
+    topic: vector-products
+    subtopic: Projection of a vector
+    concept: Projection of A on B = A·B/|B|
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: A cos θ = A·B/|B|
+    tags: [dot-product, projection]
+    stem: What is the component (projection) of A = 2î + 2ĵ + k̂ along B = 3î + 4k̂?
+    options:
+      - "2"
+      - "10"
+      - 10/3
+      - "5"
+    answer: 0
+    explanation: A·B = 6 + 0 + 4 = 10 and |B| = 5, so the projection is 10/5 = 2. Dividing by |A| = 3 gives the projection of B on A instead.
+
+  - id: phy-mip-039
+    topic: vector-products
+    subtopic: Properties of products
+    concept: Cross product is anticommutative, dot product commutative
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [cross-product, dot-product]
+    stem: For non-zero, non-parallel vectors A and B, which relation is correct?
+    options:
+      - A·B = −B·A
+      - A × B = B × A
+      - A × B = −B × A
+      - A × A = A^2
+    answer: 2
+    explanation: The vector product is anticommutative, A × B = −B × A. The scalar product is commutative, and A × A = 0 because sin 0° = 0.
+
+  - id: phy-mip-040
+    topic: position-velocity
+    subtopic: Velocity from position vector
+    concept: v = dr/dt applied component-wise
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    formula: v = dr/dt
+    tags: [instantaneous-velocity]
+    stem: The position of a particle is r = 3t î + 2t^2 ĵ (in m, t in s). What is its velocity at t = 2 s?
+    options:
+      - 3î + 4ĵ m s^{-1}
+      - 6î + 8ĵ m s^{-1}
+      - 3î + 8ĵ m s^{-1}
+      - 3î + 2ĵ m s^{-1}
+    answer: 2
+    explanation: v = dr/dt = 3î + 4t ĵ. At t = 2 s, v = 3î + 8ĵ m s^{-1}. 6î + 8ĵ is the position, not the velocity.
+
+  - id: phy-mip-041
+    topic: position-velocity
+    subtopic: Displacement between two points
+    concept: Displacement = r₂ − r₁
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [displacement]
+    stem: A particle moves from the point (1 m, 2 m) to the point (4 m, 6 m) in the xy-plane. What is the magnitude of its displacement?
+    options:
+      - 7 m
+      - 5 m
+      - 3 m
+      - √61 m
+    answer: 1
+    explanation: Δr = (4 − 1)î + (6 − 2)ĵ = 3î + 4ĵ, magnitude 5 m. √61 m is the distance of the final point from the origin.
+
+  - id: phy-mip-042
+    topic: position-velocity
+    subtopic: Direction of velocity
+    concept: Instantaneous velocity is tangent to the path
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [instantaneous-velocity, ncert-line]
+    stem: For a particle moving along a curved path, the direction of its instantaneous velocity at any point is
+    options:
+      - along the position vector at that point
+      - towards the centre of curvature
+      - perpendicular to the path
+      - along the tangent to the path in the direction of motion
+    answer: 3
+    explanation: As Δt → 0, the displacement Δr lies along the tangent to the path, so v = dr/dt is tangent to the path in the direction of motion.
+
+  - id: phy-mip-043
+    topic: position-velocity
+    subtopic: Average speed versus average velocity
+    concept: On a semicircle average speed/average velocity = π/2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [average-velocity, average-speed]
+    stem: A particle moves along a semicircle of radius R from one end of a diameter to the other in time t. What is the ratio of its average speed to the magnitude of its average velocity?
+    options:
+      - π/2
+      - 2/π
+      - π
+      - "1"
+    answer: 0
+    explanation: Distance = πR and displacement = 2R, so average speed/average velocity = (πR/t)/(2R/t) = π/2.
+
+  - id: phy-mip-044
+    topic: position-velocity
+    subtopic: Equation of trajectory
+    concept: Eliminate t from x(t) and y(t) to get the path
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [trajectory]
+    stem: The coordinates of a particle are x = 2t and y = t^2 (SI units). The path of the particle is
+    options:
+      - a straight line y = 2x
+      - a circle x^2 + y^2 = 4
+      - a parabola y = x^2/4
+      - a parabola x = y^2/4
+    answer: 2
+    explanation: From x = 2t, t = x/2. Substituting, y = x^2/4, a parabola opening along +y.
+
+  - id: phy-mip-045
+    topic: position-velocity
+    subtopic: Speed from position vector
+    concept: Speed = |dr/dt|
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [instantaneous-velocity, speed]
+    stem: The position vector of a particle is r = 2t^2 î + 3t ĵ (in m). What is its speed at t = 1 s?
+    options:
+      - 5 m s^{-1}
+      - 7 m s^{-1}
+      - 4 m s^{-1}
+      - √13 m s^{-1}
+    answer: 0
+    explanation: v = 4t î + 3ĵ; at t = 1 s, v = 4î + 3ĵ and speed = √(16 + 9) = 5 m s^{-1}. √13 m s^{-1} is the magnitude of the position vector at t = 1 s.
+
+  - id: phy-mip-046
+    topic: position-velocity
+    subtopic: Speed and velocity
+    concept: Average velocity magnitude ≤ average speed; instantaneous speed = |v|
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [average-velocity, speed]
+    stem: |-
+      Statement I: The magnitude of the average velocity of a particle over an interval is never greater than its average speed over that interval.
+      Statement II: The magnitude of the instantaneous velocity is always equal to the instantaneous speed.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Displacement can never exceed path length, so |average velocity| ≤ average speed (equal only for straight-line motion without reversal). Over an infinitesimal interval the displacement equals the path length, so |v| equals the instantaneous speed.
+
+  - id: phy-mip-047
+    topic: position-velocity
+    subtopic: Average velocity over a full circle
+    concept: Average velocity over a complete revolution is zero
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [average-velocity, trap]
+    stem: A particle completes exactly one revolution of a circle of radius R in time T. Its average velocity over this time is
+    options:
+      - 2πR/T
+      - πR/T
+      - 2R/T
+      - zero
+    answer: 3
+    explanation: The particle returns to its starting point, so its displacement and hence its average velocity are zero. 2πR/T is the average speed.
+
+  - id: phy-mip-048
+    topic: position-velocity
+    subtopic: Direction of velocity
+    concept: tan θ = v_y/v_x
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: tan θ = v_y/v_x
+    tags: [direction]
+    stem: A particle has velocity v = 3î + 3√3ĵ m s^{-1}. What angle does v make with the x-axis?
+    options:
+      - 45°
+      - 60°
+      - 30°
+      - 90°
+    answer: 1
+    explanation: tan θ = 3√3/3 = √3, so θ = 60°.
+
+  - id: phy-mip-049
+    topic: constant-acceleration-2d
+    subtopic: v = u + at in vector form
+    concept: Final velocity with constant acceleration in 2D
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: v = u + at
+    tags: [equations-of-motion-2d]
+    stem: A particle has initial velocity u = 2î + 3ĵ m s^{-1} and constant acceleration a = 2î m s^{-2}. What is its velocity at t = 2 s?
+    options:
+      - 4î + 3ĵ m s^{-1}
+      - 2î + 7ĵ m s^{-1}
+      - 4î + 6ĵ m s^{-1}
+      - 6î + 3ĵ m s^{-1}
+    answer: 3
+    explanation: v = u + at = (2 + 2 × 2)î + 3ĵ = 6î + 3ĵ m s^{-1}. The y-component is unchanged because there is no acceleration along y.
+
+  - id: phy-mip-050
+    topic: constant-acceleration-2d
+    subtopic: r = ut + ½at^2 in vector form
+    concept: Displacement from rest under constant acceleration in 2D
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: r = ut + ½at^2
+    tags: [equations-of-motion-2d]
+    stem: A particle starts from rest at the origin with constant acceleration a = 3î + 4ĵ m s^{-2}. How far is it from the origin after 2 s?
+    options:
+      - 10 m
+      - 20 m
+      - 5 m
+      - 14 m
+    answer: 0
+    explanation: r = ½at^2 = ½(3î + 4ĵ)(4) = 6î + 8ĵ m, whose magnitude is 10 m. 20 m forgets the ½.
+
+  - id: phy-mip-051
+    topic: constant-acceleration-2d
+    subtopic: Independence of perpendicular motions
+    concept: x and y motions under constant acceleration are independent
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [independence-of-motion, ncert-line]
+    stem: For motion in a plane with constant acceleration, the motions along the x and y directions
+    options:
+      - are always identical
+      - cannot be treated separately
+      - are independent of each other
+      - depend on each other through the speed
+    answer: 2
+    explanation: NCERT stresses that motion in a plane with constant acceleration can be treated as two separate, simultaneous one-dimensional motions along perpendicular directions, each with its own constant acceleration.
+
+  - id: phy-mip-052
+    topic: constant-acceleration-2d
+    subtopic: Shape of path
+    concept: Constant acceleration not parallel to u gives a parabolic path
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [trajectory]
+    stem: A particle has initial velocity 5î m s^{-1} and a constant acceleration 2ĵ m s^{-2}. Its path is
+    options:
+      - a straight line
+      - a parabola
+      - a circle
+      - an ellipse
+    answer: 1
+    explanation: x = 5t and y = t^2, so y = x^2/25, a parabola. Any constant acceleration that is not along the initial velocity gives a parabolic path.
+
+  - id: phy-mip-053
+    topic: constant-acceleration-2d
+    subtopic: Shape of path
+    concept: Constant acceleration does not guarantee straight-line motion
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [trajectory, trap]
+    stem: |-
+      Assertion (A): A particle moving with constant acceleration always moves along a straight line.
+      Reason (R): The path of a particle with constant acceleration is parabolic whenever its initial velocity is not parallel to the acceleration.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: A projectile has constant acceleration g yet follows a parabola, so A is false. R is true; motion is along a straight line only if u is zero or parallel (or antiparallel) to a.
+
+  - id: phy-mip-054
+    topic: constant-acceleration-2d
+    subtopic: One component brought to rest
+    concept: Only the component along a changes
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [equations-of-motion-2d, trap]
+    stem: A particle has initial velocity (4î + 3ĵ) m s^{-1} and a constant acceleration −2î m s^{-2}. What is its speed at t = 2 s?
+    options:
+      - 3 m s^{-1}
+      - 5 m s^{-1}
+      - zero
+      - 4 m s^{-1}
+    answer: 0
+    explanation: v_x = 4 − 2 × 2 = 0 and v_y = 3 (no y-acceleration), so the speed is 3 m s^{-1}. The particle is not at rest; only its x-motion has stopped.
+
+  - id: phy-mip-055
+    topic: constant-acceleration-2d
+    subtopic: Position at time t
+    concept: x and y displacements computed separately
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: r = ut + ½at^2
+    tags: [equations-of-motion-2d]
+    stem: A particle leaves the origin with velocity 10ĵ m s^{-1} and has a constant acceleration 2î m s^{-2}. What is its position vector at t = 3 s?
+    options:
+      - 6î + 30ĵ m
+      - 9î + 10ĵ m
+      - 9î + 30ĵ m
+      - 18î + 30ĵ m
+    answer: 2
+    explanation: x = ½ × 2 × 3^2 = 9 m and y = 10 × 3 = 30 m, so r = 9î + 30ĵ m. 18î forgets the ½.
+
+  - id: phy-mip-056
+    topic: constant-acceleration-2d
+    subtopic: Average acceleration
+    concept: a = Δv/Δt in vector form
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: a = Δv/Δt
+    tags: [average-acceleration]
+    stem: The velocity of a particle changes from (2î + 3ĵ) m s^{-1} to (6î + 6ĵ) m s^{-1} in 2 s. What is the magnitude of its average acceleration?
+    options:
+      - 5 m s^{-2}
+      - 3 m s^{-2}
+      - 1.25 m s^{-2}
+      - 2.5 m s^{-2}
+    answer: 3
+    explanation: Δv = 4î + 3ĵ, |Δv| = 5 m s^{-1}, so average acceleration = 5/2 = 2.5 m s^{-2}. 5 m s^{-2} forgets to divide by time.
+
+  - id: phy-mip-057
+    topic: relative-velocity-2d
+    subtopic: Rain and umbrella
+    concept: Umbrella is held along the velocity of rain relative to the man
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: v_{rm} = v_r − v_m
+    tags: [rain-umbrella]
+    stem: Rain falls vertically at 30 m s^{-1}. A man walks east at 10 m s^{-1}. At what angle from the vertical, and which way, should he tilt his umbrella?
+    options:
+      - tan^{-1}(1/3) towards the west
+      - tan^{-1}(1/3) towards the east
+      - tan^{-1}(3) towards the east
+      - tan^{-1}(3) towards the west
+    answer: 1
+    explanation: Relative to the man, rain has a westward component 10 and downward 30, so it comes from the east at tan θ = 10/30 = 1/3 from the vertical. The umbrella must be tilted forward, towards the east.
+
+  - id: phy-mip-058
+    topic: relative-velocity-2d
+    subtopic: Rain and umbrella
+    concept: Apparent speed of rain is the magnitude of v_r − v_m
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [rain-umbrella]
+    stem: Rain falls vertically at 4 m s^{-1} and a boy runs horizontally at 3 m s^{-1}. With what speed does the rain hit the boy?
+    options:
+      - 7 m s^{-1}
+      - 1 m s^{-1}
+      - 5 m s^{-1}
+      - 4 m s^{-1}
+    answer: 2
+    explanation: The relative velocity has perpendicular components 4 and 3, so its magnitude is √(16 + 9) = 5 m s^{-1}.
+
+  - id: phy-mip-059
+    topic: relative-velocity-2d
+    subtopic: River crossing in minimum time
+    concept: Drift = river speed × crossing time
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: t = d/v_b, drift = v_r t
+    tags: [river-boat]
+    stem: A river 100 m wide flows at 3 m s^{-1}. A boat that moves at 5 m s^{-1} relative to water is headed perpendicular to the bank. How far downstream does it land?
+    options:
+      - 60 m
+      - 100 m
+      - 80 m
+      - 20 m
+    answer: 0
+    explanation: Crossing time t = 100/5 = 20 s, set only by the velocity component across the river. Drift = 3 × 20 = 60 m.
+
+  - id: phy-mip-060
+    topic: relative-velocity-2d
+    subtopic: River crossing by the shortest path
+    concept: Time along shortest path = d/√(v_b^2 − v_r^2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: t = d/√(v_b^2 − v_r^2)
+    tags: [river-boat]
+    stem: A boat moves at 5 m s^{-1} relative to still water in a river 100 m wide flowing at 3 m s^{-1}. How long does it take to reach the point directly opposite?
+    options:
+      - 20 s
+      - 25 s
+      - 33.3 s
+      - 12.5 s
+    answer: 1
+    explanation: To go straight across, the boat heads upstream so that its upstream component cancels the current. The component across is √(25 − 9) = 4 m s^{-1}, so t = 100/4 = 25 s. 20 s is the minimum-time crossing, which does drift.
+
+  - id: phy-mip-061
+    topic: relative-velocity-2d
+    subtopic: Relative velocity of two vehicles
+    concept: "|v_A − v_B| for perpendicular velocities"
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: false
+    battle: true
+    tags: [relative-velocity]
+    stem: Car A moves north at 30 km h^{-1} and car B moves east at 40 km h^{-1}. What is the speed of A relative to B?
+    options:
+      - 10 km h^{-1}
+      - 70 km h^{-1}
+      - 35 km h^{-1}
+      - 50 km h^{-1}
+    answer: 3
+    explanation: v_A − v_B has components 30 (north) and −40 (east), so its magnitude is √(900 + 1600) = 50 km h^{-1}.
+
+  - id: phy-mip-062
+    topic: relative-velocity-2d
+    subtopic: River crossing in minimum time
+    concept: Heading perpendicular to the current minimises crossing time
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [river-boat]
+    stem: To cross a river in the least possible time, a swimmer should swim
+    options:
+      - upstream at an angle so that she reaches the point directly opposite
+      - downstream at 45° to the bank
+      - perpendicular to the current, relative to the water
+      - parallel to the bank first and then across
+    answer: 2
+    explanation: Crossing time = width/(component of the swimmer's velocity relative to water across the river). This component is largest when she heads perpendicular to the current, though she then drifts downstream.
+
+  - id: phy-mip-063
+    topic: relative-velocity-2d
+    subtopic: Rain appearing vertical
+    concept: Rain appears vertical when its horizontal component equals the man's velocity
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [rain-umbrella]
+    stem: Rain falls at 5 m s^{-1} at an angle to the vertical. To a cyclist riding east at 3 m s^{-1}, the rain appears to fall vertically. With what speed does it appear to fall?
+    options:
+      - 4 m s^{-1}
+      - 5 m s^{-1}
+      - 8 m s^{-1}
+      - 2 m s^{-1}
+    answer: 0
+    explanation: For the rain to appear vertical, its horizontal component must equal the cyclist's 3 m s^{-1} (eastward). Its vertical component is √(25 − 9) = 4 m s^{-1}, which is the apparent speed.
+
+  - id: phy-mip-064
+    topic: relative-velocity-2d
+    subtopic: Definition of relative velocity
+    concept: v_{AB} = −v_{BA}
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: v_{AB} = v_A − v_B
+    tags: [relative-velocity, ncert-line]
+    stem: If v_{AB} is the velocity of A relative to B, then v_{BA} equals
+    options:
+      - v_{AB}
+      - v_A + v_B
+      - zero
+      - −v_{AB}
+    answer: 3
+    explanation: v_{AB} = v_A − v_B and v_{BA} = v_B − v_A, so v_{BA} = −v_{AB}; equal in magnitude, opposite in direction.
+
+  - id: phy-mip-065
+    topic: relative-velocity-2d
+    subtopic: River crossing by the shortest path
+    concept: sin θ = v_r/v_s gives the upstream heading
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: sin θ = v_r/v_s
+    tags: [river-boat]
+    stem: A swimmer swims at 4 km h^{-1} in still water; the river flows at 2 km h^{-1}. To land directly opposite, at what angle from the perpendicular to the banks must she head upstream?
+    options:
+      - 60°
+      - 30°
+      - 45°
+      - 90°
+    answer: 1
+    explanation: The upstream component 4 sin θ must cancel the current, so sin θ = 2/4 and θ = 30° from the perpendicular (120° from the direction of flow).
+
+  - id: phy-mip-066
+    topic: relative-velocity-2d
+    subtopic: Condition to reach opposite point
+    concept: Boat slower than current cannot reach the point directly opposite
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [river-boat]
+    stem: |-
+      Assertion (A): If the speed of a boat relative to water is less than the speed of the river, the boat can never reach the point directly opposite its starting point.
+      Reason (R): In that case the resultant velocity of the boat relative to the ground always has a downstream component.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The largest upstream component the boat can have is its full speed v_b, which is less than v_r. So the net velocity always has a downstream part and the boat must land downstream; R explains A.
+
+  - id: phy-mip-067
+    topic: projectile-oblique
+    subtopic: Horizontal range
+    concept: R = u^2 sin 2θ/g
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: R = u^2 sin 2θ/g
+    tags: [range]
+    stem: A ball is projected at 20 m s^{-1} at 45° to the horizontal. What is its horizontal range? (g = 10 m s^{-2})
+    options:
+      - 20 m
+      - 80 m
+      - 40 m
+      - 10 m
+    answer: 2
+    explanation: R = u^2 sin 90°/g = 400/10 = 40 m.
+
+  - id: phy-mip-068
+    topic: projectile-oblique
+    subtopic: Maximum height
+    concept: H = u^2 sin^2 θ/2g
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: H = u^2 sin^2 θ/2g
+    tags: [maximum-height]
+    stem: A stone is projected at 20 m s^{-1} at 30° above the horizontal. What maximum height does it reach? (g = 10 m s^{-2})
+    options:
+      - 10 m
+      - 5 m
+      - 20 m
+      - 15 m
+    answer: 1
+    explanation: H = (20 sin 30°)^2/(2 × 10) = 100/20 = 5 m. 10 m uses sin θ without squaring it, and 20 m is the height for vertical projection.
+
+  - id: phy-mip-069
+    topic: projectile-oblique
+    subtopic: Time of flight
+    concept: T = 2u sin θ/g
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: T = 2u sin θ/g
+    tags: [time-of-flight]
+    stem: A ball is thrown at 40 m s^{-1} at 30° to the horizontal. What is its time of flight? (g = 10 m s^{-2})
+    options:
+      - 4 s
+      - 8 s
+      - 2 s
+      - 4√3 s
+    answer: 0
+    explanation: T = 2u sin θ/g = 2 × 40 × ½/10 = 4 s. 2 s is only the time to reach the top.
+
+  - id: phy-mip-070
+    topic: projectile-oblique
+    subtopic: Highest point
+    concept: At the top velocity is horizontal and perpendicular to g
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [highest-point, trap]
+    stem: For a projectile launched at angle θ (0 < θ < 90°), which statement about the highest point is correct?
+    options:
+      - The velocity of the projectile is zero
+      - The acceleration of the projectile is zero
+      - The velocity and acceleration are perpendicular to each other
+      - The speed of the projectile is maximum
+    answer: 2
+    explanation: At the top v_y = 0, so the velocity is u cos θ, horizontal, while the acceleration g is still vertically downward; they are perpendicular. Speed is minimum there, not zero or maximum.
+
+  - id: phy-mip-071
+    topic: projectile-oblique
+    subtopic: Complementary angles
+    concept: Angles θ and 90° − θ give the same range
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [range, complementary-angles]
+    stem: A ball thrown at 25° to the horizontal has range R. At what other angle of projection, with the same speed, is the range also R?
+    options:
+      - 50°
+      - 65°
+      - 75°
+      - 55°
+    answer: 1
+    explanation: Since sin 2θ = sin(180° − 2θ), angles θ and 90° − θ give equal ranges. 90° − 25° = 65°.
+
+  - id: phy-mip-072
+    topic: projectile-oblique
+    subtopic: Complementary angles
+    concept: Heights at 30° and 60° are in ratio sin^2 30° to sin^2 60°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: H ∝ sin^2 θ
+    tags: [maximum-height, complementary-angles]
+    stem: Two balls are projected with the same speed at 30° and 60° to the horizontal. What is the ratio of their maximum heights?
+    options:
+      - "3 : 1"
+      - "1 : √3"
+      - "1 : 1"
+      - "1 : 3"
+    answer: 3
+    explanation: H ∝ sin^2 θ, so H₁/H₂ = sin^2 30°/sin^2 60° = (¼)/(¾) = 1/3. Their ranges are equal, but heights are not.
+
+  - id: phy-mip-073
+    topic: projectile-oblique
+    subtopic: Range and maximum height relation
+    concept: R = 4H cot θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: R/H = 4 cot θ
+    tags: [range, maximum-height]
+    stem: A projectile's horizontal range equals its maximum height. What is the angle of projection?
+    options:
+      - tan^{-1}(4)
+      - tan^{-1}(1/4)
+      - 45°
+      - tan^{-1}(2)
+    answer: 0
+    explanation: R/H = (2u^2 sin θ cos θ/g)/(u^2 sin^2 θ/2g) = 4 cot θ. Setting R = H gives tan θ = 4, θ = tan^{-1}(4) ≈ 76°.
+
+  - id: phy-mip-074
+    topic: projectile-oblique
+    subtopic: Maximum range
+    concept: R_{max} = u^2/g equals twice the maximum vertical height
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [maximum-range, multi-concept]
+    stem: The maximum horizontal range a boy can throw a ball is 80 m. How high can he throw the same ball vertically upward with the same speed?
+    options:
+      - 80 m
+      - 160 m
+      - 40 m
+      - 20 m
+    answer: 2
+    explanation: R_{max} = u^2/g = 80 m, and the maximum height for vertical projection is u^2/2g = 40 m.
+
+  - id: phy-mip-075
+    topic: projectile-oblique
+    subtopic: Kinetic energy at the top
+    concept: KE at highest point = K cos^2 θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: K_{top} = K cos^2 θ
+    tags: [highest-point, kinetic-energy]
+    stem: A ball is projected with kinetic energy K at 60° to the horizontal. What is its kinetic energy at the highest point?
+    options:
+      - K/2
+      - zero
+      - 3K/4
+      - K/4
+    answer: 3
+    explanation: At the top only the horizontal velocity u cos 60° = u/2 remains, so KE = ½m(u/2)^2 = K/4. It is not zero because the horizontal velocity persists.
+
+  - id: phy-mip-076
+    topic: projectile-oblique
+    subtopic: Equation of trajectory
+    concept: Reading u, θ and R from y = x tan θ − gx^2/(2u^2 cos^2 θ)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: y = x tan θ − gx^2/(2u^2 cos^2 θ)
+    tags: [trajectory, range]
+    stem: The trajectory of a projectile is y = x − x^2/20, with x and y in metres. What is its horizontal range?
+    options:
+      - 10 m
+      - 20 m
+      - 40 m
+      - 10√2 m
+    answer: 1
+    explanation: The projectile returns to y = 0 when x(1 − x/20) = 0, i.e. x = 20 m. (Also tan θ = 1 gives θ = 45° and g/(2u^2 cos^2 θ) = 1/20 gives u^2 = 200, so R = u^2/g = 20 m.) 10 m is the horizontal position of the highest point.
+
+  - id: phy-mip-077
+    topic: projectile-oblique
+    subtopic: Velocity components during flight
+    concept: Horizontal velocity constant, vertical acceleration g, speed minimum at top
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [components, highest-point]
+    stem: |-
+      For an oblique projectile (air resistance neglected), consider:
+      I. The horizontal component of velocity remains constant.
+      II. The acceleration is g, directed vertically downward, throughout.
+      III. The speed is minimum at the highest point.
+      IV. The velocity is zero at the highest point.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - I, II, III and IV
+      - II and IV only
+    answer: 1
+    explanation: With no horizontal force, v_x = u cos θ stays constant; acceleration is g downward throughout; at the top v_y = 0, so speed is minimum (u cos θ) but not zero. Statement IV is wrong.
+
+  - id: phy-mip-078
+    topic: projectile-oblique
+    subtopic: Change in velocity
+    concept: Change in velocity over full flight is 2u sin θ downward
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [change-in-velocity, trap]
+    stem: A ball is projected at 20 m s^{-1} at 30° to the horizontal and lands at the same level. What is the magnitude of the change in its velocity between projection and landing?
+    options:
+      - zero
+      - 10 m s^{-1}
+      - 20√3 m s^{-1}
+      - 20 m s^{-1}
+    answer: 3
+    explanation: v_x is unchanged; v_y goes from +u sin θ = 10 to −10 m s^{-1}. So |Δv| = 20 m s^{-1}, directed downward. It is not zero, even though the speeds at launch and landing are equal.
+
+  - id: phy-mip-079
+    topic: projectile-oblique
+    subtopic: Average velocity over flight
+    concept: Average velocity over full flight = u cos θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [average-velocity]
+    stem: A projectile is fired at 20 m s^{-1} at 60° above the horizontal and lands at the same level. What is its average velocity over the whole flight?
+    options:
+      - 20 m s^{-1}
+      - zero
+      - 10 m s^{-1}
+      - 10√3 m s^{-1}
+    answer: 2
+    explanation: Average velocity = displacement/time = R/T = u cos θ = 20 × ½ = 10 m s^{-1}, horizontal. 10√3 would be u sin 60°.
+
+  - id: phy-mip-080
+    topic: projectile-oblique
+    subtopic: Time of ascent
+    concept: Time to reach maximum height = u sin θ/g
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: t = u sin θ/g
+    tags: [time-of-flight]
+    stem: A ball is thrown at 30 m s^{-1} at 30° to the horizontal. After how long does it reach its highest point? (g = 10 m s^{-2})
+    options:
+      - 1.5 s
+      - 3 s
+      - 2.6 s
+      - 0.75 s
+    answer: 0
+    explanation: t = u sin θ/g = 30 × ½/10 = 1.5 s. 3 s is the full time of flight.
+
+  - id: phy-mip-081
+    topic: projectile-oblique
+    subtopic: Velocity–time graphs
+    concept: v_y decreases linearly with slope −g
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graphs]
+    stem: For a projectile launched from level ground, how does the vertical component of velocity v_y (upward positive) vary with time until it lands?
+    options:
+      - It stays constant
+      - It decreases to zero and stays zero
+      - It follows a parabola symmetric about the time of maximum height
+      - It is a straight line with negative slope −g, crossing zero at half the time of flight
+    answer: 3
+    explanation: v_y = u sin θ − gt, a straight line of slope −g. It passes through zero at t = T/2 (highest point) and reaches −u sin θ at landing. The horizontal component is the one that stays constant.
+
+  - id: phy-mip-082
+    topic: projectile-oblique
+    subtopic: Angle between velocity and acceleration
+    concept: At launch the angle between v and g is 90° + θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [angle-velocity-acceleration]
+    stem: A ball is launched at 30° above the horizontal. What is the angle between its velocity and its acceleration at the instant of launch?
+    options:
+      - 60°
+      - 120°
+      - 30°
+      - 90°
+    answer: 1
+    explanation: g points straight down, 90° below the horizontal, and v is 30° above it. The angle between them is 90° + 30° = 120°.
+
+  - id: phy-mip-083
+    topic: projectile-oblique
+    subtopic: Complementary angles
+    concept: For complementary angles t₁t₂ = 2R/g
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: t₁t₂ = 2R/g
+    tags: [time-of-flight, complementary-angles]
+    stem: A ball can reach a target 40 m away on level ground by being thrown at two different angles with the same speed. If t₁ and t₂ are the two times of flight, what is t₁t₂? (g = 10 m s^{-2})
+    options:
+      - 4 s^2
+      - 16 s^2
+      - 8 s^2
+      - 2 s^2
+    answer: 2
+    explanation: The angles are θ and 90° − θ, so t₁t₂ = (2u sin θ/g)(2u cos θ/g) = 2(u^2 sin 2θ/g)/g = 2R/g = 2 × 40/10 = 8 s^2.
+
+  - id: phy-mip-084
+    topic: projectile-horizontal
+    subtopic: Horizontal range from a height
+    concept: x = u√(2h/g)
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: x = u√(2h/g)
+    tags: [horizontal-projection]
+    stem: A ball is thrown horizontally at 10 m s^{-1} from the top of a cliff 20 m high. How far from the foot of the cliff does it land? (g = 10 m s^{-2})
+    options:
+      - 10 m
+      - 40 m
+      - 14.1 m
+      - 20 m
+    answer: 3
+    explanation: Time of fall t = √(2h/g) = √4 = 2 s, so horizontal distance = 10 × 2 = 20 m.
+
+  - id: phy-mip-085
+    topic: projectile-horizontal
+    subtopic: Independence of motions
+    concept: Dropped and horizontally thrown balls land together
+    category: concept
+    format: case
+    difficulty: 1
+    time: 30
+    ncert: false
+    battle: true
+    tags: [independence-of-motion]
+    stem: From the same height, ball P is dropped and ball Q is thrown horizontally at the same instant. Ignoring air resistance, which reaches the ground first?
+    options:
+      - P, because it travels a shorter path
+      - Both at the same time
+      - Q, because it has greater speed
+      - It depends on the masses of the balls
+    answer: 1
+    explanation: Both start with zero vertical velocity and have the same vertical acceleration g, so they take the same time to fall. The horizontal velocity of Q does not affect its vertical motion.
+
+  - id: phy-mip-086
+    topic: projectile-horizontal
+    subtopic: Speed on landing
+    concept: Landing speed = √(u^2 + 2gh)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: v = √(u^2 + 2gh)
+    tags: [horizontal-projection, landing-velocity]
+    stem: A stone is thrown horizontally at 10 m s^{-1} from a height of 20 m. With what speed does it hit the ground? (g = 10 m s^{-2})
+    options:
+      - 10√5 m s^{-1}
+      - 30 m s^{-1}
+      - 20 m s^{-1}
+      - 10√3 m s^{-1}
+    answer: 0
+    explanation: v_y = √(2gh) = 20 m s^{-1} and v_x = 10 m s^{-1}, so v = √(100 + 400) = √500 = 10√5 m s^{-1}. Adding them as 30 m s^{-1} ignores that they are perpendicular.
+
+  - id: phy-mip-087
+    topic: projectile-horizontal
+    subtopic: Dependence of range on speed
+    concept: Horizontal distance ∝ u for fixed height
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [horizontal-projection, proportionality]
+    stem: A ball thrown horizontally from a table lands a distance R from the table. If it is thrown horizontally from the same table at twice the speed, it lands at
+    options:
+      - R
+      - 2R
+      - 4R
+      - √2 R
+    answer: 1
+    explanation: The time of fall depends only on the height, so it is unchanged. Distance = speed × time doubles to 2R.
+
+  - id: phy-mip-088
+    topic: projectile-horizontal
+    subtopic: Dependence of range on height
+    concept: Horizontal distance ∝ √h for fixed speed
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [horizontal-projection, proportionality, trap]
+    stem: A ball thrown horizontally from height h lands a horizontal distance R away. If it is thrown with the same speed from height 4h, it lands at
+    options:
+      - 2R
+      - 4R
+      - R/2
+      - √2 R
+    answer: 0
+    explanation: Time of fall t = √(2h/g) ∝ √h, so quadrupling the height doubles t and the horizontal distance becomes 2R, not 4R.
+
+  - id: phy-mip-089
+    topic: projectile-horizontal
+    subtopic: Frame dependence of trajectory
+    concept: Packet dropped from a plane falls vertically relative to the plane but parabolically relative to ground
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: false
+    tags: [frame-of-reference, trap]
+    stem: |-
+      A packet is released from an aeroplane flying horizontally with constant velocity (air resistance neglected).
+      Statement I: To the pilot, the packet appears to fall vertically downward.
+      Statement II: To an observer on the ground, the packet falls along a straight line.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The packet keeps the plane's horizontal velocity, so it stays directly below the plane and the pilot sees it fall vertically. The ground observer sees horizontal uniform motion plus vertical free fall, which is a parabola, not a straight line.
+
+  - id: phy-mip-090
+    topic: projectile-horizontal
+    subtopic: Dropping from an aeroplane
+    concept: Horizontal distance = u√(2h/g)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [horizontal-projection]
+    stem: An aeroplane flying horizontally at 100 m s^{-1} at a height of 500 m drops a packet. How far ahead of the release point (horizontally) does it land? (g = 10 m s^{-2})
+    options:
+      - 500 m
+      - 2000 m
+      - 1000 m
+      - 100 m
+    answer: 2
+    explanation: t = √(2 × 500/10) = 10 s, so horizontal distance = 100 × 10 = 1000 m.
+
+  - id: phy-mip-091
+    topic: projectile-horizontal
+    subtopic: Direction of velocity during fall
+    concept: tan α = gt/u
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: tan α = gt/u
+    tags: [horizontal-projection, direction]
+    stem: A ball is projected horizontally at 10 m s^{-1}. At what angle below the horizontal is it moving 1 s later? (g = 10 m s^{-2})
+    options:
+      - 60°
+      - 30°
+      - 90°
+      - 45°
+    answer: 3
+    explanation: After 1 s, v_y = gt = 10 m s^{-1} and v_x = 10 m s^{-1}, so tan α = 1 and α = 45°.
+
+  - id: phy-mip-092
+    topic: projectile-horizontal
+    subtopic: Equation of trajectory
+    concept: y = gx^2/2u^2 for horizontal projection
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: y = gx^2/(2u^2)
+    tags: [trajectory]
+    stem: For a body projected horizontally with speed u, the vertical drop y after a horizontal distance x is
+    options:
+      - gx/u
+      - gx^2/(2u^2)
+      - gx^2/u^2
+      - ux/g
+    answer: 1
+    explanation: x = ut and y = ½gt^2. Eliminating t, y = gx^2/(2u^2), so the path is a parabola.
+
+  - id: phy-mip-093
+    topic: circular-motion
+    subtopic: Centripetal acceleration
+    concept: a_c = v^2/r
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: a_c = v^2/r
+    tags: [centripetal-acceleration]
+    stem: A particle moves in a circle of radius 5 m with a constant speed of 10 m s^{-1}. What is its centripetal acceleration?
+    options:
+      - 2 m s^{-2}
+      - 20 m s^{-2}
+      - 50 m s^{-2}
+      - 10 m s^{-2}
+    answer: 1
+    explanation: a_c = v^2/r = 100/5 = 20 m s^{-2}, directed towards the centre.
+
+  - id: phy-mip-094
+    topic: circular-motion
+    subtopic: Nature of uniform circular motion
+    concept: Centripetal acceleration has constant magnitude but changing direction
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [centripetal-acceleration, trap, ncert-line]
+    stem: For a particle in uniform circular motion, which statement is INCORRECT?
+    options:
+      - Its speed is constant
+      - Its velocity changes continuously
+      - Its acceleration always points towards the centre
+      - Its acceleration is a constant vector
+    answer: 3
+    explanation: The acceleration has constant magnitude v^2/R, but its direction keeps turning to point at the centre, so it is not a constant vector. Speed is constant while velocity changes direction.
+
+  - id: phy-mip-095
+    topic: circular-motion
+    subtopic: Angular speed
+    concept: ω = 2πν
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: ω = 2πν
+    tags: [angular-speed]
+    stem: A wheel makes 120 revolutions per minute. What is its angular speed?
+    options:
+      - 2π rad s^{-1}
+      - 120π rad s^{-1}
+      - 4π rad s^{-1}
+      - π rad s^{-1}
+    answer: 2
+    explanation: ν = 120/60 = 2 rev s^{-1}, so ω = 2πν = 4π rad s^{-1}. 120π would come from forgetting to convert minutes to seconds (and halving).
+
+  - id: phy-mip-096
+    topic: circular-motion
+    subtopic: Angular speed
+    concept: Angular speed of a clock's second hand = π/30 rad s^{-1}
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    formula: ω = 2π/T
+    tags: [angular-speed, clock]
+    stem: What is the angular speed of the second hand of a clock?
+    options:
+      - π/30 rad s^{-1}
+      - π/60 rad s^{-1}
+      - 2π rad s^{-1}
+      - π/1800 rad s^{-1}
+    answer: 0
+    explanation: The second hand turns 2π rad in 60 s, so ω = 2π/60 = π/30 rad s^{-1}. π/1800 rad s^{-1} is the minute hand's value.
+
+  - id: phy-mip-097
+    topic: circular-motion
+    subtopic: Centripetal acceleration
+    concept: a_c = ω^2 r
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: a_c = ω^2 r
+    tags: [centripetal-acceleration]
+    stem: A stone tied to a 0.5 m string whirls in a horizontal circle at 4 rad s^{-1}. What is its centripetal acceleration?
+    options:
+      - 2 m s^{-2}
+      - 16 m s^{-2}
+      - 4 m s^{-2}
+      - 8 m s^{-2}
+    answer: 3
+    explanation: a_c = ω^2 r = 16 × 0.5 = 8 m s^{-2}. 2 m s^{-2} uses ωr (the speed) instead of ω^2 r.
+
+  - id: phy-mip-098
+    topic: circular-motion
+    subtopic: Centripetal acceleration from frequency
+    concept: a_c = 4π^2ν^2 r
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: a_c = 4π^2ν^2 r
+    tags: [centripetal-acceleration, frequency]
+    stem: A particle goes round a circle of radius 0.5 m at 2 revolutions per second. What is its centripetal acceleration?
+    options:
+      - 8π^2 m s^{-2}
+      - 4π^2 m s^{-2}
+      - 2π m s^{-2}
+      - 16π^2 m s^{-2}
+    answer: 0
+    explanation: ω = 2π × 2 = 4π rad s^{-1}, so a_c = ω^2 r = 16π^2 × 0.5 = 8π^2 m s^{-2} (about 79 m s^{-2}).
+
+  - id: phy-mip-099
+    topic: circular-motion
+    subtopic: Direction of velocity and acceleration
+    concept: In UCM velocity is tangential and acceleration radial, so they are perpendicular
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [centripetal-acceleration]
+    stem: In uniform circular motion, the angle between the velocity and the acceleration of the particle is
+    options:
+      - 0°
+      - 180°
+      - 90°
+      - 45°
+    answer: 2
+    explanation: Velocity is along the tangent and the centripetal acceleration is along the radius towards the centre, so they are always at 90°.
+
+  - id: phy-mip-100
+    topic: circular-motion
+    subtopic: Scaling of centripetal acceleration
+    concept: a_c ∝ v^2/r
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [centripetal-acceleration, proportionality]
+    stem: If the speed of a particle in uniform circular motion is doubled and the radius is halved, its centripetal acceleration becomes
+    options:
+      - 2 times
+      - 4 times
+      - 16 times
+      - 8 times
+    answer: 3
+    explanation: a_c = v^2/r, so the new value is (2v)^2/(r/2) = 8v^2/r, i.e. 8 times.
+
+  - id: phy-mip-101
+    topic: scalars-vectors
+    subtopic: Types of vectors
+    concept: Matching null, unit, equal and negative vectors to their properties
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [types-of-vectors]
+    stem: |-
+      Match List I with List II.
+      List I: P. Null vector  Q. Unit vector  R. Equal vectors  S. Negative of a vector A
+      List II: 1. Magnitude 1 and dimensionless  2. Zero magnitude, direction not defined  3. Same magnitude and same direction  4. Same magnitude as A, opposite direction
+    options:
+      - P-1, Q-2, R-3, S-4
+      - P-2, Q-1, R-4, S-3
+      - P-2, Q-1, R-3, S-4
+      - P-3, Q-1, R-2, S-4
+    answer: 2
+    explanation: A null vector has zero magnitude and no definite direction (P-2); a unit vector has magnitude 1 and no units (Q-1); equal vectors share magnitude and direction (R-3); −A has the same magnitude as A but the opposite direction (S-4).
+
+  - id: phy-mip-102
+    topic: scalars-vectors
+    subtopic: Identifying scalars
+    concept: Work and pressure are scalars; momentum and impulse are vectors
+    category: factual
+    format: multi-statement
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [scalar-quantity]
+    stem: |-
+      Which of the following are scalar quantities?
+      I. Work
+      II. Momentum
+      III. Pressure
+      IV. Impulse
+    options:
+      - II and IV only
+      - I and III only
+      - I, III and IV only
+      - III only
+    answer: 1
+    explanation: Work (a dot product of two vectors) and pressure are scalars. Momentum (mv) and impulse (FΔt) are vectors because they are vectors multiplied by scalars.
+
+  - id: phy-mip-103
+    topic: scalars-vectors
+    subtopic: Zero resultant
+    concept: Three unequal vectors can sum to zero but two unequal ones cannot
+    category: application
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [null-vector, triangle-law]
+    stem: Which of the following statements is correct?
+    options:
+      - The sum of two vectors of unequal magnitudes can be zero
+      - The sum of three vectors of unequal magnitudes can be zero
+      - A vector can have zero magnitude while one of its rectangular components is non-zero
+      - A scalar can be added to a vector if both have the same units
+    answer: 1
+    explanation: Two vectors cancel only if they are equal and opposite, so their magnitudes must be equal. Three unequal vectors can form a closed triangle (e.g. 3, 4, 5) and add to zero. A zero vector has all components zero, and scalars cannot be added to vectors.
+
+  - id: phy-mip-104
+    topic: scalars-vectors
+    subtopic: Magnitude of a vector
+    concept: Magnitude is a non-negative length
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [magnitude]
+    stem: |-
+      Assertion (A): The magnitude of a vector can never be negative.
+      Reason (R): The magnitude of a vector is the length of the arrow that represents it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The magnitude |A| is the length of the arrow representing A, and a length is zero or positive. A negative sign in front of a vector changes its direction, never the sign of its magnitude. R explains A.
+
+  - id: phy-mip-105
+    topic: scalars-vectors
+    subtopic: Definition of a vector
+    concept: Magnitude and direction alone do not make a vector; scalars add only with the same units
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [vector-quantity, trap]
+    stem: |-
+      Statement I: Every physical quantity that has both magnitude and direction is a vector.
+      Statement II: Two scalars can be added only if they represent the same physical quantity (same units).
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: A vector must also obey the triangle law of addition; electric current has a direction but is a scalar, so Statement I is wrong. Scalars follow ordinary algebra, which only allows adding like quantities, so Statement II is right.
+
+  - id: phy-mip-106
+    topic: scalars-vectors
+    subtopic: Identifying vectors
+    concept: Displacement and velocity are both vectors
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [vector-quantity]
+    stem: In which pair are BOTH quantities vectors?
+    options:
+      - Distance and displacement
+      - Speed and velocity
+      - Displacement and velocity
+      - Mass and weight
+    answer: 2
+    explanation: Displacement and velocity both have magnitude and direction and add as vectors. Distance, speed and mass are scalars; in each other pair only one quantity is a vector.
+
+  - id: phy-mip-107
+    topic: scalars-vectors
+    subtopic: Distance versus displacement
+    concept: A closed path gives zero displacement but non-zero distance
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [displacement, distance]
+    stem: A girl walks 3 m east, then 4 m north, then 3 m west and finally 4 m south. What are the distance covered and the magnitude of her displacement?
+    options:
+      - 14 m and 14 m
+      - 14 m and 5 m
+      - 14 m and zero
+      - Zero and 14 m
+    answer: 2
+    explanation: She returns to her starting point, so the displacement is zero, while the path length is 3 + 4 + 3 + 4 = 14 m. Distance is a scalar that never decreases; displacement is a vector.
+
+  - id: phy-mip-108
+    topic: scalars-vectors
+    subtopic: Null vector
+    concept: A − A is the null vector, not the scalar zero
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [null-vector, trap]
+    stem: The result of A − A, where A is a vector, is
+    options:
+      - the scalar number 0
+      - the null vector
+      - the vector 2A
+      - a unit vector
+    answer: 1
+    explanation: The difference of two vectors is always a vector. A − A = A + (−A) is the null vector 0, a vector of zero magnitude, not the ordinary scalar zero.
+
+  - id: phy-mip-109
+    topic: scalars-vectors
+    subtopic: Allowed vector operations
+    concept: A vector can be multiplied by a scalar but not added to one
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [vector-algebra]
+    stem: Which of the following algebraic operations is meaningful?
+    options:
+      - Adding a scalar to a vector
+      - Adding a velocity vector to a displacement vector
+      - Multiplying a vector by a scalar
+      - Adding a scalar to a vector of the same dimensions
+    answer: 2
+    explanation: Multiplying a vector by a scalar gives another vector (e.g. mv = momentum). A scalar can never be added to a vector, and vectors of different physical quantities cannot be added either.
+
+  - id: phy-mip-110
+    topic: vector-addition
+    subtopic: Direction of resultant
+    concept: The resultant of two unequal vectors lies closer to the larger one
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [direction-of-resultant]
+    stem: Two vectors A and B act at a point with |A| > |B| and an acute angle between them. Their resultant lies
+    options:
+      - exactly along the bisector of the angle between them
+      - closer to A than to B
+      - closer to B than to A
+      - outside the angle between A and B
+    answer: 1
+    explanation: By the parallelogram law the resultant is tilted towards the larger vector; from tan α = B sin θ/(A + B cos θ), the angle with A is smaller when A > B. It bisects the angle only when |A| = |B|.
+
+  - id: phy-mip-111
+    topic: vector-addition
+    subtopic: Law of cosines
+    concept: R = √(A^2 + B^2 + 2AB cos θ)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: R = √(A^2 + B^2 + 2AB cos θ)
+    tags: [resultant]
+    stem: Forces of 4 N and 3 N act on a particle with an angle of 60° between them. What is the magnitude of the resultant?
+    options:
+      - √37 N
+      - 7 N
+      - 5 N
+      - √13 N
+    answer: 0
+    explanation: R^2 = 16 + 9 + 2 × 4 × 3 × cos 60° = 25 + 12 = 37, so R = √37 N. √13 N is the result for 120°, where cos θ is negative.
+
+  - id: phy-mip-112
+    topic: vector-addition
+    subtopic: Resultant versus angle
+    concept: Resultant of two fixed vectors decreases as the angle between them increases
+    category: concept
+    format: ordering
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [resultant, ordering]
+    stem: |-
+      Two forces of 10 N each act at a point. Arrange the magnitude of their resultant in DECREASING order for these angles between them:
+      P. 90°  Q. 0°  R. 120°  S. 60°
+    options:
+      - R, P, S, Q
+      - Q, P, S, R
+      - S, Q, P, R
+      - Q, S, P, R
+    answer: 3
+    explanation: R = 2 × 10 × cos(θ/2) falls as θ increases, giving 20 N (0°), 17.3 N (60°), 14.1 N (90°) and 10 N (120°). So Q > S > P > R.
+
+  - id: phy-mip-113
+    topic: vector-addition
+    subtopic: Sum perpendicular to difference
+    concept: (A + B) ⊥ (A − B) implies |A| = |B|
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [perpendicular-vectors]
+    stem: If the vector A + B is perpendicular to the vector A − B, then
+    options:
+      - A is perpendicular to B
+      - "|A| = |B|"
+      - A is parallel to B
+      - "|A| = 2|B|"
+    answer: 1
+    explanation: (A + B)·(A − B) = A^2 − B^2 = 0, so |A| = |B|. Geometrically, the diagonals of a parallelogram are perpendicular only when it is a rhombus.
+
+  - id: phy-mip-114
+    topic: vector-addition
+    subtopic: Displacement in a plane
+    concept: Resultant of perpendicular displacements and its direction
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: tan α = 8/6
+    tags: [displacement, direction]
+    stem: A boy walks 6 m east and then 8 m north. What is the direction of his displacement?
+    options:
+      - 37° north of east
+      - 45° north of east
+      - 53° north of east
+      - 53° east of north
+    answer: 2
+    explanation: The displacement is 10 m with tan α = 8/6 = 4/3 measured from east, so α ≈ 53° north of east (equivalently 37° east of north).
+
+  - id: phy-mip-115
+    topic: vector-addition
+    subtopic: Equilibrium of three forces
+    concept: Removing one of three balanced forces leaves a net force equal and opposite to it
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [equilibrium]
+    stem: Three coplanar forces of 10 N each, at 120° to one another, keep a particle in equilibrium. If one force is removed, the net force on the particle is
+    options:
+      - 10 N along the removed force
+      - zero
+      - 10 N opposite to the removed force
+      - 20 N opposite to the removed force
+    answer: 2
+    explanation: With all three the sum is zero, so the other two must add to minus the removed force. After removal the net force is 10 N, opposite to the removed force.
+
+  - id: phy-mip-116
+    topic: vector-addition
+    subtopic: Parallelogram law
+    concept: Resultant is the diagonal through the common tail
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [parallelogram-law, ncert-line]
+    stem: According to the parallelogram law, when two vectors are drawn from a common point as adjacent sides of a parallelogram, their resultant is represented by
+    options:
+      - the side opposite to the first vector
+      - the diagonal not passing through the common point
+      - the perimeter of the parallelogram
+      - the diagonal passing through the common point
+    answer: 3
+    explanation: The sum A + B is the diagonal that starts from the common tail of A and B. The other diagonal represents their difference.
+
+  - id: phy-mip-117
+    topic: vector-addition
+    subtopic: Resultant perpendicular to one vector
+    concept: A + B cos θ = 0 when the resultant is perpendicular to A
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [resultant, direction-of-resultant]
+    stem: Two forces, one twice the other in magnitude, act on a particle. Their resultant is perpendicular to the smaller force. What is the angle between the two forces?
+    options:
+      - 60°
+      - 90°
+      - 120°
+      - 150°
+    answer: 2
+    explanation: Let the forces be F and 2F with angle θ. The resultant is perpendicular to F when F + 2F cos θ = 0, so cos θ = −½ and θ = 120°.
+
+  - id: phy-mip-118
+    topic: vector-addition
+    subtopic: Triangle inequality
+    concept: Bounds on |A + B| and |A − B|
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [range-of-resultant]
+    stem: |-
+      For any two non-zero vectors A and B, consider:
+      I. |A + B| ≤ |A| + |B|
+      II. |A − B| ≥ ||A| − |B||
+      III. |A + B| = |A| + |B| only when A and B are parallel
+      IV. |A − B| is always less than |A + B|
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: I and II are the triangle inequalities, and equality in I needs the vectors to point the same way (III). IV fails when the angle is obtuse; for antiparallel vectors |A − B| is the largest.
+
+  - id: phy-mip-119
+    topic: vector-addition
+    subtopic: Change in velocity
+    concept: Δv = v₂ − v₁ for a turn at constant speed
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [vector-subtraction, change-in-velocity]
+    stem: A car moving north at 10 m s^{-1} turns and moves east at 10 m s^{-1}. What is its change in velocity?
+    options:
+      - zero
+      - 10√2 m s^{-1} towards north-east
+      - 10√2 m s^{-1} towards south-east
+      - 20 m s^{-1} towards east
+    answer: 2
+    explanation: Δv = 10î − 10ĵ (east minus north), of magnitude 10√2 m s^{-1} pointing south-east. The speed is unchanged, but the velocity is not.
+
+  - id: phy-mip-120
+    topic: resolution-components
+    subtopic: Vector of given magnitude along a direction
+    concept: Multiply the unit vector by the required magnitude
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [unit-vector]
+    stem: What is the vector of magnitude 10 units in the direction of 3î − 4ĵ?
+    options:
+      - 3î − 4ĵ
+      - 6î − 8ĵ
+      - 8î − 6ĵ
+      - 30î − 40ĵ
+    answer: 1
+    explanation: The unit vector is (3î − 4ĵ)/5, so the required vector is 10 × (3î − 4ĵ)/5 = 6î − 8ĵ, whose magnitude is 10.
+
+  - id: phy-mip-121
+    topic: resolution-components
+    subtopic: Adding several vectors
+    concept: Add x and y components separately
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [analytical-addition]
+    stem: What is the magnitude of the sum of A = 2î + 3ĵ, B = −î + 2ĵ and C = 3î − ĵ?
+    options:
+      - "8"
+      - "4"
+      - √34
+      - 4√2
+    answer: 3
+    explanation: Sum of x-components = 2 − 1 + 3 = 4 and of y-components = 3 + 2 − 1 = 4, so the resultant is 4î + 4ĵ with magnitude 4√2.
+
+  - id: phy-mip-122
+    topic: resolution-components
+    subtopic: Unit vectors
+    concept: î + ĵ has magnitude √2, so it is not a unit vector
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [unit-vector, trap]
+    stem: |-
+      Assertion (A): The vector î + ĵ is a unit vector.
+      Reason (R): î and ĵ are both unit vectors.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "|î + ĵ| = √(1 + 1) = √2, so it is not a unit vector; the unit vector in that direction is (î + ĵ)/√2. R is true: î and ĵ each have magnitude 1."
+
+  - id: phy-mip-123
+    topic: resolution-components
+    subtopic: Components with angle from vertical
+    concept: Horizontal component = F sin θ when θ is measured from the vertical
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [components, trap]
+    stem: A 40 N force acts upward at 60° to the vertical. What is its horizontal component?
+    options:
+      - 20 N
+      - 20√3 N
+      - 40√3 N
+      - 10√3 N
+    answer: 1
+    explanation: With the angle measured from the vertical, the horizontal component is F sin 60° = 40 × √3/2 = 20√3 N. 20 N is the vertical component.
+
+  - id: phy-mip-124
+    topic: resolution-components
+    subtopic: Direction cosines
+    concept: cos γ = A_z/|A|
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: cos γ = A_z/|A|
+    tags: [direction-cosines]
+    stem: What is the cosine of the angle between A = 2î − 3ĵ + 6k̂ and the z-axis?
+    options:
+      - 2/7
+      - 3/7
+      - 6/7
+      - 1/7
+    answer: 2
+    explanation: "|A| = √(4 + 9 + 36) = 7, so cos γ = A_z/|A| = 6/7."
+
+  - id: phy-mip-125
+    topic: resolution-components
+    subtopic: Magnitude from components
+    concept: Magnitudes of vectors from their components
+    category: numerical
+    format: match
+    difficulty: 2
+    time: 60
+    ncert: false
+    battle: false
+    tags: [magnitude]
+    stem: |-
+      Match each vector in List I with its magnitude in List II.
+      List I: P. 3î + 4ĵ  Q. î + ĵ + k̂  R. 6î − 8ĵ  S. 2î + 2ĵ + k̂
+      List II: 1. 3  2. 5  3. 10  4. √3
+    options:
+      - P-2, Q-1, R-3, S-4
+      - P-3, Q-4, R-2, S-1
+      - P-1, Q-4, R-3, S-2
+      - P-2, Q-4, R-3, S-1
+    answer: 3
+    explanation: "|3î + 4ĵ| = 5, |î + ĵ + k̂| = √3, |6î − 8ĵ| = 10 and |2î + 2ĵ + k̂| = √9 = 3. So P-2, Q-4, R-3, S-1."
+
+  - id: phy-mip-126
+    topic: resolution-components
+    subtopic: Component along a perpendicular
+    concept: Component of a vector perpendicular to itself is zero
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [components]
+    stem: The component of a vector A along a direction perpendicular to A is
+    options:
+      - zero
+      - "|A|"
+      - "|A|/√2"
+      - equal to −|A|
+    answer: 0
+    explanation: The component along a direction at angle θ is A cos θ; for θ = 90° this is zero.
+
+  - id: phy-mip-127
+    topic: resolution-components
+    subtopic: Resultant of three forces
+    concept: Components of a south-west force cancel east and north forces
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [analytical-addition, equilibrium]
+    stem: Forces of 10 N due east, 10 N due north and 10√2 N due south-west act on a particle. What is the resultant force?
+    options:
+      - 10 N
+      - zero
+      - 10√2 N
+      - 20 N
+    answer: 1
+    explanation: The south-west force has components 10√2 cos 45° = 10 N west and 10 N south. These cancel the east and north forces, so the resultant is zero.
+
+  - id: phy-mip-128
+    topic: resolution-components
+    subtopic: Net displacement by components
+    concept: Resolve each leg and add components
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [analytical-addition, displacement]
+    stem: A man walks 10 m north, then 20 m east, then 10√2 m towards the south-west. What is his net displacement?
+    options:
+      - 10 m towards the east
+      - 10 m towards the north
+      - 10√2 m towards the north-east
+      - 20 m towards the east
+    answer: 0
+    explanation: The south-west leg contributes 10 m west and 10 m south. Net east = 20 − 10 = 10 m and net north = 10 − 10 = 0, so the displacement is 10 m due east.
+
+  - id: phy-mip-129
+    topic: resolution-components
+    subtopic: Resolution of vectors
+    concept: Components are unique for given axes; resolution possible along any two non-parallel directions
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [resolution, ncert-line]
+    stem: |-
+      Statement I: For a chosen pair of perpendicular axes, the rectangular components of a vector in a plane are unique.
+      Statement II: A vector in a plane can be expressed as the sum of two vectors along any two non-parallel directions in that plane.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: NCERT shows that any vector A in a plane can be written as λa + μb for two non-parallel vectors a and b (Statement II). With î and ĵ as the chosen directions, A_x and A_y are fixed uniquely by A (Statement I).
+
+  - id: phy-mip-130
+    topic: resolution-components
+    subtopic: Finding a missing component
+    concept: A_y = √(A^2 − A_x^2)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [components]
+    stem: A vector of magnitude 10 units lies in the xy-plane and its x-component is 6 units. What is the magnitude of its y-component?
+    options:
+      - "4"
+      - "8"
+      - "16"
+      - √136
+    answer: 1
+    explanation: A_y = √(10^2 − 6^2) = √64 = 8. Subtracting 10 − 6 = 4 treats the components as if they added like scalars.
+
+  - id: phy-mip-131
+    topic: vector-products
+    subtopic: Angle between vectors
+    concept: cos θ = A·B/(AB)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: cos θ = A·B/(|A||B|)
+    tags: [dot-product, angle-between-vectors]
+    stem: What is the angle between the vectors A = î + ĵ and B = ĵ + k̂?
+    options:
+      - 30°
+      - 45°
+      - 60°
+      - 90°
+    answer: 2
+    explanation: A·B = 0 + 1 + 0 = 1 and |A| = |B| = √2, so cos θ = 1/2 and θ = 60°.
+
+  - id: phy-mip-132
+    topic: vector-products
+    subtopic: Cross product in components
+    concept: (A_xB_y − A_yB_x)k̂ for vectors in the xy-plane
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [cross-product]
+    stem: If A = 2î + 3ĵ and B = î + 4ĵ, what is A × B?
+    options:
+      - 5k̂
+      - −5k̂
+      - 11k̂
+      - 5î
+    answer: 0
+    explanation: A × B = (A_xB_y − A_yB_x)k̂ = (2 × 4 − 3 × 1)k̂ = 5k̂. The cross product of two vectors in the xy-plane lies along the z-axis.
+
+  - id: phy-mip-133
+    topic: vector-products
+    subtopic: Direction of cross product
+    concept: A × B is perpendicular to the plane of A and B
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [cross-product, right-hand-rule]
+    stem: The vector product A × B of two non-parallel vectors is directed
+    options:
+      - along A
+      - along B
+      - along the bisector of A and B
+      - perpendicular to the plane containing A and B
+    answer: 3
+    explanation: A × B is perpendicular to both A and B, i.e. normal to their plane, with its sense given by the right-hand rule.
+
+  - id: phy-mip-134
+    topic: vector-products
+    subtopic: Magnitude of a sum using dot product
+    concept: "|A + B|^2 = A^2 + B^2 + 2A·B"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [dot-product, resultant]
+    stem: If |A| = 3, |B| = 4 and A·B = 6, what is |A + B|?
+    options:
+      - "7"
+      - √37
+      - "5"
+      - √31
+    answer: 1
+    explanation: "|A + B|^2 = 9 + 16 + 2 × 6 = 37, so |A + B| = √37."
+
+  - id: phy-mip-135
+    topic: vector-products
+    subtopic: Sign of dot product
+    concept: Scalar product is negative for obtuse angles
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [dot-product]
+    stem: |-
+      Assertion (A): The scalar product of two non-zero vectors can be negative.
+      Reason (R): cos θ is negative when 90° < θ ≤ 180°.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A·B = AB cos θ, and A and B are positive magnitudes. So the sign is that of cos θ, which is negative for obtuse angles; R explains A.
+
+  - id: phy-mip-136
+    topic: vector-products
+    subtopic: Combining dot and cross products
+    concept: (A·B)^2 + |A × B|^2 = A^2B^2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [dot-product, cross-product]
+    stem: For two vectors, A·B = 6 and |A × B| = 6√3. What is the product of their magnitudes, AB?
+    options:
+      - "6"
+      - 6√3
+      - "12"
+      - "36"
+    answer: 2
+    explanation: (AB cos θ)^2 + (AB sin θ)^2 = (AB)^2, so (AB)^2 = 36 + 108 = 144 and AB = 12. The angle is 60°.
+
+  - id: phy-mip-137
+    topic: vector-products
+    subtopic: Products of unit vectors
+    concept: î·î = 1, î × î = 0, î·ĵ = 0, î × ĵ = k̂
+    category: factual
+    format: multi-statement
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [dot-product, cross-product]
+    stem: |-
+      Which of the following are correct?
+      I. î·î = 1
+      II. î × î = 0
+      III. î·ĵ = 1
+      IV. î × ĵ = k̂
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: Parallel unit vectors give dot product 1 and cross product 0; perpendicular ones give dot product 0. With a right-handed set, î × ĵ = k̂. Only III is wrong.
+
+  - id: phy-mip-138
+    topic: vector-products
+    subtopic: Unit vector perpendicular to two vectors
+    concept: n̂ = (A × B)/|A × B|
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [cross-product, unit-vector]
+    stem: Which is a unit vector perpendicular to both A = î + ĵ and B = ĵ + k̂?
+    options:
+      - (î + ĵ + k̂)/√3
+      - (î − ĵ − k̂)/√3
+      - (−î + ĵ + k̂)/√3
+      - (î − ĵ + k̂)/√3
+    answer: 3
+    explanation: A × B = î(1 × 1 − 0 × 1) − ĵ(1 × 1 − 0 × 0) + k̂(1 × 1 − 1 × 0) = î − ĵ + k̂, of magnitude √3. Check (î − ĵ + k̂)·(î + ĵ) = 0 and (î − ĵ + k̂)·(ĵ + k̂) = 0.
+
+  - id: phy-mip-139
+    topic: position-velocity
+    subtopic: Direction of velocity at an instant
+    concept: Velocity along x-axis when v_y = 0
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [instantaneous-velocity]
+    stem: The position of a particle is r = t^2 î + (4t − t^2) ĵ (SI units). At what time is its velocity directed along the x-axis?
+    options:
+      - 1 s
+      - 2 s
+      - 4 s
+      - 0.5 s
+    answer: 1
+    explanation: v = 2t î + (4 − 2t) ĵ. The velocity is along x when v_y = 4 − 2t = 0, i.e. t = 2 s. At t = 4 s the particle is back on the x-axis, but its velocity is not along it.
+
+  - id: phy-mip-140
+    topic: position-velocity
+    subtopic: Average velocity from position vector
+    concept: Average velocity = Δr/Δt
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: v_{av} = Δr/Δt
+    tags: [average-velocity]
+    stem: A particle's position is r = 2t î + t^2 ĵ (in m, t in s). What is the magnitude of its average velocity between t = 0 and t = 2 s?
+    options:
+      - 4√2 m s^{-1}
+      - 2 m s^{-1}
+      - 2√2 m s^{-1}
+      - 4 m s^{-1}
+    answer: 2
+    explanation: Δr = r(2) − r(0) = 4î + 4ĵ, so v_{av} = (4î + 4ĵ)/2 = 2î + 2ĵ with magnitude 2√2 m s^{-1}. 4√2 m s^{-1} forgets to divide by the time.
+
+  - id: phy-mip-141
+    topic: position-velocity
+    subtopic: Equation of trajectory
+    concept: x = a sin ωt, y = a cos ωt describes a circle
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [trajectory, circular-path]
+    stem: The coordinates of a particle are x = 3 sin ωt and y = 3 cos ωt (in m). Its path is
+    options:
+      - a straight line through the origin
+      - a circle of radius 3 m centred at the origin
+      - a parabola
+      - an ellipse with semi-axes 3 m and 6 m
+    answer: 1
+    explanation: x^2 + y^2 = 9(sin^2 ωt + cos^2 ωt) = 9, a circle of radius 3 m about the origin.
+
+  - id: phy-mip-142
+    topic: position-velocity
+    subtopic: Average and instantaneous velocity
+    concept: Average velocity is along the displacement, not necessarily along instantaneous velocity
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [average-velocity, instantaneous-velocity]
+    stem: For a particle moving along a curved path in a plane, which statement is INCORRECT?
+    options:
+      - The average velocity over an interval is directed along the displacement in that interval
+      - The instantaneous velocity is along the tangent to the path
+      - The average velocity over an interval is always parallel to the instantaneous velocity at the start of that interval
+      - The magnitude of the average velocity can be less than the average speed
+    answer: 2
+    explanation: Average velocity points along the chord (displacement), which on a curved path differs from the tangent at the start. The other three statements are standard results.
+
+  - id: phy-mip-143
+    topic: position-velocity
+    subtopic: Uniform velocity in a plane
+    concept: Position linear in t gives straight-line motion at constant speed
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [uniform-motion]
+    stem: The position of a particle is r = 3t î + 4t ĵ (in m). Which description of its motion is correct?
+    options:
+      - Straight line through the origin at a constant speed of 5 m s^{-1}
+      - Parabola with a constant speed of 5 m s^{-1}
+      - Straight line with a speed of 7 m s^{-1}
+      - Straight line with a speed that increases with time
+    answer: 0
+    explanation: v = 3î + 4ĵ is constant, so the particle moves along the line y = 4x/3 at speed √(9 + 16) = 5 m s^{-1}.
+
+  - id: phy-mip-144
+    topic: position-velocity
+    subtopic: Displacement on a circle
+    concept: Chord length 2R sin(φ/2) for angular displacement φ
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [displacement, circular-path]
+    stem: |-
+      A particle moves along a circle of radius R. Arrange the magnitude of its displacement from the starting point in INCREASING order after it completes:
+      P. one full revolution  Q. a quarter revolution  R. half a revolution  S. one-sixth of a revolution
+    options:
+      - P, S, Q, R
+      - P, Q, S, R
+      - S, P, Q, R
+      - P, S, R, Q
+    answer: 0
+    explanation: Displacement = 2R sin(φ/2). One revolution gives 0, one-sixth (60°) gives R, a quarter gives √2 R and a half gives 2R. So P < S < Q < R.
+
+  - id: phy-mip-145
+    topic: position-velocity
+    subtopic: Constant speed, changing velocity
+    concept: Constant speed does not imply zero acceleration
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [acceleration, trap]
+    stem: |-
+      Assertion (A): A particle moving with constant speed has zero acceleration.
+      Reason (R): Acceleration is the rate of change of velocity.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: R is the definition of acceleration. Since velocity can change in direction while speed stays constant (e.g. uniform circular motion), the particle can accelerate, so A is false.
+
+  - id: phy-mip-146
+    topic: position-velocity
+    subtopic: Position at a later time
+    concept: r = r₀ + vt for constant velocity
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: r = r₀ + vt
+    tags: [uniform-motion, position-vector]
+    stem: A particle at (2 m, 3 m) at t = 0 moves with constant velocity (î − 2ĵ) m s^{-1}. What is its position vector at t = 3 s?
+    options:
+      - 3î − 6ĵ m
+      - 5î − 3ĵ m
+      - 5î + 3ĵ m
+      - 2î + 3ĵ m
+    answer: 1
+    explanation: r = r₀ + vt = (2î + 3ĵ) + 3(î − 2ĵ) = 5î − 3ĵ m. 3î − 6ĵ is only the displacement.
+
+  - id: phy-mip-147
+    topic: position-velocity
+    subtopic: Average speed versus average velocity
+    concept: Closed path gives zero average velocity but non-zero average speed
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [average-speed, average-velocity, ncert-line]
+    stem: A cyclist starts from the centre O of a circular park of radius 1 km, rides to the edge at P, goes along the circumference for a quarter circle to Q, and returns to O along QO. The trip takes 10 min. What is his average speed?
+    options:
+      - zero
+      - 12 km h^{-1}
+      - 9.4 km h^{-1}
+      - 21.4 km h^{-1}
+    answer: 3
+    explanation: Path length = 1 + (π/2)(1) + 1 ≈ 3.57 km, time = 1/6 h, so average speed ≈ 21.4 km h^{-1}. The net displacement is zero, so the average velocity is zero, which is the trap.
+
+  - id: phy-mip-148
+    topic: constant-acceleration-2d
+    subtopic: Independent x and y equations
+    concept: Solve x-equation for t, then use it in the y-equation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [equations-of-motion-2d, multi-concept]
+    stem: A particle starts from the origin at t = 0 with velocity 10ĵ m s^{-1} and moves in the xy-plane with constant acceleration (8î + 2ĵ) m s^{-2}. What is its y-coordinate when its x-coordinate is 16 m?
+    options:
+      - 20 m
+      - 24 m
+      - 16 m
+      - 28 m
+    answer: 1
+    explanation: x = ½(8)t^2 = 4t^2 = 16 gives t = 2 s. Then y = 10 × 2 + ½ × 2 × 2^2 = 20 + 4 = 24 m.
+
+  - id: phy-mip-149
+    topic: constant-acceleration-2d
+    subtopic: Speed at a given time
+    concept: Speed from vector v = u + at
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [equations-of-motion-2d]
+    stem: A particle starts from the origin with velocity 10ĵ m s^{-1} and has a constant acceleration (8î + 2ĵ) m s^{-2}. What is its speed at t = 2 s?
+    options:
+      - 16 m s^{-1}
+      - 30 m s^{-1}
+      - 21.3 m s^{-1}
+      - 14 m s^{-1}
+    answer: 2
+    explanation: v = u + at = 16î + (10 + 4)ĵ = 16î + 14ĵ, so speed = √(256 + 196) = √452 ≈ 21.3 m s^{-1}. 30 m s^{-1} adds the components as scalars.
+
+  - id: phy-mip-150
+    topic: constant-acceleration-2d
+    subtopic: Acceleration from velocity–time graphs
+    concept: Acceleration components are slopes of v_x–t and v_y–t graphs
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graphs]
+    stem: For a particle moving in the xy-plane, the v_x–t graph is a straight line rising from 0 to 8 m s^{-1} in 4 s, while the v_y–t graph is a horizontal line at 3 m s^{-1}. What is the particle's acceleration?
+    options:
+      - 2î m s^{-2}
+      - 3ĵ m s^{-2}
+      - (2î + 3ĵ) m s^{-2}
+      - zero
+    answer: 0
+    explanation: a_x is the slope of the v_x–t graph, 8/4 = 2 m s^{-2}; a_y is the slope of a flat line, zero. So a = 2î m s^{-2}. The value 3 is a velocity, not an acceleration.
+
+  - id: phy-mip-151
+    topic: constant-acceleration-2d
+    subtopic: Acceleration perpendicular to velocity
+    concept: Acceleration can exist at constant speed; perpendicular acceleration does not change speed
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [acceleration]
+    stem: |-
+      Statement I: A particle moving in a plane can have non-zero acceleration even when its speed is constant.
+      Statement II: If the acceleration of a particle is perpendicular to its velocity at every instant, its speed increases steadily.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: A change in direction alone is an acceleration, so Statement I is correct. An acceleration always perpendicular to v only turns the velocity (as in uniform circular motion); it has no component along v, so the speed stays constant and Statement II is wrong.
+
+  - id: phy-mip-152
+    topic: constant-acceleration-2d
+    subtopic: Perpendicular u and a
+    concept: v = u + at with perpendicular u and a
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [equations-of-motion-2d]
+    stem: A particle has initial velocity 3î m s^{-1} and constant acceleration 4ĵ m s^{-2}. What is its speed after 1 s?
+    options:
+      - 7 m s^{-1}
+      - 4 m s^{-1}
+      - 1 m s^{-1}
+      - 5 m s^{-1}
+    answer: 3
+    explanation: v = 3î + 4ĵ after 1 s, so speed = √(9 + 16) = 5 m s^{-1}.
+
+  - id: phy-mip-153
+    topic: constant-acceleration-2d
+    subtopic: Velocity perpendicular to initial velocity
+    concept: v·u = 0 condition with constant acceleration
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [equations-of-motion-2d, dot-product, multi-concept]
+    stem: A particle has initial velocity u = (10î + 10ĵ) m s^{-1} and constant acceleration −2ĵ m s^{-2}. After what time is its velocity perpendicular to u?
+    options:
+      - 5 s
+      - 10 s
+      - 20 s
+      - 7.07 s
+    answer: 1
+    explanation: v = 10î + (10 − 2t)ĵ. Setting v·u = 100 + 10(10 − 2t) = 0 gives 200 − 20t = 0, so t = 10 s. At 5 s the velocity is only horizontal, not perpendicular to u.
+
+  - id: phy-mip-154
+    topic: constant-acceleration-2d
+    subtopic: Components of acceleration
+    concept: The part of a perpendicular to v changes only the direction of motion
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [acceleration, tangential-normal]
+    stem: The component of a particle's acceleration perpendicular to its velocity changes
+    options:
+      - only the speed of the particle
+      - both the speed and the direction of motion
+      - only the direction of motion
+      - neither the speed nor the direction
+    answer: 2
+    explanation: The component along v changes the speed; the component perpendicular to v bends the path, changing only the direction of the velocity.
+
+  - id: phy-mip-155
+    topic: constant-acceleration-2d
+    subtopic: Acceleration from position vector
+    concept: a = d^2r/dt^2 component-wise
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: a = d^2r/dt^2
+    tags: [instantaneous-acceleration]
+    stem: The position of a particle is r = 2t^3 î + 3t^2 ĵ (in m). What is its acceleration at t = 1 s?
+    options:
+      - 6î + 6ĵ m s^{-2}
+      - 12î + 3ĵ m s^{-2}
+      - 6î + 12ĵ m s^{-2}
+      - 12î + 6ĵ m s^{-2}
+    answer: 3
+    explanation: v = 6t^2 î + 6t ĵ and a = 12t î + 6ĵ. At t = 1 s, a = 12î + 6ĵ m s^{-2}. 6î + 6ĵ is the velocity at t = 1 s.
+
+  - id: phy-mip-156
+    topic: relative-velocity-2d
+    subtopic: Rain and umbrella
+    concept: Equal speeds give a 45° umbrella tilt
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [rain-umbrella]
+    stem: Rain falls vertically at 10 m s^{-1}. A girl runs horizontally at 10 m s^{-1}. At what angle to the vertical should she hold her umbrella?
+    options:
+      - 30° forward
+      - 60° forward
+      - 45° forward
+      - 45° backward
+    answer: 2
+    explanation: Relative to her, the rain has components 10 down and 10 backward, so it comes at tan θ = 10/10 = 1, θ = 45° from the vertical, from the front. She tilts the umbrella 45° forward.
+
+  - id: phy-mip-157
+    topic: relative-velocity-2d
+    subtopic: Relative velocity of two ships
+    concept: v_B − v_A for perpendicular motions
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [relative-velocity]
+    stem: Ship A sails east at 10 km h^{-1} and ship B sails north at 10 km h^{-1}. What is the velocity of B relative to A?
+    options:
+      - 10√2 km h^{-1} towards north-east
+      - 10√2 km h^{-1} towards north-west
+      - 20 km h^{-1} towards north
+      - 10√2 km h^{-1} towards south-east
+    answer: 1
+    explanation: v_{BA} = v_B − v_A = 10ĵ − 10î, of magnitude 10√2 km h^{-1} pointing north-west. South-east is the velocity of A relative to B.
+
+  - id: phy-mip-158
+    topic: relative-velocity-2d
+    subtopic: Resultant velocity in a river
+    concept: Ground velocity = velocity relative to water + river velocity
+    category: numerical
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [river-boat]
+    stem: A swimmer heads straight across a river at 4 km h^{-1} relative to the water. The river flows at 3 km h^{-1}. What is her speed relative to the bank?
+    options:
+      - 7 km h^{-1}
+      - 1 km h^{-1}
+      - √7 km h^{-1}
+      - 5 km h^{-1}
+    answer: 3
+    explanation: Her ground velocity is the vector sum of 4 km h^{-1} across and 3 km h^{-1} downstream, so its magnitude is √(16 + 9) = 5 km h^{-1}.
+
+  - id: phy-mip-159
+    topic: relative-velocity-2d
+    subtopic: River crossing in minimum time
+    concept: Minimum time = width/boat speed relative to water
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [river-boat, unit-conversion]
+    stem: A boat moves at 5 km h^{-1} relative to water in a river 1 km wide flowing at 3 km h^{-1}. What is the minimum time in which it can cross?
+    options:
+      - 12 min
+      - 15 min
+      - 20 min
+      - 7.5 min
+    answer: 0
+    explanation: Minimum time comes from heading perpendicular to the bank, t = 1/5 h = 12 min. 15 min is the time for the shortest path (√(25 − 9) = 4 km h^{-1} across).
+
+  - id: phy-mip-160
+    topic: relative-velocity-2d
+    subtopic: River crossing in minimum time
+    concept: Crossing time for perpendicular heading is independent of current
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [river-boat]
+    stem: |-
+      Assertion (A): When a boat is headed perpendicular to the banks, its crossing time does not depend on the speed of the river.
+      Reason (R): The resultant speed of the boat relative to the ground does not depend on the speed of the river.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: The river's velocity is parallel to the banks and adds nothing to the crossing component, so A is true. But the resultant ground speed √(v_b^2 + v_r^2) clearly depends on the river speed, so R is false.
+
+  - id: phy-mip-161
+    topic: relative-velocity-2d
+    subtopic: Rain and umbrella
+    concept: tan θ = v_m/v_r gives the actual rain speed
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [rain-umbrella]
+    stem: Rain is falling vertically. A man walking at 5 m s^{-1} finds that the rain meets him at 30° to the vertical. What is the actual speed of the rain?
+    options:
+      - 5/√3 m s^{-1}
+      - 5√3 m s^{-1}
+      - 10 m s^{-1}
+      - 5 m s^{-1}
+    answer: 1
+    explanation: tan 30° = v_m/v_r, so v_r = 5/tan 30° = 5√3 m s^{-1}. 10 m s^{-1} is the apparent speed of the rain relative to the man.
+
+  - id: phy-mip-162
+    topic: relative-velocity-2d
+    subtopic: Rain driven by wind
+    concept: Umbrella points towards where the rain comes from relative to the person
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [rain-umbrella, ncert-line]
+    stem: Rain falls vertically at 35 m s^{-1}. A wind starts blowing from east to west at 12 m s^{-1}. How should a boy standing at a bus stop hold his umbrella?
+    options:
+      - Vertically
+      - About 19° from the vertical towards the west
+      - About 19° from the vertical towards the east
+      - About 71° from the vertical towards the east
+    answer: 2
+    explanation: The wind gives the rain a westward velocity of 12 m s^{-1}, so it comes from the east at tan θ = 12/35, θ ≈ 19° from the vertical. The umbrella is tilted about 19° towards the east.
+
+  - id: phy-mip-163
+    topic: relative-velocity-2d
+    subtopic: Relative speed at an angle
+    concept: Relative speed of two equal speeds at angle θ is 2v sin(θ/2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: "|v_A − v_B| = 2v sin(θ/2)"
+    tags: [relative-velocity]
+    stem: Two particles move with equal speeds v in directions making 60° with each other. What is the speed of one relative to the other?
+    options:
+      - √3 v
+      - 2v
+      - zero
+      - v
+    answer: 3
+    explanation: "|v_A − v_B|^2 = v^2 + v^2 − 2v^2 cos 60° = v^2, so the relative speed is v. √3 v is the magnitude of their sum."
+
+  - id: phy-mip-164
+    topic: relative-velocity-2d
+    subtopic: Rain and umbrella
+    concept: Slanting of rain for a moving observer is due to relative velocity
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [rain-umbrella]
+    stem: Rain falling vertically appears to fall slantwise to a person walking on a road. This is because
+    options:
+      - wind always blows when it rains
+      - the person sees the velocity of the rain relative to himself
+      - light from the drops is refracted
+      - the drops accelerate horizontally near the ground
+    answer: 1
+    explanation: The observed rain velocity is v_r − v_p. Subtracting the walker's horizontal velocity gives the rain a backward horizontal component, so it seems to come in at an angle.
+
+  - id: phy-mip-165
+    topic: relative-velocity-2d
+    subtopic: Boat heading at an angle
+    concept: Resultant of boat and river velocities by components
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [river-boat]
+    stem: A boat moving at 10 m s^{-1} relative to water is headed at 120° to the direction of river flow. The river flows at 5 m s^{-1}. What is the boat's speed relative to the ground?
+    options:
+      - 5 m s^{-1}
+      - 5√3 m s^{-1}
+      - 10 m s^{-1}
+      - 15 m s^{-1}
+    answer: 1
+    explanation: The boat's component along the flow is 10 cos 120° = −5 m s^{-1}, which cancels the river's 5 m s^{-1}. Only the across component 10 sin 120° = 5√3 m s^{-1} remains, so the boat goes straight across at 5√3 m s^{-1}.
+
+  - id: phy-mip-166
+    topic: projectile-oblique
+    subtopic: Horizontal range
+    concept: R = u^2 sin 2θ/g with sin 37° = 0.6
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: R = 2u^2 sin θ cos θ/g
+    tags: [range]
+    stem: A shell is fired at 50 m s^{-1} at 37° above the horizontal (sin 37° = 0.6). What is its horizontal range? (g = 10 m s^{-2})
+    options:
+      - 250 m
+      - 120 m
+      - 240 m
+      - 180 m
+    answer: 2
+    explanation: R = 2u^2 sin θ cos θ/g = 2 × 2500 × 0.6 × 0.8/10 = 240 m.
+
+  - id: phy-mip-167
+    topic: projectile-oblique
+    subtopic: Maximum height
+    concept: H = (u sin θ)^2/2g
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: H = u^2 sin^2 θ/2g
+    tags: [maximum-height]
+    stem: A shell is fired at 50 m s^{-1} at 37° above the horizontal (sin 37° = 0.6). What maximum height does it reach? (g = 10 m s^{-2})
+    options:
+      - 90 m
+      - 45 m
+      - 80 m
+      - 30 m
+    answer: 1
+    explanation: The vertical component is 50 × 0.6 = 30 m s^{-1}, so H = 30^2/(2 × 10) = 45 m. 80 m would use the horizontal component 40 m s^{-1}.
+
+  - id: phy-mip-168
+    topic: projectile-oblique
+    subtopic: Range versus angle
+    concept: Range ∝ sin 2θ, maximum at 45°
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [range, ordering]
+    stem: |-
+      Projectiles are launched with the same speed at the angles below. Arrange their horizontal ranges in INCREASING order.
+      P. 15°  Q. 45°  R. 60°  S. 80°
+    options:
+      - P, S, R, Q
+      - S, P, R, Q
+      - S, R, P, Q
+      - P, R, S, Q
+    answer: 1
+    explanation: R ∝ sin 2θ; sin 160° ≈ 0.34 (S), sin 30° = 0.5 (P), sin 120° ≈ 0.87 (R) and sin 90° = 1 (Q). So S < P < R < Q.
+
+  - id: phy-mip-169
+    topic: projectile-oblique
+    subtopic: Height–time graph
+    concept: y = (u sin θ)t − ½gt^2 is a downward-opening parabola in t
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [graphs]
+    stem: For an oblique projectile launched from the ground, the graph of height y against time t is
+    options:
+      - a straight line rising with constant slope
+      - a straight line rising then falling symmetrically
+      - a parabola opening downward, symmetric about t = T/2
+      - a parabola opening upward
+    answer: 2
+    explanation: y = (u sin θ)t − ½gt^2 is quadratic in t with a negative t^2 coefficient, so it is a downward-opening parabola peaking at t = T/2. The graph of x against t, by contrast, is a straight line.
+
+  - id: phy-mip-170
+    topic: projectile-oblique
+    subtopic: Projectile formulae
+    concept: Standard expressions for T, H, R and velocity at top
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [formulae]
+    stem: |-
+      Match each quantity for a projectile (speed u, angle θ, level ground) with its expression.
+      List I: P. Time of flight  Q. Maximum height  R. Horizontal range  S. Speed at the highest point
+      List II: 1. u^2 sin^2 θ/2g  2. 2u sin θ/g  3. u cos θ  4. u^2 sin 2θ/g
+    options:
+      - P-1, Q-2, R-4, S-3
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-1, R-4, S-3
+    answer: 3
+    explanation: T = 2u sin θ/g, H = u^2 sin^2 θ/2g, R = u^2 sin 2θ/g, and at the top only the horizontal component u cos θ remains.
+
+  - id: phy-mip-171
+    topic: projectile-oblique
+    subtopic: Range and maximum height relation
+    concept: R = 4H cot θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: R = 4H cot θ
+    tags: [range, maximum-height]
+    stem: The horizontal range of a projectile is 4√3 times its maximum height. What is the angle of projection?
+    options:
+      - 60°
+      - 45°
+      - 30°
+      - 15°
+    answer: 2
+    explanation: R/H = 4 cot θ = 4√3 gives cot θ = √3, so θ = 30°.
+
+  - id: phy-mip-172
+    topic: projectile-oblique
+    subtopic: Speed at a height
+    concept: v^2 = u^2 − 2gh at height h
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: v^2 = u^2 − 2gh
+    tags: [speed-at-height]
+    stem: A ball is projected at 20 m s^{-1} at 60° above the horizontal. What is its speed when it is 10 m above the launch point? (g = 10 m s^{-2})
+    options:
+      - 10√2 m s^{-1}
+      - 10 m s^{-1}
+      - 20 m s^{-1}
+      - 10√3 m s^{-1}
+    answer: 0
+    explanation: v_x = 10 m s^{-1} stays constant; v_y^2 = (10√3)^2 − 2 × 10 × 10 = 100, so v_y = 10 m s^{-1}. Speed = √(100 + 100) = 10√2 m s^{-1}, independent of the angle.
+
+  - id: phy-mip-173
+    topic: projectile-oblique
+    subtopic: Complementary angles
+    concept: Complementary angles give equal ranges but different flight times
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [complementary-angles, trap]
+    stem: |-
+      Assertion (A): Two projectiles thrown with the same speed at 30° and 60° to the horizontal have equal horizontal ranges.
+      Reason (R): The two projectiles have equal times of flight.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: sin 60° = sin 120°, so the ranges are equal (A true). But T ∝ sin θ, so the 60° projectile stays in the air √3 times longer (R false); the smaller horizontal speed compensates.
+
+  - id: phy-mip-174
+    topic: projectile-oblique
+    subtopic: Complementary angles
+    concept: t₁/t₂ = tan θ for complementary angles
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [time-of-flight, complementary-angles]
+    stem: Two balls are thrown with equal speeds at 30° and 60° to the horizontal. What is the ratio of their times of flight?
+    options:
+      - "1 : 1"
+      - "1 : √3"
+      - "√3 : 1"
+      - "1 : 3"
+    answer: 1
+    explanation: T ∝ sin θ, so T₁/T₂ = sin 30°/sin 60° = (½)/(√3/2) = 1/√3. Their maximum heights are in the ratio 1/3.
+
+  - id: phy-mip-175
+    topic: projectile-oblique
+    subtopic: Effect of doubling speed
+    concept: T ∝ u, H ∝ u^2, R ∝ u^2
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [proportionality]
+    stem: The speed of projection of a projectile is doubled, keeping the angle the same. Its time of flight T, maximum height H and range R become
+    options:
+      - 2T, 4H, 4R
+      - 2T, 2H, 4R
+      - 4T, 4H, 4R
+      - 2T, 4H, 2R
+    answer: 0
+    explanation: T = 2u sin θ/g ∝ u, while H and R are both proportional to u^2. So they become 2T, 4H and 4R.
+
+  - id: phy-mip-176
+    topic: projectile-oblique
+    subtopic: Velocity at the top
+    concept: Speed at top = u cos θ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [highest-point]
+    stem: The speed of a projectile at its highest point is half of its speed of projection. What is the angle of projection?
+    options:
+      - 30°
+      - 45°
+      - 75°
+      - 60°
+    answer: 3
+    explanation: At the top the speed is u cos θ = u/2, so cos θ = ½ and θ = 60°.
+
+  - id: phy-mip-177
+    topic: projectile-oblique
+    subtopic: Velocity at a given time
+    concept: Check whether the projectile is at the top before computing
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [highest-point, trap]
+    stem: A ball is projected at 20 m s^{-1} at 30° above the horizontal. What is its speed 1 s after launch? (g = 10 m s^{-2})
+    options:
+      - 20 m s^{-1}
+      - 10√3 m s^{-1}
+      - 10 m s^{-1}
+      - zero
+    answer: 1
+    explanation: v_y = 20 sin 30° − 10 × 1 = 0, so at 1 s the ball is at its highest point and the speed is just v_x = 20 cos 30° = 10√3 m s^{-1}. It is not zero.
+
+  - id: phy-mip-178
+    topic: projectile-oblique
+    subtopic: Maximising height and time of flight
+    concept: H and T are both maximum for θ = 90°, not 45°
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [maximum-height, time-of-flight, trap]
+    stem: |-
+      Statement I: For a given speed of projection, the maximum height attained is greatest when the body is thrown vertically upward.
+      Statement II: For a given speed of projection, the time of flight is greatest when the angle of projection is 45°.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: H ∝ sin^2 θ and T ∝ sin θ, both largest at θ = 90°. Only the range peaks at 45°, so Statement II is wrong.
+
+  - id: phy-mip-179
+    topic: projectile-oblique
+    subtopic: Equation of trajectory
+    concept: Reading u from the coefficient of x^2 in the trajectory
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: y = x tan θ − gx^2/(2u^2 cos^2 θ)
+    tags: [trajectory]
+    stem: The path of a projectile is y = √3 x − x^2/20 (x and y in metres, g = 10 m s^{-2}). What is its speed of projection?
+    options:
+      - 10 m s^{-1}
+      - 10√2 m s^{-1}
+      - 20 m s^{-1}
+      - 40 m s^{-1}
+    answer: 2
+    explanation: tan θ = √3 gives θ = 60°, cos^2 θ = ¼. Then g/(2u^2 cos^2 θ) = 10/(u^2/2) = 20/u^2 = 1/20, so u^2 = 400 and u = 20 m s^{-1}.
+
+  - id: phy-mip-180
+    topic: projectile-oblique
+    subtopic: Range at other angles
+    concept: R = R_{max} sin 2θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [range, maximum-range]
+    stem: The maximum range of a gun on level ground is 100 m. What is its range when fired at 15° to the horizontal with the same muzzle speed?
+    options:
+      - 50 m
+      - 25 m
+      - 86.6 m
+      - 100 m
+    answer: 0
+    explanation: R_{max} = u^2/g = 100 m, so R = R_{max} sin 30° = 50 m.
+
+  - id: phy-mip-181
+    topic: projectile-horizontal
+    subtopic: Release point for a target
+    concept: Release distance = u√(2h/g)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [horizontal-projection]
+    stem: A plane flies horizontally at 80 m s^{-1} at a height of 45 m. How far before the target (horizontally) should a relief packet be released to land on it? (g = 10 m s^{-2})
+    options:
+      - 120 m
+      - 80 m
+      - 360 m
+      - 240 m
+    answer: 3
+    explanation: Time of fall = √(2 × 45/10) = 3 s, during which the packet moves 80 × 3 = 240 m horizontally with the plane's velocity.
+
+  - id: phy-mip-182
+    topic: projectile-horizontal
+    subtopic: Vertical drop of a bullet
+    concept: Drop = ½g(x/u)^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [horizontal-projection]
+    stem: A bullet is fired horizontally at 200 m s^{-1} towards a target 100 m away. How far below the aiming point does it strike? (g = 10 m s^{-2})
+    options:
+      - 2.5 m
+      - 1.25 m
+      - 0.5 m
+      - 5 m
+    answer: 1
+    explanation: Time to reach the target = 100/200 = 0.5 s, so the drop = ½ × 10 × 0.25 = 1.25 m.
+
+  - id: phy-mip-183
+    topic: projectile-horizontal
+    subtopic: Time of fall
+    concept: Time of fall is independent of horizontal speed
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [independence-of-motion]
+    stem: Two balls are thrown horizontally from the same height with speeds u and 2u. What is the ratio of their times of fall?
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "1 : 1"
+      - "1 : 4"
+    answer: 2
+    explanation: The time of fall is √(2h/g), independent of horizontal speed, so the times are equal. Only their horizontal ranges differ, the second being twice the first.
+
+  - id: phy-mip-184
+    topic: projectile-horizontal
+    subtopic: Speed from landing distance
+    concept: u = x/√(2h/g)
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [horizontal-projection]
+    stem: A marble rolls off the edge of a table 1.25 m high and lands 1 m from the foot of the table. With what speed did it leave the table? (g = 10 m s^{-2})
+    options:
+      - 2 m s^{-1}
+      - 4 m s^{-1}
+      - 1 m s^{-1}
+      - 0.5 m s^{-1}
+    answer: 0
+    explanation: Time of fall = √(2 × 1.25/10) = 0.5 s, so the horizontal speed = 1/0.5 = 2 m s^{-1}.
+
+  - id: phy-mip-185
+    topic: projectile-horizontal
+    subtopic: Direction of velocity during fall
+    concept: tan α = gt/u solved for t
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [horizontal-projection, direction]
+    stem: A stone is thrown horizontally at 10 m s^{-1} from a tall cliff. After how long does its velocity make 60° with the horizontal? (g = 10 m s^{-2})
+    options:
+      - 1/√3 s
+      - 1 s
+      - 2 s
+      - √3 s
+    answer: 3
+    explanation: tan 60° = gt/u = 10t/10, so t = √3 s. 1/√3 s gives 30°.
+
+  - id: phy-mip-186
+    topic: projectile-horizontal
+    subtopic: Equal horizontal and vertical displacements
+    concept: ut = ½gt^2 gives t = 2u/g
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [horizontal-projection]
+    stem: A ball is projected horizontally at 10 m s^{-1} from a great height. After what time are its horizontal and vertical displacements equal? (g = 10 m s^{-2})
+    options:
+      - 1 s
+      - 2 s
+      - 4 s
+      - 0.5 s
+    answer: 1
+    explanation: ut = ½gt^2 gives t = 2u/g = 2 s. At 1 s the vertical and horizontal velocity components are equal, which is a different condition.
+
+  - id: phy-mip-187
+    topic: projectile-horizontal
+    subtopic: Results for horizontal projection
+    concept: Time, range, landing speed and shape of path
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [horizontal-projection, formulae]
+    stem: |-
+      A body is projected horizontally with speed u from height h (no air resistance). Which are correct?
+      I. Its time of flight is √(2h/g).
+      II. Its horizontal range is u√(2h/g).
+      III. It strikes the ground with speed √(u^2 + 2gh).
+      IV. Its path is a straight line inclined to the horizontal.
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: The vertical motion is free fall from rest, giving I; range = u × time gives II; v_y^2 = 2gh gives III. The path y = gx^2/2u^2 is a parabola, so IV is wrong.
+
+  - id: phy-mip-188
+    topic: projectile-horizontal
+    subtopic: Velocity during fall
+    concept: Horizontal velocity stays constant in projectile motion
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [horizontal-projection, trap]
+    stem: |-
+      Assertion (A): A body thrown horizontally from a cliff strikes the ground with a velocity inclined to the horizontal.
+      Reason (R): The horizontal velocity of the body decreases during its fall.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: The velocity is inclined because a vertical component gt builds up while the horizontal component stays constant (no horizontal force). So A is true but R is false.
+
+  - id: phy-mip-189
+    topic: projectile-horizontal
+    subtopic: Angle of impact
+    concept: tan α = √(2gh)/u at impact
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [horizontal-projection, landing-velocity]
+    stem: A ball is thrown horizontally at 20 m s^{-1} from the top of a tower 80 m high. At what angle below the horizontal does it strike the ground? (g = 10 m s^{-2})
+    options:
+      - tan^{-1}(1/2)
+      - tan^{-1}(2)
+      - 45°
+      - 60°
+    answer: 1
+    explanation: The fall takes √(2 × 80/10) = 4 s, so v_y = 40 m s^{-1} while v_x = 20 m s^{-1}. tan α = 40/20 = 2, α = tan^{-1}(2) ≈ 63°.
+
+  - id: phy-mip-190
+    topic: circular-motion
+    subtopic: Linear speed from revolutions
+    concept: v = ωr with ω = 2πn/t
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: v = ωr
+    tags: [angular-speed, ncert-line]
+    stem: An insect trapped in a circular groove of radius 12 cm moves along it steadily, completing 7 revolutions in 100 s. What is its linear speed?
+    options:
+      - 0.44 cm s^{-1}
+      - 2.3 cm s^{-1}
+      - 5.3 cm s^{-1}
+      - 84 cm s^{-1}
+    answer: 2
+    explanation: ω = 2π × 7/100 ≈ 0.44 rad s^{-1}, so v = ωr = 0.44 × 12 ≈ 5.3 cm s^{-1}. 0.44 is ω itself and 2.3 cm s^{-2} is the centripetal acceleration.
+
+  - id: phy-mip-191
+    topic: circular-motion
+    subtopic: Centripetal acceleration from revolutions
+    concept: a = ω^2 r with ω from revolutions per time
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: a_c = ω^2 r
+    tags: [centripetal-acceleration, ncert-line]
+    stem: A stone tied to a string 80 cm long is whirled in a horizontal circle at constant speed, making 14 revolutions in 25 s. What is the magnitude of its acceleration?
+    options:
+      - 2.8 m s^{-2}
+      - 9.9 m s^{-2}
+      - 12.4 m s^{-2}
+      - 3.5 m s^{-2}
+    answer: 1
+    explanation: ω = 2π × 14/25 ≈ 3.52 rad s^{-1}, so a = ω^2 r ≈ 12.4 × 0.8 ≈ 9.9 m s^{-2}, directed towards the centre. 2.8 m s^{-1} is the speed and 12.4 is ω^2.
+
+  - id: phy-mip-192
+    topic: circular-motion
+    subtopic: Centripetal acceleration in a loop
+    concept: a = v^2/r compared with g
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [centripetal-acceleration, unit-conversion, ncert-line]
+    stem: An aircraft executes a horizontal loop of radius 1 km at a steady speed of 900 km h^{-1}. What is the ratio of its centripetal acceleration to g? (g = 9.8 m s^{-2})
+    options:
+      - "0.64"
+      - "64"
+      - "2.5"
+      - "6.4"
+    answer: 3
+    explanation: 900 km h^{-1} = 250 m s^{-1}, so a = 250^2/1000 = 62.5 m s^{-2} and a/g ≈ 6.4.
+
+  - id: phy-mip-193
+    topic: circular-motion
+    subtopic: Constant and varying quantities
+    concept: Speed and magnitude of acceleration constant; velocity and acceleration vectors change
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [centripetal-acceleration]
+    stem: |-
+      Which of the following remain constant for a particle in uniform circular motion?
+      I. Speed
+      II. Velocity
+      III. Magnitude of acceleration
+      IV. Acceleration vector
+    options:
+      - I and II only
+      - III only
+      - I and III only
+      - I, III and IV only
+    answer: 2
+    explanation: Speed and the magnitude v^2/R of the acceleration stay fixed. The directions of velocity (tangent) and acceleration (towards centre) rotate, so the vectors change.
+
+  - id: phy-mip-194
+    topic: circular-motion
+    subtopic: Relations in circular motion
+    concept: ω = 2π/T, v = ωr, a = v^2/r, ν = 1/T
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [formulae]
+    stem: |-
+      Match each quantity for uniform circular motion (radius r, period T) with its expression.
+      List I: P. Angular speed ω  Q. Linear speed v  R. Centripetal acceleration  S. Frequency ν
+      List II: 1. v^2/r  2. 2π/T  3. ωr  4. 1/T
+    options:
+      - P-2, Q-3, R-1, S-4
+      - P-3, Q-2, R-1, S-4
+      - P-2, Q-1, R-3, S-4
+      - P-4, Q-3, R-1, S-2
+    answer: 0
+    explanation: ω = 2π/T, v = ωr, a_c = v^2/r and ν = 1/T. So P-2, Q-3, R-1, S-4.
+
+  - id: phy-mip-195
+    topic: circular-motion
+    subtopic: Period from acceleration
+    concept: a_c = 4π^2 r/T^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: a_c = 4π^2 r/T^2
+    tags: [centripetal-acceleration, time-period]
+    stem: A particle moves uniformly on a circle of radius 1 m with centripetal acceleration π^2 m s^{-2}. What is its time period?
+    options:
+      - 1 s
+      - 2 s
+      - 4 s
+      - 0.5 s
+    answer: 1
+    explanation: T^2 = 4π^2 r/a_c = 4π^2 × 1/π^2 = 4, so T = 2 s.
+
+  - id: phy-mip-196
+    topic: circular-motion
+    subtopic: Acceleration at constant speed
+    concept: Change of direction of velocity means acceleration
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [centripetal-acceleration, ncert-line]
+    stem: |-
+      Assertion (A): A body in uniform circular motion is accelerated even though its speed is constant.
+      Reason (R): The direction of the velocity of the body changes continuously.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Acceleration is the rate of change of the velocity vector. In uniform circular motion the direction of v keeps changing, which is exactly why there is a centripetal acceleration; R explains A.
+
+  - id: phy-mip-197
+    topic: circular-motion
+    subtopic: Change in velocity on a circle
+    concept: After a quarter revolution |Δv| = √2 v
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [change-in-velocity]
+    stem: A particle moves on a circle with constant speed v. What is the magnitude of the change in its velocity after it completes a quarter of a revolution?
+    options:
+      - zero
+      - 2v
+      - √2 v
+      - v
+    answer: 2
+    explanation: The initial and final velocities have magnitude v and are perpendicular, so |Δv| = √(v^2 + v^2) = √2 v. 2v is the change after half a revolution.
+
+  - id: phy-mip-198
+    topic: circular-motion
+    subtopic: Earth's rotation
+    concept: Centripetal acceleration at the equator = ω^2 R_E
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [centripetal-acceleration, earth]
+    stem: Taking the radius of the Earth as 6400 km and its rotation period as 24 h, what is the centripetal acceleration of a point on the equator?
+    options:
+      - 3.4 m s^{-2}
+      - 9.8 m s^{-2}
+      - 0.34 m s^{-2}
+      - 0.034 m s^{-2}
+    answer: 3
+    explanation: ω = 2π/86400 ≈ 7.27 × 10^{-5} rad s^{-1}, so a = ω^2 R ≈ 5.3 × 10^{-9} × 6.4 × 10^6 ≈ 0.034 m s^{-2}, far smaller than g.
+
+  - id: phy-mip-199
+    topic: circular-motion
+    subtopic: Directions in UCM
+    concept: Centripetal acceleration is radial, inward
+    category: concept
+    format: statements
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: false
+    tags: [centripetal-acceleration]
+    stem: For a particle in uniform circular motion, which statement is correct?
+    options:
+      - Its velocity is directed along the radius
+      - Its acceleration is directed along the radius towards the centre
+      - Its acceleration is directed along the tangent
+      - Its angular velocity keeps changing direction
+    answer: 1
+    explanation: Velocity is tangential and the centripetal acceleration points along the radius to the centre. For motion in a fixed plane the angular velocity is constant in both magnitude and direction.
+
+  - id: phy-mip-200
+    topic: circular-motion
+    subtopic: Angular speed from linear speed
+    concept: ω = v/r
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: ω = v/r
+    tags: [angular-speed]
+    stem: A particle moves on a circle of radius 2 m with a speed of 6 m s^{-1}. What is its angular speed?
+    options:
+      - 12 rad s^{-1}
+      - 0.33 rad s^{-1}
+      - 3 rad s^{-1}
+      - 6 rad s^{-1}
+    answer: 2
+    explanation: ω = v/r = 6/2 = 3 rad s^{-1}.
+

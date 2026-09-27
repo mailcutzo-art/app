@@ -1,0 +1,4200 @@
+subject: physics
+chapter:
+  slug: electric-charges-and-fields
+  name: Electric Charges and Fields
+  order: 15
+  classes: [12]
+  topics:
+    - slug: charging-methods
+      name: Electric charge, conductors, insulators and charging
+    - slug: charge-properties
+      name: Additivity, conservation and quantisation of charge
+    - slug: coulombs-law
+      name: Coulomb's law
+    - slug: superposition-forces
+      name: Forces between multiple charges
+    - slug: electric-field
+      name: Electric field and continuous charge distributions
+    - slug: field-lines
+      name: Electric field lines
+    - slug: electric-flux
+      name: Electric flux
+    - slug: electric-dipole
+      name: Electric dipole and its field
+    - slug: dipole-in-field
+      name: Dipole in a uniform external field
+    - slug: gauss-law
+      name: Gauss's law
+    - slug: gauss-applications
+      name: Applications of Gauss's law
+questions:
+  - id: phy-ecf-001
+    topic: charging-methods
+    subtopic: Charging by friction
+    concept: Glass rubbed with silk becomes positive, silk negative
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [charging-by-friction, ncert-line]
+    stem: A glass rod is rubbed with silk. What charges do the rod and the silk acquire?
+    options:
+      - Glass negative, silk positive
+      - Both become positive
+      - Glass positive, silk negative
+      - Glass positive, silk remains neutral
+    answer: 2
+    explanation: Electrons are transferred from glass to silk during rubbing, so glass becomes positive and silk becomes equally negative. Charge is transferred, not created, so the silk cannot stay neutral.
+
+  - id: phy-ecf-002
+    topic: charging-methods
+    subtopic: Mechanism of charging
+    concept: Charging by rubbing transfers electrons, not protons
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [charging-by-friction, trap]
+    stem: When a body becomes positively charged by rubbing, what has happened to it?
+    options:
+      - It has gained protons
+      - It has lost electrons
+      - It has lost neutrons
+      - It has gained positrons
+    answer: 1
+    explanation: Only the loosely bound outer electrons move during rubbing; protons are locked in the nuclei. A body with a deficit of electrons is positively charged. Gaining protons is the common misconception.
+
+  - id: phy-ecf-003
+    topic: charging-methods
+    subtopic: Charging by induction
+    concept: Induction gives the conductor a charge opposite to the inducing charge
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [induction]
+    stem: A negatively charged rod is held near an isolated metal sphere, the sphere is earthed and then the earth link is removed before the rod. The sphere ends up
+    options:
+      - positively charged
+      - negatively charged
+      - neutral
+      - positive on the near side and negative on the far side
+    answer: 0
+    explanation: The rod repels electrons in the sphere to the far side; earthing lets these electrons flow to ground. Breaking the earth link first traps the deficit, so after the rod is removed the sphere is left with a net positive charge spread over its surface.
+
+  - id: phy-ecf-004
+    topic: charging-methods
+    subtopic: Conductors and insulators
+    concept: Charge on a conductor spreads over it; on an insulator it stays put
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [conductors, insulators]
+    stem: Which statement about conductors and insulators is correct?
+    options:
+      - Charge given to an insulator immediately spreads over its whole surface
+      - Metals are insulators because their electrons are tightly bound
+      - Charge given to a conductor gets distributed over its entire surface
+      - The human body is a good insulator
+    answer: 2
+    explanation: Conductors have free electrons, so any charge placed on them redistributes over the whole surface. On an insulator the charge stays where it is placed. Metals and the human body are conductors.
+
+  - id: phy-ecf-005
+    topic: charging-methods
+    subtopic: Attraction of neutral bodies
+    concept: A charged body attracts a neutral light body by induced polarisation
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [induction, trap]
+    stem: A charged comb attracts small bits of neutral paper. Which explanation is correct?
+    options:
+      - The comb transfers charge to the paper before touching it
+      - Paper is always slightly charged opposite to the comb
+      - Gravity is enhanced near the charged comb
+      - The comb induces opposite charge on the near side of the paper, and the attraction there exceeds the repulsion on the far side
+    answer: 3
+    explanation: The comb polarises the paper, inducing unlike charge on the nearer side and like charge on the farther side. Because force decreases with distance, the net force is attractive. No charge needs to be transferred for attraction.
+
+  - id: phy-ecf-006
+    topic: charge-properties
+    subtopic: Quantisation of charge
+    concept: Number of electrons from total charge, n = q/e
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: q = ne
+    tags: [quantisation]
+    stem: How many electrons must be removed from a neutral body to give it a charge of +1.6 μC? (e = 1.6 × 10^{-19} C)
+    options:
+      - 10^{12}
+      - 10^{13}
+      - 10^{19}
+      - 10^{6}
+    answer: 1
+    explanation: n = q/e = 1.6 × 10^{-6} / 1.6 × 10^{-19} = 10^{13}. Removing electrons makes the body positive.
+
+  - id: phy-ecf-007
+    topic: charge-properties
+    subtopic: Quantisation of charge
+    concept: A charge must be an integral multiple of e
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [quantisation, trap]
+    stem: Which of these cannot be the charge on an isolated body? (e = 1.6 × 10^{-19} C)
+    options:
+      - 3.2 × 10^{-19} C
+      - 4.8 × 10^{-19} C
+      - 2.4 × 10^{-19} C
+      - 1.6 × 10^{-18} C
+    answer: 2
+    explanation: Charge is quantised, q = ne with integer n. 2.4 × 10^{-19} C is 1.5e, not an integer multiple, so it is impossible. The others are 2e, 3e and 10e.
+
+  - id: phy-ecf-008
+    topic: charge-properties
+    subtopic: Additivity of charge
+    concept: Charges add algebraically like scalars
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [additivity]
+    stem: A system contains charges +5 μC, −3 μC, +2 μC and −6 μC. What is its total charge?
+    options:
+      - +16 μC
+      - −2 μC
+      - +2 μC
+      - "0"
+    answer: 1
+    explanation: Charge is a scalar and adds algebraically, 5 − 3 + 2 − 6 = −2 μC. Adding magnitudes (16 μC) ignores signs.
+
+  - id: phy-ecf-009
+    topic: charge-properties
+    subtopic: Conservation of charge
+    concept: Total charge of an isolated system is conserved
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [conservation]
+    stem: Two identical metal spheres carrying +8 μC and −2 μC are touched and separated. What is the charge on each?
+    options:
+      - +5 μC each
+      - +4 μC and −1 μC
+      - +6 μC each
+      - +3 μC each
+    answer: 3
+    explanation: Total charge is conserved, 8 − 2 = +6 μC, and identical spheres share it equally, giving +3 μC each.
+
+  - id: phy-ecf-010
+    topic: charge-properties
+    subtopic: Conservation in nuclear processes
+    concept: In pair production charge is conserved
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [conservation, multi-concept]
+    stem: |-
+      Assertion (A): A γ-ray photon can create an electron–positron pair.
+      Reason (R): Total charge before and after the process is zero, so charge is conserved.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A neutral photon produces an electron (−e) and a positron (+e); net charge stays zero. Charge conservation is exactly what allows charged particles to be created only in equal and opposite pairs, so R explains A.
+
+  - id: phy-ecf-011
+    topic: coulombs-law
+    subtopic: Coulomb force in vacuum
+    concept: F = kq_1q_2/r^2 numerical
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: F = kq_1q_2/r^2
+    tags: [coulomb-force]
+    stem: Two point charges of 2 μC and 3 μC are 30 cm apart in vacuum. The force between them is
+    options:
+      - 0.06 N
+      - 6 N
+      - 0.18 N
+      - 0.6 N
+    answer: 3
+    explanation: F = 9 × 10^9 × 2 × 10^{-6} × 3 × 10^{-6} / (0.3)^2 = 0.054/0.09 = 0.6 N. Forgetting to square the distance gives 0.18 N.
+
+  - id: phy-ecf-012
+    topic: coulombs-law
+    subtopic: Inverse square dependence
+    concept: Halving separation makes force four times
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: F ∝ 1/r^2
+    tags: [inverse-square]
+    stem: The force between two point charges is F. If the distance between them is halved, the force becomes
+    options:
+      - 4F
+      - 2F
+      - F/2
+      - F/4
+    answer: 0
+    explanation: F ∝ 1/r^2, so halving r multiplies F by 2^2 = 4.
+
+  - id: phy-ecf-013
+    topic: coulombs-law
+    subtopic: Force in a medium
+    concept: Force in a medium is reduced by dielectric constant K
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: F_m = F/K
+    tags: [dielectric-constant]
+    stem: Two charges exert a force of 20 N on each other in air. What is the force when they are placed at the same separation in a medium of dielectric constant 5?
+    options:
+      - 100 N
+      - 4 N
+      - 20 N
+      - 0.8 N
+    answer: 1
+    explanation: In a medium, F_m = F/K = 20/5 = 4 N. The medium reduces the force, so 100 N is the opposite error.
+
+  - id: phy-ecf-014
+    topic: coulombs-law
+    subtopic: Coulomb's constant
+    concept: Value and units of 1/4πε_0
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [constants, ncert-line]
+    stem: The value of 1/4πε_0 in SI units is approximately
+    options:
+      - 8.85 × 10^{-12} N m^2 C^{-2}
+      - 9 × 10^{-9} N m^2 C^{-2}
+      - 9 × 10^9 C^2 N^{-1} m^{-2}
+      - 9 × 10^9 N m^2 C^{-2}
+    answer: 3
+    explanation: k = 1/4πε_0 ≈ 9 × 10^9 N m^2 C^{-2}. 8.85 × 10^{-12} C^2 N^{-1} m^{-2} is ε_0 itself, with different units.
+
+  - id: phy-ecf-015
+    topic: coulombs-law
+    subtopic: Sharing charge and new force
+    concept: Touching identical spheres with +q and −3q changes force
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: F = kq_1q_2/r^2
+    tags: [conservation, multi-concept, trap]
+    stem: Two identical small conducting spheres with charges +q and −3q attract each other with force F at separation r. They are touched and returned to separation r. The new force is
+    options:
+      - F/3, attractive
+      - F/3, repulsive
+      - 3F, repulsive
+      - F, repulsive
+    answer: 1
+    explanation: Initially F = 3kq^2/r^2 (attractive). After contact each sphere has (q − 3q)/2 = −q, so the new force is kq^2/r^2 = F/3 and, with like charges, repulsive.
+
+  - id: phy-ecf-016
+    topic: superposition-forces
+    subtopic: Equilateral triangle
+    concept: Net force on a charge at a vertex of an equilateral triangle of equal charges
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: F_net = √3 kq^2/a^2
+    tags: [superposition, vector-addition]
+    stem: Three equal charges q are placed at the vertices of an equilateral triangle of side a. The magnitude of the net force on any one charge is (k = 1/4πε_0)
+    options:
+      - 2kq^2/a^2
+      - kq^2/a^2
+      - √3 kq^2/a^2
+      - "0"
+    answer: 2
+    explanation: Each of the other two charges exerts kq^2/a^2 and the angle between these forces is 60°. Resultant = 2F cos 30° = √3 kq^2/a^2.
+
+  - id: phy-ecf-017
+    topic: superposition-forces
+    subtopic: Principle of superposition
+    concept: Force between two charges is unaffected by other charges
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [superposition, ncert-line]
+    stem: According to the superposition principle, the force between two charges q_1 and q_2 in the presence of a third charge q_3
+    options:
+      - increases
+      - decreases
+      - becomes zero
+      - is the same as when q_3 is absent
+    answer: 3
+    explanation: Each pair interaction is independent of other charges. The net force on q_1 changes because q_3 adds its own force, but the force due to q_2 alone is unchanged.
+
+  - id: phy-ecf-018
+    topic: superposition-forces
+    subtopic: Equilibrium of a third charge
+    concept: Neutral point between two like charges
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [equilibrium]
+    stem: Charges +4 μC and +1 μC are 30 cm apart. Where must a third charge be placed on the line joining them so that the net force on it is zero?
+    options:
+      - 10 cm from the +4 μC charge
+      - 20 cm from the +4 μC charge
+      - 15 cm from each charge
+      - 20 cm from the +1 μC charge
+    answer: 1
+    explanation: At distance x from +4 μC, 4/x^2 = 1/(0.3 − x)^2, so 2(0.3 − x) = x and x = 0.2 m. The point lies between them, closer to the smaller charge.
+
+  - id: phy-ecf-019
+    topic: superposition-forces
+    subtopic: Charge at centre of square
+    concept: Symmetry gives zero net force at centre of square of equal charges
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [symmetry]
+    stem: Four equal charges Q sit at the corners of a square. What is the net force on a charge q at the centre?
+    options:
+      - "Zero"
+      - 4kQq/a^2 where a is the side
+      - 2kQq/a^2 where a is the side
+      - √2 kQq/a^2 where a is the side
+    answer: 0
+    explanation: Forces from diagonally opposite corners are equal and opposite, so they cancel in pairs and the net force is zero.
+
+  - id: phy-ecf-020
+    topic: superposition-forces
+    subtopic: Three collinear charges in equilibrium
+    concept: Middle charge −q/4 keeps two end charges q in equilibrium
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [equilibrium, multi-concept]
+    stem: Two charges +q are placed a distance d apart. What charge Q placed midway between them keeps the whole system of three charges in equilibrium?
+    options:
+      - −q/2
+      - −q
+      - −q/4
+      - +q/4
+    answer: 2
+    explanation: For an end charge, the repulsion kq^2/d^2 must be balanced by attraction to Q at d/2, kqQ/(d/2)^2 = 4kqQ/d^2. So |Q| = q/4 and Q must be negative. The middle charge is balanced by symmetry.
+
+  - id: phy-ecf-021
+    topic: electric-field
+    subtopic: Field of a point charge
+    concept: E = kq/r^2 numerical
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: E = kq/r^2
+    tags: [point-charge-field]
+    stem: What is the magnitude of the electric field at 3 cm from a point charge of 1 nC in vacuum?
+    options:
+      - 3 × 10^2 N C^{-1}
+      - 10^4 N C^{-1}
+      - 3 × 10^5 N C^{-1}
+      - 10^2 N C^{-1}
+    answer: 1
+    explanation: E = 9 × 10^9 × 10^{-9} / (0.03)^2 = 9 / 9 × 10^{-4} = 10^4 N C^{-1}.
+
+  - id: phy-ecf-022
+    topic: electric-field
+    subtopic: Definition of electric field
+    concept: Field is force per unit positive test charge
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [definition, ncert-line]
+    stem: Why is the test charge used to define the electric field taken to be vanishingly small?
+    options:
+      - So that it does not disturb the source charge distribution
+      - So that the force on it is large
+      - Because only small charges experience force
+      - So that gravity on it can be neglected
+    answer: 0
+    explanation: E = lim F/q as q → 0. A large test charge would push the source charges around and change the very field being measured.
+
+  - id: phy-ecf-023
+    topic: electric-field
+    subtopic: Units of electric field
+    concept: N C^{-1} is equivalent to V m^{-1}
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units]
+    stem: The SI unit of electric field N C^{-1} is equivalent to
+    options:
+      - J C^{-1}
+      - V m
+      - C m^{-1}
+      - V m^{-1}
+    answer: 3
+    explanation: 1 V = 1 J C^{-1}, so V m^{-1} = J C^{-1} m^{-1} = N m C^{-1} m^{-1} = N C^{-1}.
+
+  - id: phy-ecf-024
+    topic: electric-field
+    subtopic: Motion of an electron in a field
+    concept: Acceleration a = eE/m for an electron
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: a = eE/m
+    tags: [charge-in-field]
+    stem: An electron is placed in a uniform electric field of 2 × 10^4 N C^{-1}. What is the magnitude of its acceleration? (e/m = 1.76 × 10^{11} C kg^{-1})
+    options:
+      - 1.76 × 10^{15} m s^{-2}
+      - 8.8 × 10^{15} m s^{-2}
+      - 3.52 × 10^{15} m s^{-2}
+      - 3.52 × 10^{7} m s^{-2}
+    answer: 2
+    explanation: a = (e/m)E = 1.76 × 10^{11} × 2 × 10^4 = 3.52 × 10^{15} m s^{-2}, directed opposite to E.
+
+  - id: phy-ecf-025
+    topic: electric-field
+    subtopic: Charged drop in equilibrium
+    concept: Balancing weight with electric force, qE = mg
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: qE = mg
+    tags: [equilibrium, millikan]
+    stem: An oil drop of mass 1.6 × 10^{-15} kg stays stationary between horizontal plates where the field is 5 × 10^4 N C^{-1} upward. How many excess electrons does it carry? (g = 10 m s^{-2}, e = 1.6 × 10^{-19} C)
+    options:
+      - It carries 1 excess electron
+      - It has lost 2 electrons
+      - It carries 4 excess electrons
+      - It has lost 1 electron
+    answer: 1
+    explanation: q = mg/E = 1.6 × 10^{-14} / 5 × 10^4 = 3.2 × 10^{-19} C = 2e. The force must be upward along E, so the charge is positive, meaning 2 electrons were lost, not gained.
+
+  - id: phy-ecf-026
+    topic: field-lines
+    subtopic: Properties of field lines
+    concept: Two field lines never cross
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [field-lines, ncert-line]
+    stem: Why can two electric field lines never cross each other?
+    options:
+      - Because like charges repel
+      - Because field lines are always parallel
+      - Because the field at the crossing point would have two directions
+      - Because field lines are closed loops
+    answer: 2
+    explanation: The tangent to a field line gives the direction of E. At a crossing point there would be two tangents, meaning two field directions at one point, which is impossible.
+
+  - id: phy-ecf-027
+    topic: field-lines
+    subtopic: Closed loops
+    concept: Electrostatic field lines do not form closed loops
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [field-lines, conservative-field]
+    stem: |-
+      Statement I: Electrostatic field lines start on positive charges and end on negative charges.
+      Statement II: Electrostatic field lines can form closed loops.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Field lines begin on positive charges (or at infinity) and end on negative charges (or at infinity). Because the electrostatic field is conservative, its lines cannot close on themselves.
+
+  - id: phy-ecf-028
+    topic: field-lines
+    subtopic: Density of field lines
+    concept: Crowded field lines indicate a strong field
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [field-lines]
+    stem: In a field-line diagram, the region where the lines are most closely spaced has
+    options:
+      - the strongest field
+      - the weakest field
+      - zero field
+      - the highest density of charge
+    answer: 0
+    explanation: The number of lines crossing unit area perpendicular to them is proportional to the field strength, so crowded lines mean a strong field.
+
+  - id: phy-ecf-029
+    topic: field-lines
+    subtopic: Lines at a conductor
+    concept: Field lines meet a conductor surface at right angles
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [field-lines, conductor]
+    stem: At what angle do electrostatic field lines meet the surface of a charged conductor in equilibrium?
+    options:
+      - 0°
+      - 45°
+      - 60°
+      - 90°
+    answer: 3
+    explanation: Any tangential component of E would move free charges along the surface. In electrostatic equilibrium there is none, so field lines are normal to the surface.
+
+  - id: phy-ecf-030
+    topic: electric-flux
+    subtopic: Flux through a plane area
+    concept: φ = EA cos θ with θ the angle between E and area normal
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: φ = EA cos θ
+    tags: [flux]
+    stem: A uniform field of 200 N C^{-1} makes 60° with the normal to a plane surface of area 0.1 m^2. The flux through the surface is
+    options:
+      - 20 N m^2 C^{-1}
+      - 10√3 N m^2 C^{-1}
+      - 10 N m^2 C^{-1}
+      - "0"
+    answer: 2
+    explanation: φ = EA cos 60° = 200 × 0.1 × 0.5 = 10 N m^2 C^{-1}. Using sin 60° gives 10√3, a common error.
+
+  - id: phy-ecf-031
+    topic: electric-flux
+    subtopic: Units of flux
+    concept: SI unit of electric flux is N m^2 C^{-1} or V m
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units]
+    stem: The SI unit of electric flux is
+    options:
+      - N C^{-1}
+      - V m
+      - V m^{-1}
+      - N m^{-2} C
+    answer: 1
+    explanation: φ = EA has units N C^{-1} m^2, and since N C^{-1} = V m^{-1}, this equals V m.
+
+  - id: phy-ecf-032
+    topic: electric-flux
+    subtopic: Area vector orientation
+    concept: Flux is zero when the field is parallel to the surface
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [flux]
+    stem: A uniform field E is parallel to the plane of a flat surface of area A. The flux through the surface is
+    options:
+      - EA
+      - EA/2
+      - "Zero"
+      - 2EA
+    answer: 2
+    explanation: The area vector is normal to the surface, so it is perpendicular to E and cos 90° = 0. No field lines pass through the surface.
+
+  - id: phy-ecf-033
+    topic: electric-flux
+    subtopic: Dimensions of flux
+    concept: Dimensional formula of electric flux
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [dimensions]
+    stem: The dimensional formula of electric flux is
+    options:
+      - "[ML^3T^{-3}A^{-1}]"
+      - "[MLT^{-3}A^{-1}]"
+      - "[ML^2T^{-3}A^{-1}]"
+      - "[ML^3T^{-3}A]"
+    answer: 0
+    explanation: E = F/q has [MLT^{-2}]/[AT] = [MLT^{-3}A^{-1}]. Multiplying by area [L^2] gives [ML^3T^{-3}A^{-1}].
+
+  - id: phy-ecf-034
+    topic: electric-dipole
+    subtopic: Dipole moment
+    concept: p = q × 2a and it points from −q to +q
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [dipole-moment, ncert-line]
+    stem: The direction of the electric dipole moment of a dipole is
+    options:
+      - from +q to −q
+      - perpendicular to the dipole axis
+      - from −q to +q
+      - along the equatorial line
+    answer: 2
+    explanation: By convention p = q × 2a is directed from the negative charge to the positive charge along the dipole axis.
+
+  - id: phy-ecf-035
+    topic: electric-dipole
+    subtopic: Axial and equatorial fields
+    concept: Axial field is twice the equatorial field at equal large distances
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: E_axial = 2kp/r^3, E_eq = kp/r^3
+    tags: [dipole-field]
+    stem: At the same large distance r from a short dipole, the ratio of the field on the axis to the field on the equatorial line is
+    options:
+      - "1 : 2"
+      - "1 : 1"
+      - "4 : 1"
+      - "2 : 1"
+    answer: 3
+    explanation: "E_axial = 2kp/r^3 while E_equatorial = kp/r^3, so the ratio is 2 : 1."
+
+  - id: phy-ecf-036
+    topic: electric-dipole
+    subtopic: Distance dependence
+    concept: Dipole field falls as 1/r^3
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [dipole-field, proportionality]
+    stem: At large distances, the electric field of a dipole varies with distance r as
+    options:
+      - 1/r
+      - 1/r^2
+      - 1/r^3
+      - 1/r^4
+    answer: 2
+    explanation: The fields of +q and −q nearly cancel far away; the leftover is proportional to p/r^3, faster than the 1/r^2 of a single charge.
+
+  - id: phy-ecf-037
+    topic: electric-dipole
+    subtopic: Dipole moment numerical
+    concept: p = q × d
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: p = q(2a)
+    tags: [dipole-moment]
+    stem: Charges of ±5 nC are separated by 4 mm. The dipole moment is
+    options:
+      - 2 × 10^{-11} C m
+      - 1.25 × 10^{-6} C m
+      - 2 × 10^{-8} C m
+      - 2 × 10^{-12} C m
+    answer: 0
+    explanation: p = q × d = 5 × 10^{-9} × 4 × 10^{-3} = 2 × 10^{-11} C m.
+
+  - id: phy-ecf-038
+    topic: electric-dipole
+    subtopic: Equatorial field direction
+    concept: Field on the equatorial line is antiparallel to p
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [dipole-field, trap]
+    stem: At a point on the equatorial line of an electric dipole, the electric field is
+    options:
+      - along the dipole moment
+      - opposite to the dipole moment
+      - perpendicular to the dipole moment
+      - zero
+    answer: 1
+    explanation: The components perpendicular to the axis cancel and those parallel add, pointing from +q towards −q, i.e., opposite to p. Hence E = −kp/r^3.
+
+  - id: phy-ecf-039
+    topic: dipole-in-field
+    subtopic: Torque on a dipole
+    concept: τ = pE sin θ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: τ = pE sin θ
+    tags: [torque]
+    stem: A dipole of moment 4 × 10^{-9} C m makes 30° with a uniform field of 5 × 10^4 N C^{-1}. The torque on it is
+    options:
+      - 2 × 10^{-4} N m
+      - 10^{-4} N m
+      - 1.73 × 10^{-4} N m
+      - 4 × 10^{-4} N m
+    answer: 1
+    explanation: τ = pE sin 30° = 4 × 10^{-9} × 5 × 10^4 × 0.5 = 10^{-4} N m.
+
+  - id: phy-ecf-040
+    topic: dipole-in-field
+    subtopic: Net force in uniform field
+    concept: Net force on a dipole in a uniform field is zero
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [force, ncert-line]
+    stem: An electric dipole is placed in a uniform electric field at an angle to it. It experiences
+    options:
+      - a net force and no torque
+      - neither force nor torque
+      - both a net force and a torque
+      - a torque but no net force
+    answer: 3
+    explanation: The forces qE and −qE are equal and opposite, so the net force is zero, but they act along different lines and form a couple, giving a torque pE sin θ.
+
+  - id: phy-ecf-041
+    topic: dipole-in-field
+    subtopic: Non-uniform field
+    concept: A dipole in a non-uniform field feels a net force
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [non-uniform-field]
+    stem: A dipole aligned parallel to a non-uniform field that increases in the direction of p will
+    options:
+      - move towards the region of stronger field
+      - move towards the region of weaker field
+      - remain at rest with no torque or force
+      - rotate through 180°
+    answer: 0
+    explanation: With p parallel to E, the +q end sits in the stronger field and its force outweighs the force on −q, so the net force points towards increasing field. No torque acts since θ = 0.
+
+  - id: phy-ecf-042
+    topic: dipole-in-field
+    subtopic: Maximum torque
+    concept: Torque is maximum at θ = 90°
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [torque]
+    stem: For which orientation of a dipole relative to a uniform field is the torque on it maximum?
+    options:
+      - Parallel to the field
+      - At 45° to the field
+      - Perpendicular to the field
+      - Antiparallel to the field
+    answer: 2
+    explanation: τ = pE sin θ is largest when sin θ = 1, i.e., θ = 90°. It is zero for both parallel and antiparallel orientations.
+
+  - id: phy-ecf-043
+    topic: gauss-law
+    subtopic: Statement of Gauss's law
+    concept: Total flux through a closed surface = q_enclosed/ε_0
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: φ = q/ε_0
+    tags: [gauss-law]
+    stem: A point charge of 8.85 μC lies inside a closed surface. The total electric flux through the surface is (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 10^6 N m^2 C^{-1}
+      - 10^{-6} N m^2 C^{-1}
+      - 8.85 × 10^6 N m^2 C^{-1}
+      - 10^{12} N m^2 C^{-1}
+    answer: 0
+    explanation: φ = q/ε_0 = 8.85 × 10^{-6} / 8.85 × 10^{-12} = 10^6 N m^2 C^{-1}, independent of the shape of the surface.
+
+  - id: phy-ecf-044
+    topic: gauss-law
+    subtopic: Charge at the centre of a cube
+    concept: Flux through one face is q/6ε_0
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: φ_face = q/6ε_0
+    tags: [cube, symmetry]
+    stem: A charge q is placed at the centre of a cube. The flux through one face of the cube is
+    options:
+      - q/ε_0
+      - q/8ε_0
+      - q/24ε_0
+      - q/6ε_0
+    answer: 3
+    explanation: The total flux q/ε_0 is shared equally by the six symmetric faces, giving q/6ε_0 per face.
+
+  - id: phy-ecf-045
+    topic: gauss-law
+    subtopic: Charges outside the surface
+    concept: External charges contribute zero net flux
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [gauss-law, trap]
+    stem: A point charge Q is placed just outside a closed spherical surface. The net flux through the sphere is
+    options:
+      - Q/ε_0
+      - Q/2ε_0
+      - "Zero"
+      - −Q/ε_0
+    answer: 2
+    explanation: Every field line from an external charge that enters the closed surface also leaves it, so the inward and outward fluxes cancel. Only enclosed charge gives net flux.
+
+  - id: phy-ecf-046
+    topic: gauss-law
+    subtopic: Field in Gauss's law
+    concept: E in Gauss's law is due to all charges, inside and outside
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [gauss-law, trap, ncert-line]
+    stem: |-
+      Statement I: In Gauss's law, q is the net charge enclosed by the Gaussian surface.
+      Statement II: The electric field E appearing in Gauss's law is due only to the charges enclosed by the surface.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The flux depends only on enclosed charge, but the field E at each point of the surface is the total field due to all charges, inside and outside. External charges change E point by point while their net flux contribution is zero.
+
+  - id: phy-ecf-047
+    topic: gauss-applications
+    subtopic: Infinite line charge
+    concept: E = λ/2πε_0r for an infinite line charge
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: E = λ/(2πε_0 r) = 2kλ/r
+    tags: [line-charge]
+    stem: An infinite line charge has λ = 2 × 10^{-8} C m^{-1}. The field at 2 cm from it is
+    options:
+      - 9 × 10^3 N C^{-1}
+      - 1.8 × 10^4 N C^{-1}
+      - 1.8 × 10^6 N C^{-1}
+      - 1.8 × 10^{4} N C^{-1} along the wire
+    answer: 1
+    explanation: E = 2kλ/r = 2 × 9 × 10^9 × 2 × 10^{-8} / 0.02 = 360/0.02 = 1.8 × 10^4 N C^{-1}, directed radially, not along the wire.
+
+  - id: phy-ecf-048
+    topic: gauss-applications
+    subtopic: Infinite plane sheet
+    concept: Field of an infinite sheet is σ/2ε_0, independent of distance
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: E = σ/2ε_0
+    tags: [plane-sheet, proportionality]
+    stem: How does the electric field of a uniformly charged infinite plane sheet depend on the distance r from it?
+    options:
+      - It is proportional to 1/r^2
+      - It is proportional to 1/r
+      - It is proportional to r
+      - It is independent of r
+    answer: 3
+    explanation: For an infinite sheet E = σ/2ε_0, which contains no r. The field lines are parallel and do not spread out.
+
+  - id: phy-ecf-049
+    topic: gauss-applications
+    subtopic: Spherical shell inside
+    concept: Field inside a uniformly charged thin shell is zero
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [spherical-shell, ncert-line]
+    stem: The electric field at a point inside a uniformly charged thin spherical shell is
+    options:
+      - "Zero"
+      - kQ/R^2
+      - kQ/2R^2
+      - kQr/R^3
+    answer: 0
+    explanation: A Gaussian sphere drawn inside the shell encloses no charge; by symmetry E is the same everywhere on it, so E = 0.
+
+  - id: phy-ecf-050
+    topic: gauss-applications
+    subtopic: Spherical shell outside
+    concept: Outside a shell the field is as if the charge were at the centre
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: E = kQ/r^2 (r ≥ R)
+    tags: [spherical-shell]
+    stem: A thin spherical shell of radius 10 cm carries 2 μC uniformly. The field at 20 cm from its centre is
+    options:
+      - 1.8 × 10^6 N C^{-1}
+      - 9 × 10^5 N C^{-1}
+      - 4.5 × 10^5 N C^{-1}
+      - "Zero"
+    answer: 2
+    explanation: Outside, E = kQ/r^2 = 9 × 10^9 × 2 × 10^{-6} / 0.04 = 4.5 × 10^5 N C^{-1}. Using the radius 0.1 m instead of 0.2 m gives 1.8 × 10^6.
+
+  - id: phy-ecf-051
+    topic: charging-methods
+    subtopic: Induction versus conduction
+    concept: Features of charging by induction and by conduction
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [induction, conduction]
+    stem: |-
+      Consider the following statements.
+      I. Charging by induction requires the charged body to touch the conductor.
+      II. In charging by induction, the inducing body loses none of its charge.
+      III. Charging by conduction gives the conductor charge of the same sign as the charging body.
+      IV. Earthing a conductor near a charged rod always leaves it neutral.
+      Which statements are correct?
+    options:
+      - I and II only
+      - III and IV only
+      - I, II and IV only
+      - II and III only
+    answer: 3
+    explanation: Induction works without contact and the inducing rod keeps its charge (II true, I false). Conduction shares charge, so the sign is the same (III true). An earthed conductor near a charged rod holds an induced charge of opposite sign, so IV is false.
+
+  - id: phy-ecf-052
+    topic: charging-methods
+    subtopic: Gold-leaf electroscope
+    concept: Leaves diverge by induction when a charged rod is brought near the cap
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [electroscope, induction]
+    stem: |-
+      Assertion (A): The leaves of an uncharged gold-leaf electroscope diverge when a charged rod is brought near its cap without touching it.
+      Reason (R): The rod induces charge of the same sign on both leaves, which then repel each other.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The rod draws unlike charge to the cap and pushes like charge down to the leaves. Both leaves then carry like charge and repel, so they diverge; R is exactly the reason.
+
+  - id: phy-ecf-053
+    topic: charging-methods
+    subtopic: Charging two spheres by induction
+    concept: Separating touching spheres near a charged rod gives equal and opposite charges
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [induction, conservation]
+    stem: Two uncharged metal spheres A and B on insulating stands touch each other. A positively charged rod is brought near A, the spheres are separated while the rod is held there, and then the rod is removed. What are the final charges?
+    options:
+      - A positive, B negative
+      - A negative, B positive, equal in magnitude
+      - Both negative
+      - Both remain neutral
+    answer: 1
+    explanation: The rod attracts electrons to A, leaving B with an electron deficit. Separating the spheres traps this distribution, so A is negative and B positive, with equal magnitudes because the pair started neutral.
+
+  - id: phy-ecf-054
+    topic: charging-methods
+    subtopic: Conductors and insulators
+    concept: The earth is a conductor
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [conductors, ncert-line]
+    stem: Which of the following is a conductor of electricity?
+    options:
+      - Porcelain
+      - Nylon
+      - The earth
+      - Plastic
+    answer: 2
+    explanation: Metals, human and animal bodies and the earth are conductors. Glass, porcelain, plastics, nylon and wood are insulators.
+
+  - id: phy-ecf-055
+    topic: charge-properties
+    subtopic: Basic properties of charge
+    concept: Charge is scalar, quantised, conserved and invariant with speed
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [properties-of-charge, trap]
+    stem: |-
+      Consider the following statements about electric charge.
+      I. Charge is a scalar quantity.
+      II. Charge is quantised.
+      III. The total charge of an isolated system is conserved.
+      IV. The charge on a body increases as its speed increases.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: Charge is a scalar, quantised and conserved. Unlike relativistic mass, charge does not depend on speed, so IV is false.
+
+  - id: phy-ecf-056
+    topic: charge-properties
+    subtopic: Charge of a mole of electrons
+    concept: Charge of one mole of electrons ≈ 9.6 × 10^4 C
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: Q = N_A e
+    tags: [quantisation]
+    stem: What is the magnitude of the total charge on one mole of electrons? (N_A = 6.02 × 10^{23} mol^{-1}, e = 1.6 × 10^{-19} C)
+    options:
+      - 1.6 × 10^{-19} C
+      - 6.02 × 10^{23} C
+      - 3.8 × 10^{42} C
+      - 9.6 × 10^4 C
+    answer: 3
+    explanation: Q = N_A e = 6.02 × 10^{23} × 1.6 × 10^{-19} ≈ 9.63 × 10^4 C, which is the Faraday constant.
+
+  - id: phy-ecf-057
+    topic: charge-properties
+    subtopic: Charge in ordinary matter
+    concept: A cup of water contains enormous positive and negative charge
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    tags: [quantisation, multi-concept]
+    stem: About how much negative charge (total charge of all electrons) is present in 250 g of water? (molar mass 18 g mol^{-1}, 10 electrons per molecule, N_A = 6.02 × 10^{23} mol^{-1}, e = 1.6 × 10^{-19} C)
+    options:
+      - 1.34 × 10^7 C
+      - 1.34 × 10^6 C
+      - 1.34 × 10^{-7} C
+      - 8.4 × 10^{25} C
+    answer: 0
+    explanation: Molecules = (250/18) × 6.02 × 10^{23} ≈ 8.36 × 10^{24}. Electrons = 8.36 × 10^{25}, so charge = 8.36 × 10^{25} × 1.6 × 10^{-19} ≈ 1.34 × 10^7 C. The 8.4 × 10^{25} option is the number of electrons, not the charge.
+
+  - id: phy-ecf-058
+    topic: charge-properties
+    subtopic: Quantisation at macroscopic scale
+    concept: Quantisation is ignored for macroscopic charges because e is tiny
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [quantisation, ncert-line]
+    stem: |-
+      Assertion (A): In problems with charges of the order of microcoulombs, charge can be treated as a continuous quantity.
+      Reason (R): A charge of 1 μC contains about 10^{13} elementary charges, so the graininess is not noticeable.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: 1 μC / 1.6 × 10^{-19} C ≈ 6 × 10^{12}, of order 10^{13}. With so many units, a change of one e is negligible, which is why quantisation can be ignored at macroscopic scale.
+
+  - id: phy-ecf-059
+    topic: charge-properties
+    subtopic: Conservation of charge
+    concept: Net charge cannot be created in an isolated system
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [conservation, trap]
+    stem: Which of the following statements is INCORRECT?
+    options:
+      - The charge of a body does not change with its speed
+      - A body becomes very slightly heavier when it is given a negative charge
+      - The smallest free charge observed in nature has magnitude e
+      - An isolated system can gain net positive charge without any charge entering it
+    answer: 3
+    explanation: Charge conservation forbids a change in the net charge of an isolated system; charges are created or destroyed only in equal and opposite pairs. Adding electrons adds their tiny mass, so a negatively charged body is slightly heavier.
+
+  - id: phy-ecf-060
+    topic: coulombs-law
+    subtopic: Sharing charge with a third sphere
+    concept: Successive contact with an identical neutral sphere changes force to 3F/8
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [conservation, multi-concept]
+    stem: Two identical conducting spheres, each with charge q, repel with force F at separation r. A third identical uncharged sphere touches the first, then the second, and is removed. The new force between the first two is
+    options:
+      - F/2
+      - 3F/4
+      - F/4
+      - 3F/8
+    answer: 3
+    explanation: After touching the first, it and the third sphere each have q/2. Touching the second gives (q/2 + q)/2 = 3q/4 each. New force ∝ (q/2)(3q/4) = 3q^2/8, i.e., 3F/8.
+
+  - id: phy-ecf-061
+    topic: coulombs-law
+    subtopic: Electric versus gravitational force
+    concept: Electric force between electron and proton is about 10^{39} times gravity
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [comparison, ncert-line]
+    stem: The ratio of the electric force to the gravitational force between an electron and a proton is of the order of
+    options:
+      - 10^{36}
+      - 10^{39}
+      - 10^{19}
+      - 10^{-39}
+    answer: 1
+    explanation: F_e/F_G = ke^2/(Gm_em_p) ≈ 2.4 × 10^{39}. The value 10^{36} is for two protons.
+
+  - id: phy-ecf-062
+    topic: coulombs-law
+    subtopic: Equivalent distance in a medium
+    concept: Same force in air needs separation r√K
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = q_1q_2/(4πε_0 K r^2)
+    tags: [dielectric-constant]
+    stem: Two charges 10 cm apart in a medium of dielectric constant 4 exert a force F on each other. At what separation in air would the same charges exert the same force?
+    options:
+      - 40 cm
+      - 20 cm
+      - 5 cm
+      - 2.5 cm
+    answer: 1
+    explanation: Equal forces need K r_m^2 = r_a^2, so r_a = r_m √K = 10 × 2 = 20 cm. Multiplying by K instead of √K gives 40 cm.
+
+  - id: phy-ecf-063
+    topic: coulombs-law
+    subtopic: Graph of Coulomb force
+    concept: F versus 1/r^2 is a straight line through the origin
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [graph, proportionality]
+    stem: For two fixed point charges, a graph of the force F between them against 1/r^2 is
+    options:
+      - a rectangular hyperbola
+      - a parabola
+      - a straight line through the origin
+      - a straight line parallel to the 1/r^2 axis
+    answer: 2
+    explanation: F = kq_1q_2 (1/r^2), so F is directly proportional to 1/r^2, giving a straight line through the origin with slope kq_1q_2.
+
+  - id: phy-ecf-064
+    topic: coulombs-law
+    subtopic: Maximum force by dividing a charge
+    concept: Force between q and Q − q is maximum when q = Q/2
+    category: application
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [maximisation]
+    stem: A charge Q is divided into two parts q and (Q − q) which are placed a fixed distance apart. For maximum repulsion between them, q should be
+    options:
+      - Q/2
+      - Q/4
+      - Q/3
+      - 2Q/3
+    answer: 0
+    explanation: F ∝ q(Q − q). Setting dF/dq = Q − 2q = 0 gives q = Q/2.
+
+  - id: phy-ecf-065
+    topic: coulombs-law
+    subtopic: Charged pendulums
+    concept: Separation of charged hanging balls varies as q^{2/3}
+    category: application
+    format: case
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [equilibrium, multi-concept]
+    stem: Two identical small charged balls hang from a common point by long threads and settle at a small separation x. If the charge on each ball is doubled, the new separation (still small-angle) is
+    options:
+      - 2x
+      - 4x
+      - 2^{2/3} x
+      - √2 x
+    answer: 2
+    explanation: For small angles tan θ ≈ x/2L = F/mg = kq^2/(x^2 mg), so x^3 ∝ q^2 and x ∝ q^{2/3}. Doubling q multiplies x by 2^{2/3}.
+
+  - id: phy-ecf-066
+    topic: superposition-forces
+    subtopic: Charges at corners of a square
+    concept: Net force on a corner charge of a square of equal charges
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [vector-addition, multi-concept]
+    stem: Four equal charges q are placed at the corners of a square of side a. The net force on any one charge has magnitude (k = 1/4πε_0)
+    options:
+      - (kq^2/a^2)(1 + √2)
+      - (kq^2/a^2)(2 + ½)
+      - √2 kq^2/a^2
+      - (kq^2/a^2)(√2 + ½)
+    answer: 3
+    explanation: The two adjacent charges give forces kq^2/a^2 at 90°, resultant √2 kq^2/a^2 along the diagonal. The opposite corner at √2a adds kq^2/2a^2 along the same diagonal. Total (kq^2/a^2)(√2 + ½).
+
+  - id: phy-ecf-067
+    topic: superposition-forces
+    subtopic: Perpendicular forces
+    concept: Forces add as vectors
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [vector-addition]
+    stem: A charge experiences 3 N along +x due to one charge and 4 N along +y due to another. The net force on it is
+    options:
+      - 7 N
+      - 1 N
+      - 5 N
+      - 12 N
+    answer: 2
+    explanation: Coulomb forces add vectorially, √(3^2 + 4^2) = 5 N. Adding magnitudes (7 N) ignores direction.
+
+  - id: phy-ecf-068
+    topic: superposition-forces
+    subtopic: Three collinear charges
+    concept: Net force on an end charge of +q, −q, +q arrangement
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    tags: [superposition]
+    stem: Charges +q, −q and +q are at x = 0, x = a and x = 2a. The net force on the charge at x = 2a is
+    options:
+      - 3kq^2/4a^2, towards the origin
+      - 5kq^2/4a^2, away from the origin
+      - 3kq^2/4a^2, away from the origin
+      - kq^2/a^2, towards the origin
+    answer: 0
+    explanation: The −q at distance a attracts it towards the origin with kq^2/a^2; the +q at 2a repels it with kq^2/4a^2. Net = 3kq^2/4a^2 towards the origin.
+
+  - id: phy-ecf-069
+    topic: superposition-forces
+    subtopic: Null point for unlike charges
+    concept: For unlike charges the null point lies outside, nearer the smaller charge
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [equilibrium, trap]
+    stem: Charges +9 μC and −1 μC are fixed at x = 0 and x = 20 cm. At what position will a small test charge feel zero net force?
+    options:
+      - x = 15 cm
+      - x = 30 cm
+      - x = −10 cm
+      - x = 5 cm
+    answer: 1
+    explanation: For unlike charges the forces cancel only outside, beyond the smaller charge. With x > 20 cm, 9/x^2 = 1/(x − 0.2)^2 gives 3(x − 0.2) = x, so x = 0.3 m = 30 cm. Points between the charges get forces in the same direction.
+
+  - id: phy-ecf-070
+    topic: superposition-forces
+    subtopic: Symmetric arrangement
+    concept: Equal charges at vertices of a regular polygon give zero force at centre
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [symmetry, superposition]
+    stem: |-
+      Assertion (A): A charge at the centre of a regular hexagon with equal charges at all six vertices experiences no net force.
+      Reason (R): By superposition, forces due to charges at opposite vertices are equal and opposite and cancel.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The six vertices form three opposite pairs at equal distances; each pair gives equal and opposite forces. Superposition lets us add them, so the net force is zero and R explains A.
+
+  - id: phy-ecf-071
+    topic: electric-field
+    subtopic: Field between unlike charges
+    concept: At the midpoint of +q and −q the fields add, E = 8kq/d^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: E = 2 × kq/(d/2)^2
+    tags: [superposition, point-charge-field]
+    stem: Charges +1 μC and −1 μC are 20 cm apart. The field at the midpoint is
+    options:
+      - zero
+      - 1.8 × 10^6 N C^{-1} towards +1 μC
+      - 1.8 × 10^6 N C^{-1} towards −1 μC
+      - 4.5 × 10^5 N C^{-1} towards −1 μC
+    answer: 2
+    explanation: Each charge gives kq/(0.1)^2 = 9 × 10^5 N C^{-1}, both pointing from + towards −. Total 1.8 × 10^6 N C^{-1} towards the negative charge.
+
+  - id: phy-ecf-072
+    topic: electric-field
+    subtopic: Field between like charges
+    concept: Field at the midpoint of two equal like charges is zero
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [superposition, null-point]
+    stem: Two equal positive charges are separated by a distance 2r. The electric field at the midpoint is
+    options:
+      - 2kq/r^2
+      - 4kq/r^2
+      - kq/r^2
+      - zero
+    answer: 3
+    explanation: Each charge produces kq/r^2 at the midpoint, but in opposite directions, so the fields cancel.
+
+  - id: phy-ecf-073
+    topic: electric-field
+    subtopic: Charged ring
+    concept: Axial field of a ring is maximum at x = R/√2
+    category: application
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: E = kQx/(x^2 + R^2)^{3/2}
+    tags: [continuous-charge, ring]
+    stem: A thin ring of radius R carries charge Q uniformly. At what distance from its centre on the axis is the electric field maximum?
+    options:
+      - R
+      - R/√2
+      - √2 R
+      - R/2
+    answer: 1
+    explanation: E = kQx/(x^2 + R^2)^{3/2}. Setting dE/dx = 0 gives R^2 + x^2 − 3x^2 = 0, so x = R/√2. The field is zero at the centre and falls off far away.
+
+  - id: phy-ecf-074
+    topic: electric-field
+    subtopic: Deflection of an electron beam
+    concept: Deflection y = ½(eE/m)(L/v)^2 between plates
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 150
+    ncert: true
+    battle: false
+    formula: y = eEL^2/(2mv^2)
+    tags: [charge-in-field, multi-concept]
+    stem: An electron enters the region between two plates with speed 2 × 10^7 m s^{-1} perpendicular to a uniform field of 910 N C^{-1}. The plates are 10 cm long. The transverse deflection on leaving the plates is about (e/m = 1.76 × 10^{11} C kg^{-1})
+    options:
+      - 4 mm
+      - 1 mm
+      - 0.2 mm
+      - 2 mm
+    answer: 3
+    explanation: a = (e/m)E ≈ 1.6 × 10^{14} m s^{-2}; time t = L/v = 0.1/2 × 10^7 = 5 × 10^{-9} s. y = ½at^2 = 0.5 × 1.6 × 10^{14} × 2.5 × 10^{-17} = 2 × 10^{-3} m = 2 mm.
+
+  - id: phy-ecf-075
+    topic: electric-field
+    subtopic: Path of a charge in a uniform field
+    concept: A charge entering perpendicular to a uniform field follows a parabola
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [charge-in-field]
+    stem: A charged particle enters a uniform electric field with velocity perpendicular to the field. Its path inside the field is
+    options:
+      - a straight line
+      - a circle
+      - a parabola
+      - a helix
+    answer: 2
+    explanation: The particle has constant velocity perpendicular to E and uniform acceleration along E, just like a horizontally thrown projectile, so its path is a parabola.
+
+  - id: phy-ecf-076
+    topic: electric-field
+    subtopic: Electron and proton in the same field
+    concept: Equal forces but accelerations inversely proportional to mass
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [charge-in-field, trap]
+    stem: An electron and a proton are placed in the same uniform electric field. The ratio of the electron's acceleration to the proton's is about
+    options:
+      - "1 : 1"
+      - "1836 : 1"
+      - "1 : 1836"
+      - "43 : 1"
+    answer: 1
+    explanation: Both feel force eE (opposite directions). Acceleration = eE/m, so a_e/a_p = m_p/m_e ≈ 1836. Equal forces do not mean equal accelerations.
+
+  - id: phy-ecf-077
+    topic: electric-field
+    subtopic: Time of fall in a field
+    concept: Time to cover a distance from rest scales as √m
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: t = √(2dm/eE)
+    tags: [charge-in-field, multi-concept]
+    stem: An electron and a proton, each starting from rest, move the same distance in the same uniform field. The ratio of the proton's travel time to the electron's is about (m_p/m_e = 1836)
+    options:
+      - "43"
+      - "1836"
+      - "1"
+      - 1/43
+    answer: 0
+    explanation: d = ½(eE/m)t^2 gives t = √(2dm/eE) ∝ √m. So t_p/t_e = √1836 ≈ 43. The heavier proton takes longer.
+
+  - id: phy-ecf-078
+    topic: field-lines
+    subtopic: Properties of field lines
+    concept: Field lines are continuous in charge-free regions
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [field-lines]
+    stem: |-
+      Consider these statements about electrostatic field lines.
+      I. In a charge-free region, field lines are continuous curves without breaks.
+      II. A field line may have a sudden break in a charge-free region.
+      III. Field lines of an isolated positive charge point radially outward.
+      IV. A uniform field is shown by equally spaced parallel lines.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, II, III and IV
+      - I, III and IV only
+    answer: 3
+    explanation: Field lines are continuous in a charge-free region (so II is false), radially outward from a positive charge, and parallel and equidistant for a uniform field.
+
+  - id: phy-ecf-079
+    topic: field-lines
+    subtopic: Two like charges
+    concept: Field lines of two equal positive charges bend away from each other
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [field-lines, neutral-point]
+    stem: Which statement correctly describes the field-line pattern of two equal positive point charges?
+    options:
+      - Lines from each charge curve away from the other, and no line joins the two charges
+      - Lines start on one charge and end on the other
+      - Lines form closed loops around both charges
+      - The field is strongest at the midpoint between them
+    answer: 0
+    explanation: Like charges repel, so their lines bend away and none connects the two; there is a neutral point with zero field at the midpoint. Lines joining two charges occur only for unlike charges.
+
+  - id: phy-ecf-080
+    topic: field-lines
+    subtopic: Number of lines and charge
+    concept: Number of lines is proportional to charge; excess lines go to infinity
+    category: application
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [field-lines, multi-concept]
+    stem: A field-line sketch is drawn with 8 lines per charge q. For charges +2q and −q placed near each other, how many lines go off to infinity?
+    options:
+      - "16"
+      - "8"
+      - "24"
+      - "0"
+    answer: 1
+    explanation: 16 lines leave +2q and 8 of them end on −q. The remaining 8 must go to infinity since lines begin and end only on charges.
+
+  - id: phy-ecf-081
+    topic: field-lines
+    subtopic: Direction of field lines
+    concept: Field lines converge into a negative charge
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [field-lines]
+    stem: All field lines near an isolated point charge point radially inward towards it. The charge is
+    options:
+      - positive
+      - zero
+      - negative
+      - of either sign
+    answer: 2
+    explanation: Field lines end on negative charges, so lines converging into a charge show that it is negative.
+
+  - id: phy-ecf-082
+    topic: electric-flux
+    subtopic: Flux through a curved surface
+    concept: Flux through a hemisphere in a uniform field equals EπR^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: φ = E × projected area
+    tags: [flux, trap]
+    stem: A hemispherical bowl of radius R is placed in a uniform field E parallel to its axis. The flux through its curved surface is
+    options:
+      - 2πR^2E
+      - πR^2E
+      - "Zero"
+      - 4πR^2E
+    answer: 1
+    explanation: The same lines that cross the curved surface also cross the flat circular opening, so the flux equals E × πR^2. Using the curved area 2πR^2 is the trap.
+
+  - id: phy-ecf-083
+    topic: electric-flux
+    subtopic: Closed surface in a uniform field
+    concept: Net flux through a closed cylinder in a uniform field is zero
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [flux, closed-surface]
+    stem: A closed cylinder of radius R and length L has its axis parallel to a uniform field E. The net flux through the whole cylinder is
+    options:
+      - πR^2E
+      - 2πR^2E
+      - 2πRLE
+      - "Zero"
+    answer: 3
+    explanation: Flux into one flat end (−EπR^2) equals flux out of the other (+EπR^2), and the curved surface is parallel to E. The net flux is zero, as expected since no charge is enclosed.
+
+  - id: phy-ecf-084
+    topic: electric-flux
+    subtopic: Flux with vector field
+    concept: φ = E · A picks out the component along the area vector
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: φ = E · A
+    tags: [flux, vectors]
+    stem: A field E = (2i + 3j + 4k) × 10^3 N C^{-1} (i, j, k unit vectors along x, y, z) passes through a flat area of 0.02 m^2 lying in the x–z plane. The flux through it is
+    options:
+      - 40 N m^2 C^{-1}
+      - 60 N m^2 C^{-1}
+      - 80 N m^2 C^{-1}
+      - 180 N m^2 C^{-1}
+    answer: 1
+    explanation: A surface in the x–z plane has its area vector along y, so φ = E_y A = 3 × 10^3 × 0.02 = 60 N m^2 C^{-1}. Taking E_z (80) confuses the plane with its normal.
+
+  - id: phy-ecf-085
+    topic: electric-flux
+    subtopic: Closed surfaces
+    concept: Uniform field gives zero net flux through any closed surface
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [flux, closed-surface]
+    stem: Which statement about electric flux is correct?
+    options:
+      - The net flux of a uniform field through any closed surface is zero
+      - The flux through a surface is maximum when the field is parallel to it
+      - Flux is a vector quantity
+      - Outward flux is conventionally taken as negative
+    answer: 0
+    explanation: In a uniform field every line entering a closed surface also leaves it, so net flux is zero. Flux is a scalar, maximum when E is along the normal, and outward flux is taken as positive.
+
+  - id: phy-ecf-086
+    topic: electric-dipole
+    subtopic: Axial field numerical
+    concept: E_axial = 2kp/r^3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: E = 2kp/r^3
+    tags: [dipole-field]
+    stem: A short dipole has p = 4 × 10^{-9} C m. The field at 20 cm from its centre on the axis is
+    options:
+      - 4500 N C^{-1}
+      - 18000 N C^{-1}
+      - 9000 N C^{-1}
+      - 900 N C^{-1}
+    answer: 2
+    explanation: E = 2kp/r^3 = 2 × 9 × 10^9 × 4 × 10^{-9} / (0.2)^3 = 72/0.008 = 9000 N C^{-1}. Dropping the factor 2 gives the equatorial value 4500.
+
+  - id: phy-ecf-087
+    topic: electric-dipole
+    subtopic: NCERT dipole example
+    concept: Axial field of ±10 μC dipole at 15 cm
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: E = 2kp/r^3
+    tags: [dipole-field]
+    stem: Charges ±10 μC are 5 mm apart. The field at 15 cm from the dipole centre on its axis is about
+    options:
+      - 2.7 × 10^5 N C^{-1}
+      - 1.3 × 10^5 N C^{-1}
+      - 5.3 × 10^5 N C^{-1}
+      - 2.7 × 10^3 N C^{-1}
+    answer: 0
+    explanation: p = 10^{-5} × 5 × 10^{-3} = 5 × 10^{-8} C m. E = 2kp/r^3 = 2 × 9 × 10^9 × 5 × 10^{-8} / 3.375 × 10^{-3} ≈ 2.7 × 10^5 N C^{-1}, along p. 1.3 × 10^5 would be the equatorial value.
+
+  - id: phy-ecf-088
+    topic: electric-dipole
+    subtopic: Distance dependence of fields
+    concept: Match charge distributions with how their field falls off
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [proportionality, multi-concept]
+    stem: |-
+      Match the field source (List I) with the distance dependence of its field (List II).
+      List I: P. Point charge; Q. Short dipole at large distance; R. Infinite uniform line charge; S. Infinite uniform plane sheet
+      List II: 1. 1/r; 2. 1/r^2; 3. 1/r^3; 4. independent of r
+    options:
+      - P-2, Q-1, R-3, S-4
+      - P-3, Q-2, R-1, S-4
+      - P-2, Q-3, R-4, S-1
+      - P-2, Q-3, R-1, S-4
+    answer: 3
+    explanation: Point charge kq/r^2; dipole ∝ p/r^3; line charge λ/2πε_0r; plane sheet σ/2ε_0 independent of r.
+
+  - id: phy-ecf-089
+    topic: electric-dipole
+    subtopic: Axial versus equatorial
+    concept: Combining 1/r^3 dependence with the factor of 2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [dipole-field, multi-concept]
+    stem: The field of a short dipole at distance r on its axis is E. The field at distance 2r on its equatorial line is
+    options:
+      - E/8
+      - E/16
+      - E/4
+      - E/2
+    answer: 1
+    explanation: E = 2kp/r^3. At 2r on the equatorial line, E' = kp/(2r)^3 = kp/8r^3 = E/16.
+
+  - id: phy-ecf-090
+    topic: electric-dipole
+    subtopic: Dipole with zero net charge
+    concept: A dipole has zero net charge but a non-zero field
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [dipole-field]
+    stem: |-
+      Assertion (A): The net charge of an electric dipole is zero, yet it produces an electric field.
+      Reason (R): The two charges are separated, so their fields at any point do not cancel exactly.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The charges sit at different positions, so a point is at different distances and directions from them. Their fields do not cancel exactly; the residue falls off as 1/r^3.
+
+  - id: phy-ecf-091
+    topic: dipole-in-field
+    subtopic: Maximum torque numerical
+    concept: τ_max = pE at 90°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: τ = pE sin θ
+    tags: [torque]
+    stem: A dipole of charges ±2 μC separated by 1 cm is held perpendicular to a uniform field of 10^5 N C^{-1}. The torque on it is
+    options:
+      - 2 × 10^{-8} N m
+      - 10^{-3} N m
+      - 2 × 10^{-3} N m
+      - 4 × 10^{-3} N m
+    answer: 2
+    explanation: p = 2 × 10^{-6} × 10^{-2} = 2 × 10^{-8} C m, and τ = pE sin 90° = 2 × 10^{-8} × 10^5 = 2 × 10^{-3} N m.
+
+  - id: phy-ecf-092
+    topic: dipole-in-field
+    subtopic: Equilibrium of a dipole
+    concept: Parallel is stable, antiparallel is unstable, both torque-free
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [equilibrium]
+    stem: |-
+      Statement I: A dipole aligned parallel to a uniform field is in stable equilibrium.
+      Statement II: A dipole aligned antiparallel to a uniform field experiences no torque but is in unstable equilibrium.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: At θ = 0 and θ = 180° the torque pE sin θ is zero. A small tilt from 0 produces a restoring torque (stable); a small tilt from 180° produces a torque that turns it further away (unstable).
+
+  - id: phy-ecf-093
+    topic: dipole-in-field
+    subtopic: Dipole near a point charge
+    concept: A dipole pointing radially away from +Q is attracted towards it
+    category: application
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [non-uniform-field, trap]
+    stem: A small dipole is placed near a positive point charge Q with its dipole moment pointing directly away from Q. The dipole
+    options:
+      - is repelled from Q
+      - experiences only a torque
+      - experiences no force or torque
+      - is attracted towards Q
+    answer: 3
+    explanation: The −q end is nearer to Q and feels a stronger attraction than the repulsion on the farther +q end, so the net force is towards Q. With p along E, there is no torque.
+
+  - id: phy-ecf-094
+    topic: dipole-in-field
+    subtopic: Direction of torque
+    concept: τ = p × E gives torque direction
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: τ = p × E
+    tags: [torque, vectors]
+    stem: A dipole moment points along +x in a uniform field along +y. The torque on the dipole is along
+    options:
+      - −z
+      - +z
+      - +x
+      - +y
+    answer: 1
+    explanation: τ = p × E = (x-direction) × (y-direction) = +z direction. This torque turns p towards E.
+
+  - id: phy-ecf-095
+    topic: gauss-law
+    subtopic: Charge at a corner of a cube
+    concept: A charge at a cube corner gives flux q/8ε_0 through the cube
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [cube, symmetry, trap]
+    stem: A point charge q is placed at one corner of a cube. The total flux through the cube is
+    options:
+      - q/ε_0
+      - q/6ε_0
+      - q/8ε_0
+      - q/24ε_0
+    answer: 2
+    explanation: Eight such cubes around the corner would enclose q completely, so each gets q/8ε_0. The faces touching the corner get none, and each of the three far faces gets q/24ε_0.
+
+  - id: phy-ecf-096
+    topic: gauss-law
+    subtopic: Charge from measured flux
+    concept: q = ε_0 φ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: q = ε_0 φ
+    tags: [gauss-law]
+    stem: The net outward flux through a closed surface is 4 × 10^3 N m^2 C^{-1}. The net charge inside is (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 4.5 × 10^{-7} C
+      - 3.54 × 10^{-9} C
+      - 8.85 × 10^{-8} C
+      - 3.54 × 10^{-8} C
+    answer: 3
+    explanation: q = ε_0 φ = 8.85 × 10^{-12} × 4 × 10^3 = 3.54 × 10^{-8} C.
+
+  - id: phy-ecf-097
+    topic: gauss-law
+    subtopic: Only enclosed charge counts
+    concept: Flux counts algebraic sum of enclosed charges only
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [gauss-law, trap]
+    stem: A closed surface encloses charges +2q, −q and +3q, while a charge +5q lies outside it. The net flux through the surface is
+    options:
+      - 9q/ε_0
+      - 4q/ε_0
+      - 6q/ε_0
+      - 5q/ε_0
+    answer: 1
+    explanation: Only enclosed charge counts, algebraically, 2q − q + 3q = 4q, so φ = 4q/ε_0. The outside +5q contributes zero net flux.
+
+  - id: phy-ecf-098
+    topic: gauss-law
+    subtopic: Basis of Gauss's law
+    concept: Gauss's law follows from the inverse-square law
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [gauss-law, inverse-square]
+    stem: |-
+      Assertion (A): Gauss's law is a consequence of the inverse-square nature of Coulomb's law.
+      Reason (R): For an inverse-square field, the flux of a point charge through a concentric sphere is independent of the sphere's radius.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: E ∝ 1/r^2 while the sphere's area ∝ r^2, so flux = (kq/r^2)(4πr^2) = q/ε_0 regardless of r. This radius-independence is what makes the flux depend only on enclosed charge, so R explains A.
+
+  - id: phy-ecf-099
+    topic: gauss-applications
+    subtopic: Two parallel oppositely charged sheets
+    concept: Field is σ/ε_0 between and zero outside oppositely charged sheets
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: E = σ/ε_0
+    tags: [plane-sheet, superposition]
+    stem: Two large parallel sheets carry charge densities +σ and −σ. The field between the sheets and outside them is
+    options:
+      - σ/2ε_0 between, σ/ε_0 outside
+      - zero between, σ/ε_0 outside
+      - σ/ε_0 both between and outside
+      - σ/ε_0 between, zero outside
+    answer: 3
+    explanation: Each sheet gives σ/2ε_0. Between the sheets the two fields point the same way and add to σ/ε_0; outside they point opposite ways and cancel.
+
+  - id: phy-ecf-100
+    topic: gauss-applications
+    subtopic: Uniformly charged solid sphere
+    concept: E ∝ r inside and ∝ 1/r^2 outside a uniformly charged solid sphere
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    formula: E = kQr/R^3 (r ≤ R), kQ/r^2 (r ≥ R)
+    tags: [solid-sphere, multi-concept]
+    stem: For a uniformly charged non-conducting solid sphere of radius R, what is the ratio of the field at r = R/2 to the field at r = 2R?
+    options:
+      - "1 : 1"
+      - "2 : 1"
+      - "1 : 2"
+      - "4 : 1"
+    answer: 1
+    explanation: "Inside, E = kQr/R^3 gives kQ/2R^2 at R/2. Outside, E = kQ/r^2 gives kQ/4R^2 at 2R. Ratio (1/2) : (1/4) = 2 : 1."
+
+  - id: phy-ecf-101
+    topic: charging-methods
+    subtopic: Charged electroscope
+    concept: Bringing a like charge near a charged electroscope increases divergence
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [electroscope, induction]
+    stem: A gold-leaf electroscope is positively charged and its leaves are slightly apart. A positively charged rod is slowly brought near (not touching) its cap. The leaves
+    options:
+      - collapse completely
+      - diverge further
+      - first collapse and then diverge
+      - remain unchanged
+    answer: 1
+    explanation: The positive rod repels positive charge from the cap down to the leaves, increasing the like charge on them, so they diverge more. An unlike charged rod would reduce the divergence.
+
+  - id: phy-ecf-102
+    topic: charging-methods
+    subtopic: Mass change on charging
+    concept: Charging by electron transfer changes mass by n m_e
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Δm = (q/e) m_e
+    tags: [mass-transfer]
+    stem: A polythene piece rubbed with wool acquires a charge of −3.2 × 10^{-7} C. By how much has its mass increased? (m_e = 9.1 × 10^{-31} kg, e = 1.6 × 10^{-19} C)
+    options:
+      - 9.1 × 10^{-19} kg
+      - 1.8 × 10^{-18} kg
+      - 2 × 10^{12} kg
+      - 5.8 × 10^{-49} kg
+    answer: 1
+    explanation: n = 3.2 × 10^{-7} / 1.6 × 10^{-19} = 2 × 10^{12} electrons gained. Δm = 2 × 10^{12} × 9.1 × 10^{-31} ≈ 1.8 × 10^{-18} kg, which is negligible.
+
+  - id: phy-ecf-103
+    topic: charging-methods
+    subtopic: Everyday electrostatics
+    concept: Fuel trucks use a trailing chain to earth charge produced by friction
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [earthing, everyday]
+    stem: Why do trucks carrying inflammable fuel often have a metal chain touching the road?
+    options:
+      - To reduce air resistance
+      - To conduct away charge built up by friction, avoiding sparks
+      - To increase friction with the road for braking
+      - To keep the tank cool
+    answer: 1
+    explanation: The moving truck and its fuel become charged by friction. The chain earths the body so charge leaks away continuously instead of building up and producing a spark that could ignite the fuel.
+
+  - id: phy-ecf-104
+    topic: charging-methods
+    subtopic: Order of steps in induction
+    concept: Correct sequence for charging a sphere by induction
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [induction, ordering]
+    stem: |-
+      To charge an isolated metal sphere positively by induction, arrange the steps in order.
+      P. Remove the earth connection.
+      Q. Bring a negatively charged rod near the sphere.
+      R. Remove the charged rod.
+      S. Connect the sphere to earth.
+    options:
+      - Q, S, R, P
+      - S, Q, P, R
+      - Q, S, P, R
+      - Q, P, S, R
+    answer: 2
+    explanation: Bring the rod near (Q), earth the sphere so repelled electrons flow away (S), break the earth link while the rod is still near (P), then remove the rod (R). Removing the rod before the earth link lets electrons flow back and the sphere ends up neutral.
+
+  - id: phy-ecf-105
+    topic: charge-properties
+    subtopic: Rate of charge transfer
+    concept: 1 C is a very large charge; time to transfer at 10^9 electrons per second
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    tags: [quantisation, ncert-line]
+    stem: If 10^9 electrons move from one body to another every second, roughly how long will it take for the second body to acquire a charge of 1 C?
+    options:
+      - About 6 s
+      - About 200 days
+      - About 20 years
+      - About 200 years
+    answer: 3
+    explanation: Electrons needed = 1/1.6 × 10^{-19} = 6.25 × 10^{18}. Time = 6.25 × 10^{18}/10^9 = 6.25 × 10^9 s ≈ 198 years. This shows how large a coulomb is.
+
+  - id: phy-ecf-106
+    topic: charge-properties
+    subtopic: Number of electrons in a coulomb
+    concept: 1 C corresponds to 6.25 × 10^{18} electrons
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [quantisation]
+    stem: How many electrons together carry a charge of magnitude 1 C?
+    options:
+      - 6.25 × 10^{18}
+      - 1.6 × 10^{19}
+      - 6.02 × 10^{23}
+      - 6.25 × 10^{-18}
+    answer: 0
+    explanation: n = 1/1.6 × 10^{-19} = 6.25 × 10^{18}.
+
+  - id: phy-ecf-107
+    topic: charge-properties
+    subtopic: Conservation in radioactive decay
+    concept: Charge conservation in beta decay of a neutron
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [conservation, multi-concept]
+    stem: A free neutron decays into a proton, an electron and an antineutrino. Which statement about charge is correct?
+    options:
+      - Net charge increases by +e
+      - Net charge decreases by e
+      - Net charge stays zero
+      - Charge is not conserved in nuclear processes
+    answer: 2
+    explanation: Neutron (0) → proton (+e) + electron (−e) + antineutrino (0). Net charge before and after is zero, as charge conservation requires.
+
+  - id: phy-ecf-108
+    topic: charge-properties
+    subtopic: Quarks
+    concept: Quarks carry fractional charges but free charges are multiples of e
+    category: factual
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [quantisation, quarks, ncert-line]
+    stem: |-
+      Statement I: Protons and neutrons are made of quarks carrying charges of (+2/3)e and (−1/3)e.
+      Statement II: Free quarks with fractional charge have been observed, so the basic unit of free charge is e/3.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Quarks carry fractional charges, but they have not been observed free. Any free charge found in nature is an integer multiple of e, so quantisation in units of e still holds.
+
+  - id: phy-ecf-109
+    topic: charge-properties
+    subtopic: Dimensions of charge
+    concept: Charge = current × time has dimensions [AT]
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [dimensions, units]
+    stem: The dimensional formula of electric charge is
+    options:
+      - "[A]"
+      - "[AT^{-1}]"
+      - "[MLT^{-2}A^{-1}]"
+      - "[AT]"
+    answer: 3
+    explanation: 1 C is the charge carried by 1 A in 1 s, so q = It has dimensions [AT].
+
+  - id: phy-ecf-110
+    topic: coulombs-law
+    subtopic: Dimensions of ε_0
+    concept: Dimensional formula of permittivity of free space
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: ε_0 = q^2/(4πFr^2)
+    tags: [dimensions, permittivity]
+    stem: The dimensional formula of ε_0 is
+    options:
+      - "[M^{-1}L^{-3}T^4A^2]"
+      - "[ML^3T^{-4}A^{-2}]"
+      - "[M^{-1}L^{-2}T^4A^2]"
+      - "[M^{-1}L^{-3}T^2A^2]"
+    answer: 0
+    explanation: ε_0 = q^2/(4πFr^2) = [A^2T^2]/([MLT^{-2}][L^2]) = [M^{-1}L^{-3}T^4A^2]. Its inverse is the dimension of 1/4πε_0.
+
+  - id: phy-ecf-111
+    topic: coulombs-law
+    subtopic: Hydrogen atom
+    concept: Coulomb force between electron and proton at 0.53 Å
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: F = ke^2/r^2
+    tags: [atomic-scale]
+    stem: In a hydrogen atom the electron and proton are about 0.53 Å apart. The electrostatic force between them is about
+    options:
+      - 4.3 × 10^{-18} N
+      - 8.2 × 10^{-8} N
+      - 8.2 × 10^{-18} N
+      - 1.5 × 10^{-9} N
+    answer: 1
+    explanation: F = 9 × 10^9 × (1.6 × 10^{-19})^2 / (0.53 × 10^{-10})^2 = 2.3 × 10^{-28}/2.81 × 10^{-21} ≈ 8.2 × 10^{-8} N.
+
+  - id: phy-ecf-112
+    topic: coulombs-law
+    subtopic: Scaling of Coulomb force
+    concept: Doubling both charges and doubling distance leaves force unchanged
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [proportionality]
+    stem: Both charges are doubled and the distance between them is also doubled. The Coulomb force becomes
+    options:
+      - 2F
+      - 4F
+      - F/2
+      - F
+    answer: 3
+    explanation: F ∝ q_1q_2/r^2 = (2 × 2)/(2^2) = 4/4 = 1, so the force is unchanged.
+
+  - id: phy-ecf-113
+    topic: coulombs-law
+    subtopic: Vector form and Newton's third law
+    concept: F_12 = −F_21; Coulomb forces obey Newton's third law
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [vector-form, third-law]
+    stem: For two point charges q_1 and q_2 of unequal magnitudes, which statement is correct?
+    options:
+      - The larger charge exerts a larger force on the smaller one
+      - The forces on the two charges are equal in magnitude and opposite in direction
+      - The forces are equal only if the charges are of the same sign
+      - The force on each charge is perpendicular to the line joining them
+    answer: 1
+    explanation: Coulomb's law gives F_12 = −F_21 along the line joining the charges, whatever their sizes or signs, consistent with Newton's third law.
+
+  - id: phy-ecf-114
+    topic: coulombs-law
+    subtopic: Finding charges from force
+    concept: Solve q_1 + q_2 and q_1q_2 from given total charge and force
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [quadratic, multi-concept]
+    stem: Two point charges with total charge 5 μC repel each other with 0.4 N when 30 cm apart in vacuum. The charges are
+    options:
+      - 1 μC and 4 μC
+      - 2.5 μC each
+      - 2 μC and 3 μC
+      - 0.5 μC and 4.5 μC
+    answer: 0
+    explanation: q_1q_2 = Fr^2/k = 0.4 × 0.09/9 × 10^9 = 4 × 10^{-12} C^2. With q_1 + q_2 = 5 μC and q_1q_2 = 4 (μC)^2, the charges are 1 μC and 4 μC.
+
+  - id: phy-ecf-115
+    topic: coulombs-law
+    subtopic: Dielectric slab between charges
+    concept: A slab of thickness t, constant K acts like extra distance t(√K − 1)
+    category: numerical
+    format: direct
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: F = kq_1q_2/(r − t + t√K)^2
+    tags: [dielectric-constant, multi-concept]
+    stem: Two charges are 10 cm apart in air. A dielectric slab of thickness 5 cm and dielectric constant 4 is placed between them, filling part of the gap. For the force to stay the same, the separation must become
+    options:
+      - 5 cm
+      - 20 cm
+      - 12.5 cm
+      - 15 cm
+    answer: 0
+    explanation: The effective air distance is r − t + t√K = r − 5 + 5 × 2 = r + 5 cm. Setting r + 5 = 10 cm gives r = 5 cm, i.e., the charges must be brought closer, just enough to hold the slab.
+
+  - id: phy-ecf-116
+    topic: superposition-forces
+    subtopic: Infinite series of charges
+    concept: Force from charges at x = 1, 2, 4, 8 … forms a geometric series
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [series, superposition]
+    stem: Charges q are placed at x = 1 m, 2 m, 4 m, 8 m, … to infinity. The force on a charge Q at the origin is (k = 1/4πε_0)
+    options:
+      - kqQ
+      - 2kqQ
+      - 4kqQ/3
+      - infinite
+    answer: 2
+    explanation: F = kqQ(1 + 1/4 + 1/16 + …) = kqQ/(1 − 1/4) = 4kqQ/3 (in newtons with charges in coulombs). The series converges because the distances double each time.
+
+  - id: phy-ecf-117
+    topic: superposition-forces
+    subtopic: Triangle with an unlike charge
+    concept: Charges q, q, −q on an equilateral triangle; force on −q
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    tags: [vector-addition]
+    stem: Charges +q, +q and −q sit at the vertices of an equilateral triangle of side a. The magnitude of the net force on the −q charge is (k = 1/4πε_0)
+    options:
+      - kq^2/a^2
+      - 2kq^2/a^2
+      - √2 kq^2/a^2
+      - √3 kq^2/a^2
+    answer: 3
+    explanation: Both +q charges attract −q with kq^2/a^2 each, directed along the two sides, 60° apart. Resultant = 2F cos 30° = √3 kq^2/a^2, pointing towards the midpoint of the opposite side.
+
+  - id: phy-ecf-118
+    topic: superposition-forces
+    subtopic: Charge at centroid
+    concept: Net force at centroid when one vertex charge differs
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [symmetry, superposition, trap]
+    stem: Charges +q, +q and +2q sit at the vertices of an equilateral triangle; the centroid is at distance r from each vertex. The net force on a positive charge Q at the centroid is
+    options:
+      - zero
+      - kqQ/r^2, directed away from the +2q charge
+      - 2kqQ/r^2, directed towards the +2q charge
+      - 4kqQ/r^2, directed away from the +2q charge
+    answer: 1
+    explanation: Split +2q into +q + q. Three equal +q charges give zero at the centroid, leaving the extra +q at one vertex, which gives kqQ/r^2 pushing Q away from that vertex (for Q positive).
+
+  - id: phy-ecf-119
+    topic: superposition-forces
+    subtopic: Stability of equilibrium
+    concept: A positive charge between two fixed positive charges is stable along the line only
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [equilibrium, stability]
+    stem: |-
+      A small positive charge is at the midpoint between two equal fixed positive charges.
+      Statement I: For a small displacement along the line joining the charges, it returns to the midpoint.
+      Statement II: For a small displacement perpendicular to that line, it also returns to the midpoint.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Moving along the line brings it nearer one charge, whose stronger repulsion pushes it back (stable). Moving sideways, both repulsions acquire components pushing it further out (unstable).
+
+  - id: phy-ecf-120
+    topic: electric-field
+    subtopic: Charge densities
+    concept: Units of linear, surface and volume charge density
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [continuous-charge, units]
+    stem: |-
+      Match each quantity (List I) with its SI unit (List II).
+      List I: P. Linear charge density λ; Q. Surface charge density σ; R. Volume charge density ρ; S. Electric field E
+      List II: 1. C m^{-2}; 2. N C^{-1}; 3. C m^{-1}; 4. C m^{-3}
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-1, R-2, S-4
+    answer: 1
+    explanation: λ is charge per length (C m^{-1}), σ per area (C m^{-2}), ρ per volume (C m^{-3}) and E is force per charge (N C^{-1}).
+
+  - id: phy-ecf-121
+    topic: electric-field
+    subtopic: Field needed to balance weight
+    concept: Field that supports an electron against gravity is tiny
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: eE = mg
+    tags: [equilibrium]
+    stem: What electric field (magnitude and direction) will just balance the weight of an electron near the earth? (m_e = 9.1 × 10^{-31} kg, g = 9.8 m s^{-2})
+    options:
+      - 5.6 × 10^{-11} N C^{-1}, downward
+      - 5.6 × 10^{-11} N C^{-1}, upward
+      - 1.8 × 10^{11} N C^{-1}, downward
+      - 5.6 × 10^{11} N C^{-1}, upward
+    answer: 0
+    explanation: E = mg/e = 9.1 × 10^{-31} × 9.8/1.6 × 10^{-19} ≈ 5.6 × 10^{-11} N C^{-1}. The electron needs an upward force; being negative, it needs E pointing downward.
+
+  - id: phy-ecf-122
+    topic: electric-field
+    subtopic: Semicircular ring
+    concept: Field at centre of a uniformly charged semicircular ring is 2kλ/R
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: E = 2kλ/R
+    tags: [continuous-charge]
+    stem: A thin semicircular ring of radius R carries a uniform linear charge density λ. The field at the centre is
+    options:
+      - kλ/R
+      - zero
+      - πkλ/R
+      - 2kλ/R
+    answer: 3
+    explanation: Components parallel to the diameter cancel. Summing the perpendicular components, E = ∫ (kλR dθ/R^2) sin θ over 0 to π = 2kλ/R.
+
+  - id: phy-ecf-123
+    topic: electric-field
+    subtopic: Stopping an electron
+    concept: Distance travelled by an electron projected against a field
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: d = mv^2/(2eE)
+    tags: [charge-in-field, kinematics]
+    stem: An electron moving at 4 × 10^6 m s^{-1} enters a uniform field of 910 N C^{-1} directed along its velocity. How far does it travel before momentarily stopping? (e/m = 1.76 × 10^{11} C kg^{-1})
+    options:
+      - 1 cm
+      - 2.5 cm
+      - 10 cm
+      - 5 cm
+    answer: 3
+    explanation: The force on the electron is opposite to E, so it decelerates at a = (e/m)E ≈ 1.6 × 10^{14} m s^{-2}. d = v^2/2a = 1.6 × 10^{13}/3.2 × 10^{14} = 0.05 m = 5 cm.
+
+  - id: phy-ecf-124
+    topic: electric-field
+    subtopic: Pendulum in an electric field
+    concept: Upward electric force on a charged bob reduces effective g
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: T = 2π√(L/g_eff)
+    tags: [charge-in-field, multi-concept]
+    stem: A simple pendulum has a bob of mass m and positive charge q. A uniform electric field E is switched on vertically upward, with qE = mg/2. The time period changes from T to
+    options:
+      - T/√2
+      - T√2
+      - 2T
+      - T/2
+    answer: 1
+    explanation: The upward force reduces the effective gravity to g − qE/m = g/2. T ∝ 1/√g_eff, so the period becomes T√2.
+
+  - id: phy-ecf-125
+    topic: field-lines
+    subtopic: Field lines and trajectories
+    concept: Field lines are not in general the paths of charged particles
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [field-lines, trap]
+    stem: |-
+      Assertion (A): A charged particle released from rest in a curved field-line region does not, in general, follow the field line.
+      Reason (R): The field line gives the direction of acceleration, while the velocity of the particle need not lie along it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Force (and so acceleration) is along the tangent, but once the particle gains velocity its inertia carries it off a curved line. Only for straight field lines does a particle released from rest follow a field line.
+
+  - id: phy-ecf-126
+    topic: field-lines
+    subtopic: Unequal charges
+    concept: The larger charge has more field lines attached to it
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    diagram: Two point charges A (left) and B (right) 6 cm apart. Twelve field lines are drawn leaving A radially outward in all directions; four of these curve round and end on B, and all other lines from A go off to infinity. Exactly four lines, all coming from A, end on B, with arrows pointing into B. No lines leave B.
+    tags: [field-lines, diagram]
+    stem: In the field-line diagram shown, what can be said about charges A and B?
+    options:
+      - A is negative, B is positive, |A| = 3|B|
+      - Both are positive, |A| = |B|
+      - A is positive, B is negative, |A| = |B|/3
+      - A is positive, B is negative, |A| = 3|B|
+    answer: 3
+    explanation: Lines leave A, so A is positive; lines end on B, so B is negative. The number of lines is proportional to the charge, 12 versus 4, so |A| = 3|B|.
+
+  - id: phy-ecf-127
+    topic: field-lines
+    subtopic: Inverse square and field lines
+    concept: Field-line density falls as 1/r^2 because lines spread over sphere area
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [field-lines, inverse-square]
+    stem: The field-line picture of a point charge is consistent with the inverse square law because
+    options:
+      - the number of lines increases with distance
+      - the same number of lines spreads over an area proportional to r^2
+      - lines bend more at larger distances
+      - lines become more closely spaced far away
+    answer: 1
+    explanation: A fixed number of lines crosses every concentric sphere, of area 4πr^2. Lines per unit area, which measures E, therefore falls as 1/r^2.
+
+  - id: phy-ecf-128
+    topic: field-lines
+    subtopic: Neutral point
+    concept: No field line passes through a neutral point
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [neutral-point, field-lines]
+    stem: At a neutral point in an electric field-line diagram,
+    options:
+      - field lines cross each other
+      - field lines are most dense
+      - the field is zero and no field line passes through it
+      - field lines form a closed loop
+    answer: 2
+    explanation: At a neutral point E = 0, so there is no direction for a line to take; lines do not pass through it and never cross there.
+
+  - id: phy-ecf-129
+    topic: electric-flux
+    subtopic: NCERT square surface
+    concept: Flux through a 10 cm square with normal at 60° to E
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: φ = EA cos θ
+    tags: [flux]
+    stem: A uniform field of 3 × 10^3 N C^{-1} makes 60° with the normal to a square of side 10 cm. The flux through the square is
+    options:
+      - 30 N m^2 C^{-1}
+      - 15 N m^2 C^{-1}
+      - 26 N m^2 C^{-1}
+      - 1500 N m^2 C^{-1}
+    answer: 1
+    explanation: A = 0.01 m^2, φ = 3 × 10^3 × 0.01 × cos 60° = 15 N m^2 C^{-1}. Using side in cm gives 1500.
+
+  - id: phy-ecf-130
+    topic: electric-flux
+    subtopic: Rotating a loop in a field
+    concept: Flux through a loop changes with cos θ as it rotates
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [flux, proportionality]
+    stem: A flat loop in a uniform field has maximum flux φ_0 when its normal is along E. When the loop is rotated so that its normal makes 60° with E, the flux becomes
+    options:
+      - φ_0
+      - φ_0/2
+      - √3φ_0/2
+      - zero
+    answer: 1
+    explanation: φ = EA cos θ, so φ = φ_0 cos 60° = φ_0/2.
+
+  - id: phy-ecf-131
+    topic: electric-flux
+    subtopic: Flux sign convention
+    concept: Inward flux is negative, outward flux positive
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [flux, sign-convention]
+    stem: For a closed surface, flux of field lines entering the surface is taken as
+    options:
+      - positive
+      - negative
+      - zero
+      - positive or negative depending on the charge that produced them
+    answer: 1
+    explanation: The area vector of a closed surface points outward. For entering lines E makes an angle greater than 90° with the outward normal, so the flux is negative.
+
+  - id: phy-ecf-132
+    topic: electric-flux
+    subtopic: Cube in a non-uniform field
+    concept: Flux through a cube in field E = αx^{1/2} i (NCERT exercise)
+    category: numerical
+    format: diagram
+    difficulty: 5
+    time: 180
+    ncert: true
+    battle: false
+    formula: φ = α a^{1/2}(√2 − 1)a^2
+    diagram: A cube of side a = 0.1 m drawn in x-y-z axes with its edges parallel to the axes. The left face lies in the plane x = a (0.1 m) and the right face in the plane x = 2a (0.2 m). Arrows along +x represent the field E = αx^{1/2} i, labelled with α = 800 N C^{-1} m^{-1/2}.
+    tags: [flux, non-uniform-field, multi-concept]
+    stem: For the cube shown, the field has only an x-component E_x = αx^{1/2}. The net flux through the cube is about
+    options:
+      - 1.05 N m^2 C^{-1}
+      - 2.53 N m^2 C^{-1}
+      - 3.58 N m^2 C^{-1}
+      - zero
+    answer: 0
+    explanation: Only the faces at x = a and x = 2a contribute. φ = a^2[α(2a)^{1/2} − αa^{1/2}] = αa^{5/2}(√2 − 1) = 800 × 3.16 × 10^{-3} × 0.414 ≈ 1.05 N m^2 C^{-1}. Zero would hold only for a uniform field.
+
+  - id: phy-ecf-133
+    topic: electric-dipole
+    subtopic: Polar and non-polar molecules
+    concept: H_2O has a permanent dipole moment, CO_2 does not
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [molecules, ncert-line]
+    stem: Which of these molecules has a permanent electric dipole moment?
+    options:
+      - CO_2
+      - CH_4
+      - H_2O
+      - O_2
+    answer: 2
+    explanation: In H_2O the centres of positive and negative charge do not coincide because of its bent shape. CO_2 (linear) and CH_4 (tetrahedral) are symmetric, and O_2 is homonuclear, so their net dipole moments are zero.
+
+  - id: phy-ecf-134
+    topic: electric-dipole
+    subtopic: Dimensions of dipole moment
+    concept: Dipole moment has dimensions [LTA]
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [dimensions]
+    stem: The dimensional formula of electric dipole moment is
+    options:
+      - "[LT^{-1}A]"
+      - "[L^2TA]"
+      - "[LTA]"
+      - "[MLTA]"
+    answer: 2
+    explanation: p = q × d has dimensions [AT][L] = [LTA]. Its SI unit is C m.
+
+  - id: phy-ecf-135
+    topic: electric-dipole
+    subtopic: Dipole moment of a system
+    concept: Net dipole moment of charges placed in a plane
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: p = Σ q_i r_i
+    tags: [dipole-moment, vectors]
+    stem: Charges −2q at the origin, +q at (a, 0) and +q at (0, a) form a neutral system. The magnitude of its dipole moment is
+    options:
+      - 2qa
+      - √2 qa
+      - qa
+      - zero
+    answer: 1
+    explanation: p = Σq_i r_i = q(a, 0) + q(0, a) + (−2q)(0, 0) = (qa, qa), with magnitude √2 qa. It is equivalent to two dipoles of qa at right angles.
+
+  - id: phy-ecf-136
+    topic: electric-dipole
+    subtopic: Exact axial field
+    concept: E_axial = 2kpr/(r^2 − a^2)^2 reduces to 2kp/r^3 for r ≫ a
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [dipole-field]
+    stem: For a dipole of charges ±q separated by 2a, the exact field at distance r from the centre on the axis (r > a) is
+    options:
+      - 2kpr/(r^2 − a^2)^2
+      - kp/(r^2 + a^2)^{3/2}
+      - 2kp/(r^2 + a^2)^{3/2}
+      - kpr/(r^2 − a^2)^2
+    answer: 0
+    explanation: E = kq[1/(r − a)^2 − 1/(r + a)^2] = kq × 4ar/(r^2 − a^2)^2 = 2kpr/(r^2 − a^2)^2 with p = 2qa. kp/(r^2 + a^2)^{3/2} is the equatorial field.
+
+  - id: phy-ecf-137
+    topic: electric-dipole
+    subtopic: Induced dipoles
+    concept: A non-polar molecule acquires an induced dipole moment in a field
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [molecules, induced-dipole]
+    stem: Which statement about molecules in an external electric field is correct?
+    options:
+      - Non-polar molecules are unaffected by an external field
+      - Polar molecules lose their dipole moment in a strong field
+      - A non-polar molecule develops an induced dipole moment because the field displaces its positive and negative charge centres
+      - The induced dipole moment is directed opposite to the applied field
+    answer: 2
+    explanation: The field pushes the nuclei along E and electrons against E, separating the charge centres and creating an induced dipole along the field. Polar molecules keep their permanent moment and tend to align.
+
+  - id: phy-ecf-138
+    topic: dipole-in-field
+    subtopic: Torque versus angle graph
+    concept: Torque on a dipole varies sinusoidally with θ
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [graph, torque]
+    stem: How does the torque τ on a dipole in a uniform field vary as the angle θ between p and E goes from 0° to 180°?
+    options:
+      - It rises linearly from zero to a maximum at 180°
+      - It stays constant
+      - It rises from zero to a maximum at 90° and falls back to zero at 180°
+      - It is maximum at 0° and 180° and zero at 90°
+    answer: 2
+    explanation: τ = pE sin θ, a sine curve that is zero at 0° and 180° and peaks at 90°.
+
+  - id: phy-ecf-139
+    topic: dipole-in-field
+    subtopic: Angle from torque
+    concept: Find θ from τ = pE sin θ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [torque]
+    stem: A dipole of moment 2 × 10^{-8} C m in a field of 10^4 N C^{-1} experiences a torque of 10^{-4} N m. The angle between p and E is
+    options:
+      - 90°
+      - 60°
+      - 45°
+      - 30°
+    answer: 3
+    explanation: sin θ = τ/pE = 10^{-4}/(2 × 10^{-8} × 10^4) = 0.5, so θ = 30° (or 150°).
+
+  - id: phy-ecf-140
+    topic: dipole-in-field
+    subtopic: Angular oscillations
+    concept: Small oscillations of a dipole have T = 2π√(I/pE)
+    category: application
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    formula: T = 2π√(I/pE)
+    tags: [shm, multi-concept]
+    stem: A dipole slightly displaced from the direction of a uniform field oscillates with period T. If the field is made four times stronger, the period becomes
+    options:
+      - 4T
+      - T/4
+      - 2T
+      - T/2
+    answer: 3
+    explanation: For small θ, τ ≈ −pEθ gives angular SHM with T = 2π√(I/pE). Quadrupling E halves T.
+
+  - id: phy-ecf-141
+    topic: gauss-law
+    subtopic: Charge at the centre of a face
+    concept: A charge at the centre of a cube face gives flux q/2ε_0 through the cube
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: true
+    tags: [cube, symmetry]
+    stem: A point charge q is placed at the centre of one face of a cube. The total flux through the cube is
+    options:
+      - q/ε_0
+      - q/2ε_0
+      - q/6ε_0
+      - q/4ε_0
+    answer: 1
+    explanation: An identical cube on the other side of that face would complete the enclosure, so each cube gets half of q/ε_0, i.e., q/2ε_0.
+
+  - id: phy-ecf-142
+    topic: gauss-law
+    subtopic: NCERT square above a charge
+    concept: Flux through a square 5 cm above a charge using a cube of side 10 cm
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [cube, symmetry, multi-concept]
+    stem: A charge of +10 μC is 5 cm directly above the centre of a square of side 10 cm. The flux through the square is about (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 1.1 × 10^6 N m^2 C^{-1}
+      - 5.6 × 10^5 N m^2 C^{-1}
+      - 1.9 × 10^5 N m^2 C^{-1}
+      - 4.7 × 10^4 N m^2 C^{-1}
+    answer: 2
+    explanation: The square is one face of a 10 cm cube with the charge at its centre. φ = q/6ε_0 = 10^{-5}/(6 × 8.85 × 10^{-12}) ≈ 1.9 × 10^5 N m^2 C^{-1}.
+
+  - id: phy-ecf-143
+    topic: gauss-law
+    subtopic: Size of Gaussian surface
+    concept: Flux is independent of the size of the enclosing surface
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [gauss-law]
+    stem: A point charge is at the centre of a Gaussian sphere. If the radius of the sphere is doubled, the flux through it
+    options:
+      - becomes four times
+      - becomes one-fourth
+      - doubles
+      - remains the same
+    answer: 3
+    explanation: Flux depends only on the enclosed charge (q/ε_0). The field falls as 1/r^2 while the area grows as r^2, so the product is unchanged.
+
+  - id: phy-ecf-144
+    topic: gauss-law
+    subtopic: Dipole inside a surface
+    concept: Net flux through a surface enclosing a dipole is zero
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [gauss-law, dipole]
+    stem: A closed surface encloses an electric dipole completely. The net electric flux through the surface is
+    options:
+      - zero
+      - q/ε_0
+      - 2q/ε_0
+      - p/ε_0
+    answer: 0
+    explanation: The enclosed charge is +q − q = 0, so the net flux is zero, although the field on the surface is not zero.
+
+  - id: phy-ecf-145
+    topic: gauss-applications
+    subtopic: Charge on a line from its field
+    concept: λ = 2πε_0 rE (NCERT exercise)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: λ = 2πε_0 rE
+    tags: [line-charge]
+    stem: An infinite line charge produces a field of 9 × 10^4 N C^{-1} at a distance of 2 cm. The linear charge density is
+    options:
+      - 10^{-7} C m^{-1}
+      - 10^{-5} C m^{-1}
+      - 2 × 10^{-7} C m^{-1}
+      - 5 × 10^{-8} C m^{-1}
+    answer: 0
+    explanation: E = 2kλ/r gives λ = Er/2k = 9 × 10^4 × 0.02 / (1.8 × 10^{10}) = 10^{-7} C m^{-1}.
+
+  - id: phy-ecf-146
+    topic: gauss-applications
+    subtopic: Charged conducting sphere
+    concept: Charge and flux from surface density (NCERT exercise)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: Q = 4πR^2σ, φ = Q/ε_0
+    tags: [spherical-shell, multi-concept]
+    stem: A conducting sphere of diameter 2.4 m has a uniform surface charge density of 80 μC m^{-2}. The total flux leaving its surface is about
+    options:
+      - 1.45 × 10^{-3} N m^2 C^{-1}
+      - 4.1 × 10^7 N m^2 C^{-1}
+      - 6.6 × 10^8 N m^2 C^{-1}
+      - 1.6 × 10^8 N m^2 C^{-1}
+    answer: 3
+    explanation: Q = 4πR^2σ = 4π × 1.44 × 80 × 10^{-6} ≈ 1.45 × 10^{-3} C. φ = Q/ε_0 = 1.45 × 10^{-3}/8.85 × 10^{-12} ≈ 1.6 × 10^8 N m^2 C^{-1}. Using the diameter as radius gives 6.6 × 10^8.
+
+  - id: phy-ecf-147
+    topic: gauss-applications
+    subtopic: Two like-charged sheets
+    concept: Between two sheets of equal +σ the field is zero
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [plane-sheet, superposition, trap]
+    stem: Two large parallel sheets both carry surface charge density +σ. The field in the region between them is
+    options:
+      - σ/ε_0
+      - σ/2ε_0
+      - 2σ/ε_0
+      - zero
+    answer: 3
+    explanation: Each sheet gives σ/2ε_0 directed away from itself. Between the sheets these point in opposite directions and cancel; outside they add to σ/ε_0.
+
+  - id: phy-ecf-148
+    topic: gauss-applications
+    subtopic: Choice of Gaussian surface
+    concept: Cylindrical Gaussian surface for a line charge
+    category: concept
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [gaussian-surface]
+    stem: |-
+      Match the charge distribution (List I) with the Gaussian surface normally used for it (List II).
+      List I: P. Infinite straight line charge; Q. Infinite plane sheet; R. Uniformly charged spherical shell; S. Point charge
+      List II: 1. Concentric sphere; 2. Coaxial cylinder with curved surface around the line; 3. Cylinder (pillbox) crossing the sheet with flat faces parallel to it; 4. Sphere centred on the charge
+    options:
+      - P-3, Q-2, R-1, S-4
+      - P-2, Q-3, R-4, S-1
+      - P-2, Q-3, R-1, S-4
+      - P-2, Q-1, R-3, S-4
+    answer: 2
+    explanation: A line charge uses a coaxial cylinder, a sheet uses a pillbox piercing it, and spherical distributions use concentric spheres. The surface is chosen so E is constant and normal (or parallel) on each part.
+
+  - id: phy-ecf-149
+    topic: gauss-applications
+    subtopic: Field just outside a charged shell
+    concept: E just outside a shell equals σ/ε_0
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: E = kQ/R^2 = σ/ε_0
+    tags: [spherical-shell]
+    stem: A thin spherical shell has surface charge density 8.85 × 10^{-8} C m^{-2}. The field just outside its surface is
+    options:
+      - 10^4 N C^{-1}
+      - 5 × 10^3 N C^{-1}
+      - 2 × 10^4 N C^{-1}
+      - zero
+    answer: 0
+    explanation: kQ/R^2 = (1/4πε_0)(4πR^2σ)/R^2 = σ/ε_0 = 8.85 × 10^{-8}/8.85 × 10^{-12} = 10^4 N C^{-1}. Zero is the field just inside.
+
+  - id: phy-ecf-150
+    topic: gauss-applications
+    subtopic: E versus r graph for a shell
+    concept: Shell field is zero inside, jumps at R, then falls as 1/r^2
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [graph, spherical-shell]
+    stem: Which description matches the graph of E against r for a uniformly charged thin spherical shell of radius R?
+    options:
+      - E increases linearly up to R and then falls as 1/r^2
+      - E is constant everywhere
+      - E is zero for r < R, jumps to kQ/R^2 at r = R, then falls as 1/r^2
+      - E falls as 1/r^2 for all r
+    answer: 2
+    explanation: Inside a thin shell there is no enclosed charge, so E = 0. Outside, E = kQ/r^2, which is kQ/R^2 at the surface. The linear rise describes a uniformly charged solid sphere.
+
+  - id: phy-ecf-151
+    topic: charging-methods
+    subtopic: Charging by friction
+    concept: Rubbing gives both bodies equal and opposite charges
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [charging-by-friction, conservation]
+    stem: Which statement about charging two insulators by rubbing them together is correct?
+    options:
+      - Both bodies acquire charges that are equal in magnitude and opposite in sign
+      - Only the body that loses electrons becomes charged
+      - Charge is created by the mechanical work done in rubbing
+      - The bodies acquire charges of the same sign
+    answer: 0
+    explanation: Electrons move from one body to the other, so one becomes positive and the other equally negative. No net charge is created, consistent with charge conservation.
+
+  - id: phy-ecf-152
+    topic: charging-methods
+    subtopic: Charging by friction
+    concept: A plastic rod rubbed with fur becomes negative
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [charging-by-friction, ncert-line]
+    stem: A plastic rod is rubbed with fur. The charge on the rod is
+    options:
+      - positive
+      - negative
+      - zero
+      - positive at one end and negative at the other
+    answer: 1
+    explanation: Electrons move from the fur to the plastic, so the rod becomes negative and the fur positive. This is the classic pair used alongside glass and silk.
+
+  - id: phy-ecf-153
+    topic: charging-methods
+    subtopic: Charging a metal by rubbing
+    concept: A metal rod held in the hand does not stay charged when rubbed
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [conductors, earthing, ncert-line]
+    stem: |-
+      Assertion (A): A metal rod held in the bare hand and rubbed with wool shows no sign of being charged.
+      Reason (R): Metal and the human body are conductors, so the charge developed leaks to the earth.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Any charge produced flows through the rod and the body to the ground. If the rod has a wooden or plastic handle, it does stay charged, which confirms the explanation.
+
+  - id: phy-ecf-154
+    topic: charging-methods
+    subtopic: Earthing and electroscope
+    concept: Earthing, humidity and electroscope behaviour
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [earthing, electroscope]
+    stem: |-
+      Consider the following statements.
+      I. Touching the cap of a charged electroscope with a finger makes its leaves collapse.
+      II. Objects are harder to keep charged in humid weather.
+      III. Glass is a better conductor of electricity than copper.
+      IV. Earthing provides a path for charge to flow between a body and the earth.
+      Which are correct?
+    options:
+      - I and III only
+      - II and IV only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: The finger earths the electroscope (I), and moist air lets charge leak away (II). Earthing is precisely a conducting path to the earth (IV). Glass is an insulator, so III is false.
+
+  - id: phy-ecf-155
+    topic: charging-methods
+    subtopic: Everyday electrostatics
+    concept: Crackling when removing synthetic clothes is due to frictional charging
+    category: application
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [everyday, charging-by-friction]
+    stem: Crackling sounds and tiny sparks when synthetic clothes are taken off in dry weather are due to
+    options:
+      - electromagnetic induction
+      - a chemical reaction in the fibres
+      - moisture in the air
+      - charges produced by friction between the clothes and the body
+    answer: 3
+    explanation: Rubbing synthetic fabric charges it by friction; in dry weather the charge does not leak away and discharges as small sparks.
+
+  - id: phy-ecf-156
+    topic: charge-properties
+    subtopic: Point charges
+    concept: A charged body may be treated as a point charge when its size is small compared to distances
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [point-charge, ncert-line]
+    stem: When can a charged body be treated as a point charge?
+    options:
+      - Only when its charge is exactly e
+      - Only when it is a conductor
+      - When its size is very small compared with the distances involved
+      - When it is at rest
+    answer: 2
+    explanation: If the dimensions of the body are negligible compared with the distances considered, its charge can be regarded as concentrated at a point.
+
+  - id: phy-ecf-157
+    topic: charge-properties
+    subtopic: Conservation in reactions
+    concept: Identify a process that violates charge conservation
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [conservation]
+    stem: Which of the following processes is forbidden by conservation of charge?
+    options:
+      - γ → e^- + e^+
+      - n → p + e^- + antineutrino
+      - p → n + e^+ + neutrino (inside a nucleus)
+      - e^- + p → n + e^+
+    answer: 3
+    explanation: On the left of e^- + p the net charge is 0, while n + e^+ has +e. The other three processes have equal net charge on both sides.
+
+  - id: phy-ecf-158
+    topic: charge-properties
+    subtopic: Fraction of electrons removed
+    concept: Even a sizeable charge corresponds to a minute fraction of electrons
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [quantisation, multi-concept]
+    stem: A small copper sphere contains 2 × 10^{22} atoms, each with 29 electrons. What fraction of its electrons must be removed to give it a charge of +2 μC? (e = 1.6 × 10^{-19} C)
+    options:
+      - 2.2 × 10^{-9}
+      - 2.2 × 10^{-11}
+      - 6.3 × 10^{-11}
+      - 1.25 × 10^{13}
+    answer: 1
+    explanation: Electrons removed = 2 × 10^{-6}/1.6 × 10^{-19} = 1.25 × 10^{13}. Total electrons = 29 × 2 × 10^{22} = 5.8 × 10^{23}. Fraction ≈ 1.25 × 10^{13}/5.8 × 10^{23} ≈ 2.2 × 10^{-11}.
+
+  - id: phy-ecf-159
+    topic: charge-properties
+    subtopic: Charge invariance
+    concept: Charge does not depend on the speed of the body
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [invariance, trap]
+    stem: A proton moves at 0.9 times the speed of light. Compared with a proton at rest, its charge is
+    options:
+      - larger
+      - smaller
+      - zero
+      - the same
+    answer: 3
+    explanation: Unlike mass in relativity, electric charge is invariant; it is the same in every frame and at every speed.
+
+  - id: phy-ecf-160
+    topic: charge-properties
+    subtopic: Additivity of charge
+    concept: Charge adds like mass, but can be negative
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [additivity, ncert-line]
+    stem: |-
+      Statement I: Charge, like mass, is additive; the total charge of a system is the algebraic sum of its individual charges.
+      Statement II: Unlike mass, which is always positive, charge can be positive or negative, so a body containing charges can have zero net charge.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Both are NCERT points. Charges add algebraically with their signs, and equal positive and negative amounts cancel to give a neutral body.
+
+  - id: phy-ecf-161
+    topic: coulombs-law
+    subtopic: Force after contact
+    concept: Contact of +6 μC and −2 μC spheres turns attraction into repulsion
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [conservation, multi-concept, trap]
+    stem: Identical small spheres with +6 μC and −2 μC are 10 cm apart. They are touched together and put back 10 cm apart. The force now is
+    options:
+      - 10.8 N, attractive
+      - 14.4 N, repulsive
+      - 3.6 N, repulsive
+      - 3.6 N, attractive
+    answer: 2
+    explanation: After contact each has (6 − 2)/2 = +2 μC. F = 9 × 10^9 × (2 × 10^{-6})^2/0.01 = 3.6 N, repulsive since both are positive. 10.8 N attractive is the force before contact.
+
+  - id: phy-ecf-162
+    topic: coulombs-law
+    subtopic: Percentage change in force
+    concept: A 10% increase in distance lowers the force by about 17%
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [proportionality, trap]
+    stem: The distance between two point charges is increased by 10%. The force between them decreases by about
+    options:
+      - 10%
+      - 17%
+      - 20%
+      - 21%
+    answer: 1
+    explanation: F ∝ 1/r^2, so F'/F = 1/1.21 ≈ 0.826, a decrease of about 17%. The 20% (2 × 10%) approximation is only valid for small changes, and 21% is the rise in r^2, not the fall in F.
+
+  - id: phy-ecf-163
+    topic: coulombs-law
+    subtopic: Validity of Coulomb's law
+    concept: Coulomb's law applies to stationary point charges
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [coulomb-force, ncert-line]
+    stem: Coulomb's law in its basic form applies to
+    options:
+      - moving charges only
+      - extended bodies of any size at any distance
+      - charges placed inside conductors only
+      - point charges at rest
+    answer: 3
+    explanation: Coulomb's law gives the force between two stationary point charges. Extended bodies must be broken into point-like pieces, and moving charges also produce magnetic forces.
+
+  - id: phy-ecf-164
+    topic: coulombs-law
+    subtopic: Nature of Coulomb force
+    concept: Coulomb force is central, conservative and medium-dependent
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [coulomb-force]
+    stem: |-
+      Consider the following statements about the electrostatic force between two point charges.
+      I. It acts along the line joining the charges.
+      II. It is a conservative force.
+      III. For the same charges and distance, it depends on the medium.
+      IV. It is always attractive.
+      Which are correct?
+    options:
+      - I and IV only
+      - II, III and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: The Coulomb force is central (I), conservative (II) and reduced by the dielectric constant of the medium (III). It is repulsive for like charges, so IV is false.
+
+  - id: phy-ecf-165
+    topic: coulombs-law
+    subtopic: Nuclear distances
+    concept: Coulomb repulsion between two protons 1 fm apart is about 230 N
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [atomic-scale]
+    stem: What is the electrostatic repulsion between two protons 1 fm (10^{-15} m) apart inside a nucleus?
+    options:
+      - About 230 N
+      - About 23 N
+      - About 2.3 × 10^{-28} N
+      - About 2300 N
+    answer: 0
+    explanation: F = 9 × 10^9 × (1.6 × 10^{-19})^2/(10^{-15})^2 = 9 × 10^9 × 2.56 × 10^{-38}/10^{-30} ≈ 230 N, a large force for such tiny particles, which the strong nuclear force overcomes.
+
+  - id: phy-ecf-166
+    topic: coulombs-law
+    subtopic: Force in water
+    concept: Water's high dielectric constant weakens ionic attraction
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [dielectric-constant, multi-concept]
+    stem: |-
+      Assertion (A): Common salt dissolves readily in water.
+      Reason (R): The dielectric constant of water is about 80, so the electrostatic attraction between Na^+ and Cl^- ions in water is about 80 times weaker than in vacuum.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Coulomb force in a medium is F/K. With K ≈ 80, the ionic attraction is greatly reduced, so thermal agitation can separate the ions and the salt dissolves.
+
+  - id: phy-ecf-167
+    topic: superposition-forces
+    subtopic: Square with two positive and two negative charges
+    concept: Net force at centre of square with adjacent like charges
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [vector-addition, multi-concept]
+    stem: Corners A, B, C, D of a square of side a (in order) carry +q, +q, −q, −q. The net force on a charge +Q at the centre has magnitude (k = 1/4πε_0)
+    options:
+      - 2√2 kqQ/a^2
+      - zero
+      - 4√2 kqQ/a^2
+      - 4kqQ/a^2
+    answer: 2
+    explanation: Each corner is a/√2 from the centre, so each force is 2kqQ/a^2. A (+q) pushes Q towards C and C (−q) pulls it towards C, giving 4kqQ/a^2 along AC. Similarly 4kqQ/a^2 along BD. These are perpendicular, so the resultant is 4√2 kqQ/a^2.
+
+  - id: phy-ecf-168
+    topic: superposition-forces
+    subtopic: Principle of superposition
+    concept: Pair forces are independent of other charges; net force is the vector sum
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [superposition, trap]
+    stem: |-
+      Statement I: The net force on a charge due to a group of charges is the vector sum of the forces each charge would exert on it alone.
+      Statement II: Bringing a third charge nearby changes the force that a second charge exerts on the first.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Superposition says forces add vectorially and each pair force is unaffected by other charges. The third charge adds its own force but does not alter the second charge's force.
+
+  - id: phy-ecf-169
+    topic: superposition-forces
+    subtopic: Charges on perpendicular axes
+    concept: Net force from two perpendicular Coulomb forces
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [vector-addition]
+    stem: A +2 μC charge is at the origin. A −3 μC charge is at (0.3 m, 0) and a +4 μC charge is at (0, 0.3 m). The net force on the +2 μC charge is
+    options:
+      - 1.4 N
+      - 1.0 N
+      - 0.2 N
+      - 0.7 N
+    answer: 1
+    explanation: From −3 μC, an attraction of 9 × 10^9 × 6 × 10^{-12}/0.09 = 0.6 N along +x. From +4 μC, a repulsion of 9 × 10^9 × 8 × 10^{-12}/0.09 = 0.8 N along −y. Resultant √(0.36 + 0.64) = 1.0 N.
+
+  - id: phy-ecf-170
+    topic: superposition-forces
+    subtopic: Equilibrium of free charges
+    concept: Three like free charges cannot be in equilibrium; pair forces are independent
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [equilibrium, superposition, trap]
+    stem: |-
+      Assertion (A): Three free point charges, all of the same sign, placed on a line cannot all be in equilibrium.
+      Reason (R): The force between two charges depends on the presence of a third charge nearby.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: Each outer charge is repelled outward by both others with nothing to balance it, so A is true. R contradicts the superposition principle; pair forces do not depend on other charges.
+
+  - id: phy-ecf-171
+    topic: electric-field
+    subtopic: Force from field
+    concept: F = qE
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    formula: F = qE
+    tags: [force-on-charge]
+    stem: A charge of 2 μC is placed in a uniform field of 3 × 10^3 N C^{-1}. The force on it is
+    options:
+      - 1.5 × 10^9 N
+      - 6 × 10^3 N
+      - 6 × 10^{-9} N
+      - 6 × 10^{-3} N
+    answer: 3
+    explanation: F = qE = 2 × 10^{-6} × 3 × 10^3 = 6 × 10^{-3} N.
+
+  - id: phy-ecf-172
+    topic: electric-field
+    subtopic: Field at centre of a square
+    concept: Only the uncancelled pair contributes to the field at the centre
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [superposition, symmetry]
+    stem: Corners A, B, C, D of a square of side a carry +q, +q, +q and −q respectively. The field at the centre is (k = 1/4πε_0)
+    options:
+      - zero
+      - 4kq/a^2, towards D
+      - 2kq/a^2, towards D
+      - 4kq/a^2, away from D
+    answer: 1
+    explanation: A and C cancel. B (+q) gives a field pointing away from B, i.e., towards D, and D (−q) gives a field towards D. Each is kq/(a^2/2) = 2kq/a^2, so the total is 4kq/a^2 towards D.
+
+  - id: phy-ecf-173
+    topic: electric-field
+    subtopic: Charged ring
+    concept: Features of the axial field of a charged ring
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [continuous-charge, ring]
+    stem: |-
+      For a thin ring of radius R with uniform charge Q, consider these statements about the field on its axis.
+      I. The field at the centre is zero.
+      II. At a distance x ≫ R the field is approximately kQ/x^2.
+      III. The field is maximum at x = R.
+      IV. At any axial point the field is directed along the axis.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: E = kQx/(x^2 + R^2)^{3/2} is zero at x = 0, tends to kQ/x^2 far away, and points along the axis because perpendicular components cancel. Its maximum is at x = R/√2, not R.
+
+  - id: phy-ecf-174
+    topic: electric-field
+    subtopic: Work done by the field
+    concept: Kinetic energy gained = qEd
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: K = qEd
+    tags: [charge-in-field, work-energy]
+    stem: A proton starts from rest and moves 2 cm along a uniform field of 5 × 10^4 N C^{-1}. Its kinetic energy is then
+    options:
+      - 1.6 × 10^{-16} J
+      - 1.6 × 10^{-14} J
+      - 8 × 10^{-17} J
+      - 1.6 × 10^{-18} J
+    answer: 0
+    explanation: Work done by the field = qEd = 1.6 × 10^{-19} × 5 × 10^4 × 0.02 = 1.6 × 10^{-16} J, which appears as kinetic energy.
+
+  - id: phy-ecf-175
+    topic: electric-field
+    subtopic: Field of a point charge
+    concept: Field is independent of the test charge
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [point-charge-field, trap]
+    stem: Which statement about the field of an isolated point charge Q is INCORRECT?
+    options:
+      - For positive Q, the field points radially outward
+      - The field has the same magnitude at all points on a sphere centred on Q
+      - The magnitude of the field varies as 1/r^2
+      - The field at a point depends on the size of the test charge placed there
+    answer: 3
+    explanation: E = F/q is independent of the test charge because F is itself proportional to q. The field is a property of the source Q and the position alone.
+
+  - id: phy-ecf-176
+    topic: electric-field
+    subtopic: Alpha particle and proton
+    concept: Acceleration ∝ q/m
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [charge-in-field]
+    stem: "An alpha particle and a proton are placed in the same uniform field. The ratio of their accelerations a_α : a_p is"
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "1 : 4"
+      - "1 : 1"
+    answer: 0
+    explanation: a = qE/m. The alpha particle has twice the charge but four times the mass, so a_α/a_p = 2/4 = 1/2.
+
+  - id: phy-ecf-177
+    topic: field-lines
+    subtopic: Field-line patterns
+    concept: Recognising standard field-line patterns
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [field-lines, patterns]
+    stem: |-
+      Consider these statements about field-line patterns.
+      I. Lines of an isolated negative charge point radially inward.
+      II. Lines of an electric dipole start on +q and end on −q.
+      III. For two equal positive charges there is a point midway through which no field line passes.
+      IV. A uniform field is represented by radial lines.
+      Which are correct?
+    options:
+      - I and IV only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: I, II and III describe the standard NCERT patterns; the midpoint of two equal like charges is a neutral point. A uniform field is shown by parallel, equally spaced lines, not radial ones.
+
+  - id: phy-ecf-178
+    topic: field-lines
+    subtopic: Meaning of field lines
+    concept: Field exists between drawn lines; lines are only a representation
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [field-lines, trap]
+    stem: In a field-line diagram, what is the field at a point lying in the gap between two drawn lines?
+    options:
+      - Zero, because no line passes through it
+      - Non-zero; the drawn lines are only a representative sample
+      - Infinite
+      - Undefined
+    answer: 1
+    explanation: The field exists at every point of space; only a finite number of lines is drawn for clarity. Their spacing shows strength, not where the field exists.
+
+  - id: phy-ecf-179
+    topic: field-lines
+    subtopic: Lines at a conductor surface
+    concept: Normal field lines at conductors follow from zero tangential field, not from zero internal field
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [field-lines, conductor]
+    stem: |-
+      Assertion (A): Electrostatic field lines meet the surface of a charged conductor at right angles.
+      Reason (R): The electric field inside a conductor in electrostatic equilibrium is zero.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Both are true, but the perpendicularity comes from the absence of a tangential component of E at the surface (otherwise surface charges would move). The zero field inside is a separate property.
+
+  - id: phy-ecf-180
+    topic: field-lines
+    subtopic: Unequal unlike charges
+    concept: With +q and −4q, all lines from +q end on −4q and more arrive from infinity
+    category: application
+    format: statements
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [field-lines, multi-concept]
+    stem: Charges +q and −4q are placed near each other. Which statement correctly describes the field lines?
+    options:
+      - Many lines leave +q and go to infinity
+      - Lines leave −4q and end on +q
+      - All lines leaving +q end on −4q, and further lines come in from infinity to end on −4q
+      - Equal numbers of lines are attached to both charges
+    answer: 2
+    explanation: The net charge is negative, so far away lines point inward. The lines from +q all terminate on −4q, which needs four times as many lines, and the extra ones come from infinity.
+
+  - id: phy-ecf-181
+    topic: electric-flux
+    subtopic: Angle with the plane versus the normal
+    concept: Use the angle with the normal, not the plane
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: φ = EA cos θ
+    tags: [flux, trap]
+    stem: A disc of radius 10 cm is in a uniform field of 2 × 10^3 N C^{-1} that makes 30° with the plane of the disc. The flux through the disc is about
+    options:
+      - 54.4 N m^2 C^{-1}
+      - 62.8 N m^2 C^{-1}
+      - 31.4 N m^2 C^{-1}
+      - 18.1 N m^2 C^{-1}
+    answer: 2
+    explanation: 30° with the plane means 60° with the normal. φ = EA cos 60° = 2 × 10^3 × π(0.1)^2 × 0.5 ≈ 31.4 N m^2 C^{-1}. Using cos 30° gives 54.4.
+
+  - id: phy-ecf-182
+    topic: electric-flux
+    subtopic: Physical meaning of flux
+    concept: Flux is proportional to the number of field lines crossing a surface
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [flux, ncert-line]
+    stem: The electric flux through a surface is a measure of
+    options:
+      - the charge on the surface
+      - the field at the centre of the surface
+      - the work done in moving a charge across it
+      - the number of field lines crossing the surface
+    answer: 3
+    explanation: Flux Δφ = E · ΔS is proportional to the number of field lines passing through the surface, just as the flow of liquid measures the volume crossing an area.
+
+  - id: phy-ecf-183
+    topic: electric-flux
+    subtopic: Nature of flux
+    concept: Flux is a scalar
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [flux, trap]
+    stem: |-
+      Statement I: Electric flux is a vector quantity because area is represented by a vector.
+      Statement II: The net flux of a uniform field through any closed surface is zero.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: Flux is the dot product E · ΔS, which is a scalar. In a uniform field, lines entering a closed surface all leave it, so the net flux is zero.
+
+  - id: phy-ecf-184
+    topic: electric-flux
+    subtopic: Non-uniform field through a cube
+    concept: Net flux from a linearly varying field E = 5x i
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [flux, non-uniform-field]
+    stem: The field in a region is E = 5x i N C^{-1} (x in metres, i the unit vector along x). A cube of side 2 m has faces parallel to the coordinate planes, with one face in the plane x = 0 and the opposite face at x = 2 m. The net flux through the cube is
+    options:
+      - 20 N m^2 C^{-1}
+      - 40 N m^2 C^{-1}
+      - 80 N m^2 C^{-1}
+      - zero
+    answer: 1
+    explanation: Only the faces normal to x contribute. At x = 0, E = 0; at x = 2 m, E = 10 N C^{-1} outward. φ = 10 × 2^2 = 40 N m^2 C^{-1}. The side faces are parallel to E.
+
+  - id: phy-ecf-185
+    topic: electric-dipole
+    subtopic: Field near a dipole
+    concept: Field at the midpoint of a dipole is not zero
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [dipole-field, trap]
+    stem: Which statement about the field of an electric dipole is INCORRECT?
+    options:
+      - At large distances it falls off as 1/r^3
+      - It is zero at the midpoint between the two charges
+      - At an axial point it points along the dipole moment
+      - It depends on both the distance and the direction from the dipole
+    answer: 1
+    explanation: At the midpoint the fields of +q and −q both point from +q towards −q and add, giving 2kq/a^2 for charges 2a apart. They cancel only for like charges.
+
+  - id: phy-ecf-186
+    topic: electric-dipole
+    subtopic: Unit of dipole moment
+    concept: SI unit of dipole moment is C m
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 15
+    ncert: true
+    battle: true
+    tags: [units]
+    stem: The SI unit of electric dipole moment is
+    options:
+      - C m
+      - C m^{-1}
+      - C m^2
+      - N m C^{-1}
+    answer: 0
+    explanation: p = q × 2a, so its unit is coulomb metre (C m).
+
+  - id: phy-ecf-187
+    topic: electric-dipole
+    subtopic: NCERT equatorial field
+    concept: Equatorial field of ±10 μC dipole at 15 cm
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: E = kp/r^3
+    tags: [dipole-field]
+    stem: Charges ±10 μC are 5 mm apart. The field at 15 cm from the centre on the equatorial line is about
+    options:
+      - 2.7 × 10^5 N C^{-1}, along p
+      - 1.33 × 10^5 N C^{-1}, along p
+      - 1.33 × 10^3 N C^{-1}, opposite to p
+      - 1.33 × 10^5 N C^{-1}, opposite to p
+    answer: 3
+    explanation: p = 5 × 10^{-8} C m. E = kp/r^3 = 9 × 10^9 × 5 × 10^{-8}/3.375 × 10^{-3} ≈ 1.33 × 10^5 N C^{-1}, directed opposite to p on the equatorial line.
+
+  - id: phy-ecf-188
+    topic: electric-dipole
+    subtopic: Units of related quantities
+    concept: Match dipole moment, torque, flux and field with their units
+    category: factual
+    format: match
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Match the quantity (List I) with its SI unit (List II).
+      List I: P. Electric dipole moment; Q. Torque on a dipole; R. Electric flux; S. Electric field
+      List II: 1. N m; 2. V m^{-1}; 3. C m; 4. N m^2 C^{-1}
+    options:
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-1, R-2, S-4
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+    answer: 2
+    explanation: Dipole moment is C m, torque is N m, flux is N m^2 C^{-1} (= V m) and field is V m^{-1} (= N C^{-1}).
+
+  - id: phy-ecf-189
+    topic: electric-dipole
+    subtopic: Distance dependence
+    concept: Doubling distance cuts dipole field to one-eighth
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [dipole-field, proportionality]
+    stem: The field of a short dipole at an axial point 10 cm away is E. At an axial point 20 cm away it is
+    options:
+      - E/2
+      - E/4
+      - E/8
+      - E/16
+    answer: 2
+    explanation: The dipole field varies as 1/r^3, so doubling r reduces it by 2^3 = 8.
+
+  - id: phy-ecf-190
+    topic: dipole-in-field
+    subtopic: Uniform versus non-uniform field
+    concept: Force and torque on a dipole in uniform and non-uniform fields
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [force, torque, non-uniform-field]
+    stem: |-
+      Consider these statements about an electric dipole.
+      I. In a uniform field, the net force on it is zero.
+      II. In a uniform field, the torque is zero when p is parallel to E.
+      III. In a non-uniform field, it can experience a net force.
+      IV. In a non-uniform field, the torque on it is always zero.
+      Which are correct?
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: Equal and opposite forces cancel in a uniform field; τ = pE sin θ vanishes at θ = 0. In a non-uniform field the forces on the two ends differ, giving a net force, and a torque exists whenever p is not along E.
+
+  - id: phy-ecf-191
+    topic: dipole-in-field
+    subtopic: Attraction of paper bits
+    concept: Induced dipoles in a non-uniform field feel a net force
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [non-uniform-field, induced-dipole, ncert-line]
+    stem: |-
+      Assertion (A): A comb run through dry hair attracts small pieces of paper.
+      Reason (R): The comb's field polarises the paper, and since this field is non-uniform, the induced dipoles experience a net force towards the comb.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The charged comb induces dipoles in the paper aligned with its field. In the non-uniform field near the comb, the end nearer the comb feels a stronger force, so the paper is pulled towards it.
+
+  - id: phy-ecf-192
+    topic: dipole-in-field
+    subtopic: Torque at different angles
+    concept: Torque at 90° is twice that at 30°
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [torque, proportionality]
+    stem: A dipole at 30° to a uniform field experiences a torque τ. When turned to 90° with the field, the torque is
+    options:
+      - τ/2
+      - 2τ
+      - √3 τ
+      - τ
+    answer: 1
+    explanation: τ ∝ sin θ. sin 90°/sin 30° = 1/0.5 = 2, so the torque becomes 2τ.
+
+  - id: phy-ecf-193
+    topic: dipole-in-field
+    subtopic: Angular acceleration
+    concept: α = pE sin θ/I
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    formula: α = pE sin θ/I
+    tags: [torque, rotational-dynamics, multi-concept]
+    stem: A dipole of moment 10^{-6} C m and moment of inertia 5 × 10^{-4} kg m^2 is released at 30° to a uniform field of 10^4 N C^{-1}. Its initial angular acceleration is
+    options:
+      - 10 rad s^{-2}
+      - 20 rad s^{-2}
+      - 17.3 rad s^{-2}
+      - 5 rad s^{-2}
+    answer: 0
+    explanation: τ = pE sin 30° = 10^{-6} × 10^4 × 0.5 = 5 × 10^{-3} N m. α = τ/I = 5 × 10^{-3}/5 × 10^{-4} = 10 rad s^{-2}.
+
+  - id: phy-ecf-194
+    topic: dipole-in-field
+    subtopic: Motion of a released dipole
+    concept: A free dipole in a uniform field rotates and oscillates without translating
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [torque, equilibrium]
+    stem: A rigid dipole is released from rest at 90° to a uniform field in a frictionless space. What happens next?
+    options:
+      - It accelerates along the field
+      - It stays at rest
+      - It rotates in one direction with ever-increasing speed
+      - It rotates and oscillates about the field direction without any translation
+    answer: 3
+    explanation: The torque pE sin θ turns it towards E, it overshoots and swings back, oscillating about θ = 0. The net force is zero in a uniform field, so its centre does not move.
+
+  - id: phy-ecf-195
+    topic: gauss-law
+    subtopic: Rules for Gaussian surfaces
+    concept: A Gaussian surface must not pass through a discrete point charge
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [gaussian-surface, ncert-line]
+    stem: Which statement about Gauss's law is correct?
+    options:
+      - It holds only for symmetric charge distributions
+      - A Gaussian surface can pass through a continuous charge distribution but not through a discrete point charge
+      - It can be used to find flux but never the electric field
+      - The flux through a closed surface depends on where the charges are located inside it
+    answer: 1
+    explanation: Gauss's law is always true, but is useful for finding E only with symmetry. The field is not defined at a point charge, so the surface must avoid it. Flux depends only on the total enclosed charge.
+
+  - id: phy-ecf-196
+    topic: gauss-law
+    subtopic: Flux through a hemisphere
+    concept: A charge at the centre of a hemisphere's flat face sends q/2ε_0 through the curved surface
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [symmetry]
+    stem: A point charge q sits at the centre of the flat face of a hemispherical surface. The flux through the curved part is
+    options:
+      - zero
+      - q/4ε_0
+      - q/ε_0
+      - q/2ε_0
+    answer: 3
+    explanation: The field lines spread equally in all directions; half pass through the upper hemisphere. Flux = ½(q/ε_0) = q/2ε_0.
+
+  - id: phy-ecf-197
+    topic: gauss-law
+    subtopic: Entering and leaving flux
+    concept: Net charge from net outward flux
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [gauss-law, sign-convention]
+    stem: Flux of 400 N m^2 C^{-1} enters a closed surface and 800 N m^2 C^{-1} leaves it. The net charge inside is (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 3.54 × 10^{-9} C
+      - 1.06 × 10^{-8} C
+      - 7.08 × 10^{-9} C
+      - −3.54 × 10^{-9} C
+    answer: 0
+    explanation: Net outward flux = 800 − 400 = 400 N m^2 C^{-1}. q = ε_0 φ = 8.85 × 10^{-12} × 400 = 3.54 × 10^{-9} C, positive because net flux is outward.
+
+  - id: phy-ecf-198
+    topic: gauss-law
+    subtopic: Moving a charge inside a surface
+    concept: Flux stays the same but the field on the surface changes
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [gauss-law, trap]
+    stem: |-
+      A point charge inside a closed spherical surface is moved from the centre to a point near the surface (still inside).
+      Statement I: The total flux through the surface does not change.
+      Statement II: The electric field at every point of the surface also remains unchanged.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Flux depends only on enclosed charge, so it stays q/ε_0. The field on the surface becomes much stronger near the charge and weaker far from it, so Statement II is false.
+
+  - id: phy-ecf-199
+    topic: gauss-applications
+    subtopic: Infinite plane sheet
+    concept: E = σ/2ε_0 numerical
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: E = σ/2ε_0
+    tags: [plane-sheet]
+    stem: A large plane sheet has σ = 1.77 × 10^{-6} C m^{-2}. The field near it is (ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2})
+    options:
+      - 2 × 10^5 N C^{-1}
+      - 5 × 10^4 N C^{-1}
+      - 10^5 N C^{-1}
+      - 10^{-5} N C^{-1}
+    answer: 2
+    explanation: E = σ/2ε_0 = 1.77 × 10^{-6}/(2 × 8.85 × 10^{-12}) = 10^5 N C^{-1}. Forgetting the 2 gives 2 × 10^5, which is the field near a conductor.
+
+  - id: phy-ecf-200
+    topic: gauss-applications
+    subtopic: Thin spherical shell
+    concept: Field inside, at and outside a uniformly charged shell
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [spherical-shell]
+    stem: |-
+      For a thin spherical shell of radius R with uniform surface charge density σ and total charge Q, consider:
+      I. The field inside is zero.
+      II. The field outside at distance r is kQ/r^2.
+      III. The field just outside the surface is σ/ε_0.
+      IV. The field inside increases linearly with r.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: Inside no charge is enclosed, so E = 0 (IV false). Outside the shell acts like a point charge, and at the surface kQ/R^2 = σ/ε_0.

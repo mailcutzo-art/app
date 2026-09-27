@@ -1,0 +1,4214 @@
+subject: physics
+chapter:
+  slug: mechanical-properties-of-solids
+  name: Mechanical Properties of Solids
+  order: 8
+  classes: [11]
+  topics:
+    - slug: elasticity-plasticity
+      name: Elastic and plastic behaviour of solids
+    - slug: stress-strain
+      name: Stress and strain
+    - slug: hookes-law
+      name: Hooke's law and moduli of elasticity
+    - slug: stress-strain-curve
+      name: Stress–strain curve
+    - slug: youngs-modulus
+      name: Young's modulus
+    - slug: youngs-modulus-experiment
+      name: Determination of Young's modulus
+    - slug: shear-modulus
+      name: Shear modulus
+    - slug: bulk-modulus
+      name: Bulk modulus and compressibility
+    - slug: poissons-ratio
+      name: Poisson's ratio
+    - slug: elastic-energy
+      name: Elastic potential energy in a stretched wire
+    - slug: applications
+      name: Applications of elastic behaviour of materials
+questions:
+  - id: phy-mps-001
+    topic: elasticity-plasticity
+    subtopic: Elasticity
+    concept: Definition of elasticity
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [elasticity, ncert-line]
+    stem: The property of a body by which it tends to regain its original size and shape when the deforming force is removed is called
+    options:
+      - plasticity
+      - elasticity
+      - ductility
+      - malleability
+    answer: 1
+    explanation: Elasticity is the property of regaining original size and shape on removal of the deforming force. Plasticity is the opposite behaviour, where the deformation stays after the force is removed.
+
+  - id: phy-mps-002
+    topic: elasticity-plasticity
+    subtopic: Plasticity
+    concept: Putty and mud are close to ideal plastics
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [plasticity, ncert-line]
+    stem: Which of the following is closest to an ideal plastic body?
+    options:
+      - Quartz fibre
+      - Steel wire
+      - Putty
+      - Rubber band
+    answer: 2
+    explanation: NCERT cites putty and mud as close to ideal plastics; they show no tendency to regain their shape. Quartz fibre and steel are highly elastic, and a rubber band regains its length.
+
+  - id: phy-mps-003
+    topic: elasticity-plasticity
+    subtopic: Rigid body
+    concept: A rigid body keeps interparticle distances fixed
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [rigid-body]
+    stem: An ideal rigid body is one in which
+    options:
+      - the body is perfectly plastic
+      - Young's modulus is zero
+      - small forces cause permanent deformation
+      - the separation between any two particles never changes under applied forces
+    answer: 3
+    explanation: A rigid body is an idealisation in which no applied force changes the distance between its particles, so it does not deform at all. Real bodies always deform to some extent; a rigid body would have infinite, not zero, modulus.
+
+  - id: phy-mps-004
+    topic: elasticity-plasticity
+    subtopic: Microscopic view
+    concept: Restoring force comes from change in interatomic separation
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [spring-ball-model, interatomic-forces]
+    stem: In the spring–ball model of a solid, the restoring force on deformation arises because
+    options:
+      - gravity pulls the atoms back to their places
+      - atoms are displaced from their equilibrium separations
+      - nuclear forces act between neighbouring atoms
+      - atoms lose their magnetic alignment
+    answer: 1
+    explanation: When a solid is deformed, atoms are displaced from their equilibrium positions, changing interatomic separations; the interatomic (spring-like) forces then pull them back. These are electromagnetic in origin, not gravitational or nuclear.
+
+  - id: phy-mps-005
+    topic: elasticity-plasticity
+    subtopic: Perfectly elastic body
+    concept: Quartz fibre is nearly perfectly elastic
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [perfectly-elastic]
+    stem: Which of the following is the nearest approach to a perfectly elastic body?
+    options:
+      - Wax
+      - Clay
+      - Quartz fibre
+      - Putty
+    answer: 2
+    explanation: Quartz fibre regains its shape almost exactly and is treated as the nearest approach to a perfectly elastic body. Wax, clay and putty are largely plastic.
+
+  - id: phy-mps-006
+    topic: elasticity-plasticity
+    subtopic: Comparing elasticity
+    concept: Steel is more elastic than rubber
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [trap, steel-vs-rubber]
+    stem: |-
+      Assertion (A): Steel is more elastic than rubber.
+      Reason (R): For the same stress, the strain produced in steel is much smaller than that in rubber.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Elasticity is measured by the modulus, stress/strain. Steel shows a far smaller strain for the same stress, so its Young's modulus is much larger and it is more elastic. The everyday idea that rubber is 'more elastic' confuses stretchability with elasticity.
+
+  - id: phy-mps-007
+    topic: elasticity-plasticity
+    subtopic: Elastic limit
+    concept: Meaning of elastic limit
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [elastic-limit]
+    stem: Which of the following statements is correct?
+    options:
+      - The elastic limit is the maximum stress up to which a body fully regains its original dimensions on unloading
+      - A body that has undergone plastic deformation fully recovers its shape on unloading
+      - Plasticity is the tendency of a body to regain its original shape
+      - Elastic behaviour is shown only by metals
+    answer: 0
+    explanation: Up to the elastic limit, removing the load restores the original dimensions. Plastic deformation is permanent by definition, and elasticity (not plasticity) is the tendency to recover; non-metals like rubber and bone are also elastic.
+
+  - id: phy-mps-008
+    topic: stress-strain
+    subtopic: Stress
+    concept: Stress is restoring force per unit area
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [stress, ncert-line]
+    stem: Stress is defined as the
+    options:
+      - applied force per unit length
+      - change in length per unit length
+      - restoring force per unit area
+      - restoring force per unit volume
+    answer: 2
+    explanation: Stress is the restoring force per unit area, which in equilibrium equals the magnitude of the applied force per unit area. Change in length per unit length is strain.
+
+  - id: phy-mps-009
+    topic: stress-strain
+    subtopic: Dimensions of stress
+    concept: Dimensional formula of stress
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: stress = F/A
+    tags: [dimensions, stress]
+    stem: The dimensional formula of stress is
+    options:
+      - M L T^{-2}
+      - M L^{-1} T^{-2}
+      - M L^2 T^{-2}
+      - M^0 L^0 T^0
+    answer: 1
+    explanation: Stress = force/area = M L T^{-2}/L^2 = M L^{-1} T^{-2}, the same as pressure. M L T^{-2} is force itself and M^0 L^0 T^0 is strain.
+
+  - id: phy-mps-010
+    topic: stress-strain
+    subtopic: Strain
+    concept: Strain is a dimensionless ratio
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [strain, units]
+    stem: The SI unit of strain is
+    options:
+      - N m^{-2}
+      - metre
+      - none, as it is a ratio of similar quantities
+      - N m
+    answer: 2
+    explanation: Strain is change in dimension divided by original dimension (for example ΔL/L), a ratio of two lengths, so it has no unit and no dimensions. N m^{-2} is the unit of stress.
+
+  - id: phy-mps-011
+    topic: stress-strain
+    subtopic: Calculating stress
+    concept: Stress = F/A with area in mm² converted to m²
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: stress = F/A
+    tags: [stress, unit-conversion]
+    stem: A force of 200 N is applied on a wire of cross-sectional area 2 mm^2. The tensile stress in the wire is
+    options:
+      - 10^6 N m^{-2}
+      - 10^7 N m^{-2}
+      - 10^8 N m^{-2}
+      - 10^{10} N m^{-2}
+    answer: 2
+    explanation: A = 2 mm^2 = 2 × 10^{-6} m^2, so stress = 200/(2 × 10^{-6}) = 10^8 N m^{-2}. Forgetting that 1 mm^2 = 10^{-6} m^2 (not 10^{-3}) gives the wrong power of ten.
+
+  - id: phy-mps-012
+    topic: stress-strain
+    subtopic: Longitudinal strain
+    concept: Longitudinal strain = ΔL/L
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: strain = ΔL/L
+    tags: [strain]
+    stem: A wire 2 m long is stretched by 1 mm. The longitudinal strain is
+    options:
+      - 5 × 10^{-4}
+      - 2 × 10^{-3}
+      - 5 × 10^{-3}
+      - 5 × 10^{-2}
+    answer: 0
+    explanation: Strain = ΔL/L = (1 × 10^{-3} m)/(2 m) = 5 × 10^{-4}. Keep both lengths in the same unit before dividing.
+
+  - id: phy-mps-013
+    topic: stress-strain
+    subtopic: Shearing stress
+    concept: Tangential force per unit area is shearing stress
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [shearing-stress]
+    stem: When the deforming force acts parallel (tangentially) to the surface of a body, the stress produced is called
+    options:
+      - tensile stress
+      - compressive stress
+      - shearing stress
+      - hydraulic stress
+    answer: 2
+    explanation: A tangential force per unit area produces shearing (tangential) stress. Tensile and compressive stresses come from forces normal to the cross-section; hydraulic stress is a uniform normal pressure from all sides.
+
+  - id: phy-mps-014
+    topic: stress-strain
+    subtopic: Hydraulic stress
+    concept: Uniform pressure from all sides produces hydraulic stress
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [hydraulic-stress, ncert-line]
+    stem: A solid sphere placed deep inside water experiences a uniform pressure from all sides. The stress in it is called
+    options:
+      - longitudinal stress
+      - hydraulic stress
+      - shearing stress
+      - tensile stress
+    answer: 1
+    explanation: A body subjected to uniform normal force from all sides by a fluid experiences hydraulic stress, equal in magnitude to the hydraulic pressure. It changes volume without changing shape.
+
+  - id: phy-mps-015
+    topic: stress-strain
+    subtopic: Types of strain
+    concept: Defining expressions of different strains
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [strain-types]
+    stem: |-
+      Match List I (type of strain) with List II (expression).
+      List I: P. Longitudinal strain; Q. Shearing strain; R. Volume strain; S. Lateral strain
+      List II: 1. ΔV/V; 2. Δx/L; 3. ΔL/L; 4. Δd/d
+    options:
+      - P-1, Q-2, R-3, S-4
+      - P-3, Q-4, R-1, S-2
+      - P-2, Q-3, R-1, S-4
+      - P-3, Q-2, R-1, S-4
+    answer: 3
+    explanation: Longitudinal strain is ΔL/L, shearing strain is the relative sideways displacement Δx/L (= tan θ), volume strain is ΔV/V, and lateral strain is the fractional change in diameter Δd/d.
+
+  - id: phy-mps-016
+    topic: stress-strain
+    subtopic: Shearing strain
+    concept: Shear strain = Δx/L
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: shear strain = Δx/L
+    tags: [shear-strain]
+    stem: The top face of a cube of side 10 cm is displaced sideways by 0.5 mm relative to the fixed bottom face. The shearing strain is
+    options:
+      - 5 × 10^{-3}
+      - 5 × 10^{-2}
+      - 5 × 10^{-4}
+      - 2 × 10^{-3}
+    answer: 0
+    explanation: Shearing strain = Δx/L = (0.5 × 10^{-3} m)/(0.1 m) = 5 × 10^{-3}. The displacement is divided by the height (the side perpendicular to the displacement).
+
+  - id: phy-mps-017
+    topic: stress-strain
+    subtopic: Dimensions
+    concept: Stress has dimensions of pressure; strain is dimensionless
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [dimensions]
+    stem: |-
+      Statement I: Stress has the same dimensions as pressure.
+      Statement II: Strain has the dimensions of length.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Stress and pressure are both force per unit area, M L^{-1} T^{-2}. Strain is a ratio of two like quantities (ΔL/L), so it is dimensionless; Statement II is wrong.
+
+  - id: phy-mps-018
+    topic: hookes-law
+    subtopic: Statement of Hooke's law
+    concept: Stress ∝ strain within the elastic (proportional) limit
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: stress = k × strain
+    tags: [hookes-law, ncert-line]
+    stem: Hooke's law states that, for small deformations,
+    options:
+      - stress is proportional to strain
+      - stress is proportional to the square of strain
+      - stress is inversely proportional to strain
+      - stress is proportional to strain for all loads up to fracture
+    answer: 0
+    explanation: For small deformations, stress and strain are directly proportional; the constant of proportionality is the modulus of elasticity. The proportionality fails well before fracture, beyond the proportional limit.
+
+  - id: phy-mps-019
+    topic: hookes-law
+    subtopic: Unit of modulus
+    concept: Modulus of elasticity has the unit of stress
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units, modulus]
+    stem: The SI unit of modulus of elasticity is
+    options:
+      - N m
+      - N m^{-1}
+      - N m^{-2}
+      - N^{-1} m^2
+    answer: 2
+    explanation: Modulus = stress/strain and strain is dimensionless, so the modulus has the unit of stress, N m^{-2} (pascal). N^{-1} m^2 is the unit of compressibility.
+
+  - id: phy-mps-020
+    topic: hookes-law
+    subtopic: Dependence of modulus
+    concept: Modulus depends only on the material (and temperature)
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [modulus, trap]
+    stem: The modulus of elasticity of a wire depends on
+    options:
+      - its length
+      - its area of cross-section
+      - the load applied to it
+      - the nature of its material
+    answer: 3
+    explanation: The modulus is a property of the material (and varies with temperature). Changing length, area or load changes the extension, but the ratio stress/strain stays the same.
+
+  - id: phy-mps-021
+    topic: hookes-law
+    subtopic: Stress–strain graph
+    concept: Slope of linear stress–strain graph is the modulus
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [graph, hookes-law]
+    stem: Within the proportional limit, the graph of stress (y-axis) against strain (x-axis) for a wire is
+    options:
+      - a parabola through the origin
+      - a straight line through the origin whose slope is the modulus
+      - a straight line parallel to the strain axis
+      - a rectangular hyperbola
+    answer: 1
+    explanation: Hooke's law gives stress = modulus × strain, a straight line through the origin with slope equal to the modulus of elasticity.
+
+  - id: phy-mps-022
+    topic: hookes-law
+    subtopic: Dependence of modulus
+    concept: Modulus does not change with length of wire
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [trap, modulus]
+    stem: |-
+      Assertion (A): The Young's modulus of a wire increases if the wire is made longer.
+      Reason (R): Young's modulus is a characteristic of the material of the wire.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: A longer wire extends more under the same load, but its strain ΔL/L is unchanged, so Y stays the same. Y depends on the material, which is exactly why A is false while R is true.
+
+  - id: phy-mps-023
+    topic: hookes-law
+    subtopic: Temperature effect
+    concept: Elastic moduli decrease with rise in temperature
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [temperature]
+    stem: When the temperature of a metal wire is raised, its Young's modulus generally
+    options:
+      - increases
+      - decreases
+      - remains unchanged
+      - becomes zero
+    answer: 1
+    explanation: Heating weakens interatomic bonding, so a smaller stress produces the same strain and the modulus decreases. It does not drop to zero until the material melts.
+
+  - id: phy-mps-024
+    topic: hookes-law
+    subtopic: Types of moduli
+    concept: Bulk modulus is defined for solids, liquids and gases
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [bulk-modulus, fluids]
+    stem: Which elastic modulus is defined for solids, liquids as well as gases?
+    options:
+      - Young's modulus
+      - Modulus of rigidity
+      - Bulk modulus
+      - Modulus of torsion
+    answer: 2
+    explanation: Fluids can be compressed but cannot sustain a steady longitudinal or shearing stress, so only the bulk modulus is defined for all three states. Young's and shear moduli apply to solids only.
+
+  - id: phy-mps-025
+    topic: hookes-law
+    subtopic: Comparing moduli
+    concept: Modulus ∝ 1/strain for equal stress
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: Y = stress/strain
+    tags: [ratio]
+    stem: Under the same stress, material A shows twice the strain shown by material B. The ratio Y_A/Y_B of their moduli is
+    options:
+      - "2"
+      - "1/2"
+      - "4"
+      - "1/4"
+    answer: 1
+    explanation: Y = stress/strain. With equal stress, Y ∝ 1/strain, so Y_A/Y_B = 1/2. The material that strains more has the smaller modulus.
+
+  - id: phy-mps-026
+    topic: stress-strain-curve
+    subtopic: Proportional limit
+    concept: Linear region ends at the proportional limit
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [stress-strain-curve, ncert-line]
+    stem: On the stress–strain curve of a metal wire, the region in which stress is proportional to strain ends at the
+    options:
+      - yield point
+      - proportional limit
+      - ultimate tensile strength point
+      - fracture point
+    answer: 1
+    explanation: The initial straight-line part (O to A) obeys Hooke's law and ends at the proportional limit A. Beyond A, stress and strain are no longer proportional, though the body may still be elastic up to the yield point.
+
+  - id: phy-mps-027
+    topic: stress-strain-curve
+    subtopic: Yield strength
+    concept: Stress at the elastic limit is the yield strength
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [yield-strength, ncert-line]
+    stem: The stress corresponding to the elastic limit (yield point) of a material is called its
+    options:
+      - breaking strength
+      - ultimate tensile strength
+      - bulk modulus
+      - yield strength
+    answer: 3
+    explanation: The point B up to which the body returns to its original dimensions is the yield point or elastic limit; the stress there is the yield strength σ_y. Ultimate tensile strength is the maximum stress, reached later at D.
+
+  - id: phy-mps-028
+    topic: stress-strain-curve
+    subtopic: Permanent set
+    concept: Unloading beyond the yield point leaves permanent strain
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [permanent-set, ncert-line]
+    stem: A wire is loaded beyond its yield point and the load is then removed. The wire will
+    options:
+      - return exactly to its original length
+      - retain a permanent strain
+      - break immediately
+      - contract to less than its original length
+    answer: 1
+    explanation: Beyond the yield point the deformation is partly plastic; on unloading, the strain does not return to zero and the material is said to have a permanent set.
+
+  - id: phy-mps-029
+    topic: stress-strain-curve
+    subtopic: Ultimate tensile strength
+    concept: Maximum stress on the curve is the ultimate tensile strength
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [ultimate-strength]
+    stem: The maximum stress on the stress–strain curve of a wire, beyond which it thins and fractures even with reduced load, is its
+    options:
+      - elastic limit
+      - yield strength
+      - ultimate tensile strength
+      - proportional limit
+    answer: 2
+    explanation: Point D, the highest stress on the curve, is the ultimate tensile strength σ_u. Beyond it, additional strain is produced even by reduced force and the wire fractures at E.
+
+  - id: phy-mps-030
+    topic: stress-strain-curve
+    subtopic: Ductile materials
+    concept: Large gap between ultimate strength and fracture means ductile
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ductile, ncert-line]
+    stem: Materials in which the fracture point lies far beyond the ultimate tensile strength point are called
+    options:
+      - brittle
+      - elastomers
+      - ductile
+      - rigid
+    answer: 2
+    explanation: If the ultimate strength and fracture points are far apart, the material undergoes a large plastic deformation before breaking, so it is ductile (like copper). If they are close, it is brittle.
+
+  - id: phy-mps-031
+    topic: stress-strain-curve
+    subtopic: Brittle materials
+    concept: Brittle materials fracture soon after the elastic limit
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [brittle]
+    stem: A material whose ultimate tensile strength and fracture points are very close together is
+    options:
+      - ductile
+      - brittle
+      - plastic
+      - an elastomer
+    answer: 1
+    explanation: When D and E nearly coincide there is almost no plastic range, so the material breaks suddenly without much deformation; such materials (like glass or cast iron) are brittle.
+
+  - id: phy-mps-032
+    topic: stress-strain-curve
+    subtopic: Elastomers
+    concept: Aorta tissue is an elastomer
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [elastomer, ncert-line]
+    stem: The elastic tissue of the aorta, which can be stretched a lot and still regain its size, is an example of
+    options:
+      - a brittle material
+      - a ductile material
+      - an elastomer
+      - a plastic material
+    answer: 2
+    explanation: NCERT gives the aorta's tissue and rubber as elastomers, substances that can be stretched to large strains and still recover, though their stress–strain curve is not linear.
+
+  - id: phy-mps-033
+    topic: stress-strain-curve
+    subtopic: Elastomers
+    concept: Characteristics of the stress–strain curve of rubber
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [elastomer, rubber]
+    stem: |-
+      Consider the following statements about rubber, an elastomer.
+      I. It does not obey Hooke's law over most of its elastic region.
+      II. It has no well-defined plastic region.
+      III. It can be stretched to several times its length and still return to its original length.
+      IV. Its Young's modulus is larger than that of steel.
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: The stress–strain curve of rubber is curved (non-Hookean) over a very large elastic region and has no well-defined plastic region; rubber recovers even after large strains. Its Young's modulus is far smaller than that of steel, so IV is false.
+
+  - id: phy-mps-034
+    topic: stress-strain-curve
+    subtopic: Sequence of points
+    concept: Order of key points on the stress–strain curve
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [stress-strain-curve]
+    stem: |-
+      As a metal wire is stretched until it breaks, arrange these points in the order in which they are reached.
+      P. Ultimate tensile strength
+      Q. Proportional limit
+      R. Fracture point
+      S. Yield point
+    options:
+      - Q, S, P, R
+      - S, Q, P, R
+      - Q, P, S, R
+      - Q, S, R, P
+    answer: 0
+    explanation: The linear region ends at the proportional limit (Q), the elastic limit or yield point follows (S), the stress then rises to its maximum, the ultimate tensile strength (P), and finally the wire breaks at the fracture point (R).
+
+  - id: phy-mps-035
+    topic: stress-strain-curve
+    subtopic: Comparing slopes
+    concept: Ratio of moduli from slopes of stress–strain lines
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: Y = slope = tan θ
+    tags: [graph, slope]
+    stem: The stress–strain graphs of two wires A and B (same scale on both axes) are straight lines through the origin making angles of 60° and 30° respectively with the strain axis. The ratio Y_A/Y_B is
+    options:
+      - "3"
+      - "√3"
+      - "1/3"
+      - "1/√3"
+    answer: 0
+    explanation: Y is the slope, tan θ, of the stress–strain line. Y_A/Y_B = tan 60°/tan 30° = √3/(1/√3) = 3. Taking the ratio of the angles or of sines gives the wrong answer.
+
+  - id: phy-mps-036
+    topic: youngs-modulus
+    subtopic: Calculating Y
+    concept: Y = FL/(AΔL)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    formula: Y = FL/(AΔL)
+    tags: [youngs-modulus]
+    stem: A wire of length 2 m and cross-sectional area 1 mm^2 extends by 1 mm under a load of 100 N. Young's modulus of its material is
+    options:
+      - 2 × 10^9 N m^{-2}
+      - 2 × 10^{10} N m^{-2}
+      - 2 × 10^{11} N m^{-2}
+      - 2 × 10^{12} N m^{-2}
+    answer: 2
+    explanation: Y = FL/(AΔL) = (100 × 2)/(10^{-6} × 10^{-3}) = 2 × 10^{11} N m^{-2}. Remember 1 mm^2 = 10^{-6} m^2 and 1 mm = 10^{-3} m.
+
+  - id: phy-mps-037
+    topic: youngs-modulus
+    subtopic: Dependence of extension
+    concept: ΔL ∝ L/r² for fixed load and material
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: ΔL = FL/(πr^2 Y)
+    tags: [extension, proportionality]
+    stem: A wire of the same material is replaced by one having twice the length and twice the radius. For the same load, the extension becomes
+    options:
+      - half
+      - double
+      - unchanged
+      - four times
+    answer: 0
+    explanation: ΔL = FL/(πr^2 Y) ∝ L/r^2. Doubling L doubles ΔL, doubling r quarters it, so ΔL becomes 2/4 = 1/2 of the original.
+
+  - id: phy-mps-038
+    topic: youngs-modulus
+    subtopic: Ratio of extensions
+    concept: Extension ratio using ΔL ∝ L/r²
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: ΔL ∝ L/r^2
+    tags: [ratio, extension]
+    stem: "Two wires of the same material have lengths in the ratio 1 : 2 and radii in the ratio 2 : 1. They carry equal loads. The ratio of their extensions is"
+    options:
+      - "2 : 1"
+      - "1 : 4"
+      - "1 : 8"
+      - "8 : 1"
+    answer: 2
+    explanation: "ΔL ∝ L/r^2, so ΔL_1/ΔL_2 = (L_1/L_2)(r_2/r_1)^2 = (1/2)(1/2)^2 = 1/8. Forgetting to square the radius ratio gives 1 : 4."
+
+  - id: phy-mps-039
+    topic: youngs-modulus
+    subtopic: Typical values
+    concept: Steel has the largest Y among common materials in NCERT table
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ncert-table, ncert-line]
+    stem: Among the following, which has the largest Young's modulus?
+    options:
+      - Steel
+      - Copper
+      - Aluminium
+      - Glass
+    answer: 0
+    explanation: From the NCERT table, Y is about 200 × 10^9 N m^{-2} for steel, 120 × 10^9 for copper, 70 × 10^9 for aluminium and 65 × 10^9 for glass.
+
+  - id: phy-mps-040
+    topic: youngs-modulus
+    subtopic: Rigid body
+    concept: Y of a perfectly rigid body is infinite
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [rigid-body, trap]
+    stem: Young's modulus of a perfectly rigid body is
+    options:
+      - zero
+      - unity
+      - infinite
+      - equal to its density
+    answer: 2
+    explanation: A rigid body produces zero strain for any finite stress, so Y = stress/strain tends to infinity. Choosing zero is a common slip.
+
+  - id: phy-mps-041
+    topic: youngs-modulus
+    subtopic: Extension and load
+    concept: Extension ∝ load within elastic limit
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: ΔL ∝ F
+    tags: [extension]
+    stem: A wire extends by 0.8 mm when a 4 kg mass hangs from it. What is its extension when a 6 kg mass hangs from it (within the elastic limit)?
+    options:
+      - 1.0 mm
+      - 1.2 mm
+      - 1.6 mm
+      - 1.8 mm
+    answer: 1
+    explanation: Extension is proportional to load, so ΔL = 0.8 × 6/4 = 1.2 mm.
+
+  - id: phy-mps-042
+    topic: youngs-modulus
+    subtopic: Extension from diameter
+    concept: Extension of a steel wire with given diameter
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: ΔL = 4FL/(πd^2 Y)
+    tags: [extension, diameter]
+    stem: A steel wire of length 1 m and diameter 1 mm supports a 10 kg mass. If Y = 2 × 10^{11} N m^{-2} and g = 10 m s^{-2}, the extension is about
+    options:
+      - 0.32 mm
+      - 0.64 mm
+      - 1.27 mm
+      - 6.4 mm
+    answer: 1
+    explanation: A = πd^2/4 = 3.14 × 10^{-6}/4 ≈ 7.85 × 10^{-7} m^2. ΔL = FL/(AY) = (100 × 1)/(7.85 × 10^{-7} × 2 × 10^{11}) ≈ 6.4 × 10^{-4} m = 0.64 mm. Using d instead of d/2 as the radius gives 0.16 mm; using d/2 unsquared goes wrong too.
+
+  - id: phy-mps-043
+    topic: youngs-modulus
+    subtopic: Dimensions
+    concept: Young's modulus has dimensions of pressure
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [dimensions]
+    stem: Young's modulus has the same dimensions as
+    options:
+      - energy
+      - force
+      - momentum
+      - pressure
+    answer: 3
+    explanation: Y = stress/strain and strain is dimensionless, so Y has the dimensions of stress, M L^{-1} T^{-2}, which are the dimensions of pressure.
+
+  - id: phy-mps-044
+    topic: youngs-modulus
+    subtopic: Effect of length
+    concept: Length changes extension, not Y
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [trap, extension]
+    stem: |-
+      Statement I: Young's modulus of a wire doubles when its length is doubled.
+      Statement II: The extension of a wire under a given load doubles when its length is doubled.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: Y depends only on the material, so Statement I is wrong. ΔL = FL/(AY) is proportional to L, so doubling the length doubles the extension; Statement II is right.
+
+  - id: phy-mps-045
+    topic: youngs-modulus
+    subtopic: Cutting a wire
+    concept: Cutting a wire does not change Y
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [trap]
+    stem: A wire is cut into two equal halves. Young's modulus of each half, compared with that of the original wire, is
+    options:
+      - half
+      - double
+      - the same
+      - one-fourth
+    answer: 2
+    explanation: Young's modulus is a property of the material, not of the wire's dimensions, so each half has the same Y. What does change is the extension under a given load, which halves.
+
+  - id: phy-mps-046
+    topic: youngs-modulus
+    subtopic: Extension under own weight
+    concept: A hanging rod stretches by MgL/(2AY) under its own weight
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: ΔL = MgL/(2AY)
+    tags: [own-weight, multi-concept]
+    stem: A uniform rod of mass M hangs vertically from a rigid support and stretches under its own weight. Compared with the extension it would have if a mass M were hung from its lower end (rod assumed massless), the extension is
+    options:
+      - the same
+      - half
+      - double
+      - one-fourth
+    answer: 1
+    explanation: Tension in the rod varies linearly from Mg at the top to zero at the bottom, so the average tension is Mg/2 and ΔL = MgL/(2AY), half of MgL/(AY) for a load Mg at the end.
+
+  - id: phy-mps-047
+    topic: youngs-modulus
+    subtopic: Meaning of Y
+    concept: Stress to double the length equals Y (if Hooke's law held)
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [meaning-of-y]
+    stem: Assuming Hooke's law held throughout, the stress required to double the length of a wire of Young's modulus Y would be
+    options:
+      - Y/2
+      - Y
+      - 2Y
+      - Y/4
+    answer: 1
+    explanation: Doubling the length means ΔL = L, i.e. strain = 1. Stress = Y × strain = Y. In practice wires break long before such a strain.
+
+  - id: phy-mps-048
+    topic: youngs-modulus
+    subtopic: Wire as a spring
+    concept: Force constant of a wire k = YA/L
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: k = YA/L
+    tags: [spring-constant]
+    stem: A wire of length L, cross-sectional area A and Young's modulus Y behaves like a spring of force constant
+    options:
+      - YL/A
+      - AL/Y
+      - Y/(AL)
+      - YA/L
+    answer: 3
+    explanation: From Y = FL/(AΔL), F = (YA/L)ΔL, which has the form F = kx with k = YA/L. A longer wire is a softer spring; a thicker one is stiffer.
+
+  - id: phy-mps-049
+    topic: youngs-modulus
+    subtopic: Load for given extension
+    concept: F = YAΔL/L
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    formula: F = YAΔL/L
+    tags: [load]
+    stem: What force will stretch a steel wire of length 4 m and cross-sectional area 2 mm^2 by 1 mm? (Y = 2 × 10^{11} N m^{-2})
+    options:
+      - 50 N
+      - 100 N
+      - 200 N
+      - 400 N
+    answer: 1
+    explanation: F = YAΔL/L = (2 × 10^{11} × 2 × 10^{-6} × 10^{-3})/4 = 100 N.
+
+  - id: phy-mps-050
+    topic: youngs-modulus
+    subtopic: Effect of diameter
+    concept: ΔL ∝ 1/d² for same material, length and load
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: ΔL ∝ 1/d^2
+    tags: [ratio, diameter]
+    stem: Two wires of the same material and length have diameters d and 2d. Under equal loads, the ratio of their extensions is
+    options:
+      - "1 : 4"
+      - "4 : 1"
+      - "2 : 1"
+      - "1 : 2"
+    answer: 1
+    explanation: "ΔL ∝ 1/d^2, so the thinner wire stretches (2d/d)^2 = 4 times as much. The ratio is 4 : 1."
+
+  - id: phy-mps-051
+    topic: youngs-modulus-experiment
+    subtopic: Reference wire
+    concept: Reference wire compensates temperature and support effects
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [searle, experiment]
+    stem: In the experiment to determine Young's modulus of a wire using a reference wire and an experimental wire hung from the same rigid support, the reference wire is used mainly to
+    options:
+      - increase the load that can be applied
+      - measure the diameter of the experimental wire
+      - compensate for changes due to temperature and yielding of the support
+      - provide a standard value of Y
+    answer: 2
+    explanation: Both wires hang from the same support and experience the same temperature, so any sag of the support or thermal expansion affects both equally. Measuring the extension relative to the reference wire cancels these errors.
+
+  - id: phy-mps-052
+    topic: youngs-modulus-experiment
+    subtopic: Graphical method
+    concept: Y from slope of extension–load graph
+    category: application
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Y = gL/(πr^2 s)
+    tags: [graph, experiment]
+    stem: In a Young's modulus experiment on a wire of length L and radius r, the graph of extension (y-axis) against the mass hung (x-axis) is a straight line of slope s. Young's modulus is
+    options:
+      - gL/(πr^2 s)
+      - sgL/(πr^2)
+      - πr^2 s/(gL)
+      - πr^2/(sgL)
+    answer: 0
+    explanation: ΔL = MgL/(πr^2 Y), so the slope s = ΔL/M = gL/(πr^2 Y). Rearranging, Y = gL/(πr^2 s). A steeper line means a smaller Y.
+
+  - id: phy-mps-053
+    topic: youngs-modulus-experiment
+    subtopic: Design of experiment
+    concept: Long thin wire gives measurable extension
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [experiment]
+    stem: In the experiment to determine Young's modulus, a long and thin wire is used because
+    options:
+      - Y of a thin wire is larger
+      - it gives a larger, measurable extension
+      - it cannot break under load
+      - it keeps the temperature constant
+    answer: 1
+    explanation: ΔL = FL/(AY) grows with length and with smaller cross-section, so a long thin wire gives an extension large enough to measure accurately. Y itself does not depend on dimensions.
+
+  - id: phy-mps-054
+    topic: youngs-modulus-experiment
+    subtopic: Error analysis
+    concept: Radius contributes the largest error in Y
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: ΔY/Y = ΔF/F + ΔL/L + 2Δr/r + Δl/l
+    tags: [errors, experiment, multi-concept]
+    stem: In determining Y = FL/(πr^2 l) for a wire, the measurement needing the greatest care (as it contributes most to the percentage error) is that of the
+    options:
+      - length L
+      - load F
+      - extension l only
+      - radius r
+    answer: 3
+    explanation: The radius is very small and appears squared, so its percentage error is doubled in Y. Hence it is measured carefully with a screw gauge at several places. The extension is also small but enters only to the first power.
+
+  - id: phy-mps-055
+    topic: youngs-modulus-experiment
+    subtopic: Measuring extension
+    concept: Extension read from vernier between reference and experimental wires
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [vernier, experiment]
+    stem: In the NCERT set-up for Young's modulus, the elongation of the experimental wire is measured by
+    options:
+      - a vernier arrangement between the pointer and main scale attached to the two wires
+      - a screw gauge placed on the support
+      - a travelling microscope focused on the support
+      - a spring balance attached to the wire
+    answer: 0
+    explanation: A main scale is fixed to the reference wire and a pointer/vernier scale is fixed to the experimental wire; the vernier reading gives the elongation. A screw gauge is used for the diameter, not the elongation.
+
+  - id: phy-mps-056
+    topic: youngs-modulus-experiment
+    subtopic: Calculation from data
+    concept: Computing Y from experimental readings
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    formula: Y = FL/(πr^2 ΔL)
+    tags: [experiment, calculation]
+    stem: In an experiment, a wire of length 2 m and diameter 0.4 mm elongates by 0.8 mm when a 1 kg mass is added. Taking g = 10 m s^{-2}, Young's modulus of the wire is about
+    options:
+      - 1.0 × 10^{11} N m^{-2}
+      - 2.0 × 10^{11} N m^{-2}
+      - 4.0 × 10^{11} N m^{-2}
+      - 2.0 × 10^{10} N m^{-2}
+    answer: 1
+    explanation: r = 0.2 mm, A = π(2 × 10^{-4})^2 ≈ 1.26 × 10^{-7} m^2. Y = FL/(AΔL) = (10 × 2)/(1.26 × 10^{-7} × 8 × 10^{-4}) ≈ 2.0 × 10^{11} N m^{-2}. Using the diameter as the radius gives a value four times too small.
+
+  - id: phy-mps-057
+    topic: shear-modulus
+    subtopic: Definition
+    concept: Shear modulus = shearing stress/shearing strain
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: G = (F/A)/(Δx/L)
+    tags: [shear-modulus, ncert-line]
+    stem: The modulus of rigidity (shear modulus) is the ratio of
+    options:
+      - longitudinal stress to longitudinal strain
+      - shearing stress to shearing strain
+      - hydraulic stress to volume strain
+      - lateral strain to longitudinal strain
+    answer: 1
+    explanation: G = shearing stress/shearing strain = (F/A)/(Δx/L). The other ratios define Young's modulus, bulk modulus and Poisson's ratio respectively.
+
+  - id: phy-mps-058
+    topic: shear-modulus
+    subtopic: Fluids
+    concept: Fluids have zero shear modulus
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [fluids, trap]
+    stem: The shear modulus of a liquid is
+    options:
+      - infinite
+      - zero
+      - equal to its bulk modulus
+      - equal to one
+    answer: 1
+    explanation: A liquid cannot sustain a steady shearing stress; it flows. So its modulus of rigidity is zero, and only the bulk modulus is defined for fluids.
+
+  - id: phy-mps-059
+    topic: shear-modulus
+    subtopic: G and Y
+    concept: For most materials G ≈ Y/3
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ncert-line]
+    stem: For most materials, the shear modulus G is approximately
+    options:
+      - 3Y
+      - Y/2
+      - Y/3
+      - 2Y
+    answer: 2
+    explanation: NCERT notes that the shear modulus is generally less than Young's modulus, G ≈ Y/3 for most materials. For steel, for instance, Y ≈ 200 GPa and G ≈ 84 GPa.
+
+  - id: phy-mps-060
+    topic: shear-modulus
+    subtopic: Displacement under shear
+    concept: Δx = FL/(AG) for a slab under shear
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: Δx = FL/(AG)
+    tags: [shear, ncert-example]
+    stem: A square lead slab of side 50 cm and thickness 10 cm has its lower edge fixed. A shearing force of 9.0 × 10^4 N acts on its narrow face (area 50 cm × 10 cm). If the shear modulus of lead is 5.6 × 10^9 N m^{-2}, the displacement of the upper edge is about
+    options:
+      - 0.016 mm
+      - 0.16 mm
+      - 1.6 mm
+      - 0.32 mm
+    answer: 1
+    explanation: Area = 0.5 × 0.1 = 0.05 m^2, so shearing stress = 9 × 10^4/0.05 = 1.8 × 10^6 N m^{-2}. Strain = 1.8 × 10^6/5.6 × 10^9 ≈ 3.2 × 10^{-4}. Δx = strain × L = 3.2 × 10^{-4} × 0.5 m = 1.6 × 10^{-4} m = 0.16 mm.
+
+  - id: phy-mps-061
+    topic: shear-modulus
+    subtopic: Shearing stress
+    concept: Shearing stress = tangential force/area
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: shearing stress = F/A
+    tags: [shearing-stress]
+    stem: A tangential force of 4000 N acts on the top face of a cube of side 20 cm. The shearing stress is
+    options:
+      - 2 × 10^4 N m^{-2}
+      - 2 × 10^5 N m^{-2}
+      - 10^4 N m^{-2}
+      - 10^5 N m^{-2}
+    answer: 3
+    explanation: Area of the face = (0.2 m)^2 = 0.04 m^2. Shearing stress = 4000/0.04 = 10^5 N m^{-2}. Dividing by the side (0.2 m) instead of the area gives 2 × 10^4.
+
+  - id: phy-mps-062
+    topic: shear-modulus
+    subtopic: Angle of shear
+    concept: Small shear angle θ ≈ Δx/L
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: θ ≈ Δx/L
+    tags: [shear-angle]
+    stem: The top of a block 5 cm high shifts sideways by 0.2 mm relative to its fixed base. The angle of shear is
+    options:
+      - 4 × 10^{-3} rad
+      - 4 × 10^{-2} rad
+      - 2.5 × 10^{-3} rad
+      - 0.4 rad
+    answer: 0
+    explanation: For small deformation θ ≈ tan θ = Δx/L = 0.2 mm/50 mm = 4 × 10^{-3} rad.
+
+  - id: phy-mps-063
+    topic: shear-modulus
+    subtopic: Effect of shear
+    concept: Shear changes shape but not volume
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [shear]
+    stem: A shearing stress applied to a solid block produces a change in
+    options:
+      - volume only
+      - length only
+      - shape without change in volume
+      - both shape and volume
+    answer: 2
+    explanation: A shearing stress makes a rectangular block's faces slant into a parallelogram section, changing shape but not volume (to first order). Hydraulic stress changes volume without changing shape.
+
+  - id: phy-mps-064
+    topic: shear-modulus
+    subtopic: Calculating G
+    concept: G = shear stress/shear strain
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: G = stress/strain
+    tags: [shear-modulus]
+    stem: A shearing stress of 10^6 N m^{-2} produces a shearing strain of 2 × 10^{-5} in a material. Its modulus of rigidity is
+    options:
+      - 2 × 10^{10} N m^{-2}
+      - 5 × 10^{10} N m^{-2}
+      - 5 × 10^{11} N m^{-2}
+      - 2 × 10^{11} N m^{-2}
+    answer: 1
+    explanation: G = 10^6/(2 × 10^{-5}) = 5 × 10^{10} N m^{-2}. Multiplying stress by strain instead of dividing is the usual error.
+
+  - id: phy-mps-065
+    topic: bulk-modulus
+    subtopic: Definition
+    concept: Negative sign in B = −p/(ΔV/V)
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: B = −p/(ΔV/V)
+    tags: [bulk-modulus, sign]
+    stem: In the definition B = −p/(ΔV/V) of bulk modulus, the negative sign indicates that
+    options:
+      - bulk modulus is always negative
+      - volume decreases when pressure increases
+      - pressure acts inward
+      - the body expands under pressure
+    answer: 1
+    explanation: An increase in pressure (p positive) produces a decrease in volume (ΔV negative); the minus sign makes B a positive quantity. B itself is always positive.
+
+  - id: phy-mps-066
+    topic: bulk-modulus
+    subtopic: Compressibility
+    concept: Compressibility is reciprocal of bulk modulus with unit Pa⁻¹
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: k = 1/B
+    tags: [compressibility, units]
+    stem: Compressibility of a material is the reciprocal of its bulk modulus. Its SI unit is
+    options:
+      - N m^{-2}
+      - N^{-1} m^2
+      - N m
+      - dimensionless
+    answer: 1
+    explanation: k = 1/B, and B is in N m^{-2}, so k is in N^{-1} m^2 (Pa^{-1}). It is the fractional change in volume per unit increase in pressure.
+
+  - id: phy-mps-067
+    topic: bulk-modulus
+    subtopic: States of matter
+    concept: Bulk modulus order solids > liquids > gases
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [ordering, ncert-line]
+    stem: The correct order of bulk moduli of typical solids (B_s), liquids (B_l) and gases (B_g) is
+    options:
+      - B_g > B_l > B_s
+      - B_l > B_s > B_g
+      - B_s > B_l > B_g
+      - B_s > B_g > B_l
+    answer: 2
+    explanation: Solids are the least compressible and gases the most, so bulk moduli decrease from solids to liquids to gases. Gases at STP have B of order 10^5 Pa versus about 10^9 Pa for liquids and 10^{10}–10^{11} Pa for solids.
+
+  - id: phy-mps-068
+    topic: bulk-modulus
+    subtopic: Volume strain
+    concept: ΔV/V = p/B
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: ΔV/V = p/B
+    tags: [volume-strain, water]
+    stem: The bulk modulus of water is 2.2 × 10^9 N m^{-2}. An increase in pressure of 2.2 × 10^6 N m^{-2} decreases the volume of water by
+    options:
+      - 0.01%
+      - 0.1%
+      - 1%
+      - 10%
+    answer: 1
+    explanation: ΔV/V = p/B = 2.2 × 10^6/2.2 × 10^9 = 10^{-3}, which is 0.1%.
+
+  - id: phy-mps-069
+    topic: bulk-modulus
+    subtopic: Ocean depth
+    concept: Fractional compression of water at ocean depth
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    formula: ΔV/V = ρgh/B
+    tags: [ncert-example, ocean, multi-concept]
+    stem: The average depth of an ocean is 3000 m. Taking ρ = 1000 kg m^{-3}, g = 10 m s^{-2} and bulk modulus of water 2.2 × 10^9 N m^{-2}, the fractional compression of water at the bottom is about
+    options:
+      - 0.14%
+      - 1.36%
+      - 13.6%
+      - 0.73%
+    answer: 1
+    explanation: Pressure at the bottom (above atmospheric) p = ρgh = 1000 × 10 × 3000 = 3 × 10^7 N m^{-2}. ΔV/V = p/B = 3 × 10^7/2.2 × 10^9 ≈ 1.36 × 10^{-2}, i.e. about 1.36%.
+
+  - id: phy-mps-070
+    topic: bulk-modulus
+    subtopic: Rigid body
+    concept: Compressibility of a rigid body is zero
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [rigid-body, compressibility]
+    stem: The compressibility of a perfectly rigid body is
+    options:
+      - infinite
+      - unity
+      - zero
+      - negative
+    answer: 2
+    explanation: A perfectly rigid body has no volume change under any pressure, so its bulk modulus is infinite and its compressibility, 1/B, is zero.
+
+  - id: phy-mps-071
+    topic: bulk-modulus
+    subtopic: Gases
+    concept: Air at STP has bulk modulus of order 10⁵ Pa
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ncert-table, gases]
+    stem: The bulk modulus of air at STP, as listed in NCERT, is of the order of
+    options:
+      - 10^{11} N m^{-2}
+      - 10^9 N m^{-2}
+      - 10^5 N m^{-2}
+      - 10^2 N m^{-2}
+    answer: 2
+    explanation: NCERT lists air at STP with B = 1.0 × 10^{-4} × 10^9 N m^{-2} = 10^5 N m^{-2}, about a million times smaller than that of solids like steel (1.6 × 10^{11}). Gases are highly compressible.
+
+  - id: phy-mps-072
+    topic: bulk-modulus
+    subtopic: Sphere under pressure
+    concept: Volume strain = 3 × radial strain
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: ΔV/V = 3Δr/r
+    tags: [sphere, multi-concept]
+    stem: When a solid sphere is subjected to a uniform pressure of 6 × 10^7 N m^{-2}, its radius decreases by 0.1%. The bulk modulus of its material is
+    options:
+      - 6 × 10^{10} N m^{-2}
+      - 2 × 10^{10} N m^{-2}
+      - 1.8 × 10^{11} N m^{-2}
+      - 2 × 10^{11} N m^{-2}
+    answer: 1
+    explanation: V ∝ r^3, so ΔV/V = 3Δr/r = 3 × 0.001 = 3 × 10^{-3}. B = p/(ΔV/V) = 6 × 10^7/3 × 10^{-3} = 2 × 10^{10} N m^{-2}. Using the radius change directly as volume strain gives 6 × 10^{10}.
+
+  - id: phy-mps-073
+    topic: bulk-modulus
+    subtopic: Change in density
+    concept: Fractional increase in density = p/B
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: Δρ/ρ = p/B
+    tags: [density]
+    stem: Water (B = 2 × 10^9 N m^{-2}) is subjected to an extra pressure of 10^7 N m^{-2}. Its density increases by
+    options:
+      - 0.05%
+      - 0.5%
+      - 5%
+      - 2%
+    answer: 1
+    explanation: Mass is constant, so Δρ/ρ = −ΔV/V = p/B = 10^7/2 × 10^9 = 5 × 10^{-3} = 0.5%.
+
+  - id: phy-mps-074
+    topic: bulk-modulus
+    subtopic: Compressibility of gases
+    concept: Gases are more compressible because B is small
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [gases, compressibility]
+    stem: |-
+      Assertion (A): Gases are far more compressible than solids.
+      Reason (R): The bulk modulus of gases is much smaller than that of solids.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Compressibility k = 1/B. Gas molecules are far apart and weakly bound, so B is very small and compressibility very large. R directly explains A.
+
+  - id: phy-mps-075
+    topic: poissons-ratio
+    subtopic: Definition
+    concept: Poisson's ratio = lateral strain/longitudinal strain
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: σ = (Δd/d)/(ΔL/L)
+    tags: [poissons-ratio]
+    stem: Poisson's ratio is the ratio of
+    options:
+      - longitudinal strain to lateral strain
+      - lateral strain to longitudinal strain
+      - volume strain to longitudinal strain
+      - shearing strain to longitudinal strain
+    answer: 1
+    explanation: Poisson's ratio σ = lateral strain/longitudinal strain = (Δd/d)/(ΔL/L), taken within the elastic limit. Inverting it is a common error.
+
+  - id: phy-mps-076
+    topic: poissons-ratio
+    subtopic: Units
+    concept: Poisson's ratio has no unit
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units]
+    stem: The SI unit of Poisson's ratio is
+    options:
+      - N m^{-2}
+      - N^{-1} m^2
+      - radian
+      - it has no unit
+    answer: 3
+    explanation: Poisson's ratio is a ratio of two strains, each dimensionless, so it has neither units nor dimensions.
+
+  - id: phy-mps-077
+    topic: poissons-ratio
+    subtopic: Range of values
+    concept: Practical values of Poisson's ratio lie between 0 and 0.5
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [range]
+    stem: For real isotropic materials, the value of Poisson's ratio lies between
+    options:
+      - 0 and 0.5
+      - 0.5 and 1
+      - 1 and 2
+      - −2 and −1
+    answer: 0
+    explanation: Theoretically σ lies between −1 and 0.5, but for real materials it is between 0 and 0.5; for steel it is about 0.28–0.30. A value of 0.5 corresponds to an incompressible material.
+
+  - id: phy-mps-078
+    topic: poissons-ratio
+    subtopic: Calculation
+    concept: σ from measured lateral and longitudinal strains
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: σ = (Δd/d)/(ΔL/L)
+    tags: [calculation]
+    stem: A wire 2 m long and 1 mm in diameter is stretched by 2 mm, and its diameter decreases by 3 × 10^{-4} mm. Poisson's ratio of the material is
+    options:
+      - "0.15"
+      - "0.25"
+      - "0.30"
+      - "0.60"
+    answer: 2
+    explanation: Longitudinal strain = 2/2000 = 10^{-3}. Lateral strain = 3 × 10^{-4}/1 = 3 × 10^{-4}. σ = 3 × 10^{-4}/10^{-3} = 0.30.
+
+  - id: phy-mps-079
+    topic: poissons-ratio
+    subtopic: Typical value
+    concept: Poisson's ratio of steel is about 0.28–0.30
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ncert-line, steel]
+    stem: The Poisson's ratio of steel is approximately
+    options:
+      - "0.05"
+      - "0.29"
+      - "0.75"
+      - "1.2"
+    answer: 1
+    explanation: For steel, Poisson's ratio is about 0.28 to 0.30, and for aluminium alloys about 0.33. Values above 0.5 are not possible for real isotropic materials.
+
+  - id: phy-mps-080
+    topic: poissons-ratio
+    subtopic: Incompressible material
+    concept: σ = 0.5 implies no change in volume on stretching
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: ΔV/V = (1 − 2σ)ΔL/L
+    tags: [incompressible, multi-concept]
+    stem: A wire is stretched and its volume is found to remain unchanged. Its Poisson's ratio must be
+    options:
+      - "0"
+      - "0.25"
+      - "0.5"
+      - "1"
+    answer: 2
+    explanation: V = πr^2 L gives ΔV/V = ΔL/L + 2Δr/r = (ΔL/L)(1 − 2σ). For ΔV = 0, σ = 0.5. Rubber comes close to this value.
+
+  - id: phy-mps-081
+    topic: poissons-ratio
+    subtopic: Lateral contraction
+    concept: Stretching a wire decreases its diameter
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [lateral-strain]
+    stem: When a wire is stretched along its length, its diameter
+    options:
+      - increases
+      - remains the same
+      - first increases then decreases
+      - decreases
+    answer: 3
+    explanation: Longitudinal extension is accompanied by lateral contraction, so the diameter decreases. The ratio of these strains is Poisson's ratio.
+
+  - id: phy-mps-082
+    topic: elastic-energy
+    subtopic: Energy stored
+    concept: Elastic energy = ½ × load × extension
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: U = ½ F ΔL
+    tags: [elastic-energy]
+    stem: The elastic potential energy stored in a wire stretched by ΔL under a final load F (within the elastic limit) is
+    options:
+      - F ΔL
+      - ½ F ΔL
+      - 2F ΔL
+      - F ΔL^2
+    answer: 1
+    explanation: The stretching force grows linearly from 0 to F, so the work done, stored as elastic energy, is the average force F/2 times ΔL, i.e. ½ F ΔL.
+
+  - id: phy-mps-083
+    topic: elastic-energy
+    subtopic: Energy density
+    concept: Energy per unit volume = ½ stress × strain
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    formula: u = ½ × stress × strain
+    tags: [energy-density, ncert-line]
+    stem: The elastic potential energy stored per unit volume of a stretched wire is
+    options:
+      - stress × strain
+      - ½ × stress × strain
+      - ½ × stress/strain
+      - 2 × stress × strain
+    answer: 1
+    explanation: U = ½ F ΔL; dividing by volume AL gives u = ½ (F/A)(ΔL/L) = ½ × stress × strain.
+
+  - id: phy-mps-084
+    topic: elastic-energy
+    subtopic: Energy stored
+    concept: U = ½ F ΔL numerical
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: U = ½ F ΔL
+    tags: [elastic-energy]
+    stem: A wire is stretched by 2 mm by a force that increases gradually to 100 N. The energy stored in the wire is
+    options:
+      - 0.1 J
+      - 0.2 J
+      - 1 J
+      - 0.05 J
+    answer: 0
+    explanation: U = ½ F ΔL = ½ × 100 × 2 × 10^{-3} = 0.1 J. Forgetting the factor ½ gives 0.2 J.
+
+  - id: phy-mps-085
+    topic: elastic-energy
+    subtopic: Energy density
+    concept: Energy density from stress and Y
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: u = stress^2/(2Y)
+    tags: [energy-density]
+    stem: A steel wire (Y = 2 × 10^{11} N m^{-2}) is under a tensile stress of 2 × 10^8 N m^{-2}. The elastic energy stored per unit volume is
+    options:
+      - 10^4 J m^{-3}
+      - 10^5 J m^{-3}
+      - 2 × 10^5 J m^{-3}
+      - 10^6 J m^{-3}
+    answer: 1
+    explanation: Strain = 2 × 10^8/2 × 10^{11} = 10^{-3}. u = ½ × stress × strain = ½ × 2 × 10^8 × 10^{-3} = 10^5 J m^{-3}.
+
+  - id: phy-mps-086
+    topic: elastic-energy
+    subtopic: Energy in terms of Y
+    concept: U = ½ Y (strain)² × volume
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: U = ½ Y (ΔL/L)^2 AL
+    tags: [elastic-energy]
+    stem: A wire of length 1 m and cross-section 1 mm^2 (Y = 2 × 10^{11} N m^{-2}) is stretched to a strain of 10^{-3}. The elastic energy stored is
+    options:
+      - 0.01 J
+      - 0.2 J
+      - 0.1 J
+      - 1 J
+    answer: 2
+    explanation: Volume = 10^{-6} m^3. U = ½ Y (strain)^2 × volume = ½ × 2 × 10^{11} × 10^{-6} × 10^{-6} = 0.1 J.
+
+  - id: phy-mps-087
+    topic: elastic-energy
+    subtopic: Energy accounting
+    concept: Only half the gravitational PE lost is stored as elastic energy
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [energy-conservation, multi-concept, trap]
+    stem: A load of weight W is attached to a wire and slowly released from support until equilibrium, the wire extending by l. Compared with the loss in gravitational potential energy of the load, the elastic energy stored in the wire is
+    options:
+      - equal to it
+      - half of it
+      - twice it
+      - one-fourth of it
+    answer: 1
+    explanation: The load descends l and loses gravitational PE Wl, while the wire stores only ½ Wl. The other half is taken up by the hand supporting the load (or dissipated as heat if it oscillates and settles).
+
+  - id: phy-mps-088
+    topic: elastic-energy
+    subtopic: Comparing materials
+    concept: Same stress, energy density ∝ 1/Y
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: u = stress^2/(2Y)
+    tags: [ratio, energy-density]
+    stem: Two wires of Young's moduli Y and 2Y carry the same tensile stress. The ratio of elastic energy stored per unit volume in them is
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "1 : 4"
+      - "4 : 1"
+    answer: 1
+    explanation: "u = stress^2/(2Y), so for equal stress u ∝ 1/Y and u_1 : u_2 = 2Y : Y = 2 : 1. The softer wire strains more and stores more energy."
+
+  - id: phy-mps-089
+    topic: elastic-energy
+    subtopic: Effect of extension
+    concept: Elastic energy ∝ (extension)²
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: U = ½ (YA/L) ΔL^2
+    tags: [proportionality]
+    stem: If the extension of a wire is doubled (within the elastic limit), the elastic energy stored in it becomes
+    options:
+      - twice
+      - four times
+      - half
+      - eight times
+    answer: 1
+    explanation: U = ½ F ΔL and F ∝ ΔL, so U ∝ ΔL^2. Doubling the extension makes the energy four times.
+
+  - id: phy-mps-090
+    topic: elastic-energy
+    subtopic: Dimensions
+    concept: Energy density has the dimensions of stress
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [dimensions]
+    stem: Elastic energy stored per unit volume has the same dimensions as
+    options:
+      - force
+      - Young's modulus
+      - strain
+      - energy
+    answer: 1
+    explanation: Energy per volume = M L^2 T^{-2}/L^3 = M L^{-1} T^{-2}, the dimensions of stress, pressure and Young's modulus.
+
+  - id: phy-mps-091
+    topic: applications
+    subtopic: Crane ropes
+    concept: Ropes are made of many thin wires braided together
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [crane, ncert-line]
+    stem: A crane rope is made of a number of thin wires braided together rather than a single thick wire mainly for
+    options:
+      - reducing the Young's modulus
+      - ease of manufacture, flexibility and strength
+      - increasing the elastic potential energy
+      - reducing the weight of the load
+    answer: 1
+    explanation: NCERT notes that a single thick wire would be as rigid as a rod; ropes of many thin braided wires give ease in manufacture, flexibility and strength.
+
+  - id: phy-mps-092
+    topic: applications
+    subtopic: I-shaped beams
+    concept: I-section gives stiffness with less material
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [beams, ncert-line]
+    stem: Beams used in bridges and buildings commonly have an I-shaped cross-section because it
+    options:
+      - increases the Young's modulus of steel
+      - provides a large load-bearing surface and depth, while reducing weight without sacrificing strength
+      - makes the beam bend more easily
+      - prevents rusting of the beam
+    answer: 1
+    explanation: The I-section keeps material where it resists bending most (large load-bearing flanges and enough depth), so it prevents bending and buckling while saving weight and cost. The material's modulus is unchanged.
+
+  - id: phy-mps-093
+    topic: applications
+    subtopic: Bending of beams
+    concept: Sag δ ∝ 1/d³
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: δ = Wl^3/(4bd^3 Y)
+    tags: [beams, proportionality]
+    stem: A rectangular beam supported at its ends carries a load at its centre. If the depth of the beam is doubled (all else unchanged), its sag becomes
+    options:
+      - half
+      - one-fourth
+      - one-eighth
+      - one-sixteenth
+    answer: 2
+    explanation: δ = Wl^3/(4bd^3 Y) ∝ 1/d^3, so doubling the depth reduces the sag by a factor of 8.
+
+  - id: phy-mps-094
+    topic: applications
+    subtopic: Height of mountains
+    concept: Maximum height of a mountain on Earth is about 10 km
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [mountains, ncert-line]
+    stem: Considering the elastic limit of rocks, the maximum possible height of a mountain on Earth is estimated to be about
+    options:
+      - 1 km
+      - 100 km
+      - 50 km
+      - 10 km
+    answer: 3
+    explanation: The stress at the base, hρg, must stay below the elastic limit of rock (about 3 × 10^8 N m^{-2}). With ρ ≈ 3 × 10^3 kg m^{-3} and g ≈ 10 m s^{-2}, h ≈ 10 km, comparable to Mount Everest's height of about 9 km.
+
+  - id: phy-mps-095
+    topic: applications
+    subtopic: Crane rope design
+    concept: Minimum rope radius from yield strength
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: πr^2 σ_y ≥ Mg
+    tags: [crane, ncert-example]
+    stem: A crane has to lift a load of 10^4 kg. The yield strength of steel is 30 × 10^7 N m^{-2}. Taking g = 9.8 m s^{-2}, the minimum radius of the steel rope (without a safety factor) is about
+    options:
+      - 1 mm
+      - 1 cm
+      - 3 cm
+      - 10 cm
+    answer: 1
+    explanation: Area needed A = Mg/σ_y = 9.8 × 10^4/3 × 10^8 ≈ 3.3 × 10^{-4} m^2. r = √(A/π) ≈ √(1.05 × 10^{-4}) ≈ 1 × 10^{-2} m = 1 cm.
+
+  - id: phy-mps-096
+    topic: applications
+    subtopic: Bending of beams
+    concept: Depth is the most effective dimension against bending
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: δ = Wl^3/(4bd^3 Y)
+    tags: [beams]
+    stem: To reduce the bending of a rectangular beam under a given central load most effectively, one should increase its
+    options:
+      - breadth
+      - depth
+      - density
+      - length
+    answer: 1
+    explanation: Sag δ ∝ 1/(bd^3), so increasing depth reduces it as the cube while breadth acts only linearly. Increasing length increases sag as l^3.
+
+  - id: phy-mps-097
+    topic: applications
+    subtopic: Buckling
+    concept: Deep narrow beams tend to buckle
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [beams, buckling, ncert-line]
+    stem: Simply increasing the depth of a rectangular beam without limit is not done in practice because
+    options:
+      - the Young's modulus decreases with depth
+      - a very deep, narrow beam may buckle (bend sideways)
+      - depth has no effect on bending
+      - the beam becomes more ductile
+    answer: 1
+    explanation: A deep beam with small breadth tends to buckle sideways under load. NCERT explains that the I-shaped cross-section gives large depth and a broad load-bearing surface, avoiding buckling.
+
+  - id: phy-mps-098
+    topic: applications
+    subtopic: Safety factor
+    concept: Safety factor of 10 raises rope radius by √10
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: r ∝ √(safety factor)
+    tags: [crane, safety-factor, ncert-example]
+    stem: A steel rope needs a minimum radius of 1 cm to just support a load. If a factor of safety of 10 is used (load treated as 10 times larger), the required radius is about
+    options:
+      - 10 cm
+      - 1.4 cm
+      - 5 cm
+      - 3.2 cm
+    answer: 3
+    explanation: Required area scales with load, so area becomes 10 times and radius √10 ≈ 3.2 times, giving about 3 cm, as in the NCERT crane example.
+
+  - id: phy-mps-099
+    topic: applications
+    subtopic: Bending of beams
+    concept: Sag δ ∝ l³
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: δ = Wl^3/(4bd^3 Y)
+    tags: [beams, proportionality]
+    stem: A beam supported at both ends sags by 2 mm under a central load. If its length is doubled (same cross-section, same load), the sag becomes
+    options:
+      - 4 mm
+      - 8 mm
+      - 16 mm
+      - 32 mm
+    answer: 2
+    explanation: δ ∝ l^3, so doubling the length multiplies the sag by 8, giving 16 mm.
+
+  - id: phy-mps-100
+    topic: applications
+    subtopic: Choice of material
+    concept: Materials with high Y are preferred for structures
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [materials]
+    stem: Steel rather than copper is preferred for making the girders of a bridge mainly because steel
+    options:
+      - has a lower density
+      - has a larger Young's modulus and yield strength, so it deforms less
+      - is a better conductor of heat
+      - has a smaller Young's modulus
+    answer: 1
+    explanation: Steel (Y ≈ 200 GPa) deforms far less than copper (Y ≈ 120 GPa) under the same load and has a high yield strength, so it keeps structures from sagging or yielding.
+
+  - id: phy-mps-101
+    topic: elasticity-plasticity
+    subtopic: Comparing elasticity
+    concept: Stretchability is not the same as elasticity
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [trap, steel-vs-rubber]
+    stem: |-
+      Assertion (A): Rubber is more elastic than steel.
+      Reason (R): A rubber band stretches much more than a steel wire of the same size under the same force.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: R is true, but that is exactly why rubber is less elastic. Elasticity is measured by stress/strain, and rubber's large strain for a given stress gives it a much smaller modulus than steel. So A is false.
+
+  - id: phy-mps-102
+    topic: elasticity-plasticity
+    subtopic: Nature of deformation
+    concept: Real bodies deform; rigidity is an idealisation
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [rigid-body, interatomic-forces]
+    stem: |-
+      Consider the following statements.
+      I. All real bodies deform to some extent under applied forces.
+      II. A perfectly rigid body is an idealisation.
+      III. A plastic body regains its shape when the force is removed.
+      IV. Elasticity of solids arises from interatomic forces.
+      Which statements are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, III and IV only
+      - I, II and IV only
+    answer: 3
+    explanation: Every real body deforms, so a rigid body is only an idealisation; elasticity comes from the spring-like interatomic forces. Statement III is wrong because a plastic body stays deformed.
+
+  - id: phy-mps-103
+    topic: elasticity-plasticity
+    subtopic: Elastic fatigue
+    concept: Springs lose elasticity after prolonged use
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [spring-balance, elastic-fatigue]
+    stem: A spring balance that has been used heavily for many years starts giving wrong readings. The most likely reason is that
+    options:
+      - the spring has partly lost its elastic property through repeated stressing
+      - the Earth's gravitational field has changed
+      - the spring has become perfectly rigid
+      - the mass of the spring has increased
+    answer: 0
+    explanation: Repeated loading over long periods (sometimes near or beyond the elastic limit) causes the spring to lose some elasticity and take a small permanent set, so its calibration no longer holds.
+
+  - id: phy-mps-104
+    topic: elasticity-plasticity
+    subtopic: Spring–ball model
+    concept: Interatomic forces modelled as springs explain elasticity
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [spring-ball-model]
+    stem: |-
+      Statement I: The elastic behaviour of solids can be understood by picturing atoms connected by springs representing interatomic forces.
+      Statement II: Real solids can never be deformed by any applied force.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: NCERT uses the spring–ball model to explain elasticity. Every real solid can be deformed to some extent, so Statement II is false; a body that could not be deformed would be an ideal rigid body.
+
+  - id: phy-mps-105
+    topic: elasticity-plasticity
+    subtopic: Plastic materials
+    concept: Identifying a pair of plastic materials
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [plasticity]
+    stem: Which pair consists of materials that behave nearly as ideal plastics?
+    options:
+      - Putty and mud
+      - Steel and quartz
+      - Rubber and steel
+      - Glass and quartz
+    answer: 0
+    explanation: Putty and mud show almost no tendency to regain their shape after deformation, so they are close to ideal plastics. Steel, quartz, rubber and glass are elastic for small deformations.
+
+  - id: phy-mps-106
+    topic: elasticity-plasticity
+    subtopic: Restoring force
+    concept: In equilibrium the restoring force equals the applied force
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [restoring-force]
+    stem: A wire is in equilibrium under a stretching load. The internal restoring force developed in it is
+    options:
+      - zero
+      - greater than the applied force
+      - less than the applied force
+      - equal in magnitude and opposite in direction to the applied force
+    answer: 3
+    explanation: At equilibrium the restoring force set up by interatomic forces balances the applied force exactly, which is why stress can be written as applied force per unit area.
+
+  - id: phy-mps-107
+    topic: elasticity-plasticity
+    subtopic: Elasticity versus plasticity
+    concept: Plastic deformation is irreversible
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [plasticity, elasticity]
+    stem: Which of the following statements is INCORRECT?
+    options:
+      - Glass is more elastic than rubber
+      - A material with a larger modulus is said to be more elastic
+      - Plastic deformation disappears completely when the load is removed
+      - Elasticity arises from interatomic forces
+    answer: 2
+    explanation: Plastic deformation is permanent; it does not disappear on unloading. The other statements are correct, glass having a much larger modulus than rubber.
+
+  - id: phy-mps-108
+    topic: stress-strain
+    subtopic: Compressive stress
+    concept: A loaded pillar is under compressive stress
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [compressive-stress]
+    stem: A vertical pillar supporting the roof of a building is under
+    options:
+      - compressive stress
+      - tensile stress
+      - shearing stress
+      - hydraulic stress
+    answer: 0
+    explanation: The roof pushes down and the ground pushes up on the pillar, compressing it along its length; this is a compressive (longitudinal) stress.
+
+  - id: phy-mps-109
+    topic: stress-strain
+    subtopic: Calculating stress
+    concept: Stress in a wire of given radius carrying a load
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    formula: stress = mg/(πr^2)
+    tags: [stress]
+    stem: A 50 kg mass hangs from a steel wire of radius 1 mm. Taking g = 10 m s^{-2}, the stress in the wire is about
+    options:
+      - 1.6 × 10^6 N m^{-2}
+      - 5.0 × 10^8 N m^{-2}
+      - 1.6 × 10^{10} N m^{-2}
+      - 1.6 × 10^8 N m^{-2}
+    answer: 3
+    explanation: A = π(10^{-3})^2 = 3.14 × 10^{-6} m^2 and F = 500 N, so stress = 500/3.14 × 10^{-6} ≈ 1.6 × 10^8 N m^{-2}. Leaving out π gives 5 × 10^8.
+
+  - id: phy-mps-110
+    topic: stress-strain
+    subtopic: Stress and area
+    concept: Stress ∝ 1/r² for the same load
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: stress = F/(πr^2)
+    tags: [ratio]
+    stem: Two wires of radii r and 2r carry equal loads. The ratio of the stress in the thinner wire to that in the thicker wire is
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "4 : 1"
+      - "1 : 4"
+    answer: 2
+    explanation: "Stress = F/(πr^2) ∝ 1/r^2 for equal loads. The ratio is (2r/r)^2 = 4, so 4 : 1. Using r instead of r^2 gives 2 : 1."
+
+  - id: phy-mps-111
+    topic: stress-strain
+    subtopic: Non-uniform rod
+    concept: In a tapered rod stress is largest at the narrowest section
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [tapered-rod, multi-concept]
+    stem: |-
+      Assertion (A): A light rod of non-uniform cross-section pulled at its ends has the maximum stress at its narrowest section.
+      Reason (R): The tension is the same at every cross-section of a light rod in equilibrium.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: For a light rod in equilibrium the tension F is the same at every section, so stress F/A is largest where A is smallest. R is exactly the reason for A.
+
+  - id: phy-mps-112
+    topic: stress-strain
+    subtopic: Heavy rope
+    concept: Stress in a hanging heavy rope is maximum at the top
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [own-weight]
+    stem: A heavy uniform rope hangs vertically from a ceiling. The tensile stress in it is maximum
+    options:
+      - at the point of support at the top
+      - at its midpoint
+      - at its lowest point
+      - equally at all points
+    answer: 0
+    explanation: The section at the top supports the weight of the entire rope below it, while the lowest point supports nothing. Stress therefore increases from zero at the bottom to its maximum at the top.
+
+  - id: phy-mps-113
+    topic: stress-strain
+    subtopic: Normal and tangential stress
+    concept: Resolving an oblique force into normal and tangential stress
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: tangential stress = F cos θ/A
+    tags: [resolution, multi-concept]
+    stem: A force of 100 N acts on a surface of area 0.5 m^2, making an angle of 30° with the surface. The tangential (shearing) stress on the surface is about
+    options:
+      - 100 N m^{-2}
+      - 200 N m^{-2}
+      - 87 N m^{-2}
+      - 173 N m^{-2}
+    answer: 3
+    explanation: The component along the surface is F cos 30° = 86.6 N, so tangential stress = 86.6/0.5 ≈ 173 N m^{-2}. The normal component F sin 30° = 50 N gives a normal stress of 100 N m^{-2}, the tempting wrong choice.
+
+  - id: phy-mps-114
+    topic: stress-strain
+    subtopic: Volume strain
+    concept: Volume strain = ΔV/V
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: volume strain = ΔV/V
+    tags: [volume-strain]
+    stem: Under pressure, the volume of a body decreases from 1000 cm^3 to 999.5 cm^3. The volume strain is
+    options:
+      - 5 × 10^{-3}
+      - 5 × 10^{-4}
+      - 5 × 10^{-2}
+      - "0.5"
+    answer: 1
+    explanation: Volume strain = |ΔV|/V = 0.5/1000 = 5 × 10^{-4}.
+
+  - id: phy-mps-115
+    topic: stress-strain
+    subtopic: Identifying stress types
+    concept: Everyday situations and types of stress
+    category: application
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [stress-types]
+    stem: |-
+      Match List I (situation) with List II (stress).
+      List I: P. Wire holding a hanging lamp; Q. Pillar under a roof; R. Top cover of a book pushed sideways with the bottom held; S. Stone lying on the sea bed
+      List II: 1. Hydraulic stress; 2. Shearing stress; 3. Tensile stress; 4. Compressive stress
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+      - P-2, Q-4, R-3, S-1
+      - P-3, Q-4, R-2, S-1
+    answer: 3
+    explanation: The lamp stretches its wire (tensile), the roof compresses the pillar (compressive), a sideways push on the top of a book is tangential (shearing), and water presses on the stone uniformly from all sides (hydraulic).
+
+  - id: phy-mps-116
+    topic: stress-strain
+    subtopic: Compressive strain
+    concept: Percentage change to strain conversion
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [strain, percentage]
+    stem: A rod is compressed so that its length decreases by 0.02%. The compressive strain is
+    options:
+      - 2 × 10^{-4}
+      - 2 × 10^{-2}
+      - 2 × 10^{-3}
+      - "0.02"
+    answer: 0
+    explanation: 0.02% = 0.02/100 = 2 × 10^{-4}. Strain is the fractional change, so the percentage must be divided by 100.
+
+  - id: phy-mps-117
+    topic: stress-strain
+    subtopic: Types of stress and strain
+    concept: Classifying stresses and strains
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [stress-types, strain-types]
+    stem: |-
+      Consider the following statements.
+      I. Tensile and compressive stresses are both longitudinal stresses.
+      II. Hydraulic stress changes the shape of a body.
+      III. Shearing strain can be expressed as the angle of shear θ.
+      IV. Strain has no dimensions.
+      Which statements are correct?
+    options:
+      - I, III and IV only
+      - I and II only
+      - II and III only
+      - I, II and IV only
+    answer: 0
+    explanation: Tensile and compressive stresses are both normal to the cross-section (longitudinal), shearing strain is tan θ ≈ θ, and strain is dimensionless. Hydraulic stress changes volume, not shape, so II is wrong.
+
+  - id: phy-mps-118
+    topic: hookes-law
+    subtopic: Meaning of modulus
+    concept: Modulus equals stress needed for unit strain
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [modulus]
+    stem: Numerically, the modulus of elasticity of a material equals the
+    options:
+      - strain produced by unit stress
+      - force needed to break a wire of unit area
+      - energy stored per unit volume
+      - stress that would produce unit strain if Hooke's law held
+    answer: 3
+    explanation: Modulus = stress/strain, so with strain = 1 the modulus equals the stress. The strain per unit stress is the reciprocal of the modulus, not the modulus itself.
+
+  - id: phy-mps-119
+    topic: hookes-law
+    subtopic: Validity of Hooke's law
+    concept: Hooke's law is empirical and not universal
+    category: factual
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [hookes-law, ncert-line]
+    stem: |-
+      Statement I: Hooke's law is an empirical law valid for most materials.
+      Statement II: Some materials do not show a linear stress–strain relationship.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: NCERT states that Hooke's law is an empirical law found valid for most materials, but some materials (elastomers like rubber, for example) do not show this linear relationship.
+
+  - id: phy-mps-120
+    topic: hookes-law
+    subtopic: Proportionality
+    concept: Stress scales linearly with strain
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: stress ∝ strain
+    tags: [proportionality]
+    stem: A stress of 10^8 N m^{-2} produces a strain of 10^{-3} in a wire. Within the proportional limit, what stress will produce a strain of 2.5 × 10^{-3}?
+    options:
+      - 4 × 10^7 N m^{-2}
+      - 1.25 × 10^8 N m^{-2}
+      - 2.5 × 10^{11} N m^{-2}
+      - 2.5 × 10^8 N m^{-2}
+    answer: 3
+    explanation: Stress ∝ strain, so stress = 10^8 × 2.5 = 2.5 × 10^8 N m^{-2}.
+
+  - id: phy-mps-121
+    topic: hookes-law
+    subtopic: Types of moduli
+    concept: Definitions of the three moduli and compressibility
+    category: factual
+    format: match
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [moduli]
+    stem: |-
+      Match List I with List II.
+      List I: P. Young's modulus; Q. Shear modulus; R. Bulk modulus; S. Compressibility
+      List II: 1. Has SI unit Pa^{-1}; 2. Tangential stress/shearing strain; 3. Hydraulic stress/volume strain; 4. Longitudinal stress/longitudinal strain
+    options:
+      - P-2, Q-4, R-3, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-1, Q-2, R-3, S-4
+    answer: 2
+    explanation: Y = longitudinal stress/strain, G = shearing stress/shearing strain, B = hydraulic stress/volume strain, and compressibility = 1/B has unit Pa^{-1}.
+
+  - id: phy-mps-122
+    topic: hookes-law
+    subtopic: Load–extension graph
+    concept: Thinner wire has steeper extension–load line
+    category: application
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: ΔL = FL/(AY)
+    tags: [graph]
+    stem: Wires A and B are made of the same material and have the same length. On a graph of extension (y-axis) against load (x-axis), the line for A is steeper than that for B. It follows that
+    options:
+      - A has a larger Young's modulus than B
+      - A is thicker than B
+      - A and B have the same thickness
+      - A is thinner than B
+    answer: 3
+    explanation: The slope ΔL/F = L/(AY). With the same L and Y, a steeper line means a smaller area A, so A is the thinner wire. Y is the same because the material is the same.
+
+  - id: phy-mps-123
+    topic: hookes-law
+    subtopic: Strain from stress
+    concept: strain = stress/Y
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: strain = stress/Y
+    tags: [strain]
+    stem: A stress of 5 × 10^7 N m^{-2} is applied to a wire of Young's modulus 1 × 10^{11} N m^{-2}. The strain produced is
+    options:
+      - 5 × 10^{-4}
+      - 5 × 10^{-3}
+      - 2 × 10^{-4}
+      - 5 × 10^{18}
+    answer: 0
+    explanation: Strain = stress/Y = 5 × 10^7/10^{11} = 5 × 10^{-4}. Multiplying instead of dividing gives the absurd 5 × 10^{18}.
+
+  - id: phy-mps-124
+    topic: hookes-law
+    subtopic: Torsion
+    concept: Twisting a wire involves the shear modulus
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [torsion, shear-modulus]
+    stem: When a wire is twisted about its axis, the elastic modulus that governs its behaviour is the
+    options:
+      - Young's modulus
+      - bulk modulus
+      - Poisson's ratio
+      - shear modulus
+    answer: 3
+    explanation: Twisting slides adjacent layers of the wire past each other, which is a shearing deformation, so the modulus of rigidity (shear modulus) is involved.
+
+  - id: phy-mps-125
+    topic: hookes-law
+    subtopic: Units
+    concept: Modulus shares its unit with stress because strain is dimensionless
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Assertion (A): Stress and modulus of elasticity have the same SI unit.
+      Reason (R): Strain is a dimensionless quantity.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Modulus = stress/strain. Because strain has no unit, the modulus carries the unit of stress, N m^{-2}. R directly explains A.
+
+  - id: phy-mps-126
+    topic: stress-strain-curve
+    subtopic: Ductile versus brittle
+    concept: Ductile materials can be drawn into wires
+    category: application
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ductile, brittle, graph]
+    stem: For material P, the stress–strain curve ends in fracture shortly after the elastic limit. For material Q, a long plastic region precedes fracture. Which material is suitable for drawing into thin wires?
+    options:
+      - P, since it is brittle
+      - Both are equally suitable
+      - Neither can be drawn into wires
+      - Q, since it is ductile
+    answer: 3
+    explanation: A long plastic region means the material can be permanently deformed a lot without breaking, i.e. it is ductile, which is needed for drawing wires. P is brittle and would snap.
+
+  - id: phy-mps-127
+    topic: stress-strain-curve
+    subtopic: Comparing materials from curves
+    concept: Steeper linear part means larger Y; higher peak means stronger
+    category: application
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [graph, ncert-exercise]
+    stem: The stress–strain curves of materials A and B are drawn on the same axes. The initial straight part of A is steeper than that of B, and the highest point of A's curve is also above that of B. Which conclusion is correct?
+    options:
+      - A has the greater Young's modulus and is the stronger material
+      - B has the greater Young's modulus, but A is stronger
+      - A has the greater Young's modulus, but B is stronger
+      - B has the greater Young's modulus and is the stronger material
+    answer: 0
+    explanation: Young's modulus is the slope of the linear part, so A's is greater. Strength is judged by the stress it can withstand before breaking (the peak, ultimate tensile strength), which is also greater for A.
+
+  - id: phy-mps-128
+    topic: stress-strain-curve
+    subtopic: Unloading path
+    concept: Unloading beyond yield follows a line parallel to the elastic line
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [permanent-set, graph]
+    stem: A metal wire is loaded to a point C in its plastic region and then gradually unloaded. On the stress–strain graph, the unloading path is
+    options:
+      - the same curve back to the origin
+      - a vertical line down to zero stress at the same strain
+      - a line along the strain axis
+      - roughly a straight line parallel to the initial linear part, ending at a non-zero strain
+    answer: 3
+    explanation: On unloading, the elastic part of the strain recovers with roughly the original slope (Young's modulus), so the path runs parallel to OA and meets zero stress at a residual strain, the permanent set.
+
+  - id: phy-mps-129
+    topic: stress-strain-curve
+    subtopic: Region between A and B
+    concept: Between proportional limit and yield point the body is elastic but non-linear
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [elastic-limit, proportional-limit]
+    stem: In the region between the proportional limit A and the yield point B of a stress–strain curve, the wire
+    options:
+      - behaves plastically
+      - has already fractured
+      - obeys Hooke's law exactly
+      - is elastic, but stress is not proportional to strain
+    answer: 3
+    explanation: NCERT notes that from A to B stress and strain are not proportional, yet the body still returns to its original dimensions when the load is removed. Plastic behaviour starts beyond B.
+
+  - id: phy-mps-130
+    topic: stress-strain-curve
+    subtopic: Brittle materials
+    concept: Glass is brittle as it fractures soon after elastic limit
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [brittle, glass]
+    stem: |-
+      Assertion (A): Glass is a brittle material.
+      Reason (R): In glass, fracture occurs soon after the elastic limit, with almost no plastic deformation.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A brittle material is one whose ultimate strength and fracture points lie close together, so it breaks without noticeable plastic deformation. That is the behaviour of glass, so R explains A.
+
+  - id: phy-mps-131
+    topic: stress-strain-curve
+    subtopic: Features of the curve
+    concept: Yield strength, ultimate strength and behaviour beyond D
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [stress-strain-curve]
+    stem: |-
+      Consider these statements about the stress–strain curve of a ductile metal.
+      I. Its yield strength is less than its ultimate tensile strength.
+      II. Beyond the ultimate tensile strength point, additional strain is produced even by a reduced applied force.
+      III. The ultimate tensile strength is always the stress at the fracture point.
+      IV. The proportional limit and elastic limit always coincide.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - III and IV only
+      - II and IV only
+    answer: 0
+    explanation: The yield point lies below the peak D, and beyond D the wire extends even under a reduced force until it fractures at E. The fracture stress is not the maximum stress for a ductile metal, and the proportional limit (A) generally lies below the elastic limit (B).
+
+  - id: phy-mps-132
+    topic: stress-strain-curve
+    subtopic: Ductile materials
+    concept: Copper is ductile
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [ductile]
+    stem: Which of the following is a ductile material?
+    options:
+      - Copper
+      - Glass
+      - Cast iron
+      - Porcelain
+    answer: 0
+    explanation: Copper undergoes large plastic deformation before breaking and can be drawn into wires, so it is ductile. Glass, cast iron and porcelain are brittle.
+
+  - id: phy-mps-133
+    topic: stress-strain-curve
+    subtopic: Identifying behaviour
+    concept: Recognising ductile and brittle behaviour from observations
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ductile, brittle]
+    stem: In a tensile test, rod X snaps suddenly with very little elongation, while rod Y stretches a great deal and thins before breaking. Which description fits?
+    options:
+      - X is ductile and Y is brittle
+      - Both are brittle
+      - Both are ductile
+      - X is brittle and Y is ductile
+    answer: 3
+    explanation: Breaking with little elongation (almost no plastic region) is brittle behaviour; large plastic stretching before fracture is ductile behaviour.
+
+  - id: phy-mps-134
+    topic: stress-strain-curve
+    subtopic: Reading Y from the curve
+    concept: Y = stress/strain from the linear part of the curve
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: Y = stress/strain
+    tags: [graph]
+    stem: The stress–strain graph of a wire is a straight line from the origin up to the point (strain 10^{-3}, stress 2 × 10^8 N m^{-2}). Young's modulus of the wire is
+    options:
+      - 2 × 10^5 N m^{-2}
+      - 2 × 10^{10} N m^{-2}
+      - 5 × 10^{-12} N m^{-2}
+      - 2 × 10^{11} N m^{-2}
+    answer: 3
+    explanation: Y = slope = 2 × 10^8/10^{-3} = 2 × 10^{11} N m^{-2}.
+
+  - id: phy-mps-135
+    topic: stress-strain-curve
+    subtopic: Breaking stress
+    concept: Breaking stress depends only on the material
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [breaking-stress, trap]
+    stem: The breaking stress of a wire depends on
+    options:
+      - its length
+      - its area of cross-section
+      - the material of the wire
+      - the load applied
+    answer: 2
+    explanation: Breaking stress is a material property. A thicker wire needs a larger breaking force (force = stress × area), but the stress at which it breaks is the same.
+
+  - id: phy-mps-136
+    topic: youngs-modulus
+    subtopic: Stress and strain ratios
+    concept: Comparing stress and strain in two wires of same material
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [ratio, multi-concept]
+    stem: Wire 1 has length L and radius r; wire 2, of the same material, has length 2L and radius 2r. Both carry the same load. The ratios of stress (1 to 2) and of strain (1 to 2) are
+    options:
+      - "stresses 4 : 1, strains 4 : 1"
+      - "stresses 2 : 1, strains 2 : 1"
+      - "stresses 4 : 1, strains 1 : 1"
+      - "stresses 1 : 4, strains 1 : 4"
+    answer: 0
+    explanation: "Stress = F/(πr^2), so the ratio is (2r)^2/r^2 = 4 : 1. For the same material, strain = stress/Y, so strains are also 4 : 1. Length does not affect stress or strain; it only affects the extension."
+
+  - id: phy-mps-137
+    topic: youngs-modulus
+    subtopic: Wires in series
+    concept: Total extension of two wires joined end to end
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔL = FL/(AY) for each wire
+    tags: [series, multi-concept]
+    stem: A steel wire (Y = 2 × 10^{11} N m^{-2}) and a brass wire (Y = 1 × 10^{11} N m^{-2}), each 1 m long with cross-section 1 mm^2, are joined end to end and a 100 N load is hung from the combination. The total extension is
+    options:
+      - 0.5 mm
+      - 1.0 mm
+      - 0.75 mm
+      - 1.5 mm
+    answer: 3
+    explanation: Both wires carry the same tension 100 N. Steel extends 100 × 1/(10^{-6} × 2 × 10^{11}) = 0.5 mm and brass extends 1.0 mm, so the total is 1.5 mm.
+
+  - id: phy-mps-138
+    topic: youngs-modulus
+    subtopic: Combined changes
+    concept: ΔL ∝ FL/r²
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: ΔL ∝ FL/r^2
+    tags: [proportionality]
+    stem: For a wire, the load and the length are both doubled while the radius is halved. The extension becomes
+    options:
+      - 4 times
+      - 8 times
+      - 2 times
+      - 16 times
+    answer: 3
+    explanation: ΔL ∝ FL/r^2 = (2 × 2)/(1/2)^2 = 4 × 4 = 16 times the original.
+
+  - id: phy-mps-139
+    topic: youngs-modulus
+    subtopic: Extension under own weight
+    concept: ΔL = ρgL²/(2Y) for a hanging wire
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: ΔL = ρgL^2/(2Y)
+    tags: [own-weight, multi-concept]
+    stem: A steel wire 10 m long hangs vertically from a support. Its density is 8000 kg m^{-3} and Y = 2 × 10^{11} N m^{-2}. The extension due to its own weight is (g = 10 m s^{-2})
+    options:
+      - 0.04 mm
+      - 0.02 mm
+      - 0.2 mm
+      - 0.01 mm
+    answer: 1
+    explanation: ΔL = MgL/(2AY) = ρgL^2/(2Y) = 8000 × 10 × 100/(2 × 2 × 10^{11}) = 2 × 10^{-5} m = 0.02 mm. Forgetting the factor ½ gives 0.04 mm.
+
+  - id: phy-mps-140
+    topic: youngs-modulus
+    subtopic: Different materials
+    concept: Extension ∝ 1/Y for identical wires
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: ΔL ∝ 1/Y
+    tags: [ratio, ncert-table]
+    stem: Identical steel (Y = 200 GPa) and copper (Y = 120 GPa) wires carry equal loads. The ratio of extension of steel to that of copper is
+    options:
+      - "5 : 3"
+      - "1 : 1"
+      - "3 : 5"
+      - "25 : 9"
+    answer: 2
+    explanation: With the same F, L and A, ΔL ∝ 1/Y, so ΔL_steel/ΔL_copper = 120/200 = 3/5. Steel stretches less because its modulus is larger.
+
+  - id: phy-mps-141
+    topic: youngs-modulus
+    subtopic: Stress for given strain
+    concept: stress = Y × strain for a percentage elongation
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: stress = Y × ΔL/L
+    tags: [percentage]
+    stem: What stress is needed to increase the length of a steel wire (Y = 2 × 10^{11} N m^{-2}) by 0.1%?
+    options:
+      - 2 × 10^8 N m^{-2}
+      - 2 × 10^9 N m^{-2}
+      - 2 × 10^{10} N m^{-2}
+      - 2 × 10^7 N m^{-2}
+    answer: 0
+    explanation: Strain = 0.1% = 10^{-3}. Stress = Y × strain = 2 × 10^{11} × 10^{-3} = 2 × 10^8 N m^{-2}.
+
+  - id: phy-mps-142
+    topic: youngs-modulus
+    subtopic: Choosing the wire
+    concept: Largest extension for largest L/d²
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔL ∝ L/d^2
+    tags: [comparison, proportionality]
+    stem: Four wires of the same material carry the same load. Which one extends the most?
+    options:
+      - Length 100 cm, diameter 1 mm
+      - Length 200 cm, diameter 2 mm
+      - Length 50 cm, diameter 0.5 mm
+      - Length 300 cm, diameter 3 mm
+    answer: 2
+    explanation: ΔL ∝ L/d^2. The values of L/d^2 (cm per mm^2) are 100, 50, 200 and 33.3, so the 50 cm, 0.5 mm wire extends the most. The longest wire is not the answer because its diameter is also large.
+
+  - id: phy-mps-143
+    topic: youngs-modulus
+    subtopic: Unit conversion
+    concept: 1 N m⁻² = 10 dyne cm⁻²
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [unit-conversion, cgs]
+    stem: Young's modulus of steel is 2 × 10^{11} N m^{-2}. In CGS units (dyne cm^{-2}) it is
+    options:
+      - 2 × 10^{10}
+      - 2 × 10^{15}
+      - 2 × 10^9
+      - 2 × 10^{12}
+    answer: 3
+    explanation: 1 N = 10^5 dyne and 1 m^2 = 10^4 cm^2, so 1 N m^{-2} = 10 dyne cm^{-2}. Hence 2 × 10^{11} N m^{-2} = 2 × 10^{12} dyne cm^{-2}.
+
+  - id: phy-mps-144
+    topic: youngs-modulus
+    subtopic: Factors affecting extension
+    concept: ΔL ∝ 1/Y and ΔL ∝ 1/A
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [extension]
+    stem: |-
+      Statement I: For a given load and wire dimensions, the extension of a wire is inversely proportional to its Young's modulus.
+      Statement II: For a given material, load and length, the extension is inversely proportional to the area of cross-section.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: ΔL = FL/(AY), so with the other quantities fixed ΔL ∝ 1/Y and ΔL ∝ 1/A. Both statements follow directly.
+
+  - id: phy-mps-145
+    topic: youngs-modulus
+    subtopic: Thick and thin wires
+    concept: Same Y, different extension
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [trap]
+    stem: |-
+      Assertion (A): A thick and a thin wire of the same material and length have the same Young's modulus.
+      Reason (R): Under the same load, the thick wire extends less than the thin wire.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Y depends only on the material, so A is true. R is also true (ΔL ∝ 1/A), but the smaller extension of the thick wire does not explain why Y is the same; the reason is that Y is a material property.
+
+  - id: phy-mps-146
+    topic: youngs-modulus
+    subtopic: Two wires with two masses
+    concept: Upper wire carries both loads
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [series, tension]
+    stem: Identical wires A and B hang in series. Wire A is tied to the ceiling and carries a 2 kg block; wire B hangs below this block and carries a 1 kg block. The ratio of extensions of A and B is
+    options:
+      - "1 : 3"
+      - "2 : 1"
+      - "1 : 1"
+      - "3 : 1"
+    answer: 3
+    explanation: "Wire A supports both blocks (3 kg), wire B supports only 1 kg. For identical wires, extension ∝ tension, so the ratio is 3 : 1. Using the block attached to each wire gives the wrong 2 : 1."
+
+  - id: phy-mps-147
+    topic: youngs-modulus
+    subtopic: Scope of Y
+    concept: Young's modulus is defined only for solids
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [states-of-matter]
+    stem: Young's modulus is defined for
+    options:
+      - solids only
+      - liquids only
+      - gases only
+      - solids, liquids and gases
+    answer: 0
+    explanation: Only solids have a definite length that resists longitudinal stress, so Young's modulus is defined only for solids. Fluids have a bulk modulus only.
+
+  - id: phy-mps-148
+    topic: youngs-modulus
+    subtopic: Load for given extension
+    concept: Mass needed to stretch a copper wire
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    formula: F = YAΔL/L
+    tags: [load]
+    stem: What mass must be hung from a copper wire 1 m long with cross-section 0.5 mm^2 to stretch it by 0.5 mm? (Y = 1.2 × 10^{11} N m^{-2}, g = 10 m s^{-2})
+    options:
+      - 0.3 kg
+      - 30 kg
+      - 6 kg
+      - 3 kg
+    answer: 3
+    explanation: F = YAΔL/L = 1.2 × 10^{11} × 0.5 × 10^{-6} × 0.5 × 10^{-3}/1 = 30 N, so m = 30/10 = 3 kg. Stopping at 30 (newtons) gives the wrong 30 kg.
+
+  - id: phy-mps-149
+    topic: youngs-modulus
+    subtopic: Structural steel rod
+    concept: Elongation of a steel rod under large force
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    formula: ΔL = FL/(AY)
+    tags: [ncert-example]
+    stem: A structural steel rod of radius 10 mm and length 1.0 m is stretched along its length by a force of 100 kN. If Y = 2.0 × 10^{11} N m^{-2}, the elongation is about
+    options:
+      - 0.16 mm
+      - 1.6 mm
+      - 16 mm
+      - 3.2 mm
+    answer: 1
+    explanation: A = π(10^{-2})^2 = 3.14 × 10^{-4} m^2, so stress = 10^5/3.14 × 10^{-4} ≈ 3.18 × 10^8 N m^{-2}. ΔL = stress × L/Y = 3.18 × 10^8/2 × 10^{11} ≈ 1.59 × 10^{-3} m ≈ 1.6 mm.
+
+  - id: phy-mps-150
+    topic: youngs-modulus
+    subtopic: Stretching a single wire
+    concept: Young's modulus of a wire from mass hung and extension
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Y = mgL/(AΔL)
+    tags: [youngs-modulus]
+    stem: A 4 kg mass hung from a wire 1 m long and 0.4 mm^2 in cross-section stretches it by 0.5 mm. With g = 10 m s^{-2}, Young's modulus of the wire is
+    options:
+      - 2 × 10^{10} N m^{-2}
+      - 2 × 10^{11} N m^{-2}
+      - 8 × 10^{10} N m^{-2}
+      - 5 × 10^{11} N m^{-2}
+    answer: 1
+    explanation: F = 40 N and AΔL = 0.4 × 10^{-6} × 0.5 × 10^{-3} = 2 × 10^{-10} m^3. Y = FL/(AΔL) = 40 × 1/(2 × 10^{-10}) = 2 × 10^{11} N m^{-2}. Leaving the area in mm^2 or the extension in mm gives a wrong power of ten.
+
+  - id: phy-mps-151
+    topic: youngs-modulus-experiment
+    subtopic: Measuring diameter
+    concept: Diameter measured at several places in perpendicular directions
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [screw-gauge, experiment]
+    stem: In the Young's modulus experiment, the diameter of the wire is measured with a screw gauge at several places along its length, in two mutually perpendicular directions, because
+    options:
+      - Young's modulus varies along the wire
+      - the screw gauge has a zero error
+      - the wire stretches only at some places
+      - the wire may not be perfectly uniform or circular in cross-section
+    answer: 3
+    explanation: Taking readings at several places and in perpendicular directions averages out non-uniformity and slight non-circularity of the wire, reducing error in r, which enters Y as r^2.
+
+  - id: phy-mps-152
+    topic: youngs-modulus-experiment
+    subtopic: Error analysis
+    concept: Percentage error in Y = 4MgL/(πd²l)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: ΔY/Y = ΔM/M + ΔL/L + 2Δd/d + Δl/l
+    tags: [errors, multi-concept]
+    stem: In finding Y = 4MgL/(πd^2 l), the percentage errors in M, L, d and l are 0.2%, 0.1%, 0.5% and 1% respectively. The maximum percentage error in Y is
+    options:
+      - 2.3%
+      - 1.8%
+      - 1.3%
+      - 2.8%
+    answer: 0
+    explanation: Percentage errors add, with the power of each quantity as a multiplier. ΔY/Y = 0.2 + 0.1 + 2 × 0.5 + 1 = 2.3%. Forgetting to double the diameter's error gives 1.8%.
+
+  - id: phy-mps-153
+    topic: youngs-modulus-experiment
+    subtopic: Loading and unloading
+    concept: Readings taken while loading and unloading are averaged
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [experiment, procedure]
+    stem: In the Young's modulus experiment, extension readings are taken both while increasing and while decreasing the load in steps. The main purpose is to
+    options:
+      - double the maximum load that can be applied
+      - check that the elastic limit has not been exceeded and to average out lag effects
+      - measure the diameter more accurately
+      - find the temperature coefficient of Y
+    answer: 1
+    explanation: If the wire stayed within its elastic limit, loading and unloading readings for the same load should agree; averaging them also reduces errors from the wire's slight lag in responding. A mismatch warns that the wire has taken a permanent set.
+
+  - id: phy-mps-154
+    topic: youngs-modulus-experiment
+    subtopic: Dead load
+    concept: Initial load keeps the wire straight and kink-free
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [experiment, procedure]
+    stem: Before taking readings in the Young's modulus experiment, a small initial load is attached to the experimental wire. This is done to
+    options:
+      - increase its Young's modulus
+      - reduce its length
+      - keep the wire taut and free of kinks
+      - measure the reference wire's extension
+    answer: 2
+    explanation: A small initial (dead) load straightens the wire and removes kinks, so the measured extensions come from elastic stretching alone.
+
+  - id: phy-mps-155
+    topic: youngs-modulus-experiment
+    subtopic: Procedure
+    concept: Correct features of the Young's modulus experiment
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [experiment]
+    stem: |-
+      Consider the following statements about the experiment to determine Young's modulus of a wire.
+      I. A graph of extension against load is a straight line within the elastic limit.
+      II. The reference and experimental wires are of the same material.
+      III. The load should be large enough to exceed the elastic limit.
+      IV. The diameter of the wire is measured with a screw gauge.
+      Which are correct?
+    options:
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+      - I, II and IV only
+    answer: 3
+    explanation: Extension ∝ load (straight line) within the elastic limit; both wires are of the same material so thermal effects cancel; a screw gauge measures the small diameter. Exceeding the elastic limit would spoil the experiment, so III is wrong.
+
+  - id: phy-mps-156
+    topic: youngs-modulus-experiment
+    subtopic: Graphical calculation
+    concept: Y from slope of extension–mass graph
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    formula: Y = gL/(A s)
+    tags: [graph, experiment]
+    stem: For a wire of length 1 m and cross-section 2 × 10^{-7} m^2, the graph of extension against mass hung is a straight line of slope 0.25 mm per kg. Taking g = 10 m s^{-2}, Young's modulus is
+    options:
+      - 5 × 10^{10} N m^{-2}
+      - 2 × 10^{10} N m^{-2}
+      - 2 × 10^{11} N m^{-2}
+      - 5 × 10^{11} N m^{-2}
+    answer: 2
+    explanation: Slope s = 0.25 × 10^{-3} m kg^{-1}. Y = gL/(A s) = 10 × 1/(2 × 10^{-7} × 2.5 × 10^{-4}) = 10/(5 × 10^{-11}) = 2 × 10^{11} N m^{-2}.
+
+  - id: phy-mps-157
+    topic: shear-modulus
+    subtopic: Comparing moduli
+    concept: Shear modulus is usually the smallest of Y, B and G
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [ncert-table, comparison]
+    stem: For steel, Y ≈ 200 GPa and B ≈ 160 GPa. Its shear modulus G is closest to
+    options:
+      - 84 GPa
+      - 200 GPa
+      - 400 GPa
+      - 160 GPa
+    answer: 0
+    explanation: NCERT lists G ≈ 84 × 10^9 N m^{-2} for steel. Consistent with G ≈ Y/3 (about 67 GPa), the shear modulus is well below both Y and B.
+
+  - id: phy-mps-158
+    topic: shear-modulus
+    subtopic: Displacement of cube face
+    concept: Δx = FL/(AG) for a cube
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Δx = FL/(AG)
+    tags: [shear, cube]
+    stem: A tangential force of 10^5 N acts on the top face of a metal cube of side 10 cm whose bottom face is fixed. If G = 4 × 10^{10} N m^{-2}, the top face shifts by
+    options:
+      - 0.25 mm
+      - 2.5 mm
+      - 0.0025 mm
+      - 0.025 mm
+    answer: 3
+    explanation: Stress = 10^5/0.01 = 10^7 N m^{-2}; strain = 10^7/4 × 10^{10} = 2.5 × 10^{-4}; Δx = strain × L = 2.5 × 10^{-4} × 0.1 m = 2.5 × 10^{-5} m = 0.025 mm.
+
+  - id: phy-mps-159
+    topic: shear-modulus
+    subtopic: Scaling with size
+    concept: For a cube under fixed shear force Δx ∝ 1/L
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: Δx = F/(GL) for a cube
+    tags: [scaling, multi-concept]
+    stem: Two cubes of the same material, of sides L and 2L, have their bottom faces fixed and equal tangential forces applied to their top faces. The displacement of the top face of the larger cube, compared with the smaller, is
+    options:
+      - half
+      - the same
+      - double
+      - one-fourth
+    answer: 0
+    explanation: Δx = FL/(AG) = FL/(L^2 G) = F/(GL). Doubling L halves Δx. Area grows as L^2 while height grows as L, so the net effect is 1/L.
+
+  - id: phy-mps-160
+    topic: shear-modulus
+    subtopic: Units
+    concept: Shear modulus has the unit of stress
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Assertion (A): The modulus of rigidity has the same SI unit as Young's modulus.
+      Reason (R): Shearing strain, being an angle in radians, is dimensionless.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: G = shearing stress/shearing strain. Because the strain (Δx/L or θ) is dimensionless, G has the unit of stress, N m^{-2}, just like Y. R explains A.
+
+  - id: phy-mps-161
+    topic: shear-modulus
+    subtopic: Typical values
+    concept: Lead has a very small shear modulus
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ncert-table]
+    stem: Among the following metals, which has the smallest shear modulus?
+    options:
+      - Steel
+      - Copper
+      - Lead
+      - Iron
+    answer: 2
+    explanation: From the NCERT table, G for lead is about 5.6 × 10^9 N m^{-2}, much smaller than for copper (42 × 10^9), iron (70 × 10^9) or steel (84 × 10^9).
+
+  - id: phy-mps-162
+    topic: shear-modulus
+    subtopic: Angle of shear
+    concept: θ = shearing stress/G
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: θ = stress/G
+    tags: [shear-angle]
+    stem: A shearing stress of 8 × 10^6 N m^{-2} acts on a block with G = 4 × 10^{10} N m^{-2}. The angle of shear is
+    options:
+      - 5 × 10^{-3} rad
+      - 2 × 10^{-4} rad
+      - 2 × 10^{-3} rad
+      - 3.2 × 10^{17} rad
+    answer: 1
+    explanation: θ = stress/G = 8 × 10^6/4 × 10^{10} = 2 × 10^{-4} rad.
+
+  - id: phy-mps-163
+    topic: shear-modulus
+    subtopic: Graph
+    concept: Slope of shear stress vs shear strain is G
+    category: concept
+    format: graph
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [graph]
+    stem: Within the elastic limit, the slope of the graph of shearing stress (y-axis) against shearing strain (x-axis) gives the
+    options:
+      - Young's modulus
+      - bulk modulus
+      - shear modulus
+      - Poisson's ratio
+    answer: 2
+    explanation: Shearing stress = G × shearing strain, a straight line with slope G, the modulus of rigidity.
+
+  - id: phy-mps-164
+    topic: shear-modulus
+    subtopic: Properties
+    concept: Key facts about shear modulus
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [shear-modulus]
+    stem: |-
+      Consider the following statements.
+      I. The shear modulus of a material is generally less than its Young's modulus.
+      II. Shear modulus is also called the modulus of rigidity.
+      III. Shear modulus is defined for gases.
+      IV. Shearing stress is the tangential force per unit area.
+      Which are correct?
+    options:
+      - I and III only
+      - II and III only
+      - I, II and IV only
+      - II, III and IV only
+    answer: 2
+    explanation: G is typically about Y/3, it is also called the modulus of rigidity, and shearing stress is tangential force per area. Gases (and liquids) cannot sustain shear, so III is wrong.
+
+  - id: phy-mps-165
+    topic: bulk-modulus
+    subtopic: Calculating B
+    concept: B = p/(ΔV/V) from a percentage change
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: B = p/(ΔV/V)
+    tags: [bulk-modulus]
+    stem: A pressure of 10^7 N m^{-2} reduces the volume of a solid by 0.01%. Its bulk modulus is
+    options:
+      - 10^9 N m^{-2}
+      - 10^{11} N m^{-2}
+      - 10^{10} N m^{-2}
+      - 10^{12} N m^{-2}
+    answer: 1
+    explanation: ΔV/V = 0.01% = 10^{-4}. B = 10^7/10^{-4} = 10^{11} N m^{-2}. Taking 0.01% as 10^{-2} gives 10^9.
+
+  - id: phy-mps-166
+    topic: bulk-modulus
+    subtopic: Compressibility
+    concept: k = 1/B numerical
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: k = 1/B
+    tags: [compressibility]
+    stem: The bulk modulus of a liquid is 2 × 10^9 N m^{-2}. Its compressibility is
+    options:
+      - 2 × 10^{-9} N^{-1} m^2
+      - 5 × 10^{-9} N^{-1} m^2
+      - 2 × 10^9 N^{-1} m^2
+      - 5 × 10^{-10} N^{-1} m^2
+    answer: 3
+    explanation: k = 1/B = 1/(2 × 10^9) = 0.5 × 10^{-9} = 5 × 10^{-10} N^{-1} m^2.
+
+  - id: phy-mps-167
+    topic: bulk-modulus
+    subtopic: Liquids
+    concept: Mercury has the largest bulk modulus among common liquids
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ncert-table, liquids]
+    stem: Among the following liquids, which has the largest bulk modulus?
+    options:
+      - Water
+      - Ethanol
+      - Glycerine
+      - Mercury
+    answer: 3
+    explanation: NCERT lists B ≈ 25 × 10^9 N m^{-2} for mercury, far above glycerine (4.76 × 10^9), water (2.2 × 10^9) and ethanol (0.9 × 10^9). Mercury is the least compressible of these.
+
+  - id: phy-mps-168
+    topic: bulk-modulus
+    subtopic: Object under a lake
+    concept: B from depth and fractional volume change
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: B = ρgh/(ΔV/V)
+    tags: [depth, multi-concept]
+    stem: A rubber ball taken to a depth of 200 m in a lake has its volume reduced by 0.1%. Taking ρ = 1000 kg m^{-3} and g = 10 m s^{-2}, the bulk modulus of the rubber is
+    options:
+      - 2 × 10^8 N m^{-2}
+      - 2 × 10^9 N m^{-2}
+      - 2 × 10^6 N m^{-2}
+      - 2 × 10^{10} N m^{-2}
+    answer: 1
+    explanation: Extra pressure p = ρgh = 1000 × 10 × 200 = 2 × 10^6 N m^{-2}. ΔV/V = 10^{-3}, so B = 2 × 10^6/10^{-3} = 2 × 10^9 N m^{-2}.
+
+  - id: phy-mps-169
+    topic: bulk-modulus
+    subtopic: Bulk modulus of a gas
+    concept: Isothermal bulk modulus of an ideal gas equals its pressure
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: B_isothermal = P
+    tags: [gases, multi-concept]
+    stem: |-
+      Statement I: The bulk modulus of a gas depends on its pressure.
+      Statement II: The isothermal bulk modulus of an ideal gas is equal to its pressure.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: For an isothermal change PV = constant, so P dV + V dP = 0 and B = −V dP/dV = P. A gas at higher pressure is therefore harder to compress; both statements are correct.
+
+  - id: phy-mps-170
+    topic: bulk-modulus
+    subtopic: Comparing materials
+    concept: Increasing order of bulk modulus for air, water, glass, steel
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ordering, ncert-table]
+    stem: Arrange in increasing order of bulk modulus. P. Glass Q. Air R. Steel S. Water
+    options:
+      - Q, P, S, R
+      - Q, S, R, P
+      - S, Q, P, R
+      - Q, S, P, R
+    answer: 3
+    explanation: NCERT values (× 10^9 N m^{-2}) are air 10^{-4}, water 2.2, glass 37 and steel 160. So air < water < glass < steel.
+
+  - id: phy-mps-171
+    topic: bulk-modulus
+    subtopic: Steel under high pressure
+    concept: ΔV/V for steel under large pressure
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: ΔV/V = p/B
+    tags: [steel, volume-strain]
+    stem: A steel sphere (B = 1.6 × 10^{11} N m^{-2}) is subjected to a pressure of 10^8 N m^{-2} at the bottom of a deep trench. The fractional decrease in its volume is
+    options:
+      - 1.6 × 10^{-3}
+      - 6.25 × 10^{-3}
+      - 1.6 × 10^{19}
+      - 6.25 × 10^{-4}
+    answer: 3
+    explanation: ΔV/V = p/B = 10^8/1.6 × 10^{11} = 6.25 × 10^{-4}, about 0.06%. Solids hardly compress even under enormous pressures.
+
+  - id: phy-mps-172
+    topic: bulk-modulus
+    subtopic: Copper cube
+    concept: Volume change of a copper cube under hydraulic pressure
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔV = pV/B
+    tags: [ncert-example]
+    stem: A solid copper cube of edge 10 cm is subjected to a hydraulic pressure of 7 × 10^6 Pa. If the bulk modulus of copper is 140 GPa, the contraction in its volume is
+    options:
+      - 0.05 cm^3
+      - 0.5 cm^3
+      - 5 × 10^{-5} cm^3
+      - 0.005 cm^3
+    answer: 0
+    explanation: ΔV/V = p/B = 7 × 10^6/1.4 × 10^{11} = 5 × 10^{-5}. V = 1000 cm^3, so ΔV = 5 × 10^{-2} cm^3 = 0.05 cm^3.
+
+  - id: phy-mps-173
+    topic: bulk-modulus
+    subtopic: Density under pressure
+    concept: Increasing pressure increases density
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [density]
+    stem: When the pressure on a liquid is increased, its density
+    options:
+      - increases slightly
+      - decreases slightly
+      - remains exactly the same
+      - becomes zero
+    answer: 0
+    explanation: Higher pressure reduces the volume of the fixed mass of liquid slightly (by p/B), so its density rises slightly.
+
+  - id: phy-mps-174
+    topic: bulk-modulus
+    subtopic: Graph
+    concept: Steeper pressure–volume-strain line means less compressible
+    category: application
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [graph, compressibility]
+    stem: For two liquids X and Y, graphs of applied pressure (y-axis) against magnitude of volume strain (x-axis) are straight lines through the origin, the line for X being steeper. It follows that
+    options:
+      - X is more compressible than Y
+      - X and Y have equal bulk moduli
+      - Y has a larger bulk modulus than X
+      - X is less compressible than Y
+    answer: 3
+    explanation: The slope p/(ΔV/V) is the bulk modulus, so X has the larger B and hence the smaller compressibility (1/B).
+
+  - id: phy-mps-175
+    topic: poissons-ratio
+    subtopic: Lateral strain
+    concept: Lateral strain = σ × longitudinal strain
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: lateral strain = σ × longitudinal strain
+    tags: [lateral-strain]
+    stem: A wire with Poisson's ratio 0.25 is under a longitudinal strain of 2 × 10^{-3}. The lateral strain is
+    options:
+      - 5 × 10^{-4}
+      - 8 × 10^{-3}
+      - 2.5 × 10^{-3}
+      - 5 × 10^{-3}
+    answer: 0
+    explanation: Lateral strain = σ × longitudinal strain = 0.25 × 2 × 10^{-3} = 5 × 10^{-4}. Dividing instead gives 8 × 10^{-3}.
+
+  - id: phy-mps-176
+    topic: poissons-ratio
+    subtopic: Change in diameter
+    concept: Δd = σ × (ΔL/L) × d
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: Δd = σ d ΔL/L
+    tags: [diameter]
+    stem: A wire of diameter 2 mm is stretched to a longitudinal strain of 10^{-3}. If Poisson's ratio is 0.3, its diameter decreases by
+    options:
+      - 3 × 10^{-4} mm
+      - 6 × 10^{-3} mm
+      - 6 × 10^{-4} mm
+      - 1.5 × 10^{-4} mm
+    answer: 2
+    explanation: Lateral strain = 0.3 × 10^{-3} = 3 × 10^{-4}. Δd = 3 × 10^{-4} × 2 mm = 6 × 10^{-4} mm. Stopping at the strain gives 3 × 10^{-4}.
+
+  - id: phy-mps-177
+    topic: poissons-ratio
+    subtopic: Relation between constants
+    concept: Y = 2G(1 + σ)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: Y = 2G(1 + σ)
+    tags: [elastic-constants, multi-concept]
+    stem: For a material, Y = 2 × 10^{11} N m^{-2} and G = 8 × 10^{10} N m^{-2}. Using Y = 2G(1 + σ), its Poisson's ratio is
+    options:
+      - "0.20"
+      - "0.25"
+      - "0.40"
+      - "0.50"
+    answer: 1
+    explanation: 1 + σ = Y/(2G) = 2 × 10^{11}/1.6 × 10^{11} = 1.25, so σ = 0.25.
+
+  - id: phy-mps-178
+    topic: poissons-ratio
+    subtopic: Incompressible limit
+    concept: σ = 0.5 gives infinite bulk modulus
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: Y = 3B(1 − 2σ)
+    tags: [elastic-constants, incompressible]
+    stem: |-
+      Statement I: For a material with Poisson's ratio 0.5, the bulk modulus would be infinitely large.
+      Statement II: For such a material, stretching produces a change in volume.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: From Y = 3B(1 − 2σ), σ → 0.5 makes B → ∞ for finite Y, i.e. the material is incompressible. Then ΔV/V = (1 − 2σ)ΔL/L = 0, so stretching does not change volume; Statement II is false.
+
+  - id: phy-mps-179
+    topic: poissons-ratio
+    subtopic: Theoretical limits
+    concept: Theoretical range −1 < σ < 0.5
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [range]
+    stem: The theoretical limits of Poisson's ratio for an isotropic material are
+    options:
+      - 0 and 1
+      - −0.5 and 0.5
+      - 0 and 0.5
+      - −1 and 0.5
+    answer: 3
+    explanation: The relations among elastic constants restrict σ theoretically to −1 < σ < 0.5. In practice real materials have values between 0 and 0.5, a trap when the question asks for theoretical limits.
+
+  - id: phy-mps-180
+    topic: poissons-ratio
+    subtopic: Volume change on stretching
+    concept: ΔV/V = (1 − 2σ) × longitudinal strain
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: ΔV/V = (1 − 2σ)ΔL/L
+    tags: [volume-change, multi-concept]
+    stem: A wire with Poisson's ratio 0.3 is stretched to a longitudinal strain of 10^{-3}. The fractional change in its volume is
+    options:
+      - 4 × 10^{-4} (increase)
+      - 1.6 × 10^{-3} (increase)
+      - 4 × 10^{-4} (decrease)
+      - zero
+    answer: 0
+    explanation: V = πr^2 L gives ΔV/V = ΔL/L − 2σ ΔL/L = (1 − 2 × 0.3) × 10^{-3} = 4 × 10^{-4}. It is positive, so the volume increases slightly.
+
+  - id: phy-mps-181
+    topic: poissons-ratio
+    subtopic: Sign of strains
+    concept: Lateral and longitudinal strains have opposite signs
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [sign]
+    stem: When a rod is compressed along its length, its lateral dimensions
+    options:
+      - decrease
+      - remain unchanged
+      - increase
+      - first decrease then increase
+    answer: 2
+    explanation: "Longitudinal and lateral strains are opposite in sign: stretching thins a rod, and compressing it makes it slightly fatter. Poisson's ratio relates their magnitudes."
+
+  - id: phy-mps-182
+    topic: elastic-energy
+    subtopic: Energy from load
+    concept: U = F²L/(2AY)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: U = F^2 L/(2AY)
+    tags: [elastic-energy]
+    stem: A wire of length 2 m and cross-section 1 mm^2 (Y = 2 × 10^{11} N m^{-2}) is stretched by a force of 200 N. The elastic energy stored is
+    options:
+      - 0.4 J
+      - 0.1 J
+      - 0.2 J
+      - 2 J
+    answer: 2
+    explanation: ΔL = FL/(AY) = 200 × 2/(10^{-6} × 2 × 10^{11}) = 2 × 10^{-3} m. U = ½ F ΔL = ½ × 200 × 2 × 10^{-3} = 0.2 J.
+
+  - id: phy-mps-183
+    topic: elastic-energy
+    subtopic: Effect of radius
+    concept: For equal loads U ∝ 1/r²
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: U = F^2 L/(2AY)
+    tags: [ratio]
+    stem: "Two wires of the same material and length, with radii in the ratio 1 : 2, carry equal loads. The ratio of elastic energies stored in them is"
+    options:
+      - "1 : 4"
+      - "4 : 1"
+      - "2 : 1"
+      - "16 : 1"
+    answer: 1
+    explanation: "U = F^2 L/(2AY) ∝ 1/r^2 for the same F, L and Y. U_1/U_2 = (r_2/r_1)^2 = 4, so 4 : 1. The thinner wire stretches more and stores more energy."
+
+  - id: phy-mps-184
+    topic: elastic-energy
+    subtopic: Energy density
+    concept: u = ½ Y (strain)²
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    formula: u = ½ Y ε^2
+    tags: [energy-density]
+    stem: In terms of Young's modulus Y and strain ε, the elastic energy per unit volume of a stretched wire is
+    options:
+      - Y ε^2
+      - ½ Y ε
+      - ½ Y^2 ε
+      - ½ Y ε^2
+    answer: 3
+    explanation: u = ½ × stress × strain and stress = Yε, so u = ½ Y ε^2.
+
+  - id: phy-mps-185
+    topic: elastic-energy
+    subtopic: Extra stretching
+    concept: Work to stretch from x₁ to x₂ = ½k(x₂² − x₁²)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: W = ½ (YA/L)(x_2^2 − x_1^2)
+    tags: [work, multi-concept]
+    stem: A wire behaves like a spring of force constant YA/L = 10^5 N m^{-1}. The work needed to increase its extension from 1 mm to 2 mm is
+    options:
+      - 0.05 J
+      - 0.2 J
+      - 0.1 J
+      - 0.15 J
+    answer: 3
+    explanation: W = ½ k (x_2^2 − x_1^2) = ½ × 10^5 × (4 − 1) × 10^{-6} = 0.15 J. Using ½ k (x_2 − x_1)^2 gives the wrong 0.05 J.
+
+  - id: phy-mps-186
+    topic: elastic-energy
+    subtopic: Energy density
+    concept: u = ½ Y ε² numerical
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: u = ½ Y ε^2
+    tags: [energy-density]
+    stem: A wire of Young's modulus 10^{11} N m^{-2} is stretched to a strain of 2 × 10^{-3}. The energy stored per unit volume is
+    options:
+      - 10^5 J m^{-3}
+      - 2 × 10^5 J m^{-3}
+      - 4 × 10^5 J m^{-3}
+      - 2 × 10^8 J m^{-3}
+    answer: 1
+    explanation: u = ½ Y ε^2 = ½ × 10^{11} × 4 × 10^{-6} = 2 × 10^5 J m^{-3}.
+
+  - id: phy-mps-187
+    topic: elastic-energy
+    subtopic: Origin of factor ½
+    concept: Stretching force grows gradually from zero
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [elastic-energy]
+    stem: |-
+      Assertion (A): The elastic energy stored in a stretched wire is ½ × load × extension, not load × extension.
+      Reason (R): During slow stretching, the force on the wire increases gradually from zero to the final load.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Work = ∫F dx with F rising linearly from 0 to the final load, so the average force is half the final load. That gives U = ½ F ΔL, so R explains A.
+
+  - id: phy-mps-188
+    topic: elastic-energy
+    subtopic: Force–extension graph
+    concept: Area under force–extension graph is stored energy
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [graph]
+    stem: For a wire stretched within its elastic limit, the elastic potential energy stored is given by
+    options:
+      - the slope of the force–extension graph
+      - the area under the force–extension graph
+      - the intercept of the force–extension graph on the force axis
+      - the reciprocal of the slope of the force–extension graph
+    answer: 1
+    explanation: Work done = ∫F dx, the area under the force–extension graph; for a straight line it is the triangle ½ F ΔL. The slope gives the force constant YA/L.
+
+  - id: phy-mps-189
+    topic: elastic-energy
+    subtopic: Effect of length
+    concept: For equal loads U ∝ L
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: U = F^2 L/(2AY)
+    tags: [ratio]
+    stem: Two wires of the same material and cross-section have lengths L and 2L and carry equal loads. The ratio of elastic energies stored in them is
+    options:
+      - "2 : 1"
+      - "1 : 4"
+      - "1 : 2"
+      - "1 : 1"
+    answer: 2
+    explanation: "U = F^2 L/(2AY) ∝ L for the same F, A and Y, so the ratio is L : 2L = 1 : 2."
+
+  - id: phy-mps-190
+    topic: elastic-energy
+    subtopic: Effect of stress
+    concept: Energy density ∝ stress²
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: u = stress^2/(2Y)
+    tags: [proportionality]
+    stem: If the stress in a wire is doubled (within the elastic limit), the elastic energy stored per unit volume becomes
+    options:
+      - four times
+      - twice
+      - half
+      - the same
+    answer: 0
+    explanation: u = stress^2/(2Y), so doubling the stress makes u four times as large (strain also doubles).
+
+  - id: phy-mps-191
+    topic: applications
+    subtopic: Mountains on other planets
+    concept: Maximum mountain height h = σ/(ρg)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: h_max = σ_limit/(ρg)
+    tags: [mountains, multi-concept]
+    stem: The elastic limit of a rock is 3 × 10^8 N m^{-2} and its density is 3 × 10^3 kg m^{-3}. On a planet where g = 5 m s^{-2}, the maximum possible height of a mountain made of this rock is about
+    options:
+      - 10 km
+      - 5 km
+      - 40 km
+      - 20 km
+    answer: 3
+    explanation: The stress at the base, hρg, must not exceed the elastic limit, so h = 3 × 10^8/(3 × 10^3 × 5) = 2 × 10^4 m = 20 km. Weaker gravity allows taller mountains.
+
+  - id: phy-mps-192
+    topic: applications
+    subtopic: Crane capacity
+    concept: Maximum load = yield strength × area
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: F_max = σ_y πr^2
+    tags: [crane]
+    stem: A steel rope of radius 2 cm is used by a crane. If the yield strength of steel is 3 × 10^8 N m^{-2}, the largest mass it can lift without permanent deformation is about (g = 10 m s^{-2})
+    options:
+      - 3.8 × 10^3 kg
+      - 3.8 × 10^4 kg
+      - 1.2 × 10^4 kg
+      - 3.8 × 10^5 kg
+    answer: 1
+    explanation: A = π(0.02)^2 = 1.26 × 10^{-3} m^2. F = 3 × 10^8 × 1.26 × 10^{-3} ≈ 3.8 × 10^5 N, so m ≈ 3.8 × 10^4 kg. Stopping at the force in newtons gives 3.8 × 10^5.
+
+  - id: phy-mps-193
+    topic: applications
+    subtopic: Design of bridges
+    concept: Loads a bridge must be designed for
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [bridges, ncert-line]
+    stem: |-
+      While designing a bridge, which of the following loads must be taken into account?
+      I. The load of flowing traffic
+      II. The force of winds
+      III. The weight of the bridge itself
+      IV. The Earth's magnetic field
+    options:
+      - I and II only
+      - I, II and III only
+      - II and III only
+      - I, III and IV only
+    answer: 1
+    explanation: NCERT says a bridge must be designed so that it neither bends too much nor breaks under the load of flowing traffic, the force of winds and its own weight. The magnetic field exerts no significant force on it.
+
+  - id: phy-mps-194
+    topic: applications
+    subtopic: Bending of beams
+    concept: Sag δ ∝ 1/b
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: δ = Wl^3/(4bd^3 Y)
+    tags: [beams]
+    stem: The breadth of a rectangular beam supported at its ends is doubled, keeping the load, length and depth unchanged. The sag at its centre becomes
+    options:
+      - one-eighth
+      - double
+      - one-fourth
+      - half
+    answer: 3
+    explanation: δ ∝ 1/b, so doubling the breadth halves the sag. Doubling the depth instead would reduce it eight times.
+
+  - id: phy-mps-195
+    topic: applications
+    subtopic: Bending of beams
+    concept: Depth is more effective than breadth; sag ∝ 1/Y
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: δ = Wl^3/(4bd^3 Y)
+    tags: [beams, trap]
+    stem: |-
+      Statement I: Increasing the breadth of a beam reduces its sag more effectively than increasing its depth by the same factor.
+      Statement II: The sag of a loaded beam is inversely proportional to the Young's modulus of its material.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: δ = Wl^3/(4bd^3 Y). Sag depends on 1/d^3 but only on 1/b, so depth is far more effective and Statement I is false. δ ∝ 1/Y, so Statement II is true.
+
+  - id: phy-mps-196
+    topic: applications
+    subtopic: Maximum hanging length
+    concept: L_max = breaking stress/(ρg)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: L_max = σ_b/(ρg)
+    tags: [own-weight, breaking-stress]
+    stem: The breaking stress of steel is 8 × 10^8 N m^{-2} and its density is 8 × 10^3 kg m^{-3}. The maximum length of a steel wire that can hang vertically without breaking under its own weight is (g = 10 m s^{-2})
+    options:
+      - 1 km
+      - 100 km
+      - 10 km
+      - 1000 km
+    answer: 2
+    explanation: The stress at the top is ρgL, so L_max = σ_b/(ρg) = 8 × 10^8/(8 × 10^3 × 10) = 10^4 m = 10 km.
+
+  - id: phy-mps-197
+    topic: applications
+    subtopic: Breaking load
+    concept: Breaking load ∝ area
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: F_break = σ_b × πr^2
+    tags: [breaking-load]
+    stem: A wire breaks when a load of 100 kg is hung from it. A wire of the same material with twice the radius will break under a load of
+    options:
+      - 100 kg
+      - 200 kg
+      - 50 kg
+      - 400 kg
+    answer: 3
+    explanation: Breaking stress is fixed for the material, so breaking load ∝ area ∝ r^2. Doubling the radius gives 4 × 100 = 400 kg.
+
+  - id: phy-mps-198
+    topic: applications
+    subtopic: Maximum hanging length
+    concept: Maximum length is independent of area
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [own-weight, multi-concept]
+    stem: |-
+      Assertion (A): The maximum length of a wire that can hang vertically without breaking does not depend on its cross-sectional area.
+      Reason (R): Both the weight of the wire and the force needed to break it are proportional to its cross-sectional area.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Weight = ρALg and breaking force = σ_b A; equating them, A cancels and L_max = σ_b/(ρg). R is precisely why A holds.
+
+  - id: phy-mps-199
+    topic: applications
+    subtopic: Pillars
+    concept: Pillars with distributed ends bear more load than rounded ends
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [pillars, ncert-line]
+    stem: According to NCERT, compared with a pillar that has rounded ends, a pillar with distributed (broadened) shapes at its ends
+    options:
+      - supports less load
+      - supports the same load
+      - supports more load
+      - cannot bear any compressive load
+    answer: 2
+    explanation: NCERT notes that a pillar or column with distributed shapes at its ends supports more load than one with rounded ends, because the load is spread over a larger bearing area.
+
+  - id: phy-mps-200
+    topic: applications
+    subtopic: Bending of beams
+    concept: Calculating sag of a centrally loaded beam
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    formula: δ = Wl^3/(4bd^3 Y)
+    tags: [beams]
+    stem: A steel beam (Y = 2 × 10^{11} N m^{-2}) of length 2 m, breadth 0.1 m and depth 0.1 m is supported at its ends and loaded at its centre with 1000 N. Using δ = Wl^3/(4bd^3 Y), the sag is
+    options:
+      - 1 mm
+      - 0.01 mm
+      - 0.1 mm
+      - 0.8 mm
+    answer: 2
+    explanation: δ = 1000 × 8/(4 × 0.1 × 10^{-3} × 2 × 10^{11}) = 8000/(8 × 10^7) = 10^{-4} m = 0.1 mm.

@@ -1,0 +1,3987 @@
+subject: physics
+chapter:
+  slug: electromagnetic-induction
+  name: Electromagnetic Induction
+  order: 20
+  classes: [12]
+  topics:
+    - slug: faraday-henry-experiments
+      name: Experiments of Faraday and Henry
+    - slug: magnetic-flux
+      name: Magnetic flux and flux linkage
+    - slug: faradays-law
+      name: Faraday's law of induction
+    - slug: lenz-law
+      name: Lenz's law and conservation of energy
+    - slug: motional-emf
+      name: Motional emf and energy considerations
+    - slug: eddy-currents
+      name: Eddy currents and electromagnetic damping
+    - slug: self-inductance
+      name: Self-inductance and magnetic energy
+    - slug: mutual-inductance
+      name: Mutual inductance
+    - slug: ac-generator
+      name: AC generator
+questions:
+  - id: phy-emi-001
+    topic: faraday-henry-experiments
+    subtopic: Magnet and coil experiment
+    concept: Deflection occurs only while there is relative motion between magnet and coil
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [faraday-experiment, ncert-line]
+    stem: A bar magnet is held at rest inside a coil connected to a galvanometer. The galvanometer shows
+    options:
+      - a steady deflection proportional to the magnet's strength
+      - a deflection that slowly decays to zero
+      - a deflection that reverses periodically
+      - no deflection
+    answer: 3
+    explanation: An emf is induced only when the flux linked with the coil changes. With the magnet at rest there is no change of flux, so there is no deflection. A strong magnet alone does not give a steady deflection.
+  - id: phy-emi-002
+    topic: faraday-henry-experiments
+    subtopic: Magnet and coil experiment
+    concept: Faster relative motion gives larger galvanometer deflection
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [faraday-experiment, rate-of-change]
+    stem: In Faraday's magnet–coil experiment, the galvanometer deflection becomes larger when the magnet is
+    options:
+      - pushed towards the coil more slowly
+      - kept closer to the coil but at rest
+      - replaced by an unmagnetised iron bar of equal size
+      - pushed towards the coil more quickly
+    answer: 3
+    explanation: The induced emf equals the rate of change of flux. Moving the magnet faster changes the flux more quickly, so the emf and the deflection are larger. A magnet at rest gives no deflection however close it is.
+  - id: phy-emi-003
+    topic: faraday-henry-experiments
+    subtopic: Coil–coil experiment with a key
+    concept: A momentary deflection occurs only at switching on or off of the primary current
+    category: concept
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, ncert-line]
+    stem: Coil C1 is connected to a galvanometer and placed near coil C2, which is connected to a battery through a tapping key. The key is pressed and held down for a few seconds, then released. What does the galvanometer show?
+    options:
+      - A steady deflection for as long as the key is held down
+      - Deflections only while the key is held, all in the same direction
+      - A momentary deflection on pressing and a momentary deflection in the opposite direction on releasing
+      - One deflection when the key is pressed and none when it is released
+    answer: 2
+    explanation: The flux linked with C1 changes only while the current in C2 grows (key pressed) or decays (key released), giving brief deflections in opposite directions. While the current is steady the flux is constant, so there is no deflection; a steady deflection would need a changing flux all the time.
+  - id: phy-emi-004
+    topic: faraday-henry-experiments
+    subtopic: Coil–coil experiment with a key
+    concept: An iron rod inserted along the axis increases the induced deflection
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [faraday-experiment, iron-core]
+    stem: In the two-coil experiment, the deflection on pressing the key becomes much larger when
+    options:
+      - a wooden rod is placed along the common axis of the coils
+      - a soft iron rod is placed along the common axis of the coils
+      - the galvanometer is replaced by one of higher resistance
+      - the coils are turned so that their axes are perpendicular
+    answer: 1
+    explanation: Soft iron has high permeability, so it greatly increases the flux linked with the secondary for the same primary current, and hence the change of flux and the deflection. Perpendicular axes reduce the linkage and a wooden rod changes nothing.
+  - id: phy-emi-005
+    topic: faraday-henry-experiments
+    subtopic: Magnet and coil experiment
+    concept: Reversing the approaching pole reverses the direction of deflection
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [faraday-experiment, direction]
+    stem: Pushing the north pole of a magnet into a coil deflects the galvanometer to the right. Pushing the south pole into the same coil in the same way deflects it
+    options:
+      - to the right, by the same amount
+      - to the right, by a smaller amount
+      - to the left
+      - not at all
+    answer: 2
+    explanation: Bringing a south pole changes the flux in the opposite sense, so the induced current and the deflection reverse. The size is the same for the same speed, but the direction is opposite.
+  - id: phy-emi-006
+    topic: faraday-henry-experiments
+    subtopic: Conclusions of the experiments
+    concept: The common cause in all of Faraday's experiments is a changing magnetic flux
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [faraday-experiment, ncert-line]
+    stem: The single idea that explains the results of all of Faraday's and Henry's induction experiments is that an emf is induced when
+    options:
+      - a coil is placed in a strong magnetic field
+      - the magnetic flux linked with the coil changes
+      - a steady current flows in a nearby coil
+      - the coil is made of a ferromagnetic material
+    answer: 1
+    explanation: Whether a magnet moves, a coil moves or a nearby current changes, the common feature is a change in the magnetic flux through the coil, which induces an emf. A strong but steady field or a steady current induces nothing.
+  - id: phy-emi-007
+    topic: faraday-henry-experiments
+    subtopic: Coil–coil experiment with a key
+    concept: A steady current in a neighbouring coil induces no current
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, steady-current]
+    stem: |-
+      Assertion (A): A coil placed near a second coil carrying a large steady current shows no induced current.
+      Reason (R): An emf is induced only when the magnetic flux linked with a coil changes with time.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A steady current produces a constant field, so the flux through the nearby coil does not change and no emf is induced. R states exactly this condition, so it explains A.
+  - id: phy-emi-008
+    topic: faraday-henry-experiments
+    subtopic: Moving coil experiment
+    concept: Moving the coil towards a fixed magnet also induces current
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, relative-motion]
+    stem: Which statement about Faraday's magnet–coil experiments is correct?
+    options:
+      - Current is induced only when the magnet moves; moving the coil has no effect
+      - The induced current is largest when the magnet is at rest at the centre of the coil
+      - The direction of induced current is the same whether the magnet approaches or recedes
+      - Current is induced whenever there is relative motion between the magnet and the coil
+    answer: 3
+    explanation: Only relative motion matters, so moving the coil towards a fixed magnet works just as well. At rest there is no induced current, and approach and recession give opposite directions.
+  - id: phy-emi-009
+    topic: magnetic-flux
+    subtopic: Unit of magnetic flux
+    concept: SI unit of magnetic flux is the weber (T m^2)
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units, ncert-line]
+    stem: The SI unit of magnetic flux is
+    options:
+      - weber
+      - tesla
+      - henry
+      - gauss
+    answer: 0
+    explanation: Magnetic flux Φ = BA cos θ has unit T m^2, called the weber (Wb). Tesla and gauss are units of magnetic field and henry is the unit of inductance.
+  - id: phy-emi-010
+    topic: magnetic-flux
+    subtopic: Flux through a plane area
+    concept: Φ = BA cos θ with θ between B and the area normal
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: Φ = BA cos θ
+    tags: [flux-calculation]
+    stem: A loop of area 0.02 m^2 lies in a uniform field of 0.5 T, the field making 60° with the normal to the loop. The flux through it is
+    options:
+      - 0.010 Wb
+      - 0.0087 Wb
+      - 0.005 Wb
+      - 0.020 Wb
+    answer: 2
+    explanation: Φ = BA cos θ = 0.5 × 0.02 × cos 60° = 0.01 × 0.5 = 0.005 Wb. Using sin 60° gives the tempting 0.0087 Wb, which would be correct only if 60° were measured from the plane.
+  - id: phy-emi-011
+    topic: magnetic-flux
+    subtopic: Flux through a plane area
+    concept: Flux is zero when the field lies in the plane of the loop
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [flux-calculation, trap]
+    stem: A flat coil is placed in a uniform magnetic field so that the field lines are parallel to the plane of the coil. The flux through the coil is
+    options:
+      - maximum
+      - half of its maximum value
+      - equal to the field times the area
+      - zero
+    answer: 3
+    explanation: With B parallel to the plane, the area vector (normal) is perpendicular to B, so θ = 90° and Φ = BA cos 90° = 0. "Parallel to the plane" is the trap; flux is maximum when B is along the normal.
+  - id: phy-emi-012
+    topic: magnetic-flux
+    subtopic: Dimensions of flux
+    concept: Dimensional formula of magnetic flux
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [dimensions]
+    stem: The dimensional formula of magnetic flux is
+    options:
+      - "[M T^{-2} A^{-1}]"
+      - "[M L^2 T^{-2} A^{-1}]"
+      - "[M L^2 T^{-2} A^{-2}]"
+      - "[M L^2 T^{-3} A^{-1}]"
+    answer: 1
+    explanation: Flux has units of V s. Since [V] = [M L^2 T^{-3} A^{-1}], multiplying by T gives [M L^2 T^{-2} A^{-1}]. [M T^{-2} A^{-1}] is the field B and [M L^2 T^{-2} A^{-2}] is inductance.
+  - id: phy-emi-013
+    topic: magnetic-flux
+    subtopic: Nature of flux
+    concept: Magnetic flux is a scalar quantity
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [flux-definition]
+    stem: Magnetic flux through a surface is
+    options:
+      - a vector along the magnetic field
+      - a vector along the normal to the surface
+      - a scalar quantity
+      - a tensor quantity
+    answer: 2
+    explanation: Φ = B · A is a dot product of two vectors, so flux is a scalar. It can be positive or negative, but it has no direction.
+  - id: phy-emi-014
+    topic: magnetic-flux
+    subtopic: Unit of magnetic flux
+    concept: 1 Wb = 10^8 maxwell
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [units, cgs]
+    stem: How many maxwell (CGS unit of flux) make one weber?
+    options:
+      - 10^4
+      - 10^8
+      - 10^6
+      - 10^{10}
+    answer: 1
+    explanation: 1 T = 10^4 G and 1 m^2 = 10^4 cm^2, so 1 Wb = 1 T m^2 = 10^4 × 10^4 G cm^2 = 10^8 maxwell. 10^4 is the tesla–gauss factor, a common slip.
+  - id: phy-emi-015
+    topic: magnetic-flux
+    subtopic: Flux through a closed surface
+    concept: Net magnetic flux through any closed surface is zero
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [gauss-law-magnetism]
+    stem: A bar magnet is placed completely inside a closed spherical surface. The net magnetic flux through the sphere is
+    options:
+      - zero
+      - μ_0 times the pole strength
+      - μ_0 m divided by the radius
+      - positive and equal to the flux from the north pole
+    answer: 0
+    explanation: Magnetic field lines form closed loops, so every line leaving the surface re-enters it and the net flux through any closed surface is zero. There are no isolated magnetic poles to give an electric-style "enclosed charge".
+  - id: phy-emi-016
+    topic: magnetic-flux
+    subtopic: Flux linkage of a coil
+    concept: Flux linkage = NBA for a coil normal to field
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: NΦ = NBA cos θ
+    tags: [flux-linkage]
+    stem: A coil of 100 turns, each of area 50 cm^2, is held with its plane perpendicular to a 0.2 T field. The total flux linkage is
+    options:
+      - 0.001 Wb
+      - 1.0 Wb
+      - 0.01 Wb
+      - 0.1 Wb
+    answer: 3
+    explanation: A = 50 cm^2 = 5 × 10^{-3} m^2 and the normal is along B, so NΦ = 100 × 0.2 × 5 × 10^{-3} = 0.1 Wb. Forgetting N gives 0.001 Wb.
+  - id: phy-emi-017
+    topic: magnetic-flux
+    subtopic: Flux through a plane area
+    concept: Angle given with the plane requires sin of that angle
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: Φ = BA sin α (α from the plane)
+    tags: [flux-calculation, trap]
+    stem: A 0.1 m^2 loop lies in a 0.4 T field, the field making 30° with the plane of the loop. The flux through the loop is
+    options:
+      - 0.040 Wb
+      - 0.020 Wb
+      - 0.035 Wb
+      - 0.010 Wb
+    answer: 1
+    explanation: The angle with the normal is 90° − 30° = 60°, so Φ = 0.4 × 0.1 × cos 60° = 0.02 Wb. Using cos 30° directly gives 0.035 Wb, the trap.
+  - id: phy-emi-018
+    topic: magnetic-flux
+    subtopic: Unit of magnetic flux
+    concept: Weber is equivalent to volt second
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [units]
+    stem: One weber is equivalent to
+    options:
+      - one volt second
+      - one volt per second
+      - one ampere second
+      - one tesla per square metre
+    answer: 0
+    explanation: From ε = dΦ/dt, flux = emf × time, so 1 Wb = 1 V s. The weber is also 1 T m^2, not T per m^2.
+  - id: phy-emi-019
+    topic: faradays-law
+    subtopic: Average induced emf
+    concept: ε = NΔΦ/Δt for a multi-turn coil
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ε = −N ΔΦ/Δt
+    tags: [faraday-law]
+    stem: The flux through each turn of a 50-turn coil falls from 4 mWb to 1 mWb in 0.1 s. The average induced emf is
+    options:
+      - 0.03 V
+      - 2.5 V
+      - 1.5 V
+      - 0.15 V
+    answer: 2
+    explanation: |-
+      ε = N ΔΦ/Δt = 50 × (3 × 10^{-3})/0.1 = 1.5 V. Omitting N gives 0.03 V; using the final flux instead of the change gives a different wrong value.
+  - id: phy-emi-020
+    topic: faradays-law
+    subtopic: Instantaneous induced emf
+    concept: Instantaneous emf is the time derivative of flux
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: ε = −dΦ/dt
+    tags: [faraday-law, calculus]
+    stem: The flux through a loop varies as Φ = (3t^2 + 2t + 1) mWb, with t in seconds. The magnitude of the emf at t = 2 s is
+    options:
+      - 17 mV
+      - 12 mV
+      - 8 mV
+      - 14 mV
+    answer: 3
+    explanation: dΦ/dt = 6t + 2 = 14 mWb/s at t = 2 s, so |ε| = 14 mV. 17 mV is the value of Φ itself, not its rate of change.
+  - id: phy-emi-021
+    topic: faradays-law
+    subtopic: Flux–time graphs
+    concept: A linearly rising flux gives a constant emf
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [graph, faraday-law]
+    stem: The flux through a coil increases linearly with time, as a straight line through the origin. The induced emf
+    options:
+      - increases linearly with time
+      - is zero
+      - is constant and non-zero
+      - decreases linearly with time
+    answer: 2
+    explanation: The emf equals the slope of the Φ–t graph. A straight line has a constant slope, so the emf is constant and non-zero. A rising emf would need a curved (parabolic) flux graph.
+  - id: phy-emi-022
+    topic: faradays-law
+    subtopic: Induced charge
+    concept: Induced charge Q = NΔΦ/R is independent of time taken
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: true
+    formula: Q = NΔΦ/R
+    tags: [induced-charge]
+    stem: The flux through each turn of a 100-turn coil of resistance 10 Ω changes by 2 × 10^{-3} Wb. The charge that flows through the coil is
+    options:
+      - 0.02 C
+      - 2 × 10^{-4} C
+      - 0.2 C
+      - 2 C
+    answer: 0
+    explanation: I = ε/R = (N/R)(dΦ/dt), so Q = ∫I dt = NΔΦ/R = 100 × 2 × 10^{-3}/10 = 0.02 C. The charge does not depend on how quickly the flux changes.
+  - id: phy-emi-023
+    topic: faradays-law
+    subtopic: Statement of Faraday's law
+    concept: Induced emf depends on rate of change of flux, not on flux itself
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [faraday-law, trap]
+    stem: Which statement about the emf induced in a coil is correct?
+    options:
+      - It is proportional to the magnetic flux linked with the coil
+      - It is proportional to the rate of change of the flux linked with the coil
+      - It is zero whenever the flux through the coil is zero
+      - It depends on the resistance of the coil
+    answer: 1
+    explanation: Faraday's law gives ε = −dΦ/dt, so the emf depends on how fast the flux changes. The flux can be momentarily zero while changing rapidly, and the resistance affects the current, not the emf.
+  - id: phy-emi-024
+    topic: faradays-law
+    subtopic: Changing field through fixed loop
+    concept: ε = A dB/dt for a fixed loop
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: ε = A dB/dt
+    tags: [faraday-law]
+    stem: A loop of area 0.5 m^2 is normal to a field that increases at 0.02 T s^{-1}. The emf induced is
+    options:
+      - 1 mV
+      - 25 mV
+      - 40 mV
+      - 10 mV
+    answer: 3
+    explanation: ε = A dB/dt = 0.5 × 0.02 = 0.01 V = 10 mV. Dividing instead of multiplying (0.02/0.5) gives 40 mV.
+  - id: phy-emi-025
+    topic: faradays-law
+    subtopic: Changing field through fixed loop
+    concept: Circular loop with field reduced uniformly to zero
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: true
+    formula: ε = πr^2 ΔB/Δt
+    tags: [faraday-law]
+    stem: A circular loop of radius 10 cm is normal to a 1.0 T field. The field is reduced uniformly to zero in 0.5 s. The emf induced is about
+    options:
+      - 63 mV
+      - 6.3 mV
+      - 31 mV
+      - 0.63 V
+    answer: 0
+    explanation: A = π(0.1)^2 = 0.0314 m^2, so ε = 0.0314 × 1.0/0.5 = 0.0628 V ≈ 63 mV. Forgetting to divide by 0.5 s gives 31 mV.
+  - id: phy-emi-026
+    topic: faradays-law
+    subtopic: Dependence on turns and time
+    concept: ε ∝ N and ∝ 1/Δt
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: ε = NΔΦ/Δt
+    tags: [proportionality]
+    stem: The number of turns of a coil is doubled and the same change of flux per turn now takes half the time. The average induced emf becomes
+    options:
+      - unchanged
+      - twice
+      - four times
+      - half
+    answer: 2
+    explanation: ε = NΔΦ/Δt. Doubling N doubles ε and halving Δt doubles it again, so ε becomes 4 times.
+  - id: phy-emi-027
+    topic: faradays-law
+    subtopic: Flux–time graphs
+    concept: Parabolic flux gives linearly increasing emf
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [graph, calculus]
+    stem: The flux through a loop varies as Φ = kt^2 (a parabola through the origin). The graph of induced emf magnitude against time is
+    options:
+      - a horizontal straight line
+      - a straight line through the origin with positive slope
+      - a parabola through the origin
+      - a rectangular hyperbola
+    answer: 1
+    explanation: The emf magnitude is dΦ/dt = 2kt, which is a straight line through the origin. Plotting the flux shape itself (parabola) is the common error.
+  - id: phy-emi-028
+    topic: faradays-law
+    subtopic: Statement of Faraday's law
+    concept: Negative sign in Faraday's law expresses Lenz's law
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [faraday-law, lenz-law, ncert-line]
+    stem: In ε = −dΦ/dt, the negative sign indicates that
+    options:
+      - the emf is always negative
+      - the flux always decreases during induction
+      - the induced current flows from the negative terminal
+      - the induced emf opposes the change of flux that produces it
+    answer: 3
+    explanation: The minus sign expresses Lenz's law, which says the induced emf opposes the change in flux. It does not mean the emf value is always negative.
+  - id: phy-emi-029
+    topic: faradays-law
+    subtopic: Induced current
+    concept: Induced current = NA(dB/dt)/R
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: true
+    formula: I = NA(dB/dt)/R
+    tags: [faraday-law, multi-concept]
+    stem: A 200-turn coil of area 0.01 m^2 and resistance 5 Ω is normal to a field changing at 0.5 T s^{-1}. The induced current is
+    options:
+      - 1.0 A
+      - 0.02 A
+      - 5 A
+      - 0.2 A
+    answer: 3
+    explanation: ε = NA dB/dt = 200 × 0.01 × 0.5 = 1 V, so I = ε/R = 1/5 = 0.2 A. Stopping at 1 V and quoting it as current gives the distractor 1.0 A.
+  - id: phy-emi-030
+    topic: faradays-law
+    subtopic: Sinusoidal flux
+    concept: Peak emf = Φ_0 ω for Φ = Φ_0 sin ωt
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: ε_{max} = Φ_0 ω
+    tags: [faraday-law, calculus]
+    stem: The flux through a loop is Φ = 10 sin(100πt) mWb. The maximum induced emf is about
+    options:
+      - 10 mV
+      - 3.14 V
+      - 1.0 V
+      - 6.28 V
+    answer: 1
+    explanation: ε = −dΦ/dt = −(10 × 10^{-3})(100π) cos(100πt), so ε_{max} = π ≈ 3.14 V. Dropping π gives 1.0 V, and 10 mV is the peak flux value, not the emf.
+  - id: phy-emi-031
+    topic: faradays-law
+    subtopic: Units in Faraday's law
+    concept: Rate of change of flux has unit volt
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [units]
+    stem: The SI unit of rate of change of magnetic flux (Wb s^{-1}) is the same as
+    options:
+      - the volt
+      - the henry
+      - the ampere
+      - the tesla
+    answer: 0
+    explanation: Faraday's law equates the emf to dΦ/dt, so 1 Wb s^{-1} = 1 V.
+  - id: phy-emi-032
+    topic: faradays-law
+    subtopic: Open and closed circuits
+    concept: Emf is induced even in an open circuit; current needs a closed path
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [faraday-law, open-circuit]
+    stem: |-
+      Assertion (A): An emf is induced in a coil with open ends when the flux through it changes.
+      Reason (R): An induced current can flow only in a closed circuit.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Faraday's law gives an emf whenever flux changes, whether or not the circuit is closed, so A is true. R is also true, but it is about current, not about why the emf exists, so it does not explain A.
+  - id: phy-emi-033
+    topic: faradays-law
+    subtopic: Flux–time graphs
+    concept: Emf is zero where flux is constant and reverses when flux falls
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, faraday-law]
+    stem: The flux through a coil rises linearly from 0 to 2 s, stays constant from 2 s to 4 s, and falls linearly back to zero from 4 s to 5 s. Which describes the induced emf?
+    options:
+      - Rising from 0–2 s, maximum from 2–4 s, and falling from 4–5 s
+      - Constant from 0–2 s, the same constant from 2–4 s, and zero from 4–5 s
+      - Constant from 0–2 s, zero from 2–4 s, and larger in magnitude with opposite sign from 4–5 s
+      - Zero from 0–2 s, maximum from 2–4 s, and zero from 4–5 s
+    answer: 2
+    explanation: The emf is minus the slope. The slope is positive and constant for 0–2 s, zero for 2–4 s, and negative and twice as steep for 4–5 s (the same drop in half the time). The emf therefore does not follow the shape of the flux graph.
+  - id: phy-emi-034
+    topic: faradays-law
+    subtopic: Induced charge
+    concept: Charge through coil does not depend on speed of magnet
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [induced-charge, trap]
+    stem: A magnet is pushed into a coil once quickly and once slowly, starting and ending at the same positions. Compared with the slow push, the quick push gives
+    options:
+      - a larger emf and more charge through the galvanometer
+      - the same emf and the same charge
+      - a larger emf but the same total charge
+      - a smaller emf but the same charge
+    answer: 2
+    explanation: The quick push gives a larger rate of change of flux and so a larger emf. The charge Q = NΔΦ/R depends only on the total flux change, which is the same, so the same charge flows.
+  - id: phy-emi-035
+    topic: lenz-law
+    subtopic: Basis of Lenz's law
+    concept: Lenz's law follows from conservation of energy
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [lenz-law, ncert-line]
+    stem: Lenz's law is a consequence of the law of conservation of
+    options:
+      - charge
+      - energy
+      - momentum
+      - mass
+    answer: 1
+    explanation: If the induced current aided the change, it would create energy from nothing. Opposing the change means work must be done, which appears as electrical energy, so Lenz's law follows from energy conservation.
+  - id: phy-emi-036
+    topic: lenz-law
+    subtopic: Magnet approaching a coil
+    concept: The near face of a coil becomes a north pole when a north pole approaches
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [lenz-law, direction]
+    stem: The north pole of a bar magnet is moved towards a closed coil. As seen from the magnet, the induced current in the near face of the coil is
+    options:
+      - clockwise, making the face a south pole
+      - clockwise, making the face a north pole
+      - anticlockwise, making the face a south pole
+      - anticlockwise, making the face a north pole
+    answer: 3
+    explanation: To oppose the approach, the near face becomes a north pole and repels the magnet. A face appears as a north pole when the current seen from outside is anticlockwise.
+  - id: phy-emi-037
+    topic: lenz-law
+    subtopic: Magnet receding from a coil
+    concept: Receding north pole makes the near face a south pole (clockwise current)
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [lenz-law, direction]
+    stem: The north pole of a magnet is pulled away from a closed coil. Seen from the magnet's side, the induced current in the coil is
+    options:
+      - clockwise
+      - anticlockwise
+      - zero
+      - clockwise at first, then anticlockwise
+    answer: 0
+    explanation: The coil opposes the recession by attracting the north pole, so its near face becomes a south pole, which means a clockwise current as seen from that side.
+  - id: phy-emi-038
+    topic: lenz-law
+    subtopic: Magnet falling through a tube
+    concept: A magnet falls through a copper tube with acceleration less than g
+    category: application
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [lenz-law, eddy-currents]
+    stem: A strong magnet is dropped down a long vertical copper tube. Compared with free fall, it
+    options:
+      - falls more slowly, because induced currents in the tube oppose its motion
+      - falls faster, because copper attracts magnets
+      - falls at exactly g, because copper is non-magnetic
+      - stays suspended at the top
+    answer: 0
+    explanation: The moving magnet changes the flux through the tube walls and induces currents that oppose its motion (Lenz's law), so it falls with acceleration less than g. Copper not being ferromagnetic is the trap; induction does not need a magnetic material.
+  - id: phy-emi-039
+    topic: lenz-law
+    subtopic: Magnet falling through a ring
+    concept: A falling magnet is opposed both while approaching and while leaving a ring
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    tags: [lenz-law, trap]
+    stem: A bar magnet is dropped along the axis of a horizontal closed copper ring. Its acceleration is
+    options:
+      - less than g while approaching and more than g while leaving
+      - more than g while approaching and less than g while leaving
+      - equal to g throughout
+      - less than g both while approaching and while leaving
+    answer: 3
+    explanation: While approaching, the ring repels the magnet; while leaving, it attracts the magnet back. Both forces are upward and oppose the motion, so a < g in both stages.
+  - id: phy-emi-040
+    topic: lenz-law
+    subtopic: Coaxial loops
+    concept: Increasing current in one loop induces an opposite current and repulsion in a coaxial loop
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [lenz-law, force]
+    stem: Two coaxial loops face each other. The current in loop 1 is increasing. The current induced in loop 2 is
+    options:
+      - in the same sense as in loop 1, and the loops attract
+      - in the same sense as in loop 1, and the loops repel
+      - in the opposite sense to loop 1, and the loops repel
+      - in the opposite sense to loop 1, and the loops attract
+    answer: 2
+    explanation: Increasing flux from loop 1 is opposed by an opposite current in loop 2. Antiparallel currents repel, which tends to reduce the flux linkage, as Lenz's law requires.
+  - id: phy-emi-041
+    topic: lenz-law
+    subtopic: Straight wire and loop
+    concept: Increasing current in a wire induces an opposing current in a coplanar loop
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    diagram: A long straight vertical wire carries current I upward (arrow pointing up). To its right, in the same plane of the page, is a square conducting loop not touching the wire. A note says "I increasing". The page plane is labelled; no other fields.
+    tags: [lenz-law, direction]
+    stem: A long straight wire carries an upward current I that is increasing. A square loop lies to the right of the wire in the same plane. The induced current in the loop is
+    options:
+      - clockwise
+      - anticlockwise
+      - zero, because the loop does not enclose the wire
+      - clockwise in the near side and anticlockwise in the far side
+    answer: 1
+    explanation: To the right of an upward current, B points into the page and grows. The loop opposes this with a field out of the page inside it, which needs an anticlockwise current. The loop need not enclose the wire; only the flux through it must change.
+  - id: phy-emi-042
+    topic: lenz-law
+    subtopic: Basis of Lenz's law
+    concept: Reversing Lenz's law would allow perpetual motion
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [lenz-law, energy-conservation]
+    stem: |-
+      Statement I: If an induced current aided the change causing it, a magnet given a small push towards a coil would keep accelerating without any work being done.
+      Statement II: When a magnet is pushed towards a coil, the mechanical work done against the opposing force appears as electrical energy in the coil.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: A current that aided the change would pull the magnet further in, violating energy conservation, so Statement I is correct. In reality work is done against the opposing force and converted into electrical energy (then heat), so Statement II is also correct.
+  - id: phy-emi-043
+    topic: lenz-law
+    subtopic: Straight wire and loop
+    concept: A loop receding from a current-carrying wire is attracted towards it
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [lenz-law, force, multi-concept]
+    stem: A rectangular loop is pulled away, in its own plane, from a long straight wire carrying a steady current. The force on the loop due to its induced current
+    options:
+      - pushes it further away from the wire
+      - is zero because the wire current is steady
+      - attracts it towards the wire
+      - acts perpendicular to the plane of the loop
+    answer: 2
+    explanation: As the loop moves away, the flux through it decreases, so the induced current tries to maintain it. Then the loop's near side carries current parallel to the wire and is attracted more strongly than the far side is repelled, so the net force pulls it back and opposes the motion. A steady wire current still gives a changing flux because the loop moves.
+  - id: phy-emi-044
+    topic: lenz-law
+    subtopic: Magnet falling through a ring
+    concept: A cut ring gives no induced current and no opposition
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [lenz-law, open-circuit]
+    stem: A magnet falls along the axis of a copper ring that has a narrow cut in it. Ignoring air resistance, its acceleration is
+    options:
+      - slightly less than g
+      - equal to g
+      - greater than g
+      - zero
+    answer: 1
+    explanation: An emf is induced across the cut, but no current can flow in the open ring, so there is no opposing magnetic force and the magnet falls with g. With a closed ring the acceleration would be less than g.
+  - id: phy-emi-045
+    topic: lenz-law
+    subtopic: Energy in induction
+    concept: Work done against magnetic opposition appears as Joule heat
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [energy-conservation]
+    stem: When a magnet is pushed into a closed coil at constant speed, the work done by the external agent is finally converted into
+    options:
+      - heat in the coil
+      - kinetic energy of the magnet
+      - potential energy of the magnet
+      - magnetic energy stored permanently in the coil
+    answer: 0
+    explanation: The agent works against the opposing force predicted by Lenz's law; this energy drives the induced current and is dissipated as Joule heat I^2R in the coil. At constant speed the kinetic energy does not change.
+  - id: phy-emi-046
+    topic: lenz-law
+    subtopic: Changing field through a loop
+    concept: Decreasing inward flux gives clockwise current (viewed from front)
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [lenz-law, direction]
+    stem: A uniform field directed into the page through a loop in the page is decreasing. The induced current in the loop, as seen by the reader, is
+    options:
+      - anticlockwise
+      - zero
+      - alternately clockwise and anticlockwise
+      - clockwise
+    answer: 3
+    explanation: The loop tries to maintain the decreasing inward flux, so it produces its own field into the page, which needs a clockwise current seen from the front.
+  - id: phy-emi-047
+    topic: lenz-law
+    subtopic: Jumping ring
+    concept: A ring on an iron core jumps when the coil current is switched on
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [lenz-law, force, case]
+    stem: An aluminium ring rests on top of a vertical solenoid wound on a soft iron core. When the solenoid is connected to a DC supply, the ring jumps up. The best explanation is that
+    options:
+      - aluminium is attracted by magnetic fields
+      - the induced current in the ring is along the solenoid current, so they attract
+      - the induced current in the ring is opposite to the solenoid current, so they repel
+      - the ring is heated and expands, pushing itself upward
+    answer: 2
+    explanation: Switching on causes a rapidly growing flux through the ring; the induced current opposes it by flowing opposite to the solenoid current, and antiparallel currents repel, throwing the ring up. Aluminium is not ferromagnetic, so it is not simply attracted.
+  - id: phy-emi-048
+    topic: motional-emf
+    subtopic: Rod moving on rails
+    concept: ε = Blv
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: ε = Blv
+    tags: [motional-emf]
+    stem: A 0.2 m rod moves at 10 m s^{-1} perpendicular to its length and to a 0.5 T field. The emf across its ends is
+    options:
+      - 1.0 V
+      - 0.1 V
+      - 10 V
+      - 2.5 V
+    answer: 0
+    explanation: ε = Blv = 0.5 × 0.2 × 10 = 1.0 V.
+  - id: phy-emi-049
+    topic: motional-emf
+    subtopic: Conditions for motional emf
+    concept: No emf when the rod moves along its own length
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [motional-emf, trap]
+    stem: A straight conductor moves in a uniform magnetic field (perpendicular to the conductor) with velocity along its own length. The emf across its ends is
+    options:
+      - Blv
+      - zero
+      - Blv/2
+      - 2Blv
+    answer: 1
+    explanation: The magnetic force qv × B on the charges is then perpendicular to the rod, so it does not push charges along the rod; no emf develops. Equivalently, the rod sweeps no area.
+  - id: phy-emi-050
+    topic: motional-emf
+    subtopic: Rotating rod
+    concept: ε = ½Bωl^2 for a rod rotating about one end
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ε = ½Bωl^2
+    tags: [rotating-rod]
+    stem: A 1 m metal rod rotates at 20 rad s^{-1} about one end in a plane perpendicular to a 0.1 T field. The emf between its ends is
+    options:
+      - 2 V
+      - 0.5 V
+      - 4 V
+      - 1 V
+    answer: 3
+    explanation: ε = ½Bωl^2 = ½ × 0.1 × 20 × 1^2 = 1 V. Forgetting the ½ gives 2 V.
+  - id: phy-emi-051
+    topic: motional-emf
+    subtopic: Force to maintain motion
+    concept: Retarding force F = B^2l^2v/R
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: true
+    formula: F = B^2l^2v/R
+    tags: [motional-emf, force]
+    stem: A 0.5 m rod slides at 4 m s^{-1} on rails in a 1 T field; the circuit resistance is 2 Ω. The force needed to keep it moving at constant speed is
+    options:
+      - 0.5 N
+      - 1.0 N
+      - 0.25 N
+      - 2.0 N
+    answer: 0
+    explanation: ε = Blv = 2 V, I = 1 A, and F = BIl = 1 × 1 × 0.5 = 0.5 N, which must be balanced by the applied force.
+  - id: phy-emi-052
+    topic: motional-emf
+    subtopic: Power dissipated
+    concept: Mechanical power equals Joule power B^2l^2v^2/R
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: P = B^2l^2v^2/R
+    tags: [motional-emf, power, proportionality]
+    stem: A rod is pulled at constant speed v along rails in a uniform field. If v is doubled, the power dissipated in the circuit becomes
+    options:
+      - twice
+      - half
+      - unchanged
+      - four times
+    answer: 3
+    explanation: P = Fv = (B^2l^2v/R)v = B^2l^2v^2/R, so P ∝ v^2 and doubling v quadruples the power. The force alone only doubles.
+  - id: phy-emi-053
+    topic: motional-emf
+    subtopic: Emf across aircraft wings
+    concept: Wing emf uses the vertical component of Earth's field
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: ε = B_V l v
+    tags: [motional-emf, earth-field]
+    stem: An aircraft with a 20 m wingspan flies horizontally at 200 m s^{-1} where the vertical component of Earth's field is 5 × 10^{-5} T. The emf between the wing tips is
+    options:
+      - 0.02 V
+      - 2 V
+      - 0.2 V
+      - 0.1 V
+    answer: 2
+    explanation: For horizontal flight with horizontal wings, only the vertical component is cut, so ε = B_V l v = 5 × 10^{-5} × 20 × 200 = 0.2 V.
+  - id: phy-emi-054
+    topic: motional-emf
+    subtopic: Direction of induced current
+    concept: Fleming's right-hand rule gives induced current direction
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [direction]
+    stem: The direction of current induced in a conductor moving in a magnetic field is conveniently found using
+    options:
+      - Fleming's left-hand rule
+      - Fleming's right-hand rule
+      - the right-hand thumb rule for a straight wire
+      - Ampere's swimming rule
+    answer: 1
+    explanation: Fleming's right-hand rule (generator rule) relates motion, field and induced current. The left-hand rule is for the force on a current (motor rule).
+  - id: phy-emi-055
+    topic: motional-emf
+    subtopic: Emf in Earth's field
+    concept: A horizontal rod falling cuts the horizontal component only if oriented east–west
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [earth-field, multi-concept]
+    stem: A horizontal metal rod is dropped from rest and falls while staying horizontal. An emf is induced between its ends only if the rod points
+    options:
+      - north–south
+      - east–west
+      - vertically
+      - in any horizontal direction
+    answer: 1
+    explanation: A vertically falling rod cuts only the horizontal (northward) component of Earth's field. The force v × B on the charges then points east–west, so an emf appears along the rod only when it lies east–west. A north–south rod gets no emf.
+  - id: phy-emi-056
+    topic: motional-emf
+    subtopic: Loop moving through a field region
+    concept: No emf while a loop moves wholly inside a uniform field
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [motional-emf, trap]
+    stem: A rectangular loop moves at constant velocity through a region of uniform magnetic field. While the loop is completely inside the field, the induced emf in it is
+    options:
+      - Blv
+      - 2Blv
+      - increasing with time
+      - zero
+    answer: 3
+    explanation: Both sides perpendicular to the motion develop equal emfs Blv that oppose each other around the loop, so the net emf is zero. Equivalently, the flux through the loop stays constant.
+  - id: phy-emi-057
+    topic: motional-emf
+    subtopic: Terminal velocity of a sliding rod
+    concept: Terminal speed v = mgR/(B^2l^2)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: v_t = mgR/(B^2l^2)
+    tags: [terminal-velocity, multi-concept]
+    stem: A rod of mass 0.1 kg and length 0.5 m slides down smooth vertical rails joined at the top by a 1 Ω resistor, in a horizontal 1 T field perpendicular to the rails' plane. Taking g = 10 m s^{-2}, its terminal speed is
+    options:
+      - 1 m s^{-1}
+      - 2 m s^{-1}
+      - 4 m s^{-1}
+      - 8 m s^{-1}
+    answer: 2
+    explanation: At terminal speed, mg = B^2l^2v/R, so v = mgR/(B^2l^2) = (0.1 × 10 × 1)/(1 × 0.25) = 4 m s^{-1}. Using l instead of l^2 gives 2 m s^{-1}.
+  - id: phy-emi-058
+    topic: motional-emf
+    subtopic: Polarity of motional emf
+    concept: q v × B determines which end becomes positive
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [direction, lorentz-force]
+    stem: A vertical rod in the plane of the page moves to the right through a uniform field directed into the page. Which end of the rod is at higher potential?
+    options:
+      - The top end
+      - The bottom end
+      - Both ends are at the same potential
+      - The middle of the rod
+    answer: 0
+    explanation: For positive charges, v × B = (right) × (into page) points up the page, so positive charge collects at the top, making it the higher-potential end.
+  - id: phy-emi-059
+    topic: motional-emf
+    subtopic: Rotating disc
+    concept: Faraday disc emf ½BωR^2 between centre and rim
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: ε = ½BωR^2
+    tags: [rotating-disc]
+    stem: A metal disc of radius 0.5 m rotates at 100 rad s^{-1} about its axis, which is parallel to a 0.2 T field. The emf between centre and rim is
+    options:
+      - 5.0 V
+      - 10 V
+      - 1.25 V
+      - 2.5 V
+    answer: 3
+    explanation: Each radius acts as a rod rotating about one end, so ε = ½BωR^2 = ½ × 0.2 × 100 × 0.25 = 2.5 V. Forgetting the ½ gives 5.0 V.
+  - id: phy-emi-060
+    topic: motional-emf
+    subtopic: Rod inclined to velocity
+    concept: Effective length is the component perpendicular to velocity
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: ε = Bvl sin θ
+    tags: [motional-emf, effective-length]
+    stem: A 1 m rod in the plane perpendicular to a 0.5 T field moves at 2 m s^{-1} in a direction making 30° with its length. The emf across it is
+    options:
+      - 1.0 V
+      - 0.87 V
+      - 0.5 V
+      - 0.25 V
+    answer: 2
+    explanation: Only the length component perpendicular to v counts, l sin 30° = 0.5 m, so ε = 0.5 × 2 × 0.5 = 0.5 V. Using cos 30° gives 0.87 V.
+  - id: phy-emi-061
+    topic: motional-emf
+    subtopic: Origin of motional emf
+    concept: Motional emf arises from the Lorentz force on free charges
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [lorentz-force, ncert-line]
+    stem: Which statement correctly describes the origin of motional emf in a rod moving through a steady magnetic field?
+    options:
+      - It is caused by an electric field produced by a changing magnetic field
+      - It is caused by the magnetic Lorentz force on the free charges moving with the rod
+      - It is caused by the rod's own magnetisation
+      - It arises only if the rod is ferromagnetic
+    answer: 1
+    explanation: The free charges move with the rod, so each experiences q v × B along the rod, which separates charge and gives the emf. The field is steady here, so no induced electric field is involved.
+  - id: phy-emi-062
+    topic: motional-emf
+    subtopic: Energy conversion in rail circuit
+    concept: Work done by the external agent is dissipated as Joule heat
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [energy-conservation, case]
+    stem: A rod is pulled at constant speed along smooth rails connected by a resistor in a uniform field. Which energy statement is correct?
+    options:
+      - The work done by the applied force equals the heat produced in the resistor
+      - The applied force does no work because the speed is constant
+      - The work done by the applied force is stored as kinetic energy of the rod
+      - The magnetic field does the work that heats the resistor
+    answer: 0
+    explanation: The applied force balances the magnetic drag, and its mechanical work, at rate Fv, appears as Joule heat I^2R. Constant speed means no change in kinetic energy, not zero work by the agent.
+  - id: phy-emi-063
+    topic: motional-emf
+    subtopic: Curved conductors
+    concept: A semicircular wire behaves like its diameter
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: ε = B(2R)v
+    tags: [effective-length]
+    stem: A semicircular wire of radius R moves with velocity v perpendicular to its diameter, in its own plane, which is perpendicular to a field B. The emf between its ends is
+    options:
+      - 2BRv
+      - πBRv
+      - BRv
+      - zero
+    answer: 0
+    explanation: The emf equals B × (component of the end-to-end separation perpendicular to v) × v. For the semicircle the ends are a diameter 2R apart, perpendicular to v, so ε = 2BRv. Using the arc length πR gives the trap.
+  - id: phy-emi-064
+    topic: motional-emf
+    subtopic: Loop moving through a field region
+    concept: Emf appears while entering and leaving, with opposite signs
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [graph, motional-emf]
+    stem: A square loop moves at constant speed from a field-free region, through a region of uniform field wider than the loop, and out again. The induced emf versus time is
+    options:
+      - zero while entering, constant inside, and zero while leaving
+      - two pulses of the same sign, one while entering and one while leaving
+      - one constant pulse while entering, zero inside, and an equal pulse of opposite sign while leaving
+      - a sinusoidal curve throughout the motion
+    answer: 2
+    explanation: Flux increases linearly while entering (constant emf), stays constant while fully inside (zero emf), and decreases linearly while leaving (equal emf of opposite sign).
+  - id: phy-emi-065
+    topic: eddy-currents
+    subtopic: Reducing eddy currents
+    concept: Laminated cores reduce eddy current losses
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [eddy-currents, ncert-line]
+    stem: Transformer cores are made of thin insulated laminations mainly to
+    options:
+      - increase the magnetic field
+      - reduce eddy current losses
+      - reduce hysteresis only
+      - make the core lighter
+    answer: 1
+    explanation: Insulated laminations break up the large conducting loops in the core, increasing the resistance to eddy currents and reducing the heat they produce.
+  - id: phy-emi-066
+    topic: eddy-currents
+    subtopic: Electromagnetic damping
+    concept: Galvanometer coils wound on metal frames are damped by eddy currents
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [eddy-currents, damping]
+    stem: In a moving-coil galvanometer, the coil is wound on a metallic frame so that
+    options:
+      - the coil becomes stronger mechanically only
+      - the magnetic field in the gap becomes radial
+      - the resistance of the coil decreases
+      - eddy currents in the frame quickly bring the coil to rest
+    answer: 3
+    explanation: When the coil moves, eddy currents are induced in the metal frame and oppose the motion, so the pointer settles quickly (electromagnetic damping). The radial field comes from the concave poles and soft iron core, not the frame.
+  - id: phy-emi-067
+    topic: eddy-currents
+    subtopic: Applications of eddy currents
+    concept: Uses of eddy currents in braking, furnaces, meters and damping
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [eddy-currents, applications]
+    stem: |-
+      Match each device in List I with the use of eddy currents in List II.
+      List I: P. Electric trains, Q. Induction furnace, R. Moving-coil galvanometer, S. Electric power meter
+      List II: 1. Heating a metal to high temperature, 2. Rotating a thin aluminium disc, 3. Magnetic braking, 4. Bringing the pointer quickly to rest
+    options:
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-1, R-2, S-4
+      - P-4, Q-1, R-3, S-2
+      - P-3, Q-1, R-4, S-2
+    answer: 3
+    explanation: Trains use eddy currents in magnetic braking (P-3), induction furnaces heat metals (Q-1), galvanometers use electromagnetic damping (R-4), and analogue power meters rotate an aluminium disc by eddy currents (S-2).
+  - id: phy-emi-068
+    topic: eddy-currents
+    subtopic: Pendulum demonstration
+    concept: Slots in a swinging plate reduce eddy current damping
+    category: concept
+    format: case
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [eddy-currents, damping]
+    stem: A copper plate swings as a pendulum between the poles of a magnet and stops quickly. A plate with several long slots cut in it, swinging the same way, will
+    options:
+      - stop even more quickly
+      - stop at once without swinging
+      - swing for much longer
+      - be attracted to one pole and stick there
+    answer: 2
+    explanation: The slots cut the paths of the eddy currents, reducing their size and hence the damping force, so the slotted plate swings much longer. Copper is not ferromagnetic, so it does not stick to a pole.
+  - id: phy-emi-069
+    topic: eddy-currents
+    subtopic: Nature of eddy currents
+    concept: Eddy currents are induced in bulk conductors in changing flux
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [eddy-currents, definition]
+    stem: Eddy currents are
+    options:
+      - circulating currents induced in bulk conductors by changing magnetic flux
+      - currents in superconducting wires only
+      - currents produced by electrolytic action in a cell
+      - leakage currents through insulators
+    answer: 0
+    explanation: When the flux through a solid piece of conductor changes, closed loops of current swirl through it like eddies in water. They were discovered by Foucault and are also called Foucault currents.
+  - id: phy-emi-070
+    topic: eddy-currents
+    subtopic: Reducing eddy currents
+    concept: Laminations work by increasing the resistance of eddy paths
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [eddy-currents, lamination]
+    stem: |-
+      Assertion (A): The iron core of a transformer is laminated.
+      Reason (R): Thin insulated laminations increase the resistance of the paths of eddy currents and so reduce energy loss.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Cores are laminated precisely because the insulating layers break up the eddy current loops, raising the resistance of their paths and reducing I^2R heating. R explains A.
+  - id: phy-emi-071
+    topic: eddy-currents
+    subtopic: Heating by eddy currents
+    concept: Eddy currents convert energy into heat
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [eddy-currents, heating]
+    stem: The main undesirable effect of eddy currents in the cores of motors and transformers is
+    options:
+      - increase in output voltage
+      - loss of energy as heat
+      - reversal of the magnetic field
+      - increase in the frequency of the supply
+    answer: 1
+    explanation: Eddy currents dissipate energy as I^2R heat in the core, which wastes power and heats the machine. They do not change the frequency or reverse the field.
+  - id: phy-emi-072
+    topic: self-inductance
+    subtopic: Definition of self-inductance
+    concept: L = NΦ/I
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: L = NΦ/I
+    tags: [self-inductance]
+    stem: A current of 2 A in a 500-turn coil produces a flux of 2 × 10^{-3} Wb through each turn. The self-inductance of the coil is
+    options:
+      - 1.0 H
+      - 2.0 H
+      - 0.5 H
+      - 1 mH
+    answer: 2
+    explanation: L = NΦ/I = 500 × 2 × 10^{-3}/2 = 0.5 H. Forgetting N gives 1 mH.
+  - id: phy-emi-073
+    topic: self-inductance
+    subtopic: Self-induced emf
+    concept: ε = L ΔI/Δt
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: ε = L dI/dt
+    tags: [self-induced-emf]
+    stem: The current in a 0.2 H coil falls uniformly from 5 A to 1 A in 0.1 s. The magnitude of the self-induced emf is
+    options:
+      - 8 V
+      - 0.8 V
+      - 4 V
+      - 10 V
+    answer: 0
+    explanation: The emf magnitude is L ΔI/Δt = 0.2 × 4/0.1 = 8 V. Using the initial current 5 A instead of the change 4 A gives 10 V.
+  - id: phy-emi-074
+    topic: self-inductance
+    subtopic: Inductance of a solenoid
+    concept: L ∝ N^2 for a solenoid of fixed size
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: L = μ_0 N^2 A/l
+    tags: [solenoid, proportionality]
+    stem: The number of turns of a solenoid is doubled while its length and area are kept the same. Its self-inductance becomes
+    options:
+      - twice
+      - four times
+      - half
+      - unchanged
+    answer: 1
+    explanation: L = μ_0 N^2 A/l, so L ∝ N^2 and doubling N makes L four times. Doubling N doubles both the field and the number of turns linking it.
+  - id: phy-emi-075
+    topic: self-inductance
+    subtopic: Energy stored in an inductor
+    concept: U = ½LI^2
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: U = ½LI^2
+    tags: [magnetic-energy]
+    stem: The energy stored in a 0.5 H inductor carrying a steady current of 4 A is
+    options:
+      - 1 J
+      - 2 J
+      - 8 J
+      - 4 J
+    answer: 3
+    explanation: U = ½LI^2 = ½ × 0.5 × 16 = 4 J. Omitting the ½ gives 8 J.
+  - id: phy-emi-076
+    topic: self-inductance
+    subtopic: Unit of inductance
+    concept: Henry equals ohm second
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [units]
+    stem: The henry is equivalent to
+    options:
+      - Ω s^{-1}
+      - V A s^{-1}
+      - Ω s
+      - Wb A
+    answer: 2
+    explanation: From ε = L dI/dt, 1 H = 1 V s A^{-1} = 1 (V/A) s = 1 Ω s. It is also 1 Wb A^{-1}, not Wb A.
+  - id: phy-emi-077
+    topic: self-inductance
+    subtopic: Unit of inductance
+    concept: Dimensional formula of inductance
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    tags: [dimensions]
+    stem: The dimensional formula of self-inductance is
+    options:
+      - "[M L^2 T^{-2} A^{-1}]"
+      - "[M L^2 T^{-2} A^{-2}]"
+      - "[M L^2 T^{-3} A^{-2}]"
+      - "[M L T^{-2} A^{-2}]"
+    answer: 1
+    explanation: From U = ½LI^2, [L] = [energy]/[A^2] = [M L^2 T^{-2} A^{-2}]. [M L^2 T^{-2} A^{-1}] is flux and [M L^2 T^{-3} A^{-2}] is resistance.
+  - id: phy-emi-078
+    topic: self-inductance
+    subtopic: Electrical inertia
+    concept: Self-inductance plays the role of mass (inertia) in circuits
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [analogy, ncert-line]
+    stem: Self-inductance is called the electrical analogue of
+    options:
+      - force
+      - momentum
+      - velocity
+      - mass
+    answer: 3
+    explanation: Just as mass opposes a change in velocity, self-inductance opposes a change in current; the energy ½LI^2 mirrors ½mv^2. Current corresponds to velocity, not L.
+  - id: phy-emi-079
+    topic: self-inductance
+    subtopic: Magnetic energy density
+    concept: Energy density u = B^2/2μ_0
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: u_B = B^2/(2μ_0)
+    tags: [magnetic-energy, energy-density]
+    stem: The energy stored per unit volume in a magnetic field B in vacuum is
+    options:
+      - B^2/(2μ_0)
+      - B^2/μ_0
+      - μ_0 B^2/2
+      - B/(2μ_0)
+    answer: 0
+    explanation: For a long solenoid, U = ½LI^2 with L = μ_0 n^2 Al and B = μ_0 nI gives U/(Al) = B^2/(2μ_0).
+  - id: phy-emi-080
+    topic: self-inductance
+    subtopic: Factors affecting L
+    concept: L depends on geometry and core, not on current
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [self-inductance, trap]
+    stem: For an air-cored solenoid, which statement is correct?
+    options:
+      - Its self-inductance doubles when the current through it is doubled
+      - Its self-inductance is zero when no current flows
+      - Its self-inductance depends on its number of turns, area, length and the core material
+      - Its self-inductance depends on the rate of change of current
+    answer: 2
+    explanation: L = μ_0 N^2 A/l (times μ_r for a core) depends only on geometry and medium. The flux is proportional to the current, so their ratio is fixed; L does not change with I or dI/dt and is not zero at I = 0.
+  - id: phy-emi-081
+    topic: self-inductance
+    subtopic: Back emf
+    concept: Self-induced emf opposes a growing current
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [back-emf, lenz-law]
+    stem: When the current in an inductor is increasing, the self-induced emf
+    options:
+      - acts in the same direction as the current
+      - is zero
+      - is perpendicular to the current
+      - acts opposite to the current
+    answer: 3
+    explanation: By Lenz's law the self-induced emf opposes the change. A growing current is opposed by a back emf acting against it; a decaying current would be aided.
+  - id: phy-emi-082
+    topic: self-inductance
+    subtopic: Self-induced emf
+    concept: Emf from a time-varying current i(t)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: ε = L di/dt
+    tags: [calculus]
+    stem: The current in a 0.5 H inductor varies as i = 2t^2 A, with t in seconds. The magnitude of the self-induced emf at t = 3 s is
+    options:
+      - 6 V
+      - 3 V
+      - 9 V
+      - 18 V
+    answer: 0
+    explanation: di/dt = 4t = 12 A s^{-1} at t = 3 s, so |ε| = 0.5 × 12 = 6 V. Using i itself (18 A) gives 9 V.
+  - id: phy-emi-083
+    topic: self-inductance
+    subtopic: Inductance of a solenoid
+    concept: L = μ_0 N^2 A/l numerical
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: L = μ_0 N^2 A/l
+    tags: [solenoid]
+    stem: An air-cored solenoid has 1000 turns, length 0.5 m and cross-section 10^{-3} m^2. Its self-inductance is about (μ_0 = 4π × 10^{-7} T m A^{-1})
+    options:
+      - 0.25 mH
+      - 2.5 mH
+      - 1.3 mH
+      - 25 mH
+    answer: 1
+    explanation: L = 4π × 10^{-7} × 10^6 × 10^{-3}/0.5 = 8π × 10^{-4} H ≈ 2.5 × 10^{-3} H = 2.5 mH.
+  - id: phy-emi-084
+    topic: self-inductance
+    subtopic: Factors affecting L
+    concept: Iron core multiplies L by the relative permeability
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: L = μ_r μ_0 N^2 A/l
+    tags: [iron-core]
+    stem: An air-cored solenoid has inductance 2 mH. A core of relative permeability 400 is inserted to fill it completely. The new inductance is
+    options:
+      - 0.4 H
+      - 200 mH
+      - 5 μH
+      - 0.8 H
+    answer: 3
+    explanation: L = μ_r L_0 = 400 × 2 mH = 800 mH = 0.8 H. Dividing instead gives 5 μH.
+  - id: phy-emi-085
+    topic: mutual-inductance
+    subtopic: Coaxial solenoids
+    concept: M = μ_0 N_1 N_2 A/l for coaxial solenoids
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: M = μ_0 n_1 n_2 π r_1^2 l
+    tags: [coaxial-solenoids, ncert-line]
+    stem: Two long coaxial solenoids of the same length l have n_1 and n_2 turns per unit length; the inner one has radius r_1. Their mutual inductance is
+    options:
+      - μ_0 n_1 n_2 π r_1^2/l
+      - μ_0 n_1 n_2 π r_1^2 l
+      - μ_0 n_1^2 π r_1^2 l
+      - μ_0 n_1 n_2 π r_1 l
+    answer: 1
+    explanation: The flux of the outer solenoid's field μ_0 n_2 I_2 through each inner turn is μ_0 n_2 I_2 π r_1^2, and there are n_1 l inner turns, so M = μ_0 n_1 n_2 π r_1^2 l.
+  - id: phy-emi-086
+    topic: mutual-inductance
+    subtopic: Reciprocity
+    concept: M_12 = M_21
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [reciprocity, ncert-line]
+    stem: For two coils, M_12 is the mutual inductance of coil 1 with respect to coil 2 and M_21 that of coil 2 with respect to coil 1. Then
+    options:
+      - M_12 = M_21 always
+      - M_12 > M_21 if coil 1 has more turns
+      - M_12 = M_21 only if the coils are identical
+      - M_12 M_21 = 1
+    answer: 0
+    explanation: The reciprocity theorem gives M_12 = M_21 for any pair of coils, as NCERT shows for coaxial solenoids. It does not require identical coils.
+  - id: phy-emi-087
+    topic: mutual-inductance
+    subtopic: Mutually induced emf
+    concept: ε_2 = M dI_1/dt
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: ε_2 = M dI_1/dt
+    tags: [mutual-emf]
+    stem: The mutual inductance of two coils is 0.05 H. The current in the first rises uniformly from 0 to 10 A in 0.1 s. The emf induced in the second is
+    options:
+      - 0.5 V
+      - 50 V
+      - 5 V
+      - 0.05 V
+    answer: 2
+    explanation: ε_2 = M ΔI_1/Δt = 0.05 × 10/0.1 = 5 V.
+  - id: phy-emi-088
+    topic: mutual-inductance
+    subtopic: Coefficient of coupling
+    concept: M = k√(L_1L_2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: M = k√(L_1 L_2)
+    tags: [coupling-coefficient]
+    stem: Two coils have self-inductances 2 H and 8 H, and the coefficient of coupling between them is 0.5. Their mutual inductance is
+    options:
+      - 4 H
+      - 5 H
+      - 8 H
+      - 2 H
+    answer: 3
+    explanation: M = k√(L_1L_2) = 0.5 × √16 = 0.5 × 4 = 2 H. 4 H would be the value for perfect coupling (k = 1).
+  - id: phy-emi-089
+    topic: mutual-inductance
+    subtopic: Factors affecting M
+    concept: M depends on separation and orientation of coils
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [mutual-inductance]
+    stem: Which statement about the mutual inductance of two coils is correct?
+    options:
+      - It depends on the currents flowing in the coils
+      - It depends on the separation, relative orientation and geometry of the coils and the medium between them
+      - It increases when the coils are moved farther apart
+      - It is the same for any orientation of the coils
+    answer: 1
+    explanation: M depends only on geometry (turns, size, separation, orientation) and on the medium, e.g. an iron core. It decreases with separation and is independent of the currents.
+  - id: phy-emi-090
+    topic: mutual-inductance
+    subtopic: Flux linkage
+    concept: N_2Φ_2 = M I_1
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: N_2Φ_2 = MI_1
+    tags: [flux-linkage]
+    stem: Two coils have mutual inductance 1.5 H. A current of 2 A in the first produces a total flux linkage with the second of
+    options:
+      - 0.75 Wb
+      - 1.5 Wb
+      - 3 Wb
+      - 6 Wb
+    answer: 2
+    explanation: N_2Φ_2 = MI_1 = 1.5 × 2 = 3 Wb. Dividing gives 0.75 Wb.
+  - id: phy-emi-091
+    topic: mutual-inductance
+    subtopic: Factors affecting M
+    concept: Coils with perpendicular axes have nearly zero mutual inductance
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [orientation]
+    stem: Two small circular coils are placed with their centres close together. Their mutual inductance is least when their axes are
+    options:
+      - perpendicular to each other
+      - along the same line
+      - parallel and side by side
+      - at 45° to each other
+    answer: 0
+    explanation: With perpendicular axes, the field of one coil runs nearly parallel to the plane of the other, so almost no flux links it and M ≈ 0. Coaxial placement gives the largest M.
+  - id: phy-emi-092
+    topic: mutual-inductance
+    subtopic: Unit of mutual inductance
+    concept: Mutual inductance is measured in henry
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units]
+    stem: The SI unit of mutual inductance is
+    options:
+      - weber
+      - tesla
+      - henry
+      - farad
+    answer: 2
+    explanation: Mutual inductance M = N_2Φ_2/I_1 has unit Wb A^{-1}, which is the henry, the same as self-inductance.
+  - id: phy-emi-093
+    topic: mutual-inductance
+    subtopic: Effect of core
+    concept: An iron core increases mutual inductance
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [iron-core]
+    stem: |-
+      Statement I: Filling the region inside two coaxial solenoids with soft iron of relative permeability μ_r increases their mutual inductance by a factor μ_r.
+      Statement II: The mutual inductance of two coils is independent of the medium between them.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The field and flux linkage increase by μ_r, so M = μ_r μ_0 n_1 n_2 π r_1^2 l, making Statement I correct. Statement II is wrong because M clearly depends on the medium.
+  - id: phy-emi-094
+    topic: mutual-inductance
+    subtopic: Coaxial solenoids
+    concept: Numerical on M of coaxial solenoids
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: M = μ_0 N_1 N_2 A/l
+    tags: [coaxial-solenoids]
+    stem: A 0.5 m long inner solenoid of cross-section 2 × 10^{-3} m^2 with 200 turns sits coaxially inside an outer solenoid of the same length with 500 turns. Their mutual inductance is about (μ_0 = 4π × 10^{-7} T m A^{-1})
+    options:
+      - 0.50 mH
+      - 0.25 mH
+      - 1.0 mH
+      - 5.0 mH
+    answer: 0
+    explanation: M = μ_0 N_1N_2 A/l = 4π × 10^{-7} × 200 × 500 × 2 × 10^{-3}/0.5 = 4π × 10^{-7} × 400 ≈ 5.0 × 10^{-4} H = 0.50 mH.
+  - id: phy-emi-095
+    topic: ac-generator
+    subtopic: Peak emf of a generator
+    concept: ε_0 = NBAω
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ε_0 = NBAω
+    tags: [ac-generator]
+    stem: A 50-turn coil of area 0.02 m^2 rotates at 100 rad s^{-1} in a 0.5 T field about an axis perpendicular to the field. The peak emf is
+    options:
+      - 5 V
+      - 50 V
+      - 25 V
+      - 100 V
+    answer: 1
+    explanation: ε_0 = NBAω = 50 × 0.5 × 0.02 × 100 = 50 V.
+  - id: phy-emi-096
+    topic: ac-generator
+    subtopic: Instantaneous emf
+    concept: Emf is zero when the flux through the coil is maximum
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [ac-generator, trap]
+    stem: In an AC generator, the emf in the rotating coil is zero at the instant when the plane of the coil is
+    options:
+      - parallel to the magnetic field
+      - at 45° to the magnetic field
+      - at 30° to the magnetic field
+      - perpendicular to the magnetic field
+    answer: 3
+    explanation: When the plane is perpendicular to B, the flux is maximum but momentarily not changing, so ε = NBAω sin ωt = 0. The emf is maximum when the plane is parallel to B.
+  - id: phy-emi-097
+    topic: ac-generator
+    subtopic: Effect of speed of rotation
+    concept: Doubling the rotation rate doubles both peak emf and frequency
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ε = NBAω sin ωt
+    tags: [ac-generator, proportionality]
+    stem: The speed of rotation of a generator coil is doubled. The peak emf and the frequency of the output
+    options:
+      - both remain the same
+      - both double
+      - double and remain the same respectively
+      - remain the same and double respectively
+    answer: 1
+    explanation: ε_0 = NBAω, so the peak doubles, and f = ω/2π also doubles.
+  - id: phy-emi-098
+    topic: ac-generator
+    subtopic: Principle of generator
+    concept: A generator converts mechanical energy into electrical energy by induction
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [ac-generator, ncert-line]
+    stem: An AC generator works on the principle of
+    options:
+      - electromagnetic induction
+      - the magnetic effect of current
+      - the heating effect of current
+      - electrostatic induction
+    answer: 0
+    explanation: Rotating the coil in a magnetic field continuously changes the flux through it and induces an emf, converting mechanical energy into electrical energy. The magnetic effect of current is the motor principle.
+  - id: phy-emi-099
+    topic: ac-generator
+    subtopic: Frequency of output
+    concept: f = ω/2π; Indian mains are 50 Hz
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: f = ω/2π
+    tags: [frequency]
+    stem: The emf of a generator is ε = 300 sin(100πt) V. The frequency of the output is
+    options:
+      - 100 Hz
+      - 314 Hz
+      - 100π Hz
+      - 50 Hz
+    answer: 3
+    explanation: ω = 100π rad s^{-1}, so f = ω/2π = 50 Hz, the Indian mains frequency. Reading 100 or 100π as the frequency confuses f with ω.
+  - id: phy-emi-100
+    topic: ac-generator
+    subtopic: Instantaneous emf
+    concept: Emf is maximum when the coil plane is parallel to the field
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [ac-generator]
+    stem: The emf induced in the coil of an AC generator is maximum when the angle between the magnetic field and the normal to the coil is
+    options:
+      - 0°
+      - 45°
+      - 90°
+      - 180°
+    answer: 2
+    explanation: ε = NBAω sin θ, where θ is the angle between B and the normal. It is maximum at θ = 90°, when the coil's plane is parallel to the field and its sides cut the field lines fastest.
+  - id: phy-emi-101
+    topic: faraday-henry-experiments
+    subtopic: Conditions for deflection
+    concept: Only situations that change the flux linkage give deflection
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, multi-concept]
+    stem: |-
+      A coil is connected to a galvanometer. In which of these cases does the galvanometer deflect?
+      I. A bar magnet is pushed into the coil.
+      II. The coil is moved away from a stationary bar magnet.
+      III. The magnet and the coil move together with the same velocity.
+      IV. A bar magnet lying along the coil's axis spins about that axis.
+    options:
+      - I, II and III only
+      - I and II only
+      - I, II and IV only
+      - All of I, II, III and IV
+    answer: 1
+    explanation: Cases I and II involve relative motion and so change the flux. In III there is no relative motion. In IV the field of a symmetric bar magnet spinning about its own axis does not change at the coil, so the flux is constant and no emf is induced.
+  - id: phy-emi-102
+    topic: faraday-henry-experiments
+    subtopic: Coil–coil experiment with motion
+    concept: Moving a coil carrying steady current induces current in a nearby coil
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [faraday-experiment, relative-motion]
+    stem: Coil C2 carries a steady current from a battery. It is moved quickly towards coil C1, which is connected to a galvanometer. The galvanometer
+    options:
+      - does not deflect, because the current in C2 is steady
+      - deflects, because the flux through C1 changes as C2 approaches
+      - deflects only if C2 has an iron core
+      - deflects steadily after C2 stops moving
+    answer: 1
+    explanation: A coil carrying current behaves like a magnet. Moving it changes the flux through C1, inducing a current even though the current in C2 is steady. Once C2 stops, the deflection returns to zero.
+  - id: phy-emi-103
+    topic: faraday-henry-experiments
+    subtopic: History
+    concept: Joseph Henry discovered induction independently in the USA
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [history, ncert-line]
+    stem: Electromagnetic induction was discovered around 1830 by Faraday in England and, independently, by
+    options:
+      - Oersted in Denmark
+      - Joseph Henry in the USA
+      - Ampere in France
+      - Lenz in Russia
+    answer: 1
+    explanation: NCERT notes that Michael Faraday in England and Joseph Henry in the USA independently showed that a changing magnetic field can induce a current in a coil. Oersted found the magnetic effect of current, and Lenz later gave the rule for direction.
+  - id: phy-emi-104
+    topic: faraday-henry-experiments
+    subtopic: Factors affecting deflection
+    concept: More turns give a larger induced emf
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, turns]
+    stem: |-
+      Assertion (A): In the magnet–coil experiment, a coil with more turns gives a larger deflection for the same motion of the magnet.
+      Reason (R): The emf induced in a coil does not depend on the number of turns.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: Each turn has its own induced emf and the emfs add, so ε = −N dΦ/dt. A is true and R is false.
+  - id: phy-emi-105
+    topic: faraday-henry-experiments
+    subtopic: Iron core in coil experiment
+    concept: Suddenly inserting an iron rod changes flux and gives a deflection
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, iron-core]
+    stem: In the two-coil experiment, the key in the primary is held down and the galvanometer reading has returned to zero. A soft iron rod is now quickly pushed into the coils along their axis. The galvanometer
+    options:
+      - stays at zero, because the primary current is steady
+      - shows a steady deflection while the rod stays inside
+      - shows a momentary deflection, because the flux through the secondary increases
+      - shows a deflection only after the key is released
+    answer: 2
+    explanation: The steady primary current now produces a much larger flux once the iron is inside. The flux through the secondary increases while the rod is being inserted, giving a momentary deflection that dies away once the rod is at rest.
+  - id: phy-emi-106
+    topic: faraday-henry-experiments
+    subtopic: Conclusions of the experiments
+    concept: Motion is not essential for induction; a changing current suffices
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, trap]
+    stem: |-
+      Statement I: Faraday's experiments show that relative motion between a magnet and a coil is essential for electromagnetic induction.
+      Statement II: In the experiment with two stationary coils and a tapping key, a current is induced although nothing moves.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: In the key experiment the coils are at rest, but switching the primary current changes the flux and induces a current, so Statement II is correct and motion is not essential. Statement I is therefore incorrect; a change of flux is the essential condition.
+  - id: phy-emi-107
+    topic: faraday-henry-experiments
+    subtopic: Magnet and coil experiment
+    concept: Push, hold, withdraw gives deflection, zero, opposite deflection
+    category: concept
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [faraday-experiment, direction]
+    stem: A magnet is pushed into a coil, held at rest inside it for a while, and then pulled out. The galvanometer connected to the coil shows
+    options:
+      - a deflection one way that stays constant until the magnet is pulled out
+      - deflections in the same direction during both the push and the pull
+      - no deflection at any stage because the magnet ends where it started
+      - a deflection one way, then zero, then a deflection the other way
+    answer: 3
+    explanation: Pushing in increases the flux (deflection one way), holding still keeps it constant (zero), and pulling out decreases it (deflection the other way). Returning to the start does not cancel the individual deflections.
+  - id: phy-emi-108
+    topic: magnetic-flux
+    subtopic: Flux in vector form
+    concept: Φ = B · A with vector components
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: Φ = B · A
+    tags: [flux-calculation, vectors]
+    stem: A uniform field B = (2î + 3ĵ − k̂) T passes through a flat area of 0.5 m^2 lying in the xy-plane. The magnitude of the flux through it is
+    options:
+      - 0.5 Wb
+      - 1.0 Wb
+      - 1.5 Wb
+      - 2.0 Wb
+    answer: 0
+    explanation: The area vector of a surface in the xy-plane is along k̂, so Φ = B · A = (−1)(0.5) = −0.5 Wb, magnitude 0.5 Wb. Only the z-component of B contributes.
+  - id: phy-emi-109
+    topic: magnetic-flux
+    subtopic: Flux through curved surfaces
+    concept: Flux through a hemisphere equals flux through its flat base
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [gauss-law-magnetism, multi-concept]
+    stem: A hemispherical bowl of radius R is placed in a uniform field B directed along the axis of its circular rim. The flux through the curved surface is
+    options:
+      - 2πR^2B
+      - πR^2B
+      - 4πR^2B
+      - zero
+    answer: 1
+    explanation: The curved surface and the flat base together form a closed surface with zero net flux, so the flux through the curved surface equals that through the base, πR^2B. Using the curved area 2πR^2 is the trap.
+  - id: phy-emi-110
+    topic: magnetic-flux
+    subtopic: Change in flux on rotation
+    concept: Turning a loop through 180° changes the flux by 2BA
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: ΔΦ = 2BA
+    tags: [flux-change, trap]
+    stem: A loop of area 0.1 m^2 is normal to a 0.2 T field. It is turned through 180° about a diameter. The magnitude of the change in flux is
+    options:
+      - zero
+      - 0.02 Wb
+      - 0.01 Wb
+      - 0.04 Wb
+    answer: 3
+    explanation: The flux changes from +BA = +0.02 Wb to −BA = −0.02 Wb, so |ΔΦ| = 2BA = 0.04 Wb. "Zero" wrongly compares only magnitudes.
+  - id: phy-emi-111
+    topic: magnetic-flux
+    subtopic: Non-uniform field
+    concept: Flux of a linearly varying field by integration
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Φ = ∫B dA
+    tags: [calculus, non-uniform-field]
+    stem: A square loop of side a lies in the xy-plane with one corner at the origin and sides along the axes. A field B = B_0(x/a) k̂ acts over it. The flux through the loop is
+    options:
+      - B_0a^2/2
+      - B_0a^2
+      - 2B_0a^2
+      - B_0a^2/4
+    answer: 0
+    explanation: Take strips of width dx and length a, so Φ = ∫_0^a B_0(x/a) a dx = B_0 a^2/2. This equals the average field B_0/2 times the area.
+  - id: phy-emi-112
+    topic: magnetic-flux
+    subtopic: Loop partly in field
+    concept: Only the area inside the field contributes to flux
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [flux-calculation]
+    stem: A square loop of side 10 cm is half inside a region of uniform 0.5 T field normal to the loop, and half outside. The flux through the loop is
+    options:
+      - 5.0 × 10^{-3} Wb
+      - 0.25 Wb
+      - 2.5 × 10^{-3} Wb
+      - 2.5 × 10^{-2} Wb
+    answer: 2
+    explanation: Only the area inside the field counts, 0.01/2 = 5 × 10^{-3} m^2, so Φ = 0.5 × 5 × 10^{-3} = 2.5 × 10^{-3} Wb. Using the full area gives 5.0 × 10^{-3} Wb.
+  - id: phy-emi-113
+    topic: magnetic-flux
+    subtopic: Flux linkage of a solenoid
+    concept: Total flux linkage of a solenoid NμnIA
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: NΦ = N μ_0 n I A
+    tags: [solenoid, flux-linkage, multi-concept]
+    stem: A 0.5 m long solenoid has 1000 turns per metre, cross-section 10^{-3} m^2 and carries 2 A. The total flux linked with all its turns is about (μ_0 = 4π × 10^{-7} T m A^{-1})
+    options:
+      - 2.5 × 10^{-6} Wb
+      - 2.5 × 10^{-3} Wb
+      - 1.3 × 10^{-6} Wb
+      - 1.3 × 10^{-3} Wb
+    answer: 3
+    explanation: B = μ_0nI = 4π × 10^{-7} × 1000 × 2 ≈ 2.5 × 10^{-3} T; flux per turn = BA ≈ 2.5 × 10^{-6} Wb; total turns N = 1000 × 0.5 = 500, so NΦ ≈ 1.3 × 10^{-3} Wb. Stopping at one turn gives 2.5 × 10^{-6} Wb.
+  - id: phy-emi-114
+    topic: magnetic-flux
+    subtopic: Rotating loop
+    concept: Flux through a rotating loop varies as cos θ
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [graph, rotation]
+    stem: A loop rotates uniformly in a uniform field, starting with its normal along the field. The graph of flux through it against time is
+    options:
+      - a cosine curve starting at its maximum value
+      - a sine curve starting at zero
+      - a straight line rising with time
+      - a constant horizontal line
+    answer: 0
+    explanation: Φ = BA cos ωt, which is maximum at t = 0 (normal along B) and varies as a cosine. The emf, not the flux, would start from zero as a sine curve.
+  - id: phy-emi-115
+    topic: magnetic-flux
+    subtopic: Meaning of flux
+    concept: Flux measures the number of field lines crossing an area
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [flux-definition]
+    stem: Magnetic flux through a surface can be pictured as a measure of
+    options:
+      - the strength of the field at the centre of the surface
+      - the number of magnetic field lines passing through the surface
+      - the magnetic force per unit area on the surface
+      - the magnetic energy stored per unit volume
+    answer: 1
+    explanation: Flux counts how many field lines cross the area, weighted by the angle, Φ = BA cos θ. Field strength is flux per unit normal area, not flux itself.
+  - id: phy-emi-116
+    topic: magnetic-flux
+    subtopic: Flux through a plane area
+    concept: Flux is maximum when the normal is along B
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [flux-calculation]
+    stem: The flux through a plane loop in a uniform field is maximum when the angle between the field and the plane of the loop is
+    options:
+      - 0°
+      - 45°
+      - 90°
+      - 60°
+    answer: 2
+    explanation: When the field is at 90° to the plane, it is along the normal, so cos θ = 1 and Φ = BA is maximum. At 0° to the plane the flux is zero.
+  - id: phy-emi-117
+    topic: magnetic-flux
+    subtopic: Units of related quantities
+    concept: Matching flux, field, inductance and rate of change of flux to units
+    category: factual
+    format: match
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Match each quantity in List I with its SI unit in List II.
+      List I: P. Magnetic flux, Q. Magnetic field, R. Inductance, S. Rate of change of magnetic flux
+      List II: 1. volt, 2. weber, 3. henry, 4. tesla
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-2, Q-4, R-3, S-1
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: Flux is measured in weber (P-2), field in tesla (Q-4), inductance in henry (R-3), and dΦ/dt in Wb s^{-1} = volt (S-1).
+  - id: phy-emi-118
+    topic: faradays-law
+    subtopic: Changing area
+    concept: Emf from an expanding circular loop ε = B·2πr dr/dt
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: ε = B · 2πr (dr/dt)
+    tags: [changing-area, calculus]
+    stem: A circular loop in a 0.5 T field normal to its plane is expanding so that its radius grows at 1 mm s^{-1}. The emf when the radius is 2 cm is about
+    options:
+      - 63 μV
+      - 31 μV
+      - 0.63 mV
+      - 6.3 μV
+    answer: 0
+    explanation: A = πr^2, so dA/dt = 2πr dr/dt = 2π × 0.02 × 10^{-3} ≈ 1.26 × 10^{-4} m^2 s^{-1}. Then ε = B dA/dt ≈ 0.5 × 1.26 × 10^{-4} ≈ 63 μV.
+  - id: phy-emi-119
+    topic: faradays-law
+    subtopic: Average emf on rotation
+    concept: Average emf when a coil is flipped through 180°
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: ε_{avg} = 2NBA/Δt
+    tags: [flux-change, multi-concept]
+    stem: A 100-turn coil of area 0.01 m^2 is normal to a 0.1 T field. It is turned through 180° in 0.2 s. The average induced emf is
+    options:
+      - 0.5 V
+      - 2.0 V
+      - zero
+      - 1.0 V
+    answer: 3
+    explanation: ΔΦ per turn = 2BA = 2 × 0.1 × 0.01 = 2 × 10^{-3} Wb, so ε = NΔΦ/Δt = 100 × 2 × 10^{-3}/0.2 = 1.0 V. Using BA instead of 2BA gives 0.5 V.
+  - id: phy-emi-120
+    topic: faradays-law
+    subtopic: Sinusoidal field
+    concept: Emf is zero when a sinusoidal field is at its peak
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [phase, trap]
+    stem: The field through a fixed loop varies as B = B_0 sin ωt. The induced emf in the loop is zero at the instants when B is
+    options:
+      - zero
+      - increasing fastest
+      - maximum in magnitude
+      - half its peak value
+    answer: 2
+    explanation: ε ∝ dB/dt = B_0ω cos ωt, which is zero when sin ωt = ±1, that is when B is at its peak. When B passes through zero it is changing fastest, so the emf is then maximum.
+  - id: phy-emi-121
+    topic: faradays-law
+    subtopic: Emf and current
+    concept: Same flux change gives same emf but different currents in different metals
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [emf-vs-current]
+    stem: Identical loops of copper and nichrome are placed side by side in the same changing magnetic field. Which statement is correct?
+    options:
+      - Both the emf and the current are larger in copper
+      - The emf is the same in both, but the current is larger in copper
+      - The emf is larger in nichrome because of its higher resistance
+      - The current is the same in both, but the emf is larger in copper
+    answer: 1
+    explanation: The emf depends only on the rate of change of flux, which is the same for both loops. Copper has lower resistance, so it carries the larger current, I = ε/R.
+  - id: phy-emi-122
+    topic: faradays-law
+    subtopic: Factors affecting emf and current
+    concept: Emf depends on N; current depends on resistance
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [faraday-law, emf-vs-current]
+    stem: |-
+      Consider these statements about electromagnetic induction in a coil.
+      I. The induced emf depends on the number of turns of the coil.
+      II. The induced emf depends on the resistance of the coil.
+      III. The induced current depends on the resistance of the circuit.
+      IV. An emf is induced only if the coil forms a closed circuit.
+      Which statements are correct?
+    options:
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+      - I and III only
+    answer: 3
+    explanation: ε = −N dΦ/dt depends on N but not on resistance, so I is true and II false. I = ε/R depends on resistance, so III is true. An emf appears even across an open coil, so IV is false.
+  - id: phy-emi-123
+    topic: faradays-law
+    subtopic: Linearly varying field
+    concept: B = B_0 + kt gives constant emf NAk
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: ε = NA dB/dt
+    tags: [faraday-law]
+    stem: A 50-turn coil of area 0.04 m^2 is normal to a field B = (0.2 + 0.1t) T, with t in seconds. The induced emf is
+    options:
+      - 0.4 V
+      - 2.0 V
+      - 0.2 V
+      - 0.02 V
+    answer: 2
+    explanation: dB/dt = 0.1 T s^{-1}, so ε = NA dB/dt = 50 × 0.04 × 0.1 = 0.2 V, constant in time. The constant 0.2 T part of the field does not contribute.
+  - id: phy-emi-124
+    topic: faradays-law
+    subtopic: Flux–time graphs
+    concept: Current from slope of a flux–time graph
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: I = (dΦ/dt)/R
+    tags: [graph, faraday-law]
+    stem: The flux through a single loop of resistance 5 Ω rises linearly from 0 to 0.1 Wb in 0.2 s and then stays constant. The current in the loop during the first 0.2 s is
+    options:
+      - 0.1 A
+      - 0.5 A
+      - 0.02 A
+      - 1.0 A
+    answer: 0
+    explanation: The slope is 0.1/0.2 = 0.5 Wb s^{-1}, so ε = 0.5 V and I = 0.5/5 = 0.1 A. After 0.2 s the flux is constant and the current is zero.
+  - id: phy-emi-125
+    topic: faradays-law
+    subtopic: Induced charge
+    concept: Charge when a coil is flipped is 2NBA/R
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Q = NΔΦ/R
+    tags: [induced-charge, flux-change]
+    stem: A 100-turn coil of area 0.01 m^2 and resistance 10 Ω lies normal to a 0.5 T field. It is quickly turned through 180°. The charge that flows through it is
+    options:
+      - 0.05 C
+      - 0.1 C
+      - 0.2 C
+      - 0.5 C
+    answer: 1
+    explanation: ΔΦ per turn = 2BA = 2 × 0.5 × 0.01 = 0.01 Wb, so Q = NΔΦ/R = 100 × 0.01/10 = 0.1 C. Using BA instead of 2BA gives 0.05 C.
+  - id: phy-emi-126
+    topic: faradays-law
+    subtopic: Heat produced by induced current
+    concept: Joule heat H = ε^2t/R for a constant induced emf
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: H = ε^2t/R
+    tags: [joule-heating, multi-concept]
+    stem: A steady induced emf of 2 V acts for 5 s in a loop of resistance 4 Ω. The heat produced is
+    options:
+      - 2.5 J
+      - 10 J
+      - 5 J
+      - 20 J
+    answer: 2
+    explanation: P = ε^2/R = 4/4 = 1 W, so H = Pt = 5 J. Using εt/R or ε^2 t without R gives the wrong options.
+  - id: phy-emi-127
+    topic: faradays-law
+    subtopic: Induced electric field
+    concept: A changing magnetic field produces a non-conservative electric field
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [induced-electric-field]
+    stem: A loop is at rest in a magnetic field that is changing with time. Which statement about the cause of the current in it is correct?
+    options:
+      - The Lorentz force q v × B drives the charges, since the loop is at rest
+      - An electrostatic field due to fixed charges drives the charges around the loop
+      - No current can flow because the loop is at rest
+      - A changing magnetic field produces an electric field whose lines form closed loops, and this drives the charges
+    answer: 3
+    explanation: The charges are at rest, so q v × B is zero. The changing field creates an induced electric field whose line integral around the loop is the emf; unlike an electrostatic field it is non-conservative and its lines close on themselves.
+  - id: phy-emi-128
+    topic: faradays-law
+    subtopic: Instantaneous induced emf
+    concept: Emf is zero where dΦ/dt = 0
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: ε = −dΦ/dt
+    tags: [calculus]
+    stem: The flux through a loop is Φ = (t^2 − 4t) Wb, with t in seconds. The induced emf becomes zero at
+    options:
+      - t = 2 s
+      - t = 0
+      - t = 4 s
+      - t = 1 s
+    answer: 0
+    explanation: dΦ/dt = 2t − 4 = 0 at t = 2 s. At t = 4 s the flux itself is zero, but it is changing, so the emf is not zero then.
+  - id: phy-emi-129
+    topic: faradays-law
+    subtopic: Emf and current
+    concept: No current in an insulating ring
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [emf-vs-current, insulator]
+    stem: |-
+      Assertion (A): When a magnet is moved quickly towards a wooden ring, no appreciable current is induced in the ring.
+      Reason (R): Wood has practically no free charge carriers to carry a current.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The changing flux still produces an induced emf around the wooden ring, but wood is an insulator with almost no free charges, so no appreciable current flows. R explains A.
+  - id: phy-emi-130
+    topic: faradays-law
+    subtopic: Changing field at an angle
+    concept: Only the normal component of B contributes to changing flux
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: ε = NA ΔB sin α/Δt
+    tags: [faraday-law, trap]
+    stem: A 100-turn coil of area 0.1 m^2 lies in a field that makes 30° with its plane. The field falls uniformly from 0.8 T to 0.2 T in 0.3 s. The average induced emf is
+    options:
+      - 10 V
+      - 20 V
+      - 17.3 V
+      - 5 V
+    answer: 0
+    explanation: The normal component is B sin 30° = B/2, so ΔΦ per turn = 0.6 × 0.5 × 0.1 = 0.03 Wb. ε = 100 × 0.03/0.3 = 10 V. Using cos 30° gives 17.3 V; ignoring the angle gives 20 V.
+  - id: phy-emi-131
+    topic: faradays-law
+    subtopic: Flux–time graphs
+    concept: Emf is largest where the flux graph is steepest, not where flux is largest
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [graph, trap]
+    stem: The flux through a coil varies sinusoidally with time. The induced emf has its largest magnitude at the instants when the flux is
+    options:
+      - at its positive maximum
+      - at its negative maximum
+      - passing through zero
+      - half its maximum value
+    answer: 2
+    explanation: The emf equals the slope of the Φ–t graph, and a sine curve is steepest where it crosses zero. At the flux maxima the slope, and so the emf, is zero.
+  - id: phy-emi-132
+    topic: faradays-law
+    subtopic: Power in induced current
+    concept: Power dissipated P = ε^2/R with ε = A dB/dt
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: true
+    formula: P = (A dB/dt)^2/R
+    tags: [joule-heating, multi-concept]
+    stem: A loop of area 0.2 m^2 and resistance 0.01 Ω is normal to a field changing at 0.5 T s^{-1}. The power dissipated in the loop is
+    options:
+      - 0.1 W
+      - 1 W
+      - 10 W
+      - 0.01 W
+    answer: 1
+    explanation: ε = A dB/dt = 0.2 × 0.5 = 0.1 V, so P = ε^2/R = 0.01/0.01 = 1 W. Taking P = ε/R gives 10 W.
+  - id: phy-emi-133
+    topic: faradays-law
+    subtopic: Comparing induced emfs
+    concept: Ranking emfs using NΔΦ/Δt
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: ε = NΔΦ/Δt
+    tags: [comparison, faraday-law]
+    stem: |-
+      Four coils undergo the following changes of flux per turn:
+      P. 100 turns, 1 mWb in 0.1 s
+      Q. 50 turns, 4 mWb in 0.1 s
+      R. 200 turns, 1 mWb in 0.4 s
+      S. 10 turns, 30 mWb in 0.1 s
+      Arrange the average induced emfs in increasing order.
+    options:
+      - P < R < Q < S
+      - R < Q < P < S
+      - S < Q < P < R
+      - R < P < Q < S
+    answer: 3
+    explanation: The emfs are P = 100 × 10^{-3}/0.1 = 1 V, Q = 50 × 4 × 10^{-3}/0.1 = 2 V, R = 200 × 10^{-3}/0.4 = 0.5 V and S = 10 × 0.03/0.1 = 3 V. So R < P < Q < S.
+  - id: phy-emi-134
+    topic: lenz-law
+    subtopic: Concentric coplanar loops
+    concept: Increasing current in an outer loop induces opposite current in an inner loop
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [lenz-law, direction]
+    stem: A small loop lies at the centre of a larger coplanar loop. The current in the larger loop is clockwise and increasing. The current induced in the small loop is
+    options:
+      - clockwise
+      - anticlockwise
+      - zero, because the loops do not touch
+      - clockwise and then anticlockwise
+    answer: 1
+    explanation: The clockwise current in the large loop produces a field into the page at its centre, which is increasing. The small loop opposes this with an outward field, needing an anticlockwise current.
+  - id: phy-emi-135
+    topic: lenz-law
+    subtopic: Magnet falling through a coil
+    concept: Emf pulses of opposite sign, the second larger, as a magnet falls through a coil
+    category: application
+    format: graph
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [graph, lenz-law, multi-concept]
+    stem: A bar magnet is dropped from rest along the axis of a long vertical coil connected to an oscilloscope, and falls right through it. The emf versus time shows
+    options:
+      - two pulses of opposite sign, the second of larger peak and shorter duration
+      - two identical pulses of the same sign
+      - two pulses of opposite sign, the second of smaller peak and longer duration
+      - a single pulse while the magnet is inside the coil
+    answer: 0
+    explanation: Flux increases as the magnet enters and decreases as it leaves, so the pulses are of opposite sign. The magnet speeds up while falling, so the second pulse is larger and shorter, while both pulses enclose roughly equal areas (the same total flux change).
+  - id: phy-emi-136
+    topic: lenz-law
+    subtopic: Switching off current
+    concept: A ring around a solenoid is attracted when the solenoid current is switched off
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [lenz-law, force]
+    stem: A metal ring surrounds one end of a solenoid on the same axis. The steady current in the solenoid is switched off. During the decay, the induced current in the ring
+    options:
+      - flows in the opposite sense, and the ring is repelled
+      - flows in the same sense, and the ring is repelled
+      - flows in the same sense as the solenoid current, and the ring is attracted
+      - is zero, because the current is being reduced
+    answer: 2
+    explanation: The ring tries to maintain the decreasing flux, so its current is in the same sense as the solenoid current. Parallel currents attract, which opposes the reduction of flux linkage.
+  - id: phy-emi-137
+    topic: lenz-law
+    subtopic: Loop entering a field
+    concept: Loop entering an outward field gets a clockwise current
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    diagram: A square loop in the plane of the page moves to the right with velocity v (arrow). To the right of a vertical dashed line is a region of uniform magnetic field pointing out of the page (shown by dots). The loop's right edge has just crossed the dashed line; its left part is still outside the field.
+    tags: [lenz-law, direction]
+    stem: A square loop moves to the right into a region where the field points out of the page, as shown. While it is entering, the induced current, as seen by the reader, is
+    options:
+      - anticlockwise
+      - zero
+      - anticlockwise at first, then clockwise
+      - clockwise
+    answer: 3
+    explanation: The outward flux through the loop increases as it enters. The induced current makes a field into the page to oppose this, which requires a clockwise current.
+  - id: phy-emi-138
+    topic: lenz-law
+    subtopic: Content of Lenz's law
+    concept: Lenz's law gives direction, not magnitude, and is consistent with energy conservation
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [lenz-law]
+    stem: |-
+      Consider these statements about Lenz's law.
+      I. It gives the direction of the induced emf.
+      II. It gives the magnitude of the induced emf.
+      III. It is consistent with the law of conservation of energy.
+      IV. It applies only when the circuit is closed.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I and III only
+      - I, III and IV only
+      - II and IV only
+    answer: 1
+    explanation: Lenz's law fixes the polarity of the induced emf (I) and follows from energy conservation (III). The magnitude comes from Faraday's law (II false), and the polarity of the emf is defined even for an open circuit (IV false).
+  - id: phy-emi-139
+    topic: lenz-law
+    subtopic: Magnet falling through a tube
+    concept: A magnet falling through a copper pipe reaches a terminal speed
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [lenz-law, terminal-velocity]
+    stem: |-
+      Assertion (A): A strong magnet dropped into a long vertical copper pipe soon falls at a nearly constant speed.
+      Reason (R): Copper is a diamagnetic material.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: The eddy currents in the pipe produce a retarding force that grows with speed until it balances the weight, giving a terminal speed, so A is true. Copper is indeed diamagnetic, but that feeble effect is not the cause; the induced currents are.
+  - id: phy-emi-140
+    topic: lenz-law
+    subtopic: Removing an iron core
+    concept: Pulling out a core briefly increases the current in the coil
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [lenz-law, self-inductance, multi-concept]
+    stem: A coil wound on a soft iron core is connected to a battery and a bulb in series and carries a steady current. The core is suddenly pulled out. While it is being removed, the bulb
+    options:
+      - glows momentarily dimmer, because the flux increases
+      - glows exactly as before, because the battery emf is unchanged
+      - glows momentarily brighter, because the induced emf opposes the fall in flux and adds to the battery emf
+      - goes out, because the circuit is broken by the motion
+    answer: 2
+    explanation: Removing the core reduces the flux through the coil. The self-induced emf opposes this decrease by driving current in the same direction as the battery, so the current momentarily increases and the bulb brightens.
+  - id: phy-emi-141
+    topic: lenz-law
+    subtopic: Magnet approaching a ring
+    concept: Direction of current seen from above as a north pole descends onto a ring
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [lenz-law, direction]
+    stem: A magnet, north pole downward, is dropped from above towards a horizontal copper ring. Viewed from above, the induced current in the ring while the magnet approaches is
+    options:
+      - clockwise
+      - zero
+      - clockwise, then reversing before the magnet reaches the ring
+      - anticlockwise
+    answer: 3
+    explanation: The ring's upper face must become a north pole to repel the approaching north pole. A face looks like a north pole when the current seen from that side is anticlockwise.
+  - id: phy-emi-142
+    topic: lenz-law
+    subtopic: Content of Lenz's law
+    concept: Induced current opposes the change in flux, not the flux itself
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [lenz-law, trap, misconception]
+    stem: Which statement of Lenz's law is correct?
+    options:
+      - The induced current opposes the change in magnetic flux that produces it
+      - The induced current always produces a field opposite to the external field
+      - The induced current always opposes the magnetic flux through the circuit
+      - The induced current always flows anticlockwise when viewed along the field
+    answer: 0
+    explanation: The induced current opposes the change, not the flux itself. When the external flux decreases, the induced field actually points along the external field to maintain it.
+  - id: phy-emi-143
+    topic: lenz-law
+    subtopic: Rotating coil
+    concept: Induced current in a rotating coil produces an opposing torque
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [lenz-law, torque, energy-conservation]
+    stem: A closed coil is rotated in a magnetic field. The torque on it due to the induced current
+    options:
+      - opposes the rotation, so an external torque must do work
+      - helps the rotation, so no external torque is needed once it starts
+      - is zero at all times
+      - is always perpendicular to the axis of rotation and does no work
+    answer: 0
+    explanation: By Lenz's law the magnetic torque on the induced current opposes the rotation. The external agent must do work against it, and that work becomes electrical energy.
+  - id: phy-emi-144
+    topic: lenz-law
+    subtopic: Loop leaving a field
+    concept: A loop falling out of a field region is retarded while leaving
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [lenz-law, force]
+    stem: A closed rectangular loop falls vertically out of a region of horizontal uniform magnetic field into a field-free region below. While it is crossing the boundary, its acceleration is
+    options:
+      - greater than g
+      - less than g
+      - equal to g
+      - zero at every instant
+    answer: 1
+    explanation: As the loop leaves, the flux through it decreases, and the induced current gives an upward force on the side still in the field, opposing the fall. So a < g during the crossing.
+  - id: phy-emi-145
+    topic: lenz-law
+    subtopic: Straight wire and loop
+    concept: Decreasing wire current induces a current that adds to the fading field
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [lenz-law, direction]
+    stem: A long horizontal wire in the plane of the page carries current to the right, which is decreasing. A loop lies in the page just above the wire. The induced current in the loop, as seen by the reader, is
+    options:
+      - clockwise
+      - zero
+      - anticlockwise
+      - clockwise in the upper half only
+    answer: 2
+    explanation: Above a rightward current the field points out of the page. It is decreasing, so the loop produces an outward field to maintain it, which requires an anticlockwise current.
+  - id: phy-emi-146
+    topic: lenz-law
+    subtopic: Direction of induced field
+    concept: Induced field is along the external field when the flux decreases
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [lenz-law, misconception]
+    stem: |-
+      Statement I: The magnetic field of an induced current is always opposite in direction to the external magnetic field.
+      Statement II: When the external flux through a loop is decreasing, the field of the induced current inside the loop is in the same direction as the external field.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: The induced field opposes the change of flux. For a decreasing flux it tries to maintain the flux and so points along the external field, which makes Statement II correct and Statement I incorrect.
+  - id: phy-emi-147
+    topic: motional-emf
+    subtopic: Rod moving on rails
+    concept: Current in a rail circuit I = Blv/R
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: I = Blv/R
+    tags: [motional-emf]
+    stem: A 0.5 m rod slides at 5 m s^{-1} on rails in a 0.4 T field perpendicular to the plane of the rails. The circuit resistance is 2 Ω. The current is
+    options:
+      - 1 A
+      - 2 A
+      - 0.25 A
+      - 0.5 A
+    answer: 3
+    explanation: ε = Blv = 0.4 × 0.5 × 5 = 1 V and I = ε/R = 1/2 = 0.5 A. Quoting the emf as current gives 1 A.
+  - id: phy-emi-148
+    topic: motional-emf
+    subtopic: Power dissipated
+    concept: Mechanical power Fv equals I^2R
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: P = B^2l^2v^2/R
+    tags: [power, energy-conservation]
+    stem: A 1 m rod is pulled at a steady 2 m s^{-1} along rails in a 0.5 T field. The circuit resistance is 0.5 Ω. The mechanical power supplied by the pulling agent is
+    options:
+      - 1 W
+      - 2 W
+      - 4 W
+      - 0.5 W
+    answer: 1
+    explanation: ε = Blv = 1 V, I = 2 A and F = BIl = 1 N, so P = Fv = 2 W, equal to I^2R = 4 × 0.5 = 2 W.
+  - id: phy-emi-149
+    topic: motional-emf
+    subtopic: Rod given an initial push
+    concept: A rod coasting on rails slows with exponentially decaying speed
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [graph, damping, multi-concept]
+    stem: A rod on smooth horizontal rails joined by a resistor, in a vertical uniform field, is given a push and released. The graph of its speed against time is
+    options:
+      - a straight line falling to zero at a finite time
+      - a horizontal line, since the rails are frictionless
+      - a curve that falls steeply at first and then more gently, approaching zero
+      - a curve that rises to a terminal value
+    answer: 2
+    explanation: The retarding force B^2l^2v/R is proportional to speed, so m dv/dt = −kv and v decays exponentially. There is no friction, but the magnetic drag still slows the rod.
+  - id: phy-emi-150
+    topic: motional-emf
+    subtopic: Rotating rod
+    concept: A rod rotating about its midpoint has zero emf between its ends
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [rotating-rod, trap]
+    stem: A metal rod of length l rotates with angular speed ω about an axis through its midpoint, perpendicular to the rod and parallel to a uniform field B. The emf between the two ends is
+    options:
+      - zero
+      - ½Bωl^2
+      - ¼Bωl^2
+      - Bωl^2/8
+    answer: 0
+    explanation: Each half develops Bω(l/2)^2/2 = Bωl^2/8 from the centre to its end, with both ends at the same potential relative to the centre. So the ends have no potential difference; Bωl^2/8 is the centre-to-end emf.
+  - id: phy-emi-151
+    topic: motional-emf
+    subtopic: Rotating rod
+    concept: Emf between pivot and midpoint is one-quarter of the full value
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: ε = ½Bωr^2
+    tags: [rotating-rod, proportionality]
+    stem: A rod rotating about one end in a perpendicular uniform field has an emf of 8 V between its ends. The emf between the pivot and the midpoint of the rod is
+    options:
+      - 4 V
+      - 6 V
+      - 1 V
+      - 2 V
+    answer: 3
+    explanation: ε = ½Bωr^2 ∝ r^2, so for r = l/2 the emf is 8/4 = 2 V. Taking it proportional to r gives 4 V.
+  - id: phy-emi-152
+    topic: motional-emf
+    subtopic: Wheel with spokes
+    concept: Number of spokes does not affect the rim–axle emf
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: ε = ½Bωr^2
+    tags: [rotating-rod, trap, ncert-exercise]
+    stem: A wheel with 10 metal spokes, each 0.5 m long, rotates at 120 rev min^{-1} in a plane normal to a field of 0.4 G. The emf between the axle and the rim is about
+    options:
+      - 6.3 × 10^{-4} V
+      - 3.1 × 10^{-5} V
+      - 1.3 × 10^{-4} V
+      - 6.3 × 10^{-5} V
+    answer: 3
+    explanation: ω = 120 × 2π/60 = 4π rad s^{-1} and B = 0.4 × 10^{-4} T, so ε = ½ × 4 × 10^{-5} × 4π × 0.25 ≈ 6.3 × 10^{-5} V. The spokes are in parallel, so their number does not change the emf; multiplying by 10 gives the trap.
+  - id: phy-emi-153
+    topic: motional-emf
+    subtopic: Electric field inside a moving rod
+    concept: In equilibrium the electric field inside the rod is E = vB
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: E = vB
+    tags: [lorentz-force]
+    stem: A metal rod moves at 5 m s^{-1} perpendicular to its length and to a 0.2 T field. Once charges stop drifting along the rod, the electric field inside it is
+    options:
+      - 1 V m^{-1}
+      - 25 V m^{-1}
+      - 0.04 V m^{-1}
+      - zero
+    answer: 0
+    explanation: Charge builds up at the ends until the electric force balances the magnetic force, qE = qvB, so E = vB = 5 × 0.2 = 1 V m^{-1}. Saying zero confuses this with a conductor in electrostatics.
+  - id: phy-emi-154
+    topic: motional-emf
+    subtopic: Conditions for motional emf
+    concept: No emf when velocity is parallel to B
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [motional-emf]
+    stem: A straight wire moves in a uniform magnetic field. No emf is induced across it if its velocity is
+    options:
+      - perpendicular to both the wire and the field
+      - at 45° to the field and perpendicular to the wire
+      - parallel to the magnetic field
+      - perpendicular to the field and at 60° to the wire
+    answer: 2
+    explanation: The force q v × B is zero when v is parallel to B, so no charge separation or emf occurs. In the other cases v has a component perpendicular to B that pushes charges along the wire.
+  - id: phy-emi-155
+    topic: motional-emf
+    subtopic: Rotating rod
+    concept: NCERT rotating-rod example with frequency in rev/s
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ε = ½Bωl^2
+    tags: [rotating-rod, ncert-example]
+    stem: A 1 m metal rod is hinged at the centre of a circular metal ring of radius 1 m, with its other end sliding on the ring. It rotates at 50 rev s^{-1} in a 1 T field parallel to the axis. The emf between the centre and the ring is about
+    options:
+      - 25 V
+      - 157 V
+      - 314 V
+      - 50 V
+    answer: 1
+    explanation: ω = 2π × 50 = 100π rad s^{-1}, so ε = ½Bωl^2 = ½ × 1 × 100π × 1 ≈ 157 V. Forgetting the ½ gives 314 V; using 50 as ω gives 25 V.
+  - id: phy-emi-156
+    topic: motional-emf
+    subtopic: Rod pulled by a constant force
+    concept: Terminal speed under constant force v = FR/(B^2l^2)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: v_t = FR/(B^2l^2)
+    tags: [terminal-velocity]
+    stem: A rod of length 1 m on smooth horizontal rails joined by a 2 Ω resistor is pulled by a constant 1 N force in a 1 T vertical field. Its terminal speed is
+    options:
+      - 0.5 m s^{-1}
+      - 2 m s^{-1}
+      - 1 m s^{-1}
+      - 4 m s^{-1}
+    answer: 1
+    explanation: The rod speeds up until the drag B^2l^2v/R equals F, so v = FR/(B^2l^2) = 1 × 2/1 = 2 m s^{-1}.
+  - id: phy-emi-157
+    topic: motional-emf
+    subtopic: Loop moving out of a field
+    concept: Only the side cutting field lines develops emf
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [motional-emf]
+    stem: A rectangular loop PQRS is pulled out of a region of uniform field, moving perpendicular to side PQ. Side PQ is inside the field and side RS is already outside. Which side is the seat of the induced emf?
+    options:
+      - Side RS
+      - The two sides parallel to the velocity
+      - All four sides equally
+      - Side PQ
+    answer: 3
+    explanation: Only a conductor moving across field lines with a length perpendicular to v develops Blv. PQ is in the field and perpendicular to v; the sides parallel to v give no emf along their length and RS is outside the field.
+  - id: phy-emi-158
+    topic: motional-emf
+    subtopic: Force to maintain motion
+    concept: Required force is inversely proportional to resistance
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: F = B^2l^2v/R
+    tags: [proportionality]
+    stem: A rod is pulled at constant speed on rails in a uniform field. If the resistance of the circuit is doubled, keeping the speed the same, the force needed becomes
+    options:
+      - half
+      - double
+      - four times
+      - unchanged
+    answer: 0
+    explanation: F = B^2l^2v/R, so doubling R halves the current and hence halves the magnetic drag and the force needed. The emf itself is unchanged.
+  - id: phy-emi-159
+    topic: motional-emf
+    subtopic: Dependence on speed
+    concept: I ∝ v, F ∝ v, P ∝ v^2, emf independent of R
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [proportionality]
+    stem: |-
+      A rod is pulled at speed v along rails joined by a resistance R in a uniform field. Which statements are correct?
+      I. The induced current is proportional to v.
+      II. The magnetic force on the rod is proportional to v.
+      III. The power dissipated is proportional to v^2.
+      IV. The induced emf is proportional to R.
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, II and III only
+      - I and III only
+    answer: 2
+    explanation: ε = Blv, I = Blv/R ∝ v, F = BIl ∝ v and P = Fv ∝ v^2, so I, II and III are correct. The emf does not depend on R, so IV is wrong.
+  - id: phy-emi-160
+    topic: motional-emf
+    subtopic: Field inclined to the plane of motion
+    concept: Only the component of B perpendicular to both v and l contributes
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: ε = (B sin α) l v
+    tags: [effective-field]
+    stem: A rod of length 0.5 m lies along the y-axis and moves at 10 m s^{-1} along the x-axis. A 0.4 T field lies in the xz-plane at 30° to the x-axis. The emf across the rod is
+    options:
+      - 1.7 V
+      - 1.0 V
+      - 2.0 V
+      - 0.5 V
+    answer: 1
+    explanation: The component of B along x is parallel to v and does nothing; only B_z = 0.4 sin 30° = 0.2 T counts. ε = 0.2 × 0.5 × 10 = 1.0 V. Using cos 30° gives 1.7 V.
+  - id: phy-emi-161
+    topic: motional-emf
+    subtopic: Force on sliding rod
+    concept: Magnetic force on the rod opposes its velocity
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [lenz-law, force]
+    stem: A rod slides on rails in a uniform field and a current is induced in the circuit. The magnetic force on the rod due to this current is
+    options:
+      - opposite to its velocity
+      - along its velocity
+      - perpendicular to the plane of the rails
+      - zero, because the field is uniform
+    answer: 0
+    explanation: By Lenz's law the force BIl on the induced current opposes the motion that produces it, so it acts opposite to the velocity.
+  - id: phy-emi-162
+    topic: motional-emf
+    subtopic: Origin of motional emf
+    concept: Motional emf exists even without flux change through the rod itself
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [lorentz-force]
+    stem: |-
+      Assertion (A): An emf appears across the ends of a straight metal rod moving perpendicular to a steady uniform magnetic field, even when it is not part of a closed circuit.
+      Reason (R): The free electrons moving with the rod experience a magnetic Lorentz force along its length.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The Lorentz force q v × B pushes electrons towards one end, building up a potential difference Blv even in an isolated rod. R is the mechanism behind A.
+  - id: phy-emi-163
+    topic: motional-emf
+    subtopic: Emf in Earth's field
+    concept: Train axle cuts the vertical component of Earth's field
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: ε = B_V l v
+    tags: [earth-field]
+    stem: A train runs on a straight horizontal track at 20 m s^{-1}. Its axle is 1.5 m long and the vertical component of Earth's field there is 4 × 10^{-5} T. The emf between the ends of the axle is
+    options:
+      - 0.6 mV
+      - 12 mV
+      - 0.12 mV
+      - 1.2 mV
+    answer: 3
+    explanation: The horizontal axle moving horizontally cuts only the vertical field, so ε = B_V l v = 4 × 10^{-5} × 1.5 × 20 = 1.2 × 10^{-3} V = 1.2 mV.
+  - id: phy-emi-164
+    topic: motional-emf
+    subtopic: Rotating rod
+    concept: Emf of a rotating rod varies as the square of its length
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [graph, rotating-rod]
+    stem: Rods of different lengths l are rotated about one end at the same ω in the same field. The graph of the induced emf against l is
+    options:
+      - a straight line through the origin
+      - a rectangular hyperbola
+      - a parabola through the origin, opening upward
+      - a horizontal straight line
+    answer: 2
+    explanation: ε = ½Bωl^2 ∝ l^2, so the graph is a parabola through the origin. A straight line would describe emf against ω.
+  - id: phy-emi-165
+    topic: eddy-currents
+    subtopic: Applications of eddy currents
+    concept: Induction furnace melts metals by eddy current heating
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [eddy-currents, applications, ncert-line]
+    stem: An induction furnace heats and melts a metal mainly by
+    options:
+      - burning fuel around the metal
+      - eddy currents induced in the metal by a high-frequency magnetic field
+      - passing a large direct current through the metal
+      - infrared radiation from a hot filament
+    answer: 1
+    explanation: A high-frequency alternating current in a coil produces a rapidly changing field, which induces large eddy currents in the metal and heats it enough to melt it.
+  - id: phy-emi-166
+    topic: eddy-currents
+    subtopic: Magnetic braking
+    concept: Magnetic braking uses eddy currents in the rails or disc
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [eddy-currents, braking]
+    stem: In the magnetic braking of some electric trains, the braking force arises because
+    options:
+      - eddy currents induced by the moving magnets in the rails oppose the relative motion
+      - the electromagnets physically grip the rails
+      - the rails become magnetised and attract the train permanently
+      - friction increases when a current flows through the wheels
+    answer: 0
+    explanation: Strong electromagnets near the rails induce eddy currents whose fields oppose the relative motion (Lenz's law), giving a smooth braking force without contact.
+  - id: phy-emi-167
+    topic: eddy-currents
+    subtopic: Reducing eddy currents
+    concept: Laminations reduce but do not eliminate eddy currents
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [eddy-currents, lamination, trap]
+    stem: |-
+      Assertion (A): Laminating the iron core of a transformer eliminates eddy currents completely.
+      Reason (R): Insulated laminations increase the resistance of the paths available to eddy currents.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: Small eddy currents still flow within each thin lamination, so laminating reduces the loss but does not eliminate it; A is false. R correctly states how laminations help.
+  - id: phy-emi-168
+    topic: eddy-currents
+    subtopic: Properties of eddy currents
+    concept: Eddy currents circulate, heat, and can damp motion, but lower transformer efficiency
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [eddy-currents]
+    stem: |-
+      Consider these statements about eddy currents.
+      I. They flow in closed loops within the body of a conductor.
+      II. They produce heat in the conductor.
+      III. They can be used to damp the motion of a moving part.
+      IV. They increase the efficiency of a transformer.
+      Which statements are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I and IV only
+      - I, II and III only
+    answer: 3
+    explanation: Eddy currents circulate inside bulk conductors (I), dissipate energy as heat (II) and are used for damping (III). That heating is a loss, so they reduce transformer efficiency (IV is false).
+  - id: phy-emi-169
+    topic: eddy-currents
+    subtopic: Metal plate entering a field
+    concept: A metal plate entering a field region is slowed by eddy currents
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [eddy-currents, damping]
+    stem: A thick aluminium plate slides on a smooth table into the gap between the poles of a strong magnet. As it enters the field, it
+    options:
+      - speeds up because aluminium is paramagnetic
+      - continues at the same speed since the table is smooth
+      - slows down because eddy currents oppose its motion
+      - is pushed sideways out of the field
+    answer: 2
+    explanation: The changing flux through parts of the plate induces eddy currents whose magnetic force opposes the motion, so the plate slows. Aluminium's weak paramagnetism is negligible here.
+  - id: phy-emi-170
+    topic: eddy-currents
+    subtopic: Electromagnetic damping
+    concept: A dead-beat galvanometer settles immediately due to eddy current damping
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [eddy-currents, damping]
+    stem: A galvanometer is called dead-beat when
+    options:
+      - its coil has no resistance
+      - it cannot measure currents smaller than 1 mA
+      - its coil is not suspended
+      - its pointer comes to rest almost at once without oscillating
+    answer: 3
+    explanation: Strong electromagnetic damping by eddy currents in the metallic former makes the coil settle at its deflected position without swinging back and forth; such a galvanometer is called dead-beat.
+  - id: phy-emi-171
+    topic: eddy-currents
+    subtopic: Conditions for eddy currents
+    concept: Eddy currents need a conductor and a changing flux
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [eddy-currents, insulator]
+    stem: |-
+      Statement I: Eddy currents are induced in a metal sheet moving through a non-uniform magnetic field.
+      Statement II: Eddy currents are induced equally strongly in a glass sheet moving the same way.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: A metal sheet moving through a non-uniform field experiences changing flux and carries eddy currents, so Statement I is correct. Glass is an insulator with no free charges, so no appreciable eddy currents flow in it.
+  - id: phy-emi-172
+    topic: self-inductance
+    subtopic: Energy stored in an inductor
+    concept: Finding current from stored energy
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: U = ½LI^2
+    tags: [magnetic-energy]
+    stem: A 0.2 H inductor stores 0.9 J of energy. The current through it is
+    options:
+      - 9 A
+      - 3 A
+      - 4.5 A
+      - 1.5 A
+    answer: 1
+    explanation: I = √(2U/L) = √(2 × 0.9/0.2) = √9 = 3 A. Omitting the factor 2 gives about 2.1 A, and not taking the square root gives 9 A.
+  - id: phy-emi-173
+    topic: self-inductance
+    subtopic: Self-induced emf
+    concept: Reversing current changes it by twice its value
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: ε = L ΔI/Δt
+    tags: [self-induced-emf, trap]
+    stem: The current through a 0.1 H inductor is reversed from +2 A to −2 A in 0.05 s. The average self-induced emf is
+    options:
+      - 8 V
+      - zero
+      - 4 V
+      - 16 V
+    answer: 0
+    explanation: ΔI = −2 − 2 = −4 A, so |ε| = 0.1 × 4/0.05 = 8 V. Taking ΔI as 2 A gives 4 V; treating the reversal as no change gives zero.
+  - id: phy-emi-174
+    topic: self-inductance
+    subtopic: Inductance of a solenoid
+    concept: L ∝ 1/l for fixed N and A
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: L = μ_0 N^2 A/l
+    tags: [solenoid, proportionality]
+    stem: A solenoid is compressed to half its length, keeping its total number of turns and cross-section unchanged. Its self-inductance becomes
+    options:
+      - half
+      - unchanged
+      - twice
+      - four times
+    answer: 2
+    explanation: L = μ_0 N^2A/l, so with N and A fixed, halving l doubles L (the turns are now twice as closely wound).
+  - id: phy-emi-175
+    topic: self-inductance
+    subtopic: Inductance of a solenoid
+    concept: L = μ_0 n^2 A l with n per unit length
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: L = μ_0 n^2 A l
+    tags: [solenoid, proportionality]
+    stem: A solenoid is rewound so that its turns per unit length are doubled while its length is halved, with the same cross-section. Its self-inductance becomes
+    options:
+      - four times
+      - unchanged
+      - twice
+      - half
+    answer: 2
+    explanation: L = μ_0 n^2 A l, so doubling n multiplies L by 4 and halving l halves it, giving 2 times the original.
+  - id: phy-emi-176
+    topic: self-inductance
+    subtopic: Magnetic energy density
+    concept: Energy density in a 1 T field ≈ 4 × 10^5 J m^{-3}
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: u = B^2/2μ_0
+    tags: [energy-density]
+    stem: The magnetic energy density in a region of 1 T field in vacuum is about (μ_0 = 4π × 10^{-7} T m A^{-1})
+    options:
+      - 8 × 10^5 J m^{-3}
+      - 4 × 10^{-7} J m^{-3}
+      - 2 × 10^{-7} J m^{-3}
+      - 4 × 10^5 J m^{-3}
+    answer: 3
+    explanation: u = B^2/(2μ_0) = 1/(8π × 10^{-7}) ≈ 3.98 × 10^5 J m^{-3} ≈ 4 × 10^5 J m^{-3}. Omitting the 2 gives 8 × 10^5 J m^{-3}.
+  - id: phy-emi-177
+    topic: self-inductance
+    subtopic: Energy stored in an inductor
+    concept: Doubling current quadruples stored energy
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: U = ½LI^2
+    tags: [magnetic-energy, proportionality]
+    stem: If the current in an inductor is doubled, the magnetic energy stored in it becomes
+    options:
+      - four times
+      - twice
+      - half
+      - unchanged
+    answer: 0
+    explanation: U = ½LI^2 ∝ I^2, so doubling I makes U four times. L itself does not change with current.
+  - id: phy-emi-178
+    topic: self-inductance
+    subtopic: Spark at a switch
+    concept: A large self-induced emf on breaking an inductive circuit causes sparking
+    category: application
+    format: case
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [self-inductance, case]
+    stem: When a switch in a circuit containing a large electromagnet is opened, a spark often jumps across the switch contacts. This is because
+    options:
+      - the battery emf rises suddenly when the switch is opened
+      - the rapid fall in current induces a large emf in the coil that tries to keep the current flowing
+      - the electromagnet's resistance drops to zero
+      - charge stored on the switch contacts discharges
+    answer: 1
+    explanation: Breaking the circuit makes dI/dt very large, so the self-induced emf L dI/dt becomes very large and opposes the fall in current. It can ionise the air gap and drive a spark.
+  - id: phy-emi-179
+    topic: self-inductance
+    subtopic: Energy stored in an inductor
+    concept: U = ½(NΦ)I in terms of flux linkage
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: U = ½NΦI
+    tags: [magnetic-energy, flux-linkage]
+    stem: A current of 2 A in a coil produces a total flux linkage of 0.4 Wb. The energy stored in the coil is
+    options:
+      - 0.8 J
+      - 0.2 J
+      - 0.4 J
+      - 1.6 J
+    answer: 2
+    explanation: L = NΦ/I = 0.4/2 = 0.2 H, so U = ½LI^2 = ½ × 0.2 × 4 = 0.4 J, which is also ½NΦI. Omitting the ½ gives 0.8 J.
+  - id: phy-emi-180
+    topic: self-inductance
+    subtopic: Current–time and emf–time graphs
+    concept: Linear current rise gives constant emf; constant current gives zero emf
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph, self-induced-emf]
+    stem: The current in an ideal inductor rises linearly from 0 to 4 A in 2 s and then stays at 4 A. The self-induced emf across it
+    options:
+      - rises linearly for 2 s and then stays constant
+      - is constant for 2 s and then zero
+      - is zero for 2 s and then constant
+      - is constant throughout
+    answer: 1
+    explanation: ε = L dI/dt, so a constant slope gives a constant emf for the first 2 s. Once the current is steady, dI/dt = 0 and the emf is zero.
+  - id: phy-emi-181
+    topic: self-inductance
+    subtopic: Inductance of a solenoid
+    concept: L ∝ r^2 through the area
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [solenoid, proportionality]
+    stem: Two solenoids have the same length and number of turns, but the radius of the second is twice that of the first. The ratio L_2/L_1 is
+    options:
+      - "2"
+      - 1/2
+      - "8"
+      - "4"
+    answer: 3
+    explanation: L = μ_0N^2A/l with A = πr^2, so L ∝ r^2 and doubling the radius gives L_2/L_1 = 4.
+  - id: phy-emi-182
+    topic: self-inductance
+    subtopic: Voltage across an ideal inductor
+    concept: A zero-resistance coil can have a voltage across it while the current changes
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [self-induced-emf]
+    stem: |-
+      Assertion (A): There can be a non-zero potential difference across a coil of zero resistance.
+      Reason (R): A changing current through a coil induces an emf of magnitude L dI/dt across it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: With zero resistance there is no IR drop, but while the current changes the self-induced emf L dI/dt appears across the coil. R explains A.
+  - id: phy-emi-183
+    topic: self-inductance
+    subtopic: Non-inductive winding
+    concept: Bifilar winding makes self-inductance nearly zero
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [bifilar-winding]
+    stem: Standard resistance coils are wound by doubling the wire back on itself before winding it (bifilar winding). This is done to
+    options:
+      - make the self-inductance nearly zero
+      - double the resistance
+      - increase the magnetic field inside the coil
+      - increase the heat dissipated
+    answer: 0
+    explanation: In a bifilar winding, adjacent wires carry equal currents in opposite directions, so their fields cancel and the flux linkage, hence L, is nearly zero. The resistance is set by the wire length, not by the winding style.
+  - id: phy-emi-184
+    topic: self-inductance
+    subtopic: Rate of energy storage
+    concept: Power into an inductor P = LI dI/dt
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: P = LI dI/dt
+    tags: [magnetic-energy, calculus]
+    stem: At an instant, a 2 H ideal inductor carries 3 A and the current is increasing at 4 A s^{-1}. The rate at which energy is being stored in it is
+    options:
+      - 12 W
+      - 8 W
+      - 24 W
+      - 36 W
+    answer: 2
+    explanation: U = ½LI^2, so dU/dt = LI dI/dt = 2 × 3 × 4 = 24 W. Using ½LI dI/dt gives 12 W.
+  - id: phy-emi-185
+    topic: self-inductance
+    subtopic: Magnetic energy density
+    concept: Total energy = energy density × volume
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: U = (B^2/2μ_0)V
+    tags: [energy-density, multi-concept]
+    stem: The field inside a solenoid is a uniform 0.2 T over a volume of 10^{-3} m^3, and negligible outside. The magnetic energy stored is about
+    options:
+      - 32 J
+      - 16 J
+      - 1.6 J
+      - 160 J
+    answer: 1
+    explanation: u = B^2/(2μ_0) = 0.04/(8π × 10^{-7}) ≈ 1.6 × 10^4 J m^{-3}, so U = uV ≈ 1.6 × 10^4 × 10^{-3} ≈ 16 J. Dropping the 2 gives 32 J.
+  - id: phy-emi-186
+    topic: mutual-inductance
+    subtopic: Mutually induced emf
+    concept: M = ε_2/(dI_1/dt)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: M = ε_2/(dI_1/dt)
+    tags: [mutual-emf]
+    stem: An emf of 1.5 V is induced in a coil when the current in a neighbouring coil changes at 50 A s^{-1}. The mutual inductance of the pair is
+    options:
+      - 75 mH
+      - 3 mH
+      - 0.3 H
+      - 30 mH
+    answer: 3
+    explanation: M = ε/(dI/dt) = 1.5/50 = 0.03 H = 30 mH. Multiplying instead gives 75 H, not a listed option; 3 mH misplaces a decimal.
+  - id: phy-emi-187
+    topic: mutual-inductance
+    subtopic: Coefficient of coupling
+    concept: Perfect coupling gives M = √(L_1L_2)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: M = √(L_1L_2)
+    tags: [coupling-coefficient]
+    stem: Two perfectly coupled coils have self-inductances 0.4 H and 0.9 H. Their mutual inductance is
+    options:
+      - 0.6 H
+      - 0.36 H
+      - 0.65 H
+      - 1.3 H
+    answer: 0
+    explanation: For k = 1, M = √(L_1L_2) = √0.36 = 0.6 H. 0.36 H forgets the square root and 0.65 H is the arithmetic mean.
+  - id: phy-emi-188
+    topic: mutual-inductance
+    subtopic: Coaxial solenoids
+    concept: M ∝ N_1N_2
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: M = μ_0 N_1 N_2 A/l
+    tags: [proportionality]
+    stem: The numbers of turns of both coaxial solenoids are doubled, with dimensions unchanged. Their mutual inductance becomes
+    options:
+      - twice
+      - eight times
+      - unchanged
+      - four times
+    answer: 3
+    explanation: M = μ_0N_1N_2A/l ∝ N_1N_2, so doubling both gives 2 × 2 = 4 times.
+  - id: phy-emi-189
+    topic: mutual-inductance
+    subtopic: Small loop at the centre of a large loop
+    concept: M = μ_0πr^2/(2R) for a small coplanar concentric loop
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: M = μ_0πr^2/(2R)
+    tags: [concentric-loops, ncert-exercise]
+    stem: A small loop of radius r lies at the centre of, and in the plane of, a large loop of radius R (r ≪ R). Their mutual inductance is
+    options:
+      - μ_0π(r + R)^2/(2R)
+      - μ_0πr^2/(2R)
+      - μ_0r/(2R)
+      - μ_0πr^2/R
+    answer: 1
+    explanation: A current I in the large loop gives B = μ_0I/(2R) at its centre, nearly uniform over the small loop, so Φ = μ_0Iπr^2/(2R) and M = Φ/I = μ_0πr^2/(2R).
+  - id: phy-emi-190
+    topic: mutual-inductance
+    subtopic: Small loop at the centre of a large loop
+    concept: Numerical value of M for concentric loops
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: M = μ_0πr^2/(2R)
+    tags: [concentric-loops]
+    stem: A loop of radius 1 cm lies at the centre of a coplanar loop of radius 50 cm. Their mutual inductance is about (μ_0 = 4π × 10^{-7} T m A^{-1})
+    options:
+      - 3.9 × 10^{-10} H
+      - 3.9 × 10^{-8} H
+      - 7.9 × 10^{-10} H
+      - 2.0 × 10^{-10} H
+    answer: 0
+    explanation: M = μ_0πr^2/(2R) = 4π × 10^{-7} × π × 10^{-4}/(2 × 0.5) = 4π^2 × 10^{-11} ≈ 3.9 × 10^{-10} H. Forgetting the 2 in the denominator gives 7.9 × 10^{-10} H.
+  - id: phy-emi-191
+    topic: mutual-inductance
+    subtopic: Properties of mutual inductance
+    concept: M is reciprocal, increases with iron, and never exceeds √(L_1L_2)
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [mutual-inductance, reciprocity]
+    stem: |-
+      Consider these statements about the mutual inductance M of two coils with self-inductances L_1 and L_2.
+      I. M depends on the current in the primary coil.
+      II. M_12 = M_21.
+      III. Inserting a soft iron core through both coils increases M.
+      IV. M cannot exceed √(L_1L_2).
+      Which statements are correct?
+    options:
+      - I and II only
+      - II and III only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 2
+    explanation: M depends on geometry and medium, not on current (I false). It is reciprocal (II), increases with a high-permeability core (III), and M = k√(L_1L_2) with k ≤ 1 (IV).
+  - id: phy-emi-192
+    topic: mutual-inductance
+    subtopic: Sinusoidal primary current
+    concept: Peak secondary emf = M I_0 ω
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: ε_0 = M I_0 ω
+    tags: [mutual-emf, calculus]
+    stem: The current in a primary coil is I = 5 sin(100t) A. If the mutual inductance is 0.02 H, the peak emf induced in the secondary is
+    options:
+      - 10 V
+      - 0.1 V
+      - 1 V
+      - 100 V
+    answer: 0
+    explanation: ε = M dI/dt = 0.02 × 5 × 100 cos(100t), so ε_0 = 10 V. Using M I_0 alone gives 0.1 V.
+  - id: phy-emi-193
+    topic: mutual-inductance
+    subtopic: Current–time and emf–time graphs
+    concept: Triangular primary current gives square-wave secondary emf
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, mutual-emf]
+    stem: The current in a primary coil varies as a symmetric triangular wave (rising and falling linearly in turn). The emf induced in the secondary is
+    options:
+      - also a triangular wave
+      - a sine wave
+      - a square wave, alternating between equal positive and negative values
+      - zero throughout
+    answer: 2
+    explanation: ε_2 = −M dI_1/dt. The slope is constant and positive on each rising part and constant and negative on each falling part, so the emf is a square wave.
+  - id: phy-emi-194
+    topic: mutual-inductance
+    subtopic: Applications
+    concept: Transformers work on mutual induction
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [applications]
+    stem: A transformer works on the principle of
+    options:
+      - self-induction
+      - mutual induction
+      - electrostatic induction
+      - the heating effect of current
+    answer: 1
+    explanation: A changing current in the primary changes the flux linked with the secondary, inducing an emf in it. This is mutual induction.
+  - id: phy-emi-195
+    topic: mutual-inductance
+    subtopic: Coefficient of coupling
+    concept: k ≤ 1; perfect coupling gives M = √(L_1L_2)
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [coupling-coefficient, trap]
+    stem: |-
+      Statement I: For two perfectly coupled coils, the mutual inductance is M = √(L_1L_2).
+      Statement II: With a soft iron core, the coefficient of coupling between two coils can exceed 1.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: With all flux of one coil linking the other (k = 1), M = √(L_1L_2), so Statement I is correct. The coefficient of coupling k = M/√(L_1L_2) can never exceed 1; an iron core raises L_1, L_2 and M together.
+  - id: phy-emi-196
+    topic: ac-generator
+    subtopic: Peak emf of a generator
+    concept: ε_0 = NBA(2πf) with rotation given in rev/s
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: ε_0 = NBA · 2πf
+    tags: [ac-generator]
+    stem: A 100-turn coil of area 0.1 m^2 rotates at 50 rev s^{-1} in a 0.1 T field. The peak emf is about
+    options:
+      - 50 V
+      - 157 V
+      - 628 V
+      - 314 V
+    answer: 3
+    explanation: ω = 2π × 50 = 100π rad s^{-1}, so ε_0 = NBAω = 100 × 0.1 × 0.1 × 100π ≈ 314 V. Using 50 as ω gives 50 V.
+  - id: phy-emi-197
+    topic: ac-generator
+    subtopic: Instantaneous emf
+    concept: ε = ε_0 sin ωt with angle measured from the zero-emf position
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: ε = ε_0 sin ωt
+    tags: [ac-generator]
+    stem: A generator coil has peak emf 200 V. Its emf when the coil has turned 30° from the position where its plane is perpendicular to the field is
+    options:
+      - 173 V
+      - 200 V
+      - zero
+      - 100 V
+    answer: 3
+    explanation: With the plane perpendicular to B the emf is zero, so after turning 30°, ε = ε_0 sin 30° = 100 V. Using cos 30° gives 173 V.
+  - id: phy-emi-198
+    topic: ac-generator
+    subtopic: Parts of a generator
+    concept: Slip rings and brushes connect the rotating coil to the external circuit
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ac-generator, parts]
+    stem: In an AC generator, the rotating coil is connected to the external circuit through
+    options:
+      - a split-ring commutator
+      - a fixed soldered joint
+      - slip rings and carbon brushes
+      - a pair of diodes
+    answer: 2
+    explanation: Slip rings rotate with the coil and carbon brushes press on them, passing the alternating emf to the external circuit. A split-ring commutator is used in DC motors and generators.
+  - id: phy-emi-199
+    topic: ac-generator
+    subtopic: Flux and emf relation
+    concept: Flux and emf in a generator are 90° out of phase
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [graph, phase]
+    stem: For a coil rotating uniformly in a uniform field, the flux through the coil and the emf induced in it vary with time such that
+    options:
+      - the emf is maximum when the flux is zero, a phase difference of 90°
+      - both are maximum at the same instants
+      - the emf is zero when the flux is zero
+      - they differ in phase by 180°
+    answer: 0
+    explanation: Φ = NBA cos ωt and ε = NBAω sin ωt, so they differ in phase by 90°. The emf peaks when the flux passes through zero.
+  - id: phy-emi-200
+    topic: ac-generator
+    subtopic: Factors affecting emf
+    concept: Peak emf ∝ N, A, B and ω; frequency depends only on ω
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [ac-generator, proportionality]
+    stem: |-
+      For an AC generator, which statements are correct?
+      I. The peak emf is proportional to the angular speed of the coil.
+      II. The peak emf is proportional to the number of turns.
+      III. The frequency of the emf is proportional to the magnetic field.
+      IV. The peak emf is proportional to the area of the coil.
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: ε_0 = NBAω, so I, II and IV are true. The frequency is ω/2π and depends only on the rotation rate, not on B, so III is false.

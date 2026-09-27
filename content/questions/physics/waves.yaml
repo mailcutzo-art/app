@@ -1,0 +1,4834 @@
+subject: physics
+chapter:
+  slug: waves
+  name: Waves
+  order: 14
+  classes: [11]
+  topics:
+    - slug: wave-types
+      name: Wave motion, transverse and longitudinal waves
+    - slug: progressive-wave
+      name: Displacement relation in a progressive wave
+    - slug: speed-on-string
+      name: Speed of a transverse wave on a string
+    - slug: speed-of-sound
+      name: Speed of longitudinal (sound) waves
+    - slug: superposition
+      name: Principle of superposition and interference
+    - slug: reflection
+      name: Reflection of waves
+    - slug: strings-standing
+      name: Standing waves and normal modes of strings
+    - slug: organ-pipes
+      name: Standing waves in air columns and organ pipes
+    - slug: beats
+      name: Beats
+questions:
+  - id: phy-wav-001
+    topic: wave-types
+    subtopic: Nature of sound waves
+    concept: Sound in air is a longitudinal wave
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [longitudinal, ncert-line]
+    stem: "Sound waves travelling through air are:"
+    options:
+      - Transverse mechanical waves
+      - Longitudinal mechanical waves
+      - Electromagnetic waves
+      - Transverse non-mechanical waves
+    answer: 1
+    explanation: "In sound waves in air the particles oscillate back and forth along the direction of propagation, producing compressions and rarefactions, so the wave is longitudinal and needs a material medium (mechanical). Air cannot sustain shear stress, so transverse waves cannot travel through it."
+
+  - id: phy-wav-002
+    topic: wave-types
+    subtopic: Media for transverse waves
+    concept: Transverse mechanical waves need shear rigidity, so they cannot travel in gases
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [transverse, trap]
+    stem: Transverse mechanical waves cannot propagate through the bulk of a gas because a gas
+    options:
+      - has a very low density
+      - has no bulk modulus
+      - cannot sustain shearing stress
+      - has too high a temperature
+    answer: 2
+    explanation: "Transverse mechanical waves involve shear deformation, which needs a restoring force against shear, i.e. a shear modulus. Fluids (gases and liquids) have no shear modulus, so only longitudinal waves (which rely on the bulk modulus) travel through them. A gas certainly has a bulk modulus, which is why sound travels in it."
+
+  - id: phy-wav-003
+    topic: wave-types
+    subtopic: What a wave transports
+    concept: A wave transports energy and momentum, not the medium itself
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [wave-motion, misconception]
+    stem: Which statement about a mechanical wave travelling through a medium is correct?
+    options:
+      - The particles of the medium travel along with the wave to the far end
+      - Energy is transferred but the particles only oscillate about their mean positions
+      - Neither energy nor momentum is transferred by the wave
+      - The wave can travel only if the medium itself flows
+    answer: 1
+    explanation: "In a wave, a disturbance (pattern) moves while each particle of the medium merely oscillates about its equilibrium position. Energy and momentum are carried along by the wave, but there is no net transport of matter."
+
+  - id: phy-wav-004
+    topic: wave-types
+    subtopic: Examples of wave types
+    concept: Classifying common waves as transverse or longitudinal
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [classification, match]
+    stem: |-
+      Match the wave in List I with its nature in List II.
+      List I: P. Wave on a plucked guitar string  Q. Sound in water  R. Light in vacuum  S. Primary (P) seismic wave
+      List II: 1. Longitudinal mechanical  2. Transverse mechanical  3. Transverse electromagnetic  4. Longitudinal mechanical in solid rock
+    options:
+      - P-2, Q-1, R-3, S-4
+      - P-1, Q-2, R-3, S-4
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-1, R-2, S-4
+    answer: 0
+    explanation: "A plucked string carries transverse mechanical waves; sound in water is longitudinal; light is a transverse electromagnetic wave needing no medium; P-waves in earthquakes are longitudinal waves travelling through rock. Confusing sound in water with a transverse wave is the common slip: liquids cannot sustain shear."
+
+  - id: phy-wav-005
+    topic: wave-types
+    subtopic: Waves in solids
+    concept: Solids support both transverse and longitudinal waves
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [solids, ncert-line]
+    stem: A steel rod can carry
+    options:
+      - only longitudinal waves
+      - only transverse waves
+      - both transverse and longitudinal waves
+      - neither type, since it is rigid
+    answer: 2
+    explanation: "Solids have both a bulk (or Young's) modulus and a shear modulus, so they can sustain compressional and shear strain. Hence both longitudinal and transverse waves travel through solids."
+
+  - id: phy-wav-006
+    topic: wave-types
+    subtopic: Compressions and rarefactions
+    concept: Distance between successive compressions equals one wavelength
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: v = fλ
+    tags: [longitudinal, wavelength]
+    stem: A sound wave of frequency 500 Hz travels in air at 340 m s^{-1}. The distance between a compression and the nearest rarefaction is
+    options:
+      - 0.68 m
+      - 0.34 m
+      - 0.17 m
+      - 1.36 m
+    answer: 1
+    explanation: "λ = v/f = 340/500 = 0.68 m. Successive compressions are λ apart, and a compression and the adjacent rarefaction are λ/2 = 0.34 m apart. Picking 0.68 m confuses compression–compression with compression–rarefaction."
+
+  - id: phy-wav-007
+    topic: wave-types
+    subtopic: Water surface waves
+    concept: Water surface waves involve both transverse and longitudinal motion
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [water-waves, ncert-line]
+    stem: The ripples on the surface of water are, in terms of particle motion,
+    options:
+      - purely longitudinal
+      - purely transverse
+      - a combination of transverse and longitudinal motion
+      - electromagnetic
+    answer: 2
+    explanation: "NCERT notes that in water surface waves the water particles move in roughly circular or elliptical paths, i.e. the motion has both transverse and longitudinal components. Calling them purely transverse is a common oversimplification."
+
+  - id: phy-wav-008
+    topic: wave-types
+    subtopic: Mechanical vs electromagnetic
+    concept: Mechanical waves need a material medium
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [mechanical-waves]
+    stem: |-
+      Assertion (A): Sound cannot be heard on the Moon's surface through its (almost absent) atmosphere.
+      Reason (R): Sound is a mechanical wave and requires a material medium for propagation.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Sound propagates through the elasticity and inertia of a material medium. With practically no air on the Moon there is nothing to carry the compressions and rarefactions, so R correctly explains A."
+
+  - id: phy-wav-009
+    topic: wave-types
+    subtopic: Properties of the medium
+    concept: Elasticity and inertia of a medium are both needed for mechanical wave propagation
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [elasticity, inertia]
+    stem: For a mechanical wave to propagate, the medium must possess
+    options:
+      - elasticity only
+      - inertia only
+      - both elasticity and inertia
+      - neither, only a source is needed
+    answer: 2
+    explanation: "Elasticity provides the restoring force that pulls a displaced element back, and inertia (mass) makes it overshoot and pass the disturbance on. Both are required, which is why wave speed depends on an elastic modulus and a density."
+
+  - id: phy-wav-010
+    topic: wave-types
+    subtopic: Longitudinal wave description
+    concept: In a longitudinal wave, pressure variation is maximum where displacement is zero
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [pressure-wave, trap, multi-concept]
+    stem: |-
+      Statement I: In a sound wave, the points of maximum excess pressure (compressions) are the points where particle displacement is zero.
+      Statement II: Pressure and displacement variations in a sound wave are in phase with each other.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Excess pressure Δp = −B ∂y/∂x, so pressure is extreme where the displacement curve is steepest, i.e. where displacement is zero. The pressure wave is therefore 90° (π/2) out of phase with the displacement wave, making Statement II false."
+
+  - id: phy-wav-011
+    topic: progressive-wave
+    subtopic: Reading wave parameters
+    concept: v = ω/k from y = A sin(kx − ωt)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: v = ω/k
+    tags: [wave-equation, speed]
+    stem: "A wave is y = 0.02 sin(4πx − 200πt), with x, y in metres and t in seconds. Its speed is"
+    options:
+      - 50 m s^{-1}
+      - 800 m s^{-1}
+      - 25 m s^{-1}
+      - 100 m s^{-1}
+    answer: 0
+    explanation: "Comparing with y = A sin(kx − ωt): k = 4π m^{-1}, ω = 200π rad s^{-1}. v = ω/k = 200π/4π = 50 m s^{-1}. Multiplying instead of dividing gives the wrong 800 m s^{-1}."
+
+  - id: phy-wav-012
+    topic: progressive-wave
+    subtopic: Reading wave parameters
+    concept: λ = 2π/k
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: λ = 2π/k
+    tags: [wavelength]
+    stem: "For y = 0.02 sin(4πx − 200πt) in SI units, the wavelength is"
+    options:
+      - 4 m
+      - 2 m
+      - 0.25 m
+      - 0.5 m
+    answer: 3
+    explanation: "k = 2π/λ = 4π, so λ = 2π/4π = 0.5 m. Taking λ = 1/k-coefficient (0.25 m) forgets the factor 2π."
+
+  - id: phy-wav-013
+    topic: progressive-wave
+    subtopic: Direction of propagation
+    concept: kx + ωt signs give propagation along −x
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [direction, trap]
+    stem: "The wave y = A sin(kx + ωt) travels"
+    options:
+      - along +x
+      - along −x
+      - along +y
+      - nowhere; it is a standing wave
+    answer: 1
+    explanation: "A phase of the form (kx + ωt) stays constant when x decreases as t increases, i.e. the pattern moves towards −x. With (kx − ωt) the wave moves along +x."
+
+  - id: phy-wav-014
+    topic: progressive-wave
+    subtopic: Particle velocity
+    concept: Maximum particle speed is Aω
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: v_{max} = Aω
+    tags: [particle-velocity]
+    stem: "For y = 0.05 sin(2x − 10t) (SI units), the maximum speed of a particle of the medium is"
+    options:
+      - 5 m s^{-1}
+      - 0.1 m s^{-1}
+      - 0.5 m s^{-1}
+      - 0.25 m s^{-1}
+    answer: 2
+    explanation: "Particle velocity ∂y/∂t = −Aω cos(kx − ωt), so its maximum is Aω = 0.05 × 10 = 0.5 m s^{-1}. The wave speed ω/k = 5 m s^{-1} is a different quantity; confusing the two is a classic trap."
+
+  - id: phy-wav-015
+    topic: progressive-wave
+    subtopic: Particle vs wave velocity
+    concept: Ratio of maximum particle speed to wave speed equals kA
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: v_{p,max}/v = Aω/(ω/k) = kA
+    tags: [particle-velocity, wave-speed]
+    stem: "A progressive wave has amplitude 2 cm and wavelength 4π cm. The ratio of maximum particle speed to wave speed is"
+    options:
+      - "1"
+      - "2"
+      - "0.5"
+      - "π"
+    answer: 0
+    explanation: "v_{p,max}/v = Aω/(ω/k) = kA = (2π/λ)A = (2π/4π) × 2 = 1. Note the answer is independent of frequency."
+
+  - id: phy-wav-016
+    topic: progressive-wave
+    subtopic: Phase difference and path difference
+    concept: Δφ = (2π/λ)Δx
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: Δφ = (2π/λ)Δx
+    tags: [phase-difference]
+    stem: Two points on a wave of wavelength 60 cm are 10 cm apart along the direction of propagation. Their phase difference is
+    options:
+      - π/6
+      - π/2
+      - π/3
+      - 2π/3
+    answer: 2
+    explanation: "Δφ = (2π/λ)Δx = (2π/60) × 10 = π/3. Using Δφ = Δx/λ without 2π gives 1/6 and tempts π/6."
+
+  - id: phy-wav-017
+    topic: progressive-wave
+    subtopic: Frequency and period
+    concept: f = ω/2π and T = 1/f
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: T = 2π/ω
+    tags: [period]
+    stem: "The time period of the wave y = 3 sin(0.5x − 100πt) (SI units) is"
+    options:
+      - 0.01 s
+      - 0.02 s
+      - 50 s
+      - 0.05 s
+    answer: 1
+    explanation: "ω = 100π rad s^{-1}, so T = 2π/ω = 2π/100π = 0.02 s (frequency 50 Hz). The 50 s option inverts the relation."
+
+  - id: phy-wav-018
+    topic: progressive-wave
+    subtopic: Wave function forms
+    concept: A travelling wave must be a function of (x − vt) or (x + vt)
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [wave-function, trap]
+    stem: Which of the following functions (a, b positive constants) can represent a travelling wave?
+    options:
+      - y = a sin(bx) cos(bt)
+      - y = a e^{−(x − 3t)^2}
+      - y = a x t
+      - y = a (x^2 − t^2)
+    answer: 1
+    explanation: "A travelling wave keeps its shape and moves, so y must depend on x and t only through the combination (x ± vt). a e^{−(x − 3t)^2} is a Gaussian pulse moving along +x at 3 units. sin(bx) cos(bt) is a standing wave, and xt or x^2 − t^2 are not functions of x ± vt alone."
+
+  - id: phy-wav-019
+    topic: progressive-wave
+    subtopic: Particle velocity and slope
+    concept: Particle velocity = −v × (slope of wave)
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: ∂y/∂t = −v ∂y/∂x
+    tags: [particle-velocity, slope]
+    stem: A sinusoidal wave travels along +x on a string. At an instant, a particle sits where the string has its maximum positive slope (∂y/∂x largest and positive). The particle is
+    options:
+      - momentarily at rest at the crest
+      - moving upward with maximum speed
+      - moving downward with maximum speed
+      - moving along +x with the wave speed
+    answer: 2
+    explanation: "For a wave moving along +x, ∂y/∂t = −v ∂y/∂x. Maximum positive slope gives maximum negative particle velocity, so the particle moves downward at its fastest (it is at the mean position). Particles never move along x with the wave speed in a transverse wave."
+
+  - id: phy-wav-020
+    topic: progressive-wave
+    subtopic: Wave parameters
+    concept: Definitions of angular wave number and angular frequency
+    category: factual
+    format: match
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [definitions]
+    stem: |-
+      For y = A sin(kx − ωt + φ), match List I with List II.
+      List I: P. k  Q. ω  R. φ  S. kx − ωt + φ
+      List II: 1. Initial phase angle  2. Angular wave number  3. Phase  4. Angular frequency
+    options:
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-4, R-3, S-1
+      - P-2, Q-4, R-1, S-3
+      - P-1, Q-4, R-2, S-3
+    answer: 2
+    explanation: "k = 2π/λ is the angular wave number, ω = 2π/T the angular frequency, φ the initial phase angle (phase at x = 0, t = 0), and the full argument kx − ωt + φ is the phase of the wave."
+
+  - id: phy-wav-021
+    topic: progressive-wave
+    subtopic: Units of wave parameters
+    concept: SI unit of angular wave number is rad m^{-1}
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units, ncert-line]
+    stem: The SI unit of angular wave number k is
+    options:
+      - rad s^{-1}
+      - m
+      - m s^{-1}
+      - rad m^{-1}
+    answer: 3
+    explanation: "k = 2π/λ has units of radian per metre (rad m^{-1}). rad s^{-1} is the unit of angular frequency ω."
+
+  - id: phy-wav-022
+    topic: progressive-wave
+    subtopic: Writing the wave equation
+    concept: Constructing y(x,t) from A, λ, f and direction
+    category: application
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    formula: y = A sin(2πx/λ − 2πft)
+    tags: [wave-equation]
+    stem: A wave of amplitude 0.1 m, wavelength 2 m and frequency 5 Hz travels along −x. With y = 0 at x = 0, t = 0 and SI units, its equation can be
+    options:
+      - y = 0.1 sin(πx − 10πt)
+      - y = 0.1 sin(πx + 10πt)
+      - y = 0.1 sin(2πx + 5πt)
+      - y = 0.1 sin(0.5πx + 10πt)
+    answer: 1
+    explanation: "k = 2π/λ = π m^{-1}, ω = 2πf = 10π rad s^{-1}. Motion along −x needs (kx + ωt), so y = 0.1 sin(πx + 10πt). The first option has the right numbers but travels along +x."
+
+  - id: phy-wav-023
+    topic: progressive-wave
+    subtopic: Particle acceleration
+    concept: Maximum particle acceleration is Aω^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: a_{max} = Aω^2
+    tags: [particle-acceleration]
+    stem: "For y = 0.01 sin(20x − 100t) (SI), the maximum acceleration of a medium particle is"
+    options:
+      - 1 m s^{-2}
+      - 100 m s^{-2}
+      - 10 m s^{-2}
+      - 4 m s^{-2}
+    answer: 1
+    explanation: "Each particle executes SHM with ω = 100 rad s^{-1}, so a_{max} = Aω^2 = 0.01 × 10^4 = 100 m s^{-2}. Aω = 1 m s^{-1} is the maximum velocity, not acceleration."
+
+  - id: phy-wav-024
+    topic: progressive-wave
+    subtopic: Phase difference in time
+    concept: Phase difference at one point over time Δt is ωΔt
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: Δφ = 2πΔt/T
+    tags: [phase-difference, time]
+    stem: A wave has frequency 50 Hz. The phase change of a given particle in 5 ms is
+    options:
+      - π
+      - π/4
+      - 2π
+      - π/2
+    answer: 3
+    explanation: "T = 1/50 = 20 ms. Δφ = 2π(Δt/T) = 2π × 5/20 = π/2."
+
+  - id: phy-wav-025
+    topic: progressive-wave
+    subtopic: Graph of a wave snapshot
+    concept: A y–x snapshot gives λ and A; a y–t graph gives T
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [graph, snapshot]
+    stem: For a sinusoidal wave, a graph of displacement y against position x at a fixed instant and a graph of y against time t at a fixed x are drawn. The horizontal repeat distance of the first graph and the repeat interval of the second graph give respectively
+    options:
+      - wavelength and time period
+      - time period and wavelength
+      - amplitude and frequency
+      - wave speed and angular frequency
+    answer: 0
+    explanation: "A snapshot (y vs x at fixed t) repeats after one wavelength λ; the history of one particle (y vs t at fixed x) repeats after one period T. Their ratio λ/T gives the wave speed."
+
+  - id: phy-wav-026
+    topic: speed-on-string
+    subtopic: Formula
+    concept: v = √(T/μ) on a stretched string
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: v = √(T/μ)
+    tags: [string-speed]
+    stem: A string with linear mass density 0.01 kg m^{-1} is under a tension of 100 N. The speed of transverse waves on it is
+    options:
+      - 10 m s^{-1}
+      - 1000 m s^{-1}
+      - 100 m s^{-1}
+      - 10^4 m s^{-1}
+    answer: 2
+    explanation: "v = √(T/μ) = √(100/0.01) = √10^4 = 100 m s^{-1}. Forgetting the square root gives 10^4 m s^{-1}."
+
+  - id: phy-wav-027
+    topic: speed-on-string
+    subtopic: Linear mass density from mass and length
+    concept: μ = m/L before using v = √(T/μ)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: v = √(TL/m)
+    tags: [string-speed, units]
+    stem: A 50 cm long string of mass 5 g is stretched with a tension of 64 N. The speed of transverse waves on it is
+    options:
+      - 8 m s^{-1}
+      - 80 m s^{-1}
+      - 64 m s^{-1}
+      - 800 m s^{-1}
+    answer: 1
+    explanation: "μ = 0.005 kg / 0.5 m = 0.01 kg m^{-1}. v = √(64/0.01) = √6400 = 80 m s^{-1}. Using grams or centimetres without converting gives the distractors."
+
+  - id: phy-wav-028
+    topic: speed-on-string
+    subtopic: Effect of tension
+    concept: v ∝ √T for a given string
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: v ∝ √T
+    tags: [proportionality]
+    stem: The tension in a stretched string is increased to four times its original value. The speed of transverse waves on it becomes
+    options:
+      - four times
+      - half
+      - sixteen times
+      - twice
+    answer: 3
+    explanation: "v = √(T/μ) ∝ √T, so quadrupling T doubles v. Proportionality with T itself would wrongly give four times."
+
+  - id: phy-wav-029
+    topic: speed-on-string
+    subtopic: Dependence on wire properties
+    concept: For a wire, μ = ρA, so v = √(T/ρπr^2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: v = √(T/(ρπr^2))
+    tags: [radius, density, multi-concept]
+    stem: "Two wires of the same material under the same tension have radii r and 2r. The ratio of wave speeds v_1 : v_2 on them is"
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "4 : 1"
+      - "√2 : 1"
+    answer: 1
+    explanation: "μ = ρπr^2, so v = √(T/ρπr^2) ∝ 1/r. Hence v_1/v_2 = 2r/r = 2, i.e. 2 : 1. The thinner wire carries faster waves."
+
+  - id: phy-wav-030
+    topic: speed-on-string
+    subtopic: Dimensional check
+    concept: √(T/μ) has dimensions of speed
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [dimensions]
+    stem: Which combination of tension T and linear mass density μ has the dimensions of speed?
+    options:
+      - T/μ
+      - √(μ/T)
+      - √(T/μ)
+      - Tμ
+    answer: 2
+    explanation: "[T] = MLT^{-2}, [μ] = ML^{-1}. T/μ has dimensions L^2T^{-2}, so √(T/μ) has LT^{-1}, a speed. NCERT derives v = C√(T/μ) exactly this way, with C = 1 from detailed analysis."
+
+  - id: phy-wav-031
+    topic: speed-on-string
+    subtopic: Independence from frequency
+    concept: Wave speed on a string depends on medium, not frequency
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [frequency, trap]
+    stem: |-
+      Statement I: Doubling the frequency of the source vibrating one end of a stretched string doubles the speed of the waves on it.
+      Statement II: The speed of waves on a string is fixed by the tension and linear mass density of the string.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "v = √(T/μ) is a property of the medium. Doubling the source frequency halves the wavelength while v stays the same (v = fλ). So Statement I is false, Statement II true."
+
+  - id: phy-wav-032
+    topic: speed-on-string
+    subtopic: Hanging mass provides tension
+    concept: Tension from a hanging load T = mg
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: true
+    formula: v = √(mg/μ)
+    tags: [tension, pulley]
+    stem: A string of linear density 1.6 × 10^{-3} kg m^{-1} passes over a pulley and supports a 1.6 kg block (g = 10 m s^{-2}). The transverse wave speed on the string is
+    options:
+      - 10 m s^{-1}
+      - 100 m s^{-1}
+      - 31.6 m s^{-1}
+      - 1000 m s^{-1}
+    answer: 1
+    explanation: "T = mg = 16 N. v = √(T/μ) = √(16/1.6 × 10^{-3}) = √10^4 = 100 m s^{-1}. Forgetting g (T = 1.6) gives √1000 ≈ 31.6 m s^{-1}."
+
+  - id: phy-wav-033
+    topic: speed-on-string
+    subtopic: Stress form of speed
+    concept: v = √(stress/density) for a wire
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: v = √(σ/ρ)
+    tags: [stress, density]
+    stem: A steel wire (density 8000 kg m^{-3}) is under a tensile stress of 2 × 10^8 N m^{-2}. The speed of transverse waves on it is
+    options:
+      - 50 m s^{-1}
+      - 500 m s^{-1}
+      - 158 m s^{-1}
+      - 2500 m s^{-1}
+    answer: 2
+    explanation: "T/μ = (σA)/(ρA) = σ/ρ. v = √(2 × 10^8 / 8000) = √(2.5 × 10^4) ≈ 158 m s^{-1}. Forgetting the square root gives 2.5 × 10^4."
+  - id: phy-wav-034
+    topic: speed-on-string
+    subtopic: Comparing two strings
+    concept: v ∝ √(T/μ) with both T and μ changed
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: v = √(T/μ)
+    tags: [ratio]
+    stem: "String A has twice the tension and eight times the linear mass density of string B. The ratio v_A : v_B of transverse wave speeds is"
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "1 : 4"
+      - "1 : 16"
+    answer: 0
+    explanation: "v_A/v_B = √[(T_A/T_B)(μ_B/μ_A)] = √(2 × 1/8) = √(1/4) = 1/2. Dropping the square root gives 1 : 4."
+
+  - id: phy-wav-035
+    topic: speed-on-string
+    subtopic: Pulse travel time
+    concept: Time for a pulse to cross a string t = L/v
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: true
+    formula: t = L/√(T/μ)
+    tags: [pulse, time]
+    stem: A 20 m long rope of mass 2 kg is kept under 1000 N tension. A pulse created at one end reaches the other end in
+    options:
+      - 0.1 s
+      - 2 s
+      - 1 s
+      - 0.2 s
+    answer: 3
+    explanation: "μ = 2/20 = 0.1 kg m^{-1}; v = √(1000/0.1) = √10^4 = 100 m s^{-1}. t = L/v = 20/100 = 0.2 s. Using the total mass instead of μ gives v ≈ 22 m s^{-1} and a wrong time near 1 s."
+
+  - id: phy-wav-036
+    topic: speed-of-sound
+    subtopic: Newton's formula
+    concept: Newton assumed isothermal compressions, v = √(P/ρ)
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [newton-formula, ncert-line]
+    stem: Newton's formula for the speed of sound in a gas assumed that the compressions and rarefactions are
+    options:
+      - isothermal
+      - adiabatic
+      - isobaric
+      - isochoric
+    answer: 0
+    explanation: "Newton assumed the temperature stays constant, so he used the isothermal bulk modulus B = P, giving v = √(P/ρ) ≈ 280 m s^{-1} for air at STP. Laplace later showed the process is adiabatic."
+
+  - id: phy-wav-037
+    topic: speed-of-sound
+    subtopic: Laplace correction
+    concept: Laplace replaced P by γP since compressions are adiabatic
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [laplace-correction]
+    stem: |-
+      Assertion (A): Newton's formula underestimates the speed of sound in air by about 15%.
+      Reason (R): Compressions and rarefactions in a sound wave are so rapid that there is no time for heat exchange, making the process adiabatic.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Newton's isothermal value is about 280 m s^{-1} against the measured 331 m s^{-1}. Because the process is adiabatic, the bulk modulus is γP, and √1.4 ≈ 1.18 brings the value to about 331 m s^{-1}. R explains A."
+
+  - id: phy-wav-038
+    topic: speed-of-sound
+    subtopic: Effect of temperature
+    concept: v ∝ √T (absolute temperature)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: v ∝ √T
+    tags: [temperature, trap]
+    stem: At what temperature does the speed of sound in air become double its value at 0 °C?
+    options:
+      - 546 °C
+      - 0 °C × 2
+      - 1092 °C
+      - 819 °C
+    answer: 3
+    explanation: "v ∝ √T. Doubling v needs T = 4 × 273 = 1092 K, i.e. 1092 − 273 = 819 °C. Writing 1092 °C forgets to convert back from kelvin, and 546 °C wrongly assumes v ∝ T."
+
+  - id: phy-wav-039
+    topic: speed-of-sound
+    subtopic: Effect of pressure
+    concept: At constant temperature, speed of sound is independent of pressure
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [pressure, trap]
+    stem: If the pressure of air is doubled at constant temperature, the speed of sound in it
+    options:
+      - doubles
+      - increases by √2 times
+      - remains unchanged
+      - halves
+    answer: 2
+    explanation: "v = √(γP/ρ). At constant temperature P/ρ is constant (P = ρRT/M), so doubling P doubles ρ and v is unchanged."
+
+  - id: phy-wav-040
+    topic: speed-of-sound
+    subtopic: Effect of humidity
+    concept: Moist air is less dense, so sound travels faster in it
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [humidity]
+    stem: Sound travels slightly faster in humid air than in dry air at the same temperature and pressure because humid air has
+    options:
+      - a lower density
+      - a higher density
+      - a higher pressure
+      - a lower ratio of specific heats only
+    answer: 0
+    explanation: "Water vapour (M = 18 g mol^{-1}) is lighter than the N_2/O_2 mixture (≈ 29 g mol^{-1}) it replaces, so humid air is less dense and v = √(γP/ρ) increases."
+
+  - id: phy-wav-041
+    topic: speed-of-sound
+    subtopic: Speed in solids
+    concept: v = √(Y/ρ) for longitudinal waves in a thin rod
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: v = √(Y/ρ)
+    tags: [solids, youngs-modulus]
+    stem: A steel rod has Young's modulus 2 × 10^{11} N m^{-2} and density 8000 kg m^{-3}. The speed of longitudinal waves in it is
+    options:
+      - 500 m s^{-1}
+      - 2500 m s^{-1}
+      - 5000 m s^{-1}
+      - 2.5 × 10^7 m s^{-1}
+    answer: 2
+    explanation: "v = √(Y/ρ) = √(2 × 10^{11}/8000) = √(2.5 × 10^7) = 5000 m s^{-1}. Not taking the square root gives 2.5 × 10^7."
+
+  - id: phy-wav-042
+    topic: speed-of-sound
+    subtopic: Speed in liquids
+    concept: v = √(B/ρ) in a liquid
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: v = √(B/ρ)
+    tags: [liquids, bulk-modulus]
+    stem: Water has bulk modulus 2.25 × 10^9 Pa and density 1000 kg m^{-3}. The speed of sound in water is
+    options:
+      - 1500 m s^{-1}
+      - 150 m s^{-1}
+      - 2250 m s^{-1}
+      - 47 m s^{-1}
+    answer: 0
+    explanation: "v = √(B/ρ) = √(2.25 × 10^6) = 1500 m s^{-1}, over four times the speed in air."
+
+  - id: phy-wav-043
+    topic: speed-of-sound
+    subtopic: Different gases
+    concept: v ∝ √(γ/M) at the same temperature
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: v = √(γRT/M)
+    tags: [molar-mass]
+    stem: At the same temperature, the ratio of speeds of sound in hydrogen (M = 2) and oxygen (M = 32), both diatomic, is
+    options:
+      - "1 : 4"
+      - "16 : 1"
+      - "4 : 1"
+      - "2 : 1"
+    answer: 2
+    explanation: "Both are diatomic so γ is the same. v ∝ 1/√M, so v_H/v_O = √(32/2) = 4, i.e. 4 : 1. Omitting the square root gives 16 : 1."
+
+  - id: phy-wav-044
+    topic: speed-of-sound
+    subtopic: Order of speeds in media
+    concept: Sound is fastest in solids, then liquids, then gases
+    category: factual
+    format: ordering
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ordering, media]
+    stem: Arrange the speed of sound in steel, water and air in increasing order.
+    options:
+      - Steel < water < air
+      - Air < steel < water
+      - Water < air < steel
+      - Air < water < steel
+    answer: 3
+    explanation: "Typical values are about 343 m s^{-1} in air, 1500 m s^{-1} in water and 5000–6000 m s^{-1} in steel. The much larger elastic moduli of liquids and solids outweigh their higher densities."
+
+  - id: phy-wav-045
+    topic: speed-of-sound
+    subtopic: Newton's value
+    concept: Newton's formula gives about 280 m s^{-1} for air at STP
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: v = √(P/ρ)
+    tags: [newton-formula]
+    stem: Taking atmospheric pressure 1.01 × 10^5 Pa and the density of air 1.29 kg m^{-3} at STP, Newton's formula predicts the speed of sound as about
+    options:
+      - 331 m s^{-1}
+      - 280 m s^{-1}
+      - 390 m s^{-1}
+      - 243 m s^{-1}
+    answer: 1
+    explanation: "v = √(P/ρ) = √(1.01 × 10^5/1.29) = √(7.83 × 10^4) ≈ 280 m s^{-1}. The experimental 331 m s^{-1} is obtained only after Laplace's factor √γ."
+
+  - id: phy-wav-046
+    topic: speed-of-sound
+    subtopic: Temperature coefficient
+    concept: Speed of sound in air rises by about 0.61 m s^{-1} per °C near room temperature
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: v_2/v_1 = √(T_2/T_1)
+    tags: [temperature]
+    stem: The speed of sound in air at 0 °C is 332 m s^{-1}. Its speed at 91 °C is closest to
+    options:
+      - 383 m s^{-1}
+      - 443 m s^{-1}
+      - 360 m s^{-1}
+      - 415 m s^{-1}
+    answer: 0
+    explanation: "T_2/T_1 = 364/273 = 4/3. v_2 = 332 × √(4/3) = 332 × 1.155 ≈ 383 m s^{-1}. Using v ∝ T (not √T) gives ≈ 443 m s^{-1}."
+
+  - id: phy-wav-047
+    topic: superposition
+    subtopic: Principle of superposition
+    concept: Net displacement is the algebraic sum of individual displacements
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [superposition, ncert-line]
+    stem: When two waves overlap in a medium, the resultant displacement at any point is
+    options:
+      - the larger of the two displacements
+      - the product of the two displacements
+      - the algebraic (vector) sum of the individual displacements
+      - the root mean square of the two displacements
+    answer: 2
+    explanation: "By the principle of superposition, y = y_1 + y_2 at every point and instant. Each wave moves on unaffected after the overlap."
+
+  - id: phy-wav-048
+    topic: superposition
+    subtopic: Resultant amplitude
+    concept: A = √(A_1^2 + A_2^2 + 2A_1A_2 cos φ)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: A = √(A_1^2 + A_2^2 + 2A_1A_2 cos φ)
+    tags: [resultant-amplitude]
+    stem: Two waves of the same frequency with amplitudes 3 mm and 4 mm superpose with a phase difference of π/2. The resultant amplitude is
+    options:
+      - 7 mm
+      - 1 mm
+      - 12 mm
+      - 5 mm
+    answer: 3
+    explanation: "With cos(π/2) = 0, A = √(9 + 16) = 5 mm. 7 mm would need φ = 0 and 1 mm would need φ = π."
+
+  - id: phy-wav-049
+    topic: superposition
+    subtopic: Equal amplitudes
+    concept: For equal amplitudes, A_r = 2A cos(φ/2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: A_r = 2A cos(φ/2)
+    tags: [resultant-amplitude, trap]
+    stem: Two identical waves, each of amplitude a, travel in the same direction with a phase difference of 2π/3. The resultant amplitude is
+    options:
+      - a
+      - 2a
+      - √3 a
+      - zero
+    answer: 0
+    explanation: "A_r = 2a cos(φ/2) = 2a cos(π/3) = 2a × ½ = a. √3 a would be the result for φ = π/3."
+
+  - id: phy-wav-050
+    topic: superposition
+    subtopic: Intensity ratio
+    concept: I_{max}/I_{min} = ((A_1 + A_2)/(A_1 − A_2))^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: I ∝ A^2
+    tags: [intensity, interference]
+    stem: "Two coherent waves have amplitudes in the ratio 3 : 1. The ratio of maximum to minimum intensity when they interfere is"
+    options:
+      - "3 : 1"
+      - "9 : 1"
+      - "4 : 1"
+      - "2 : 1"
+    answer: 2
+    explanation: "A_{max} = 3 + 1 = 4, A_{min} = 3 − 1 = 2 (in units of the smaller amplitude). I_{max}/I_{min} = (4/2)^2 = 4. 9 : 1 is the ratio of the individual intensities, not of max to min."
+
+  - id: phy-wav-051
+    topic: superposition
+    subtopic: Overlapping pulses
+    concept: Two equal and opposite pulses cancel momentarily but energy is not lost
+    category: concept
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [pulses, energy, misconception]
+    stem: Two pulses of identical shape but opposite sign (one up, one down) travel towards each other on a string. At the instant they exactly overlap, the string is flat everywhere. At that instant the energy of the string is
+    options:
+      - zero, since there is no displacement
+      - entirely potential
+      - entirely kinetic
+      - half kinetic and half potential in every element
+    answer: 2
+    explanation: "At complete overlap the displacements cancel, so the string is straight and has no elastic potential energy, but the string elements are moving (their velocities add). All the energy is momentarily kinetic, which is why the pulses reappear and pass through each other."
+
+  - id: phy-wav-052
+    topic: superposition
+    subtopic: Constructive and destructive interference
+    concept: Phase difference 0 or 2nπ gives maximum, (2n+1)π gives minimum
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [interference-conditions]
+    stem: |-
+      Two waves of equal amplitude and frequency superpose. Which statements are correct?
+      I. For phase difference 0, the resultant amplitude is twice the individual amplitude.
+      II. For phase difference π, the resultant amplitude is zero.
+      III. For phase difference 4π, the resultant amplitude is zero.
+      IV. For path difference λ/2, the interference is constructive.
+    options:
+      - I and IV only
+      - I, II and III only
+      - II and IV only
+      - I and II only
+    answer: 3
+    explanation: "Phase 0 or 4π (any 2nπ) gives constructive interference, A = 2a; so I is true and III false. Phase π (path difference λ/2) gives destructive interference, so II is true and IV false."
+
+  - id: phy-wav-053
+    topic: superposition
+    subtopic: Adding wave equations
+    concept: Two waves in same direction with a phase shift give a wave of amplitude 2A cos(φ/2)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: y_1 + y_2 = 2A cos(φ/2) sin(kx − ωt + φ/2)
+    tags: [wave-equation, multi-concept]
+    stem: "y_1 = 4 sin(kx − ωt) and y_2 = 4 sin(kx − ωt + π/3) (in cm) superpose. The amplitude and initial phase of the resultant wave are"
+    options:
+      - 8 cm and π/3
+      - 4√3 cm and π/6
+      - 4 cm and π/6
+      - 4√2 cm and π/3
+    answer: 1
+    explanation: "y = 2 × 4 cos(π/6) sin(kx − ωt + π/6) = 8 × (√3/2) = 4√3 cm, with initial phase φ/2 = π/6. The resultant is still a travelling wave with the same k and ω."
+
+  - id: phy-wav-054
+    topic: superposition
+    subtopic: Linearity
+    concept: Superposition holds for small amplitudes (linear wave equation)
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [linearity]
+    stem: |-
+      Statement I: After two pulses on a string cross each other, each emerges with its original shape and speed.
+      Statement II: The principle of superposition follows from the wave equation being linear in y for small displacements.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "For small displacements the wave equation is linear, so any sum of solutions is a solution and pulses pass through each other unchanged. Both statements are correct."
+
+  - id: phy-wav-055
+    topic: superposition
+    subtopic: Resultant intensity
+    concept: Intensity for equal-intensity coherent waves is 4I_0 cos^2(φ/2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: I = 4I_0 cos^2(φ/2)
+    tags: [intensity]
+    stem: Two coherent waves each of intensity I_0 superpose with phase difference π/2. The resultant intensity is
+    options:
+      - 4I_0
+      - I_0
+      - zero
+      - 2I_0
+    answer: 3
+    explanation: "I = 4I_0 cos^2(φ/2) = 4I_0 cos^2(π/4) = 4I_0 × ½ = 2I_0. This equals the simple sum only for φ = π/2."
+
+  - id: phy-wav-056
+    topic: superposition
+    subtopic: Amplitude condition
+    concept: Complete cancellation requires equal amplitudes and phase difference π
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [destructive-interference]
+    stem: Two waves of amplitudes 5 cm and 3 cm superpose. The minimum possible resultant amplitude is
+    options:
+      - 2 cm
+      - zero
+      - 4 cm
+      - 8 cm
+    answer: 0
+    explanation: "Minimum amplitude is |A_1 − A_2| = 5 − 3 = 2 cm (at phase difference π). Complete cancellation (zero) needs equal amplitudes."
+
+  - id: phy-wav-057
+    topic: reflection
+    subtopic: Rigid boundary
+    concept: Reflection from a rigid end gives a phase change of π
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [rigid-boundary, ncert-line]
+    stem: A transverse pulse on a string is reflected from an end fixed rigidly to a wall. The reflected pulse has a phase change of
+    options:
+      - zero
+      - π/2
+      - π
+      - 2π
+    answer: 2
+    explanation: "At a rigid boundary the displacement must stay zero, which is achieved only if the reflected wave is inverted, i.e. has a phase change of π (the pulse returns upside down)."
+
+  - id: phy-wav-058
+    topic: reflection
+    subtopic: Free boundary
+    concept: Reflection from a free end has no phase change
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [free-boundary]
+    stem: A pulse on a string whose end is tied to a light ring free to slide on a smooth vertical rod is reflected. The reflected pulse is
+    options:
+      - upright, with no phase change
+      - inverted, with phase change π
+      - absent, since all energy is absorbed
+      - shifted in phase by π/2
+    answer: 0
+    explanation: "A free (open) boundary exerts no transverse force, so the displacement there is maximum and the pulse returns upright without phase change."
+
+  - id: phy-wav-059
+    topic: reflection
+    subtopic: Reflected wave equation
+    concept: Reflection at a rigid boundary reverses direction and adds phase π
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: y_r = A sin(kx + ωt + π)
+    tags: [wave-equation, rigid-boundary]
+    stem: "The wave y_i = a sin(kx − ωt) travelling along +x is completely reflected at a rigid wall. The reflected wave is"
+    options:
+      - y = a sin(kx − ωt + π)
+      - y = −a sin(kx + ωt)
+      - y = a cos(kx + ωt)
+      - y = −a sin(kx − ωt)
+    answer: 1
+    explanation: "The reflected wave travels along −x (so kx + ωt) and carries a phase change of π: y_r = a sin(kx + ωt + π) = −a sin(kx + ωt). Options with (kx − ωt) still move along +x, which is impossible for a reflected wave, and a cos form implies a phase shift of π/2 rather than π."
+
+  - id: phy-wav-060
+    topic: reflection
+    subtopic: Boundary between two strings
+    concept: Pulse going from light to heavy string is reflected inverted; transmitted is upright
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [junction, trap]
+    stem: A pulse travels on a light string towards its junction with a much heavier string. Which statement is correct?
+    options:
+      - Both the reflected and transmitted pulses are inverted
+      - The reflected pulse is upright and the transmitted pulse is inverted
+      - The reflected pulse is inverted and the transmitted pulse is upright
+      - Both pulses are upright and travel with the same speed
+    answer: 2
+    explanation: "The heavier string behaves like a (partly) rigid boundary, so the reflected pulse is inverted. A transmitted wave is never inverted. The transmitted pulse moves more slowly because v = √(T/μ) is smaller on the heavier string."
+
+  - id: phy-wav-061
+    topic: reflection
+    subtopic: Echo
+    concept: Echo distance d = vt/2
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: 2d = vt
+    tags: [echo]
+    stem: A person hears the echo of a clap from a cliff 1.5 s after clapping. With the speed of sound 340 m s^{-1}, the cliff is
+    options:
+      - 510 m away
+      - 170 m away
+      - 340 m away
+      - 255 m away
+    answer: 3
+    explanation: "Sound travels to the cliff and back: 2d = vt = 340 × 1.5 = 510 m, so d = 255 m. Forgetting the round trip gives 510 m."
+
+  - id: phy-wav-062
+    topic: reflection
+    subtopic: Pressure waves at boundaries
+    concept: Sound at a closed end reflects as a pressure antinode (compression returns as compression)
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [pressure-wave, closed-end]
+    stem: A compression pulse travelling in a pipe is reflected from the closed end of the pipe. The reflected pulse returns as
+    options:
+      - a rarefaction
+      - a compression
+      - a transverse pulse
+      - nothing, since the closed end absorbs it
+    answer: 1
+    explanation: "A closed end is a displacement node, which is a pressure antinode: the displacement wave reflects with phase change π but the pressure wave reflects without change, so a compression comes back as a compression. At an open end (pressure node) a compression returns as a rarefaction."
+
+  - id: phy-wav-063
+    topic: reflection
+    subtopic: Partial reflection
+    concept: Reflected amplitude at a junction depends on relative wave speeds
+    category: application
+    format: assertion-reason
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [junction, energy]
+    stem: |-
+      Assertion (A): When a wave on a string meets a junction with another string of the same linear density, no reflection occurs.
+      Reason (R): Reflection at a junction arises only when the wave speed (medium) changes across it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "If the two strings have the same μ (and same tension), the medium is effectively continuous and the wave is fully transmitted. Reflection arises from a mismatch in medium, i.e. in wave speed (impedance). R correctly explains A."
+
+  - id: phy-wav-064
+    topic: reflection
+    subtopic: Reflection and standing waves
+    concept: Incident and reflected waves superpose to form standing waves
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [standing-waves]
+    stem: Standing waves on a string fixed at both ends are formed by the superposition of
+    options:
+      - two waves of different frequencies moving in the same direction
+      - two identical waves travelling in opposite directions after reflection
+      - a longitudinal and a transverse wave
+      - two waves of different amplitudes moving in the same direction
+    answer: 1
+    explanation: "Waves reflected from the fixed ends travel back and superpose with the incident waves; identical waves moving in opposite directions produce a stationary wave with fixed nodes and antinodes."
+
+  - id: phy-wav-065
+    topic: strings-standing
+    subtopic: Standing wave equation
+    concept: y = 2a sin kx cos ωt, amplitude varies with position
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: y = 2a sin kx cos ωt
+    tags: [standing-wave-equation]
+    stem: "In the standing wave y = 2a sin kx cos ωt, the amplitude of oscillation of a particle at position x is"
+    options:
+      - 2a, the same for all particles
+      - 2a sin kx
+      - a cos ωt
+      - 2a cos ωt
+    answer: 1
+    explanation: "Every particle oscillates as cos ωt with its own amplitude 2a sin kx (taking magnitude), which is zero at nodes and 2a at antinodes. Unlike a travelling wave, amplitude depends on position."
+
+  - id: phy-wav-066
+    topic: strings-standing
+    subtopic: Node spacing
+    concept: Adjacent nodes are λ/2 apart
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: node spacing = λ/2 = π/k
+    tags: [nodes]
+    stem: "For the standing wave y = 0.04 sin(5πx) cos(100πt) (SI units), the distance between adjacent nodes is"
+    options:
+      - 0.4 m
+      - 0.1 m
+      - 0.2 m
+      - 5 m
+    answer: 2
+    explanation: "k = 5π m^{-1} so λ = 2π/k = 0.4 m. Adjacent nodes are λ/2 = 0.2 m apart. 0.4 m is a full wavelength and 0.1 m is the node–antinode distance."
+
+  - id: phy-wav-067
+    topic: strings-standing
+    subtopic: Fundamental frequency
+    concept: f_1 = v/2L for a string fixed at both ends
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: f_1 = v/2L
+    tags: [fundamental]
+    stem: Transverse waves travel at 200 m s^{-1} on a 1 m string fixed at both ends. Its fundamental frequency is
+    options:
+      - 200 Hz
+      - 50 Hz
+      - 400 Hz
+      - 100 Hz
+    answer: 3
+    explanation: "In the fundamental mode L = λ/2, so λ = 2 m and f = v/λ = 200/2 = 100 Hz."
+
+  - id: phy-wav-068
+    topic: strings-standing
+    subtopic: Harmonics of a string
+    concept: A string fixed at both ends supports all harmonics f_n = nv/2L
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [harmonics, ncert-line]
+    stem: A stretched string fixed at both ends has fundamental frequency f. Its possible natural frequencies are
+    options:
+      - f, 2f, 3f, 4f, …
+      - f, 3f, 5f, 7f, …
+      - f, 2f, 4f, 8f, …
+      - only f
+    answer: 0
+    explanation: "Normal modes require L = nλ/2, giving f_n = nv/2L = nf with n = 1, 2, 3, …, so all integral multiples (all harmonics) are present. Only odd harmonics occur in a pipe closed at one end."
+
+  - id: phy-wav-069
+    topic: strings-standing
+    subtopic: Counting nodes and antinodes
+    concept: The nth harmonic has n antinodes and n + 1 nodes (including ends)
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [nodes, antinodes]
+    stem: A string fixed at both ends vibrates in its third harmonic. The number of nodes (including the ends) and antinodes are
+    options:
+      - 3 nodes, 3 antinodes
+      - 4 nodes, 2 antinodes
+      - 3 nodes, 4 antinodes
+      - 4 nodes, 3 antinodes
+    answer: 3
+    explanation: "The third harmonic has three loops (L = 3λ/2). Each loop has one antinode, so 3 antinodes, and the loops are separated by nodes: 3 + 1 = 4 nodes including both ends."
+
+  - id: phy-wav-070
+    topic: strings-standing
+    subtopic: Laws of vibrating strings
+    concept: f = (1/2L)√(T/μ) — law of length, tension and mass
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: f = (1/2L)√(T/μ)
+    tags: [sonometer, proportionality]
+    stem: The fundamental frequency of a sonometer wire is 300 Hz. If its length is halved and tension made four times, the new fundamental frequency is
+    options:
+      - 1200 Hz
+      - 600 Hz
+      - 2400 Hz
+      - 300 Hz
+    answer: 0
+    explanation: "f ∝ √T/L. Halving L doubles f and quadrupling T doubles it again: f' = 300 × 2 × 2 = 1200 Hz."
+
+  - id: phy-wav-071
+    topic: strings-standing
+    subtopic: Energy in standing waves
+    concept: No net energy transport across nodes in a standing wave
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [energy, standing-waves]
+    stem: |-
+      Statement I: In a standing wave, energy is not transported along the string across the nodes.
+      Statement II: All particles between two adjacent nodes oscillate in the same phase.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Nodes are permanently at rest, so no power flows through them; energy stays trapped within each loop. All particles in one loop move in phase, while those in adjacent loops are in opposite phase. Both statements are correct."
+
+  - id: phy-wav-072
+    topic: strings-standing
+    subtopic: Consecutive resonant frequencies
+    concept: Difference of consecutive natural frequencies equals the fundamental
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: f_{n+1} − f_n = v/2L
+    tags: [harmonics, trap]
+    stem: Two consecutive resonant frequencies of a string fixed at both ends are 420 Hz and 490 Hz. The fundamental frequency is
+    options:
+      - 35 Hz
+      - 70 Hz
+      - 140 Hz
+      - 210 Hz
+    answer: 1
+    explanation: "Consecutive harmonics nf and (n+1)f differ by f, so f = 490 − 420 = 70 Hz (these are the 6th and 7th harmonics). 35 Hz would apply to a closed pipe, where consecutive modes differ by 2f."
+
+  - id: phy-wav-073
+    topic: strings-standing
+    subtopic: Wave speed from modes
+    concept: v = 2L f_1
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: v = 2Lf_1
+    tags: [wave-speed, harmonics]
+    stem: A 1.5 m string fixed at both ends has consecutive resonances at 420 Hz and 490 Hz. The speed of transverse waves on it is
+    options:
+      - 105 m s^{-1}
+      - 420 m s^{-1}
+      - 210 m s^{-1}
+      - 735 m s^{-1}
+    answer: 2
+    explanation: "Fundamental f_1 = 490 − 420 = 70 Hz. v = 2Lf_1 = 2 × 1.5 × 70 = 210 m s^{-1}. Using v = Lf_1 gives 105 m s^{-1}."
+
+  - id: phy-wav-074
+    topic: strings-standing
+    subtopic: Positions of nodes
+    concept: Nodes of sin kx occur at x = nλ/2
+    category: application
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [nodes, positions]
+    stem: "For the standing wave y = 2a sin(πx/3) cos ωt (x in cm), which set of positions are all nodes?"
+    options:
+      - x = 1.5, 4.5, 7.5 cm
+      - x = 0, 3, 6 cm
+      - x = 0, 1.5, 3 cm
+      - x = 3, 4.5, 6 cm
+    answer: 1
+    explanation: "Nodes need sin(πx/3) = 0, i.e. πx/3 = nπ, so x = 3n cm: 0, 3, 6, … The points 1.5, 4.5, 7.5 cm are antinodes."
+
+  - id: phy-wav-075
+    topic: strings-standing
+    subtopic: Melde's / sonometer resonance
+    concept: Number of loops p ∝ 1/√T at fixed frequency
+    category: application
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: f = (p/2L)√(T/μ)
+    tags: [loops, tension, multi-concept]
+    stem: A string of fixed length is driven at a constant frequency. It vibrates in 4 loops when the tension is 16 N. For it to vibrate in 2 loops at the same frequency, the tension must be
+    options:
+      - 8 N
+      - 4 N
+      - 32 N
+      - 64 N
+    answer: 3
+    explanation: "f = (p/2L)√(T/μ) is fixed, so p√T is constant. 4√16 = 2√T gives √T = 8 and T = 64 N. Fewer loops need a longer wavelength, hence a larger wave speed and a higher tension."
+
+  - id: phy-wav-076
+    topic: strings-standing
+    subtopic: Particle phases in standing wave
+    concept: Particles in adjacent loops are in antiphase
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [phase, standing-waves]
+    stem: In a stationary wave, the phase difference between two particles on either side of a node (in adjacent loops) is
+    options:
+      - zero
+      - π/2
+      - π
+      - it varies continuously with distance
+    answer: 2
+    explanation: "sin kx changes sign across a node, so particles in adjacent loops always move in opposite directions: phase difference π. Within a loop, all particles are in phase; the continuously varying phase belongs to travelling waves."
+
+  - id: phy-wav-077
+    topic: strings-standing
+    subtopic: Overtones
+    concept: The first overtone of a string is its second harmonic
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [overtones, confused-pair]
+    stem: A string fixed at both ends has a fundamental frequency of 150 Hz. The frequency of its second overtone is
+    options:
+      - 300 Hz
+      - 750 Hz
+      - 600 Hz
+      - 450 Hz
+    answer: 3
+    explanation: "For a string, the overtones are all higher harmonics: first overtone = 2nd harmonic (300 Hz), second overtone = 3rd harmonic = 450 Hz. Treating 'second overtone' as the second harmonic gives 300 Hz."
+
+  - id: phy-wav-078
+    topic: strings-standing
+    subtopic: Frequency and linear density
+    concept: f ∝ 1/√μ at the same length and tension
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: f ∝ 1/(r√ρ)
+    tags: [law-of-mass]
+    stem: "Two wires of the same length, tension and radius are made of materials with densities in the ratio 1 : 4. The ratio of their fundamental frequencies is"
+    options:
+      - "2 : 1"
+      - "1 : 2"
+      - "4 : 1"
+      - "1 : 4"
+    answer: 0
+    explanation: "μ = ρπr^2, so f = (1/2L)√(T/μ) ∝ 1/√ρ. f_1/f_2 = √(4/1) = 2, i.e. 2 : 1: the less dense wire vibrates at the higher frequency."
+
+  - id: phy-wav-079
+    topic: organ-pipes
+    subtopic: Closed pipe fundamental
+    concept: f_1 = v/4L for a pipe closed at one end
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: f_1 = v/4L
+    tags: [closed-pipe]
+    stem: A pipe 85 cm long is closed at one end. With the speed of sound 340 m s^{-1}, its fundamental frequency is (neglect end correction)
+    options:
+      - 200 Hz
+      - 400 Hz
+      - 100 Hz
+      - 50 Hz
+    answer: 2
+    explanation: "For a closed pipe L = λ/4, so f_1 = v/4L = 340/(4 × 0.85) = 100 Hz. Using the open-pipe formula v/2L gives 200 Hz."
+
+  - id: phy-wav-080
+    topic: organ-pipes
+    subtopic: Harmonics in a closed pipe
+    concept: A closed pipe has only odd harmonics
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [odd-harmonics, ncert-line]
+    stem: A pipe closed at one end has fundamental frequency f. Which frequency can it NOT produce as a normal mode?
+    options:
+      - 3f
+      - 5f
+      - 7f
+      - 4f
+    answer: 3
+    explanation: "Closed pipe modes satisfy L = (2n − 1)λ/4, so f = (2n − 1)v/4L: f, 3f, 5f, 7f, … Even multiples such as 4f are absent."
+
+  - id: phy-wav-081
+    topic: organ-pipes
+    subtopic: Open vs closed pipe
+    concept: Open pipe fundamental is twice that of closed pipe of the same length
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: f_{open} = v/2L, f_{closed} = v/4L
+    tags: [open-pipe, closed-pipe]
+    stem: A pipe open at both ends has fundamental frequency 300 Hz. If one end is now closed, the new fundamental frequency is
+    options:
+      - 150 Hz
+      - 600 Hz
+      - 300 Hz
+      - 450 Hz
+    answer: 0
+    explanation: "Open: f = v/2L = 300 Hz. Closed at one end: f = v/4L = 300/2 = 150 Hz. Closing an end moves the lowest mode down an octave."
+
+  - id: phy-wav-082
+    topic: organ-pipes
+    subtopic: Boundary conditions
+    concept: Closed end is a displacement node; open end is a displacement antinode
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [boundary-conditions, pressure]
+    stem: |-
+      For standing sound waves in an air column, consider:
+      I. The closed end is a displacement node.
+      II. The open end is a pressure node.
+      III. The closed end is a pressure node.
+      IV. The open end is a displacement antinode.
+    options:
+      - I and III only
+      - II and IV only
+      - I, II and IV only
+      - I, III and IV only
+    answer: 2
+    explanation: "At a closed end the air cannot move (displacement node), so pressure variation is maximum there (pressure antinode); III is false. At an open end pressure stays atmospheric (pressure node) and displacement is maximum (antinode). I, II and IV are correct."
+
+  - id: phy-wav-083
+    topic: organ-pipes
+    subtopic: Open pipe harmonics
+    concept: Open pipe produces all harmonics f_n = nv/2L
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: f_n = nv/2L
+    tags: [open-pipe, harmonics]
+    stem: An open organ pipe of length 50 cm is in air where sound travels at 340 m s^{-1}. The frequency of its second harmonic is
+    options:
+      - 340 Hz
+      - 680 Hz
+      - 510 Hz
+      - 1020 Hz
+    answer: 1
+    explanation: "f_1 = v/2L = 340/1 = 340 Hz, so the second harmonic is 2 × 340 = 680 Hz. An open pipe produces all harmonics."
+
+  - id: phy-wav-084
+    topic: organ-pipes
+    subtopic: Resonance tube
+    concept: Difference of two resonance lengths equals λ/2
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: L_2 − L_1 = λ/2
+    tags: [resonance-tube, experimental]
+    stem: In a resonance tube experiment with a 512 Hz tuning fork, the first and second resonances occur at air-column lengths of 16.0 cm and 49.0 cm. The speed of sound is
+    options:
+      - 338 m s^{-1}
+      - 164 m s^{-1}
+      - 328 m s^{-1}
+      - 256 m s^{-1}
+    answer: 0
+    explanation: "Successive resonances differ by λ/2, so λ = 2(49.0 − 16.0) = 66 cm. v = fλ = 512 × 0.66 ≈ 338 m s^{-1}. This method cancels the unknown end correction."
+
+  - id: phy-wav-085
+    topic: organ-pipes
+    subtopic: End correction
+    concept: End correction e = (L_2 − 3L_1)/2
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: e = (L_2 − 3L_1)/2
+    tags: [end-correction, resonance-tube, multi-concept]
+    stem: In a resonance tube, the first two resonance lengths are 16.0 cm and 49.0 cm. The end correction is
+    options:
+      - 0.5 cm
+      - 1.0 cm
+      - 1.5 cm
+      - 2.0 cm
+    answer: 0
+    explanation: "L_1 + e = λ/4 and L_2 + e = 3λ/4. So L_2 + e = 3(L_1 + e), giving e = (L_2 − 3L_1)/2 = (49.0 − 48.0)/2 = 0.5 cm."
+
+  - id: phy-wav-086
+    topic: organ-pipes
+    subtopic: Overtones in closed pipe
+    concept: First overtone of a closed pipe is the third harmonic
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [overtones, confused-pair, trap]
+    stem: The fundamental frequency of a closed organ pipe is 110 Hz. The frequency of its first overtone is
+    options:
+      - 220 Hz
+      - 440 Hz
+      - 550 Hz
+      - 330 Hz
+    answer: 3
+    explanation: "A closed pipe has only odd harmonics, so the first overtone is the third harmonic: 3 × 110 = 330 Hz. 220 Hz would be the first overtone of an open pipe."
+
+  - id: phy-wav-087
+    topic: organ-pipes
+    subtopic: Equal fundamentals
+    concept: "Open and closed pipes with equal fundamentals have lengths in ratio 2 : 1"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: v/2L_o = v/4L_c
+    tags: [open-pipe, closed-pipe, ratio]
+    stem: An open pipe and a closed pipe have the same fundamental frequency. The ratio of their lengths L_{open} to L_{closed} is
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "1 : 1"
+      - "4 : 1"
+    answer: 1
+    explanation: "v/2L_o = v/4L_c gives L_o = 2L_c, so L_o : L_c = 2 : 1. The open pipe must be twice as long."
+
+  - id: phy-wav-088
+    topic: organ-pipes
+    subtopic: Mode of a closed pipe
+    concept: A closed pipe with n nodes counts (2n − 1) quarter wavelengths
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: L = (2n − 1)λ/4
+    tags: [nodes, closed-pipe]
+    stem: A pipe closed at one end, 1.5 m long, resonates with three displacement nodes inside it (including the closed end). If sound travels at 330 m s^{-1}, the frequency is
+    options:
+      - 275 Hz
+      - 165 Hz
+      - 55 Hz
+      - 385 Hz
+    answer: 0
+    explanation: "With 3 displacement nodes (closed end plus two more) and an antinode at the open end, L = 5λ/4 (the fifth harmonic). λ = 4 × 1.5/5 = 1.2 m and f = 330/1.2 = 275 Hz."
+
+  - id: phy-wav-089
+    topic: organ-pipes
+    subtopic: End correction formula
+    concept: End correction ≈ 0.3d for each open end
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [end-correction]
+    stem: The end correction at the open end of a pipe of internal diameter d is approximately
+    options:
+      - 0.6d
+      - 0.3d
+      - d
+      - 0.1d
+    answer: 1
+    explanation: "The antinode forms slightly outside the open end, at about 0.3d (≈ 0.6r) beyond it. An open pipe needs this correction at both ends, 0.6d in total."
+
+  - id: phy-wav-090
+    topic: organ-pipes
+    subtopic: Pipe with end correction
+    concept: Effective length of closed pipe is L + 0.3d
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: f = v/4(L + 0.3d)
+    tags: [end-correction, closed-pipe]
+    stem: A closed pipe of length 32 cm and diameter 10 cm is used with sound speed 336 m s^{-1}. Allowing for end correction, its fundamental frequency is
+    options:
+      - 262.5 Hz
+      - 240 Hz
+      - 210 Hz
+      - 280 Hz
+    answer: 2
+    explanation: "Effective length = L + 0.3d = 32 + 3 = 35 cm. f = v/4L_{eff} = 336/(4 × 0.35) = 240 Hz. Ignoring the end correction gives 262.5 Hz."
+
+  - id: phy-wav-091
+    topic: organ-pipes
+    subtopic: Effect of temperature on pipe
+    concept: Pipe frequency rises with temperature since v ∝ √T
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [temperature, pipes]
+    stem: |-
+      Assertion (A): An organ pipe sounds at a higher pitch on a hot day than on a cold day.
+      Reason (R): The speed of sound in air increases with temperature while the pipe length is nearly unchanged.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Pipe frequencies are set by f ∝ v/L. v ∝ √T rises on a hot day while thermal expansion of the pipe is negligible, so all its frequencies rise. R explains A. (A string instrument behaves differently, since its wave speed depends on tension.)"
+
+  - id: phy-wav-092
+    topic: organ-pipes
+    subtopic: Identifying a pipe from its modes
+    concept: "Consecutive frequencies in ratio 3 : 5 indicate a closed pipe"
+    category: application
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    tags: [identify-pipe, multi-concept]
+    stem: A pipe resonates at 330 Hz and 550 Hz and at no frequency between them. Its fundamental frequency and type are
+    options:
+      - 220 Hz, open at both ends
+      - 110 Hz, open at both ends
+      - 110 Hz, closed at one end
+      - 55 Hz, closed at one end
+    answer: 2
+    explanation: "330 : 550 = 3 : 5, consecutive odd numbers, so it is a closed pipe with f_1 = 330/3 = 110 Hz. Consecutive closed-pipe modes differ by 2f_1 = 220 Hz. An open pipe with f_1 = 220 Hz would need 330 Hz = 1.5f_1, impossible."
+
+  - id: phy-wav-093
+    topic: beats
+    subtopic: Beat frequency
+    concept: f_{beat} = |f_1 − f_2|
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: f_{beat} = |f_1 − f_2|
+    tags: [beat-frequency]
+    stem: Two tuning forks of frequencies 256 Hz and 260 Hz are sounded together. The number of beats heard per second is
+    options:
+      - "2"
+      - "4"
+      - "258"
+      - "8"
+    answer: 1
+    explanation: "Beat frequency = |f_1 − f_2| = 260 − 256 = 4 Hz. 258 Hz is the frequency of the resultant tone, not of the beats."
+
+  - id: phy-wav-094
+    topic: beats
+    subtopic: Loading a tuning fork
+    concept: Loading with wax lowers a fork's frequency
+    category: application
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [loading, trap]
+    stem: A tuning fork A of frequency 256 Hz gives 4 beats s^{-1} with fork B. When B is loaded with a little wax, the beat frequency becomes 6 s^{-1}. The original frequency of B was
+    options:
+      - 260 Hz
+      - 250 Hz
+      - 262 Hz
+      - 252 Hz
+    answer: 3
+    explanation: "B is 252 Hz or 260 Hz. Loading lowers B's frequency. If B were 260 Hz, loading would move it towards 256 Hz and beats would decrease; since beats increase, B must be 252 Hz (loading moves it further below 256 Hz, e.g. to 250 Hz)."
+
+  - id: phy-wav-095
+    topic: beats
+    subtopic: Beat period
+    concept: Time between successive maxima is 1/(f_1 − f_2)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: T_{beat} = 1/|f_1 − f_2|
+    tags: [beat-period]
+    stem: Two sources of frequencies 400 Hz and 405 Hz sound together. The time interval between two successive maxima of sound intensity is
+    options:
+      - 0.5 s
+      - 0.1 s
+      - 0.2 s
+      - 5 s
+    answer: 2
+    explanation: "Beat frequency = 5 Hz, so successive maxima occur every 1/5 = 0.2 s. A maximum and the following minimum are 0.1 s apart."
+
+  - id: phy-wav-096
+    topic: beats
+    subtopic: Resultant of beats
+    concept: Beats give a tone at the average frequency with amplitude varying at the difference frequency
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: s = 2a cos(ω_bt) cos(ω_at), ω_a = (ω_1 + ω_2)/2, ω_b = (ω_1 − ω_2)/2
+    tags: [beats-equation]
+    stem: Two sounds of frequencies 11 Hz and 9 Hz (very low, for illustration) superpose. The resultant oscillates at frequency f and its intensity waxes and wanes f_b times per second, where
+    options:
+      - f = 10 Hz, f_b = 2 Hz
+      - f = 20 Hz, f_b = 2 Hz
+      - f = 10 Hz, f_b = 1 Hz
+      - f = 2 Hz, f_b = 10 Hz
+    answer: 0
+    explanation: "s = 2a cos(ω_bt) cos(ω_at): the oscillation is at the mean frequency (11 + 9)/2 = 10 Hz. The amplitude term cos(ω_bt) has frequency 1 Hz but loudness peaks twice per its cycle, so beats occur at 11 − 9 = 2 Hz. Taking f_b = 1 Hz forgets this."
+
+  - id: phy-wav-097
+    topic: beats
+    subtopic: Tuning musical instruments
+    concept: Musicians tune by eliminating beats
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [tuning, ncert-line]
+    stem: A musician tunes a guitar string against a standard fork and hears beats that slow down as she tightens the string, finally vanishing. This means the string's frequency
+    options:
+      - was higher than the fork's and is now equal to it
+      - was lower than the fork's and is now equal to it
+      - was equal throughout
+      - is now double the fork's frequency
+    answer: 1
+    explanation: "Tightening raises the string's frequency. Beats slowing down means the difference is shrinking, so the string started below the fork and has now matched it (zero beats)."
+
+  - id: phy-wav-098
+    topic: beats
+    subtopic: Audibility of beats
+    concept: Beats are distinguishable only for small frequency differences (below about 10 Hz)
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [persistence-of-hearing]
+    stem: Two tuning forks of 256 Hz and 300 Hz are sounded together. A listener
+    options:
+      - hears 44 distinct beats per second
+      - hears 22 beats per second
+      - cannot distinguish individual beats; the difference is too large
+      - hears no sound at all due to destructive interference
+    answer: 2
+    explanation: "The ear can distinguish beats only if the beat frequency is small (up to about 10 Hz), because of the persistence of hearing. At 44 Hz the waxing and waning merge and are not heard as separate beats."
+
+  - id: phy-wav-099
+    topic: beats
+    subtopic: Filing a tuning fork
+    concept: Filing the prongs raises the frequency
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [filing, loading]
+    stem: |-
+      Fork P (frequency unknown) gives 5 beats s^{-1} with a 200 Hz fork. On filing P slightly, the beat frequency drops to 3 s^{-1}.
+      Statement I: The original frequency of P was 195 Hz.
+      Statement II: Filing the prongs of a tuning fork reduces its mass and increases its frequency.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Filing reduces the prongs' mass, raising the frequency (Statement II true). P was 195 or 205 Hz; raising it reduced the beats, so it approached 200 Hz from below: P = 195 Hz (Statement I true). A 205 Hz fork filed would move away and give more beats."
+
+  - id: phy-wav-100
+    topic: beats
+    subtopic: Beats with a string
+    concept: Adjusting tension to find a string frequency from beats
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: f ∝ √T
+    tags: [tension, beats, multi-concept]
+    stem: A sonometer wire gives 4 beats s^{-1} with a 300 Hz fork. When the tension in the wire is slightly decreased, the beats become 6 s^{-1}. The original frequency of the wire was
+    options:
+      - 296 Hz
+      - 304 Hz
+      - 306 Hz
+      - 294 Hz
+    answer: 0
+    explanation: "The wire was 296 or 304 Hz. Decreasing tension lowers f (f ∝ √T). If it were 304 Hz it would approach 300 Hz and beats would fall; beats rose, so the wire was 296 Hz (now about 294 Hz)."
+
+  - id: phy-wav-101
+    topic: wave-types
+    subtopic: Features of transverse and longitudinal waves
+    concept: Correct features of transverse vs longitudinal waves
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [transverse, longitudinal]
+    stem: |-
+      Consider the following statements:
+      I. In a transverse wave, particles oscillate perpendicular to the direction of propagation.
+      II. Longitudinal mechanical waves can travel in solids, liquids and gases.
+      III. A longitudinal wave consists of crests and troughs.
+      IV. Both transverse and longitudinal waves transport energy.
+      Which of these are correct?
+    options:
+      - I and III only
+      - I, II and IV only
+      - II and III only
+      - I, II, III and IV
+    answer: 1
+    explanation: "Longitudinal waves consist of compressions and rarefactions, not crests and troughs, so III is wrong. The other three statements are correct: transverse motion is perpendicular to propagation, all media have bulk elasticity, and both kinds of wave carry energy."
+
+  - id: phy-wav-102
+    topic: wave-types
+    subtopic: Speed and source
+    concept: Wave speed is set by the medium, not by the amplitude of the source
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [misconception, wave-speed]
+    stem: Which statement about mechanical waves is INCORRECT?
+    options:
+      - The frequency of a wave is determined by the source
+      - The speed of a wave depends on the elastic and inertial properties of the medium
+      - When a wave passes from one medium to another, its frequency does not change
+      - A source vibrating with larger amplitude makes the wave travel faster in the same medium
+    answer: 3
+    explanation: "For small-amplitude mechanical waves, speed depends only on the medium (e.g. √(T/μ), √(B/ρ)), not on the amplitude. The frequency comes from the source and stays the same across a boundary, while wavelength changes."
+
+  - id: phy-wav-103
+    topic: wave-types
+    subtopic: Longitudinal waves in all media
+    concept: Every medium has bulk elasticity, so longitudinal waves travel in all states of matter
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [bulk-modulus, longitudinal]
+    stem: |-
+      Assertion (A): Longitudinal waves can propagate through solids, liquids and gases.
+      Reason (R): All material media possess volume (bulk) elasticity.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Longitudinal waves involve compressional strain, and every medium resists compression (has a bulk modulus). Hence they travel in all three states, and R correctly explains A."
+
+  - id: phy-wav-104
+    topic: wave-types
+    subtopic: What waves transport
+    concept: Travelling waves carry energy and momentum
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [energy, momentum]
+    stem: A travelling mechanical wave transports
+    options:
+      - mass and energy
+      - energy and momentum, but not matter
+      - only matter
+      - neither energy nor momentum
+    answer: 1
+    explanation: "A wave carries energy and momentum from one region to another, while the medium's particles only oscillate about their mean positions; there is no net transfer of matter."
+
+  - id: phy-wav-105
+    topic: wave-types
+    subtopic: Slinky demonstration
+    concept: Pushing a slinky along its length makes a longitudinal wave
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [slinky, longitudinal]
+    stem: A long slinky lies stretched on a table. One end is pushed and pulled repeatedly along the slinky's length. The wave produced is
+    options:
+      - transverse, with crests and troughs
+      - electromagnetic
+      - longitudinal, with compressions and rarefactions
+      - a standing wave with no energy transfer
+    answer: 2
+    explanation: "The coils are displaced back and forth along the direction in which the disturbance travels, forming bunched (compressed) and spread (rarefied) regions: a longitudinal wave. Shaking the end sideways would give a transverse wave."
+
+  - id: phy-wav-106
+    topic: wave-types
+    subtopic: Compression
+    concept: A compression is a region of higher density and pressure
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [compression, ncert-line]
+    stem: In a longitudinal wave, a region where particles are crowded together with pressure above normal is called a
+    options:
+      - rarefaction
+      - trough
+      - crest
+      - compression
+    answer: 3
+    explanation: "Regions of increased density and pressure are compressions; regions of reduced density and pressure are rarefactions. Crests and troughs describe transverse waves."
+
+  - id: phy-wav-107
+    topic: wave-types
+    subtopic: Distances in a wave
+    concept: Crest–crest = λ, crest–trough = λ/2, crest–zero = λ/4
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [wavelength, match]
+    stem: |-
+      For a sinusoidal transverse wave of wavelength λ, match the distance in List I with its value in List II.
+      List I: P. Between two consecutive crests  Q. Between a crest and the adjacent trough  R. Between a crest and the nearest point of zero displacement  S. Travelled by the wave in two time periods
+      List II: 1. λ/2  2. 2λ  3. λ  4. λ/4
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-1, R-4, S-3
+      - P-1, Q-3, R-4, S-2
+    answer: 1
+    explanation: "Consecutive crests are λ apart; crest to adjacent trough is λ/2; crest to the nearest zero-displacement point is λ/4; in one period the wave advances λ, so in two periods 2λ."
+
+  - id: phy-wav-108
+    topic: wave-types
+    subtopic: Mechanical vs non-mechanical
+    concept: Radio waves are electromagnetic, not mechanical
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [classification]
+    stem: Which of the following is NOT a mechanical wave?
+    options:
+      - Radio waves
+      - Ultrasound in tissue
+      - Seismic waves
+      - Waves on a guitar string
+    answer: 0
+    explanation: "Radio waves are electromagnetic and travel even through vacuum. Ultrasound, seismic waves and string waves all need a material medium, so they are mechanical."
+
+  - id: phy-wav-109
+    topic: wave-types
+    subtopic: Particle velocity direction
+    concept: In a longitudinal wave, particle velocity alternates along and against propagation
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [particle-velocity, trap]
+    stem: |-
+      Statement I: In a transverse wave on a string, the particle velocity is perpendicular to the wave velocity.
+      Statement II: In a longitudinal wave, the particle velocity is always in the same direction as the wave velocity.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Transverse: particles move perpendicular to propagation, so Statement I holds. Longitudinal: particles oscillate back and forth along the line of propagation, so their velocity is sometimes along and sometimes opposite to the wave velocity; Statement II is false."
+
+  - id: phy-wav-110
+    topic: progressive-wave
+    subtopic: Reading wave parameters (mixed units)
+    concept: Extracting v from y = A sin π(ax − bt) with cm units
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: v = ω/k
+    tags: [wave-equation, units, trap]
+    stem: "A wave is y = 5 sin π(0.02x − 4t), where y and x are in cm and t in s. The speed of the wave is"
+    options:
+      - 0.08 m s^{-1}
+      - 200 m s^{-1}
+      - 0.5 m s^{-1}
+      - 2 m s^{-1}
+    answer: 3
+    explanation: "k = 0.02π cm^{-1} and ω = 4π rad s^{-1}. v = ω/k = 4π/0.02π = 200 cm s^{-1} = 2 m s^{-1}. Reading 200 as m s^{-1} ignores that x is in cm."
+
+  - id: phy-wav-111
+    topic: progressive-wave
+    subtopic: Direction of particle motion from a snapshot
+    concept: For a right-moving wave, a point ahead of an approaching crest moves up
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [snapshot, particle-velocity]
+    stem: A snapshot of a sinusoidal transverse wave moving to the right (+x) shows point P on the string just to the right of a crest, on the downward-sloping part of the curve, above the mean line. At this instant P is moving
+    options:
+      - upward
+      - downward
+      - to the right
+      - it is momentarily at rest
+    answer: 0
+    explanation: "As the wave moves right, the crest behind P is about to arrive, so P must rise. Equivalently, v_p = −v(∂y/∂x); the slope is negative, so v_p is positive (upward). Particles never move along x in a transverse wave."
+
+  - id: phy-wav-112
+    topic: progressive-wave
+    subtopic: Distance for a given phase difference
+    concept: Δx = (λ/2π)Δφ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: Δx = λΔφ/2π
+    tags: [phase-difference, path-difference]
+    stem: A wave of frequency 500 Hz travels at 360 m s^{-1}. The minimum distance between two points whose oscillations differ in phase by π/3 is
+    options:
+      - 0.24 m
+      - 0.36 m
+      - 0.12 m
+      - 0.72 m
+    answer: 2
+    explanation: "λ = 360/500 = 0.72 m. Δx = λ(Δφ/2π) = 0.72 × (1/6) = 0.12 m. 0.24 m corresponds to a phase difference of 2π/3."
+
+  - id: phy-wav-113
+    topic: progressive-wave
+    subtopic: Initial state of the origin particle
+    concept: Sign of ∂y/∂t at x = 0, t = 0 depends on the form sin(ωt − kx)
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [particle-velocity, initial-phase]
+    stem: "For the wave y = A sin(ωt − kx), the particle at x = 0 at t = 0 is"
+    options:
+      - at the positive extreme, at rest
+      - at the mean position, moving in the −y direction
+      - at the negative extreme, at rest
+      - at the mean position, moving in the +y direction
+    answer: 3
+    explanation: "At x = 0, y = A sin ωt, so y(0) = 0 and ∂y/∂t = Aω cos 0 = +Aω. The particle is at the mean position moving in +y. For y = A sin(kx − ωt) it would move in −y instead."
+
+  - id: phy-wav-114
+    topic: progressive-wave
+    subtopic: Reading the standard form
+    concept: y = A sin 2π(t/T − x/λ) gives T and λ directly
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    formula: y = A sin 2π(t/T − x/λ)
+    tags: [wave-equation, multi-concept]
+    stem: |-
+      For the wave y = 0.1 sin 2π(t/0.02 − x/4) in SI units, consider:
+      I. The frequency is 50 Hz.
+      II. The wavelength is 4 m.
+      III. The wave speed is 50 m s^{-1}.
+      IV. The wave travels along −x.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I and IV only
+    answer: 0
+    explanation: "Comparing with y = A sin 2π(t/T − x/λ): T = 0.02 s, so f = 50 Hz; λ = 4 m. v = fλ = 200 m s^{-1}, so III is false. The phase (t/T − x/λ) is constant for x increasing with t, so it moves along +x; IV is false."
+
+  - id: phy-wav-115
+    topic: progressive-wave
+    subtopic: Path difference from phase difference
+    concept: Separation corresponding to phase difference 3π/2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: Δx = λΔφ/2π
+    tags: [path-difference]
+    stem: Two particles on a wave of wavelength 40 cm oscillate with a phase difference of 3π/2. Their minimum separation along the wave is
+    options:
+      - 10 cm
+      - 20 cm
+      - 60 cm
+      - 30 cm
+    answer: 3
+    explanation: "Δx = λ(Δφ/2π) = 40 × (3π/2)/(2π) = 40 × 3/4 = 30 cm."
+
+  - id: phy-wav-116
+    topic: progressive-wave
+    subtopic: Characteristics of a travelling wave
+    concept: In a travelling harmonic wave all particles share amplitude and frequency but differ in phase
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [travelling-wave, standing-wave, confused-pair]
+    stem: Which statement correctly describes a sinusoidal travelling wave on a long uniform string (no damping)?
+    options:
+      - Some particles are permanently at rest
+      - All particles oscillate with the same amplitude and frequency but with different phases
+      - Particles within a half-wavelength oscillate in the same phase
+      - Different particles oscillate with different frequencies
+    answer: 1
+    explanation: "In a travelling wave every particle executes SHM of the same amplitude and frequency, with phase changing continuously along the string. Permanently resting particles (nodes) and in-phase loops describe standing waves."
+
+  - id: phy-wav-117
+    topic: progressive-wave
+    subtopic: Particle speed at a displacement
+    concept: Particle speed v_p = ω√(A^2 − y^2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: v_p = ω√(A^2 − y^2)
+    tags: [particle-velocity, shm]
+    stem: A wave of amplitude 5 mm and angular frequency 200 rad s^{-1} passes along a string. The speed of a particle of the string when its displacement is 3 mm is
+    options:
+      - 1.0 m s^{-1}
+      - 0.6 m s^{-1}
+      - 0.8 m s^{-1}
+      - 1.6 m s^{-1}
+    answer: 2
+    explanation: "Each particle executes SHM, so v_p = ω√(A^2 − y^2) = 200 × √(25 − 9) mm s^{-1} = 200 × 4 mm s^{-1} = 0.8 m s^{-1}. Aω = 1.0 m s^{-1} is the maximum value at y = 0."
+
+  - id: phy-wav-118
+    topic: progressive-wave
+    subtopic: Distance travelled in n oscillations
+    concept: The wave advances one wavelength per oscillation of a particle
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [wavelength, period]
+    stem: A wave has wavelength 0.4 m. While a particle of the medium completes 5 oscillations, the wave travels
+    options:
+      - 2 m
+      - 0.08 m
+      - 0.4 m
+      - 1 m
+    answer: 0
+    explanation: "In one period the disturbance advances one wavelength. In 5 periods it moves 5λ = 5 × 0.4 = 2 m."
+
+  - id: phy-wav-119
+    topic: progressive-wave
+    subtopic: Displacement–time graph
+    concept: Period from a y–t graph combined with v gives λ
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: λ = vT
+    tags: [graph, y-t-graph]
+    stem: The displacement–time graph of one particle of a medium is a sine curve that completes one full cycle every 0.04 s, with peak displacement 3 mm. If the wave speed is 300 m s^{-1}, the wavelength is
+    options:
+      - 7500 m
+      - 12 m
+      - 0.012 m
+      - 3 m
+    answer: 1
+    explanation: "The y–t graph gives T = 0.04 s (f = 25 Hz). λ = vT = 300 × 0.04 = 12 m. The 3 mm peak is the amplitude and does not enter λ."
+
+  - id: phy-wav-120
+    topic: progressive-wave
+    subtopic: Points in phase
+    concept: Points separated by a whole wavelength oscillate in phase
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    diagram: "A snapshot of a sinusoidal transverse wave on a horizontal x-axis spanning two full wavelengths, λ = 4 cm. Points are marked on the curve: A at x = 0 cm (mean position, curve rising), B at x = 1 cm (crest), C at x = 2 cm (mean position, curve falling), D at x = 3 cm (trough), E at x = 4 cm (mean position, curve rising), F at x = 5 cm (crest), G at x = 6 cm (mean position, curve falling). Wave travels to the right."
+    tags: [phase, diagram]
+    stem: In the snapshot shown (λ = 4 cm), which pair of points oscillates exactly in phase?
+    options:
+      - A and C
+      - B and D
+      - A and E
+      - C and E
+    answer: 2
+    explanation: "Points separated by a whole number of wavelengths are in phase. A (x = 0) and E (x = 4 cm) are λ apart. A and C, B and D, C and E are λ/2 apart and oscillate in antiphase."
+
+  - id: phy-wav-121
+    topic: progressive-wave
+    subtopic: Particles execute SHM
+    concept: Particle speed is maximum at zero displacement
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [shm, particle-velocity]
+    stem: |-
+      Assertion (A): In a sinusoidal travelling wave, a particle of the medium moves fastest when its displacement is zero.
+      Reason (R): Each particle of the medium executes simple harmonic motion about its mean position.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "In SHM, speed is ω√(A^2 − y^2), maximum at y = 0. Since each particle performs SHM as the harmonic wave passes, R explains A."
+
+  - id: phy-wav-122
+    topic: progressive-wave
+    subtopic: Travelling pulse
+    concept: A pulse f(ax + bt) moves along −x with speed b/a
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [pulse, wave-function, trap]
+    stem: "A pulse on a string is described by y = 0.8/[1 + (4x + 5t)^2], with x, y in metres and t in seconds. The pulse moves with"
+    options:
+      - speed 0.8 m s^{-1} along +x
+      - speed 1.25 m s^{-1} along +x
+      - speed 1.25 m s^{-1} along −x
+      - speed 20 m s^{-1} along −x
+    answer: 2
+    explanation: "Write 4x + 5t = 4(x + 1.25t). The shape depends on x + vt with v = 1.25 m s^{-1}, so the pulse moves along −x. 0.8 m is the peak height, not the speed."
+
+  - id: phy-wav-123
+    topic: progressive-wave
+    subtopic: Particle velocity from slope
+    concept: v_p = −v ∂y/∂x
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: v_p = −v ∂y/∂x
+    tags: [slope, particle-velocity]
+    stem: A transverse wave travels along +x at 50 m s^{-1}. At a certain point and instant the slope of the string is +0.02. The transverse velocity of the string there is
+    options:
+      - 1 m s^{-1} upward
+      - 2500 m s^{-1} downward
+      - 0.0004 m s^{-1} upward
+      - 1 m s^{-1} downward
+    answer: 3
+    explanation: "For y = f(x − vt), ∂y/∂t = −v ∂y/∂x = −50 × 0.02 = −1 m s^{-1}: 1 m s^{-1} downward. Dropping the minus sign gives the wrong direction."
+
+  - id: phy-wav-124
+    topic: speed-on-string
+    subtopic: Graph of v^2 against T
+    concept: Slope of v^2 vs T graph is 1/μ
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: v^2 = T/μ
+    tags: [graph, linear-density]
+    stem: For a given string, the square of the transverse wave speed v^2 is plotted against the tension T. The graph is
+    options:
+      - a parabola opening upward
+      - a straight line through the origin with slope μ
+      - a rectangular hyperbola
+      - a straight line through the origin with slope 1/μ
+    answer: 3
+    explanation: "v^2 = T/μ, so v^2 ∝ T with slope 1/μ. A plot of v against T (not v^2) would be a parabola lying on its side (v ∝ √T)."
+
+  - id: phy-wav-125
+    topic: speed-on-string
+    subtopic: Required tension
+    concept: T = μv^2
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: T = μv^2
+    tags: [tension]
+    stem: A wire 1 m long has a mass of 10 g. The tension needed for transverse waves to travel along it at 200 m s^{-1} is
+    options:
+      - 2 N
+      - 400 N
+      - 40 N
+      - 4000 N
+    answer: 1
+    explanation: "μ = 0.01 kg m^{-1}. T = μv^2 = 0.01 × 200^2 = 400 N. Using the mass in grams gives 4 × 10^5 N-type errors; using v instead of v^2 gives 2 N."
+
+  - id: phy-wav-126
+    topic: speed-on-string
+    subtopic: Rope hanging under its own weight
+    concept: Tension varies along a hanging rope, v = √(gx)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: v = √(gx), t = 2√(L/g)
+    tags: [variable-tension, multi-concept]
+    stem: A uniform rope 2.5 m long hangs from a ceiling. A transverse pulse starts at the bottom end. The time it takes to reach the top is (g = 10 m s^{-2})
+    options:
+      - 0.5 s
+      - 1 s
+      - 2 s
+      - 0.25 s
+    answer: 1
+    explanation: "At height x above the free end, T = μgx, so v = √(T/μ) = √(gx). dt = dx/√(gx) integrates to t = 2√(L/g) = 2√(0.25) = 1 s. Assuming constant speed √(gL) gives 0.5 s."
+
+  - id: phy-wav-127
+    topic: speed-on-string
+    subtopic: Heavy vs light rope
+    concept: Heavier rope (larger μ) carries slower waves at the same tension
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [linear-density]
+    stem: |-
+      Assertion (A): Under the same tension, a transverse pulse travels more slowly on a thick rope than on a thin string.
+      Reason (R): The speed of a transverse wave on a string is inversely proportional to the square root of its linear mass density.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "v = √(T/μ). The thick rope has larger μ, so at equal tension the wave is slower. R is the exact reason for A."
+
+  - id: phy-wav-128
+    topic: speed-on-string
+    subtopic: Immersed hanging load
+    concept: Buoyancy reduces tension, so v falls by √(1 − ρ_w/ρ)
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: T' = T(1 − ρ_w/ρ_b)
+    tags: [buoyancy, multi-concept]
+    stem: A string supports a block of relative density 4 hanging from it, and transverse waves travel along the string at 60 m s^{-1}. The block is now fully immersed in water. The new wave speed is about
+    options:
+      - 45 m s^{-1}
+      - 30 m s^{-1}
+      - 52 m s^{-1}
+      - 56 m s^{-1}
+    answer: 2
+    explanation: "Buoyancy reduces the tension: T' = mg(1 − 1/4) = 0.75T. v ∝ √T gives v' = 60 × √0.75 ≈ 52 m s^{-1}. Scaling v directly by 0.75 gives 45 m s^{-1}."
+
+  - id: phy-wav-129
+    topic: speed-on-string
+    subtopic: Factors not affecting speed
+    concept: Amplitude and frequency do not affect wave speed on a string
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [wave-speed, misconception]
+    stem: Which change would alter the speed of transverse waves on a stretched string?
+    options:
+      - Increasing the amplitude of the waves
+      - Increasing the frequency of the source
+      - Replacing the string by a thicker one of the same material at the same tension
+      - Making the wave pulse wider
+    answer: 2
+    explanation: "Only T and μ fix v = √(T/μ). A thicker string of the same material has larger μ, so waves are slower. Amplitude, frequency and pulse shape do not change the speed."
+
+  - id: phy-wav-130
+    topic: speed-on-string
+    subtopic: Percentage change
+    concept: A 44% increase in tension raises v by 20%
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: v ∝ √T
+    tags: [percentage]
+    stem: The tension in a string is increased by 44%. The speed of transverse waves on it increases by
+    options:
+      - 44%
+      - 22%
+      - 12%
+      - 20%
+    answer: 3
+    explanation: "v'/v = √1.44 = 1.2, a 20% increase. Halving the percentage (22%) is only an approximation for small changes and fails here."
+
+  - id: phy-wav-131
+    topic: speed-on-string
+    subtopic: Redistributing mass
+    concept: Stretching the same mass over double length halves μ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: v = √(TL/m)
+    tags: [linear-density]
+    stem: A string of fixed total mass is replaced by one of the same mass but twice the length, at the same tension. The wave speed becomes
+    options:
+      - √2 times
+      - twice
+      - half
+      - 1/√2 times
+    answer: 0
+    explanation: "μ = m/L halves when L doubles for the same mass. v = √(T/μ) therefore increases by √2."
+
+  - id: phy-wav-132
+    topic: speed-on-string
+    subtopic: Assumptions of the derivation
+    concept: v = √(T/μ) assumes small amplitude and a perfectly flexible string
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [derivation, assumptions]
+    stem: |-
+      Statement I: The formula v = √(T/μ) assumes that the displacement of the string is small compared with its length, so the tension stays essentially constant.
+      Statement II: The formula v = √(T/μ) holds only for sinusoidal waves and not for pulses.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "The derivation treats a small pulse on a flexible string with small displacement, so the tension is unchanged. The speed depends only on T and μ and applies to pulses of any shape, so Statement II is false."
+
+  - id: phy-wav-133
+    topic: speed-on-string
+    subtopic: Effect of changes on speed
+    concept: Scaling of v = √(T/μ) under different changes
+    category: application
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: v = √(T/(ρπr^2))
+    tags: [proportionality, match]
+    stem: |-
+      Match each change in List I with the factor by which the wave speed on a string changes (List II).
+      List I: P. Tension doubled  Q. Linear density doubled  R. Radius doubled (same material and tension)  S. Tension and linear density both doubled
+      List II: 1. ×1/√2  2. unchanged  3. ×√2  4. ×1/2
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-2, S-4
+    answer: 0
+    explanation: "v ∝ √(T/μ). Doubling T gives ×√2; doubling μ gives ×1/√2; doubling radius makes μ four times, so ×1/2; doubling both leaves v unchanged."
+
+  - id: phy-wav-134
+    topic: speed-of-sound
+    subtopic: Speed from gas properties
+    concept: v = √(γRT/M) for air
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: v = √(γRT/M)
+    tags: [gas, molar-mass, trap]
+    stem: Taking γ = 1.4, R = 8.3 J mol^{-1} K^{-1} and molar mass of air 29 g mol^{-1}, the speed of sound in air at 300 K is closest to
+    options:
+      - 11 m s^{-1}
+      - 293 m s^{-1}
+      - 410 m s^{-1}
+      - 347 m s^{-1}
+    answer: 3
+    explanation: "v = √(γRT/M) = √(1.4 × 8.3 × 300/0.029) ≈ √(1.2 × 10^5) ≈ 347 m s^{-1}. Leaving M in g mol^{-1} gives about 11 m s^{-1}; dropping γ (Newton) gives about 293 m s^{-1}."
+
+  - id: phy-wav-135
+    topic: speed-of-sound
+    subtopic: Comparing gases
+    concept: v ∝ √(γ/M) orders speeds in O_2, He and H_2
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: v ∝ √(γ/M)
+    tags: [ordering, gases, multi-concept]
+    stem: At the same temperature, arrange the speed of sound in oxygen (γ = 1.4, M = 32), helium (γ = 5/3, M = 4) and hydrogen (γ = 1.4, M = 2) in increasing order.
+    options:
+      - Helium < oxygen < hydrogen
+      - Hydrogen < helium < oxygen
+      - Oxygen < helium < hydrogen
+      - Oxygen < hydrogen < helium
+    answer: 2
+    explanation: "√(γ/M): O_2 ≈ √0.044 ≈ 0.21, He ≈ √0.42 ≈ 0.65, H_2 ≈ √0.70 ≈ 0.84. So oxygen < helium < hydrogen. Helium's larger γ does not overcome its doubled molar mass relative to hydrogen."
+
+  - id: phy-wav-136
+    topic: speed-of-sound
+    subtopic: Pressure independence
+    concept: v = √(γP/ρ) but P/ρ is constant at fixed T
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [pressure, trap]
+    stem: |-
+      Assertion (A): The speed of sound in air changes when the pressure changes at constant temperature.
+      Reason (R): The speed of sound in a gas is given by v = √(γP/ρ).
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "R is the correct formula, but at constant temperature ρ ∝ P, so P/ρ and hence v stay unchanged. A is false."
+
+  - id: phy-wav-137
+    topic: speed-of-sound
+    subtopic: Temperature graph
+    concept: v^2 ∝ T gives a straight line through origin
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, temperature]
+    stem: For an ideal gas, which plot is a straight line passing through the origin?
+    options:
+      - v against T (in kelvin)
+      - v against T (in °C)
+      - v^2 against T (in kelvin)
+      - v against 1/T (in kelvin)
+    answer: 2
+    explanation: "v = √(γRT/M), so v^2 = (γR/M)T: v^2 vs absolute T is a straight line through the origin. v vs T is a curve (v ∝ √T), and a Celsius scale would not pass through the origin."
+
+  - id: phy-wav-138
+    topic: speed-of-sound
+    subtopic: Helium vs hydrogen
+    concept: Ratio v_{He}/v_{H_2} = √[(γ_{He}/γ_{H})(M_H/M_{He})]
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: v ∝ √(γ/M)
+    tags: [gases, ratio]
+    stem: The ratio of the speed of sound in helium (γ = 5/3, M = 4) to that in hydrogen (γ = 7/5, M = 2) at the same temperature is
+    options:
+      - "5 : √42"
+      - "√2 : 1"
+      - "1 : √2"
+      - "5 : 7"
+    answer: 0
+    explanation: "v_{He}/v_H = √[(5/3)/4 ÷ (7/5)/2] = √[(5/12) × (10/7)] = √(50/84) = √(25/42) = 5/√42 ≈ 0.77. Ignoring γ gives 1 : √2."
+
+  - id: phy-wav-139
+    topic: speed-of-sound
+    subtopic: Thunder and lightning
+    concept: Distance = speed of sound × delay
+    category: numerical
+    format: case
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    tags: [application]
+    stem: Thunder is heard 3 s after a lightning flash is seen. If sound travels at 340 m s^{-1}, the lightning struck about
+    options:
+      - 113 m away
+      - 510 m away
+      - 1020 m away
+      - 2040 m away
+    answer: 2
+    explanation: "Light arrives almost instantly, so the delay is the sound's travel time: d = vt = 340 × 3 = 1020 m. Halving (as for an echo) is wrong because the sound makes a one-way trip."
+
+  - id: phy-wav-140
+    topic: speed-of-sound
+    subtopic: Change of medium
+    concept: Frequency stays fixed; λ ∝ v when sound enters water
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: λ = v/f
+    tags: [refraction, wavelength]
+    stem: A 500 Hz sound wave passes from air (v = 340 m s^{-1}) into water (v = 1500 m s^{-1}). Its wavelength in water is
+    options:
+      - 0.68 m
+      - 3 m
+      - 1.5 m
+      - 0.23 m
+    answer: 1
+    explanation: "Frequency is set by the source and does not change. λ_w = v_w/f = 1500/500 = 3 m, larger than the 0.68 m in air."
+
+  - id: phy-wav-141
+    topic: speed-of-sound
+    subtopic: Factors affecting speed of sound in air
+    concept: Temperature and humidity affect v; pressure (at fixed T) and frequency do not
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [factors]
+    stem: |-
+      About the speed of sound in air, consider:
+      I. It increases with temperature.
+      II. It is independent of pressure at constant temperature.
+      III. It decreases as humidity increases.
+      IV. It is the same for all audible frequencies.
+      Which are correct?
+    options:
+      - I and II only
+      - I, III and IV only
+      - II, III and IV only
+      - I, II and IV only
+    answer: 3
+    explanation: "v ∝ √T (I true); P/ρ is fixed at constant T (II true); humid air is less dense, so v increases with humidity (III false); air is practically non-dispersive for sound, so all frequencies travel at the same speed (IV true)."
+
+  - id: phy-wav-142
+    topic: speed-of-sound
+    subtopic: Equal speeds in different gases
+    concept: v ∝ √(T/M) for gases with the same γ
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: T_1/M_1 = T_2/M_2
+    tags: [temperature, molar-mass]
+    stem: At what temperature will the speed of sound in oxygen equal its speed in hydrogen at 27 °C? (Both diatomic.)
+    options:
+      - 4800 °C
+      - 4527 °C
+      - 432 °C
+      - 1200 °C
+    answer: 1
+    explanation: "Equal γ, so T_O/32 = 300/2, giving T_O = 4800 K = 4527 °C. Leaving the answer in kelvin (4800) is the usual slip."
+
+  - id: phy-wav-143
+    topic: speed-of-sound
+    subtopic: Laplace factor for a monatomic gas
+    concept: Ratio of Laplace to Newton values is √γ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: v_L/v_N = √γ
+    tags: [laplace-correction]
+    stem: For helium (γ = 5/3), the ratio of the speed of sound given by Laplace's formula to that given by Newton's formula is about
+    options:
+      - "1.67"
+      - "1.18"
+      - "1.29"
+      - "0.77"
+    answer: 2
+    explanation: "v_L/v_N = √(γP/ρ)/√(P/ρ) = √γ = √(5/3) ≈ 1.29. 1.18 is the value for air (γ = 1.4), and 1.67 forgets the square root."
+
+  - id: phy-wav-144
+    topic: speed-of-sound
+    subtopic: Bulk modulus from speed
+    concept: B = ρv^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: B = ρv^2
+    tags: [bulk-modulus]
+    stem: Sound travels at 1200 m s^{-1} in a liquid of density 800 kg m^{-3}. The bulk modulus of the liquid is
+    options:
+      - 1.15 × 10^9 Pa
+      - 9.6 × 10^5 Pa
+      - 1.8 × 10^9 Pa
+      - 1.5 × 10^6 Pa
+    answer: 0
+    explanation: "B = ρv^2 = 800 × (1200)^2 = 800 × 1.44 × 10^6 ≈ 1.15 × 10^9 Pa. Using v instead of v^2 gives 9.6 × 10^5 Pa."
+
+  - id: phy-wav-145
+    topic: superposition
+    subtopic: Overlap of unequal pulses
+    concept: At complete overlap, displacements of opposite pulses subtract
+    category: numerical
+    format: diagram
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    diagram: "A horizontal string along the x-axis. On the left, an upright triangular pulse A of height 2 cm and base width 4 cm moves right with an arrow labelled v. On the right, an inverted triangular pulse B of depth 1 cm and the same base width 4 cm moves left with an arrow labelled v. The two pulses have identical shape apart from height and sign."
+    tags: [pulses, superposition]
+    stem: The two triangular pulses shown travel towards each other. At the instant they overlap exactly, the peak displacement of the string is
+    options:
+      - 1 cm upward
+      - 3 cm upward
+      - 1 cm downward
+      - zero
+    answer: 0
+    explanation: "Displacements add algebraically: +2 cm + (−1 cm) = +1 cm at the peak, so the string shows an upright triangle of height 1 cm. Adding magnitudes (3 cm) ignores the sign of pulse B."
+
+  - id: phy-wav-146
+    topic: superposition
+    subtopic: Phenomena explained by superposition
+    concept: Interference, beats and standing waves arise from superposition; refraction does not
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [superposition, applications]
+    stem: Which of the following phenomena is NOT a result of the superposition of waves?
+    options:
+      - Formation of beats
+      - Formation of standing waves on a string
+      - Change in wavelength of sound on entering water
+      - Loud and faint regions near two coherent loudspeakers
+    answer: 2
+    explanation: "Beats, standing waves and interference patterns all come from adding displacements of two waves. The wavelength change on entering water is due to the change in speed (refraction), not superposition."
+
+  - id: phy-wav-147
+    topic: superposition
+    subtopic: Sine plus cosine
+    concept: a sin ωt + b cos ωt = √(a^2 + b^2) sin(ωt + φ)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: A = √(a^2 + b^2), tan φ = b/a
+    tags: [phasor, resultant-amplitude]
+    stem: At a point, two waves produce displacements y_1 = 3 sin ωt and y_2 = 4 cos ωt (in mm). The resultant amplitude is
+    options:
+      - 7 mm
+      - 1 mm
+      - 12 mm
+      - 5 mm
+    answer: 3
+    explanation: "cos ωt = sin(ωt + π/2), so the waves differ in phase by π/2. A = √(3^2 + 4^2) = 5 mm, with phase tan^{-1}(4/3) ≈ 53° ahead of y_1."
+
+  - id: phy-wav-148
+    topic: superposition
+    subtopic: Energy in interference
+    concept: Destructive interference redistributes rather than destroys energy
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [energy, interference, misconception]
+    stem: |-
+      Assertion (A): At a point of destructive interference between two sound waves, the energy of the waves is destroyed.
+      Reason (R): The resultant amplitude at a point of destructive interference is minimum.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "The amplitude (and intensity) is minimum at destructive points, so R is true. But energy is conserved: it is redistributed to points of constructive interference, where the intensity exceeds the sum. A is false."
+
+  - id: phy-wav-149
+    topic: superposition
+    subtopic: Three waves
+    concept: Waves differing in phase by π cancel, leaving the third
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [multi-wave, trap]
+    stem: "Three waves of equal frequency superpose at a point: y_1 = a sin ωt, y_2 = a sin(ωt + π/2) and y_3 = a sin(ωt + π). The resultant amplitude is"
+    options:
+      - 3a
+      - a
+      - √2 a
+      - zero
+    answer: 1
+    explanation: "y_1 and y_3 differ in phase by π and cancel exactly, leaving y_2 alone with amplitude a. Adding y_1 and y_2 first (√2 a) and forgetting y_3 is the tempting slip."
+
+  - id: phy-wav-150
+    topic: superposition
+    subtopic: Phase from resultant
+    concept: For equal amplitudes, A_r = √2 a requires φ = π/2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: A_r = 2a cos(φ/2)
+    tags: [phase-difference]
+    stem: Two waves of equal amplitude a and the same frequency superpose to give a resultant amplitude √2 a. Their phase difference is
+    options:
+      - π/2
+      - π/3
+      - π/4
+      - π
+    answer: 0
+    explanation: "2a cos(φ/2) = √2 a gives cos(φ/2) = 1/√2, so φ/2 = π/4 and φ = π/2. π/4 is the half-angle, not the phase difference."
+
+  - id: phy-wav-151
+    topic: superposition
+    subtopic: Resultant amplitude for various phases
+    concept: A_r = 2a cos(φ/2) at φ = 0, π/2, 2π/3, π
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    formula: A_r = 2a cos(φ/2)
+    tags: [match, resultant-amplitude]
+    stem: |-
+      Two waves each of amplitude a superpose. Match the phase difference (List I) with the resultant amplitude (List II).
+      List I: P. 0  Q. π/2  R. 2π/3  S. π
+      List II: 1. a  2. zero  3. 2a  4. √2 a
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: "A_r = 2a cos(φ/2): φ = 0 gives 2a; φ = π/2 gives 2a cos 45° = √2 a; φ = 2π/3 gives 2a cos 60° = a; φ = π gives zero."
+
+  - id: phy-wav-152
+    topic: superposition
+    subtopic: Pulses approaching
+    concept: Relative approach of pulses on the same string
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [pulses]
+    stem: Two identical pulses on a string, whose centres are 10 cm apart, move towards each other, each at 2 cm s^{-1}. They overlap completely after
+    options:
+      - 5 s
+      - 2.5 s
+      - 10 s
+      - 1.25 s
+    answer: 1
+    explanation: "Each pulse moves at 2 cm s^{-1} on the same string, so the gap closes at 4 cm s^{-1}. Complete overlap takes 10/4 = 2.5 s. Using a single pulse's speed gives 5 s."
+
+  - id: phy-wav-153
+    topic: superposition
+    subtopic: Intensity ratio from intensities
+    concept: Convert intensity ratio to amplitude ratio before finding I_{max}/I_{min}
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: I_{max}/I_{min} = ((√I_1 + √I_2)/(√I_1 − √I_2))^2
+    tags: [intensity, multi-concept, trap]
+    stem: "Two coherent sound waves have intensities in the ratio 9 : 4. The ratio of maximum to minimum intensity in their interference is"
+    options:
+      - "13 : 5"
+      - "9 : 4"
+      - "25 : 1"
+      - "5 : 1"
+    answer: 2
+    explanation: "Amplitude ∝ √I, so A_1 : A_2 = 3 : 2. I_{max}/I_{min} = ((3 + 2)/(3 − 2))^2 = 25. Using the intensities directly, (9 + 4)/(9 − 4) = 13/5, is wrong."
+
+  - id: phy-wav-154
+    topic: superposition
+    subtopic: Conditions for a steady pattern
+    concept: Superposition is universal for linear media; stable interference needs constant phase difference
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [coherence, superposition]
+    stem: |-
+      Statement I: The principle of superposition applies to sound waves in air as well as to waves on strings, provided the disturbances are small.
+      Statement II: For a steady pattern of loud and quiet points from two loudspeakers, the two sources must maintain a constant phase difference.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Superposition holds for any wave in a linear medium (small disturbances). A stationary interference pattern requires a constant phase relationship (coherent sources), otherwise the loud and quiet points shift about. Both statements are correct."
+
+  - id: phy-wav-155
+    topic: reflection
+    subtopic: Reflection from a less dense medium
+    concept: Reflection towards a faster medium has no phase change; frequency is unchanged
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [phase-change, frequency]
+    stem: |-
+      Statement I: A wave on a heavy string reflected at its junction with a light string returns without phase reversal.
+      Statement II: The frequency of a reflected wave is the same as that of the incident wave.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "A light string acts like a (partly) free end for waves arriving from a heavy string, so reflection has no phase change. Reflection and transmission never alter frequency, which is set by the source. Both statements are correct."
+
+  - id: phy-wav-156
+    topic: reflection
+    subtopic: Asymmetric pulse at a fixed end
+    concept: A reflected pulse at a rigid end is inverted, and its leading edge remains leading
+    category: concept
+    format: diagram
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    diagram: "A horizontal string attached at its right end to a rigid wall. An upright asymmetric pulse moves right towards the wall: its right (leading) edge rises steeply over 1 cm of string and its left (trailing) edge falls gradually over 4 cm. Arrow labelled v points to the wall."
+    tags: [pulse, rigid-boundary, trap]
+    stem: The asymmetric pulse shown is fully reflected at the rigid wall. The reflected pulse travelling left is
+    options:
+      - upright, with the steep edge now at its left (leading) side
+      - inverted, with the gradual edge at its left (leading) side
+      - upright, with the gradual edge at its left (leading) side
+      - inverted, with the steep edge at its left (leading) side
+    answer: 3
+    explanation: "A rigid end inverts the pulse. The part that reaches the wall first (the steep edge) is also reflected first, so it leads on the way back; the steep edge is now on the left of the leftward-moving pulse."
+
+  - id: phy-wav-157
+    topic: reflection
+    subtopic: SONAR
+    concept: Depth from echo time d = vt/2
+    category: numerical
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: d = vt/2
+    tags: [sonar, echo]
+    stem: A ship's SONAR sends an ultrasonic pulse downward and receives the echo from the seabed 2 s later. If sound travels at 1500 m s^{-1} in seawater, the depth of the sea is
+    options:
+      - 3000 m
+      - 750 m
+      - 6000 m
+      - 1500 m
+    answer: 3
+    explanation: "The pulse travels down and back: 2d = vt = 1500 × 2 = 3000 m, so d = 1500 m. Forgetting the round trip gives 3000 m."
+
+  - id: phy-wav-158
+    topic: reflection
+    subtopic: Rigid boundary properties
+    concept: At a rigid boundary displacement is zero, phase change π, speed unchanged
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [rigid-boundary]
+    stem: |-
+      A wave on a string is totally reflected at a rigid support. Consider:
+      I. The displacement at the support is zero at all times.
+      II. The reflected wave travels with the same speed as the incident wave.
+      III. The reflected wave undergoes a phase change of π.
+      IV. The reflected wave has twice the amplitude of the incident wave.
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 0
+    explanation: "At a rigid support the displacement is always zero, which forces the reflected wave to be inverted (phase change π). It moves in the same medium, so speed is unchanged, and with total reflection its amplitude equals the incident amplitude, not double."
+
+  - id: phy-wav-159
+    topic: reflection
+    subtopic: Minimum distance for echo
+    concept: Echo needs a delay of at least 0.1 s (persistence of hearing)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: d_{min} = v × 0.1/2
+    tags: [echo]
+    stem: The sensation of sound persists in the ear for about 0.1 s. If sound travels at 344 m s^{-1}, the minimum distance of a reflecting wall for a distinct echo is about
+    options:
+      - 34.4 m
+      - 17.2 m
+      - 8.6 m
+      - 3.4 m
+    answer: 1
+    explanation: "The reflected sound must arrive at least 0.1 s later, so 2d = 344 × 0.1 = 34.4 m and d = 17.2 m."
+
+  - id: phy-wav-160
+    topic: reflection
+    subtopic: Pressure wave at an open end
+    concept: At an open end a compression returns as a rarefaction
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [pressure-wave, open-end]
+    stem: A compression pulse travels along a pipe and is reflected from the open end. The reflected pulse is
+    options:
+      - a compression
+      - absent, since sound escapes completely
+      - a transverse pulse
+      - a rarefaction
+    answer: 3
+    explanation: "An open end is a pressure node (pressure stays atmospheric), so the pressure wave reflects with a phase change of π: a compression returns as a rarefaction. At a closed end it would return as a compression."
+
+  - id: phy-wav-161
+    topic: reflection
+    subtopic: Displacement at a free end
+    concept: At a free end incident and reflected pulses add, doubling the displacement
+    category: concept
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [free-boundary, superposition, multi-concept]
+    stem: A pulse of height h travels towards the free end of a string (a massless ring on a smooth rod). While it reflects, the maximum displacement of the free end is
+    options:
+      - h
+      - 2h
+      - zero
+      - h/2
+    answer: 1
+    explanation: "At a free end the reflected pulse is upright and overlaps the incoming pulse, so the displacements add and the end rises to 2h. At a fixed end the inverted reflection cancels the incident pulse, keeping the displacement zero."
+
+  - id: phy-wav-162
+    topic: reflection
+    subtopic: Origin of inversion at a fixed end
+    concept: The wall's reaction force on the string creates the inverted reflected pulse
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [rigid-boundary, newtons-third-law]
+    stem: |-
+      Assertion (A): A pulse on a string is inverted on reflection from a rigid wall.
+      Reason (R): As the pulse arrives, the string pulls up on the wall and the wall exerts an equal and opposite downward force on the string.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "When an upright pulse reaches the wall, the string exerts an upward force on the wall; by Newton's third law the wall pulls the string downward, generating an inverted reflected pulse. R explains A."
+
+  - id: phy-wav-163
+    topic: strings-standing
+    subtopic: Sonometer frequency
+    concept: f = (1/2L)√(T/μ)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: f = (1/2L)√(T/μ)
+    tags: [sonometer]
+    stem: A sonometer wire of vibrating length 50 cm and linear density 0.01 kg m^{-1} is under a tension of 100 N. Its fundamental frequency is
+    options:
+      - 50 Hz
+      - 200 Hz
+      - 100 Hz
+      - 400 Hz
+    answer: 2
+    explanation: "v = √(100/0.01) = 100 m s^{-1}. f = v/2L = 100/(2 × 0.5) = 100 Hz. Using v/L gives 200 Hz."
+
+  - id: phy-wav-164
+    topic: strings-standing
+    subtopic: Tension from a harmonic
+    concept: Working back from the nth harmonic to T = μv^2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: f_n = (n/2L)√(T/μ)
+    tags: [harmonics, tension, multi-concept]
+    stem: A wire 0.6 m long with linear density 5 × 10^{-3} kg m^{-1}, fixed at both ends, vibrates in its third harmonic at 450 Hz. The tension in the wire is
+    options:
+      - 18 N
+      - 54 N
+      - 1458 N
+      - 162 N
+    answer: 3
+    explanation: "Third harmonic: L = 3λ/2, so λ = 0.4 m and v = fλ = 450 × 0.4 = 180 m s^{-1}. T = μv^2 = 0.005 × 32400 = 162 N. Treating 450 Hz as the fundamental gives λ = 1.2 m and T = 1458 N."
+
+  - id: phy-wav-165
+    topic: strings-standing
+    subtopic: Amplitude profile
+    concept: In the second harmonic the midpoint is a node
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [graph, nodes]
+    stem: The amplitude of oscillation is plotted against position x along a string of length L fixed at both ends, vibrating in its second harmonic. The amplitude is zero at
+    options:
+      - x = 0 and x = L only
+      - x = L/4 and x = 3L/4
+      - x = 0, L/2 and L
+      - x = L/2 only
+    answer: 2
+    explanation: "The second harmonic has L = λ, two loops with amplitude |2a sin(2πx/L)|. It vanishes at x = 0, L/2 and L (nodes); x = L/4 and 3L/4 are antinodes."
+
+  - id: phy-wav-166
+    topic: strings-standing
+    subtopic: Nodes in harmonics
+    concept: nth harmonic has n − 1 nodes between the fixed ends
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [match, nodes]
+    stem: |-
+      For a string fixed at both ends, match the mode (List I) with the number of nodes excluding the two ends (List II).
+      List I: P. 1st harmonic  Q. 2nd harmonic  R. 3rd harmonic  S. 4th harmonic
+      List II: 1. 2  2. 0  3. 3  4. 1
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-1, R-4, S-3
+      - P-2, Q-4, R-3, S-1
+    answer: 0
+    explanation: "The nth harmonic has n loops and hence n − 1 nodes between the ends: 0, 1, 2, 3 for n = 1, 2, 3, 4."
+
+  - id: phy-wav-167
+    topic: strings-standing
+    subtopic: Plucking point
+    concept: Plucking at the midpoint cannot excite modes with a node at the midpoint
+    category: application
+    format: assertion-reason
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [plucking, harmonics]
+    stem: |-
+      Assertion (A): A string plucked exactly at its midpoint vibrates with all harmonics present in equal strength.
+      Reason (R): A string fixed at both ends has nodes at its two ends.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "The midpoint is a node for every even harmonic, so plucking there (making it an antinode-like point of maximum displacement) cannot excite even harmonics; A is false. R is a true boundary condition for a string fixed at both ends."
+
+  - id: phy-wav-168
+    topic: strings-standing
+    subtopic: Standing vs travelling
+    concept: In a standing wave the amplitude varies with position and energy is not transported
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [standing-wave, travelling-wave, confused-pair]
+    stem: Which feature belongs to a standing wave but NOT to a travelling wave?
+    options:
+      - Particles execute SHM
+      - The wave has a definite wavelength
+      - Different particles oscillate with different amplitudes
+      - The particles oscillate with the frequency of the source
+    answer: 2
+    explanation: "In a standing wave the amplitude 2a|sin kx| depends on position, from zero at nodes to 2a at antinodes. Travelling harmonic waves give every particle the same amplitude. SHM, definite wavelength and source frequency are common to both."
+
+  - id: phy-wav-169
+    topic: strings-standing
+    subtopic: Component wave speed
+    concept: v = ω/k from a standing wave equation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: v = ω/k
+    tags: [standing-wave-equation, wave-speed]
+    stem: "A standing wave on a string is y = 4 sin(πx/15) cos(96πt), with x, y in cm and t in s. The speed of the component travelling waves is"
+    options:
+      - 14.4 m s^{-1}
+      - 6.4 m s^{-1}
+      - 1.44 m s^{-1}
+      - 144 m s^{-1}
+    answer: 0
+    explanation: "k = π/15 cm^{-1}, ω = 96π rad s^{-1}. v = ω/k = 96π × 15/π = 1440 cm s^{-1} = 14.4 m s^{-1}. Each component wave has amplitude 2 cm."
+
+  - id: phy-wav-170
+    topic: strings-standing
+    subtopic: Amplitude at a point
+    concept: Amplitude at x is 2a|sin kx|
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: A(x) = 2a|sin kx|
+    tags: [amplitude]
+    stem: "For the standing wave y = 4 sin(πx/15) cos(96πt) (x, y in cm), the amplitude of the particle at x = 5 cm is"
+    options:
+      - 4 cm
+      - 2 cm
+      - 3.5 cm
+      - zero
+    answer: 2
+    explanation: "Amplitude = 4 |sin(π × 5/15)| = 4 sin 60° = 2√3 ≈ 3.5 cm. 4 cm is the antinode amplitude (x = 7.5 cm)."
+
+  - id: phy-wav-171
+    topic: strings-standing
+    subtopic: Sonometer and law of length
+    concept: f ∝ 1/L at constant tension
+    category: numerical
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: f_1L_1 = f_2L_2
+    tags: [sonometer, law-of-length]
+    stem: A sonometer wire resonates with a 256 Hz tuning fork when the bridges are 50 cm apart. At constant tension, it will resonate with a 320 Hz fork when the bridges are
+    options:
+      - 62.5 cm apart
+      - 40 cm apart
+      - 32 cm apart
+      - 45 cm apart
+    answer: 1
+    explanation: "f ∝ 1/L, so L_2 = 256 × 50/320 = 40 cm. A higher frequency needs a shorter vibrating length."
+
+  - id: phy-wav-172
+    topic: strings-standing
+    subtopic: Combining the laws of strings
+    concept: f ∝ √T/(Lr) for wires of the same material
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: f = (1/2Lr)√(T/πρ)
+    tags: [laws-of-strings, multi-concept]
+    stem: "Two wires of the same material have lengths in the ratio 1 : 2, radii in the ratio 1 : 2 and tensions in the ratio 1 : 2. The ratio of their fundamental frequencies is"
+    options:
+      - "1 : 2"
+      - "2√2 : 1"
+      - "2 : 1"
+      - "√2 : 1"
+    answer: 1
+    explanation: "f = (1/2L)√(T/μ) with μ ∝ r^2, so f ∝ √T/(Lr). f_1/f_2 = (L_2r_2/L_1r_1)√(T_1/T_2) = 2 × 2 × (1/√2) = 2√2."
+
+  - id: phy-wav-173
+    topic: strings-standing
+    subtopic: Properties of stationary waves
+    concept: Nodes at rest, antinodes λ/2 apart, all particles cross mean position together
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [nodes, antinodes]
+    stem: |-
+      For a stationary wave on a string, consider:
+      I. Nodes are permanently at rest.
+      II. Adjacent antinodes are λ/2 apart.
+      III. A node and the adjacent antinode are λ/2 apart.
+      IV. All particles pass through their mean positions at the same instant.
+      Which are correct?
+    options:
+      - I and III only
+      - II, III and IV only
+      - I, II and III only
+      - I, II and IV only
+    answer: 3
+    explanation: "Nodes never move; antinodes, like nodes, are λ/2 apart; node to adjacent antinode is λ/4, so III is false. Since every particle oscillates as cos ωt (with amplitude 2a sin kx), all reach the mean position simultaneously."
+
+  - id: phy-wav-174
+    topic: strings-standing
+    subtopic: Sonometer resonance
+    concept: A paper rider falls off at resonance
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [sonometer, resonance, experimental]
+    stem: In a sonometer experiment, a small paper rider on the middle of the wire flies off when a vibrating tuning fork is placed on the box. This happens because
+    options:
+      - the fork's frequency is double the wire's frequency
+      - the wire's natural frequency equals the fork's frequency (resonance)
+      - the tension in the wire becomes zero
+      - a node forms at the position of the rider
+    answer: 1
+    explanation: "At resonance the wire's natural frequency matches the fork, so the wire vibrates with large amplitude; with the rider at the midpoint (antinode of the fundamental), it is thrown off. A node would leave the rider undisturbed."
+
+  - id: phy-wav-175
+    topic: strings-standing
+    subtopic: Allowed frequencies
+    concept: A string supports only integer multiples of v/2L
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: f_n = nv/2L
+    tags: [harmonics]
+    stem: Waves travel at 400 m s^{-1} on a 1 m string fixed at both ends. Which of these is NOT one of its natural frequencies?
+    options:
+      - 600 Hz
+      - 800 Hz
+      - 1000 Hz
+      - 900 Hz
+    answer: 3
+    explanation: "f_1 = v/2L = 200 Hz, and natural frequencies are 200n Hz: 200, 400, 600, 800, 1000 … 900 Hz is not a multiple of 200 Hz."
+
+  - id: phy-wav-176
+    topic: strings-standing
+    subtopic: Keeping frequency constant
+    concept: If L increases by 20%, T must increase by 44% to keep f constant
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: f ∝ √T/L
+    tags: [percentage, law-of-length]
+    stem: The vibrating length of a sonometer wire is increased by 20%. To keep its fundamental frequency unchanged, the tension must be increased by
+    options:
+      - 20%
+      - 44%
+      - 40%
+      - 10%
+    answer: 1
+    explanation: "f ∝ √T/L. Keeping f fixed needs √T ∝ L, so T ∝ L^2: T'/T = 1.2^2 = 1.44, a 44% increase."
+
+  - id: phy-wav-177
+    topic: organ-pipes
+    subtopic: Wavelengths of pipe modes
+    concept: λ = 4L/(2n − 1) for closed and 2L/n for open pipes
+    category: concept
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [match, wavelength]
+    stem: |-
+      For a pipe of length L (ignore end correction), match the mode in List I with its wavelength in List II.
+      List I: P. Closed pipe, fundamental  Q. Open pipe, fundamental  R. Closed pipe, third harmonic  S. Open pipe, second harmonic
+      List II: 1. L  2. 4L  3. 2L  4. 4L/3
+    options:
+      - P-2, Q-3, R-1, S-4
+      - P-3, Q-2, R-4, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-2, Q-1, R-4, S-3
+    answer: 2
+    explanation: "Closed pipe: L = λ/4, 3λ/4, … so λ = 4L and 4L/3. Open pipe: L = λ/2, λ, … so λ = 2L and L."
+
+  - id: phy-wav-178
+    topic: organ-pipes
+    subtopic: Resonance between pipes
+    concept: Third harmonic of closed pipe equals fundamental of open pipe
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: 3v/4L_c = v/2L_o
+    tags: [open-pipe, closed-pipe, multi-concept]
+    stem: The third harmonic of a pipe closed at one end has the same frequency as the fundamental of an open pipe 50 cm long. The length of the closed pipe is
+    options:
+      - 25 cm
+      - 37.5 cm
+      - 100 cm
+      - 75 cm
+    answer: 3
+    explanation: "3v/4L_c = v/2L_o gives L_c = 3L_o/2 = 75 cm. Equating the fundamentals instead gives 25 cm."
+
+  - id: phy-wav-179
+    topic: organ-pipes
+    subtopic: Resonance tube lengths
+    concept: Resonances in a closed column occur at λ/4, 3λ/4, 5λ/4
+    category: numerical
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: L_n = (2n − 1)λ/4
+    tags: [resonance-tube]
+    stem: In a resonance tube experiment (neglect end correction), the first resonance occurs at an air-column length of 17 cm. The next resonance occurs at
+    options:
+      - 34 cm
+      - 51 cm
+      - 68 cm
+      - 85 cm
+    answer: 1
+    explanation: "The closed air column resonates at λ/4, 3λ/4, …, so L_2 = 3L_1 = 51 cm. 34 cm (2L_1) assumes all harmonics, which a closed column does not have."
+
+  - id: phy-wav-180
+    topic: organ-pipes
+    subtopic: Richness of open pipes
+    concept: Open pipe has all harmonics; this is unrelated to its fundamental being doubled
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [harmonics, quality]
+    stem: |-
+      Assertion (A): An open organ pipe produces a richer (more musical) sound than a closed pipe.
+      Reason (R): The fundamental frequency of an open pipe is twice that of a closed pipe of the same length.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "An open pipe sounds richer because it contains both odd and even harmonics, while a closed pipe has only odd ones. R is a true fact (v/2L vs v/4L) but does not explain the richness of tone."
+
+  - id: phy-wav-181
+    topic: organ-pipes
+    subtopic: First overtone of an open pipe
+    concept: First overtone of an open pipe is 2v/2L
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: f_2 = v/L
+    tags: [open-pipe, overtones]
+    stem: An open pipe is 34 cm long and sound travels at 340 m s^{-1}. The frequency of its first overtone is
+    options:
+      - 500 Hz
+      - 1500 Hz
+      - 250 Hz
+      - 1000 Hz
+    answer: 3
+    explanation: "f_1 = v/2L = 340/0.68 = 500 Hz. The first overtone of an open pipe is the second harmonic, 1000 Hz. 1500 Hz would be the first overtone of a closed pipe with the same fundamental."
+
+  - id: phy-wav-182
+    topic: organ-pipes
+    subtopic: Changing the gas
+    concept: Filling a pipe with a lighter gas raises all its frequencies
+    category: application
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [gas, frequency]
+    stem: Which change would RAISE the fundamental frequency of an organ pipe?
+    options:
+      - Closing one end of an open pipe
+      - Filling the pipe with carbon dioxide instead of air
+      - Filling the pipe with helium instead of air
+      - Cooling the air in the pipe
+    answer: 2
+    explanation: "f ∝ v and v = √(γRT/M). Helium's low molar mass (and higher γ) gives a much higher v, raising the pitch. Heavier CO_2, cooling and closing one end all lower the fundamental."
+
+  - id: phy-wav-183
+    topic: organ-pipes
+    subtopic: Open pipe with end correction
+    concept: Open pipe effective length L + 0.6d
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: f = v/2(L + 0.6d)
+    tags: [end-correction, open-pipe]
+    stem: An open pipe is 50 cm long with internal diameter 5 cm. Taking sound speed 318 m s^{-1} and end correction 0.3d at each end, its fundamental frequency is
+    options:
+      - 318 Hz
+      - 300 Hz
+      - 306 Hz
+      - 159 Hz
+    answer: 1
+    explanation: "Effective length = L + 2 × 0.3d = 50 + 3 = 53 cm. f = v/2L_{eff} = 318/(2 × 0.53) = 300 Hz. Ignoring end correction gives 318 Hz, and including only one end gives ≈ 306 Hz."
+
+  - id: phy-wav-184
+    topic: organ-pipes
+    subtopic: Counting natural frequencies
+    concept: A closed pipe has modes (2n − 1)f_1
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: f = (2n − 1)v/4L
+    tags: [closed-pipe, harmonics]
+    stem: A pipe closed at one end is 85 cm long and sound travels at 340 m s^{-1}. How many of its natural frequencies lie below 1250 Hz?
+    options:
+      - "6"
+      - "12"
+      - "5"
+      - "7"
+    answer: 0
+    explanation: "f_1 = 340/(4 × 0.85) = 100 Hz and only odd harmonics occur: 100, 300, 500, 700, 900, 1100 Hz; the next, 1300 Hz, exceeds 1250 Hz. That is 6 frequencies. Counting all multiples of 100 Hz would give 12."
+
+  - id: phy-wav-185
+    topic: organ-pipes
+    subtopic: Pressure amplitude along a pipe
+    concept: Pressure antinode at the closed end, node at the open end
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [pressure, graph]
+    stem: For a pipe closed at one end vibrating in its fundamental mode, a graph of pressure-variation amplitude against distance from the closed end is drawn. It
+    options:
+      - is zero at the closed end and maximum at the open end
+      - is constant along the pipe
+      - is maximum at the middle and zero at both ends
+      - is maximum at the closed end and falls to zero at the open end
+    answer: 3
+    explanation: "The closed end is a displacement node and a pressure antinode, while the open end is a displacement antinode and pressure node. So the pressure amplitude is largest at the closed end and zero at the open end (a quarter cosine curve)."
+
+  - id: phy-wav-186
+    topic: organ-pipes
+    subtopic: Dipping an open pipe in water
+    concept: Half-submerged open pipe becomes a closed pipe of half length with the same fundamental
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [trap, closed-pipe, open-pipe]
+    stem: An open pipe of length L has fundamental frequency f. It is dipped vertically in water so that half its length is submerged. The new fundamental frequency is
+    options:
+      - f
+      - f/2
+      - 2f
+      - 3f/2
+    answer: 0
+    explanation: "The pipe becomes a closed pipe of length L/2, with fundamental v/(4 × L/2) = v/2L = f. The halving of length exactly compensates the change from open to closed."
+
+  - id: phy-wav-187
+    topic: organ-pipes
+    subtopic: First resonance length
+    concept: First resonance of a closed column occurs at about λ/4
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [resonance-tube]
+    stem: In a resonance tube (closed at the water end), the first resonance occurs when the length of the air column (ignoring end correction) is
+    options:
+      - λ/2
+      - λ
+      - λ/4
+      - 3λ/4
+    answer: 2
+    explanation: "The water surface is a displacement node and the open end an antinode. The shortest such column is a quarter wavelength, λ/4."
+
+  - id: phy-wav-188
+    topic: organ-pipes
+    subtopic: Fork frequency from resonance lengths
+    concept: f = v/2(L_2 − L_1)
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    formula: f = v/[2(L_2 − L_1)]
+    tags: [resonance-tube, experimental]
+    stem: With a tuning fork of unknown frequency, a resonance tube shows successive resonances at 18 cm and 52 cm. If the speed of sound is 340 m s^{-1}, the frequency of the fork is
+    options:
+      - 250 Hz
+      - 1000 Hz
+      - 472 Hz
+      - 500 Hz
+    answer: 3
+    explanation: "L_2 − L_1 = λ/2 = 34 cm, so λ = 68 cm and f = 340/0.68 = 500 Hz. Treating 34 cm as the full wavelength gives 1000 Hz."
+
+  - id: phy-wav-189
+    topic: organ-pipes
+    subtopic: Overtones and antinodes
+    concept: Open pipe has antinodes at both ends; second overtone of closed pipe is 5th harmonic
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [overtones, antinodes]
+    stem: |-
+      Statement I: In a pipe open at both ends, both ends are displacement antinodes.
+      Statement II: The second overtone of a pipe closed at one end is its fifth harmonic.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Air moves freely at open ends, so they are displacement antinodes. A closed pipe has harmonics 1, 3, 5, …, so the fundamental is the 1st harmonic, the first overtone the 3rd and the second overtone the 5th. Both statements are correct."
+
+  - id: phy-wav-190
+    topic: organ-pipes
+    subtopic: Matching harmonics of two pipes
+    concept: Second harmonic of an open pipe equals fundamental of a closed pipe when L_o = 4L_c
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: true
+    formula: 2v/2L_o = v/4L_c
+    tags: [open-pipe, closed-pipe]
+    stem: The second harmonic of an open pipe equals the fundamental of a closed pipe of length 20 cm. The length of the open pipe is
+    options:
+      - 40 cm
+      - 80 cm
+      - 10 cm
+      - 160 cm
+    answer: 1
+    explanation: "v/L_o = v/4L_c, so L_o = 4L_c = 80 cm. Equating the two fundamentals would instead give 40 cm."
+
+  - id: phy-wav-191
+    topic: beats
+    subtopic: Frequency from two beat observations
+    concept: Common solution of two beat conditions
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [beat-frequency, multi-concept]
+    stem: A tuning fork X gives 3 beats s^{-1} with a 256 Hz fork and 5 beats s^{-1} with a 254 Hz fork. The frequency of X is
+    options:
+      - 253 Hz
+      - 259 Hz
+      - 251 Hz
+      - 261 Hz
+    answer: 1
+    explanation: "From the first fork, X = 253 or 259 Hz. From the second, X = 249 or 259 Hz. The common value is 259 Hz."
+
+  - id: phy-wav-192
+    topic: beats
+    subtopic: Nature of beats
+    concept: Beats arise from superposition of close frequencies; beat frequency is the difference
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [beats]
+    stem: |-
+      About beats, consider:
+      I. Beats result from superposition of two waves of slightly different frequencies.
+      II. The beat frequency equals the sum of the two frequencies.
+      III. Beats are used to tune musical instruments.
+      IV. At an intensity maximum, the two waves arrive in phase.
+      Which are correct?
+    options:
+      - I, III and IV only
+      - I and II only
+      - II, III and IV only
+      - I and III only
+    answer: 0
+    explanation: "Beat frequency is the difference |f_1 − f_2|, not the sum, so II is false. Loudness is maximum when the waves momentarily arrive in phase (IV true), and tuning by eliminating beats is standard (III true)."
+
+  - id: phy-wav-193
+    topic: beats
+    subtopic: Counting beats over time
+    concept: Beats in time t = |f_1 − f_2| × t
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [beat-frequency]
+    stem: Two sources of frequencies 480 Hz and 484 Hz are sounded together. The number of beats heard in 10 s is
+    options:
+      - "4"
+      - "40"
+      - "48"
+      - "400"
+    answer: 1
+    explanation: "Beat frequency = 4 Hz, so in 10 s there are 4 × 10 = 40 beats."
+
+  - id: phy-wav-194
+    topic: beats
+    subtopic: Tuning by changing tension
+    concept: Tightening a string raises its frequency; beats increase if it was already above
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: f ∝ √T
+    tags: [tuning, tension]
+    stem: A piano string sounded with a 440 Hz fork gives 3 beats s^{-1}. On slightly tightening the string, the beats increase to 5 s^{-1}. The original frequency of the string was
+    options:
+      - 437 Hz
+      - 435 Hz
+      - 445 Hz
+      - 443 Hz
+    answer: 3
+    explanation: "The string was 437 or 443 Hz. Tightening raises its frequency. If it were 437 Hz, beats would first decrease; since they increased, it was 443 Hz (now about 445 Hz)."
+
+  - id: phy-wav-195
+    topic: beats
+    subtopic: Envelope of beats
+    concept: Time between successive zero-amplitude instants is 1/f_{beat}
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [graph, beat-period]
+    stem: The displacement–time graph of the sound at a point due to two tuning forks shows a rapid oscillation whose envelope swells and shrinks; successive instants of zero amplitude are 0.25 s apart. The difference between the fork frequencies is
+    options:
+      - 2 Hz
+      - 8 Hz
+      - 4 Hz
+      - 0.25 Hz
+    answer: 2
+    explanation: "Successive minima of the envelope are separated by one beat period, 1/(f_1 − f_2). So f_1 − f_2 = 1/0.25 = 4 Hz."
+
+  - id: phy-wav-196
+    topic: beats
+    subtopic: Small change in tension
+    concept: A 2% rise in tension raises f by about 1%
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: Δf/f = ½ ΔT/T
+    tags: [tension, percentage, multi-concept]
+    stem: Two identical wires under equal tension each vibrate at 400 Hz. The tension of one wire is increased by 2%. The number of beats heard per second when both vibrate together is about
+    options:
+      - "8"
+      - "2"
+      - "16"
+      - "4"
+    answer: 3
+    explanation: "f ∝ √T, so Δf/f ≈ ½(ΔT/T) = 1%. Δf ≈ 0.01 × 400 = 4 Hz, giving 4 beats s^{-1}. Using Δf/f = ΔT/T gives 8."
+
+  - id: phy-wav-197
+    topic: beats
+    subtopic: Beats as interference in time
+    concept: Beats arise because the phase difference at a point changes with time
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [interference, beats]
+    stem: |-
+      Assertion (A): Beats can be described as interference in time.
+      Reason (R): At a fixed point, the phase difference between two waves of slightly different frequencies changes continuously with time.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "With f_1 ≠ f_2 the phase difference 2π(f_1 − f_2)t grows steadily, so at one point the waves alternately reinforce and cancel over time. That is why beats are called interference in time, and R explains A."
+
+  - id: phy-wav-198
+    topic: beats
+    subtopic: Beats between two pipes
+    concept: Beat frequency from two open pipes of different lengths
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: f = v/2L
+    tags: [open-pipe, beats, multi-concept]
+    stem: Two open organ pipes of lengths 1.00 m and 1.05 m sound their fundamentals together. If sound travels at 336 m s^{-1}, the beat frequency is
+    options:
+      - 8 Hz
+      - 16 Hz
+      - 4 Hz
+      - 5 Hz
+    answer: 0
+    explanation: "f_1 = 336/2.00 = 168 Hz, f_2 = 336/2.10 = 160 Hz. Beat frequency = 8 Hz. Using v/L instead of v/2L doubles the answer to 16 Hz."
+
+  - id: phy-wav-199
+    topic: beats
+    subtopic: Loading the standard fork
+    concept: Loading the known fork lowers it; beats decreasing means the unknown is lower
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [loading, trap]
+    stem: A fork A of unknown frequency gives 5 beats s^{-1} with a standard 300 Hz fork B. When B (not A) is loaded with wax, the beat frequency decreases. The frequency of A is
+    options:
+      - 305 Hz
+      - 295 Hz
+      - 300 Hz
+      - 310 Hz
+    answer: 1
+    explanation: "A is 295 or 305 Hz. Loading B lowers B below 300 Hz. The gap shrinks only if A lies below 300 Hz, so A = 295 Hz. If A were 305 Hz, lowering B would increase the beats."
+
+  - id: phy-wav-200
+    topic: beats
+    subtopic: Intensity maxima per second
+    concept: Number of intensity maxima per second equals the beat frequency
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [beat-frequency]
+    stem: "Two waves s_1 = a sin(2π × 500t) and s_2 = a sin(2π × 506t) superpose at a point. The number of intensity maxima heard per second is"
+    options:
+      - "3"
+      - "12"
+      - "6"
+      - "503"
+    answer: 2
+    explanation: "Beat frequency = 506 − 500 = 6 Hz, and there is one intensity maximum per beat, so 6 maxima per second. 3 Hz is the frequency of the amplitude factor cos(2π × 3t), whose magnitude peaks twice per cycle."
+
+  - id: phy-wav-201
+    topic: wave-types
+    subtopic: Audible range
+    concept: Longest audible wavelength corresponds to 20 Hz
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: λ = v/f
+    tags: [audible-range]
+    stem: Humans hear sounds from about 20 Hz to 20 kHz. With sound speed 340 m s^{-1}, the longest audible wavelength in air is about
+    options:
+      - 17 mm
+      - 1.7 m
+      - 170 m
+      - 17 m
+    answer: 3
+    explanation: "The longest wavelength belongs to the lowest frequency: λ = 340/20 = 17 m. The shortest audible wavelength, at 20 kHz, is 17 mm."
+
+  - id: phy-wav-202
+    topic: wave-types
+    subtopic: Need for a medium
+    concept: Bell-jar experiment shows sound needs a material medium
+    category: application
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [bell-jar, mechanical-waves]
+    stem: An electric bell rings inside a glass jar. As air is pumped out, the sound becomes fainter although the hammer is still seen striking the gong. This shows that
+    options:
+      - sound needs a material medium to travel
+      - light needs a material medium to travel
+      - sound travels faster in a vacuum
+      - the bell's frequency falls as the air is removed
+    answer: 0
+    explanation: "The light from the bell still reaches the eye, but with less air there is less medium to carry the compressions and rarefactions, so the sound dies away. Sound is a mechanical wave."
+
+  - id: phy-wav-203
+    topic: wave-types
+    subtopic: Seismic waves
+    concept: Transverse S-waves cannot cross the liquid outer core, longitudinal P-waves can
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [seismic, multi-concept]
+    stem: |-
+      Statement I: Transverse (S) seismic waves cannot pass through the liquid outer core of the Earth.
+      Statement II: Longitudinal (P) seismic waves can travel through both the solid mantle and the liquid outer core.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "A liquid has no shear rigidity, so transverse S-waves are stopped by the outer core, while longitudinal P-waves need only bulk elasticity and travel through solids and liquids. Both statements are correct; this is how the liquid core was inferred."
+
+  - id: phy-wav-204
+    topic: wave-types
+    subtopic: Ultrasound
+    concept: λ = v/f for ultrasound used by bats
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: λ = v/f
+    tags: [ultrasound]
+    stem: A bat emits ultrasound of frequency 40 kHz in air, where sound travels at 340 m s^{-1}. The wavelength is
+    options:
+      - 85 mm
+      - 8.5 mm
+      - 0.85 mm
+      - 118 mm
+    answer: 1
+    explanation: "λ = v/f = 340/40000 = 8.5 × 10^{-3} m = 8.5 mm. Such short wavelengths let bats detect small insects."
+
+  - id: phy-wav-205
+    topic: wave-types
+    subtopic: Longitudinal displacement graph
+    concept: Compression occurs where displacement is zero and ∂s/∂x is negative
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: Δp = −B ∂s/∂x
+    tags: [graph, compression, pressure-wave]
+    stem: For a sound wave, the longitudinal displacement s of air layers (positive = displaced towards +x) is plotted against position x at an instant; the graph is a sine curve. Compressions are located where
+    options:
+      - s is maximum positive
+      - s is maximum negative
+      - s is zero and the graph slopes downward (∂s/∂x < 0)
+      - s is zero and the graph slopes upward (∂s/∂x > 0)
+    answer: 2
+    explanation: "Excess pressure Δp = −B ∂s/∂x. Where s = 0 with negative slope, layers on the left are pushed right and layers on the right pushed left, crowding air together: a compression. Positive slope there gives a rarefaction, and at the extremes of s the pressure is normal."
+
+  - id: phy-wav-206
+    topic: wave-types
+    subtopic: Restoring force on a string
+    concept: Tension provides the restoring force for waves on a string
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [tension, restoring-force]
+    stem: Which statement about a transverse wave on a stretched string is correct?
+    options:
+      - The restoring force on a displaced element is provided mainly by gravity
+      - The string elements move along the length of the string with the wave
+      - The wave speed increases with the amplitude of the wave
+      - The restoring force on a displaced element is provided by the tension
+    answer: 3
+    explanation: "When an element is displaced sideways, the tension on either side has a net component back towards equilibrium; this provides the restoring force and sets v = √(T/μ). Gravity is negligible and amplitude does not affect speed."
+
+  - id: phy-wav-207
+    topic: wave-types
+    subtopic: Propagation in vacuum
+    concept: Electromagnetic waves travel in vacuum; mechanical waves do not
+    category: factual
+    format: multi-statement
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [classification, vacuum]
+    stem: |-
+      Which of the following can travel through vacuum?
+      I. Visible light
+      II. Audible sound
+      III. X-rays
+      IV. Ultrasound
+    options:
+      - I and II only
+      - I and III only
+      - II and IV only
+      - III and IV only
+    answer: 1
+    explanation: "Light and X-rays are electromagnetic waves and need no medium. Audible sound and ultrasound are mechanical (pressure) waves that require a material medium."
+
+  - id: phy-wav-208
+    topic: wave-types
+    subtopic: Rarefaction spacing
+    concept: Successive rarefactions are one wavelength apart
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: f = v/λ
+    tags: [rarefaction, frequency]
+    stem: In a sound wave in air (v = 340 m s^{-1}), successive rarefactions are 1.7 m apart. The frequency of the sound is
+    options:
+      - 200 Hz
+      - 100 Hz
+      - 578 Hz
+      - 400 Hz
+    answer: 0
+    explanation: "Successive rarefactions are one wavelength apart, so λ = 1.7 m and f = v/λ = 340/1.7 = 200 Hz."
+
+  - id: phy-wav-209
+    topic: wave-types
+    subtopic: Wavelengths of sound bands
+    concept: At fixed speed, wavelength ∝ 1/frequency
+    category: concept
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [ordering, ultrasound, infrasound]
+    stem: "Arrange the wavelengths in air of these sounds in increasing order: P, infrasound of 10 Hz; Q, audible sound of 1 kHz; R, ultrasound of 50 kHz."
+    options:
+      - P < Q < R
+      - Q < R < P
+      - R < Q < P
+      - R < P < Q
+    answer: 2
+    explanation: "All travel at the same speed in air, so λ = v/f is smallest for the highest frequency: ultrasound (R) < audible (Q) < infrasound (P)."
+
+  - id: phy-wav-210
+    topic: progressive-wave
+    subtopic: Displacement at a given x and t
+    concept: Evaluating the phase 2π(t/T − x/λ) at a point
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: y = A sin 2π(t/T − x/λ)
+    tags: [displacement, phase]
+    stem: "A wave is y = 4 sin 2π(t/0.04 − x/50), with y and x in cm and t in s. The displacement of the particle at x = 25 cm at t = 0.01 s is"
+    options:
+      - −4 cm
+      - +4 cm
+      - zero
+      - +2 cm
+    answer: 0
+    explanation: "Phase = 2π(0.01/0.04 − 25/50) = 2π(0.25 − 0.5) = −π/2. y = 4 sin(−π/2) = −4 cm: the particle is at its negative extreme."
+
+  - id: phy-wav-211
+    topic: progressive-wave
+    subtopic: Mean to extreme time
+    concept: A particle goes from mean position to extreme in T/4
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [period, shm]
+    stem: A wave of frequency 50 Hz passes through a medium. The minimum time taken by a particle to move from its mean position to an extreme position is
+    options:
+      - 20 ms
+      - 10 ms
+      - 2.5 ms
+      - 5 ms
+    answer: 3
+    explanation: "T = 1/50 s = 20 ms. Mean to extreme is a quarter oscillation: T/4 = 5 ms. 10 ms (T/2) is the time from one extreme to the other."
+
+  - id: phy-wav-212
+    topic: progressive-wave
+    subtopic: Particle speed vs wave speed
+    concept: Maximum particle speed can exceed wave speed if kA > 1
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [particle-velocity, misconception]
+    stem: |-
+      Statement I: For a given medium, the speed of a harmonic wave is constant while the velocity of each particle varies with time.
+      Statement II: The maximum particle speed in a harmonic wave is always less than the wave speed.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Wave speed ω/k depends only on the medium; particle velocity oscillates as in SHM, so Statement I is correct. v_{p,max}/v = kA, which exceeds 1 whenever the amplitude is larger than λ/2π, so Statement II is false."
+
+  - id: phy-wav-213
+    topic: progressive-wave
+    subtopic: Speed and direction
+    concept: sin(ωt + kx) travels along −x with v = ω/k
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: v = ω/k
+    tags: [direction, speed]
+    stem: "The wave y = 10^{-4} sin(60t + 2x) (SI units) travels with"
+    options:
+      - speed 30 m s^{-1} along +x
+      - speed 30 m s^{-1} along −x
+      - speed 120 m s^{-1} along −x
+      - speed 1/30 m s^{-1} along +x
+    answer: 1
+    explanation: "ω = 60 rad s^{-1}, k = 2 rad m^{-1}, so v = ω/k = 30 m s^{-1}. Both terms having the same sign means the wave moves towards −x."
+
+  - id: phy-wav-214
+    topic: progressive-wave
+    subtopic: Building the wave from source motion
+    concept: y(x, t) = y_0(t − x/v) for a wave along +x
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    formula: y(x, t) = f(t − x/v)
+    tags: [wave-equation, source]
+    stem: The particle at x = 0 oscillates as y = 0.1 sin(4πt) (SI units), launching a wave along +x at 2 m s^{-1}. The wave is described by
+    options:
+      - y = 0.1 sin(4πt − 8πx)
+      - y = 0.1 sin(4πt + 2πx)
+      - y = 0.1 sin(4πt − 2πx)
+      - y = 0.1 sin(2πt − 4πx)
+    answer: 2
+    explanation: "A point at x repeats the motion of x = 0 after a delay x/v: y = 0.1 sin 4π(t − x/2) = 0.1 sin(4πt − 2πx). Here k = ω/v = 4π/2 = 2π m^{-1}. Multiplying instead of dividing by v gives 8π."
+
+  - id: phy-wav-215
+    topic: progressive-wave
+    subtopic: Energy carried by a wave
+    concept: Intensity ∝ A^2 f^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: I ∝ A^2ω^2
+    tags: [intensity, energy]
+    stem: In the same medium, the amplitude of a sound wave is doubled and its frequency halved. The intensity of the wave becomes
+    options:
+      - four times
+      - twice
+      - unchanged
+      - half
+    answer: 2
+    explanation: "Intensity ∝ A^2f^2 (energy of SHM ∝ A^2ω^2). (2)^2 × (½)^2 = 1, so the intensity is unchanged."
+
+  - id: phy-wav-216
+    topic: progressive-wave
+    subtopic: Parameters from an equation
+    concept: Reading A, λ, f and v from y = A sin(kx − ωt)
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [match, wave-equation]
+    stem: |-
+      For y = 0.2 sin(0.5πx − 100πt) in SI units, match each quantity in List I with its value in List II.
+      List I: P. Amplitude  Q. Wavelength  R. Frequency  S. Wave speed
+      List II: 1. 50 Hz  2. 4 m  3. 200 m s^{-1}  4. 0.2 m
+    options:
+      - P-4, Q-1, R-2, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-3, S-1
+    answer: 1
+    explanation: "A = 0.2 m; λ = 2π/k = 2π/0.5π = 4 m; f = ω/2π = 50 Hz; v = fλ = 200 m s^{-1} (also ω/k = 100π/0.5π)."
+
+  - id: phy-wav-217
+    topic: progressive-wave
+    subtopic: Dimensions of phase
+    concept: The phase kx − ωt is dimensionless
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [dimensions]
+    stem: "In y = A sin(kx − ωt), the dimensions of the quantity (kx − ωt) are"
+    options:
+      - dimensionless
+      - "[L]"
+      - "[T^{-1}]"
+      - "[LT^{-1}]"
+    answer: 0
+    explanation: "The argument of a sine must be a pure number (an angle in radians). kx has [L^{-1}][L] and ωt has [T^{-1}][T], both dimensionless."
+
+  - id: phy-wav-218
+    topic: progressive-wave
+    subtopic: Two snapshots
+    concept: Frequency from shift between snapshots and wavelength
+    category: numerical
+    format: graph
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: v = Δx/Δt, f = v/λ
+    tags: [snapshot, graph]
+    stem: Two snapshots of a sinusoidal wave of wavelength 8 cm, taken 0.1 s apart (less than one period), show that the whole pattern has shifted 2 cm to the right. The frequency of the wave is
+    options:
+      - 2.5 Hz
+      - 0.4 Hz
+      - 20 Hz
+      - 5 Hz
+    answer: 0
+    explanation: "v = 2 cm/0.1 s = 20 cm s^{-1}. f = v/λ = 20/8 = 2.5 Hz. Equivalently, a shift of λ/4 in 0.1 s means T/4 = 0.1 s, T = 0.4 s."
+
+  - id: phy-wav-219
+    topic: progressive-wave
+    subtopic: Wavelength from speeds
+    concept: v_{p,max}/v = kA gives λ
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: v_{p,max}/v = kA
+    tags: [particle-velocity, wavelength]
+    stem: A wave of amplitude 1 cm travels at 10 m s^{-1}. The maximum speed of the medium's particles is 0.5 m s^{-1}. The wavelength is about
+    options:
+      - 0.2 m
+      - 0.05 m
+      - 1.26 m
+      - 5 m
+    answer: 2
+    explanation: "v_{p,max}/v = kA gives k = 0.05/0.01 = 5 rad m^{-1}. λ = 2π/k = 2π/5 ≈ 1.26 m. Forgetting 2π gives 0.2 m."
+
+  - id: phy-wav-220
+    topic: progressive-wave
+    subtopic: Particle acceleration
+    concept: Particle acceleration a = −ω^2y
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [particle-acceleration, shm]
+    stem: For a particle of a medium through which a sinusoidal wave passes, which statement is correct?
+    options:
+      - Its acceleration is maximum when it is at the mean position
+      - Its acceleration is proportional to its displacement and directed opposite to it
+      - Its acceleration is always along the direction of wave propagation
+      - Its acceleration is zero at the crest
+    answer: 1
+    explanation: "Each particle executes SHM: ∂^2y/∂t^2 = −ω^2y. Acceleration is maximum at the extremes (crest or trough) and zero at the mean position, and for a transverse wave it is perpendicular to propagation."
+
+  - id: phy-wav-221
+    topic: progressive-wave
+    subtopic: Full analysis of a wave equation
+    concept: Deriving v, λ, v_{p,max} and direction from y = A sin 2π(ft − x/λ)
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [wave-equation, multi-concept]
+    stem: |-
+      For y = 0.02 sin 2π(10t − 0.5x) in SI units, consider:
+      I. The wave speed is 20 m s^{-1}.
+      II. The wavelength is 0.5 m.
+      III. The maximum particle speed is 0.4π m s^{-1}.
+      IV. The wave travels along +x.
+      Which are correct?
+    options:
+      - I and II only
+      - II and IV only
+      - I, III and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: "Compare with A sin 2π(t/T − x/λ): f = 10 Hz, 1/λ = 0.5 so λ = 2 m (II false). v = fλ = 20 m s^{-1}. v_{p,max} = Aω = 0.02 × 20π = 0.4π m s^{-1}. The form (t − x) moves along +x."
+
+  - id: phy-wav-222
+    topic: progressive-wave
+    subtopic: Space and time periodicity
+    concept: A harmonic wave is periodic in both space and time, independently
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [periodicity]
+    stem: |-
+      Assertion (A): A snapshot of the harmonic wave y = A sin(kx − ωt) at any fixed instant is a sine curve in space.
+      Reason (R): At any fixed position, the displacement y varies sinusoidally with time.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Fixing t leaves y = A sin(kx − constant), a sine in x (period λ): A is true. Fixing x gives a sine in t (period T): R is true. But the spatial shape follows from the kx term, not from the time variation, so R does not explain A."
+
+  - id: phy-wav-223
+    topic: progressive-wave
+    subtopic: Speed from phase difference
+    concept: Δφ = π/2 over 1 m gives λ = 4 m
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: λ = 2πΔx/Δφ
+    tags: [phase-difference, speed]
+    stem: Two points 1 m apart along a wave of frequency 100 Hz oscillate with a phase difference of π/2 (the minimum possible for them). The wave speed is
+    options:
+      - 100 m s^{-1}
+      - 200 m s^{-1}
+      - 400 m s^{-1}
+      - 25 m s^{-1}
+    answer: 2
+    explanation: "π/2 corresponds to λ/4, so λ = 4 m and v = fλ = 400 m s^{-1}."
+
+  - id: phy-wav-224
+    topic: speed-on-string
+    subtopic: Speed from strain
+    concept: v = √(Yε/ρ) for a stretched wire
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: v = √(Yε/ρ)
+    tags: [youngs-modulus, strain, multi-concept]
+    stem: A steel wire (Y = 2 × 10^{11} N m^{-2}, density 8000 kg m^{-3}) is stretched so that its strain is 4 × 10^{-4}. The speed of transverse waves on it is
+    options:
+      - 1000 m s^{-1}
+      - 5000 m s^{-1}
+      - 10 m s^{-1}
+      - 100 m s^{-1}
+    answer: 3
+    explanation: "Stress = Yε = 2 × 10^{11} × 4 × 10^{-4} = 8 × 10^7 N m^{-2}. v = √(stress/ρ) = √(10^4) = 100 m s^{-1}. 5000 m s^{-1} = √(Y/ρ) is the longitudinal wave speed, not the transverse one."
+
+  - id: phy-wav-225
+    topic: speed-on-string
+    subtopic: Composite string
+    concept: Total time = sum of L_i/v_i across segments
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: t = L_1/v_1 + L_2/v_2
+    tags: [composite-string]
+    stem: A string consists of 1 m of linear density 0.01 kg m^{-1} joined to 1 m of linear density 0.04 kg m^{-1}, under a tension of 100 N. A pulse travels from one end to the other in
+    options:
+      - 0.015 s
+      - 0.03 s
+      - 0.02 s
+      - 0.025 s
+    answer: 1
+    explanation: "v_1 = √(100/0.01) = 100 m s^{-1}, v_2 = √(100/0.04) = 50 m s^{-1}. t = 1/100 + 1/50 = 0.01 + 0.02 = 0.03 s. Using an average speed of 75 m s^{-1} gives the wrong 0.027 s."
+
+  - id: phy-wav-226
+    topic: speed-on-string
+    subtopic: Linearising the μ dependence
+    concept: v plotted against 1/√μ is a straight line
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: v = √T × (1/√μ)
+    tags: [graph, linear-density]
+    stem: Strings of different linear densities μ are kept at the same tension and the wave speed v is measured on each. Which plot gives a straight line through the origin?
+    options:
+      - v against μ
+      - v against 1/μ
+      - v^2 against μ
+      - v against 1/√μ
+    answer: 3
+    explanation: "v = √T/√μ, so v ∝ 1/√μ, a straight line of slope √T when plotted against 1/√μ. v^2 against 1/μ would also be linear, but v^2 against μ is a hyperbola."
+
+  - id: phy-wav-227
+    topic: speed-on-string
+    subtopic: Tension to double speed
+    concept: Doubling v needs 4T
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: v ∝ √T
+    tags: [tension]
+    stem: Waves travel on a string under 50 N tension. To double the wave speed, the tension must be raised to
+    options:
+      - 100 N
+      - 71 N
+      - 200 N
+      - 400 N
+    answer: 2
+    explanation: "v ∝ √T, so doubling v needs 4T = 200 N. 100 N would raise v only by √2."
+
+  - id: phy-wav-228
+    topic: speed-on-string
+    subtopic: Accelerating lift
+    concept: Effective g changes the tension from a hanging load
+    category: application
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: T = m(g + a)
+    tags: [lift, pseudo-force, multi-concept]
+    stem: A block hangs from the ceiling of a lift by a thin string of mass negligible compared with the block. A transverse wave travels along the string at 60 m s^{-1} when the lift is at rest. If the lift accelerates upward at 0.21g, the wave speed becomes
+    options:
+      - 66 m s^{-1}
+      - 72.6 m s^{-1}
+      - 60 m s^{-1}
+      - 54 m s^{-1}
+    answer: 0
+    explanation: "Tension becomes m(g + 0.21g) = 1.21mg. v ∝ √T gives v = 60 × √1.21 = 60 × 1.1 = 66 m s^{-1}. Scaling v by 1.21 directly gives 72.6 m s^{-1}."

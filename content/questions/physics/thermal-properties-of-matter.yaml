@@ -1,0 +1,4162 @@
+subject: physics
+chapter:
+  slug: thermal-properties-of-matter
+  name: Thermal Properties of Matter
+  order: 10
+  classes: [11]
+  topics:
+    - slug: temperature-heat
+      name: Temperature and heat
+    - slug: temperature-scales
+      name: Measurement of temperature and temperature scales
+    - slug: ideal-gas-absolute
+      name: Ideal-gas equation and absolute temperature
+    - slug: thermal-expansion
+      name: Thermal expansion of solids, liquids and gases
+    - slug: anomalous-expansion-thermal-stress
+      name: Anomalous expansion of water and thermal stress
+    - slug: specific-heat
+      name: Specific heat capacity and heat capacity
+    - slug: calorimetry
+      name: Calorimetry and method of mixtures
+    - slug: change-of-state
+      name: Change of state and latent heat
+    - slug: conduction
+      name: Conduction and thermal conductivity
+    - slug: convection
+      name: Convection
+    - slug: radiation
+      name: Radiation, blackbody and greenhouse effect
+    - slug: newtons-law-of-cooling
+      name: Newton's law of cooling
+questions:
+  - id: phy-tpm-001
+    topic: temperature-heat
+    subtopic: Definition of heat
+    concept: Heat is energy in transit due to a temperature difference
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [heat, ncert-line]
+    stem: Heat is best described as
+    options:
+      - the total kinetic energy of the molecules of a body
+      - the temperature of a body measured in joules
+      - energy transferred between systems because of a temperature difference
+      - the energy stored in a body at a given temperature
+    answer: 2
+    explanation: NCERT defines heat as the form of energy transferred between two (or more) systems or a system and its surroundings by virtue of a temperature difference. The energy stored in a body is its internal energy, not heat; heat is energy in transit.
+
+  - id: phy-tpm-002
+    topic: temperature-heat
+    subtopic: Direction of heat flow
+    concept: Heat flows from higher to lower temperature, not higher to lower heat content
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [heat-flow, trap]
+    stem: When two bodies are placed in thermal contact, the direction of net heat flow is decided by their
+    options:
+      - temperatures
+      - internal energies
+      - masses
+      - specific heat capacities
+    answer: 0
+    explanation: Heat always flows from the body at higher temperature to the one at lower temperature until the temperatures are equal. A large cool body may have more internal energy than a small hot one, yet heat still flows from the hot one, so internal energy is the trap.
+
+  - id: phy-tpm-003
+    topic: temperature-heat
+    subtopic: Units of heat and temperature
+    concept: Heat is measured in joule; temperature in kelvin, a base unit
+    category: factual
+    format: statement-pair
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    tags: [units]
+    stem: |-
+      Statement I: The SI unit of heat is the joule.
+      Statement II: Thermodynamic temperature is an SI base quantity with unit kelvin.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Heat is a form of energy, so its SI unit is the joule. Thermodynamic temperature is one of the seven SI base quantities and is measured in kelvin (K). Both statements are true.
+
+  - id: phy-tpm-004
+    topic: temperature-heat
+    subtopic: Thermal equilibrium
+    concept: No net heat flow between bodies at equal temperature regardless of internal energy
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [thermal-equilibrium, trap]
+    stem: |-
+      Assertion (A): There is no net flow of heat between two bodies in contact that are at the same temperature.
+      Reason (R): Heat always flows from the body with greater internal energy to the body with smaller internal energy.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: Bodies at the same temperature are in thermal equilibrium, so no net heat flows (A true). Heat flow is decided by temperature, not internal energy; a large lukewarm bath has more internal energy than a hot pin, yet heat flows from the pin to the bath. So R is false.
+
+  - id: phy-tpm-005
+    topic: temperature-heat
+    subtopic: Calorie and joule
+    concept: 1 calorie ≈ 4.186 J
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: 1 cal = 4.186 J
+    tags: [units, ncert-line]
+    stem: One calorie is approximately equal to
+    options:
+      - 0.239 J
+      - 1 J
+      - 41.86 J
+      - 4.186 J
+    answer: 3
+    explanation: One calorie is the heat needed to raise the temperature of 1 g of water from 14.5 °C to 15.5 °C, and it equals about 4.186 J. The value 0.239 is the reverse conversion (1 J ≈ 0.239 cal).
+
+  - id: phy-tpm-006
+    topic: temperature-scales
+    subtopic: Fahrenheit to Celsius
+    concept: t_C = (t_F − 32) × 5/9
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: t_F = (9/5) t_C + 32
+    tags: [temperature-conversion]
+    stem: A temperature of 100 °F on the Celsius scale is about
+    options:
+      - 37.8 °C
+      - 38.9 °C
+      - 55.6 °C
+      - 212 °C
+    answer: 0
+    explanation: t_C = (t_F − 32) × 5/9 = (100 − 32) × 5/9 = 68 × 5/9 ≈ 37.8 °C. The value 55.6 °C comes from forgetting to subtract 32.
+
+  - id: phy-tpm-007
+    topic: temperature-scales
+    subtopic: Equal readings on two scales
+    concept: Celsius and Fahrenheit readings coincide at −40
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: t_F = (9/5) t_C + 32
+    tags: [temperature-conversion]
+    stem: At what temperature do the Celsius and Fahrenheit scales show the same numerical reading?
+    options:
+      - −32°
+      - −40°
+      - "40°"
+      - −273°
+    answer: 1
+    explanation: Put t_F = t_C = x in t_F = (9/5)t_C + 32; then x = 1.8x + 32, so −0.8x = 32 and x = −40. So −40 °C = −40 °F.
+
+  - id: phy-tpm-008
+    topic: temperature-scales
+    subtopic: Equal readings on two scales
+    concept: Fahrenheit and Kelvin readings coincide near 574.6
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: t_F = (9/5)(T − 273.15) + 32
+    tags: [temperature-conversion, trap]
+    stem: At what temperature does a Fahrenheit thermometer show the same reading as a Kelvin thermometer?
+    options:
+      - "313"
+      - −40
+      - "574.6"
+      - "460"
+    answer: 2
+    explanation: Set t_F = T = x in t_F = (9/5)(T − 273.15) + 32. Then x = 1.8x − 491.67 + 32, so 0.8x = 459.67 and x ≈ 574.6. −40 is the Celsius–Fahrenheit coincidence, a common mix-up.
+
+  - id: phy-tpm-009
+    topic: temperature-scales
+    subtopic: Temperature intervals
+    concept: A 1 °C interval equals a 1.8 °F interval; no offset for differences
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [temperature-difference, trap]
+    stem: The temperature of a body rises by 50 °C. The same rise on the Fahrenheit scale is
+    options:
+      - 122 °F
+      - 90 °F
+      - 50 °F
+      - 27.8 °F
+    answer: 1
+    explanation: For a temperature difference the offset 32 cancels, so Δt_F = (9/5)Δt_C = 1.8 × 50 = 90 °F. The answer 122 °F converts a temperature, not a difference, which is the trap.
+
+  - id: phy-tpm-010
+    topic: temperature-scales
+    subtopic: Triple point of water
+    concept: Triple point of water is 273.16 K
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [triple-point, ncert-line]
+    stem: The triple point of water, used as the fixed point for the Kelvin scale, is assigned the temperature
+    options:
+      - 273.15 K
+      - 0.01 K
+      - 373.15 K
+      - 273.16 K
+    answer: 3
+    explanation: The triple point of water (where ice, water and vapour coexist, at about 0.006 atm) is assigned 273.16 K exactly, i.e. 0.01 °C. 273.15 K is the ice point at 1 atm (0 °C), a close distractor.
+
+  - id: phy-tpm-011
+    topic: temperature-scales
+    subtopic: Arbitrary temperature scales
+    concept: Linear interpolation between fixed points on any scale
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: (X − X_ice)/(X_steam − X_ice) = t_C/100
+    tags: [arbitrary-scale]
+    stem: On scale X the ice point is 20 °X and the steam point is 220 °X. A reading of 70 °X corresponds to
+    options:
+      - 25 °C
+      - 35 °C
+      - 50 °C
+      - 70 °C
+    answer: 0
+    explanation: (X − 20)/(220 − 20) = t_C/100, so t_C = 100 × (70 − 20)/200 = 25 °C.
+
+  - id: phy-tpm-012
+    topic: temperature-scales
+    subtopic: Faulty thermometer
+    concept: Correcting a faulty thermometer by linear scaling
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: (R − R_ice)/(R_steam − R_ice) = t/100
+    tags: [arbitrary-scale, faulty-thermometer]
+    stem: A faulty thermometer reads 5 °C in melting ice and 95 °C in steam at 1 atm. When it reads 59 °C, the true temperature is
+    options:
+      - 59 °C
+      - 60 °C
+      - 54 °C
+      - 65 °C
+    answer: 1
+    explanation: (59 − 5)/(95 − 5) = t/100, so t = 100 × 54/90 = 60 °C. Simply subtracting the zero error gives 54 °C, which ignores that the 90 divisions span 100 degrees.
+
+  - id: phy-tpm-013
+    topic: temperature-scales
+    subtopic: Fahrenheit to Kelvin
+    concept: Two-step conversion F → C → K
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [temperature-conversion]
+    stem: Normal human body temperature is 98.6 °F. On the Kelvin scale this is about
+    options:
+      - 310 K
+      - 371.6 K
+      - 305 K
+      - 336 K
+    answer: 0
+    explanation: t_C = (98.6 − 32) × 5/9 = 37 °C, and T = 37 + 273.15 ≈ 310 K. Adding 273 directly to 98.6 gives 371.6 K, which skips the Fahrenheit conversion.
+
+  - id: phy-tpm-014
+    topic: temperature-scales
+    subtopic: Graph between scales
+    concept: t_F versus t_C is a straight line of slope 9/5 and intercept 32
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: t_F = (9/5) t_C + 32
+    tags: [graph, temperature-conversion, ncert-line]
+    stem: A graph is plotted with Fahrenheit temperature on the y-axis and Celsius temperature on the x-axis. The graph is
+    options:
+      - a straight line through the origin with slope 5/9
+      - a parabola with vertex at (0, 32)
+      - a straight line with slope 1.8 and y-intercept 32 °F
+      - a straight line with slope 1.8 and x-intercept 32 °C
+    answer: 2
+    explanation: t_F = 1.8 t_C + 32 is linear, so the graph is a straight line with slope 9/5 = 1.8 and y-intercept 32 °F (at t_C = 0). It does not pass through the origin.
+
+  - id: phy-tpm-015
+    topic: ideal-gas-absolute
+    subtopic: Constant-volume gas thermometer
+    concept: T = 273.16 K × P/P_tr for a constant-volume gas thermometer
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: T = 273.16 K × (P/P_tr)
+    tags: [gas-thermometer]
+    stem: In a constant-volume gas thermometer, the gas pressure at a temperature T is 1.5 times its pressure at the triple point of water. T is about
+    options:
+      - 182 K
+      - 273 K
+      - 136.6 K
+      - 409.7 K
+    answer: 3
+    explanation: At constant volume P ∝ T, so T = 273.16 × 1.5 ≈ 409.7 K. 182 K comes from dividing by 1.5 instead of multiplying, and 136.6 K is half the triple-point temperature.
+
+  - id: phy-tpm-016
+    topic: ideal-gas-absolute
+    subtopic: Absolute zero
+    concept: Absolute zero is −273.15 °C
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [absolute-zero, ncert-line]
+    stem: Absolute zero on the Celsius scale is
+    options:
+      - 0 °C
+      - −100 °C
+      - −273.15 °C
+      - −459.67 °C
+    answer: 2
+    explanation: Absolute zero, 0 K, corresponds to −273.15 °C. The value −459.67 is absolute zero on the Fahrenheit scale, not the Celsius scale.
+
+  - id: phy-tpm-017
+    topic: ideal-gas-absolute
+    subtopic: Pressure–temperature graph of a gas
+    concept: P–t lines of low-density gases extrapolate to −273.15 °C
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    tags: [absolute-zero, graph, ncert-line]
+    stem: For a low-density gas at constant volume, the pressure versus Celsius temperature line, when extrapolated to zero pressure, meets the temperature axis at
+    options:
+      - 0 °C
+      - −273.15 °C for every gas
+      - a temperature that depends on the gas used
+      - −273.15 °C only for hydrogen
+    answer: 1
+    explanation: At constant volume P ∝ T for an ideal gas, so all low-density gases give straight P–t lines that extrapolate to zero pressure at the same point, −273.15 °C. This common intercept defines absolute zero and is independent of the gas.
+
+  - id: phy-tpm-018
+    topic: ideal-gas-absolute
+    subtopic: Charles's law
+    concept: At constant pressure V ∝ T (in kelvin)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: V_1/T_1 = V_2/T_2
+    tags: [charles-law, trap]
+    stem: A gas at 27 °C is heated at constant pressure until its volume doubles. Its final temperature is
+    options:
+      - 54 °C
+      - 327 °C
+      - 600 °C
+      - 300 °C
+    answer: 1
+    explanation: V ∝ T in kelvin, so T_2 = 2 × 300 K = 600 K = 327 °C. Doubling the Celsius value (54 °C) is the classic mistake; 600 °C forgets to convert back from kelvin.
+
+  - id: phy-tpm-019
+    topic: ideal-gas-absolute
+    subtopic: Gas thermometers
+    concept: Low-density gases agree because they behave ideally
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [gas-thermometer]
+    stem: Constant-volume gas thermometers using different gases give nearly the same readings when the gases are at low density because
+    options:
+      - all real gases behave nearly like an ideal gas at low density
+      - all gases have the same molar mass at low density
+      - the specific heat of all gases becomes zero
+      - the gas does not expand at low density
+    answer: 0
+    explanation: At low density intermolecular forces and molecular size become negligible, so every gas obeys PV = μRT closely. Their pressures then vary identically with temperature, and the readings agree.
+
+  - id: phy-tpm-020
+    topic: thermal-expansion
+    subtopic: Linear expansion
+    concept: ΔL = LαΔT
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: ΔL = LαΔT
+    tags: [linear-expansion]
+    stem: A steel rod 1 m long (α = 1.2 × 10^{-5} K^{-1}) is heated through 100 K. Its length increases by
+    options:
+      - 0.12 mm
+      - 1.2 mm
+      - 12 mm
+      - 0.012 mm
+    answer: 1
+    explanation: ΔL = LαΔT = 1 × 1.2 × 10^{-5} × 100 = 1.2 × 10^{-3} m = 1.2 mm.
+
+  - id: phy-tpm-021
+    topic: thermal-expansion
+    subtopic: Relation between coefficients
+    concept: For an isotropic solid α_V = 3α_l
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: α_V = 3α_l
+    tags: [expansion-coefficients, ncert-line]
+    stem: For an isotropic solid, the coefficient of volume expansion α_V is related to the coefficient of linear expansion α_l by
+    options:
+      - α_V = α_l/3
+      - α_V = 2α_l
+      - α_V = 3α_l
+      - α_V = α_l^3
+    answer: 2
+    explanation: A cube of side l has V = l^3, so ΔV/V = 3Δl/l for small changes, giving α_V = 3α_l. Area expansion gives 2α_l, which is the tempting distractor.
+
+  - id: phy-tpm-022
+    topic: thermal-expansion
+    subtopic: Area and volume expansion
+    concept: Percentage change in volume is 3/2 times percentage change in area
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [superficial-expansion, volume-expansion]
+    stem: When a metal block is heated, the area of each face increases by 0.2%. The volume increases by
+    options:
+      - 0.1%
+      - 0.2%
+      - 0.3%
+      - 0.6%
+    answer: 2
+    explanation: Area change = 2αΔT = 0.2%, so αΔT = 0.1%. Volume change = 3αΔT = 0.3%.
+
+  - id: phy-tpm-023
+    topic: thermal-expansion
+    subtopic: Expansion of a hole
+    concept: A hole in a plate expands like the material that would fill it
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [superficial-expansion, trap]
+    stem: A metal plate has a circular hole in it. When the plate is heated uniformly, the diameter of the hole
+    options:
+      - decreases
+      - remains unchanged
+      - decreases only if the plate is thin
+      - increases
+    answer: 3
+    explanation: Thermal expansion is a uniform magnification of every length in the plate, including the hole. The hole grows exactly as a disc of the same metal filling it would. Many students expect the metal to expand inward and shrink the hole.
+
+  - id: phy-tpm-024
+    topic: thermal-expansion
+    subtopic: Expansion of an ideal gas
+    concept: For an ideal gas at constant pressure α_V = 1/T
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: α_V = 1/T
+    tags: [gas-expansion, ncert-line]
+    stem: The coefficient of volume expansion of an ideal gas at constant pressure at 300 K is
+    options:
+      - 3.3 × 10^{-3} K^{-1}
+      - 300 K^{-1}
+      - 3.7 × 10^{-3} K^{-1}
+      - 3.3 × 10^{-5} K^{-1}
+    answer: 0
+    explanation: From PV = μRT at constant P, ΔV/V = ΔT/T, so α_V = 1/T = 1/300 ≈ 3.3 × 10^{-3} K^{-1}. The value 3.7 × 10^{-3} K^{-1} is 1/273, which applies at 0 °C.
+
+  - id: phy-tpm-025
+    topic: thermal-expansion
+    subtopic: Bimetallic strip
+    concept: Metal with larger α lies on the convex side when a bimetallic strip is heated
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [bimetallic-strip]
+    stem: A bimetallic strip is made of brass (α = 19 × 10^{-6} K^{-1}) and steel (α = 12 × 10^{-6} K^{-1}). On heating, the strip
+    options:
+      - bends with steel on the convex side
+      - bends with brass on the convex side
+      - stays straight but becomes longer
+      - twists about its length
+    answer: 1
+    explanation: Brass expands more, so it becomes the longer, outer (convex) side of the arc. On cooling the strip bends the other way, with brass on the concave side. This is the principle of thermostats.
+
+  - id: phy-tpm-026
+    topic: thermal-expansion
+    subtopic: Pendulum clocks
+    concept: A metal pendulum lengthens in summer, so the clock loses time
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: T = 2π√(L/g)
+    tags: [pendulum-clock]
+    stem: A pendulum clock with a brass pendulum keeps correct time in winter. In summer it will
+    options:
+      - gain time
+      - keep correct time
+      - stop
+      - lose time
+    answer: 3
+    explanation: In summer the pendulum becomes longer, so its period T = 2π√(L/g) increases. Each tick takes longer and the clock runs slow, i.e. it loses time.
+
+  - id: phy-tpm-027
+    topic: thermal-expansion
+    subtopic: Pendulum clocks
+    concept: Fractional change in period = ½αΔθ
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: ΔT/T = ½αΔθ
+    tags: [pendulum-clock, multi-concept]
+    stem: A pendulum clock keeps correct time at 20 °C. Its pendulum rod has α = 2 × 10^{-5} K^{-1}. At 30 °C the clock loses about how much time per day?
+    options:
+      - 4.32 s
+      - 8.64 s
+      - 17.28 s
+      - 0.864 s
+    answer: 1
+    explanation: T ∝ √L, so ΔT/T = ½αΔθ = ½ × 2 × 10^{-5} × 10 = 10^{-4}. Time lost per day = 86400 × 10^{-4} ≈ 8.64 s. Forgetting the factor ½ gives 17.28 s.
+
+  - id: phy-tpm-028
+    topic: thermal-expansion
+    subtopic: Measuring scales and temperature
+    concept: An expanded scale under-reads lengths
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [scale-error, trap]
+    stem: A steel measuring tape is calibrated at 20 °C. It is used at 40 °C to measure the length of a glass rod. The reading obtained is
+    options:
+      - less than the true length
+      - more than the true length
+      - equal to the true length
+      - more or less depending on the rod's thickness
+    answer: 0
+    explanation: At 40 °C each marked division of the tape is longer than its calibrated value, so fewer divisions fit along the rod and the reading is smaller than the true length.
+
+  - id: phy-tpm-029
+    topic: thermal-expansion
+    subtopic: Density and temperature
+    concept: ρ' ≈ ρ(1 − γΔT)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: ρ' = ρ(1 − γΔT)
+    tags: [density-change]
+    stem: A metal has a coefficient of volume expansion 6 × 10^{-5} K^{-1}. When heated through 100 K, its density decreases by about
+    options:
+      - 0.06%
+      - 0.2%
+      - 0.6%
+      - 6%
+    answer: 2
+    explanation: Mass is constant, so the fractional decrease in density equals the fractional increase in volume, γΔT = 6 × 10^{-5} × 100 = 6 × 10^{-3} = 0.6%.
+
+  - id: phy-tpm-030
+    topic: thermal-expansion
+    subtopic: Constant length difference
+    concept: Difference of lengths stays constant when L_1α_1 = L_2α_2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: L_1α_1 = L_2α_2
+    tags: [linear-expansion, multi-concept]
+    stem: An iron rod (α = 1.2 × 10^{-5} K^{-1}) is 30 cm long. What should be the length of a brass rod (α = 1.8 × 10^{-5} K^{-1}) so that the difference in their lengths remains the same at all temperatures?
+    options:
+      - 20 cm
+      - 45 cm
+      - 30 cm
+      - 18 cm
+    answer: 0
+    explanation: The difference stays fixed if both rods expand by the same amount, L_1α_1ΔT = L_2α_2ΔT. So L_2 = 30 × 1.2/1.8 = 20 cm. 45 cm inverts the ratio.
+
+  - id: phy-tpm-031
+    topic: thermal-expansion
+    subtopic: Expansion in daily life
+    concept: Gaps in railway tracks allow for thermal expansion
+    category: concept
+    format: assertion-reason
+    difficulty: 1
+    time: 30
+    ncert: false
+    battle: false
+    tags: [linear-expansion, applications]
+    stem: |-
+      Assertion (A): Small gaps are left between successive rails of a railway track.
+      Reason (R): Rails expand when their temperature rises.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Rails lengthen on hot days; without gaps the expansion would be prevented and the large thermal stress would buckle the track. So R correctly explains A.
+
+  - id: phy-tpm-032
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Anomalous expansion of water
+    concept: Water has maximum density at 4 °C
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [anomalous-expansion, ncert-line]
+    stem: Water has its maximum density at
+    options:
+      - 0 °C
+      - −4 °C
+      - 100 °C
+      - 4 °C
+    answer: 3
+    explanation: Water contracts on heating from 0 °C to 4 °C and expands above 4 °C, so its density is maximum (about 1000 kg m^{-3}) at 4 °C.
+
+  - id: phy-tpm-033
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Anomalous expansion of water
+    concept: Water contracts when heated from 0 °C to 4 °C
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [anomalous-expansion, trap]
+    stem: When water is heated from 0 °C to 4 °C, its volume
+    options:
+      - increases
+      - decreases
+      - stays constant
+      - first increases then decreases
+    answer: 1
+    explanation: Between 0 °C and 4 °C water shows anomalous behaviour, contracting on heating, so its volume decreases and reaches a minimum at 4 °C. Above 4 °C it expands normally.
+
+  - id: phy-tpm-034
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Thermal stress
+    concept: Thermal stress = YαΔT
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: σ = YαΔT
+    tags: [thermal-stress]
+    stem: A steel rod (Y = 2 × 10^{11} N m^{-2}, α = 1.2 × 10^{-5} K^{-1}) is clamped between rigid walls and heated by 50 K. The thermal stress is
+    options:
+      - 1.2 × 10^6 N m^{-2}
+      - 1.2 × 10^7 N m^{-2}
+      - 1.2 × 10^8 N m^{-2}
+      - 2.4 × 10^8 N m^{-2}
+    answer: 2
+    explanation: The rod is prevented from expanding, so the compressive strain is αΔT and stress = YαΔT = 2 × 10^{11} × 1.2 × 10^{-5} × 50 = 1.2 × 10^8 N m^{-2}.
+
+  - id: phy-tpm-035
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Thermal stress
+    concept: Thermal stress is independent of the rod's length and area
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [thermal-stress, trap]
+    stem: A rod clamped rigidly at both ends is heated through ΔT. If a rod of the same material but twice the length is used, the thermal stress
+    options:
+      - remains the same
+      - doubles
+      - halves
+      - becomes four times
+    answer: 0
+    explanation: Thermal stress = YαΔT, which contains no length or area. A longer rod would expand more, but its natural strain ΔL/L = αΔT is the same, so the stress is unchanged.
+
+  - id: phy-tpm-036
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Freezing of lakes
+    concept: Water at 4 °C sinks, so lakes freeze from the top and life survives below
+    category: application
+    format: case
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [anomalous-expansion, ncert-line]
+    stem: In a very cold winter the surface of a lake freezes, yet fish survive in the water below. The main reason is that
+    options:
+      - ice is a good conductor and keeps the water warm
+      - water at the bottom freezes first and supports the ice
+      - the densest water, at 4 °C, settles at the bottom, and floating ice insulates it
+      - dissolved salts raise the freezing point of the water
+    answer: 2
+    explanation: As the surface cools below 4 °C, that water becomes lighter and stays on top, then freezes. The densest water, at 4 °C, stays at the bottom. The ice layer is a poor conductor and slows further cooling, so the water below remains liquid.
+
+  - id: phy-tpm-037
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Thermal force
+    concept: Thermal force F = YAαΔT
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: F = YAαΔT
+    tags: [thermal-stress]
+    stem: A rod of cross-sectional area 2 cm^2 is fixed between two rigid supports. Y = 2 × 10^{11} N m^{-2}, α = 10^{-5} K^{-1}. If its temperature rises by 100 K, the force it exerts on each support is
+    options:
+      - 4 × 10^3 N
+      - 4 × 10^4 N
+      - 4 × 10^5 N
+      - 2 × 10^4 N
+    answer: 1
+    explanation: F = YAαΔT = 2 × 10^{11} × 2 × 10^{-4} × 10^{-5} × 100 = 4 × 10^4 N. Using 2 cm^2 as 2 × 10^{-2} m^2 or 2 × 10^{-5} m^2 gives the wrong powers of ten.
+
+  - id: phy-tpm-038
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Density of ice and water
+    concept: Ice floats; water's volume is minimum (not maximum) at 4 °C
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [anomalous-expansion, trap]
+    stem: |-
+      Statement I: Ice floats on water because ice is less dense than water.
+      Statement II: The volume of a given mass of water is maximum at 4 °C.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Water expands on freezing, so ice (about 917 kg m^{-3}) is less dense and floats. At 4 °C water has maximum density, hence minimum volume, so Statement II is incorrect.
+
+  - id: phy-tpm-039
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Volume–temperature graph of water
+    concept: V–T graph of water from 0 to 10 °C has a minimum at 4 °C
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [anomalous-expansion, graph]
+    stem: The graph of volume (y-axis) against temperature (x-axis) for 1 kg of water heated from 0 °C to 10 °C
+    options:
+      - rises linearly throughout
+      - falls linearly throughout
+      - has a maximum at 4 °C
+      - has a minimum at 4 °C
+    answer: 3
+    explanation: Water contracts from 0 °C to 4 °C and expands above 4 °C, so its volume curve dips to a minimum at 4 °C and rises on either side.
+
+  - id: phy-tpm-040
+    topic: specific-heat
+    subtopic: Heat needed for a temperature rise
+    concept: Q = mcΔT
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: Q = mcΔT
+    tags: [specific-heat]
+    stem: How much heat is needed to raise the temperature of 2 kg of water by 10 °C? (c = 4200 J kg^{-1} K^{-1})
+    options:
+      - 8.4 kJ
+      - 42 kJ
+      - 84 kJ
+      - 840 kJ
+    answer: 2
+    explanation: Q = mcΔT = 2 × 4200 × 10 = 84000 J = 84 kJ.
+
+  - id: phy-tpm-041
+    topic: specific-heat
+    subtopic: Heat capacity versus specific heat
+    concept: Specific heat is a material property; heat capacity depends on mass
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [heat-capacity, confused-pair]
+    stem: A copper block is cut into two unequal pieces. Which quantity is the same for both pieces?
+    options:
+      - Heat capacity
+      - Specific heat capacity
+      - Heat needed to raise the temperature by 1 K
+      - Water equivalent
+    answer: 1
+    explanation: Specific heat capacity is heat per unit mass per kelvin and depends only on the material (and temperature). Heat capacity, heat per kelvin and water equivalent all scale with mass, so they differ for the two pieces.
+
+  - id: phy-tpm-042
+    topic: specific-heat
+    subtopic: Units
+    concept: SI unit of specific heat capacity
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units]
+    stem: The SI unit of specific heat capacity is
+    options:
+      - J kg^{-1} K^{-1}
+      - J K^{-1}
+      - J mol^{-1}
+      - J kg^{-1}
+    answer: 0
+    explanation: s = Q/(mΔT), so its unit is J kg^{-1} K^{-1}. J K^{-1} is the unit of heat capacity and J kg^{-1} is the unit of latent heat.
+
+  - id: phy-tpm-043
+    topic: specific-heat
+    subtopic: Molar specific heat of solids
+    concept: Molar specific heat of most solids is close to 3R (Dulong–Petit)
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [molar-specific-heat]
+    stem: At room temperature, the molar specific heat capacity of most metallic solids is close to
+    options:
+      - R
+      - 3R/2
+      - 5R/2
+      - 3R
+    answer: 3
+    explanation: Each atom of a solid oscillates in three dimensions with average energy 3k_BT, so the molar internal energy is 3RT and C ≈ 3R ≈ 25 J mol^{-1} K^{-1}, as the NCERT table of solids shows. 3R/2 is for a monatomic gas at constant volume.
+
+  - id: phy-tpm-044
+    topic: specific-heat
+    subtopic: Comparing specific heats
+    concept: For equal heat and mass, ΔT ∝ 1/c
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: Q = mcΔT
+    tags: [specific-heat, proportionality]
+    stem: "Equal masses of substances A and B receive the same heat. The temperature of A rises twice as much as that of B. The ratio c_A : c_B is"
+    options:
+      - "2 : 1"
+      - "1 : 2"
+      - "1 : 4"
+      - "4 : 1"
+    answer: 1
+    explanation: "With Q and m equal, cΔT is the same, so c ∝ 1/ΔT. Since ΔT_A = 2ΔT_B, c_A : c_B = 1 : 2."
+
+  - id: phy-tpm-045
+    topic: specific-heat
+    subtopic: High specific heat of water
+    concept: Water's high specific heat makes it a good coolant
+    category: application
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [specific-heat, applications]
+    stem: Water is used as a coolant in car radiators mainly because it has a
+    options:
+      - low boiling point
+      - low density
+      - high specific heat capacity
+      - high thermal conductivity
+    answer: 2
+    explanation: Water's high specific heat (about 4186 J kg^{-1} K^{-1}) lets it absorb a lot of heat for a small rise in temperature. Its thermal conductivity is actually low.
+
+  - id: phy-tpm-046
+    topic: specific-heat
+    subtopic: Water equivalent
+    concept: Water equivalent = m c / c_water
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: W = mc/c_w
+    tags: [water-equivalent]
+    stem: A copper calorimeter of mass 200 g has specific heat 0.1 cal g^{-1} °C^{-1}. Its water equivalent is
+    options:
+      - 20 g
+      - 2 g
+      - 200 g
+      - 2000 g
+    answer: 0
+    explanation: "Water equivalent is the mass of water with the same heat capacity: W = mc/c_w = 200 × 0.1/1 = 20 g."
+
+  - id: phy-tpm-047
+    topic: specific-heat
+    subtopic: Heat capacity
+    concept: Q = CΔT with C the heat capacity of the body
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: Q = CΔT
+    tags: [heat-capacity]
+    stem: A body has a heat capacity of 500 J K^{-1}. The heat needed to raise its temperature by 20 K is
+    options:
+      - 25 J
+      - 1 kJ
+      - 2.5 kJ
+      - 10 kJ
+    answer: 3
+    explanation: Heat capacity is heat per kelvin for the whole body, so Q = CΔT = 500 × 20 = 10000 J = 10 kJ. Dividing gives 25 J.
+
+  - id: phy-tpm-048
+    topic: calorimetry
+    subtopic: Mixing water at different temperatures
+    concept: Final temperature is the mass-weighted mean for the same liquid
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 35
+    ncert: true
+    battle: true
+    formula: m_1(T_1 − T) = m_2(T − T_2)
+    tags: [method-of-mixtures]
+    stem: 2 kg of water at 20 °C is mixed with 1 kg of water at 80 °C. Neglecting heat losses, the final temperature is
+    options:
+      - 50 °C
+      - 40 °C
+      - 60 °C
+      - 45 °C
+    answer: 1
+    explanation: Heat lost = heat gained, 1 × (80 − T) = 2 × (T − 20), so 3T = 120 and T = 40 °C. 50 °C is the simple average, which ignores the unequal masses.
+
+  - id: phy-tpm-049
+    topic: calorimetry
+    subtopic: Principle of calorimetry
+    concept: Calorimetry rests on conservation of energy
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [calorimetry, ncert-line]
+    stem: The principle of calorimetry, "heat lost = heat gained", is a consequence of the law of conservation of
+    options:
+      - mass
+      - momentum
+      - energy
+      - charge
+    answer: 2
+    explanation: In an isolated system the total energy is conserved, so the heat given out by the hotter parts equals the heat taken in by the colder parts.
+
+  - id: phy-tpm-050
+    topic: calorimetry
+    subtopic: Specific heat by method of mixtures
+    concept: Finding the specific heat of a metal from mixing data
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: m_1 c_1 (T_1 − T) = m_2 c_2 (T − T_2)
+    tags: [method-of-mixtures, specific-heat]
+    stem: A 100 g metal piece at 100 °C is dropped into 200 g of water at 20 °C. The final temperature is 24 °C. Neglecting heat taken by the container, the specific heat of the metal is about
+    options:
+      - 0.105 cal g^{-1} °C^{-1}
+      - 0.21 cal g^{-1} °C^{-1}
+      - 0.42 cal g^{-1} °C^{-1}
+      - 0.053 cal g^{-1} °C^{-1}
+    answer: 0
+    explanation: Heat lost by metal = heat gained by water, 100 × c × (100 − 24) = 200 × 1 × (24 − 20). So 7600c = 800 and c ≈ 0.105 cal g^{-1} °C^{-1}.
+
+  - id: phy-tpm-051
+    topic: calorimetry
+    subtopic: Calorimeter material
+    concept: Calorimeters are made of copper for high conductivity and low specific heat
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [calorimeter]
+    stem: A calorimeter is usually made of copper because copper
+    options:
+      - is a poor conductor of heat
+      - has a high specific heat
+      - does not expand on heating
+      - is a good conductor with low specific heat
+    answer: 3
+    explanation: Good conductivity lets the calorimeter reach the mixture's temperature quickly, and low specific heat means it absorbs little heat, so it disturbs the measurement least.
+
+  - id: phy-tpm-052
+    topic: calorimetry
+    subtopic: Mixing two liquids
+    concept: Final temperature = Σ m c T / Σ m c
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: true
+    formula: T = (m_1c_1T_1 + m_2c_2T_2)/(m_1c_1 + m_2c_2)
+    tags: [method-of-mixtures]
+    stem: "Equal masses of two liquids with specific heats in the ratio 1 : 2 are at 10 °C and 40 °C respectively. On mixing, the final temperature is"
+    options:
+      - 25 °C
+      - 30 °C
+      - 20 °C
+      - 35 °C
+    answer: 1
+    explanation: T = (c × 10 + 2c × 40)/(c + 2c) = 90/3 = 30 °C. The liquid with larger heat capacity pulls the final temperature towards its own.
+
+  - id: phy-tpm-053
+    topic: calorimetry
+    subtopic: Minimising heat loss
+    concept: Insulating jacket reduces heat exchange with surroundings
+    category: concept
+    format: assertion-reason
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: false
+    tags: [calorimeter]
+    stem: |-
+      Assertion (A): In the method of mixtures the calorimeter is placed inside a jacket packed with an insulating material such as glass wool.
+      Reason (R): The insulation minimises heat exchange between the calorimeter and the surroundings.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The equation heat lost = heat gained holds only if the system is isolated. The insulating jacket cuts conduction and convection losses, so R explains A.
+
+  - id: phy-tpm-054
+    topic: calorimetry
+    subtopic: Finding an unknown initial temperature
+    concept: Solving heat balance for the hot liquid's temperature
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [method-of-mixtures]
+    stem: 100 g of hot water is added to 300 g of water at 25 °C and the final temperature is 40 °C. The initial temperature of the hot water was
+    options:
+      - 85 °C
+      - 70 °C
+      - 55 °C
+      - 100 °C
+    answer: 0
+    explanation: 100 × (T − 40) = 300 × (40 − 25) = 4500, so T − 40 = 45 and T = 85 °C.
+
+  - id: phy-tpm-055
+    topic: calorimetry
+    subtopic: Heat capacity and size
+    concept: Same heat, same material spheres; ΔT ∝ 1/r^3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [heat-capacity, proportionality]
+    stem: "Two solid spheres of the same material have radii in the ratio 1 : 2. They receive equal amounts of heat. The ratio of their temperature rises is"
+    options:
+      - "1 : 8"
+      - "2 : 1"
+      - "8 : 1"
+      - "4 : 1"
+    answer: 2
+    explanation: "Mass ∝ r^3, so masses are 1 : 8. With equal Q and c, ΔT ∝ 1/m, giving 8 : 1. 4 : 1 wrongly uses the area."
+
+  - id: phy-tpm-056
+    topic: calorimetry
+    subtopic: Including the calorimeter
+    concept: Water equivalent is added to the water mass in heat balance
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [water-equivalent, method-of-mixtures]
+    stem: A calorimeter of water equivalent 20 g contains 180 g of water at 20 °C. 100 g of water at 60 °C is poured in. The final temperature is about
+    options:
+      - 40.0 °C
+      - 33.3 °C
+      - 30.0 °C
+      - 36.7 °C
+    answer: 1
+    explanation: The calorimeter behaves like 20 g of extra water at 20 °C, so 200 g is at 20 °C. 100(60 − T) = 200(T − 20) gives 300T = 10000 and T ≈ 33.3 °C. Ignoring the calorimeter gives about 34.3 °C, and ignoring masses gives 40 °C.
+
+  - id: phy-tpm-057
+    topic: calorimetry
+    subtopic: Features of mixing
+    concept: Final temperature lies between initial ones and depends on heat capacities
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    tags: [method-of-mixtures]
+    stem: |-
+      Two bodies at different temperatures are mixed in an insulated vessel with no change of state. Consider:
+      I. Heat lost by the hotter body equals heat gained by the colder body.
+      II. The final temperature is always the arithmetic mean of the initial temperatures.
+      III. The final temperature lies between the two initial temperatures.
+      IV. The final temperature depends on the heat capacities of the two bodies.
+      Which are correct?
+    options:
+      - I and II only
+      - II and III only
+      - I, II and IV only
+      - I, III and IV only
+    answer: 3
+    explanation: Energy conservation gives I. The final temperature is a heat-capacity-weighted mean, so it lies between the two values (III) and depends on mc of each (IV). It equals the arithmetic mean only when the heat capacities are equal, so II is wrong.
+
+  - id: phy-tpm-058
+    topic: change-of-state
+    subtopic: Latent heat of fusion
+    concept: Q = mL_f for melting at constant temperature
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: Q = mL
+    tags: [latent-heat]
+    stem: How much heat is needed to melt 2 kg of ice at 0 °C into water at 0 °C? (L_f = 3.36 × 10^5 J kg^{-1})
+    options:
+      - 1.68 × 10^5 J
+      - 3.36 × 10^5 J
+      - 6.72 × 10^5 J
+      - 8.4 × 10^3 J
+    answer: 2
+    explanation: During melting the temperature stays at 0 °C, so Q = mL_f = 2 × 3.36 × 10^5 = 6.72 × 10^5 J.
+
+  - id: phy-tpm-059
+    topic: change-of-state
+    subtopic: Constant temperature during phase change
+    concept: Heat supplied during a phase change goes into breaking intermolecular bonds
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [phase-change]
+    stem: While ice is melting at 0 °C, heat is supplied but the temperature does not rise because the heat is used to
+    options:
+      - increase the potential energy of the molecules by overcoming intermolecular forces
+      - increase the average kinetic energy of the molecules
+      - escape to the surroundings by radiation
+      - decrease the volume of the ice
+    answer: 0
+    explanation: Temperature measures average molecular kinetic energy. During melting, the heat increases the potential energy of molecules as the ordered solid structure breaks, so the kinetic energy and hence temperature stay constant.
+
+  - id: phy-tpm-060
+    topic: change-of-state
+    subtopic: Latent heat of vaporisation of water
+    concept: L_v of water ≈ 540 cal g^{-1} ≈ 2.26 × 10^6 J kg^{-1}
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [latent-heat, ncert-line]
+    stem: The latent heat of vaporisation of water at 100 °C and 1 atm is about
+    options:
+      - 80 cal g^{-1}
+      - 336 cal g^{-1}
+      - 100 cal g^{-1}
+      - 540 cal g^{-1}
+    answer: 3
+    explanation: L_v of water is about 2256 kJ kg^{-1}, i.e. about 540 cal g^{-1}. 80 cal g^{-1} (336 kJ kg^{-1}) is the latent heat of fusion of ice.
+
+  - id: phy-tpm-061
+    topic: change-of-state
+    subtopic: Steam burns
+    concept: Steam releases latent heat on condensing, so its burns are more severe
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [latent-heat, applications]
+    stem: A burn from steam at 100 °C is more severe than one from boiling water at 100 °C because
+    options:
+      - steam is at a higher temperature than boiling water
+      - steam gives out its large latent heat of vaporisation when it condenses on the skin
+      - steam has a higher specific heat than water
+      - water is a better conductor than steam
+    answer: 1
+    explanation: Both are at 100 °C, but each gram of steam releases about 540 cal extra when it condenses on the skin before cooling like hot water. The temperatures are equal, so the first option is the trap.
+
+  - id: phy-tpm-062
+    topic: change-of-state
+    subtopic: Boiling point and pressure
+    concept: Boiling point rises with pressure; pressure cooker
+    category: application
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [boiling-point, applications, ncert-line]
+    stem: Food cooks faster in a pressure cooker because
+    options:
+      - the higher pressure lowers the boiling point of water
+      - steam at high pressure has a lower latent heat
+      - the higher pressure raises the boiling point of water
+      - the cooker walls are better conductors
+    answer: 2
+    explanation: Increasing the pressure raises the boiling point, so water inside boils at about 120 °C instead of 100 °C, and food cooks faster at that higher temperature.
+
+  - id: phy-tpm-063
+    topic: change-of-state
+    subtopic: Boiling point and altitude
+    concept: Lower pressure at high altitude lowers the boiling point
+    category: application
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [boiling-point]
+    stem: Cooking rice in an open pot is difficult on a high mountain because
+    options:
+      - water boils at a temperature lower than 100 °C there
+      - water boils at a temperature higher than 100 °C there
+      - the latent heat of water increases with altitude
+      - fire burns less efficiently at high altitude
+    answer: 0
+    explanation: Atmospheric pressure is lower at high altitude, so water boils at a lower temperature (below 100 °C) and the food does not get hot enough to cook quickly.
+
+  - id: phy-tpm-064
+    topic: change-of-state
+    subtopic: Regelation
+    concept: Melting point of ice decreases with increase in pressure
+    category: concept
+    format: case
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [regelation, ncert-line]
+    stem: A wire with heavy weights at its ends is placed over a slab of ice. The wire slowly passes through the slab, yet the slab stays in one piece. This happens because
+    options:
+      - the wire conducts heat from the air into the ice
+      - the weights raise the melting point of the ice below the wire
+      - ice is plastic and flows around the wire
+      - pressure lowers the melting point of ice below the wire, and the water refreezes above it
+    answer: 3
+    explanation: This is regelation. Under the high pressure of the wire, ice melts below 0 °C; the water flows above the wire where the pressure is normal and refreezes, releasing latent heat that helps melt the ice below.
+
+  - id: phy-tpm-065
+    topic: change-of-state
+    subtopic: Sublimation and triple point
+    concept: Solid CO_2 sublimes at 1 atm since its triple-point pressure is 5.11 atm
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [sublimation, triple-point]
+    stem: Solid CO_2 (dry ice) changes directly into vapour at atmospheric pressure because
+    options:
+      - its melting point is above its boiling point
+      - the pressure at its triple point (about 5.11 atm) is higher than 1 atm
+      - it has zero latent heat of fusion
+      - its triple point lies at 1 atm and 0 °C
+    answer: 1
+    explanation: Liquid CO_2 can exist only at pressures above its triple-point pressure of about 5.11 atm. At 1 atm the solid therefore goes directly to vapour (sublimation) at about −78 °C.
+
+  - id: phy-tpm-066
+    topic: change-of-state
+    subtopic: Mixing ice and water
+    concept: Heat from 80 °C water exactly melts equal mass of ice at 0 °C
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [ice-water-mixture, trap]
+    stem: 1 kg of ice at 0 °C is mixed with 1 kg of water at 80 °C. (L_f = 80 cal g^{-1}) The final temperature of the mixture is
+    options:
+      - 40 °C
+      - 20 °C
+      - 0 °C
+      - 10 °C
+    answer: 2
+    explanation: Heat needed to melt the ice = 1000 × 80 = 80000 cal. Water cooling from 80 °C to 0 °C gives 1000 × 1 × 80 = 80000 cal, exactly enough. So all ice just melts and the result is 2 kg of water at 0 °C. 40 °C ignores latent heat.
+
+  - id: phy-tpm-067
+    topic: change-of-state
+    subtopic: Heating curve of water
+    concept: Longer plateau for boiling since L_v > L_f
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [heating-curve, graph]
+    stem: Ice at −10 °C is heated at a constant rate until it becomes steam above 100 °C, and temperature is plotted against time. Which feature does the graph show?
+    options:
+      - Two flat portions, the one at 100 °C being much longer than the one at 0 °C
+      - Two flat portions of equal length at 0 °C and 100 °C
+      - A single straight line with constant slope
+      - Two flat portions, the one at 0 °C being longer than the one at 100 °C
+    answer: 0
+    explanation: Temperature stays constant during melting and boiling. The time spent on each flat portion is proportional to the latent heat, and L_v (540 cal g^{-1}) is much greater than L_f (80 cal g^{-1}), so the boiling plateau is about 6.75 times longer.
+
+  - id: phy-tpm-068
+    topic: change-of-state
+    subtopic: Heat from condensing steam
+    concept: Heat released = mL_v + mcΔT
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: true
+    formula: Q = mL_v + mcΔT
+    tags: [latent-heat, steam]
+    stem: 10 g of steam at 100 °C condenses and the water cools to 20 °C. (L_v = 540 cal g^{-1}) The heat released is
+    options:
+      - 5400 cal
+      - 6200 cal
+      - 800 cal
+      - 4600 cal
+    answer: 1
+    explanation: Condensation releases 10 × 540 = 5400 cal, and cooling from 100 °C to 20 °C releases 10 × 1 × 80 = 800 cal. Total = 6200 cal.
+
+  - id: phy-tpm-069
+    topic: conduction
+    subtopic: Rate of heat conduction
+    concept: H = KAΔT/L
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 35
+    ncert: true
+    battle: true
+    formula: H = KA(T_C − T_D)/L
+    tags: [heat-current]
+    stem: A copper rod (K = 400 W m^{-1} K^{-1}) is 1 m long with cross-section 1 cm^2. Its ends are at 100 °C and 0 °C. The rate of heat flow in steady state is
+    options:
+      - 0.4 W
+      - 4 W
+      - 40 W
+      - 400 W
+    answer: 1
+    explanation: H = KAΔT/L = 400 × 10^{-4} × 100/1 = 4 W. Taking 1 cm^2 as 10^{-2} m^2 would give 400 W.
+
+  - id: phy-tpm-070
+    topic: conduction
+    subtopic: Unit of thermal conductivity
+    concept: SI unit of K is W m^{-1} K^{-1}
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [units, thermal-conductivity]
+    stem: The SI unit of thermal conductivity is
+    options:
+      - W m K^{-1}
+      - J m^{-2} K^{-1}
+      - W m^{-2} K^{-1}
+      - W m^{-1} K^{-1}
+    answer: 3
+    explanation: From H = KAΔT/L, K = HL/(AΔT), with unit W × m/(m^2 × K) = W m^{-1} K^{-1}.
+
+  - id: phy-tpm-071
+    topic: conduction
+    subtopic: Rods in series
+    concept: Equivalent K for equal-length rods in series = 2K_1K_2/(K_1 + K_2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: K_eq = 2K_1K_2/(K_1 + K_2)
+    tags: [series-conduction]
+    stem: Two rods of equal length and area with conductivities K_1 and K_2 are joined end to end. The equivalent conductivity of the combination is
+    options:
+      - 2K_1K_2/(K_1 + K_2)
+      - (K_1 + K_2)/2
+      - K_1K_2/(K_1 + K_2)
+      - K_1 + K_2
+    answer: 0
+    explanation: Thermal resistances add in series, 2L/(K_eq A) = L/(K_1A) + L/(K_2A), giving K_eq = 2K_1K_2/(K_1 + K_2). (K_1 + K_2)/2 is the parallel result.
+
+  - id: phy-tpm-072
+    topic: conduction
+    subtopic: Rods in parallel
+    concept: Equivalent K for equal rods side by side = (K_1 + K_2)/2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: K_eq = (K_1 + K_2)/2
+    tags: [parallel-conduction]
+    stem: Two rods of equal length and equal cross-section with conductivities K_1 and K_2 are placed side by side between the same two reservoirs. The equivalent conductivity of the pair is
+    options:
+      - 2K_1K_2/(K_1 + K_2)
+      - K_1 + K_2
+      - (K_1 + K_2)/2
+      - √(K_1K_2)
+    answer: 2
+    explanation: In parallel the heat currents add, K_eq(2A)ΔT/L = K_1AΔT/L + K_2AΔT/L, so K_eq = (K_1 + K_2)/2. K_1 + K_2 forgets that the total area is 2A.
+
+  - id: phy-tpm-073
+    topic: conduction
+    subtopic: Junction temperature
+    concept: Equal heat current through slabs in series fixes junction temperature
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [series-conduction, junction-temperature]
+    stem: Two slabs of equal area and equal thickness are in contact. Slab A (conductivity K) has its outer face at 100 °C, and slab B (conductivity 2K) has its outer face at 0 °C. In steady state the interface temperature is about
+    options:
+      - 66.7 °C
+      - 33.3 °C
+      - 50 °C
+      - 25 °C
+    answer: 1
+    explanation: Same heat current through both, K(100 − T) = 2K(T − 0), so 100 = 3T and T ≈ 33.3 °C. The better conductor B has the smaller temperature drop, so the interface lies closer to 0 °C.
+
+  - id: phy-tpm-074
+    topic: conduction
+    subtopic: Conduction in metals
+    concept: Free electrons make metals good conductors of heat
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [thermal-conductivity]
+    stem: Metals are much better conductors of heat than non-metals mainly because metals have
+    options:
+      - free electrons that carry energy
+      - higher densities
+      - higher specific heats
+      - larger atoms
+    answer: 0
+    explanation: In metals, free (conduction) electrons move rapidly and transport thermal energy in addition to lattice vibrations, making the thermal conductivity very high.
+
+  - id: phy-tpm-075
+    topic: conduction
+    subtopic: Everyday conduction
+    concept: Poor conductors are used for handles of cooking vessels
+    category: application
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [thermal-conductivity, applications]
+    stem: The handles of cooking pans are often made of plastic or wood because these materials
+    options:
+      - have high thermal conductivity
+      - have high density
+      - expand very little
+      - are poor conductors of heat
+    answer: 3
+    explanation: Plastic and wood have low thermal conductivity, so little heat flows from the hot pan to the hand. The pan bottom, by contrast, is often copper for fast, even heating.
+
+  - id: phy-tpm-076
+    topic: conduction
+    subtopic: Dependence on length
+    concept: Heat current ∝ 1/L for fixed area and temperature difference
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [heat-current, proportionality]
+    stem: If the length of a conducting rod is doubled keeping area and end temperatures the same, the steady heat current
+    options:
+      - doubles
+      - becomes half
+      - becomes four times
+      - does not change
+    answer: 1
+    explanation: H = KAΔT/L, so H ∝ 1/L; doubling L halves the heat current.
+
+  - id: phy-tpm-077
+    topic: conduction
+    subtopic: Growth of ice on a lake
+    concept: Ice thickness grows as √t, so time ∝ x^2
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: t ∝ x^2
+    tags: [ice-formation, multi-concept]
+    stem: Ice is forming on the surface of a pond while the air above stays at a constant temperature below 0 °C. If it takes time t for the ice to become 1 cm thick, the time for it to grow from 0 to 2 cm is
+    options:
+      - 2t
+      - √2 t
+      - 4t
+      - 8t
+    answer: 2
+    explanation: Heat released by freezing a layer dx must be conducted through the existing thickness x, ρL dx/dt = KΔT/x. Integrating gives t ∝ x^2, so doubling the thickness takes 4t.
+
+  - id: phy-tpm-078
+    topic: conduction
+    subtopic: Temperature profile in a rod
+    concept: In steady state, temperature falls linearly along a uniform, insulated rod
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [steady-state, graph]
+    stem: A uniform rod with insulated sides has its ends held at 100 °C and 0 °C. In steady state, a graph of temperature against distance from the hot end is
+    options:
+      - an exponential decay
+      - a parabola
+      - a horizontal line at 50 °C
+      - a straight line with negative slope
+    answer: 3
+    explanation: In steady state the same heat current H flows through every section, so the temperature gradient dT/dx = −H/(KA) is constant and the temperature falls linearly.
+
+  - id: phy-tpm-079
+    topic: conduction
+    subtopic: Thermal resistance
+    concept: R = L/(KA)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: R = L/(KA)
+    tags: [thermal-resistance]
+    stem: The thermal resistance of a rod of length 1 m, cross-section 5 × 10^{-4} m^2 and thermal conductivity 200 W m^{-1} K^{-1} is
+    options:
+      - 1 K W^{-1}
+      - 10 K W^{-1}
+      - 100 K W^{-1}
+      - 0.1 K W^{-1}
+    answer: 1
+    explanation: R = L/(KA) = 1/(200 × 5 × 10^{-4}) = 1/0.1 = 10 K W^{-1}.
+
+  - id: phy-tpm-080
+    topic: convection
+    subtopic: Nature of convection
+    concept: Convection needs actual flow of matter, so it occurs only in fluids
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [convection, ncert-line]
+    stem: Heat transfer by convection is possible only in
+    options:
+      - fluids
+      - solids
+      - vacuum
+      - metals
+    answer: 0
+    explanation: Convection transfers heat by the bulk movement of the material itself, which happens only in liquids and gases (fluids). Solids transfer heat by conduction, and vacuum only by radiation.
+
+  - id: phy-tpm-081
+    topic: convection
+    subtopic: Sea breeze
+    concept: During the day land heats faster, so the breeze blows from sea to land
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [sea-breeze, ncert-line]
+    stem: On a sunny day near the coast, a cool breeze blows
+    options:
+      - from land to sea because the land is cooler
+      - from land to sea because the sea heats faster
+      - from sea to land because the land heats up faster
+      - parallel to the coast because of Earth's rotation
+    answer: 2
+    explanation: Land has lower specific heat than water, so it warms faster by day. Warm air over the land rises and cooler air from over the sea moves in, forming a sea breeze. At night the flow reverses (land breeze).
+
+  - id: phy-tpm-082
+    topic: convection
+    subtopic: Trade winds
+    concept: Trade winds come from convection plus Earth's rotation
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [trade-winds, ncert-line]
+    stem: The trade winds, which blow towards the equator from the north-east in the northern hemisphere, arise from
+    options:
+      - radiation from the Sun only
+      - convection currents combined with the rotation of the Earth
+      - conduction through the Earth's crust
+      - the Moon's gravitational pull
+    answer: 1
+    explanation: Air heated at the equator rises and cooler air flows in from higher latitudes (convection). Because the Earth rotates, this surface flow is deflected, so it arrives from the north-east instead of due north.
+
+  - id: phy-tpm-083
+    topic: convection
+    subtopic: Natural and forced convection
+    concept: Blood circulation in the body is forced convection
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [forced-convection, ncert-line]
+    stem: Which of the following is an example of forced convection?
+    options:
+      - Formation of sea breeze
+      - Rising of hot air above a candle flame
+      - Circulation of water in a pan heated from below
+      - Heat transport in the human body by blood pumped by the heart
+    answer: 3
+    explanation: In forced convection the fluid is pushed by a pump or fan. The heart pumps blood around the body, so it is forced convection. The other examples are natural convection driven by buoyancy.
+
+  - id: phy-tpm-084
+    topic: convection
+    subtopic: Role of gravity
+    concept: Natural convection needs gravity; absent in free fall
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [convection, trap]
+    stem: Inside a spacecraft orbiting the Earth, a candle flame becomes nearly spherical and dim. The main reason is that
+    options:
+      - there is no oxygen in the spacecraft
+      - radiation cannot occur in orbit
+      - natural convection does not occur in the weightless condition
+      - conduction is stronger in orbit
+    answer: 2
+    explanation: Natural convection depends on buoyancy, which needs effective gravity. In free fall hot gases do not rise, so fresh air is not drawn in and the flame becomes spherical and weak.
+
+  - id: phy-tpm-085
+    topic: radiation
+    subtopic: Stefan–Boltzmann law
+    concept: Radiated power ∝ T^4
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: H = eσAT^4
+    tags: [stefan-law]
+    stem: If the absolute temperature of a black body is doubled, the power it radiates becomes
+    options:
+      - 2 times
+      - 4 times
+      - 8 times
+      - 16 times
+    answer: 3
+    explanation: By the Stefan–Boltzmann law P ∝ T^4, so doubling T multiplies P by 2^4 = 16.
+
+  - id: phy-tpm-086
+    topic: radiation
+    subtopic: Wien's displacement law
+    concept: λ_m T = b ≈ 2.9 × 10^{-3} m K
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: λ_m T = 2.9 × 10^{-3} m K
+    tags: [wien-law]
+    stem: The surface temperature of the Sun is about 5800 K. Taking Wien's constant as 2.9 × 10^{-3} m K, the wavelength of maximum emission is about
+    options:
+      - 500 nm
+      - 250 nm
+      - 1000 nm
+      - 580 nm
+    answer: 0
+    explanation: λ_m = b/T = 2.9 × 10^{-3}/5800 = 5 × 10^{-7} m = 500 nm, in the visible region.
+
+  - id: phy-tpm-087
+    topic: radiation
+    subtopic: Nature of thermal radiation
+    concept: Thermal radiation needs no medium and travels at c
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [radiation, ncert-line]
+    stem: Heat reaches the Earth from the Sun by radiation because
+    options:
+      - air is a good conductor of heat
+      - radiation does not need a material medium
+      - convection currents exist in space
+      - space is filled with hot gas
+    answer: 1
+    explanation: Radiation is electromagnetic and travels through vacuum at the speed of light. Conduction and convection need a medium, and the space between Sun and Earth is almost empty.
+
+  - id: phy-tpm-088
+    topic: radiation
+    subtopic: Absorbers and emitters
+    concept: Good absorbers are good emitters (Kirchhoff)
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [kirchhoff-law]
+    stem: A black-painted and a polished silver-plated metal ball are heated to the same high temperature in a dark room. Which statement is correct?
+    options:
+      - The silver ball glows more because it reflects light
+      - Both glow equally since their temperatures are equal
+      - The black ball glows more because good absorbers are good emitters
+      - Neither glows because both are metals
+    answer: 2
+    explanation: Emissivity equals absorptivity at a given wavelength and temperature. The black surface absorbs well, so it also emits more than the shiny, highly reflecting silver surface at the same temperature.
+
+  - id: phy-tpm-089
+    topic: radiation
+    subtopic: Net radiation exchange
+    concept: Net radiative loss = eσA(T^4 − T_s^4), zero at equal temperatures
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: H_net = eσA(T^4 − T_s^4)
+    tags: [net-radiation, trap]
+    stem: A body at 300 K is kept in surroundings also at 300 K. Which statement about radiation is correct?
+    options:
+      - It emits and absorbs radiation at equal rates, so the net loss is zero
+      - It stops emitting radiation
+      - It emits radiation but absorbs none
+      - It absorbs radiation but emits none
+    answer: 0
+    explanation: Every body above 0 K emits radiation. At equal temperatures, emission eσAT^4 equals absorption eσAT_s^4, so the net exchange is zero. Thinking that emission stops is the misconception.
+
+  - id: phy-tpm-090
+    topic: radiation
+    subtopic: Power from spheres
+    concept: P ∝ r^2 T^4
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: P = σ(4πr^2)T^4
+    tags: [stefan-law, proportionality]
+    stem: "Two black spheres have radii in the ratio 1 : 2 and absolute temperatures in the ratio 2 : 1. The ratio of the powers they radiate is"
+    options:
+      - "1 : 4"
+      - "4 : 1"
+      - "2 : 1"
+      - "16 : 1"
+    answer: 1
+    explanation: "P ∝ r^2T^4, so P_1/P_2 = (1/2)^2 × 2^4 = 16/4 = 4. Ratio 4 : 1."
+
+  - id: phy-tpm-091
+    topic: radiation
+    subtopic: Greenhouse effect
+    concept: Greenhouse gases absorb Earth's infrared radiation
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [greenhouse-effect, ncert-line]
+    stem: The greenhouse effect warms the Earth because gases such as CO_2 and water vapour
+    options:
+      - absorb visible sunlight strongly
+      - reflect all incoming solar radiation
+      - produce heat by chemical reactions
+      - absorb and re-emit the infrared radiation given out by the Earth
+    answer: 3
+    explanation: Sunlight (mostly visible) passes through the atmosphere and heats the ground. The Earth re-radiates in the infrared, which greenhouse gases absorb and partly send back down, keeping the surface warmer.
+
+  - id: phy-tpm-092
+    topic: radiation
+    subtopic: Colours of stars
+    concept: Hotter bodies peak at shorter wavelengths
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [wien-law]
+    stem: A star appears bluish-white while another appears reddish. Compared with the red star, the bluish-white star has
+    options:
+      - a lower surface temperature
+      - the same surface temperature but greater size
+      - a higher surface temperature
+      - a higher surface temperature only if it is closer to us
+    answer: 2
+    explanation: By Wien's law λ_m ∝ 1/T. The bluish star peaks at a shorter wavelength, so its surface is hotter. Colour depends on temperature, not on distance or size.
+
+  - id: phy-tpm-093
+    topic: radiation
+    subtopic: Black body
+    concept: A perfect black body absorbs all radiation; emissivity 1
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [black-body]
+    stem: The emissivity of a perfect black body is
+    options:
+      - "1"
+      - "0"
+      - "0.5"
+      - infinite
+    answer: 0
+    explanation: A perfect black body absorbs all radiation falling on it and is also the best emitter, with emissivity e = 1. Real surfaces have 0 < e < 1.
+
+  - id: phy-tpm-094
+    topic: newtons-law-of-cooling
+    subtopic: Statement of the law
+    concept: Rate of cooling ∝ excess temperature over surroundings
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: dT/dt = −k(T − T_s)
+    tags: [newtons-cooling, ncert-line]
+    stem: According to Newton's law of cooling, the rate of loss of heat of a body is proportional to
+    options:
+      - its absolute temperature
+      - the difference between its temperature and that of the surroundings
+      - the fourth power of its temperature
+      - the square of the temperature difference
+    answer: 1
+    explanation: Newton's law states −dQ/dt = k(T − T_s) for small temperature differences. The T^4 dependence is Stefan's law for total emitted radiation.
+
+  - id: phy-tpm-095
+    topic: newtons-law-of-cooling
+    subtopic: Average-temperature method
+    concept: (T_1 − T_2)/t = k[(T_1 + T_2)/2 − T_s]
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 90
+    ncert: true
+    battle: false
+    formula: (T_1 − T_2)/t = k[(T_1 + T_2)/2 − T_s]
+    tags: [newtons-cooling]
+    stem: A body cools from 80 °C to 60 °C in 5 min in a room at 20 °C. Using the average-temperature form of Newton's law, the time to cool from 60 °C to 40 °C is about
+    options:
+      - 5 min
+      - 10 min
+      - 8.3 min
+      - 7.5 min
+    answer: 2
+    explanation: First interval, 20/5 = k(70 − 20), so k = 0.08 min^{-1}. Second, 20/t = 0.08 × (50 − 20) = 2.4, so t ≈ 8.3 min. It takes longer because the average excess temperature is smaller.
+
+  - id: phy-tpm-096
+    topic: newtons-law-of-cooling
+    subtopic: Cooling curve
+    concept: Excess temperature decays exponentially
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: T − T_s = (T_0 − T_s)e^{−kt}
+    tags: [cooling-curve, graph]
+    stem: A hot liquid cools in a room following Newton's law. The graph of its temperature against time is
+    options:
+      - a straight line falling to room temperature
+      - a straight line falling below room temperature
+      - a curve that falls faster and faster with time
+      - a curve that falls steeply at first and levels off towards room temperature
+    answer: 3
+    explanation: "The rate of cooling is proportional to the excess temperature, which decreases with time, so the curve is exponential: steep at first and flattening as it approaches the room temperature asymptotically."
+
+  - id: phy-tpm-097
+    topic: newtons-law-of-cooling
+    subtopic: Rate of cooling
+    concept: Cooling is fastest when excess temperature is largest
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [newtons-cooling]
+    stem: A cup of hot tea is left on a table. Its temperature falls fastest
+    options:
+      - just after it is poured
+      - midway through cooling
+      - just before it reaches room temperature
+      - at the same rate throughout
+    answer: 0
+    explanation: The rate of cooling is proportional to (T − T_s), which is largest at the start, so the tea cools fastest immediately after pouring.
+
+  - id: phy-tpm-098
+    topic: newtons-law-of-cooling
+    subtopic: Validity and dependence
+    concept: Newton's law valid for small ΔT; rate depends on surface area
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [newtons-cooling, trap]
+    stem: |-
+      Statement I: Newton's law of cooling holds well when the temperature difference between the body and the surroundings is small.
+      Statement II: The rate of loss of heat by a body does not depend on its exposed surface area.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Newton's law is an approximation valid for small excess temperatures. The constant k depends on the area and nature of the surface, so heat loss grows with exposed area; Statement II is wrong.
+
+  - id: phy-tpm-099
+    topic: newtons-law-of-cooling
+    subtopic: Exponential cooling
+    concept: Excess temperature halves in equal times
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: T − T_s = (T_0 − T_s)e^{−kt}
+    tags: [newtons-cooling, exponential]
+    stem: Under Newton's law, a body's excess temperature over the surroundings halves in 10 min. The time for it to fall to one-quarter of its initial value is
+    options:
+      - 5 min
+      - 15 min
+      - 40 min
+      - 20 min
+    answer: 3
+    explanation: The excess temperature decays exponentially, so it halves every 10 min. To reach one-quarter it must halve twice, taking 20 min.
+
+  - id: phy-tpm-100
+    topic: newtons-law-of-cooling
+    subtopic: Effect of size on rate of fall of temperature
+    concept: dT/dt ∝ A/(mc) ∝ 1/r for spheres of the same material
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [newtons-cooling, proportionality]
+    stem: Two solid spheres of the same material, of radii r and 2r, are at the same temperature in the same surroundings. The ratio of their initial rates of fall of temperature is
+    options:
+      - "1 : 2"
+      - "2 : 1"
+      - "4 : 1"
+      - "1 : 1"
+    answer: 1
+    explanation: "Heat loss rate ∝ area ∝ r^2, while heat capacity ∝ mass ∝ r^3. So dT/dt ∝ r^2/r^3 = 1/r, giving 2 : 1 for the smaller sphere to the larger."
+
+  - id: phy-tpm-101
+    topic: temperature-heat
+    subtopic: Temperature versus internal energy
+    concept: Equal temperatures do not imply equal internal energies
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [heat, internal-energy, trap]
+    stem: Which of the following statements is correct?
+    options:
+      - Temperature is a measure of the total heat contained in a body
+      - A body contains a definite quantity of heat that it can give up
+      - Two bodies at the same temperature can have different internal energies
+      - Heat always flows from the body with the larger heat capacity
+    answer: 2
+    explanation: Internal energy depends on mass and material as well as temperature, so a bucket of water and a cup of water at the same temperature have very different internal energies. Heat is energy in transit, not something a body contains, and its flow is decided by temperature alone.
+
+  - id: phy-tpm-102
+    topic: temperature-heat
+    subtopic: Thermometric property
+    concept: A thermometer uses a property that changes measurably with temperature
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [thermometer, ncert-line]
+    stem: A physical property is suitable as a thermometric property if it
+    options:
+      - does not change with temperature
+      - changes in a known, reproducible way with temperature
+      - changes only at the melting point
+      - depends only on the mass of the body
+    answer: 1
+    explanation: Thermometers exploit properties such as the length of a mercury column, gas pressure at constant volume or electrical resistance, which change steadily and reproducibly with temperature and can be calibrated against fixed points.
+
+  - id: phy-tpm-103
+    topic: temperature-heat
+    subtopic: Basic ideas of heat and temperature
+    concept: Temperature measures hotness; heat is energy in transit
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [heat, temperature]
+    stem: |-
+      Consider the following statements:
+      I. Temperature is a relative measure of the hotness or coldness of a body.
+      II. Heat is energy transferred because of a temperature difference.
+      III. A hot body contains more heat than a cold body.
+      IV. The SI unit of temperature is the degree Celsius.
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 0
+    explanation: I and II are NCERT definitions. Bodies do not contain heat; they have internal energy, so III is wrong. The SI unit of temperature is the kelvin, not the degree Celsius, so IV is wrong.
+
+  - id: phy-tpm-104
+    topic: temperature-heat
+    subtopic: Direction of heat flow
+    concept: Temperature decides direction of heat flow; heat is energy in transit
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [heat-flow]
+    stem: |-
+      Assertion (A): The temperatures of two bodies in contact tell us the direction in which heat will flow between them.
+      Reason (R): Heat is a form of energy in transit.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: Heat flows spontaneously from higher to lower temperature, so A is true. R is also true, but the fact that heat is energy in transit does not explain why the direction is set by temperature. So R is not the explanation of A.
+
+  - id: phy-tpm-105
+    topic: temperature-heat
+    subtopic: Molecular view of temperature
+    concept: Heating without phase change raises average molecular kinetic energy
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [temperature, molecular-view]
+    stem: When a body is heated and its temperature rises without any change of state, which molecular quantity necessarily increases?
+    options:
+      - The number of molecules
+      - The mass of each molecule
+      - The intermolecular potential energy only
+      - The average kinetic energy of the molecules
+    answer: 3
+    explanation: Temperature is a measure of the average random kinetic energy of the molecules, so a rise in temperature means this average increases. The number and mass of molecules are unchanged.
+
+  - id: phy-tpm-106
+    topic: temperature-scales
+    subtopic: Arbitrary temperature scales
+    concept: Converting Celsius to a scale with shifted fixed points
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [arbitrary-scale]
+    stem: On a scale X, ice melts at −10 °X and water boils at 140 °X at 1 atm. What does this scale read at 50 °C?
+    options:
+      - 65 °X
+      - 75 °X
+      - 60 °X
+      - 70 °X
+    answer: 0
+    explanation: (X − (−10))/(140 − (−10)) = 50/100, so X + 10 = 75 and X = 65 °X. 75 °X forgets the offset of −10.
+
+  - id: phy-tpm-107
+    topic: temperature-scales
+    subtopic: Converting between two arbitrary scales
+    concept: Same fraction of the fundamental interval on both scales
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [arbitrary-scale]
+    stem: Scale A reads 30 at the ice point and 180 at the steam point. Scale B reads −20 at the ice point and 80 at the steam point. When A reads 105, B reads
+    options:
+      - "52.5"
+      - "30"
+      - "55"
+      - "42.5"
+    answer: 1
+    explanation: On A, (105 − 30)/(180 − 30) = 75/150 = 0.5 of the interval. On B, the same fraction gives −20 + 0.5 × 100 = 30.
+
+  - id: phy-tpm-108
+    topic: temperature-scales
+    subtopic: Fixed points
+    concept: Kelvin values of absolute zero, ice point, steam point and triple point
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [fixed-points, triple-point]
+    stem: |-
+      Match List I with List II.
+      List I: P. Absolute zero; Q. Ice point at 1 atm; R. Steam point at 1 atm; S. Triple point of water
+      List II: 1. 273.16 K; 2. 373.15 K; 3. 0 K; 4. 273.15 K
+    options:
+      - P-3, Q-1, R-2, S-4
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-2, R-4, S-1
+      - P-3, Q-4, R-2, S-1
+    answer: 3
+    explanation: Absolute zero is 0 K, the ice point is 273.15 K (0 °C), the steam point is 373.15 K (100 °C) and the triple point of water is 273.16 K (0.01 °C). The ice point and triple point differ by only 0.01 K, which is the trap.
+
+  - id: phy-tpm-109
+    topic: temperature-scales
+    subtopic: Special readings
+    concept: Solving t_C = 2t_F with t_F = 1.8t_C + 32
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    formula: t_F = (9/5) t_C + 32
+    tags: [temperature-conversion, trap]
+    stem: At what temperature is the Celsius reading exactly twice the Fahrenheit reading?
+    options:
+      - 160 °C
+      - −12.3 °C
+      - −24.6 °C
+      - −40 °C
+    answer: 2
+    explanation: Put t_C = 2t_F with t_F = 1.8t_C + 32, so t_C = 3.6t_C + 64, giving t_C ≈ −24.6 °C (then t_F ≈ −12.3 °F). 160 °C is where the Fahrenheit reading is twice the Celsius reading, the reverse condition.
+
+  - id: phy-tpm-110
+    topic: temperature-scales
+    subtopic: Resistance thermometer
+    concept: Linear variation of resistance with temperature used for thermometry
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: t = 100(R_t − R_0)/(R_100 − R_0)
+    tags: [resistance-thermometer]
+    stem: A platinum resistance thermometer reads 50 Ω at 0 °C and 70 Ω at 100 °C. Assuming linear variation, when its resistance is 65 Ω the temperature is
+    options:
+      - 65 °C
+      - 30 °C
+      - 80 °C
+      - 75 °C
+    answer: 3
+    explanation: t = 100 × (65 − 50)/(70 − 50) = 100 × 15/20 = 75 °C.
+
+  - id: phy-tpm-111
+    topic: temperature-scales
+    subtopic: Temperature intervals
+    concept: A 1 K change equals a 1.8 °F change
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [temperature-difference]
+    stem: A temperature change of 20 K corresponds to a change on the Fahrenheit scale of
+    options:
+      - 68 °F
+      - 36 °F
+      - 20 °F
+      - 11.1 °F
+    answer: 1
+    explanation: One kelvin equals one Celsius degree, which is 9/5 Fahrenheit degrees. So ΔF = 1.8 × 20 = 36 °F. 68 °F wrongly adds 32 to an interval.
+
+  - id: phy-tpm-112
+    topic: temperature-scales
+    subtopic: Comparing scales
+    concept: Celsius has 100 divisions between fixed points, Fahrenheit 180
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [temperature-scales]
+    stem: Which of the following statements about temperature scales is incorrect?
+    options:
+      - A temperature interval of one kelvin equals one Celsius degree
+      - The ice and steam points on the Fahrenheit scale are 32 °F and 212 °F
+      - The Celsius scale has 180 equal divisions between the ice and steam points
+      - No temperature on the Kelvin scale is negative
+    answer: 2
+    explanation: The Celsius scale has 100 divisions between the ice and steam points; it is the Fahrenheit scale that has 180 (from 32 to 212). The other statements are correct.
+
+  - id: phy-tpm-113
+    topic: temperature-scales
+    subtopic: Choice of fixed point
+    concept: The triple point occurs at a unique temperature and pressure
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [triple-point]
+    stem: The triple point of water is preferred to the ice point as the fixed point for the absolute scale because
+    options:
+      - it is easier to reach than the ice point
+      - it lies exactly at 0 °C
+      - it does not involve water vapour
+      - it occurs at a unique temperature and pressure, while the ice point depends on pressure
+    answer: 3
+    explanation: Ice, water and vapour coexist only at one pressure (about 0.006 atm) and one temperature, so the triple point is perfectly reproducible. The melting point of ice changes with pressure, so the ice point needs a specified pressure.
+
+  - id: phy-tpm-114
+    topic: temperature-scales
+    subtopic: Comparing temperatures on different scales
+    concept: Convert all readings to one scale before ordering
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [temperature-conversion]
+    stem: Arrange the temperatures 300 K, 30 °C, 80 °F and 25 °C in increasing order.
+    options:
+      - 25 °C < 300 K < 80 °F < 30 °C
+      - 25 °C < 80 °F < 300 K < 30 °C
+      - 80 °F < 25 °C < 30 °C < 300 K
+      - 300 K < 80 °F < 25 °C < 30 °C
+    answer: 1
+    explanation: In Celsius, 300 K = 26.85 °C and 80 °F = (80 − 32) × 5/9 ≈ 26.67 °C. So 25 °C < 26.67 °C (80 °F) < 26.85 °C (300 K) < 30 °C.
+
+  - id: phy-tpm-115
+    topic: ideal-gas-absolute
+    subtopic: Charles's law graph
+    concept: V–T (kelvin) graph at constant P is a line through the origin
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [charles-law, graph]
+    stem: For a fixed mass of ideal gas at constant pressure, the graph of volume against absolute temperature is
+    options:
+      - a rectangular hyperbola
+      - a straight line parallel to the temperature axis
+      - a straight line passing through the origin
+      - a straight line cutting the volume axis above the origin
+    answer: 2
+    explanation: PV = μRT at constant P gives V ∝ T in kelvin, a straight line through the origin. Against Celsius temperature the line would meet the temperature axis at −273.15 °C instead.
+
+  - id: phy-tpm-116
+    topic: ideal-gas-absolute
+    subtopic: Gay-Lussac's law
+    concept: At constant volume P ∝ T in kelvin
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [pressure-law, trap]
+    stem: A gas at 0 °C is heated to 273 °C in a closed rigid vessel. Its pressure
+    options:
+      - becomes half
+      - remains unchanged
+      - becomes 273 times
+      - becomes double
+    answer: 3
+    explanation: In kelvin, the temperature goes from 273 K to 546 K, i.e. doubles. At constant volume P ∝ T, so the pressure doubles. Using Celsius values would suggest an infinite ratio.
+
+  - id: phy-tpm-117
+    topic: ideal-gas-absolute
+    subtopic: Absolute zero
+    concept: Absolute zero from ideal-gas extrapolation is gas-independent
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [absolute-zero]
+    stem: |-
+      Consider these statements about an ideal gas at constant volume:
+      I. Its pressure extrapolates to zero at 0 K.
+      II. 0 K corresponds to −273.15 °C.
+      III. The value of absolute zero obtained depends on which gas is used.
+      IV. Its pressure is directly proportional to its absolute temperature.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: For an ideal gas P = (μR/V)T, so P ∝ T (IV) and P → 0 as T → 0 K (I), and 0 K = −273.15 °C (II). All low-density gases give the same intercept, so III is false.
+
+  - id: phy-tpm-118
+    topic: ideal-gas-absolute
+    subtopic: Ideal-gas equation
+    concept: P = μRT/V
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: PV = μRT
+    tags: [ideal-gas-equation]
+    stem: 2 mol of an ideal gas at 300 K occupy 0.05 m^3. Taking R = 8.31 J mol^{-1} K^{-1}, the pressure of the gas is about
+    options:
+      - 1.0 × 10^4 Pa
+      - 5.0 × 10^4 Pa
+      - 1.0 × 10^5 Pa
+      - 2.0 × 10^5 Pa
+    answer: 2
+    explanation: P = μRT/V = 2 × 8.31 × 300/0.05 ≈ 9.97 × 10^4 Pa ≈ 1.0 × 10^5 Pa.
+
+  - id: phy-tpm-119
+    topic: ideal-gas-absolute
+    subtopic: Constant-volume gas thermometer
+    concept: T = 273.16 K × P/P_tr with real pressure values
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: T = 273.16 K × (P/P_tr)
+    tags: [gas-thermometer]
+    stem: A constant-volume gas thermometer shows a pressure of 6.8 × 10^4 Pa at the triple point of water and 9.0 × 10^4 Pa at an unknown temperature. The unknown temperature is about
+    options:
+      - 206.4 K
+      - 300 K
+      - 88.3 K
+      - 361.5 K
+    answer: 3
+    explanation: T = 273.16 × (9.0/6.8) ≈ 273.16 × 1.324 ≈ 361.5 K. 206.4 K results from inverting the pressure ratio.
+
+  - id: phy-tpm-120
+    topic: thermal-expansion
+    subtopic: Area expansion
+    concept: ΔA = 2αAΔT
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: ΔA = 2αAΔT
+    tags: [superficial-expansion]
+    stem: A metal sheet of area 1 m^2 (α = 2 × 10^{-5} K^{-1}) is heated through 50 K. Its area increases by
+    options:
+      - 10 cm^2
+      - 20 cm^2
+      - 30 cm^2
+      - 2 cm^2
+    answer: 1
+    explanation: ΔA = 2αAΔT = 2 × 2 × 10^{-5} × 1 × 50 = 2 × 10^{-3} m^2 = 20 cm^2. Using α instead of 2α gives 10 cm^2.
+
+  - id: phy-tpm-121
+    topic: thermal-expansion
+    subtopic: Real and apparent expansion of liquids
+    concept: γ_apparent = γ_real − γ_vessel, with γ_vessel = 3α_glass
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: γ_app = γ_real − 3α_vessel
+    tags: [liquid-expansion, trap]
+    stem: A liquid with real coefficient of volume expansion 1.8 × 10^{-4} K^{-1} is heated in a glass vessel with linear expansion coefficient 9 × 10^{-6} K^{-1}. The apparent coefficient of expansion of the liquid is
+    options:
+      - 2.07 × 10^{-4} K^{-1}
+      - 1.8 × 10^{-4} K^{-1}
+      - 1.53 × 10^{-4} K^{-1}
+      - 1.71 × 10^{-4} K^{-1}
+    answer: 2
+    explanation: The vessel's volume coefficient is 3α = 2.7 × 10^{-5} K^{-1}. The apparent expansion is what is seen against the expanding vessel, γ_app = 1.8 × 10^{-4} − 0.27 × 10^{-4} = 1.53 × 10^{-4} K^{-1}. Subtracting α instead of 3α gives 1.71 × 10^{-4} K^{-1}.
+
+  - id: phy-tpm-122
+    topic: thermal-expansion
+    subtopic: Hollow and solid bodies
+    concept: A hollow sphere expands exactly like a solid one of the same material
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [volume-expansion, trap]
+    stem: A solid sphere and a hollow sphere of the same metal have equal outer radii. Both are heated through the same temperature rise. Their outer radii then
+    options:
+      - increase more for the solid sphere
+      - increase more for the hollow sphere
+      - increase only for the solid sphere
+      - increase by equal amounts
+    answer: 3
+    explanation: Thermal expansion scales every linear dimension by the same factor (1 + αΔT), including the cavity. The outer radius therefore grows by the same amount whether the sphere is hollow or solid.
+
+  - id: phy-tpm-123
+    topic: thermal-expansion
+    subtopic: Units of expansion coefficient
+    concept: α per °F = (5/9) α per °C
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [expansion-coefficients, units]
+    stem: The coefficient of linear expansion of a metal is 1.8 × 10^{-5} per °C. Its value per °F is
+    options:
+      - 1.0 × 10^{-5} per °F
+      - 3.24 × 10^{-5} per °F
+      - 1.8 × 10^{-5} per °F
+      - 5.8 × 10^{-6} per °F
+    answer: 0
+    explanation: A Fahrenheit degree is 5/9 of a Celsius degree, so the fractional expansion per °F is smaller, α_F = (5/9) × 1.8 × 10^{-5} = 1.0 × 10^{-5} per °F. Multiplying by 9/5 gives the wrong 3.24 × 10^{-5}.
+
+  - id: phy-tpm-124
+    topic: thermal-expansion
+    subtopic: Expansion in daily life
+    concept: Metal lids expand more than glass when heated
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [linear-expansion, applications]
+    stem: A tight metal lid on a glass jar can be loosened by pouring hot water over the lid because
+    options:
+      - the glass expands more than the metal
+      - hot water lubricates the thread
+      - the metal expands more than the glass
+      - the metal contracts on heating
+    answer: 2
+    explanation: Metals have larger expansion coefficients than glass, so the lid's circumference increases more than the jar's neck and the grip loosens.
+
+  - id: phy-tpm-125
+    topic: thermal-expansion
+    subtopic: Finding α from data
+    concept: α = ΔL/(L ΔT)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: α = ΔL/(LΔT)
+    tags: [linear-expansion]
+    stem: A metal rod is 100 cm long at 20 °C and 100.12 cm long at 120 °C. Its coefficient of linear expansion is
+    options:
+      - 1.2 × 10^{-3} K^{-1}
+      - 1.2 × 10^{-4} K^{-1}
+      - 1.2 × 10^{-6} K^{-1}
+      - 1.2 × 10^{-5} K^{-1}
+    answer: 3
+    explanation: α = ΔL/(LΔT) = 0.12/(100 × 100) = 1.2 × 10^{-5} K^{-1}.
+
+  - id: phy-tpm-126
+    topic: thermal-expansion
+    subtopic: Relation between coefficients
+    concept: "α_l : α_A : α_V = 1 : 2 : 3"
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [expansion-coefficients]
+    stem: For an isotropic solid, the coefficients of linear, area and volume expansion are in the ratio
+    options:
+      - "1 : 3 : 2"
+      - "1 : 2 : 3"
+      - "3 : 2 : 1"
+      - "1 : 4 : 9"
+    answer: 1
+    explanation: "α_A = 2α_l and α_V = 3α_l, so α_l : α_A : α_V = 1 : 2 : 3."
+
+  - id: phy-tpm-127
+    topic: thermal-expansion
+    subtopic: Expansion of liquids in vessels
+    concept: Liquids expand more than their containers
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [liquid-expansion]
+    stem: |-
+      Assertion (A): A glass vessel filled to the brim with a liquid overflows when heated, although the vessel also expands.
+      Reason (R): Liquids generally have a larger coefficient of volume expansion than solids.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The vessel's capacity grows by γ_glass V ΔT while the liquid grows by γ_liquid V ΔT. Since γ_liquid is much larger (NCERT tables show liquids around 10^{-4} K^{-1} and solids around 10^{-5} K^{-1}), the liquid overflows. R explains A.
+
+  - id: phy-tpm-128
+    topic: thermal-expansion
+    subtopic: Expansion of a hole
+    concept: Radius of a hole grows by rαΔT
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [linear-expansion]
+    stem: A circular hole of radius 10 cm is cut in a metal plate (α = 2 × 10^{-5} K^{-1}) at 20 °C. When the plate is heated to 120 °C, the radius of the hole becomes
+    options:
+      - 9.98 cm
+      - 10.2 cm
+      - 10.04 cm
+      - 10.02 cm
+    answer: 3
+    explanation: The hole expands like the metal, so Δr = rαΔT = 10 × 2 × 10^{-5} × 100 = 0.02 cm, giving 10.02 cm. 9.98 cm assumes the hole shrinks.
+
+  - id: phy-tpm-129
+    topic: thermal-expansion
+    subtopic: Expansion coefficients
+    concept: Expressions for α_l, α_A, α_V and gas α_V
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [expansion-coefficients]
+    stem: |-
+      Match List I with List II (α is the coefficient of linear expansion of a solid).
+      List I: P. Coefficient of linear expansion; Q. Coefficient of area expansion; R. Coefficient of volume expansion of the solid; S. Coefficient of volume expansion of an ideal gas at constant pressure
+      List II: 1. 1/T; 2. 3α; 3. 2α; 4. ΔL/(LΔT)
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-1, Q-3, R-2, S-4
+      - P-4, Q-3, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+    answer: 2
+    explanation: α_l = ΔL/(LΔT) by definition, α_A = 2α, α_V = 3α for an isotropic solid, and for an ideal gas at constant pressure α_V = 1/T.
+
+  - id: phy-tpm-130
+    topic: thermal-expansion
+    subtopic: Comparing expansions
+    concept: ΔL ∝ Lα; different L and α can give equal expansion
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [linear-expansion, proportionality]
+    stem: Rod A has length L and expansion coefficient 2α. Rod B has length 2L and expansion coefficient α. For the same temperature rise, the ratio of their expansions ΔL_A/ΔL_B is
+    options:
+      - "1"
+      - 1/2
+      - "2"
+      - 1/4
+    answer: 0
+    explanation: ΔL = LαΔT, so ΔL_A = L(2α)ΔT and ΔL_B = (2L)αΔT, which are equal. The ratio is 1.
+
+  - id: phy-tpm-131
+    topic: thermal-expansion
+    subtopic: Bimetallic strip
+    concept: Bending direction reveals which metal has larger α
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    diagram: "A straight horizontal bimetallic strip is clamped at its left end. Metal A forms the upper layer and metal B the lower layer, riveted together along the whole length. A second sketch shows the same strip after heating: the free right end has bent downward, so the strip forms an arc curving down, with A on the outer (convex, upper) side and B on the inner (concave, lower) side."
+    tags: [bimetallic-strip, diagram]
+    stem: The figure shows a bimetallic strip of metals A (upper) and B (lower) clamped at one end. On heating, its free end bends downward. Which conclusion is correct?
+    options:
+      - B has the larger coefficient of linear expansion
+      - Both metals have equal coefficients of expansion
+      - A has the larger coefficient of linear expansion
+      - The bending depends only on the thicknesses, not on α
+    answer: 2
+    explanation: When the strip bends downward, the upper layer A lies on the convex (outer) side, which is longer. The metal that expands more ends up on the convex side, so A has the larger α.
+
+  - id: phy-tpm-132
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Tension from cooling
+    concept: Tension in a clamped wire on cooling = YAαΔT
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: F = YAαΔT
+    tags: [thermal-stress]
+    stem: A steel wire of cross-section 1 mm^2 is stretched between two rigid supports with no tension at 30 °C. It is cooled to 10 °C. (Y = 2 × 10^{11} N m^{-2}, α = 1.2 × 10^{-5} K^{-1}) The tension in the wire becomes
+    options:
+      - 24 N
+      - 48 N
+      - 4.8 N
+      - 480 N
+    answer: 1
+    explanation: The wire wants to shrink by αΔT per unit length but cannot, so it is under tensile strain αΔT. F = YAαΔT = 2 × 10^{11} × 10^{-6} × 1.2 × 10^{-5} × 20 = 48 N.
+
+  - id: phy-tpm-133
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Expansion on freezing
+    concept: Water expands on freezing, which can burst pipes
+    category: application
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [anomalous-expansion, applications]
+    stem: Water pipes sometimes burst in very cold weather because
+    options:
+      - the metal of the pipe contracts and cracks
+      - water contracts on freezing and creates a vacuum
+      - ice is denser than water
+      - water expands when it freezes into ice
+    answer: 3
+    explanation: Water increases in volume by about 9% on freezing. The expanding ice exerts a very large force on the pipe walls, which can burst them.
+
+  - id: phy-tpm-134
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Density–temperature graph of water
+    concept: Density of water peaks at 4 °C
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [anomalous-expansion, graph]
+    stem: A graph of density (y-axis) against temperature (x-axis) for water between 0 °C and 10 °C
+    options:
+      - rises to a maximum at 4 °C and then falls
+      - falls to a minimum at 4 °C and then rises
+      - falls steadily over the whole range
+      - rises steadily over the whole range
+    answer: 0
+    explanation: Water's volume is least at 4 °C, so for a fixed mass its density is greatest there. The density curve therefore has a peak at 4 °C.
+
+  - id: phy-tpm-135
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Anomalous behaviour of water
+    concept: Consequences of water's density maximum
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [anomalous-expansion]
+    stem: |-
+      Consider the following statements:
+      I. Ice at 0 °C is less dense than water at 0 °C.
+      II. Water has its greatest density at 4 °C.
+      III. Ice expands when it melts.
+      IV. The water at the bottom of a deep lake whose surface is frozen is at about 4 °C.
+      Which are correct?
+    options:
+      - I and III only
+      - II and III only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: Ice is less dense than water (I), water is densest at 4 °C (II), and this densest water settles at the bottom of a frozen lake (IV). Ice contracts on melting because water occupies less volume, so III is false.
+
+  - id: phy-tpm-136
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Nature of thermal stress
+    concept: Heating a clamped rod gives compressive stress, cooling gives tensile
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [thermal-stress]
+    stem: |-
+      Statement I: A rod clamped rigidly between two walls develops compressive stress when heated.
+      Statement II: The same rod develops tensile stress when cooled below the temperature at which it was clamped.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: On heating the rod tries to lengthen, and the walls push it back, so it is compressed. On cooling it tries to shorten and the walls pull on it, producing tension. Both statements are correct.
+
+  - id: phy-tpm-137
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Comparing thermal stresses
+    concept: Thermal stress ∝ Yα
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: σ = YαΔT
+    tags: [thermal-stress, multi-concept]
+    stem: A steel rod (Y = 2.0 × 10^{11} Pa, α = 1.2 × 10^{-5} K^{-1}) and a copper rod (Y = 1.1 × 10^{11} Pa, α = 1.7 × 10^{-5} K^{-1}) are each clamped between rigid walls and heated by the same amount. The ratio of thermal stress in steel to that in copper is about
+    options:
+      - "0.78"
+      - "1.0"
+      - "1.82"
+      - "1.28"
+    answer: 3
+    explanation: σ = YαΔT, so σ_steel/σ_copper = (2.0 × 1.2)/(1.1 × 1.7) = 2.4/1.87 ≈ 1.28. Comparing Y alone gives 1.82, ignoring α.
+
+  - id: phy-tpm-138
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Importance of anomalous expansion
+    concept: Without anomalous expansion lakes would freeze from the bottom up
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [anomalous-expansion]
+    stem: If water contracted steadily on cooling all the way down to 0 °C, like most liquids, a lake in severe winter would
+    options:
+      - never freeze at all
+      - freeze from the bottom upwards
+      - freeze only at the surface as it does now
+      - freeze uniformly and instantly
+    answer: 1
+    explanation: Colder water would then always be denser and sink, so the coldest water would collect at the bottom and freeze first. The lake would freeze from the bottom up, destroying aquatic life.
+
+  - id: phy-tpm-139
+    topic: anomalous-expansion-thermal-stress
+    subtopic: Uneven expansion
+    concept: Unequal expansion of inner and outer glass surfaces causes stress
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [thermal-stress, applications]
+    stem: A thick glass tumbler often cracks when boiling water is poured into it suddenly. The main reason is that
+    options:
+      - glass is a good conductor, so it heats too quickly
+      - the water pressure breaks the glass
+      - the inner surface expands before the outer surface, setting up large stresses
+      - glass contracts when heated
+    answer: 2
+    explanation: Glass is a poor conductor, so the inner surface heats and expands while the outer surface is still cold. The unequal expansion creates stresses that can crack a thick tumbler; thin glass heats more uniformly.
+
+  - id: phy-tpm-140
+    topic: specific-heat
+    subtopic: Heating at a constant rate
+    concept: c = P/(m × dT/dt)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: P = mc (dT/dt)
+    tags: [specific-heat]
+    stem: A 1 kW heater warms 2 kg of a liquid, and its temperature rises at 0.25 K s^{-1}. Assuming no heat loss, the specific heat of the liquid is
+    options:
+      - 2000 J kg^{-1} K^{-1}
+      - 500 J kg^{-1} K^{-1}
+      - 8000 J kg^{-1} K^{-1}
+      - 4000 J kg^{-1} K^{-1}
+    answer: 0
+    explanation: P = mc(dT/dt), so c = 1000/(2 × 0.25) = 2000 J kg^{-1} K^{-1}.
+
+  - id: phy-tpm-141
+    topic: specific-heat
+    subtopic: Temperature–heat graphs
+    concept: Slope of T–Q graph = 1/(mc)
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [specific-heat, graph]
+    stem: Temperature versus heat supplied is plotted for equal masses of A and B. Both graphs are straight lines, and the line for A is steeper. It follows that
+    options:
+      - A has the larger specific heat
+      - both have the same specific heat
+      - A has the larger latent heat
+      - A has the smaller specific heat
+    answer: 3
+    explanation: T = Q/(mc) + T_0, so the slope is 1/(mc). With equal masses, the steeper line belongs to the substance with smaller specific heat.
+
+  - id: phy-tpm-142
+    topic: specific-heat
+    subtopic: Comparing specific heats
+    concept: Water has an unusually high specific heat
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [specific-heat, ncert-line]
+    stem: Which of the following has the highest specific heat capacity?
+    options:
+      - Copper
+      - Water
+      - Iron
+      - Mercury
+    answer: 1
+    explanation: Water's specific heat is about 4186 J kg^{-1} K^{-1}, far greater than copper (about 390), iron (about 450) or mercury (about 140).
+
+  - id: phy-tpm-143
+    topic: specific-heat
+    subtopic: Molar specific heat
+    concept: C = Mc
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: C = Mc
+    tags: [molar-specific-heat, units]
+    stem: The specific heat of copper is 386 J kg^{-1} K^{-1} and its molar mass is 63.5 g mol^{-1}. Its molar specific heat is about
+    options:
+      - 6.1 J mol^{-1} K^{-1}
+      - 386 J mol^{-1} K^{-1}
+      - 24.5 J mol^{-1} K^{-1}
+      - 245 J mol^{-1} K^{-1}
+    answer: 2
+    explanation: C = Mc = 0.0635 kg mol^{-1} × 386 J kg^{-1} K^{-1} ≈ 24.5 J mol^{-1} K^{-1}, close to 3R. Using M = 63.5 kg would give a huge value, and dividing gives 6.1.
+
+  - id: phy-tpm-144
+    topic: specific-heat
+    subtopic: Heat capacity of a system
+    concept: Heat capacities of parts add
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: C = m_1c_1 + m_2c_2
+    tags: [heat-capacity]
+    stem: An aluminium pot of mass 100 g (c = 900 J kg^{-1} K^{-1}) contains 200 g of water (c = 4200 J kg^{-1} K^{-1}). The heat capacity of the pot with its water is
+    options:
+      - 5000 J K^{-1}
+      - 930 J K^{-1}
+      - 840 J K^{-1}
+      - 1740 J K^{-1}
+    answer: 1
+    explanation: C = 0.2 × 4200 + 0.1 × 900 = 840 + 90 = 930 J K^{-1}. 840 J K^{-1} ignores the pot.
+
+  - id: phy-tpm-145
+    topic: specific-heat
+    subtopic: Properties of specific heat
+    concept: Specific heat may vary with temperature but not with mass
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [specific-heat]
+    stem: Which statement about the specific heat capacity of a substance is correct?
+    options:
+      - The specific heat of a substance increases with its mass
+      - The specific heat of a substance can depend on its temperature
+      - A substance at its melting point has zero specific heat
+      - A gas has the same specific heat whatever the conditions of heating
+    answer: 1
+    explanation: NCERT notes that specific heat depends on the substance and its temperature. It does not depend on mass. During a phase change heat is absorbed with no temperature change, so the effective specific heat is infinite, not zero. For gases, c depends on the process (constant P or constant V).
+
+  - id: phy-tpm-146
+    topic: specific-heat
+    subtopic: Specific heat during phase change
+    concept: Effective specific heat is infinite during a change of state
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [specific-heat, phase-change]
+    stem: |-
+      Assertion (A): The specific heat of water during boiling at 100 °C may be regarded as infinite.
+      Reason (R): During boiling, heat is supplied without any change in temperature.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: c = Q/(mΔT). During boiling Q > 0 while ΔT = 0, so the ratio is effectively infinite. R states exactly this, so it explains A.
+
+  - id: phy-tpm-147
+    topic: specific-heat
+    subtopic: Climate and specific heat
+    concept: Large heat capacity of the sea moderates coastal climate
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [specific-heat, applications]
+    stem: Coastal cities have milder summers and winters than inland cities at the same latitude mainly because
+    options:
+      - sea water has low specific heat
+      - coastal areas receive less sunlight
+      - sea water is a good conductor of heat
+      - sea water has high specific heat, so its temperature changes slowly
+    answer: 3
+    explanation: Because of its large specific heat, the sea warms and cools slowly, absorbing heat in summer and releasing it in winter, which moderates the temperature of nearby land.
+
+  - id: phy-tpm-148
+    topic: calorimetry
+    subtopic: Mechanical energy to heat
+    concept: ½mv^2 = mcΔT gives ΔT = v^2/(2c)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: ΔT = v^2/(2c)
+    tags: [energy-conversion, multi-concept]
+    stem: A lead bullet moving at 300 m s^{-1} is stopped in a block of wood. If all its kinetic energy is retained as heat in the bullet, its temperature rises by about (c_lead = 130 J kg^{-1} K^{-1})
+    options:
+      - 173 °C
+      - 692 °C
+      - 346 °C
+      - 34.6 °C
+    answer: 2
+    explanation: ½mv^2 = mcΔT, so ΔT = v^2/(2c) = 90000/260 ≈ 346 °C. The mass cancels. Forgetting the ½ gives 692 °C.
+
+  - id: phy-tpm-149
+    topic: calorimetry
+    subtopic: Potential energy to heat
+    concept: ΔT = gh/c for water falling from height h
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: mgh = mcΔT
+    tags: [energy-conversion]
+    stem: Water falls from a height of 42 m. If all its potential energy becomes heat in the water, the rise in temperature is about (g = 9.8 m s^{-2}, c = 4200 J kg^{-1} K^{-1})
+    options:
+      - 1 °C
+      - 0.01 °C
+      - 10 °C
+      - 0.1 °C
+    answer: 3
+    explanation: mgh = mcΔT gives ΔT = gh/c = 9.8 × 42/4200 ≈ 0.098 °C ≈ 0.1 °C. The mass cancels.
+
+  - id: phy-tpm-150
+    topic: calorimetry
+    subtopic: Three-liquid mixing
+    concept: Using two mixing results to predict a third
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    tags: [method-of-mixtures, multi-concept]
+    stem: Equal masses of three liquids A, B and C are at 12 °C, 19 °C and 28 °C. When A and B are mixed the temperature is 16 °C; when B and C are mixed it is 23 °C. When A and C are mixed, the temperature will be about
+    options:
+      - 22.0 °C
+      - 20.3 °C
+      - 18.5 °C
+      - 24.2 °C
+    answer: 1
+    explanation: A and B give c_A(16 − 12) = c_B(19 − 16), so c_A = 0.75c_B. B and C give c_B(23 − 19) = c_C(28 − 23), so c_C = 0.8c_B. For A and C, T = (0.75 × 12 + 0.8 × 28)/(0.75 + 0.8) = 31.4/1.55 ≈ 20.3 °C.
+
+  - id: phy-tpm-151
+    topic: calorimetry
+    subtopic: Electric heating of water
+    concept: Pt = mcΔT
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: Pt = mcΔT
+    tags: [electric-heating]
+    stem: A 500 W immersion heater warms 1 kg of water from 20 °C to 80 °C. Assuming no losses (c = 4200 J kg^{-1} K^{-1}), the time taken is
+    options:
+      - 4.2 min
+      - 16.8 min
+      - 8.4 min
+      - 12.6 min
+    answer: 2
+    explanation: Q = mcΔT = 1 × 4200 × 60 = 252000 J, and t = Q/P = 252000/500 = 504 s = 8.4 min.
+
+  - id: phy-tpm-152
+    topic: calorimetry
+    subtopic: Heating with losses
+    concept: Only the useful fraction of power heats the water
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [electric-heating, efficiency]
+    stem: A 1 kW kettle loses 20% of its power to the surroundings. How long does it take to heat 2 kg of water from 25 °C to 75 °C? (c = 4200 J kg^{-1} K^{-1})
+    options:
+      - 420 s
+      - 336 s
+      - 600 s
+      - 525 s
+    answer: 3
+    explanation: Heat needed = 2 × 4200 × 50 = 420000 J. Useful power = 800 W, so t = 420000/800 = 525 s. 420 s ignores the loss; 336 s wrongly multiplies by 0.8.
+
+  - id: phy-tpm-153
+    topic: calorimetry
+    subtopic: Errors in the method of mixtures
+    concept: Heat loss lowers the measured specific heat of the hot solid
+    category: application
+    format: case
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [method-of-mixtures, errors, experimental]
+    stem: In the method of mixtures, a hot metal block is dropped into cold water in a calorimeter and c_metal is calculated from heat lost = heat gained. If some heat escapes from the calorimeter to the room during the experiment, the calculated specific heat of the metal will be
+    options:
+      - less than the true value
+      - greater than the true value
+      - unaffected
+      - greater than the true value only if the metal is a good conductor
+    answer: 0
+    explanation: Lost heat means the water's final temperature is lower, so the metal's temperature drop (T_metal − T_final) appears larger and the water's gain appears smaller. Since c_metal = (heat gained by water)/(m × drop), the result is too small.
+
+  - id: phy-tpm-154
+    topic: calorimetry
+    subtopic: Units of thermal quantities
+    concept: Units of heat capacity, specific heat, latent heat and molar specific heat
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Match List I with List II.
+      List I: P. Heat capacity; Q. Specific heat capacity; R. Latent heat; S. Molar specific heat capacity
+      List II: 1. J kg^{-1} K^{-1}; 2. J K^{-1}; 3. J mol^{-1} K^{-1}; 4. J kg^{-1}
+    options:
+      - P-1, Q-2, R-4, S-3
+      - P-2, Q-1, R-4, S-3
+      - P-2, Q-1, R-3, S-4
+      - P-4, Q-1, R-2, S-3
+    answer: 1
+    explanation: Heat capacity is heat per kelvin (J K^{-1}); specific heat is per kg per kelvin (J kg^{-1} K^{-1}); latent heat is per kg with no temperature change (J kg^{-1}); molar specific heat is per mole per kelvin (J mol^{-1} K^{-1}).
+
+  - id: phy-tpm-155
+    topic: calorimetry
+    subtopic: Metal in calorimeter
+    concept: Heat balance including water equivalent of calorimeter
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    tags: [method-of-mixtures, water-equivalent]
+    stem: 100 g of copper (c = 0.1 cal g^{-1} °C^{-1}) at 150 °C is put into a calorimeter of water equivalent 10 g containing 190 g of water at 20 °C. The final temperature is about
+    options:
+      - 20.7 °C
+      - 35.0 °C
+      - 30.4 °C
+      - 26.2 °C
+    answer: 3
+    explanation: Effective water = 190 + 10 = 200 g. 100 × 0.1 × (150 − T) = 200 × (T − 20), so 1500 − 10T = 200T − 4000, giving 210T = 5500 and T ≈ 26.2 °C.
+
+  - id: phy-tpm-156
+    topic: calorimetry
+    subtopic: Features of mixing
+    concept: Final temperature lies nearer the body with larger heat capacity
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [method-of-mixtures, water-equivalent]
+    stem: |-
+      Statement I: When two bodies are mixed, the final temperature lies closer to the initial temperature of the body with larger heat capacity.
+      Statement II: The water equivalent of a body is expressed in units of mass.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: The final temperature is the heat-capacity-weighted mean, so it lies nearer the body with larger mc. Water equivalent is the mass of water having the same heat capacity, so it is measured in kg or g.
+
+  - id: phy-tpm-157
+    topic: calorimetry
+    subtopic: Equal heat capacities
+    concept: Equal heat capacities give the arithmetic mean temperature
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [method-of-mixtures]
+    stem: 100 g of water at 90 °C is mixed with 200 g of a liquid (c = 0.5 cal g^{-1} °C^{-1}) at 30 °C. The final temperature is
+    options:
+      - 50 °C
+      - 70 °C
+      - 60 °C
+      - 45 °C
+    answer: 2
+    explanation: Heat capacities are 100 × 1 = 100 cal °C^{-1} and 200 × 0.5 = 100 cal °C^{-1}, equal. So T is the simple mean, (90 + 30)/2 = 60 °C. 50 °C would treat the liquid as water.
+
+  - id: phy-tpm-158
+    topic: change-of-state
+    subtopic: Ice to steam
+    concept: Total heat = heating ice + fusion + heating water + vaporisation
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: Q = mc_iceΔT + mL_f + mc_wΔT + mL_v
+    tags: [latent-heat, multi-concept]
+    stem: How much heat is needed to convert 10 g of ice at −10 °C into steam at 100 °C? (c_ice = 0.5 cal g^{-1} °C^{-1}, L_f = 80 cal g^{-1}, L_v = 540 cal g^{-1})
+    options:
+      - 7200 cal
+      - 7250 cal
+      - 6250 cal
+      - 6450 cal
+    answer: 1
+    explanation: Heating ice to 0 °C = 10 × 0.5 × 10 = 50 cal; melting = 800 cal; water 0 → 100 °C = 1000 cal; boiling = 5400 cal. Total = 7250 cal. 7200 cal omits the ice-heating step.
+
+  - id: phy-tpm-159
+    topic: change-of-state
+    subtopic: Partial melting of ice
+    concept: When heat available is insufficient, only part of the ice melts and T = 0 °C
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [ice-water-mixture, trap]
+    stem: 100 g of ice at 0 °C is dropped into 100 g of water at 40 °C in an insulated vessel. (L_f = 80 cal g^{-1}) The final state is
+    options:
+      - water at 20 °C, all ice melted
+      - water at 0 °C, all ice melted
+      - mixture at 10 °C with 25 g of ice left
+      - mixture at 0 °C with 50 g of ice left
+    answer: 3
+    explanation: Water cooling to 0 °C gives 100 × 40 = 4000 cal, which melts only 4000/80 = 50 g of ice. So 50 g of ice remains, and ice and water coexist at 0 °C. Ignoring latent heat gives 20 °C.
+
+  - id: phy-tpm-160
+    topic: change-of-state
+    subtopic: Steam melting ice
+    concept: 1 g of steam at 100 °C can melt 8 g of ice at 0 °C
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [latent-heat, steam, ice-water-mixture]
+    stem: 10 g of steam at 100 °C is passed into a large block of ice at 0 °C. The final temperature is 0 °C. How much ice melts? (L_v = 540 cal g^{-1}, L_f = 80 cal g^{-1})
+    options:
+      - 80 g
+      - 67.5 g
+      - 6.75 g
+      - 100 g
+    answer: 0
+    explanation: The steam condenses (10 × 540 = 5400 cal) and the water cools to 0 °C (10 × 100 = 1000 cal), giving 6400 cal. Ice melted = 6400/80 = 80 g. 67.5 g forgets the cooling of the condensed water.
+
+  - id: phy-tpm-161
+    topic: change-of-state
+    subtopic: Phase diagram of water
+    concept: Fusion curve of water has negative slope
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [phase-diagram, graph]
+    stem: On the pressure–temperature phase diagram of water, the fusion (solid–liquid) curve
+    options:
+      - slopes upward to the right, as for most substances
+      - is exactly vertical
+      - slopes upward to the left, because the melting point falls as pressure rises
+      - is horizontal at 1 atm
+    answer: 2
+    explanation: For water the melting point decreases with increasing pressure (the basis of regelation), so the fusion curve tilts to the left as pressure increases, i.e. it has a negative slope. For most substances, including CO_2, it slopes to the right.
+
+  - id: phy-tpm-162
+    topic: change-of-state
+    subtopic: Phase diagram
+    concept: Sublimation, fusion and vaporisation curves meet at the triple point
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [phase-diagram, triple-point, ncert-line]
+    stem: On a P–T phase diagram, the point where the sublimation, fusion and vaporisation curves meet is called the
+    options:
+      - critical point
+      - triple point
+      - boiling point
+      - ice point
+    answer: 1
+    explanation: At the triple point all three phases coexist in equilibrium, so the three coexistence curves meet there. For water it is 273.16 K and about 6.1 × 10^2 Pa.
+
+  - id: phy-tpm-163
+    topic: change-of-state
+    subtopic: Evaporation and boiling
+    concept: Boiling point depends on external pressure
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [boiling-point, evaporation]
+    stem: Which statement about evaporation and boiling is incorrect?
+    options:
+      - Evaporation takes place from the surface of a liquid at all temperatures
+      - Boiling takes place throughout the liquid at a definite temperature for a given pressure
+      - Evaporation produces cooling of the remaining liquid
+      - The boiling point of a liquid does not depend on the external pressure
+    answer: 3
+    explanation: A liquid boils when its vapour pressure equals the external pressure, so the boiling point rises with pressure (pressure cooker) and falls with lower pressure (hills). The other statements are correct.
+
+  - id: phy-tpm-164
+    topic: change-of-state
+    subtopic: Cooling by ice
+    concept: Ice absorbs latent heat on melting, so it cools better than water at 0 °C
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [latent-heat, applications]
+    stem: Ice at 0 °C cools a drink more effectively than an equal mass of water at 0 °C because
+    options:
+      - ice absorbs its latent heat of fusion while melting
+      - ice is at a lower temperature than water at 0 °C
+      - ice has a higher specific heat than water
+      - ice conducts heat better than water
+    answer: 0
+    explanation: Both are at 0 °C, but each gram of ice first absorbs about 80 cal to melt before it warms like water. This extra heat taken from the drink makes ice the better coolant.
+
+  - id: phy-tpm-165
+    topic: change-of-state
+    subtopic: Melting at constant power
+    concept: t = mL/P
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: Pt = mL_f
+    tags: [latent-heat]
+    stem: A 100 W heater is used to melt 0.5 kg of ice at 0 °C. (L_f = 3.36 × 10^5 J kg^{-1}) With no losses, melting takes
+    options:
+      - 14 min
+      - 56 min
+      - 28 min
+      - 3.36 min
+    answer: 2
+    explanation: Q = mL_f = 0.5 × 3.36 × 10^5 = 1.68 × 10^5 J, and t = Q/P = 1680 s = 28 min.
+
+  - id: phy-tpm-166
+    topic: change-of-state
+    subtopic: Heating curve
+    concept: Plateau lengths ∝ latent heats at constant heating rate
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [heating-curve, graph]
+    stem: Ice is heated at a constant rate until it all boils away. On the temperature–time graph, the ratio of the length of the melting plateau to the boiling plateau is (L_f = 80 cal g^{-1}, L_v = 540 cal g^{-1})
+    options:
+      - "1 : 1"
+      - "27 : 4"
+      - "2 : 15"
+      - "4 : 27"
+    answer: 3
+    explanation: "At a constant heating rate, time on a plateau = mL/P, so the lengths are in the ratio L_f : L_v = 80 : 540 = 4 : 27. 27 : 4 is the inverse."
+
+  - id: phy-tpm-167
+    topic: change-of-state
+    subtopic: Cooling by evaporation
+    concept: Evaporation takes latent heat from the remaining liquid
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [evaporation, applications]
+    stem: Water kept in an unglazed earthen pot (matka) stays cooler than the room in summer. This is because
+    options:
+      - clay is a good conductor and gives away heat
+      - water seeping through the pores evaporates and takes latent heat from the remaining water
+      - clay reflects all the sunlight
+      - the pot has high specific heat
+    answer: 1
+    explanation: Water seeps through the porous walls and evaporates from the outer surface. Evaporation needs latent heat, which is drawn largely from the pot and its water, cooling them below room temperature.
+
+  - id: phy-tpm-168
+    topic: change-of-state
+    subtopic: Ice needed to cool water
+    concept: Heat balance with latent heat of fusion
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [ice-water-mixture]
+    stem: What minimum mass of ice at 0 °C must be added to 200 g of water at 25 °C to bring the water to 0 °C, all the ice just melting? (L_f = 80 cal g^{-1})
+    options:
+      - 62.5 g
+      - 50 g
+      - 80 g
+      - 25 g
+    answer: 0
+    explanation: Heat given by water = 200 × 1 × 25 = 5000 cal. This melts m = 5000/80 = 62.5 g of ice.
+
+  - id: phy-tpm-169
+    topic: conduction
+    subtopic: Feeling of hot and cold
+    concept: Good conductors feel colder at the same temperature
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [thermal-conductivity, trap]
+    stem: On a cold morning, a steel tap feels much colder than a wooden door in the same room, although both are at room temperature. This is because
+    options:
+      - the steel is actually at a lower temperature
+      - wood produces heat by friction
+      - steel conducts heat away from the hand much faster than wood
+      - steel has a higher specific heat than wood
+    answer: 2
+    explanation: Both are at the same temperature. Steel's high thermal conductivity draws heat rapidly from the skin, so the skin cools quickly and we sense cold. Wood, a poor conductor, removes heat slowly.
+
+  - id: phy-tpm-170
+    topic: conduction
+    subtopic: Composite slab
+    concept: Series equivalent K for equal thicknesses
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: K_eq = 2K_1K_2/(K_1 + K_2)
+    tags: [series-conduction]
+    stem: A composite wall has two layers of equal thickness with conductivities K and 3K. Its equivalent thermal conductivity is
+    options:
+      - 2K
+      - 1.5K
+      - 0.75K
+      - 4K
+    answer: 1
+    explanation: For equal thicknesses in series, K_eq = 2K_1K_2/(K_1 + K_2) = 2 × K × 3K/(4K) = 1.5K. The arithmetic mean 2K is the parallel result.
+
+  - id: phy-tpm-171
+    topic: conduction
+    subtopic: Scaling of heat current
+    concept: H ∝ r^2/L for a cylindrical rod
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: H = Kπr^2ΔT/L
+    tags: [heat-current, proportionality]
+    stem: Both the radius and the length of a cylindrical conducting rod are doubled, with the same end temperatures. The steady heat current
+    options:
+      - becomes half
+      - stays the same
+      - becomes four times
+      - doubles
+    answer: 3
+    explanation: H = KAΔT/L with A = πr^2, so H ∝ r^2/L = 4/2 = 2. The heat current doubles.
+
+  - id: phy-tpm-172
+    topic: conduction
+    subtopic: Temperature profile in a composite rod
+    concept: Temperature gradient is steeper in the poorer conductor
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [series-conduction, graph, steady-state]
+    stem: Two rods of equal length and area, one of copper and one of steel, are joined end to end, with the free copper end at 100 °C and the free steel end at 0 °C. In steady state, the temperature–distance graph consists of
+    options:
+      - two straight lines, the steel segment being steeper
+      - two straight lines, the copper segment being steeper
+      - a single straight line of uniform slope
+      - two curves bulging upward
+    answer: 0
+    explanation: The same heat current flows through both, and dT/dx = −H/(KA). Steel has lower K, so its gradient is larger and its segment is steeper. Each segment is straight because K and A are uniform in it.
+
+  - id: phy-tpm-173
+    topic: conduction
+    subtopic: Heat loss through a wall
+    concept: H = KAΔT/d for a wall
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: H = KAΔT/d
+    tags: [heat-current]
+    stem: A brick wall of area 10 m^2 and thickness 0.2 m has K = 0.8 W m^{-1} K^{-1}. If the inside is 20 °C warmer than the outside, the heat lost per second is
+    options:
+      - 80 W
+      - 32 W
+      - 800 W
+      - 8000 W
+    answer: 2
+    explanation: H = KAΔT/d = 0.8 × 10 × 20/0.2 = 800 W.
+
+  - id: phy-tpm-174
+    topic: conduction
+    subtopic: Thermal conductivities of materials
+    concept: Silver > copper > aluminium > glass in thermal conductivity
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [thermal-conductivity, ncert-line]
+    stem: Arrange silver, copper, aluminium and glass in decreasing order of thermal conductivity.
+    options:
+      - Copper > silver > aluminium > glass
+      - Aluminium > copper > silver > glass
+      - Silver > aluminium > copper > glass
+      - Silver > copper > aluminium > glass
+    answer: 3
+    explanation: Typical values (W m^{-1} K^{-1}) are silver about 406, copper about 385, aluminium about 205 and glass about 0.8. Silver is the best conductor, just ahead of copper.
+
+  - id: phy-tpm-175
+    topic: conduction
+    subtopic: Thermal resistances in series
+    concept: H = ΔT/(R_1 + R_2)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: H = ΔT/(R_1 + R_2)
+    tags: [thermal-resistance, series-conduction]
+    stem: Two slabs of thermal resistance 2 K W^{-1} and 3 K W^{-1} are placed in series with a temperature difference of 100 K across the pair. The heat current is
+    options:
+      - 20 W
+      - 50 W
+      - 83.3 W
+      - 33.3 W
+    answer: 0
+    explanation: Thermal resistances in series add, R = 5 K W^{-1}, so H = ΔT/R = 100/5 = 20 W. 83.3 W uses the parallel combination.
+
+  - id: phy-tpm-176
+    topic: conduction
+    subtopic: Insulation by trapped air
+    concept: Wool keeps us warm by trapping air, a poor conductor
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [insulation, trap]
+    stem: |-
+      Assertion (A): Woollen clothes keep the body warm in winter.
+      Reason (R): Wool is a good radiator of heat.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: Wool keeps us warm because its fibres trap air, which is a very poor conductor, so body heat is lost slowly. Being a good radiator would increase heat loss, so R is false.
+
+  - id: phy-tpm-177
+    topic: conduction
+    subtopic: Steady state
+    concept: In steady state temperatures do not change with time
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [steady-state, ncert-line]
+    stem: A rod conducting heat is said to be in steady state when
+    options:
+      - the temperature is the same everywhere along the rod
+      - the temperature at each point along the rod stops changing with time
+      - no heat flows through the rod
+      - the rod has stopped expanding and heat flow is zero
+    answer: 1
+    explanation: In steady state each section of the rod passes on as much heat as it receives, so the temperature at every point is constant in time. The temperatures still differ from point to point, and heat keeps flowing.
+
+  - id: phy-tpm-178
+    topic: conduction
+    subtopic: Heat loss through a window
+    concept: Thin glass gives a large heat current
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: H = KAΔT/d
+    tags: [heat-current, units]
+    stem: A glass window of area 1 m^2 and thickness 5 mm (K = 0.8 W m^{-1} K^{-1}) has inner and outer surfaces at 25 °C and 5 °C. The rate of heat flow through it is
+    options:
+      - 320 W
+      - 32 W
+      - 16 W
+      - 3200 W
+    answer: 3
+    explanation: H = KAΔT/d = 0.8 × 1 × 20/(5 × 10^{-3}) = 3200 W. Using d = 0.05 m gives 320 W, a unit-conversion slip.
+
+  - id: phy-tpm-179
+    topic: conduction
+    subtopic: Comparing heat currents
+    concept: H ∝ r^2/L for rods of the same material
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [heat-current, proportionality]
+    stem: "Two rods of the same material have lengths in the ratio 1 : 2 and radii in the ratio 2 : 1. With the same temperature difference across each, the ratio of heat currents is"
+    options:
+      - "2 : 1"
+      - "4 : 1"
+      - "8 : 1"
+      - "1 : 8"
+    answer: 2
+    explanation: "H ∝ r^2/L, so H_1/H_2 = (4/1)/(1/2) = 8. The ratio is 8 : 1."
+
+  - id: phy-tpm-180
+    topic: convection
+    subtopic: Placement of heaters and coolers
+    concept: Heaters low and coolers high to use convection currents
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [convection, applications]
+    stem: A room heater is best placed near the floor, while an air conditioner is best placed near the ceiling, because
+    options:
+      - hot air is denser than cold air
+      - radiation travels only upward
+      - it is more convenient for wiring
+      - warm air rises and cool air sinks, setting up convection currents
+    answer: 3
+    explanation: Air warmed near the floor becomes less dense and rises, while cooled air near the ceiling sinks. Either way convection circulates the air through the whole room.
+
+  - id: phy-tpm-181
+    topic: convection
+    subtopic: Land breeze
+    concept: At night land cools faster, so breeze blows from land to sea
+    category: application
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [land-breeze]
+    stem: At night near a coast, the breeze generally blows
+    options:
+      - from land to sea
+      - from sea to land
+      - vertically upward over land
+      - parallel to the shoreline only
+    answer: 0
+    explanation: At night the land cools faster than the sea (lower specific heat). The air over the warmer sea rises, and cooler air from the land flows out to replace it, giving a land breeze.
+
+  - id: phy-tpm-182
+    topic: convection
+    subtopic: Mechanism of natural convection
+    concept: Heated fluid expands, becomes less dense and rises by buoyancy
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [convection]
+    stem: When a pan of water is heated from below, convection currents are set up because the heated water
+    options:
+      - becomes denser and sinks
+      - conducts heat upward faster than cold water
+      - expands, becomes less dense and is pushed upward by buoyancy
+      - radiates heat to the top layer
+    answer: 2
+    explanation: The bottom layer expands on heating, its density drops, and buoyancy pushes it upward while cooler, denser water sinks to take its place. This bulk circulation is natural convection.
+
+  - id: phy-tpm-183
+    topic: convection
+    subtopic: Types of convection
+    concept: Natural convection needs gravity; fans and pumps give forced convection
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [convection, forced-convection]
+    stem: |-
+      Consider the following statements:
+      I. Convection can take place in solids.
+      II. Natural convection depends on gravity.
+      III. The sea breeze is an example of natural convection.
+      IV. Cooling a car engine by a fan-driven air flow is an example of forced convection.
+      Which are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, III and IV only
+      - II and IV only
+    answer: 1
+    explanation: Convection needs bulk flow of matter, so it cannot occur in solids (I false). Natural convection is driven by buoyancy, which needs gravity (II). The sea breeze is natural convection (III), and a fan or pump gives forced convection (IV).
+
+  - id: phy-tpm-184
+    topic: convection
+    subtopic: Heat transfer in a heated pan
+    concept: Water heated from below warms mainly by convection
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [convection]
+    stem: Water in a pan on a stove gets heated throughout mainly by
+    options:
+      - conduction only
+      - convection
+      - radiation only
+      - sublimation
+    answer: 1
+    explanation: Heat enters the bottom layer by conduction through the pan, but it is carried through the bulk of the water by convection currents, since water itself is a poor conductor.
+
+  - id: phy-tpm-185
+    topic: radiation
+    subtopic: Net radiative loss
+    concept: H_net = σA(T^4 − T_s^4)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 75
+    ncert: true
+    battle: false
+    formula: H_net = eσA(T^4 − T_s^4)
+    tags: [net-radiation, stefan-law]
+    stem: A black body of surface area 1 m^2 at 400 K is in surroundings at 300 K. Taking σ = 5.67 × 10^{-8} W m^{-2} K^{-4}, the net rate of heat loss by radiation is about
+    options:
+      - 1451 W
+      - 459 W
+      - 992 W
+      - 567 W
+    answer: 2
+    explanation: H_net = σA(T^4 − T_s^4) = 5.67 × 10^{-8} × (2.56 × 10^{10} − 0.81 × 10^{10}) = 5.67 × 10^{-8} × 1.75 × 10^{10} ≈ 992 W. 1451 W is the emission alone, ignoring absorption from the surroundings.
+
+  - id: phy-tpm-186
+    topic: radiation
+    subtopic: Wien and Stefan combined
+    concept: Halving λ_m doubles T and multiplies power by 16
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [wien-law, stefan-law, multi-concept]
+    stem: The wavelength of maximum emission of a black body shifts from 500 nm to 250 nm. The total power radiated increases by a factor of
+    options:
+      - "2"
+      - "4"
+      - "8"
+      - "16"
+    answer: 3
+    explanation: By Wien's law λ_m ∝ 1/T, so halving λ_m doubles T. By Stefan's law P ∝ T^4, so the power rises by 2^4 = 16.
+
+  - id: phy-tpm-187
+    topic: radiation
+    subtopic: Stefan–Boltzmann constant
+    concept: σ = 5.67 × 10^{-8} W m^{-2} K^{-4}
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [stefan-law, units]
+    stem: The value and unit of the Stefan–Boltzmann constant σ are
+    options:
+      - 5.67 × 10^{-8} W m^{-2} K^{-1}
+      - 5.67 × 10^{-8} W m^{-2} K^{-4}
+      - 5.67 × 10^{-8} J m^{-2} K^{-4}
+      - 2.9 × 10^{-3} W m^{-2} K^{-4}
+    answer: 1
+    explanation: From H = σAT^4, σ has unit W m^{-2} K^{-4} and value 5.67 × 10^{-8}. 2.9 × 10^{-3} m K is Wien's constant, and J m^{-2} K^{-4} lacks the per-second.
+
+  - id: phy-tpm-188
+    topic: radiation
+    subtopic: Black-body spectrum
+    concept: Hotter body has larger area under curve and peak at shorter λ
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [black-body, graph, wien-law]
+    stem: Spectral energy density versus wavelength is plotted for a black body at temperatures T_1 and T_2, with T_1 > T_2. Compared with the T_2 curve, the T_1 curve
+    options:
+      - lies higher everywhere and peaks at a shorter wavelength
+      - lies higher everywhere and peaks at a longer wavelength
+      - lies lower everywhere and peaks at a shorter wavelength
+      - has the same peak wavelength but a greater height
+    answer: 0
+    explanation: A hotter black body emits more at every wavelength (larger area, ∝ T^4), and its peak shifts to shorter wavelengths by Wien's law λ_mT = constant.
+
+  - id: phy-tpm-189
+    topic: radiation
+    subtopic: Emissivity
+    concept: P = eσAT^4; a black body (e = 1) emits most
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [emissivity]
+    stem: A body of emissivity 0.5 radiates power P. A black body of the same size at the same temperature radiates
+    options:
+      - P/2
+      - P
+      - 2P
+      - 4P
+    answer: 2
+    explanation: P = eσAT^4 ∝ e. The black body has e = 1, twice 0.5, so it radiates 2P.
+
+  - id: phy-tpm-190
+    topic: radiation
+    subtopic: Properties of thermal radiation
+    concept: λ_m decreases as temperature increases
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [radiation, wien-law, trap]
+    stem: Which statement about thermal radiation is incorrect?
+    options:
+      - A hot body emits thermal radiation in all directions
+      - Light-coloured clothes are preferred in summer because they absorb less radiation
+      - Thermal radiation travels at the speed of light in vacuum
+      - The wavelength of peak emission increases as the temperature rises
+    answer: 3
+    explanation: By Wien's law λ_m ∝ 1/T, so the peak moves to shorter wavelengths as the body gets hotter (red-hot to white-hot). The other statements are correct.
+
+  - id: phy-tpm-191
+    topic: radiation
+    subtopic: Stefan's law
+    concept: 81 times power needs 3 times absolute temperature
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [stefan-law, trap]
+    stem: A black body at 27 °C radiates power P. At what temperature will it radiate 81P?
+    options:
+      - 81 °C
+      - 627 °C
+      - 900 °C
+      - 327 °C
+    answer: 1
+    explanation: "P ∝ T^4, so T must triple in kelvin: 3 × 300 K = 900 K = 627 °C. Leaving the answer in kelvin gives the 900 °C trap."
+
+  - id: phy-tpm-192
+    topic: radiation
+    subtopic: Thermos flask
+    concept: Silvered walls reduce radiation loss
+    category: application
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [thermos, applications]
+    stem: In a thermos flask, the silvered inner walls mainly reduce heat transfer by
+    options:
+      - radiation
+      - conduction
+      - convection
+      - evaporation
+    answer: 0
+    explanation: Silvered surfaces are good reflectors and poor emitters, so they cut radiation. The vacuum between the double walls reduces conduction and convection.
+
+  - id: phy-tpm-193
+    topic: radiation
+    subtopic: Intensity received from a star
+    concept: Intensity at distance d ∝ T^4/d^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: I = σT^4R^2/d^2
+    tags: [stefan-law, inverse-square]
+    stem: If a star's surface temperature doubled and a planet's distance from it also doubled, the radiant intensity received by the planet would become
+    options:
+      - 16 times
+      - 8 times
+      - 4 times
+      - 2 times
+    answer: 2
+    explanation: The star's power grows by 2^4 = 16, while the intensity at the planet falls as 1/d^2, i.e. by 4. Net factor = 16/4 = 4.
+
+  - id: phy-tpm-194
+    topic: newtons-law-of-cooling
+    subtopic: Link with Stefan's law
+    concept: Newton's law follows from Stefan's law for small ΔT
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [newtons-cooling, stefan-law, multi-concept]
+    stem: |-
+      Assertion (A): Newton's law of cooling can be regarded as a special case of the Stefan–Boltzmann law when the temperature difference is small.
+      Reason (R): For small ΔT = T − T_0, T^4 − T_0^4 ≈ 4T_0^3 ΔT.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The net radiative loss is eσA(T^4 − T_0^4). Expanding for small ΔT gives 4eσAT_0^3 ΔT, which is proportional to ΔT, exactly Newton's law. So R explains A.
+
+  - id: phy-tpm-195
+    topic: newtons-law-of-cooling
+    subtopic: Specific heat by cooling
+    concept: Time to cool over the same range ∝ heat capacity
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 75
+    ncert: false
+    battle: false
+    tags: [newtons-cooling, specific-heat, experimental]
+    stem: Equal masses of water and a liquid, in identical containers of negligible heat capacity placed side by side, take 10 min and 4 min respectively to cool from 70 °C to 60 °C. If c_water = 4200 J kg^{-1} K^{-1}, the specific heat of the liquid is
+    options:
+      - 10500 J kg^{-1} K^{-1}
+      - 2100 J kg^{-1} K^{-1}
+      - 4200 J kg^{-1} K^{-1}
+      - 1680 J kg^{-1} K^{-1}
+    answer: 3
+    explanation: Identical containers over the same temperature range lose heat at the same rate, so heat lost ∝ time. mc_wΔT/10 = mc_lΔT/4, so c_l = 4200 × 4/10 = 1680 J kg^{-1} K^{-1}. Inverting the ratio gives 10500.
+
+  - id: phy-tpm-196
+    topic: newtons-law-of-cooling
+    subtopic: Rate of cooling
+    concept: Rate of cooling ∝ excess temperature
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [newtons-cooling, proportionality]
+    stem: In a room at 20 °C, a body cools at 2 °C min^{-1} when at 70 °C. When the body is at 45 °C its rate of cooling will be about
+    options:
+      - 2 °C min^{-1}
+      - 1 °C min^{-1}
+      - 0.5 °C min^{-1}
+      - 4 °C min^{-1}
+    answer: 1
+    explanation: "The rate is proportional to the excess temperature: 50 °C at first and 25 °C later. Halving the excess halves the rate, to 1 °C min^{-1}."
+
+  - id: phy-tpm-197
+    topic: newtons-law-of-cooling
+    subtopic: Logarithmic plot
+    concept: ln(T − T_s) versus t is a straight line with slope −k
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    formula: ln(T − T_s) = −kt + c
+    tags: [cooling-curve, graph]
+    stem: For a body obeying Newton's law of cooling, a graph of ln(T − T_s) against time t is
+    options:
+      - an exponentially decaying curve
+      - a rectangular hyperbola
+      - a straight line with negative slope
+      - a straight line with positive slope
+    answer: 2
+    explanation: Integrating dT/dt = −k(T − T_s) gives ln(T − T_s) = −kt + constant, a straight line of slope −k. NCERT uses this plot to verify the law.
+
+  - id: phy-tpm-198
+    topic: newtons-law-of-cooling
+    subtopic: Exponential cooling
+    concept: Equal times for equal fractional drops in excess temperature
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [newtons-cooling, exponential]
+    stem: A body cools from 90 °C to 60 °C in 10 min in a room at 30 °C, following the exponential form of Newton's law. The time to cool further from 60 °C to 45 °C is
+    options:
+      - 10 min
+      - 5 min
+      - 20 min
+      - 15 min
+    answer: 0
+    explanation: The excess temperature falls from 60 to 30 (halved) in 10 min, and then from 30 to 15 (halved again). Equal fractional drops take equal times, so another 10 min.
+
+  - id: phy-tpm-199
+    topic: newtons-law-of-cooling
+    subtopic: Cooling constant
+    concept: k depends on area and nature of surface
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [newtons-cooling]
+    stem: In Newton's law of cooling, dQ/dt = −k(T − T_s). Which statement about the constant k is correct?
+    options:
+      - k depends on the temperature of the body
+      - k is a universal constant, the same for all bodies
+      - k depends on the area and nature of the exposed surface
+      - k depends only on the temperature of the surroundings
+    answer: 2
+    explanation: NCERT states that k depends on the area and nature of the surface of the body. It is not universal and, in the range where the law holds, does not depend on the temperatures.
+
+  - id: phy-tpm-200
+    topic: newtons-law-of-cooling
+    subtopic: Coffee and milk
+    concept: Lower excess temperature means less heat lost over the same time
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [newtons-cooling, multi-concept]
+    stem: You pour hot coffee and will drink it after 10 min. You must add a fixed amount of cold milk at some point. To have the coffee as hot as possible when you drink it, you should
+    options:
+      - add the milk at the end, since the coffee stays hotter meanwhile
+      - add the milk immediately, since the lower excess temperature reduces heat loss
+      - add it at any time, since the result is the same
+      - add half now and half at the end
+    answer: 1
+    explanation: The rate of heat loss is proportional to the excess temperature. Adding milk at once lowers the excess temperature, so less heat is lost during the 10 min. Mixing is linear, so the final temperature is higher when the milk is added first.
