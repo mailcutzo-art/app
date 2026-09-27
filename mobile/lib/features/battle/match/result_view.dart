@@ -243,7 +243,27 @@ class _OutcomeCard extends ConsumerWidget {
           ),
           if (view.reveals.isNotEmpty || view.state.total > 0) ...[
             const SizedBox(height: AppSpacing.xl),
-            ResultDots(dots: resultDots(view)),
+            // On a plain strip, so the dots read on any outcome colour.
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.sm,
+                vertical: AppSpacing.md,
+              ),
+              decoration: BoxDecoration(
+                color: colors.isDark ? colors.surface : Colors.white,
+                borderRadius: BorderRadius.circular(AppRadii.xl),
+              ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final dots = resultDots(view);
+                  // One row on any phone: each dot (and its speed badge) shares the width.
+                  final count = dots.isEmpty ? 1 : dots.length;
+                  final share = (constraints.maxWidth - AppSpacing.sm * (count - 1)) / count / 1.15;
+                  return ResultDots(dots: dots, size: share.clamp(20, 32).toDouble());
+                },
+              ),
+            ),
           ],
         ],
       ),

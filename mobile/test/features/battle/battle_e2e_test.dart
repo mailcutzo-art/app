@@ -1,4 +1,5 @@
 import 'package:design_system/design_system.dart' hide Presence;
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/features/battle/demo/demo_server.dart';
@@ -112,8 +113,11 @@ void main() {
     expect(find.text('Play again'), findsOneWidget);
     expect(find.text('Review answers'), findsOneWidget);
 
-    await tester.ensureVisible(find.text('Done'));
-    await tester.pump();
+    await tester.scrollUntilVisible(
+      find.text('Done'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(find.text('Done'));
     await advance(tester, const Duration(seconds: 1));
     expect(location(container), Routes.battle);
