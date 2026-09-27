@@ -345,18 +345,68 @@ async def test_players_can_send_20_reports_a_day(client: AsyncClient, asha: dict
 # Coach tips
 
 
-async def test_tips_before_the_rules_are_wired_in(
+async def test_tips_wait_for_twenty_answers_and_can_be_dismissed(
     client: AsyncClient, asha: dict[str, str], db_session: AsyncSession, clock: FakeClock
 ) -> None:
     tips = await client.get("/v1/me/tips", headers=asha)
     dismissed = await client.post("/v1/me/tips/weak_topic:physics/kinematics/dismiss", headers=asha)
 
-    assert tips.json() == {"unlocked": False, "answers_needed": None, "tips": []}
+    assert tips.json() == {"unlocked": False, "answers_needed": 20, "tips": []}
     assert dismissed.status_code == 204
     [tip] = (await db_session.scalars(select(UserTip))).all()
     assert tip.tip_key == "weak_topic:physics/kinematics"
     assert tip.reason == "dismissed"
     assert tip.hidden_until == clock() + timedelta(days=7)
+
+
+async def test_the_real_rules_turn_a_weak_topic_into_a_tip_the_app_can_start(
+    client: AsyncClient, asha: dict[str, str], clock: FakeClock
+) -> None:
+    # Kinematics twice, every answer wrong, then Laws of Motion right: over 20 answers.
+    for chapter, correct in (
+        ("kinematics", False),
+        ("kinematics", False),
+        ("laws-of-motion", True),
+    ):
+        session = await start(client, asha, chapters=[chapter])
+        await upload(
+            client,
+            asha,
+            session["session_id"],
+            [answer(q, correct=correct, at=clock()) for q in session["questions"]],
+        )
+
+    tips = (await client.get("/v1/me/tips", headers=asha)).json()
+
+    assert (tips["unlocked"], tips["answers_needed"]) == (True, 0)
+    first = tips["tips"][0]
+    assert first["rule"] == "weak_topic"
+    topic = first["params"]["topic"]
+    assert first["key"] == f"weak_topic:physics:{topic}"
+    assert first["params"] == {"subject": "physics", "topic": topic, "count": "10"}
+    assert first["message"].startswith("Focus on ")
+    assert "You got 0 of" in first["message"]
+    # Its button starts a topic session the API accepts.
+    started = await start(client, asha, mode="topic", chapters=[], topic=topic)
+    assert started["questions"]
+
+
+async def test_finishing_a_session_refreshes_cached_tips(
+    client: AsyncClient, asha: dict[str, str], clock: FakeClock, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    calls: list[int] = []
+
+    def engine(data: Any) -> TipsResult:  # a stand-in that records what it was given
+        calls.append(data.total_answers)
+        return TipsResult(unlocked=True, answers_needed=0, tips=[])
+
+    monkeypatch.setattr(coach, "tips_engine", lambda: engine)
+    session = await start(client, asha)  # computes tips once, to hide those it acts on
+    await upload(client, asha, session["session_id"], [answer(session["questions"][0], at=clock())])
+    await client.get("/v1/me/tips", headers=asha)  # still the cached list
+    await client.post(f"/v1/practice/sessions/{session['session_id']}/finish", headers=asha)
+
+    assert calls == [0, 1]  # the finish recomputed them with the new answer
 
 
 def tip(key: str, action: str, **params: str) -> TipItemOut:

@@ -63,7 +63,9 @@ chapter:
   slug: kinematics          # unique within the subject, [a-z0-9-]; also the file name
   name: Motion in a Straight Line
   order: 1                  # display order within the subject
-  topics:                   # 2–8 topics; every topic needs at least 2 questions
+  topics:                   # 2–8 topics; every topic needs at least 2 questions.
+                            # Topic slugs are unique within the subject: the app and
+                            # API name a topic by subject and slug.
     - slug: speed-velocity
       name: Speed and velocity
     - slug: equations-of-motion

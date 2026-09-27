@@ -34,7 +34,7 @@ def tips_for(
     overall: tuple[int, int] = (100, 58),  # smoothed overall accuracy 0.577
     total: int = 100,
     reviews: int = 0,
-    untried: tuple[tuple[str, str], ...] = (),
+    untried: tuple[tuple[str, str, str], ...] = (),
     dismissed: frozenset[str] = frozenset(),
 ) -> list[Tip]:
     return build_tips(
@@ -62,12 +62,12 @@ def test_weak_topic_at_half_accuracy() -> None:
     [tip] = tips_for(topic("projectile-motion", attempts=6, correct=3))
 
     assert tip == Tip(
-        key="weak_topic:projectile-motion",
+        key="weak_topic:physics:projectile-motion",
         rule=TipRule.WEAK_TOPIC,
-        target="projectile-motion",
+        target="physics:projectile-motion",
         message="Focus on Projectile motion. You got 3 of 6 right.",
         action=TipAction.PRACTICE,
-        params={"topic": "projectile-motion", "count": "10"},
+        params={"subject": "physics", "topic": "projectile-motion", "count": "10"},
         priority=1,
     )
 
@@ -104,7 +104,7 @@ def test_fast_but_wrong_at_forty_percent() -> None:
         "You answer Chemical bonding questions quickly but often miss. Read all four options first."
     )
     assert tip.action is TipAction.PRACTICE
-    assert tip.params == {"topic": "chemical-bonding", "count": "10"}
+    assert tip.params == {"subject": "physics", "topic": "chemical-bonding", "count": "10"}
 
 
 @pytest.mark.parametrize(
@@ -134,7 +134,7 @@ def test_slow_against_opponents_at_sixty_percent(area: AreaStats) -> None:
         f"You're often slower than your opponents in {area.name}. Try a timed practice set."
     )
     assert tip.action is TipAction.TIMED_PRACTICE
-    assert tip.params == {area.kind.value: area.key, "count": "10"}
+    assert tip.params == {"subject": "physics", area.kind.value: area.key, "count": "10"}
 
 
 @pytest.mark.parametrize(
@@ -158,9 +158,9 @@ def test_a_chapter_speed_tip_gives_way_to_tips_on_its_topics() -> None:
     )
 
     assert keys(tips) == [
-        "weak_topic:vectors",
-        "slow_vs_opponents:optics",
-        "strength:lenses",
+        "weak_topic:physics:vectors",
+        "slow_vs_opponents:physics:optics",
+        "strength:physics:lenses",
     ]
 
 
@@ -248,27 +248,32 @@ def test_no_review_tip_without_due_reviews() -> None:
 
 
 def test_only_the_first_untried_chapter_is_suggested() -> None:
-    untried = (("gravitation", "Gravitation"), ("optics", "Optics"))
+    untried = (("physics", "gravitation", "Gravitation"), ("physics", "optics", "Optics"))
 
     [tip] = tips_for(untried=untried)
 
     assert tip == Tip(
-        key="untried_chapter:gravitation",
+        key="untried_chapter:physics:gravitation",
         rule=TipRule.UNTRIED_CHAPTER,
-        target="gravitation",
+        target="physics:gravitation",
         message="You haven't tried Gravitation yet. Start with 10 easy questions.",
         action=TipAction.START_CHAPTER,
-        params={"chapter": "gravitation", "difficulty": "easy", "count": "10"},
+        params={
+            "subject": "physics",
+            "chapter": "gravitation",
+            "difficulty": "easy",
+            "count": "10",
+        },
         priority=6,
     )
 
 
 def test_a_dismissed_untried_chapter_makes_way_for_the_next() -> None:
-    untried = (("gravitation", "Gravitation"), ("optics", "Optics"))
+    untried = (("physics", "gravitation", "Gravitation"), ("physics", "optics", "Optics"))
 
-    tips = tips_for(untried=untried, dismissed=frozenset({"untried_chapter:gravitation"}))
+    tips = tips_for(untried=untried, dismissed=frozenset({"untried_chapter:physics:gravitation"}))
 
-    assert keys(tips) == ["untried_chapter:optics"]
+    assert keys(tips) == ["untried_chapter:physics:optics"]
 
 
 # 7. LEVEL_UP
@@ -281,7 +286,7 @@ def test_level_up_at_85_percent_of_easy_questions() -> None:
         TipRule.LEVEL_UP,
         "You've got the basics of Genetics. Try medium questions.",
         TipAction.PRACTICE_MEDIUM,
-        {"chapter": "genetics", "difficulty": "medium", "count": "10"},
+        {"subject": "physics", "chapter": "genetics", "difficulty": "medium", "count": "10"},
     )
 
 
@@ -339,7 +344,7 @@ EVERY_RULE = (
 
 
 def test_rules_come_in_priority_order_and_at_most_five() -> None:
-    tips = tips_for(*EVERY_RULE, reviews=2, untried=(("optics", "Optics"),))
+    tips = tips_for(*EVERY_RULE, reviews=2, untried=(("physics", "optics", "Optics"),))
 
     assert [tip.rule for tip in tips] == list(TipRule)[:5]
     assert [tip.priority for tip in tips] == [1, 2, 3, 4, 5]
@@ -347,10 +352,16 @@ def test_rules_come_in_priority_order_and_at_most_five() -> None:
 
 def test_later_rules_follow_when_earlier_ones_are_dismissed() -> None:
     dismissed = frozenset(
-        {"weak_topic:weak", "fast_but_wrong:rushed", "slow_vs_opponents:slowpoke"}
+        {
+            "weak_topic:physics:weak",
+            "fast_but_wrong:physics:rushed",
+            "slow_vs_opponents:physics:slowpoke",
+        }
     )
 
-    tips = tips_for(*EVERY_RULE, reviews=2, untried=(("optics", "Optics"),), dismissed=dismissed)
+    tips = tips_for(
+        *EVERY_RULE, reviews=2, untried=(("physics", "optics", "Optics"),), dismissed=dismissed
+    )
 
     assert [tip.rule for tip in tips] == list(TipRule)[3:]
 
@@ -365,11 +376,11 @@ def test_within_a_rule_the_worse_case_comes_first_then_key_order() -> None:
     )
 
     assert keys(tips) == [
-        "weak_topic:weakest",
-        "weak_topic:a-weak",
-        "weak_topic:b-weak",
-        "slow_vs_opponents:slower",
-        "slow_vs_opponents:slow",
+        "weak_topic:physics:weakest",
+        "weak_topic:physics:a-weak",
+        "weak_topic:physics:b-weak",
+        "slow_vs_opponents:physics:slower",
+        "slow_vs_opponents:physics:slow",
     ]
 
 
@@ -381,21 +392,26 @@ def test_the_strongest_areas_come_first_among_strengths_and_level_ups() -> None:
         chapter("easy", easy_attempts=10, easy_correct=10),
     )
 
-    assert keys(tips) == ["level_up:easy", "level_up:basics", "strength:best", "strength:good"]
+    assert keys(tips) == [
+        "level_up:physics:easy",
+        "level_up:physics:basics",
+        "strength:physics:best",
+        "strength:physics:good",
+    ]
 
 
 def test_one_tip_per_area_keeps_the_most_important() -> None:
     weak_and_rushed = topic("vectors", attempts=10, correct=2, fast_wrong=6, slow=5)
 
-    assert keys(tips_for(weak_and_rushed)) == ["weak_topic:vectors"]
+    assert keys(tips_for(weak_and_rushed)) == ["weak_topic:physics:vectors"]
 
 
 def test_a_dismissed_tip_lets_the_next_one_for_that_area_through() -> None:
     weak_and_rushed = topic("vectors", attempts=10, correct=2, fast_wrong=6)
 
-    tips = tips_for(weak_and_rushed, dismissed=frozenset({"weak_topic:vectors"}))
+    tips = tips_for(weak_and_rushed, dismissed=frozenset({"weak_topic:physics:vectors"}))
 
-    assert keys(tips) == ["fast_but_wrong:vectors"]
+    assert keys(tips) == ["fast_but_wrong:physics:vectors"]
 
 
 def test_tips_unlock_after_twenty_answers() -> None:
@@ -407,3 +423,24 @@ def test_tips_unlock_after_twenty_answers() -> None:
 def test_duplicate_areas_are_rejected() -> None:
     with pytest.raises(ValueError, match="unique"):
         tips_for(topic("vectors"), topic("vectors", attempts=3))
+
+
+def test_the_same_slug_in_two_subjects_gives_two_tips() -> None:
+    physics = topic("vectors", attempts=6, correct=1)
+    maths = AreaStats(
+        AreaKind.TOPIC, "vectors", "Vectors", "maths", chapter_key="vector-algebra", attempts=6
+    )
+
+    tips = tips_for(physics, maths)
+
+    assert keys(tips) == ["weak_topic:maths:vectors", "weak_topic:physics:vectors"]
+    assert [tip.params["subject"] for tip in tips] == ["maths", "physics"]
+
+
+def test_every_practice_action_names_its_subject() -> None:
+    tips = tips_for(*EVERY_RULE, untried=(("physics", "optics", "Optics"),))
+    dismissed = frozenset(tip.key for tip in tips)
+    rest = tips_for(*EVERY_RULE, untried=(("physics", "optics", "Optics"),), dismissed=dismissed)
+
+    for tip in [*tips, *rest]:
+        assert tip.params.get("subject") == "physics", tip.key

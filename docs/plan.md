@@ -800,7 +800,8 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 | Achievements, tournament prizes | 10–200; set pool | | |
 
 **XP and levels**
-- **Practice:** +1 per answer, +1 more if correct, capped at 300 a day.
+- **Practice:** +1 per answer given, +1 more if correct, capped at 300 a day. Skips and timeouts
+  earn nothing, so skipping can't farm XP.
 - **Rated games:** 30 / 20 / 10 for a win, draw or loss.
 - **Casual games:** 20 / 15 / 8.
 - **Friend, group and bot games** earn half.

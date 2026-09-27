@@ -1,10 +1,9 @@
 """Coach tips: short instructions with one button, computed on request.
 
-The rules are ``app.modules.coach.tips.build_tips``, written separately; ``tips_engine()`` is the
-one place that connects them. Until it does there are no tips: the ``tip`` fields are null and
-``GET /v1/me/tips`` lists none. Everything around the rules is here: the inputs
-(``inputs.load_coach_data``), a 10-minute cache so the list doesn't jump around, hiding tips the
-user dismissed (7 days) or acted on (24 h), and picking the tip for a finished session.
+The rules are ``app.modules.coach.tips.build_tips``; ``tips_engine()`` is the one place that
+connects them. Everything around the rules is here: the inputs (``inputs.load_coach_data``), a
+10-minute cache so the list doesn't jump around, hiding tips the user dismissed (7 days) or acted
+on (24 h), and picking the tip for a finished session.
 """
 
 import uuid
@@ -19,7 +18,8 @@ from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.modules.coach.inputs import CoachData, load_coach_data
+from app.modules.coach import tips as rules
+from app.modules.coach.inputs import AreaStats, CoachData, load_coach_data
 from app.modules.coach.models import TipHiddenReason, UserTip
 from app.modules.coach.schemas import TipItemOut, TipOut, TipsOut
 from app.modules.practice.models import PracticeMode, PracticeSession
@@ -40,9 +40,75 @@ class TipsResult:
 TipsEngine = Callable[[CoachData], TipsResult]
 
 
+# How a category reads in a tip: "Practise more Physics numericals."
+CATEGORY_NAMES = {
+    "concept": "concept questions",
+    "numerical": "numericals",
+    "factual": "fact questions",
+    "application": "application questions",
+}
+
+
 def tips_engine() -> TipsEngine | None:
-    """The tip rules, or ``None`` while ``app.modules.coach.tips`` isn't wired in."""
-    return None
+    """The tip rules (``app.modules.coach.tips``)."""
+    return run_tip_rules
+
+
+def _rule_area(area: AreaStats) -> rules.AreaStats:
+    name = area.name
+    if area.kind == "category":
+        name = f"{area.subject_name} {CATEGORY_NAMES.get(area.key, area.key)}"
+    return rules.AreaStats(
+        kind=rules.AreaKind(area.kind),
+        key=area.key,
+        name=name,
+        subject=area.subject,
+        chapter_key=area.chapter,
+        attempts=area.attempts,
+        correct=area.correct,
+        fast=area.fast,
+        slow=area.slow,
+        even=area.even,
+        typical_compared=area.typical_compared,
+        typical_ratio=area.typical_ratio,
+        fast_wrong=area.fast_wrong,
+        easy_attempts=area.easy_attempts,
+        easy_correct=area.easy_correct,
+    )
+
+
+def run_tip_rules(data: CoachData) -> TipsResult:
+    """Map the player's numbers to the rules' inputs, and their tips to the API's."""
+    areas: dict[tuple[str, str, str], rules.AreaStats] = {}
+    for area in data.areas:
+        # Content keeps topic slugs unique within a subject; never let a slip break tips.
+        areas.setdefault((area.kind, area.subject, area.key), _rule_area(area))
+    chapters = [area for area in data.areas if area.kind == "chapter"]
+    tips = rules.build_tips(
+        rules.TipInputs(
+            total_answers=data.total_answers,
+            overall_attempts=sum(area.attempts for area in chapters),
+            overall_correct=sum(area.correct for area in chapters),
+            areas=list(areas.values()),
+            reviews_due=data.reviews_due,
+            untried_chapters=[(c.subject, c.slug, c.name) for c in data.untried_chapters],
+        )
+    )
+    needed = rules.answers_until_unlock(data.total_answers)
+    return TipsResult(
+        unlocked=needed == 0,
+        answers_needed=needed,
+        tips=[
+            TipItemOut(
+                key=tip.key,
+                rule=tip.rule.value,
+                message=tip.message,
+                action=tip.action.value,
+                params=dict(tip.params),
+            )
+            for tip in tips
+        ],
+    )
 
 
 def _cache_key(user_id: uuid.UUID, goal: str) -> str:
@@ -60,6 +126,8 @@ async def _computed_tips(
 ) -> TipsResult:
     key = _cache_key(user_id, goal)
     cached = await redis.get(key)
+    # Only unlocked tips are cached: a player still short of 20 answers may unlock them with the
+    # next batch, and those few answers are cheap to read.
     if cached is not None:
         data = orjson.loads(cached)
         return TipsResult(
@@ -68,13 +136,19 @@ async def _computed_tips(
             tips=[TipItemOut.model_validate(tip) for tip in data["tips"]],
         )
     result = engine(await load_coach_data(db, user_id, goal=goal, now=now))
-    payload = {
-        "unlocked": result.unlocked,
-        "answers_needed": result.answers_needed,
-        "tips": [tip.model_dump() for tip in result.tips],
-    }
-    await redis.set(key, orjson.dumps(payload), ex=CACHE_TTL_S)
+    if result.unlocked:
+        payload = {
+            "unlocked": result.unlocked,
+            "answers_needed": result.answers_needed,
+            "tips": [tip.model_dump() for tip in result.tips],
+        }
+        await redis.set(key, orjson.dumps(payload), ex=CACHE_TTL_S)
     return result
+
+
+async def forget_tips(redis: Redis, user_id: uuid.UUID, *, goal: str) -> None:
+    """Drop the cached tips, so a finished session's answers count straight away."""
+    await redis.delete(_cache_key(user_id, goal))
 
 
 async def current_tips(
@@ -166,7 +240,11 @@ def session_carries_out(tip: TipOut, settings: Mapping[str, Any]) -> bool:
             if tip.action == "timed_practice" and not settings.get("timed"):
                 return False
             if params.get("topic"):
-                return mode == PracticeMode.TOPIC and settings.get("topic") == params["topic"]
+                return (
+                    mode == PracticeMode.TOPIC
+                    and same_subject
+                    and settings.get("topic") == params["topic"]
+                )
             return mode == PracticeMode.CHAPTER and same_subject and one_chapter
         case "practice_category":
             return (

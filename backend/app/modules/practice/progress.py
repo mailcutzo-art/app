@@ -179,7 +179,8 @@ async def practice_history(
         for session_id, answered, correct, wrong in await db.execute(
             select(
                 PracticeAnswer.session_id,
-                func.count(),
+                # Answers given, as on the result screen: skips don't count.
+                func.count().filter(PracticeAnswer.outcome != Outcome.SKIPPED.value),
                 func.count().filter(PracticeAnswer.outcome == Outcome.CORRECT.value),
                 func.count().filter(PracticeAnswer.outcome == Outcome.WRONG.value),
             )

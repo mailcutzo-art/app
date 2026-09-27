@@ -199,8 +199,8 @@ async def test_a_topic_slug_belongs_to_one_chapter_of_a_subject(content: Path) -
         load_content(content)
 
     assert refused.value.problems == [
-        "questions/physics: topic speed-velocity is used by several chapters "
-        "(kinematics, laws-of-motion)"
+        "questions/physics/laws-of-motion.yaml: topic speed-velocity also in chapter kinematics"
+        " of physics; topic slugs must be unique within a subject"
     ]
 
 

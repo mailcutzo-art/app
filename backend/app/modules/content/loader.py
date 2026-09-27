@@ -9,7 +9,6 @@ import hashlib
 import importlib.util
 import json
 import sys
-from collections import defaultdict
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from types import ModuleType
@@ -145,14 +144,12 @@ def load_content(root: Path) -> ContentBundle:
     """Validate and read the content under ``root``; ``ContentProblems`` lists every problem."""
     if not (root / "catalog.yaml").is_file():
         raise ContentProblems([f"{root}: no catalog.yaml here; is this the content directory?"])
+    # The validator also checks what the API relies on, such as topic slugs being unique
+    # within a subject.
     content, problems = load_validator(root).load(root)
     if problems:
         raise ContentProblems(list(problems))
-    bundle = _bundle(content)
-    problems = _check_topic_slugs(bundle)
-    if problems:
-        raise ContentProblems(problems)
-    return bundle
+    return _bundle(content)
 
 
 def _bundle(content: Any) -> ContentBundle:
@@ -236,16 +233,3 @@ def _bundle(content: Any) -> ContentBundle:
             for w in file.words
         ),
     )
-
-
-def _check_topic_slugs(bundle: ContentBundle) -> list[str]:
-    """The API names a topic by subject and slug, so a slug may appear in one chapter only."""
-    seen: dict[tuple[str, str], list[str]] = defaultdict(list)
-    for chapter in bundle.chapters:
-        for topic in chapter.topics:
-            seen[chapter.subject, topic.slug].append(chapter.slug)
-    return [
-        f"questions/{subject}: topic {slug} is used by several chapters ({', '.join(chapters)})"
-        for (subject, slug), chapters in sorted(seen.items())
-        if len(chapters) > 1
-    ]

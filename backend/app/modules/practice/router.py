@@ -13,7 +13,7 @@ from app.core.idempotency import IdempotencyDep
 from app.core.ratelimit import rate_limit
 from app.core.redis import RedisDep
 from app.core.security import CurrentAuth
-from app.modules.coach.service import mark_acted, session_tip
+from app.modules.coach.service import forget_tips, mark_acted, session_tip
 from app.modules.content.catalog import resolve_goal
 from app.modules.content.refs import parse_ref
 from app.modules.content.service import subject_id_for
@@ -94,6 +94,7 @@ async def finish_session(
     """End the session (idempotent) and get its result. Upload pending answers first."""
     now = clock()
     session, summary = await sessions.finish_session(db, auth.user_id, session_id, now=now)
+    await forget_tips(redis, auth.user_id, goal=str(session.settings.get("goal", "")))
     return FinishOut(
         session_id=session.id,
         answered=summary.answered,

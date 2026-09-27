@@ -203,6 +203,8 @@ def main() -> int:
             result["answered"] == count and result["correct"] == count - 1,
             f"result: {result}",
         )
+        # 2 XP for each right answer and 1 for the wrong one.
+        check(result["xp"]["delta"] == 2 * count - 1, f"xp: {result['xp']}")
 
     def a_question_can_be_bookmarked() -> None:
         ref = state["session"]["questions"][0]["ref"]

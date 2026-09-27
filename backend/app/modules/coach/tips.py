@@ -77,20 +77,26 @@ class AreaStats:
 
 @dataclass(frozen=True, slots=True)
 class TipInputs:
-    """Everything the rules read; ``untried_chapters`` holds (key, name) in suggestion order."""
+    """Everything the rules read; ``untried_chapters`` holds (subject, key, name) in suggestion
+    order."""
 
     total_answers: int
     overall_attempts: int
     overall_correct: int
     areas: Sequence[AreaStats] = ()
     reviews_due: int = 0
-    untried_chapters: Sequence[tuple[str, str]] = ()
+    untried_chapters: Sequence[tuple[str, str, str]] = ()
     dismissed: frozenset[str] = frozenset()
 
 
 @dataclass(frozen=True, slots=True)
 class Tip:
-    """One instruction; ``key`` ("rule:target") stays the same while the tip applies."""
+    """One instruction; ``key`` ("rule:target") stays the same while the tip applies.
+
+    Targets name the subject too ("physics:projectile-motion"): topic and chapter slugs are only
+    unique within a subject. ``params`` always carry the subject, which the app needs to start
+    the practice set.
+    """
 
     key: str
     rule: TipRule
@@ -193,13 +199,13 @@ def _candidates(inputs: TipInputs, overall: Fraction) -> Iterator[_Candidate]:
             {},
             Fraction(0),
         )
-    for index, (key, name) in enumerate(inputs.untried_chapters):
+    for index, (subject, key, name) in enumerate(inputs.untried_chapters):
         yield _candidate(
             TipRule.UNTRIED_CHAPTER,
-            (AreaKind.CHAPTER.value, key),
+            (AreaKind.CHAPTER.value, f"{subject}:{key}"),
             f"You haven't tried {name} yet. Start with 10 easy questions.",
             TipAction.START_CHAPTER,
-            {"chapter": key, "difficulty": "easy", "count": PRACTICE_COUNT},
+            {"subject": subject, "chapter": key, "difficulty": "easy", "count": PRACTICE_COUNT},
             Fraction(index),
         )
 
@@ -208,7 +214,9 @@ def _area_candidates(area: AreaStats, overall: Fraction) -> Iterator[_Candidate]
     identity = (area.kind.value, _target(area))
     acc = _smoothed(area.correct, area.attempts)
     topic = area.kind is AreaKind.TOPIC
-    chapter_of_topic = area.chapter_key if topic else None
+    chapter_of_topic = (
+        f"{area.subject}:{area.chapter_key}" if topic and area.chapter_key is not None else None
+    )
 
     if topic and area.attempts >= 5 and (acc <= Fraction(1, 2) or overall - acc >= Fraction(3, 20)):
         yield _candidate(
@@ -216,7 +224,7 @@ def _area_candidates(area: AreaStats, overall: Fraction) -> Iterator[_Candidate]
             identity,
             f"Focus on {area.name}. You got {area.correct} of {area.attempts} right.",
             TipAction.PRACTICE,
-            {"topic": area.key, "count": PRACTICE_COUNT},
+            {"subject": area.subject, "topic": area.key, "count": PRACTICE_COUNT},
             acc,
             chapter_of_topic,
         )
@@ -227,7 +235,7 @@ def _area_candidates(area: AreaStats, overall: Fraction) -> Iterator[_Candidate]
             f"You answer {area.name} questions quickly but often miss. "
             "Read all four options first.",
             TipAction.PRACTICE,
-            {"topic": area.key, "count": PRACTICE_COUNT},
+            {"subject": area.subject, "topic": area.key, "count": PRACTICE_COUNT},
             -Fraction(area.fast_wrong, area.attempts),
             chapter_of_topic,
         )
@@ -243,7 +251,7 @@ def _area_candidates(area: AreaStats, overall: Fraction) -> Iterator[_Candidate]
             identity,
             f"You're often slower than your opponents in {area.name}. Try a timed practice set.",
             TipAction.TIMED_PRACTICE,
-            {area.kind.value: area.key, "count": PRACTICE_COUNT},
+            {"subject": area.subject, area.kind.value: area.key, "count": PRACTICE_COUNT},
             -Fraction(area.slow, compared),
             chapter_of_topic,
         )
@@ -274,7 +282,12 @@ def _area_candidates(area: AreaStats, overall: Fraction) -> Iterator[_Candidate]
             identity,
             f"You've got the basics of {area.name}. Try medium questions.",
             TipAction.PRACTICE_MEDIUM,
-            {"chapter": area.key, "difficulty": "medium", "count": PRACTICE_COUNT},
+            {
+                "subject": area.subject,
+                "chapter": area.key,
+                "difficulty": "medium",
+                "count": PRACTICE_COUNT,
+            },
             -Fraction(area.easy_correct, area.easy_attempts),
         )
     if topic and area.attempts >= 10 and acc >= Fraction(4, 5):
@@ -307,7 +320,7 @@ def _candidate(
 
 
 def _target(area: AreaStats) -> str:
-    return f"{area.subject}:{area.key}" if area.kind is AreaKind.CATEGORY else area.key
+    return f"{area.subject}:{area.key}"
 
 
 def _smoothed(correct: int, attempts: int) -> Fraction:

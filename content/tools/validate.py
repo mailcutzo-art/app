@@ -266,6 +266,8 @@ def load(root: Path = ROOT) -> tuple[Content, list[str]]:
     ids: dict[str, str] = {}
     stems: dict[str, str] = {}
     chapters: dict[str, dict[str, str]] = defaultdict(dict)  # subject -> slug -> file
+    # The app and API name a topic by subject and slug, so a slug may appear once per subject.
+    topics: dict[str, dict[str, str]] = defaultdict(dict)  # subject -> topic slug -> chapter
     orders: dict[str, dict[int, str]] = defaultdict(dict)
 
     def check_question(q: _QuestionBase, where: str) -> None:
@@ -305,6 +307,13 @@ def load(root: Path = ROOT) -> tuple[Content, list[str]]:
                 f"{where}: order {chapter.order} also used by {orders[subject][chapter.order]}"
             )
         orders[subject][chapter.order] = where
+        for topic in chapter.topics:
+            if topic.slug in topics[subject] and topics[subject][topic.slug] != chapter.slug:
+                problems.append(
+                    f"{where}: topic {topic.slug} also in chapter {topics[subject][topic.slug]}"
+                    f" of {subject}; topic slugs must be unique within a subject"
+                )
+            topics[subject].setdefault(topic.slug, chapter.slug)
 
         prefix = f"{subject[:3]}-"
         for q in data.questions:

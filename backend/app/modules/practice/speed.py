@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 from app.modules.content.models import QuestionStats
 from app.modules.practice.models import Outcome
+from app.modules.realtime.engine import scoring
 
 TYPICAL = "typical"
 
@@ -34,9 +35,6 @@ def typical_speed(outcome: Outcome, time_ms: int, stats: QuestionStats | None) -
 
 
 def speed_vs_typical(time_ms: int, typical_ms: int, samples: int) -> str | None:
-    """The labelling rule: ``app.modules.realtime.engine.scoring.speed_vs_typical``.
-
-    That module is written separately and is not in this tree yet; until it is wired in here
-    no answer gets a speed label.
-    """
-    return None
+    """The labelling rule: ``app.modules.realtime.engine.scoring.speed_vs_typical``."""
+    speed = scoring.speed_vs_typical(time_ms, typical_ms, samples)
+    return speed.value if speed is not None else None

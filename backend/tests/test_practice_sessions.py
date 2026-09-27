@@ -385,16 +385,19 @@ async def test_finishing_totals_the_session(
     result = (await client.post(path, headers=asha)).json()
     again = (await client.post(path, headers=asha)).json()
 
-    assert result["answered"] == 4
+    # Answers given; the skip is counted apart.
+    assert result["answered"] == 3
     assert (result["correct"], result["skipped"]) == (2, 1)
     assert result["time_ms"] == 15_000
     assert (result["score"], result["max_score"]) == (2 * 4 - 1, 8 * 4)
-    assert sum(topic["answered"] for topic in result["topics"]) == 4
+    assert sum(topic["answered"] for topic in result["topics"]) == 3
     assert {topic["slug"] for topic in result["topics"]} <= {
         "speed-velocity",
         "equations-of-motion",
     }
-    assert (result["xp"], result["tip"]) == (None, None)  # until XP and tips are wired in
+    # 2 + 2 + 1 XP for the answers given; no tip before 20 answers.
+    assert result["xp"]["delta"] == 5
+    assert result["tip"] is None
     assert again == result
     detail = (
         await client.get(f"/v1/practice/sessions/{session['session_id']}", headers=asha)

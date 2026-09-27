@@ -173,7 +173,12 @@ async def ingest_answers(
             session_id=session.id,
             # Positions are recorded once, so the batch's first position names it for good.
             source_key=f"practice:{session.id}:{min(r.answer.position for r in recorded)}",
-            correct=[r.outcome == Outcome.CORRECT for r in recorded],
+            # Only answers given earn XP; skips and timeouts would let anyone farm it.
+            correct=[
+                r.outcome == Outcome.CORRECT
+                for r in recorded
+                if r.outcome in {Outcome.CORRECT, Outcome.WRONG}
+            ],
             now=now,
         )
     return AnswersOut(results=[results[index] for index in range(len(answers))], xp=xp)

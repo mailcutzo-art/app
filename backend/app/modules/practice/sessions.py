@@ -6,7 +6,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from typing import Any
 
-from sqlalchemy import func, select
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.errors import Conflict, NotFound
@@ -174,22 +174,16 @@ async def session_detail(
     )
 
 
-async def answered_counts(db: AsyncSession, session_ids: list[uuid.UUID]) -> dict[uuid.UUID, int]:
-    rows = await db.execute(
-        select(PracticeAnswer.session_id, func.count())
-        .where(PracticeAnswer.session_id.in_(session_ids))
-        .group_by(PracticeAnswer.session_id)
-    )
-    return dict(rows.all())
-
-
 class SessionSummary:
-    """Totals of a session's recorded answers, for the result screen."""
+    """Totals of a session's recorded answers, for the result screen.
+
+    ``answered`` counts answers given (right, wrong or out of time); skips are counted apart.
+    """
 
     def __init__(self, session: PracticeSession, rows: list[tuple[str, int, Topic | None]]):
-        self.answered = len(rows)
-        self.correct = sum(outcome == Outcome.CORRECT for outcome, _, _ in rows)
         self.skipped = sum(outcome == Outcome.SKIPPED for outcome, _, _ in rows)
+        self.answered = len(rows) - self.skipped
+        self.correct = sum(outcome == Outcome.CORRECT for outcome, _, _ in rows)
         wrong = sum(outcome == Outcome.WRONG for outcome, _, _ in rows)
         self.time_ms = sum(time_ms for _, time_ms, _ in rows)
         self.score: int | None = None
@@ -200,7 +194,7 @@ class SessionSummary:
         per_topic: dict[int, list[int]] = defaultdict(lambda: [0, 0])
         topics: dict[int, Topic] = {}
         for outcome, _, topic in rows:
-            if topic is None:
+            if topic is None or outcome == Outcome.SKIPPED:
                 continue
             topics[topic.id] = topic
             per_topic[topic.id][0] += 1

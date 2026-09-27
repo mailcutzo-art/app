@@ -1,8 +1,7 @@
 """Awarding XP: idempotent events, the running total and the daily practice cap.
 
 The formulas (XP per answer, the cap rule, the level curve) live in
-``app.modules.progression.levels``, which is written separately; ``xp_rules()`` is the one place
-that connects them. Until it does, practice awards nothing and responses carry ``"xp": null``.
+``app.modules.progression.levels``; ``xp_rules()`` is the one place that connects them.
 """
 
 import uuid
@@ -17,6 +16,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.clock import IST
 from app.core.ids import new_id
 from app.modules.practice.schemas import XpOut
+from app.modules.progression import levels
 from app.modules.progression.models import UserProgress, XpEvent, XpSource
 
 PRACTICE_DAILY_CAP = 300
@@ -36,9 +36,13 @@ class XpRules:
     progress: Callable[[int], LevelProgress]  # total XP -> level
 
 
-def xp_rules() -> XpRules | None:
-    """The XP formulas, or ``None`` while ``app.modules.progression.levels`` isn't wired in."""
-    return None
+def xp_rules() -> XpRules:
+    """The XP formulas from ``app.modules.progression.levels``."""
+    return XpRules(
+        practice_xp=levels.practice_xp,
+        cap_daily=levels.cap_daily,
+        progress=lambda xp: LevelProgress(*levels.progress(xp)),
+    )
 
 
 def next_ist_midnight(now: datetime) -> datetime:
@@ -79,14 +83,12 @@ async def award_practice_xp(
     source_key: str,
     correct: Sequence[bool],
     now: datetime,
-) -> XpOut | None:
+) -> XpOut:
     """Award XP for newly accepted practice answers, within the day's cap (IST).
 
     ``source_key`` identifies the batch: awarding the same key again changes nothing.
     """
     rules = xp_rules()
-    if rules is None:
-        return None
     today = now.astimezone(IST).date()
     progress = await _locked_progress(db, user_id)
     already = _practice_today(progress, today)
@@ -117,15 +119,13 @@ async def award_practice_xp(
 
 async def session_xp(
     db: AsyncSession, user_id: uuid.UUID, session_id: uuid.UUID, *, now: datetime
-) -> XpOut | None:
+) -> XpOut:
     """XP earned in one practice session, with the user's total and level.
 
     ``capped`` says the day's practice XP is used up, so later answers earn none until
     ``resets_at``.
     """
     rules = xp_rules()
-    if rules is None:
-        return None
     earned = await db.scalar(
         select(func.coalesce(func.sum(XpEvent.amount), 0)).where(
             XpEvent.user_id == user_id,

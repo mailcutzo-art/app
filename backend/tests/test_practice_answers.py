@@ -62,7 +62,16 @@ async def test_answers_are_judged_by_the_server(
         ("accepted", "skipped", None),
         ("accepted", "timeout", None),
     ]
-    assert result["xp"] is None  # until the XP rules are wired in
+    # 2 XP for the right answer and 1 for the wrong one; skips and timeouts earn nothing.
+    assert result["xp"] == {
+        "delta": 3,
+        "total": 3,
+        "level": 1,
+        "into_level": 3,
+        "for_next": 100,
+        "capped": False,
+        "resets_at": None,
+    }
 
 
 async def test_an_answer_counts_once(

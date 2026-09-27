@@ -6,7 +6,7 @@ from app.core.schemas import ApiModel
 class TipOut(ApiModel):
     """One tip: a short instruction with one button (``action`` and its ``params``)."""
 
-    key: str  # rule and target, e.g. "weak_topic:physics/projectile-motion"
+    key: str  # rule and target, e.g. "weak_topic:physics:projectile-motion"
     message: str
     action: str
     params: dict[str, str]

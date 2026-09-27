@@ -62,11 +62,13 @@ The user's own progress for the Learn tab. It is small and never cached by the s
   ],
   "reviews_due": 3,
   "continue": {"session_id": "…", "title": "Physics · Motion in a Straight Line", "answered": 12, "count": 20},
-  "tip": {"key": "weak_topic:…", "message": "Focus on Projectile motion. You got 4 of 11 right.", "action": "practice", "params": {"subject": "physics", "topic": "projectile-motion", "count": "10"}}
+  "tip": {"key": "weak_topic:physics:projectile-motion", "message": "Focus on Projectile motion. You got 4 of 11 right.", "action": "practice", "params": {"subject": "physics", "topic": "projectile-motion", "count": "10"}}
 }
 ```
 
 - `answered` and `correct` count all answers. `seen` counts distinct questions.
+- `continue.answered` counts the questions done in that session, skips included, so the app can
+  show "12/20" and resume at question 13.
 - `label` is a single word for the chapter list, never a chart:
   - `strong`: at least 10 answers and smoothed accuracy ≥ 75%.
   - `needs_work`: at least 5 answers and smoothed accuracy ≤ 50%.
@@ -174,7 +176,8 @@ Finished sessions stay readable, with their answers for review, for 90 days.
 ### `GET /v1/me/practice/sessions?cursor=`
 Practice history, newest first (Profile → History → Practice):
 `{"items": [{"session_id", "mode", "title", "created_at", "finished_at", "answered", "correct",
-"score", "max_score"}], "next_cursor"}`.
+"score", "max_score"}], "next_cursor"}`. `answered` counts answers given, as on the result screen
+(skips aren't included).
 
 A worker finishes expired unfinished sessions with a partial summary, so they leave "Continue
 practice" and appear here. `continue` in progress never points at an expired session.
@@ -234,7 +237,9 @@ this is idempotent.
     label against the question's typical time (once there is enough data).
   - It updates the running totals.
   - It moves wrong answers into review.
-  - It awards practice XP: 2 for a correct answer, 1 otherwise, up to 300 XP a day.
+  - It awards practice XP for answers given: 2 for a correct answer, 1 for a wrong one, up to
+    300 XP a day. Skips and timeouts earn nothing, so tapping Skip can't farm XP for the weekly
+    board.
 
 ### `POST /v1/practice/sessions/{id}/finish`
 Idempotent. It ends the session; answers not yet uploaded should be sent first.
@@ -251,8 +256,12 @@ Idempotent. It ends the session; answers not yet uploaded should be sent first.
 }
 ```
 
-`score` and `max_score` are only set with `marking: neet` (+4 / −1). `topics` is a short list for
-the result screen, not a chart. `tip` is the one coach tip most relevant to this session.
+- `answered` counts answers given (right, wrong or out of time). Skips are counted apart in
+  `skipped`, so `answered + skipped` is how far the student got. `topics` counts the same way.
+- `score` and `max_score` are only set with `marking: neet` (+4 / −1).
+- `topics` is a short list for the result screen, not a chart.
+- `tip` is the one coach tip most relevant to this session. Finishing refreshes the tips, so it
+  already reflects this session's answers.
 
 ## Coach tips
 
@@ -263,7 +272,7 @@ the result screen, not a chart. `tip` is the one coach tip most relevant to this
   "unlocked": true,
   "answers_needed": 0,
   "tips": [
-    {"key": "weak_topic:…", "rule": "weak_topic", "message": "Focus on Projectile motion. You got 4 of 11 right.", "action": "practice", "params": {"subject": "physics", "topic": "projectile-motion", "count": "10"}}
+    {"key": "weak_topic:physics:projectile-motion", "rule": "weak_topic", "message": "Focus on Projectile motion. You got 4 of 11 right.", "action": "practice", "params": {"subject": "physics", "topic": "projectile-motion", "count": "10"}}
   ]
 }
 ```
@@ -271,6 +280,10 @@ the result screen, not a chart. `tip` is the one coach tip most relevant to this
 - **Before unlocking.** Before 20 answers, `unlocked` is false, `tips` is empty and
   `answers_needed` says how many more.
 - **Up to 5 tips**, in the order the plan describes.
+- **Keys** are `rule:subject:target` (topic and chapter slugs are only unique within a subject).
+  `params` always include `subject`, so every button can start its practice set.
+- **Freshness.** Unlocked tips are cached for 10 minutes so the list doesn't jump around, and
+  refreshed when a session finishes. Before unlocking, the count is always current.
 - **What each `action` opens in the app:**
 
 | `action` | Opens |
