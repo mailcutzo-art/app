@@ -3168,3 +3168,3257 @@ questions:
     answer: 0
     explanation: "A: 27 + 1 = 24 + A_X so A_X = 4; Z: 13 + 0 = 11 + Z_X so Z_X = 2. X is ^{4}_{2}He, an alpha particle."
 
+  - id: phy-nuc-151
+    topic: nuclear-fission
+    subtopic: Compound nucleus
+    concept: U-235 absorbs a neutron to form excited U-236 which then splits
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [fission, compound-nucleus]
+    stem: Which statement correctly describes the first step in the neutron-induced fission of ^{235}U?
+    options:
+      - The neutron bounces off and its kinetic energy splits the nucleus directly
+      - The neutron knocks a proton out of ^{235}U, which then splits
+      - The neutron splits into a proton and an electron inside the nucleus
+      - The neutron is absorbed to form ^{236}U in an excited state, which then splits
+    answer: 3
+    explanation: "NCERT writes ^{1}n + ^{235}U → ^{236}U → fragments + neutrons. The captured neutron forms the compound nucleus ^{236}U in a highly excited state that deforms and splits; its binding energy, not its kinetic energy, supplies the excitation."
+
+  - id: phy-nuc-152
+    topic: nuclear-fission
+    subtopic: Energy from 1 kg
+    concept: Energy released by complete fission of 1 kg of U-235
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 120
+    ncert: true
+    battle: false
+    formula: E = (m/M)N_A × 200 MeV
+    tags: [fission, avogadro, multi-concept]
+    stem: If each fission of ^{235}U releases 200 MeV, the energy released by the complete fission of 1 kg of ^{235}U is about (N_A = 6.02 × 10^{23} mol^{-1}, 1 MeV = 1.6 × 10^{-13} J)
+    options:
+      - 8.2 × 10^{10} J
+      - 9.0 × 10^{16} J
+      - 8.2 × 10^{13} J
+      - 1.9 × 10^{16} J
+    answer: 2
+    explanation: "Number of nuclei = (1000/235) × 6.02 × 10^{23} = 2.56 × 10^{24}. E = 2.56 × 10^{24} × 200 × 1.6 × 10^{-13} ≈ 8.2 × 10^{13} J. Using 1 g instead of 1000 g gives 8.2 × 10^{10} J; 9 × 10^{16} J would require converting all the mass."
+
+  - id: phy-nuc-153
+    topic: nuclear-fission
+    subtopic: Fission rate
+    concept: Fissions per second needed for a given reactor power
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: n = P/(E per fission)
+    tags: [fission, reactor-power]
+    stem: A reactor produces 100 MW of thermal power from ^{235}U fission, each releasing 200 MeV. The number of fissions per second is about (1 MeV = 1.6 × 10^{-13} J)
+    options:
+      - 6.3 × 10^{20}
+      - 3.1 × 10^{15}
+      - 5.0 × 10^{5}
+      - 3.1 × 10^{18}
+    answer: 3
+    explanation: "Energy per fission = 200 × 1.6 × 10^{-13} = 3.2 × 10^{-11} J. n = 10^{8}/3.2 × 10^{-11} ≈ 3.1 × 10^{18} per second. Dividing by 200 MeV without converting to joules gives 5 × 10^{5}."
+
+  - id: phy-nuc-154
+    topic: nuclear-fission
+    subtopic: Fuel consumption
+    concept: Mass of U-235 consumed per day by a reactor
+    category: numerical
+    format: case
+    difficulty: 5
+    time: 160
+    ncert: false
+    battle: false
+    formula: m = (P t/E_f)(M/N_A)
+    tags: [fission, reactor-power, multi-concept]
+    stem: A reactor runs at 100 MW thermal power for one day (86400 s) using ^{235}U, with 200 MeV per fission. The mass of ^{235}U fissioned in the day is about (N_A = 6.02 × 10^{23} mol^{-1}, 1 MeV = 1.6 × 10^{-13} J)
+    options:
+      - 105 g
+      - 1.05 kg
+      - 1.2 g
+      - 10.5 kg
+    answer: 0
+    explanation: "Fissions per second = 10^{8}/3.2 × 10^{-11} = 3.125 × 10^{18}; per day 2.7 × 10^{23}. Moles = 2.7 × 10^{23}/6.02 × 10^{23} = 0.448; mass = 0.448 × 235 g ≈ 105 g. A coal plant would burn thousands of tonnes for the same energy."
+
+  - id: phy-nuc-155
+    topic: nuclear-fission
+    subtopic: Multiplication factor
+    concept: Meaning of the multiplication factor K
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [chain-reaction, multiplication-factor]
+    stem: |-
+      The multiplication factor K is the ratio of the number of fissions in one generation to that in the preceding generation. Consider:
+      I. K = 1 gives a steady, controlled chain reaction.
+      II. K > 1 causes the reaction rate to grow and can lead to an explosion.
+      III. K < 1 means the chain reaction gradually dies out.
+      IV. A power reactor is normally operated with K much greater than 1.
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and IV only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: "A reactor is kept critical (K = 1) by control rods; supercritical K > 1 grows exponentially, as in a bomb, and subcritical K < 1 dies out. Operating with K much greater than 1 would be dangerous, so IV is false."
+
+  - id: phy-nuc-156
+    topic: nuclear-fission
+    subtopic: Moderator
+    concept: Heavy water is a good moderator because it absorbs few neutrons
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [moderator, reactor, trap]
+    stem: |-
+      Assertion (A): Heavy water is used as a moderator in some nuclear reactors.
+      Reason (R): Heavy water absorbs neutrons strongly and so reduces the rate of fission.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: "Heavy water is a good moderator because its light deuterium nuclei slow neutrons through collisions while absorbing very few of them. Absorbing neutrons is the job of control rods (cadmium, boron), so R is false."
+
+  - id: phy-nuc-157
+    topic: nuclear-fission
+    subtopic: Chain reaction
+    concept: Matching K values and reactor parts with their effects
+    category: application
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [chain-reaction, reactor]
+    stem: |-
+      Match List I with List II.
+      List I:
+      P. K = 1
+      Q. K > 1
+      R. K < 1
+      S. Moderator
+      List II:
+      1. Chain reaction dies out
+      2. Steady controlled chain reaction
+      3. Slows down fast neutrons
+      4. Rapidly growing, explosive chain reaction
+    options:
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-4, R-1, S-3
+      - P-2, Q-1, R-4, S-3
+      - P-1, Q-4, R-2, S-3
+    answer: 1
+    explanation: "Critical (K = 1) is steady, supercritical (K > 1) grows explosively and subcritical (K < 1) dies out. The moderator slows neutrons so that U-235 captures them."
+
+  - id: phy-nuc-158
+    topic: nuclear-fission
+    subtopic: Natural uranium
+    concept: Natural uranium contains only about 0.7% U-235
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [uranium, enrichment]
+    stem: Which statement about natural uranium used in reactors is correct?
+    options:
+      - ^{238}U undergoes fission easily with thermal neutrons
+      - It is almost entirely ^{235}U
+      - It is about 99.3% ^{238}U and only about 0.7% fissile ^{235}U, so it is often enriched in ^{235}U
+      - ^{235}U and ^{238}U are isobars
+    answer: 2
+    explanation: "Natural uranium is mostly U-238, which fissions only with fast neutrons; the thermally fissile U-235 is just 0.7%, so fuel is enriched to a few per cent. The two are isotopes (same Z), not isobars."
+
+  - id: phy-nuc-159
+    topic: nuclear-fusion
+    subtopic: Sun's core
+    concept: Temperature of the sun's core ≈ 1.5 × 10^{7} K
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [sun, temperature]
+    stem: The temperature in the core of the sun, where fusion takes place, is about
+    options:
+      - 1.5 × 10^{12} K
+      - 6000 K
+      - 1.5 × 10^{4} K
+      - 1.5 × 10^{7} K
+    answer: 3
+    explanation: "The sun's core is at about 1.5 × 10^{7} K, hot enough for the proton–proton cycle. About 6000 K is the temperature of its visible surface."
+
+  - id: phy-nuc-160
+    topic: nuclear-fusion
+    subtopic: Proton–proton cycle
+    concept: Net products of the p–p cycle
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [pp-cycle, ncert-line]
+    stem: |-
+      In the net proton–proton cycle 4 ^{1}H + 2e^{−} → ^{4}He + 2ν + 6γ + 26.7 MeV, consider:
+      I. Four hydrogen nuclei are converted into one helium nucleus.
+      II. Neutrinos are emitted.
+      III. The mass of the products is less than that of the reactants.
+      IV. Neutrons are released as in fission.
+      Which are correct?
+    options:
+      - I, II, III and IV
+      - I and IV only
+      - II and IV only
+      - I, II and III only
+    answer: 3
+    explanation: "The cycle turns 4 protons into one He-4, emitting neutrinos and gamma rays, and the lost mass appears as 26.7 MeV. No free neutrons are released in the net cycle, so IV is false."
+
+  - id: phy-nuc-161
+    topic: nuclear-fusion
+    subtopic: Energy per nucleon
+    concept: Energy released per nucleon in the p–p cycle
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: E/A = 26.7 MeV/4
+    tags: [pp-cycle]
+    stem: The p–p cycle releases 26.7 MeV while fusing 4 protons into helium. The energy released per nucleon is about
+    options:
+      - 26.7 MeV
+      - 6.7 MeV
+      - 13.4 MeV
+      - 0.85 MeV
+    answer: 1
+    explanation: "26.7/4 ≈ 6.7 MeV per nucleon, far more than the roughly 0.85 MeV per nucleon of U-235 fission. This is why fusion gives more energy per unit mass of fuel."
+
+  - id: phy-nuc-162
+    topic: nuclear-fusion
+    subtopic: Fraction of mass converted
+    concept: About 0.7% of hydrogen mass converts to energy in the p–p cycle
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: f = Q/(4m_Hc^2)
+    tags: [pp-cycle, mass-energy]
+    stem: In the p–p cycle, 26.7 MeV is released for every four hydrogen atoms (each 1.007825 u) converted into helium. The fraction of the hydrogen mass converted into energy is about (1 u = 931.5 MeV)
+    options:
+      - 0.07%
+      - 7%
+      - 0.7%
+      - 28%
+    answer: 2
+    explanation: "Rest energy of 4 H atoms = 4 × 1.007825 × 931.5 ≈ 3755 MeV. Fraction = 26.7/3755 ≈ 0.0071 = 0.7%. Forgetting to convert the hydrogen masses to MeV, or misplacing the decimal, gives the other options."
+
+  - id: phy-nuc-163
+    topic: nuclear-fusion
+    subtopic: Thermal energy vs barrier
+    concept: Average thermal energy at 10^{7} K is far below the Coulomb barrier
+    category: application
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: E_{avg} = (3/2)kT
+    tags: [coulomb-barrier, fusion, multi-concept]
+    stem: At the sun's core temperature of about 10^{7} K, the average kinetic energy (3/2)kT of a proton is about 1.3 keV, while the Coulomb barrier between two protons is about 400 keV. Fusion still occurs because
+    options:
+      - the average proton energy exceeds the barrier
+      - a small fraction of protons in the high-energy tail of the distribution, together with quantum tunnelling, can penetrate the barrier
+      - the Coulomb force is switched off at high temperature
+      - neutrons in the core shield the protons from each other
+    answer: 1
+    explanation: "(3/2)kT = 1.5 × 1.38 × 10^{-23} × 10^{7} J ≈ 1.3 keV, far below 400 keV. Only a few protons in the tail of the Maxwell distribution have much higher energies, and quantum tunnelling lets them fuse at a slow but steady rate that keeps the sun burning for billions of years."
+
+  - id: phy-nuc-164
+    topic: nuclear-fusion
+    subtopic: Hydrogen bomb
+    concept: A fission bomb provides the temperature needed for a fusion bomb
+    category: factual
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [hydrogen-bomb, fusion]
+    stem: |-
+      Statement I: The hydrogen bomb is based on uncontrolled nuclear fusion.
+      Statement II: A fission explosion is used to produce the very high temperature needed to start the fusion in a hydrogen bomb.
+    options:
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+    answer: 2
+    explanation: "A hydrogen (thermonuclear) bomb releases energy by uncontrolled fusion of hydrogen isotopes. The required ignition temperature of millions of kelvin is obtained by first exploding a fission device, so both statements are correct."
+
+  - id: phy-nuc-165
+    topic: nuclear-fusion
+    subtopic: Stellar evolution
+    concept: After hydrogen is exhausted, stars fuse helium into heavier elements
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [stars, nucleosynthesis]
+    stem: Which statement about fusion in stars is correct?
+    options:
+      - Once hydrogen is exhausted, a star's core cools and all fusion stops forever
+      - Stars can build elements far beyond iron by fusion that releases energy
+      - When hydrogen in the core is used up, the core contracts and heats up until helium fuses to form carbon and heavier elements
+      - Stars fuse iron into uranium to produce their energy
+    answer: 2
+    explanation: "NCERT notes that as the hydrogen core burns out, it contracts and heats, allowing helium to fuse into carbon; heavier elements follow in massive stars. Fusion releases energy only up to about iron (A ≈ 56), where E_{bn} peaks."
+
+  - id: phy-nuc-166
+    topic: nuclear-reactions-q-value
+    subtopic: D–D Q-value
+    concept: Q-value of D–D reaction producing tritium
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: Q = (Σm_i − Σm_f) × 931.5 MeV
+    tags: [q-value, deuterium]
+    stem: "For ^{2}H + ^{2}H → ^{3}H + ^{1}H, the atomic masses are m(^{2}H) = 2.014102 u, m(^{3}H) = 3.016049 u and m(^{1}H) = 1.007825 u. The energy released is about (1 u = 931.5 MeV)"
+    options:
+      - 3.27 MeV
+      - 4.03 MeV
+      - 0.43 MeV
+      - 8.06 MeV
+    answer: 1
+    explanation: "Reactants 4.028204 u, products 4.023874 u, so Δm = 0.004330 u and Q = 0.004330 × 931.5 ≈ 4.03 MeV. 3.27 MeV is the other D–D branch producing ^{3}He and a neutron."
+
+  - id: phy-nuc-167
+    topic: nuclear-reactions-q-value
+    subtopic: Meaning of Q
+    concept: Positive Q means products have more kinetic energy than reactants
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [q-value]
+    stem: For a nuclear reaction with Q = +5 MeV, which statement is correct?
+    options:
+      - The products are heavier than the reactants by 5 MeV/c^2
+      - The total kinetic energy of the reactants exceeds that of the products by 5 MeV
+      - The total kinetic energy of the products exceeds that of the reactants by 5 MeV
+      - The number of nucleons increases by 5
+    answer: 2
+    explanation: "Energy conservation gives K_{products} − K_{reactants} = Q = (Σm_i − Σm_f)c^2. Positive Q means rest mass is converted into 5 MeV of extra kinetic energy; the products are lighter, not heavier."
+
+  - id: phy-nuc-168
+    topic: nuclear-reactions-q-value
+    subtopic: Balancing
+    concept: Neutron capture by Li-6 gives tritium and helium
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [balancing, tritium]
+    stem: "In ^{6}_{3}Li + ^{1}_{0}n → ^{3}_{1}H + X, the product X is"
+    options:
+      - ^{2}_{1}H
+      - ^{3}_{2}He
+      - ^{4}_{1}H
+      - ^{4}_{2}He
+    answer: 3
+    explanation: "A: 6 + 1 = 3 + A_X gives A_X = 4; Z: 3 + 0 = 1 + Z_X gives Z_X = 2. X is ^{4}_{2}He. This reaction is used to breed tritium for fusion fuel."
+
+  - id: phy-nuc-169
+    topic: nuclear-reactions-q-value
+    subtopic: Types of reactions
+    concept: Classifying famous nuclear reactions
+    category: application
+    format: match
+    difficulty: 3
+    time: 90
+    ncert: true
+    battle: false
+    tags: [nuclear-reaction, classification]
+    stem: |-
+      Match List I (reaction) with List II (description).
+      List I:
+      P. ^{1}n + ^{235}U → ^{141}Ba + ^{92}Kr + 3 ^{1}n
+      Q. ^{2}H + ^{3}H → ^{4}He + ^{1}n
+      R. ^{14}N + ^{4}He → ^{17}O + ^{1}H
+      S. ^{9}Be + ^{4}He → ^{12}C + ^{1}n
+      List II:
+      1. First artificial transmutation (Rutherford)
+      2. Nuclear fusion
+      3. Reaction that led to the discovery of the neutron
+      4. Nuclear fission
+    options:
+      - P-4, Q-2, R-1, S-3
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-1, R-2, S-3
+    answer: 0
+    explanation: "P splits a heavy nucleus (fission); Q joins light nuclei (fusion); R is Rutherford's 1919 transmutation of nitrogen into oxygen; S is the beryllium reaction behind Chadwick's discovery of the neutron."
+
+  - id: phy-nuc-170
+    topic: nuclear-composition
+    subtopic: Neutron numbers
+    concept: Ordering nuclides by neutron number, not mass number
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [neutron-number, ordering, trap]
+    stem: Arrange ^{57}_{26}Fe, ^{58}_{28}Ni, ^{59}_{27}Co and ^{64}_{30}Zn in increasing order of the number of neutrons.
+    options:
+      - ^{57}Fe < ^{58}Ni < ^{59}Co < ^{64}Zn
+      - ^{58}Ni < ^{57}Fe < ^{59}Co < ^{64}Zn
+      - ^{57}Fe < ^{59}Co < ^{58}Ni < ^{64}Zn
+      - ^{64}Zn < ^{59}Co < ^{58}Ni < ^{57}Fe
+    answer: 1
+    explanation: "N = A − Z: Ni-58 has 30, Fe-57 has 31, Co-59 has 32 and Zn-64 has 34. Ordering by mass number instead puts Fe-57 first, which is the trap."
+
+  - id: phy-nuc-171
+    topic: nuclear-composition
+    subtopic: Isobars
+    concept: Isobars are different elements with different chemistry
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [isobars, confused-pair]
+    stem: |-
+      Assertion (A): ^{40}_{18}Ar and ^{40}_{20}Ca have different chemical properties.
+      Reason (R): Isobars have the same number of neutrons.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: "Ar-40 and Ca-40 have different Z, so they are different elements (a noble gas and an alkaline earth metal) with different chemistry. Isobars share mass number; their neutron numbers differ (22 and 20), so R is false."
+
+  - id: phy-nuc-172
+    topic: nuclear-composition
+    subtopic: Classification
+    concept: Identifying correct statements about nuclide pairs
+    category: application
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [isotopes, isobars, isotones]
+    stem: Which statement is correct?
+    options:
+      - ^{14}_{6}C and ^{14}_{7}N are isotopes
+      - ^{2}_{1}H and ^{3}_{2}He are isotones
+      - ^{3}_{1}H and ^{3}_{2}He are isotones
+      - ^{16}_{8}O and ^{17}_{8}O are isobars
+    answer: 1
+    explanation: "^{2}H (N = 1) and ^{3}He (N = 1) share neutron number, so they are isotones. C-14/N-14 and H-3/He-3 are isobars, and O-16/O-17 are isotopes."
+
+  - id: phy-nuc-173
+    topic: atomic-mass-unit
+    subtopic: Particle masses
+    concept: Matching particles with their masses in u
+    category: factual
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [nucleon-mass, electron-mass]
+    stem: |-
+      Match List I with List II.
+      List I:
+      P. Proton
+      Q. Neutron
+      R. Electron
+      S. Hydrogen atom (^{1}H)
+      List II:
+      1. 1.008665 u
+      2. 0.000549 u
+      3. 1.007825 u
+      4. 1.007276 u
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-1, R-2, S-4
+      - P-1, Q-4, R-2, S-3
+      - P-4, Q-1, R-2, S-3
+    answer: 3
+    explanation: "m_p = 1.007276 u, m_n = 1.008665 u, m_e = 0.000549 u and m_H = m_p + m_e ≈ 1.007825 u. Swapping the proton and hydrogen-atom values is the common confusion."
+
+  - id: phy-nuc-174
+    topic: atomic-mass-unit
+    subtopic: Link to Avogadro number
+    concept: N_A × 1 u = 1 g
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [amu, avogadro]
+    stem: The product of Avogadro's number (6.022 × 10^{23}) and 1 u (1.6605 × 10^{-27} kg) is
+    options:
+      - 1 g
+      - 1 kg
+      - 12 g
+      - 931.5 MeV
+    answer: 0
+    explanation: "6.022 × 10^{23} × 1.6605 × 10^{-27} kg = 1.000 × 10^{-3} kg = 1 g. That is why a mole of C-12 atoms (12 u each) has a mass of exactly 12 g."
+
+  - id: phy-nuc-175
+    topic: atomic-mass-unit
+    subtopic: Average atomic mass
+    concept: Average atomic mass of magnesium from three isotopes
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: m_{avg} = Σf_im_i
+    tags: [isotopic-abundance]
+    stem: Magnesium has isotopes of masses 23.985 u (78.99%), 24.986 u (10.00%) and 25.983 u (11.01%). Its average atomic mass is about
+    options:
+      - 24.31 u
+      - 24.98 u
+      - 24.00 u
+      - 25.00 u
+    answer: 0
+    explanation: "m = 0.7899 × 23.985 + 0.1000 × 24.986 + 0.1101 × 25.983 = 18.946 + 2.499 + 2.861 ≈ 24.31 u. The unweighted mean (24.98 u) ignores that Mg-24 is by far the most abundant."
+
+  - id: phy-nuc-176
+    topic: discovery-of-neutron
+    subtopic: Energy of neutron decay
+    concept: Energy released in free neutron decay from masses
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Q = [m_n − m(^{1}H)] × 931.5 MeV
+    tags: [neutron, q-value, multi-concept]
+    stem: Using m_n = 1.008665 u and m(^{1}H) = 1.007825 u, the energy released when a free neutron decays into a proton, an electron and an antineutrino is about (1 u = 931.5 MeV)
+    options:
+      - 0.78 MeV
+      - 1.29 MeV
+      - 0.51 MeV
+      - 7.8 MeV
+    answer: 0
+    explanation: "The products p + e^{−} have almost exactly the mass of a hydrogen atom, so Q = (1.008665 − 1.007825) × 931.5 ≈ 0.78 MeV. The positive Q is why a free neutron is unstable."
+
+  - id: phy-nuc-177
+    topic: discovery-of-neutron
+    subtopic: Paraffin in Chadwick's experiment
+    concept: Neutrons lose most energy in collisions with protons of equal mass
+    category: concept
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [chadwick, elastic-collision]
+    stem: In Chadwick's experiment, the unknown neutral radiation ejected energetic protons from paraffin wax. Hydrogen-rich paraffin was effective because
+    options:
+      - paraffin absorbs gamma rays completely
+      - protons in paraffin are loosely bound electrons
+      - in a head-on elastic collision, a particle transfers nearly all its kinetic energy to a target of equal mass
+      - paraffin emits neutrons when heated
+    answer: 2
+    explanation: "A neutron and a proton have nearly equal masses, so a head-on elastic collision can pass almost all the neutron's kinetic energy to the proton. This gave the high proton energies and let Chadwick estimate the neutron's mass."
+
+  - id: phy-nuc-178
+    topic: nuclear-size
+    subtopic: Graphs
+    concept: R^3 vs A is linear
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [nuclear-radius, graph]
+    stem: For nuclei obeying R = R_0A^{1/3}, which plot is a straight line through the origin?
+    options:
+      - R against 1/A
+      - R against A
+      - R^2 against A
+      - R^3 against A
+    answer: 3
+    explanation: "R^3 = R_0^3A, a direct proportion, so R^3 against A is a straight line through the origin with slope R_0^3. R against A is a cube-root curve that bends over."
+
+  - id: phy-nuc-179
+    topic: nuclear-size
+    subtopic: Ratio of radii
+    concept: Radius ratio for mass numbers 216 and 8
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: R ∝ A^{1/3}
+    tags: [nuclear-radius, ratio]
+    stem: The ratio of the radius of a nucleus with A = 216 to that of a nucleus with A = 8 is
+    options:
+      - "√27"
+      - "27"
+      - "9"
+      - "3"
+    answer: 3
+    explanation: "R_1/R_2 = (216/8)^{1/3} = 27^{1/3} = 3. The mass ratio is 27 and the area ratio is 9."
+
+  - id: phy-nuc-180
+    topic: nuclear-size
+    subtopic: Scaling laws
+    concept: Scaling of radius, volume, area and density with A
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [nuclear-radius, scaling]
+    stem: |-
+      For a nucleus of mass number A, consider:
+      I. Radius ∝ A^{1/3}
+      II. Volume ∝ A
+      III. Surface area ∝ A^{2/3}
+      IV. Density ∝ A^{−1}
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and II only
+      - II and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "R = R_0A^{1/3}, so V ∝ R^3 ∝ A and S ∝ R^2 ∝ A^{2/3}. Mass ∝ A and V ∝ A, so density is independent of A; IV is false."
+
+  - id: phy-nuc-181
+    topic: nuclear-density
+    subtopic: Comparing two nuclei
+    concept: Ratios of radius, volume, area and density for A = 216 and 27
+    category: application
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: false
+    battle: false
+    tags: [nuclear-density, scaling]
+    stem: |-
+      Two nuclei have mass numbers 216 and 27. Match each quantity in List I with the ratio (216 : 27) in List II.
+      List I:
+      P. Radii
+      Q. Volumes
+      R. Surface areas
+      S. Densities
+      List II:
+      1. 1 : 1
+      2. 2 : 1
+      3. 4 : 1
+      4. 8 : 1
+    options:
+      - P-4, Q-2, R-3, S-1
+      - P-2, Q-4, R-3, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: "A ratio = 8, so radii ∝ A^{1/3} give 2 : 1, volumes ∝ A give 8 : 1, areas ∝ A^{2/3} give 4 : 1, and densities are equal (1 : 1)."
+
+  - id: phy-nuc-182
+    topic: nuclear-density
+    subtopic: Nucleus vs atom
+    concept: Nuclear density far exceeds ordinary density because atoms are mostly empty
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [nuclear-density]
+    stem: |-
+      Assertion (A): The density of nuclear matter is about 10^{14} times that of ordinary matter such as water.
+      Reason (R): Nearly all the mass of an atom is concentrated in the nucleus, whose radius is only about 10^{-4} to 10^{-5} of the atomic radius.
+    options:
+      - Both A and R are true but R is not the correct explanation of A
+      - Both A and R are true and R is the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Ordinary matter is made of atoms whose mass sits in a nucleus occupying about 10^{-12} to 10^{-15} of the atomic volume. Squeezing that mass into so small a volume gives the enormous nuclear density; R explains A."
+
+  - id: phy-nuc-183
+    topic: mass-energy
+    subtopic: Chemical mass change
+    concept: Mass lost when burning coal is tiny
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: Δm = E/c^2
+    tags: [mass-energy, chemical-energy]
+    stem: Burning 1 kg of coal releases about 3 × 10^{7} J of heat. The decrease in mass of the reacting substances is about
+    options:
+      - 0.1 kg
+      - 3.3 × 10^{-7} kg
+      - 3.3 × 10^{-10} kg
+      - zero exactly
+    answer: 2
+    explanation: "Δm = E/c^2 = 3 × 10^{7}/9 × 10^{16} ≈ 3.3 × 10^{-10} kg, a fraction of about 10^{-10} that is far too small to weigh. Chemical reactions do lose mass, just imperceptibly."
+
+  - id: phy-nuc-184
+    topic: mass-energy
+    subtopic: Hydrogen atom mass
+    concept: Hydrogen atom is lighter than proton + electron by 13.6 eV/c^2
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [mass-energy, binding-energy, multi-concept]
+    stem: |-
+      Statement I: The mass of a hydrogen atom in its ground state is slightly less than the sum of the masses of a free proton and a free electron.
+      Statement II: This mass difference is equivalent to 13.6 eV, the ionisation energy of hydrogen.
+    options:
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+      - Both Statement I and Statement II are incorrect
+      - Both Statement I and Statement II are correct
+    answer: 3
+    explanation: "Any bound system is lighter than its separated parts by E_b/c^2. For hydrogen E_b = 13.6 eV, so the atom is lighter by 13.6 eV/c^2 (about 1.5 × 10^{-8} u). This is the atomic analogue of the nuclear mass defect."
+
+  - id: phy-nuc-185
+    topic: mass-energy
+    subtopic: Graph of E vs m
+    concept: E vs m is a straight line of slope c^2
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [mass-energy, graph]
+    stem: A graph of rest energy E (y-axis) against rest mass m (x-axis) for different particles is
+    options:
+      - a parabola because E ∝ m^2
+      - a straight line through the origin with slope c
+      - a straight line through the origin with slope c^2
+      - a horizontal line because energy is conserved
+    answer: 2
+    explanation: "E = mc^2 is a direct proportion with constant c^2 ≈ 9 × 10^{16} J kg^{-1}, so the graph is a straight line through the origin with slope c^2. The square is on c, not on m."
+
+  - id: phy-nuc-186
+    topic: mass-defect-binding-energy
+    subtopic: Ordering stability
+    concept: Ordering light nuclei by binding energy per nucleon
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [be-curve, ordering, trap]
+    stem: The binding energies are ^{4}He 28.3 MeV, ^{12}C 92.2 MeV, ^{14}N 104.7 MeV and ^{16}O 127.6 MeV. Arrange them in increasing order of binding energy per nucleon.
+    options:
+      - ^{16}O < ^{12}C < ^{14}N < ^{4}He
+      - ^{4}He < ^{12}C < ^{14}N < ^{16}O
+      - ^{14}N < ^{4}He < ^{12}C < ^{16}O
+      - ^{4}He < ^{14}N < ^{12}C < ^{16}O
+    answer: 3
+    explanation: "E_{bn}: He-4 7.07, N-14 104.7/14 = 7.48, C-12 92.2/12 = 7.68, O-16 127.6/16 = 7.98 MeV. Ordering by total binding energy wrongly puts N-14 after C-12."
+
+  - id: phy-nuc-187
+    topic: mass-defect-binding-energy
+    subtopic: Tritium
+    concept: Binding energy of tritium from atomic masses
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: false
+    battle: false
+    formula: E_b = [m_H + 2m_n − m(^{3}H)] × 931.5 MeV
+    tags: [tritium, mass-defect]
+    stem: With m(^{1}H) = 1.007825 u, m_n = 1.008665 u and m(^{3}H) = 3.016049 u, the binding energy of tritium is about (1 u = 931.5 MeV)
+    options:
+      - 7.72 MeV
+      - 2.83 MeV
+      - 8.48 MeV
+      - 9.3 MeV
+    answer: 2
+    explanation: "ΔM = 1.007825 + 2 × 1.008665 − 3.016049 = 0.009106 u, so E_b = 0.009106 × 931.5 ≈ 8.48 MeV (2.83 MeV per nucleon). 7.72 MeV is the value for ^{3}He."
+
+  - id: phy-nuc-188
+    topic: mass-defect-binding-energy
+    subtopic: Proton separation energy
+    concept: Energy to remove a proton from He-4
+    category: numerical
+    format: case
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: S_p = [m(^{3}H) + m(^{1}H) − m(^{4}He)] × 931.5 MeV
+    tags: [separation-energy, helium, multi-concept]
+    stem: To remove one proton from ^{4}He leaves ^{3}H. Given m(^{4}He) = 4.002603 u, m(^{3}H) = 3.016049 u and m(^{1}H) = 1.007825 u, the minimum energy needed is about (1 u = 931.5 MeV)
+    options:
+      - 8.48 MeV
+      - 7.07 MeV
+      - 28.3 MeV
+      - 19.8 MeV
+    answer: 3
+    explanation: "Δm = 3.016049 + 1.007825 − 4.002603 = 0.021271 u, so S_p = 0.021271 × 931.5 ≈ 19.8 MeV. This is far more than the average 7.07 MeV per nucleon, showing how tightly bound He-4 is."
+
+  - id: phy-nuc-189
+    topic: mass-defect-binding-energy
+    subtopic: Definitions
+    concept: Binding energy is not the energy to remove one nucleon
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [binding-energy, misconception]
+    stem: |-
+      Consider these statements:
+      I. Binding energy E_b = ΔMc^2, where ΔM is the mass defect.
+      II. Binding energy is usually expressed in MeV.
+      III. Binding energy is the energy needed to remove just one nucleon from the nucleus.
+      IV. A nucleus with positive binding energy is lighter than its separated nucleons.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and III only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: "I, II and IV are standard results. Binding energy is the energy to separate the nucleus into all its nucleons; removing one nucleon takes the separation energy, a different and smaller quantity, so III is false."
+
+  - id: phy-nuc-190
+    topic: mass-defect-binding-energy
+    subtopic: Mass defect vs stability
+    concept: A larger total mass defect does not mean greater stability
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [mass-defect, stability, trap]
+    stem: Nucleus X has a mass defect of 1.9 u (A = 235) and nucleus Y a mass defect of 0.53 u (A = 56). Which statement is correct?
+    options:
+      - X is more stable because its mass defect is greater
+      - Y is more stable because its binding energy per nucleon is greater
+      - Both are equally stable because both have positive mass defects
+      - Stability cannot depend on mass defect at all
+    answer: 1
+    explanation: "E_{bn}: X ≈ 1.9 × 931.5/235 ≈ 7.5 MeV; Y ≈ 0.53 × 931.5/56 ≈ 8.8 MeV. Stability depends on binding per nucleon, so Y is more stable even though X has the larger total mass defect."
+
+  - id: phy-nuc-191
+    topic: binding-energy-curve
+    subtopic: Energy-releasing processes
+    concept: Reading the binding energy curve to decide which processes release energy
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    diagram: "Graph of binding energy per nucleon E_bn (MeV, y-axis 0 to 10) against mass number A (x-axis 0 to 250). The curve rises steeply from A = 2 to a broad maximum near A = 56 and then falls slowly. Four points are marked on the curve: P at A = 2 (1.1 MeV), Q at A = 56 (8.8 MeV), R at A = 120 (8.5 MeV) and S at A = 240 (7.6 MeV)."
+    tags: [be-curve, fission, fusion]
+    stem: Using the marked points on the binding energy curve, which process releases energy?
+    options:
+      - Two nuclei at Q fusing into one nucleus of A = 112
+      - A nucleus at Q splitting into two nuclei of A = 28
+      - Two nuclei at R fusing into one nucleus at S
+      - A nucleus at S splitting into two nuclei at R
+    answer: 3
+    explanation: "Energy is released when the products have larger E_{bn}. S → 2R raises it from 7.6 to 8.5 MeV (fission). Splitting Q or fusing R or Q moves away from the peak and needs energy."
+
+  - id: phy-nuc-192
+    topic: binding-energy-curve
+    subtopic: Iron peak
+    concept: Iron cannot release energy by fission or fusion
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [iron, be-curve]
+    stem: |-
+      Assertion (A): Energy cannot be obtained either by fission or by fusion of ^{56}Fe nuclei.
+      Reason (R): ^{56}Fe lies near the maximum of the binding energy per nucleon curve.
+    options:
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - Both A and R are true and R is the correct explanation of A
+      - A is false but R is true
+    answer: 2
+    explanation: "At the peak, any change (splitting or joining) produces nuclei with lower E_{bn}, so energy must be supplied. That is why iron accumulates in the cores of massive stars. R explains A."
+
+  - id: phy-nuc-193
+    topic: binding-energy-curve
+    subtopic: Computing E_bn
+    concept: E_bn = total binding energy / A
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: E_{bn} = E_b/A
+    tags: [binding-energy]
+    stem: The total binding energy of ^{235}_{92}U is 1784 MeV. Its binding energy per nucleon is about
+    options:
+      - 7.6 MeV
+      - 19.4 MeV
+      - 12.5 MeV
+      - 8.8 MeV
+    answer: 0
+    explanation: "E_{bn} = 1784/235 ≈ 7.6 MeV. Dividing by Z = 92 (19.4 MeV) or N = 143 (12.5 MeV) is wrong; all 235 nucleons share the binding."
+
+  - id: phy-nuc-194
+    topic: nuclear-force
+    subtopic: Saturation
+    concept: Nuclear force shows saturation due to short range
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [nuclear-force, saturation]
+    stem: Which statement about the nuclear force is correct?
+    options:
+      - Each nucleon attracts every other nucleon in the nucleus equally strongly
+      - A nucleon interacts only with a few nearest neighbours, so the force shows saturation
+      - The nuclear force grows stronger with distance, like a spring
+      - The nuclear force acts only between protons and neutrons, not between like nucleons
+    answer: 1
+    explanation: "Because the force falls to zero beyond a few fm, each nucleon feels only its neighbours (saturation), which keeps E_{bn} nearly constant for medium nuclei. It acts between all pairs, p–p, n–n and n–p."
+
+  - id: phy-nuc-195
+    topic: nuclear-force
+    subtopic: Potential energy curve
+    concept: Force is zero where the potential energy is minimum
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    diagram: "Graph of potential energy U (MeV, y-axis from −100 to +100) of a pair of nucleons against separation r (fm, x-axis 0 to 3). The curve is large and positive at small r, crosses zero near r = 0.6 fm, reaches a minimum of about −100 MeV at point B (r = 0.8 fm), then rises towards zero, becoming almost zero beyond r = 2.5 fm. Point A is marked at r = 0.5 fm on the steep left side and point C at r = 1.5 fm on the rising right side."
+    tags: [nuclear-force, potential-energy]
+    stem: The graph shows the potential energy of a pair of nucleons against their separation. At which point is the force between the nucleons zero, and what is its nature at C?
+    options:
+      - Zero at B; repulsive at C
+      - Zero at A; repulsive at C
+      - Zero at B; attractive at C
+      - Zero at C; attractive at A
+    answer: 2
+    explanation: "F = −dU/dr is zero at the minimum B. At C (r > r_0) U increases with r, so F is negative, i.e. attractive. At A the slope is steeply negative, giving strong repulsion."
+
+  - id: phy-nuc-196
+    topic: nuclear-force
+    subtopic: Range
+    concept: Nuclear force does not act between nucleus and atomic electrons
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [nuclear-force, misconception]
+    stem: |-
+      Assertion (A): The nuclear force helps bind the electrons of an atom to its nucleus.
+      Reason (R): The nuclear force is very short-ranged, acting only over a few femtometres.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "Electrons are about 10^{-10} m from the nucleus, far beyond the few-fm range of the nuclear force (and electrons do not feel it anyway). They are bound by the Coulomb force, so A is false while R is true."
+
+  - id: phy-nuc-197
+    topic: nuclear-force
+    subtopic: Nature of force
+    concept: Nuclear force is not inverse-square and is charge independent
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [nuclear-force]
+    stem: |-
+      Statement I: The nuclear force between two nucleons varies inversely as the square of the distance between them.
+      Statement II: The nuclear force between two nucleons does not depend on whether they carry charge.
+    options:
+      - Both Statement I and Statement II are correct
+      - Statement I is incorrect but Statement II is correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+    answer: 1
+    explanation: "The nuclear force has no simple inverse-square form; it falls to zero rapidly beyond a few fm. It is charge independent (similar for p–p, n–n and n–p), so only Statement II is correct."
+
+  - id: phy-nuc-198
+    topic: nuclear-fission
+    subtopic: Momentum sharing
+    concept: Fragments share kinetic energy in inverse ratio of their masses
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: K_1/K_2 = m_2/m_1
+    tags: [fission, momentum-conservation, multi-concept]
+    stem: A heavy nucleus at rest splits into two fragments with mass numbers 90 and 144, releasing 195 MeV as their kinetic energy. The kinetic energy of the lighter fragment is
+    options:
+      - 97.5 MeV
+      - 75 MeV
+      - 120 MeV
+      - 144 MeV
+    answer: 2
+    explanation: "Equal and opposite momenta give K ∝ 1/m, so K_{90}/K_{144} = 144/90 = 1.6. K_{90} = 195 × 144/234 = 120 MeV and K_{144} = 75 MeV. The lighter fragment gets more energy."
+
+  - id: phy-nuc-199
+    topic: nuclear-reactions-q-value
+    subtopic: Q from binding energies
+    concept: Q-value of Li-6 + d → 2 He-4 from binding energies
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: Q = ΣBE_{products} − ΣBE_{reactants}
+    tags: [q-value, binding-energy]
+    stem: "For ^{6}Li + ^{2}H → 2 ^{4}He, the binding energies are 32.0 MeV (^{6}Li), 2.2 MeV (^{2}H) and 28.3 MeV (^{4}He). The energy released is about"
+    options:
+      - 5.9 MeV
+      - 22.4 MeV
+      - 62.8 MeV
+      - −22.4 MeV
+    answer: 1
+    explanation: "Q = 2 × 28.3 − (32.0 + 2.2) = 56.6 − 34.2 = 22.4 MeV. Counting only one helium nucleus gives 28.3 − 34.2 = −5.9 MeV, a sign and factor error."
+
+  - id: phy-nuc-200
+    topic: nuclear-density
+    subtopic: Heavy vs light nuclei
+    concept: Heavier nucleus has more mass and volume but the same density
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [nuclear-density]
+    stem: Comparing a ^{208}Pb nucleus with a ^{16}O nucleus, which statement is correct?
+    options:
+      - Pb has greater mass and the same volume, so greater density
+      - Pb has greater mass and greater volume but about the same density
+      - Pb has greater density because it has more protons
+      - Pb has lower density because Coulomb repulsion spreads it out a lot
+    answer: 1
+    explanation: "Both mass and volume scale with A (208 vs 16), so their ratio, the density, is essentially the same about 2.3 × 10^{17} kg m^{-3} for all nuclei."
+
+  - id: phy-nuc-201
+    topic: nuclear-composition
+    subtopic: Ions
+    concept: Protons, neutrons and electrons in an ion
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [composition, ions]
+    stem: The ion ^{24}_{12}Mg^{2+} contains
+    options:
+      - 12 protons, 12 neutrons and 10 electrons
+      - 12 protons, 12 neutrons and 14 electrons
+      - 10 protons, 14 neutrons and 12 electrons
+      - 12 protons, 10 neutrons and 12 electrons
+    answer: 0
+    explanation: "Z = 12 protons, N = 24 − 12 = 12 neutrons, and a 2+ ion has lost two electrons: 12 − 2 = 10. Ionisation changes only the electrons, never the nucleus."
+
+  - id: phy-nuc-202
+    topic: nuclear-composition
+    subtopic: N = Z nuclei
+    concept: Identifying a nuclide with equal numbers of protons and neutrons
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [neutron-number]
+    stem: Which nuclide has equal numbers of protons and neutrons?
+    options:
+      - ^{56}_{26}Fe
+      - ^{39}_{19}K
+      - ^{23}_{11}Na
+      - ^{40}_{20}Ca
+    answer: 3
+    explanation: "Ca-40 has Z = 20 and N = 40 − 20 = 20. K-39 has N = 20 vs Z = 19, Na-23 has 12 vs 11, and Fe-56 has 30 vs 26."
+
+  - id: phy-nuc-203
+    topic: nuclear-composition
+    subtopic: Isotones
+    concept: Finding the mass number of an isotone
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [isotones]
+    stem: A nucleus Y with Z = 7 is an isotone of ^{13}_{6}C. The mass number of Y is
+    options:
+      - "14"
+      - "13"
+      - "12"
+      - "20"
+    answer: 0
+    explanation: "C-13 has N = 13 − 6 = 7. Y must also have N = 7, so A = Z + N = 7 + 7 = 14 (it is ^{14}N). Choosing 13 confuses isotones with isobars."
+
+  - id: phy-nuc-204
+    topic: nuclear-composition
+    subtopic: Mass number vs atomic mass
+    concept: Mass number is an integer count; atomic mass is not an integer
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [mass-number, amu]
+    stem: |-
+      Assertion (A): The mass number of a nuclide is always a whole number, but its atomic mass in u is generally not.
+      Reason (R): The mass number counts nucleons, while the atomic mass reflects the actual nucleon and electron masses reduced by the binding energy.
+    options:
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+      - Both A and R are true and R is the correct explanation of A
+    answer: 3
+    explanation: "A is a count, so it is an integer. The actual mass depends on m_p and m_n (not exactly 1 u) and the mass defect, so values like 15.994915 u for O-16 result. R explains A."
+
+  - id: phy-nuc-205
+    topic: nuclear-composition
+    subtopic: Isotopes
+    concept: Isotopes differ in physical properties that depend on mass
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [isotopes]
+    stem: |-
+      For two isotopes of the same element, consider:
+      I. They have the same number of electrons in the neutral atom.
+      II. They have different numbers of neutrons.
+      III. They have slightly different physical properties such as density and rate of diffusion.
+      IV. They have different atomic numbers.
+      Which are correct?
+    options:
+      - I, II, III and IV
+      - I and IV only
+      - II and IV only
+      - I, II and III only
+    answer: 3
+    explanation: "Same Z means the same electrons and chemistry (I), but different N (II) and hence different mass, which changes mass-dependent physical properties (III). Isotopes never differ in atomic number, so IV is false."
+
+  - id: phy-nuc-206
+    topic: nuclear-composition
+    subtopic: Isotope separation
+    concept: Isotopes cannot be separated chemically
+    category: application
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [isotopes, enrichment]
+    stem: To enrich uranium in ^{235}U, engineers use methods such as gaseous diffusion or centrifuges instead of chemical reactions. The reason is that ^{235}U and ^{238}U
+    options:
+      - are isobars with the same mass number
+      - have different chemical properties but the same mass
+      - differ in the number of protons
+      - have identical chemical properties but slightly different masses
+    answer: 3
+    explanation: "Isotopes have the same electronic structure, so chemistry cannot tell them apart. Their masses differ by 3 u, so physical processes that depend on mass (diffusion rate, centrifugal force) can separate them."
+
+  - id: phy-nuc-207
+    topic: nuclear-composition
+    subtopic: Isotopes
+    concept: Isotopes of an element occupy one place but may differ in stability
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [isotopes, trap]
+    stem: |-
+      Statement I: All isotopes of an element have the same nuclear stability because they have the same number of protons.
+      Statement II: Isotopes of an element have the same number of electrons in their neutral atoms.
+    options:
+      - Both Statement I and Statement II are correct
+      - Statement I is incorrect but Statement II is correct
+      - Statement I is correct but Statement II is incorrect
+      - Both Statement I and Statement II are incorrect
+    answer: 1
+    explanation: "Nuclear stability depends on the neutron number as well; for example C-12 is stable but C-14 is not. Neutral atoms of isotopes have Z electrons each, so Statement II is correct."
+
+  - id: phy-nuc-208
+    topic: atomic-mass-unit
+    subtopic: Neutron mass in kg
+    concept: m_n ≈ 1.675 × 10^{-27} kg
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [nucleon-mass]
+    stem: The mass of a neutron is about
+    options:
+      - 9.11 × 10^{-31} kg
+      - 1.675 × 10^{-27} kg
+      - 1.675 × 10^{-24} kg
+      - 1.66 × 10^{-30} kg
+    answer: 1
+    explanation: "m_n = 1.008665 u = 1.675 × 10^{-27} kg, slightly more than the proton (1.673 × 10^{-27} kg). 1.675 × 10^{-24} is the value in grams."
+
+  - id: phy-nuc-209
+    topic: atomic-mass-unit
+    subtopic: Mass of an atom in kg
+    concept: Mass of an O-16 atom in kg
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: m = M(u) × 1.6605 × 10^{-27} kg
+    tags: [amu, unit-conversion]
+    stem: The atomic mass of ^{16}O is 15.9949 u. The mass of one ^{16}O atom is about
+    options:
+      - 9.63 × 10^{-27} kg
+      - 2.66 × 10^{-23} kg
+      - 2.66 × 10^{-26} kg
+      - 1.04 × 10^{-28} kg
+    answer: 2
+    explanation: "m = 15.9949 × 1.6605 × 10^{-27} ≈ 2.66 × 10^{-26} kg. Dividing instead of multiplying by 1.66 gives 9.63 × 10^{-27} kg."
+
+  - id: phy-nuc-210
+    topic: atomic-mass-unit
+    subtopic: Neutron–proton mass difference
+    concept: m_n − m_p ≈ 1.29 MeV/c^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: Δmc^2 = (m_n − m_p) × 931.5 MeV
+    tags: [nucleon-mass]
+    stem: With m_n = 1.008665 u and m_p = 1.007276 u, the neutron is heavier than the proton by an energy equivalent of about (1 u = 931.5 MeV)
+    options:
+      - 1.29 MeV
+      - 0.78 MeV
+      - 0.511 MeV
+      - 12.9 MeV
+    answer: 0
+    explanation: "Δm = 0.001389 u, so Δmc^2 = 0.001389 × 931.5 ≈ 1.29 MeV. 0.78 MeV is m_n − m_H, the energy of free neutron decay, which subtracts the electron mass as well."
+
+  - id: phy-nuc-211
+    topic: atomic-mass-unit
+    subtopic: Unit equivalents
+    concept: Matching mass units and particle masses
+    category: factual
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [amu, rest-energy]
+    stem: |-
+      Match List I with List II.
+      List I:
+      P. 1 u expressed in kg
+      Q. 1 u expressed in MeV/c^2
+      R. Electron mass in MeV/c^2
+      S. Proton mass in MeV/c^2
+      List II:
+      1. 0.511
+      2. 938.3
+      3. 1.66 × 10^{-27}
+      4. 931.5
+    options:
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: "1 u = 1.66 × 10^{-27} kg = 931.5 MeV/c^2; m_e = 0.511 MeV/c^2 and m_p = 938.3 MeV/c^2. Confusing 931.5 with 938.3 is the usual slip."
+
+  - id: phy-nuc-212
+    topic: atomic-mass-unit
+    subtopic: Mass spectrometer
+    concept: In a mass spectrometer radius ∝ mass for same charge and speed
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: r = mv/(qB)
+    tags: [mass-spectrometer, multi-concept]
+    stem: "In a mass spectrometer, singly charged ions of ^{35}Cl and ^{37}Cl enter the same uniform magnetic field with the same speed. The ratio of the radii of their circular paths r_{35} : r_{37} is"
+    options:
+      - "35 : 37"
+      - "37 : 35"
+      - "√35 : √37"
+      - "1 : 1"
+    answer: 0
+    explanation: "r = mv/(qB); with equal q, v and B, r ∝ m, so r_{35}/r_{37} = 35/37. The heavier isotope curves less. The square-root ratio applies when the ions are accelerated through the same voltage instead."
+
+  - id: phy-nuc-213
+    topic: atomic-mass-unit
+    subtopic: 1 u and nucleon mass
+    concept: 1 u is slightly less than proton mass and equals 931.5 MeV/c^2
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [amu]
+    stem: |-
+      Statement I: 1 u is slightly less than the mass of a proton.
+      Statement II: 1 u is equivalent to about 931.5 MeV/c^2.
+    options:
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+      - Both Statement I and Statement II are incorrect
+      - Both Statement I and Statement II are correct
+    answer: 3
+    explanation: "m_p = 1.007276 u, so 1 u is slightly smaller, and 1 u × c^2 = 931.5 MeV. Both statements are correct."
+
+  - id: phy-nuc-214
+    topic: discovery-of-neutron
+    subtopic: Nobel prize
+    concept: Chadwick received the 1935 Nobel Prize for the neutron
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    tags: [chadwick, ncert-line]
+    stem: James Chadwick was awarded the Nobel Prize in Physics for the discovery of the neutron in the year
+    options:
+      - "1911"
+      - "1935"
+      - "1921"
+      - "1945"
+    answer: 1
+    explanation: "Chadwick discovered the neutron in 1932 and received the Nobel Prize in 1935. 1911 is the year of Rutherford's nuclear model."
+
+  - id: phy-nuc-215
+    topic: discovery-of-neutron
+    subtopic: Neutral particles
+    concept: Neutrons are not deflected by electric or magnetic fields
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [neutron]
+    stem: Which of these is NOT deflected when it passes through a magnetic field?
+    options:
+      - Proton
+      - Neutron
+      - Alpha particle
+      - Electron
+    answer: 1
+    explanation: "Magnetic force qv × B acts only on charged particles. The neutron has no charge, so it goes straight through, which also makes it hard to detect."
+
+  - id: phy-nuc-216
+    topic: discovery-of-neutron
+    subtopic: Bound vs free neutron
+    concept: Neutrons are stable inside many nuclei but unstable when free
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [neutron, stability]
+    stem: |-
+      Statement I: A free neutron is unstable.
+      Statement II: Every neutron bound inside a nucleus decays with the same mean life as a free neutron.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "NCERT notes that a free neutron decays (mean life about 1000 s) but is stable inside a nucleus. Neutrons in stable nuclei like C-12 do not decay, so Statement II is false."
+
+  - id: phy-nuc-217
+    topic: discovery-of-neutron
+    subtopic: Thermal neutrons
+    concept: Speed of a thermal neutron of energy 0.025 eV
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: v = √(2K/m)
+    tags: [thermal-neutrons, multi-concept]
+    stem: A thermal neutron in a reactor has kinetic energy about 0.025 eV. Taking m_n = 1.675 × 10^{-27} kg, its speed is about
+    options:
+      - 4.8 × 10^{6} m s^{-1}
+      - 2.2 × 10^{5} m s^{-1}
+      - 2.2 × 10^{3} m s^{-1}
+      - 22 m s^{-1}
+    answer: 2
+    explanation: "K = 0.025 × 1.6 × 10^{-19} = 4.0 × 10^{-21} J. v = √(2K/m) = √(8.0 × 10^{-21}/1.675 × 10^{-27}) = √(4.8 × 10^{6}) ≈ 2.2 × 10^{3} m s^{-1}. The value 4.8 × 10^{6} is v^2, left un-rooted."
+
+  - id: phy-nuc-218
+    topic: nuclear-size
+    subtopic: Scaling from a known radius
+    concept: Radius of Te-125 from radius of Al-27
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: R_2 = R_1(A_2/A_1)^{1/3}
+    tags: [nuclear-radius]
+    stem: The radius of the ^{27}Al nucleus is 3.6 fm. The radius of the ^{125}Te nucleus is about
+    options:
+      - 10.0 fm
+      - 16.7 fm
+      - 4.8 fm
+      - 6.0 fm
+    answer: 3
+    explanation: "R_{Te} = 3.6 × (125/27)^{1/3} = 3.6 × 5/3 = 6.0 fm. Scaling linearly with A gives 16.7 fm."
+
+  - id: phy-nuc-219
+    topic: nuclear-size
+    subtopic: Volume ratio
+    concept: Nuclear volume ratio equals mass number ratio
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: V ∝ A
+    tags: [nuclear-volume]
+    stem: The ratio of the volume of a ^{64}Cu nucleus to that of a ^{8}Be nucleus is about
+    options:
+      - "2"
+      - "8"
+      - "4"
+      - "512"
+    answer: 1
+    explanation: "V ∝ R^3 ∝ A, so V_{Cu}/V_{Be} = 64/8 = 8. The radius ratio is 2; cubing 8 (512) double-counts the cube."
+
+  - id: phy-nuc-220
+    topic: nuclear-size
+    subtopic: Units
+    concept: 1 fermi = 10^{-15} m
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [fermi, units]
+    stem: Nuclear sizes are conveniently measured in fermi (fm). One fermi equals
+    options:
+      - 10^{-10} m
+      - 10^{-15} m
+      - 10^{-12} m
+      - 10^{-18} m
+    answer: 1
+    explanation: "1 fm = 10^{-15} m (a femtometre). 10^{-10} m is one ångström, the typical atomic scale."
+
+  - id: phy-nuc-221
+    topic: nuclear-size
+    subtopic: Closest approach
+    concept: Minimum alpha energy to reach the surface of a gold nucleus
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    formula: K = (1/4πε_0)(2e)(Ze)/R
+    tags: [closest-approach, multi-concept]
+    stem: Taking the radius of the gold nucleus (Z = 79) as 7 fm and 1/(4πε_0) = 9 × 10^{9} N m^{2} C^{-2}, the minimum kinetic energy an alpha particle needs to just reach its surface in a head-on approach is about
+    options:
+      - 3.25 MeV
+      - 16.3 MeV
+      - 32.5 MeV
+      - 65 MeV
+    answer: 2
+    explanation: "K = k(2e)(79e)/R = 9 × 10^{9} × 158 × (1.6 × 10^{-19})^2/(7 × 10^{-15}) J = 3.25 × 10^{7} eV ≈ 32.5 MeV. Forgetting the alpha particle's charge 2e gives half, 16.3 MeV. Rutherford's 5–8 MeV alphas never reached the nucleus."
+
+  - id: phy-nuc-222
+    topic: nuclear-size
+    subtopic: Log graph
+    concept: log R vs log A is a straight line of slope 1/3
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [nuclear-radius, graph, logarithm]
+    stem: For nuclei obeying R = R_0A^{1/3}, a graph of log R (y-axis) against log A (x-axis) is
+    options:
+      - a straight line of slope 1/3 with intercept log R_0
+      - a straight line of slope 3 through the origin
+      - a straight line of slope R_0 through the origin
+      - a curve that flattens out for large A
+    answer: 0
+    explanation: "log R = log R_0 + (1/3) log A, which is linear in log A with slope 1/3 and intercept log R_0. Slope 3 would correspond to R ∝ A^{3}."
+
+  - id: phy-nuc-223
+    topic: nuclear-size
+    subtopic: Finding a nucleus from radius
+    concept: Nucleus with one-third the radius of Os-189
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: A_2 = A_1(R_2/R_1)^3
+    tags: [nuclear-radius]
+    stem: A nucleus has one-third the radius of ^{189}_{76}Os. It could be
+    options:
+      - ^{21}_{10}Ne
+      - ^{63}_{29}Cu
+      - ^{7}_{3}Li
+      - ^{4}_{2}He
+    answer: 2
+    explanation: "A ∝ R^3, so A = 189/3^3 = 189/27 = 7, i.e. ^{7}Li. Dividing by 3 (63) or by 9 (21) forgets to cube the radius ratio."
+
+  - id: phy-nuc-224
+    topic: nuclear-size
+    subtopic: Small changes
+    concept: Fractional change in R is one-third of fractional change in A
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: ΔR/R = (1/3)ΔA/A
+    tags: [nuclear-radius, error-analysis]
+    stem: If the mass number of a nucleus is increased by 3%, its radius increases by about
+    options:
+      - 1%
+      - 3%
+      - 9%
+      - 0.33%
+    answer: 0
+    explanation: "R ∝ A^{1/3}, so ΔR/R = (1/3)(ΔA/A) = 1%. Multiplying by 3 instead (9%) inverts the power."
+
+  - id: phy-nuc-225
+    topic: nuclear-size
+    subtopic: Fraction of atom's volume
+    concept: The nucleus occupies about 10^{-12} of the atom's volume
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: V_n/V_a = (r_n/r_a)^3
+    tags: [nuclear-volume]
+    stem: An atom has radius 10^{-10} m and its nucleus has radius 10^{-14} m. The fraction of the atom's volume occupied by the nucleus is
+    options:
+      - 10^{-4}
+      - 10^{-12}
+      - 10^{-8}
+      - 10^{-15}
+    answer: 1
+    explanation: "Volume ratio = (10^{-14}/10^{-10})^3 = (10^{-4})^3 = 10^{-12}. 10^{-4} is only the radius ratio. The atom is overwhelmingly empty space."
+
+  - id: phy-nuc-226
+    topic: nuclear-density
+    subtopic: Neutron star
+    concept: Mass of a sphere of nuclear matter of radius 10 km
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: M = (4/3)πR^3ρ
+    tags: [nuclear-density, neutron-star]
+    stem: A neutron star can be modelled as a ball of nuclear matter (density 2.3 × 10^{17} kg m^{-3}) of radius 10 km. Its mass is about
+    options:
+      - 9.6 × 10^{20} kg
+      - 9.6 × 10^{29} kg
+      - 2.3 × 10^{21} kg
+      - 9.6 × 10^{38} kg
+    answer: 1
+    explanation: "V = (4/3)π(10^{4})^3 ≈ 4.19 × 10^{12} m^{3}, so M = 4.19 × 10^{12} × 2.3 × 10^{17} ≈ 9.6 × 10^{29} kg, about half the sun's mass. Using 10 km as 10^{4} m but forgetting to cube gives far smaller values."
+
+  - id: phy-nuc-227
+    topic: nuclear-density
+    subtopic: Charge density
+    concept: Mass density is constant but charge density falls as Z/A decreases
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [nuclear-density, charge-density, multi-concept]
+    stem: |-
+      Statement I: Heavy nuclei have a greater mass density than light nuclei because they contain more nucleons.
+      Statement II: The electric charge per unit volume of a nucleus is smaller for heavy nuclei than for light nuclei.
+    options:
+      - Both Statement I and Statement II are correct
+      - Statement I is incorrect but Statement II is correct
+      - Statement I is correct but Statement II is incorrect
+      - Both Statement I and Statement II are incorrect
+    answer: 1
+    explanation: "Mass density ∝ A/A is constant, so I is false. Charge density ∝ Z/V ∝ Z/A; heavy nuclei have Z/A ≈ 0.4 compared with 0.5 for light nuclei, so their charge density is lower. II is correct."
+
+  - id: phy-nuc-228
+    topic: nuclear-density
+    subtopic: Mass from density
+    concept: Using nuclear density to find the mass number of a nucleus of given radius
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: A = ρ(4/3)πR^3/m_u
+    tags: [nuclear-density, nuclear-radius]
+    stem: A nucleus has radius 3.6 fm. Using nuclear density 2.3 × 10^{17} kg m^{-3} and 1 u = 1.66 × 10^{-27} kg, its mass number is about
+    options:
+      - "9"
+      - "27"
+      - "64"
+      - "125"
+    answer: 1
+    explanation: "V = (4/3)π(3.6 × 10^{-15})^3 = 1.95 × 10^{-43} m^{3}; mass = 2.3 × 10^{17} × 1.95 × 10^{-43} = 4.5 × 10^{-26} kg = 27 u. This agrees with R = 1.2 × 27^{1/3} = 3.6 fm."
+
+  - id: phy-nuc-229
+    topic: nuclear-density
+    subtopic: Mass vs volume graph
+    concept: Nuclear mass vs nuclear volume is a straight line whose slope is density
+    category: concept
+    format: graph
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [nuclear-density, graph]
+    stem: For different nuclei, a graph of nuclear mass (y-axis) against nuclear volume (x-axis) is
+    options:
+      - a curve that bends down for heavy nuclei
+      - a horizontal line
+      - a straight line through the origin whose slope is the nuclear density
+      - a straight line whose slope equals R_0
+    answer: 2
+    explanation: "Since density is the same for all nuclei, mass = ρ × volume: a straight line through the origin with slope ρ ≈ 2.3 × 10^{17} kg m^{-3}."
+
+  - id: phy-nuc-230
+    topic: nuclear-density
+    subtopic: Astrophysical objects
+    concept: Neutron stars have density comparable to nuclear density
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [neutron-star, nuclear-density]
+    stem: Which object has an average density comparable to the density of nuclear matter?
+    options:
+      - A block of lead
+      - The sun
+      - The earth's core
+      - A neutron star
+    answer: 3
+    explanation: "A neutron star is essentially a giant nucleus with density of order 10^{17} kg m^{-3}. The sun, the earth's core and lead are all around 10^{3}–10^{4} kg m^{-3}."
+
+  - id: phy-nuc-231
+    topic: mass-energy
+    subtopic: Electron rest energy
+    concept: Calculating electron rest energy 0.511 MeV
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: E = m_ec^2
+    tags: [rest-energy]
+    stem: Taking m_e = 9.1 × 10^{-31} kg and c = 3 × 10^{8} m s^{-1}, the rest-mass energy of an electron is about
+    options:
+      - 5.1 MeV
+      - 0.51 MeV
+      - 0.51 keV
+      - 931 MeV
+    answer: 1
+    explanation: "E = 9.1 × 10^{-31} × 9 × 10^{16} = 8.19 × 10^{-14} J = 8.19 × 10^{-14}/1.6 × 10^{-13} MeV ≈ 0.51 MeV."
+
+  - id: phy-nuc-232
+    topic: mass-energy
+    subtopic: E = mc^2
+    concept: Energy equivalent of 1 mg of mass
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    formula: E = mc^2
+    tags: [mass-energy]
+    stem: The energy equivalent of 1 mg of mass is
+    options:
+      - 9 × 10^{7} J
+      - 9 × 10^{13} J
+      - 9 × 10^{16} J
+      - 9 × 10^{10} J
+    answer: 3
+    explanation: "1 mg = 10^{-6} kg, so E = 10^{-6} × 9 × 10^{16} = 9 × 10^{10} J. Treating 1 mg as 10^{-3} kg gives 9 × 10^{13} J."
+
+  - id: phy-nuc-233
+    topic: mass-energy
+    subtopic: Heating increases mass
+    concept: Mass increase of heated water
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: Δm = Q/c^2
+    tags: [mass-energy, application]
+    stem: 1 kg of water is heated from 0 °C to 100 °C, absorbing 4.2 × 10^{5} J. According to E = mc^2, its mass increases by about
+    options:
+      - 4.7 × 10^{-6} kg
+      - 4.7 × 10^{-12} kg
+      - 1.4 × 10^{-3} kg
+      - zero, since heat has no mass
+    answer: 1
+    explanation: "Δm = Q/c^2 = 4.2 × 10^{5}/9 × 10^{16} ≈ 4.7 × 10^{-12} kg. Every form of energy, including internal energy, contributes to mass; the change here is far too small to weigh."
+
+  - id: phy-nuc-234
+    topic: mass-energy
+    subtopic: Dimensions
+    concept: mc^2 has the dimensions of energy
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [dimensions, mass-energy]
+    stem: The dimensional formula of mc^2 is
+    options:
+      - "[MLT^{-2}]"
+      - "[ML^{2}T^{-2}]"
+      - "[ML^{2}T^{-1}]"
+      - "[MLT^{-1}]"
+    answer: 1
+    explanation: "[M][LT^{-1}]^2 = [ML^{2}T^{-2}], the same as energy or work. [MLT^{-2}] is force and [MLT^{-1}] momentum."
+
+  - id: phy-nuc-235
+    topic: mass-energy
+    subtopic: Mass of energy forms
+    concept: All forms of energy contribute to mass; rest mass not conserved in annihilation
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [mass-energy, multi-concept]
+    stem: |-
+      Consider these statements based on E = mc^2:
+      I. A compressed spring has slightly more mass than the same spring uncompressed.
+      II. A hot body has slightly more mass than the same body when cold.
+      III. A photon has zero rest mass.
+      IV. Total rest mass is conserved when an electron and a positron annihilate.
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and IV only
+      - III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "Stored elastic energy (I) and thermal energy (II) add mass ΔE/c^2. Photons have zero rest mass (III). In annihilation all the rest mass (1.02 MeV) turns into photon energy, so rest mass is not conserved; IV is false."
+
+  - id: phy-nuc-236
+    topic: mass-energy
+    subtopic: Power plant
+    concept: Mass converted per second in a power plant
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: dm/dt = P/c^2
+    tags: [mass-energy, power]
+    stem: A nuclear power plant produces thermal power of 1000 MW. The mass converted into energy per second is about
+    options:
+      - 1.1 × 10^{-8} kg
+      - 1.1 × 10^{-5} kg
+      - 3.3 kg
+      - 1.1 × 10^{-11} kg
+    answer: 0
+    explanation: "dm/dt = P/c^2 = 10^{9}/9 × 10^{16} ≈ 1.1 × 10^{-8} kg per second, about 1 kg in three years. Dividing by c alone gives 3.3 kg, which is dimensionally wrong."
+
+  - id: phy-nuc-237
+    topic: mass-energy
+    subtopic: Units
+    concept: 931.5 MeV per u and the eV–joule conversion are independent facts
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [amu, unit-conversion]
+    stem: |-
+      Assertion (A): One atomic mass unit of mass is equivalent to 931.5 MeV of energy.
+      Reason (R): 1 eV = 1.6 × 10^{-19} J.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Both are true. A follows from E = mc^2 applied to 1.66 × 10^{-27} kg; R is only a unit conversion used along the way and does not explain why mass and energy are equivalent."
+
+  - id: phy-nuc-238
+    topic: mass-energy
+    subtopic: Rest energy ratio
+    concept: Ratio of proton to electron rest energy ≈ 1836
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [rest-energy, ratio]
+    stem: The rest energies of a proton and an electron are 938.3 MeV and 0.511 MeV. Their ratio is about
+    options:
+      - "1836"
+      - "931"
+      - "183.6"
+      - "18360"
+    answer: 0
+    explanation: "938.3/0.511 ≈ 1836, the same as the proton-to-electron mass ratio, since rest energy is proportional to mass."
+
+  - id: phy-nuc-239
+    topic: mass-defect-binding-energy
+    subtopic: Atomic mass from BE
+    concept: Finding atomic mass from binding energy
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    formula: M = Zm_H + Nm_n − E_b/c^2
+    tags: [binding-energy, lithium]
+    stem: The binding energy of ^{7}_{3}Li is 39.25 MeV. With m(^{1}H) = 1.007825 u, m_n = 1.008665 u and 1 u = 931.5 MeV, the atomic mass of ^{7}Li is about
+    options:
+      - 6.9739 u
+      - 7.0581 u
+      - 7.1003 u
+      - 7.0160 u
+    answer: 3
+    explanation: "Mass of constituents = 3 × 1.007825 + 4 × 1.008665 = 7.058135 u. Mass defect = 39.25/931.5 = 0.042136 u. M = 7.058135 − 0.042136 ≈ 7.0160 u. Adding the defect instead gives 7.1003 u."
+
+  - id: phy-nuc-240
+    topic: mass-defect-binding-energy
+    subtopic: Mass defect in kg
+    concept: Mass defect of He-4 in kilograms
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: ΔM(kg) = ΔM(u) × 1.66 × 10^{-27}
+    tags: [mass-defect, unit-conversion]
+    stem: The mass defect of ^{4}He is 0.0304 u. In kilograms this is about
+    options:
+      - 5.0 × 10^{-32} kg
+      - 5.0 × 10^{-26} kg
+      - 1.8 × 10^{-25} kg
+      - 5.0 × 10^{-29} kg
+    answer: 3
+    explanation: "0.0304 × 1.66 × 10^{-27} ≈ 5.0 × 10^{-29} kg. Multiplied by c^2 this gives 4.5 × 10^{-12} J = 28.3 MeV, the He-4 binding energy."
+
+  - id: phy-nuc-241
+    topic: mass-defect-binding-energy
+    subtopic: Comparing nuclei
+    concept: Greater E_bn does not imply greater total binding energy
+    category: application
+    format: statement-pair
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [binding-energy, trap]
+    stem: |-
+      The binding energies are 28.3 MeV for ^{4}He and 39.2 MeV for ^{7}Li.
+      Statement I: ^{4}He has a greater binding energy per nucleon than ^{7}Li.
+      Statement II: ^{4}He has a greater total binding energy than ^{7}Li.
+    options:
+      - Both Statement I and Statement II are correct
+      - Statement I is incorrect but Statement II is correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+    answer: 3
+    explanation: "E_{bn}: He-4 = 28.3/4 = 7.07 MeV, Li-7 = 39.2/7 = 5.6 MeV, so I is correct. But the total binding energy of Li-7 (39.2 MeV) is larger, so II is incorrect."
+
+  - id: phy-nuc-242
+    topic: mass-defect-binding-energy
+    subtopic: BE from mass defect
+    concept: Binding energy corresponding to a mass defect of 0.1 u
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: E_b = ΔM × 931.5 MeV
+    tags: [binding-energy]
+    stem: A nucleus has a mass defect of 0.1 u. Its binding energy is about (1 u = 931.5 MeV)
+    options:
+      - 931.5 MeV
+      - 9.315 MeV
+      - 93.15 MeV
+      - 0.1 MeV
+    answer: 2
+    explanation: "E_b = 0.1 × 931.5 = 93.15 MeV. The other values misplace the decimal point."
+
+  - id: phy-nuc-243
+    topic: mass-defect-binding-energy
+    subtopic: Formula
+    concept: Correct expression for binding energy with atomic masses
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    formula: E_b = [Zm_H + (A − Z)m_n − M]c^2
+    tags: [binding-energy, formula]
+    stem: The binding energy of a nuclide ^{A}_{Z}X of atomic mass M is
+    options:
+      - "[Zm_H + Am_n − M]c^2"
+      - "[Zm_H + (A − Z)m_n − M]c^2"
+      - "[M − Zm_H − (A − Z)m_n]c^2"
+      - "[Am_H + Zm_n − M]c^2"
+    answer: 1
+    explanation: "There are Z protons (taken as hydrogen atoms so electrons cancel) and A − Z neutrons; subtract the atomic mass M. Reversing the subtraction gives a negative value, and using A neutrons overcounts."
+
+  - id: phy-nuc-244
+    topic: mass-defect-binding-energy
+    subtopic: Photodisintegration
+    concept: Excess photon energy becomes kinetic energy of the nucleons
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: K = E_γ − E_b
+    tags: [deuteron, photodisintegration]
+    stem: A gamma photon of energy 2.50 MeV splits a deuteron (binding energy 2.22 MeV) into a proton and a neutron. Ignoring recoil, the total kinetic energy of the proton and neutron is about
+    options:
+      - 2.22 MeV
+      - 0.28 MeV
+      - 4.72 MeV
+      - 1.25 MeV
+    answer: 1
+    explanation: "Energy conservation: E_γ = E_b + K, so K = 2.50 − 2.22 = 0.28 MeV, shared between the two nucleons. Adding the energies (4.72 MeV) wrongly treats the binding energy as released."
+
+  - id: phy-nuc-245
+    topic: binding-energy-curve
+    subtopic: Most stable nuclei
+    concept: Iron and nickel nuclei are the most tightly bound
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [iron, be-curve]
+    stem: Which element's nuclei are among the most tightly bound (highest binding energy per nucleon)?
+    options:
+      - Helium
+      - Uranium
+      - Iron
+      - Hydrogen
+    answer: 2
+    explanation: "Nuclei near A = 56 (iron and nickel) sit at the peak of the curve with about 8.8 MeV per nucleon. Uranium is lower at 7.6 MeV and light nuclei lower still."
+
+  - id: phy-nuc-246
+    topic: binding-energy-curve
+    subtopic: Fission energy source
+    concept: Fission releases energy because fragments have higher E_bn
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [fission, be-curve]
+    stem: Energy is released in the fission of a heavy nucleus because the fragments
+    options:
+      - carry away all the electrons of the atom
+      - have a lower binding energy per nucleon than the original nucleus
+      - contain more nucleons in total than the original nucleus
+      - have a higher binding energy per nucleon than the original nucleus
+    answer: 3
+    explanation: "The fragments (A ≈ 90–140) have E_{bn} ≈ 8.5 MeV versus 7.6 MeV for uranium, so they are more tightly bound and the difference is released. The number of nucleons is conserved."
+
+  - id: phy-nuc-247
+    topic: binding-energy-curve
+    subtopic: Fusion energy source
+    concept: Fusion of light nuclei releases energy because products have higher E_bn
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [fusion, be-curve]
+    stem: Two deuterons fuse to form a helium-4 nucleus and energy is released. This is because
+    options:
+      - deuterium has a higher binding energy per nucleon than helium-4
+      - helium-4 has more nucleons than two deuterons together
+      - helium-4 has a much higher binding energy per nucleon than deuterium
+      - the Coulomb repulsion between deuterons provides the energy
+    answer: 2
+    explanation: "E_{bn} rises from 1.1 MeV (deuterium) to 7.07 MeV (He-4), so the product is far more tightly bound and the extra binding energy is released. Coulomb repulsion is an obstacle to fusion, not an energy source."
+
+  - id: phy-nuc-248
+    topic: binding-energy-curve
+    subtopic: Energy needed
+    concept: Splitting a medium nucleus absorbs energy
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: ΔE = A(E_{bn,i} − E_{bn,f})
+    tags: [be-curve, energy-absorbed]
+    stem: A nucleus of mass number 60 with E_{bn} = 8.7 MeV splits into two nuclei of mass number 30, each with E_{bn} = 8.4 MeV. In this process
+    options:
+      - 18 MeV of energy is released
+      - 18 MeV of energy is absorbed
+      - 9 MeV of energy is released
+      - no energy change occurs
+    answer: 1
+    explanation: "BE before = 60 × 8.7 = 522 MeV; BE after = 60 × 8.4 = 504 MeV. The products are less tightly bound, so 18 MeV must be supplied. Fission releases energy only for heavy nuclei beyond the peak."
+
+  - id: phy-nuc-249
+    topic: binding-energy-curve
+    subtopic: Mass defect fraction
+    concept: An E_bn of 8 MeV corresponds to a mass defect of about 0.9% of the mass
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: ΔM/M ≈ E_{bn}/931.5 MeV
+    tags: [mass-defect, be-curve]
+    stem: For a medium nucleus with binding energy per nucleon 8 MeV, the mass defect as a fraction of the nuclear mass is about (1 u = 931.5 MeV, each nucleon ≈ 1 u)
+    options:
+      - 8%
+      - 0.9%
+      - 0.09%
+      - 0.008%
+    answer: 1
+    explanation: "Each nucleon of about 1 u (931.5 MeV) loses 8 MeV of mass-energy, so ΔM/M ≈ 8/931.5 ≈ 0.0086, i.e. about 0.9%. Nuclear binding is strong enough to reduce mass by nearly one per cent."
+
+  - id: phy-nuc-250
+    topic: binding-energy-curve
+    subtopic: Local peaks
+    concept: He-4, C-12 and O-16 show local peaks on the curve
+    category: factual
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [be-curve, helium]
+    stem: |-
+      Consider these statements about light nuclei on the binding energy per nucleon curve:
+      I. ^{4}He lies noticeably above its neighbours ^{3}He and ^{6}Li.
+      II. ^{12}C and ^{16}O also lie slightly above neighbouring nuclei.
+      III. For light nuclei the curve falls steadily as A increases.
+      IV. The deuteron has the highest binding energy per nucleon among light nuclei.
+      Which are correct?
+    options:
+      - I, II and IV only
+      - I and II only
+      - III and IV only
+      - II and III only
+    answer: 1
+    explanation: "He-4 (7.07 MeV) and the alpha-like nuclei C-12 and O-16 appear as local peaks. For light nuclei the curve rises steeply, and the deuteron (1.1 MeV) is the least bound, so III and IV are false."
+
+  - id: phy-nuc-251
+    topic: nuclear-force
+    subtopic: Strength
+    concept: The nuclear force is the strongest of the fundamental forces
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [fundamental-forces]
+    stem: Among gravitational, electromagnetic and nuclear forces, the strongest at a separation of 1 fm is the
+    options:
+      - gravitational force
+      - electromagnetic force
+      - nuclear force
+      - all three are equally strong
+    answer: 2
+    explanation: "At nuclear distances the nuclear (strong) force exceeds the electromagnetic force, and gravity is weaker by a factor of about 10^{36} or more."
+
+  - id: phy-nuc-252
+    topic: nuclear-force
+    subtopic: Net force between nucleon pairs
+    concept: p–p pair has smaller net attraction because of Coulomb repulsion
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [nuclear-force, coulomb-repulsion, trap]
+    stem: At a separation of 1.5 fm, the net attractive force (nuclear plus electrostatic) is smallest for which pair of nucleons?
+    options:
+      - Neutron–proton
+      - Neutron–neutron
+      - Proton–proton
+      - It is the same for all three pairs
+    answer: 2
+    explanation: "The nuclear attraction is about the same for all pairs (charge independence), but only the p–p pair also has Coulomb repulsion, which reduces its net attraction. Saying 'the same for all' ignores the electrostatic part."
+
+  - id: phy-nuc-253
+    topic: nuclear-force
+    subtopic: Neutron excess
+    concept: Long-range Coulomb vs short-range nuclear force explains neutron excess
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [nuclear-force, n-z-ratio, multi-concept]
+    stem: |-
+      Statement I: In a heavy nucleus, each proton is repelled by every other proton but attracted by the nuclear force only of its nearest neighbours.
+      Statement II: For this reason stable heavy nuclei contain more neutrons than protons.
+    options:
+      - Both Statement I and Statement II are correct
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+      - Both Statement I and Statement II are incorrect
+    answer: 0
+    explanation: "Coulomb repulsion is long-ranged and grows with Z, while nuclear attraction saturates. Extra neutrons add attraction without adding repulsion, so heavy stable nuclei like Pb-208 have N/Z ≈ 1.5. Both statements are correct."
+
+  - id: phy-nuc-254
+    topic: nuclear-force
+    subtopic: Consequences of short range
+    concept: Consequences of the short range of nuclear force
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [nuclear-force, saturation, multi-concept]
+    stem: |-
+      Which of the following are consequences of the nuclear force being short-ranged?
+      I. Binding energy per nucleon is nearly constant for medium nuclei.
+      II. Nuclear density is nearly the same for all nuclei.
+      III. Very heavy nuclei become less stable as Coulomb repulsion builds up.
+      IV. Nuclei of neighbouring atoms in a solid attract each other strongly.
+    options:
+      - I, II and III only
+      - I and IV only
+      - II and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "Saturation from short range gives constant E_{bn} (I) and each nucleon occupies a similar volume (II); since the attraction saturates but Coulomb repulsion does not, very heavy nuclei become less stable (III). Neighbouring nuclei are about 10^{-10} m apart, far beyond the range, so IV is false."
+
+  - id: phy-nuc-255
+    topic: nuclear-force
+    subtopic: Potential minimum
+    concept: The nucleon–nucleon potential energy is minimum near 0.8 fm
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [nuclear-force, potential-energy, ncert-line]
+    stem: The potential energy of a pair of nucleons is minimum at a separation of about
+    options:
+      - 0.8 fm
+      - 8 fm
+      - 0.08 fm
+      - 80 fm
+    answer: 0
+    explanation: "NCERT's curve has its minimum at r_0 ≈ 0.8 fm: the force is attractive beyond this distance and strongly repulsive closer in. At 8 fm the nuclear force is already negligible."
+
+  - id: phy-nuc-256
+    topic: nuclear-force
+    subtopic: Range
+    concept: Nuclear forces between nuclei in different atoms are negligible
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [nuclear-force]
+    stem: Which statement is correct about nuclear forces in a piece of solid iron?
+    options:
+      - Nuclear forces between the nucleus and its electrons hold the atom together
+      - Nuclear forces bind neighbouring iron atoms into the crystal
+      - Nuclear forces act only among nucleons within each nucleus, since neighbouring nuclei are about 10^{-10} m apart
+      - Nuclear forces between nuclei produce the magnetism of iron
+    answer: 2
+    explanation: "The nuclear force vanishes beyond a few fm, so it cannot act between nuclei separated by atomic distances. Crystal bonding, atomic structure and magnetism are all electromagnetic in origin."
+
+  - id: phy-nuc-257
+    topic: nuclear-reactions-q-value
+    subtopic: Balancing
+    concept: Alpha bombardment of Al-27 producing a neutron and P-30
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [balancing]
+    stem: "In ^{27}_{13}Al + ^{4}_{2}He → X + ^{1}_{0}n, the nucleus X is"
+    options:
+      - ^{31}_{16}S
+      - ^{31}_{15}P
+      - ^{30}_{14}Si
+      - ^{30}_{15}P
+    answer: 3
+    explanation: "A: 27 + 4 = A_X + 1 so A_X = 30; Z: 13 + 2 = Z_X + 0 so Z_X = 15. X is ^{30}_{15}P. Forgetting the emitted neutron gives A = 31."
+
+  - id: phy-nuc-258
+    topic: nuclear-reactions-q-value
+    subtopic: Q from binding energies
+    concept: Q equals the change in total binding energy because nucleon masses cancel
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [q-value, binding-energy, multi-concept]
+    stem: |-
+      Assertion (A): The Q-value of a nuclear reaction equals the total binding energy of the products minus the total binding energy of the reactants.
+      Reason (R): Protons and neutrons are separately conserved in such reactions, so the masses of the free nucleons cancel when the mass difference is written using mass defects.
+    options:
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+      - Both A and R are true and R is the correct explanation of A
+    answer: 3
+    explanation: "Each nuclear mass is (mass of its free nucleons − E_b/c^2). With the same Z protons and N neutrons on both sides, the free-nucleon masses cancel in Σm_i − Σm_f, leaving Q = ΣE_b(products) − ΣE_b(reactants). R explains A."
+
+  - id: phy-nuc-259
+    topic: nuclear-reactions-q-value
+    subtopic: Q-value calculation
+    concept: Q-value of Li-7 + p → 2 He-4
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    formula: Q = (Σm_i − Σm_f) × 931.5 MeV
+    tags: [q-value, lithium]
+    stem: "For ^{7}Li + ^{1}H → 2 ^{4}He, the atomic masses are m(^{7}Li) = 7.016004 u, m(^{1}H) = 1.007825 u and m(^{4}He) = 4.002603 u. The energy released is about (1 u = 931.5 MeV)"
+    options:
+      - 3745 MeV
+      - 8.7 MeV
+      - −17.3 MeV
+      - 17.3 MeV
+    answer: 3
+    explanation: "Reactants: 8.023829 u; products: 2 × 4.002603 = 8.005206 u. Δm = 0.018623 u, so Q ≈ 0.018623 × 931.5 ≈ 17.3 MeV, shared by the two alpha particles (Cockcroft–Walton reaction). Using only one helium mass gives nonsense."
+
+  - id: phy-nuc-260
+    topic: nuclear-reactions-q-value
+    subtopic: History
+    concept: Rutherford achieved the first artificial transmutation
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [transmutation, history]
+    stem: The first artificial transmutation of one element into another, nitrogen into oxygen using alpha particles, was carried out in 1919 by
+    options:
+      - Enrico Fermi
+      - James Chadwick
+      - Ernest Rutherford
+      - Otto Hahn
+    answer: 2
+    explanation: "Rutherford bombarded nitrogen with alpha particles and observed protons: ^{14}N + ^{4}He → ^{17}O + ^{1}H. Hahn and Strassmann discovered fission in 1938."
+
+  - id: phy-nuc-261
+    topic: nuclear-reactions-q-value
+    subtopic: Conservation of charge
+    concept: A reaction violating charge conservation is impossible
+    category: application
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [balancing, conservation]
+    stem: Which of these nuclear reactions is NOT possible?
+    options:
+      - ^{2}_{1}H + ^{2}_{1}H → ^{3}_{2}He + ^{1}_{0}n
+      - ^{14}_{7}N + ^{1}_{0}n → ^{14}_{6}C + ^{1}_{1}H
+      - ^{6}_{3}Li + ^{1}_{0}n → ^{3}_{1}H + ^{4}_{2}He
+      - ^{14}_{7}N + ^{1}_{0}n → ^{14}_{7}C + ^{1}_{1}H
+    answer: 3
+    explanation: "In the first reaction the charges are 7 + 0 on the left but 7 + 1 = 8 on the right, so charge is not conserved (and carbon has Z = 6, not 7). The other three conserve both A and Z."
+
+  - id: phy-nuc-262
+    topic: nuclear-reactions-q-value
+    subtopic: Conservation laws
+    concept: Quantities conserved in every nuclear reaction
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [conservation]
+    stem: |-
+      Which of these are conserved in every nuclear reaction?
+      I. Total electric charge
+      II. Total number of nucleons
+      III. Total linear momentum
+      IV. Total rest mass
+    options:
+      - II, III and IV only
+      - I and II only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: "Charge, nucleon number, momentum and total energy are conserved. Rest mass changes by Q/c^2, which is exactly where the reaction energy comes from, so IV is not conserved."
+
+  - id: phy-nuc-263
+    topic: nuclear-reactions-q-value
+    subtopic: Balancing
+    concept: Identifying the missing particle in several reactions
+    category: application
+    format: match
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [balancing]
+    stem: |-
+      Match each reaction in List I with the missing particle X in List II.
+      List I:
+      P. ^{9}_{4}Be + ^{4}_{2}He → ^{12}_{6}C + X
+      Q. ^{14}_{7}N + ^{4}_{2}He → ^{17}_{8}O + X
+      R. ^{10}_{5}B + ^{1}_{0}n → ^{7}_{3}Li + X
+      S. ^{2}_{1}H + ^{2}_{1}H → ^{3}_{1}H + X
+      List II:
+      1. Proton
+      2. Neutron
+      3. Alpha particle
+      4. Proton (from D–D fusion)
+    options:
+      - P-2, Q-3, R-1, S-4
+      - P-1, Q-2, R-3, S-4
+      - P-2, Q-1, R-3, S-4
+      - P-3, Q-1, R-2, S-4
+    answer: 2
+    explanation: "P: A 13 → 12 + 1, Z 6 → 6 + 0: neutron. Q: A 18 → 17 + 1, Z 9 → 8 + 1: proton. R: A 11 → 7 + 4, Z 5 → 3 + 2: alpha. S: A 4 → 3 + 1, Z 2 → 1 + 1: proton."
+
+  - id: phy-nuc-264
+    topic: nuclear-fission
+    subtopic: Energy sharing
+    concept: Most fission energy appears as kinetic energy of the fragments
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [fission, energy-distribution]
+    stem: Of the roughly 200 MeV released in the fission of ^{235}U, which statement is correct?
+    options:
+      - Most of it, about 165–170 MeV, appears as kinetic energy of the two fission fragments
+      - Most of it is carried by the emitted neutrons
+      - Most of it is emitted immediately as visible light
+      - Most of it is converted into the mass of the fragments
+    answer: 0
+    explanation: "The large Coulomb repulsion drives the fragments apart with about 170 MeV of kinetic energy, which becomes heat in the fuel. Neutrons, gamma rays and later decays carry the rest."
+
+  - id: phy-nuc-265
+    topic: nuclear-fission
+    subtopic: Critical size
+    concept: Too small a lump of fissile material cannot sustain a chain reaction
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [critical-mass, chain-reaction]
+    stem: |-
+      Assertion (A): A chain reaction cannot be sustained in a very small lump of ^{235}U.
+      Reason (R): In a small lump, a large fraction of the fission neutrons escape through the surface before causing further fission.
+    options:
+      - A is true but R is false
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is false but R is true
+    answer: 1
+    explanation: "Neutron production is proportional to volume but loss is through the surface. A small lump has a large surface-to-volume ratio, so too many neutrons escape and K < 1. Above the critical size the chain reaction can be sustained."
+
+  - id: phy-nuc-266
+    topic: nuclear-fission
+    subtopic: Control rods
+    concept: Withdrawing control rods increases the multiplication factor
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [control-rods, reactor]
+    stem: In a nuclear reactor operating at K = 1, the control rods are partly pulled out. The immediate effect is that
+    options:
+      - the moderator stops slowing neutrons
+      - K becomes less than 1 and the power falls
+      - K stays 1 and the power is unchanged
+      - K becomes greater than 1 and the power rises
+    answer: 3
+    explanation: "Control rods (cadmium or boron) absorb neutrons. Withdrawing them leaves more neutrons for fission, so K rises above 1 and the power increases until the rods are adjusted again."
+
+  - id: phy-nuc-267
+    topic: nuclear-fission
+    subtopic: Power plant
+    concept: Sequence of energy conversions in a nuclear power station
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [reactor, energy-conversion, ordering]
+    stem: Arrange the energy conversions in a nuclear power station in the correct order.
+    options:
+      - Nuclear energy → heat in coolant → mechanical energy of turbine → electrical energy
+      - Nuclear energy → electrical energy → heat in coolant → mechanical energy of turbine
+      - Heat in coolant → nuclear energy → mechanical energy of turbine → electrical energy
+      - Nuclear energy → mechanical energy of turbine → heat in coolant → electrical energy
+    answer: 0
+    explanation: "Fission energy appears as heat in the fuel, carried by the coolant to make steam; the steam turns a turbine (mechanical energy), which drives a generator producing electricity."
+
+  - id: phy-nuc-268
+    topic: nuclear-fission
+    subtopic: Slow vs fast neutrons
+    concept: Slow neutrons are more effective than fast neutrons for U-235 fission
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [thermal-neutrons, moderator, trap]
+    stem: |-
+      Statement I: Fast neutrons released in fission cause further fission of ^{235}U more readily than slow neutrons.
+      Statement II: A moderator in a reactor slows down fast neutrons by collisions with light nuclei.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "NCERT notes that slow (thermal) neutrons are much more likely to induce fission in U-235 than fast ones, which is why a moderator such as heavy water or graphite is used to slow them. So Statement I is wrong and II is right."
+
+  - id: phy-nuc-269
+    topic: nuclear-fission
+    subtopic: Neutrons per fission
+    concept: On average about 2.5 neutrons are released per fission of U-235
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [fission, neutrons]
+    stem: The average number of neutrons released per fission of ^{235}U is about
+    options:
+      - "0.5"
+      - "1.0"
+      - "10"
+      - "2.5"
+    answer: 3
+    explanation: "Different fission modes give 2, 3 or 4 neutrons, averaging about 2.5. More than one is needed for a chain reaction to be possible."
+
+  - id: phy-nuc-270
+    topic: nuclear-fission
+    subtopic: Energy per nucleon
+    concept: Fission releases about 0.85 MeV per nucleon
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: E/A = 200 MeV/235
+    tags: [fission]
+    stem: About 200 MeV is released per fission of ^{235}U. The energy released per nucleon of uranium is about
+    options:
+      - 0.85 MeV
+      - 8.5 MeV
+      - 200 MeV
+      - 0.085 MeV
+    answer: 0
+    explanation: "200/235 ≈ 0.85 MeV per nucleon, which matches the gain in E_{bn} from about 7.6 to about 8.5 MeV. 8.5 MeV is the E_{bn} of the fragments, not the energy released."
+
+  - id: phy-nuc-271
+    topic: nuclear-fission
+    subtopic: Nuclear vs chemical fuel
+    concept: Fission of 1 kg U-235 equals burning about 2.7 million kg of coal
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: ratio = E_{U}/E_{coal}
+    tags: [fission, chemical-energy, comparison]
+    stem: Complete fission of 1 kg of ^{235}U releases about 8.2 × 10^{13} J, while burning 1 kg of coal releases about 3 × 10^{7} J. The mass of coal giving the same energy as 1 kg of ^{235}U is about
+    options:
+      - 2.7 × 10^{6} kg
+      - 2.7 × 10^{3} kg
+      - 2.7 × 10^{9} kg
+      - 3.7 × 10^{-7} kg
+    answer: 0
+    explanation: "8.2 × 10^{13}/3 × 10^{7} ≈ 2.7 × 10^{6} kg, i.e. about 2700 tonnes of coal. This millionfold ratio reflects MeV-scale nuclear energies versus eV-scale chemical ones."
+
+  - id: phy-nuc-272
+    topic: nuclear-fission
+    subtopic: Power plant efficiency
+    concept: Fission rate for a given electrical output and efficiency
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    formula: n = P_{elec}/(η × 200 MeV)
+    tags: [reactor-power, efficiency, multi-concept]
+    stem: A nuclear power station delivers 1000 MW of electrical power with an overall efficiency of 25%. If each fission releases 200 MeV (3.2 × 10^{-11} J), the number of fissions per second is about
+    options:
+      - 1.25 × 10^{20}
+      - 3.1 × 10^{19}
+      - 7.8 × 10^{18}
+      - 1.25 × 10^{17}
+    answer: 0
+    explanation: "Thermal power = 1000/0.25 = 4000 MW = 4 × 10^{9} W. Fissions per second = 4 × 10^{9}/3.2 × 10^{-11} = 1.25 × 10^{20}. Ignoring the efficiency gives 3.1 × 10^{19}; multiplying by 0.25 gives 7.8 × 10^{18}."
+
+  - id: phy-nuc-273
+    topic: nuclear-fission
+    subtopic: Fission equation
+    concept: Neutrons released in the Xe-140 + Sr-94 fission mode
+    category: application
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [fission, balancing]
+    stem: "In ^{1}_{0}n + ^{235}_{92}U → ^{140}_{54}Xe + ^{94}_{38}Sr + x ^{1}_{0}n, the value of x is"
+    options:
+      - "4"
+      - "3"
+      - "1"
+      - "2"
+    answer: 3
+    explanation: "Mass numbers: 236 = 140 + 94 + x gives x = 2. Charges already balance: 54 + 38 = 92. Fission modes differ in the number of neutrons, so x must be calculated, not assumed to be 3."
+
+  - id: phy-nuc-274
+    topic: nuclear-fusion
+    subtopic: D–T energy sharing
+    concept: In D–T fusion the neutron carries about 4/5 of the energy
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: K_n = Q × m_{He}/(m_{He} + m_n)
+    tags: [dt-reaction, momentum-conservation, multi-concept]
+    stem: "In ^{2}H + ^{3}H → ^{4}He + n, Q = 17.6 MeV. If the reactants are nearly at rest, the kinetic energy of the neutron is about"
+    options:
+      - 14.1 MeV
+      - 3.5 MeV
+      - 8.8 MeV
+      - 17.6 MeV
+    answer: 0
+    explanation: "Equal and opposite momenta mean K ∝ 1/m. The neutron (mass 1) gets 4/5 of Q: 17.6 × 4/5 ≈ 14.1 MeV, and the helium nucleus gets 3.5 MeV. Splitting the energy equally (8.8 MeV) ignores momentum conservation."
+
+  - id: phy-nuc-275
+    topic: nuclear-fusion
+    subtopic: Fuel supply
+    concept: Deuterium for fusion is abundant in sea water
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [controlled-fusion, deuterium]
+    stem: A major advantage of fusion as a future energy source is that its fuel, deuterium, is
+    options:
+      - available in almost unlimited amounts in sea water
+      - found only in uranium ores
+      - produced only inside stars
+      - strongly radioactive and easy to detect
+    answer: 0
+    explanation: "About one hydrogen atom in 6500 in sea water is deuterium, so the oceans hold a vast supply. Deuterium is stable, not radioactive."
+
+  - id: phy-nuc-276
+    topic: nuclear-fusion
+    subtopic: Location of fusion
+    concept: Fusion occurs in the stellar core where temperature and density are highest
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [stars, fusion]
+    stem: Which statement explains why hydrogen fusion in the sun occurs mainly in its core?
+    options:
+      - The core contains uranium that triggers fusion
+      - The surface is too dense for fusion
+      - The core has the highest temperature and density, giving enough fast nuclei and collisions to overcome the Coulomb barrier
+      - Fusion needs low temperatures, which exist only in the core
+    answer: 2
+    explanation: "Fusion needs very high temperature (to beat the Coulomb barrier) and high density (for frequent collisions). Both are greatest at the centre, about 1.5 × 10^{7} K; the surface at about 6000 K is far too cool."
+
+  - id: phy-nuc-277
+    topic: nuclear-fusion
+    subtopic: Controlled fusion
+    concept: Tokamaks confine plasma using magnetic fields
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: true
+    battle: true
+    tags: [tokamak, controlled-fusion]
+    stem: In a tokamak fusion device, the hot plasma is kept away from the walls by
+    options:
+      - strong magnetic fields
+      - thick lead shielding
+      - cadmium control rods
+      - a heavy-water moderator
+    answer: 0
+    explanation: "Plasma at about 10^{8} K would vaporise any wall, so tokamaks (like ITER) use strong magnetic fields to confine the charged particles. Control rods and moderators belong to fission reactors."
+
+  - id: phy-nuc-278
+    topic: nuclear-fusion
+    subtopic: Hydrogen consumption of the sun
+    concept: Rate at which the sun converts hydrogen into helium
+    category: numerical
+    format: case
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: dm_H/dt = (P/c^2)/0.0071
+    tags: [sun, pp-cycle, multi-concept]
+    stem: The sun loses about 4 × 10^{9} kg of mass per second as radiation. In the p–p cycle about 0.71% of the mass of hydrogen consumed is converted into energy. The mass of hydrogen converted into helium per second is about
+    options:
+      - 5.6 × 10^{11} kg
+      - 2.8 × 10^{7} kg
+      - 4.0 × 10^{9} kg
+      - 5.6 × 10^{13} kg
+    answer: 0
+    explanation: "Only 0.71% of the hydrogen mass disappears, so hydrogen used = 4 × 10^{9}/0.0071 ≈ 5.6 × 10^{11} kg per second. Multiplying by 0.0071 instead gives 2.8 × 10^{7} kg."
+
+  - id: phy-nuc-279
+    topic: nuclear-fusion
+    subtopic: Identifying fusion
+    concept: Recognising a fusion reaction
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [fusion, classification]
+    stem: Which of these is a nuclear fusion reaction?
+    options:
+      - ^{27}Al + n → ^{24}Na + ^{4}He
+      - ^{235}U + n → ^{141}Ba + ^{92}Kr + 3n
+      - ^{14}N + ^{4}He → ^{17}O + ^{1}H
+      - ^{2}H + ^{2}H → ^{3}He + n
+    answer: 3
+    explanation: "Two light nuclei (deuterons) combine into a heavier one (He-3): fusion. The second is fission and the other two are transmutation reactions."
+
+  - id: phy-nuc-280
+    topic: nuclear-fusion
+    subtopic: Fusion vs fission difficulty
+    concept: Fusion is harder to initiate because both nuclei are charged
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [fusion, fission, coulomb-barrier]
+    stem: |-
+      Assertion (A): Controlled fusion is much harder to achieve than controlled fission.
+      Reason (R): Fusion requires two positively charged nuclei to overcome their Coulomb repulsion, whereas fission is triggered by neutral neutrons.
+    options:
+      - Both A and R are true but R is not the correct explanation of A
+      - Both A and R are true and R is the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Neutrons enter nuclei easily at thermal energies, so fission reactors work at ordinary temperatures. Fusing nuclei must beat the Coulomb barrier, requiring about 10^{8} K plasma and confinement; that is why controlled fusion is still experimental."
+
+  - id: phy-nuc-281
+    topic: nuclear-fusion
+    subtopic: Fusion vs fission energy
+    concept: Fusion releases less energy per event but more per unit mass than fission
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [fusion, fission, comparison]
+    stem: Comparing a single D–T fusion (17.6 MeV) with a single U-235 fission (200 MeV), which statement is correct?
+    options:
+      - Fusion releases less energy both per reaction and per unit mass
+      - Fusion releases more energy per reaction and per unit mass
+      - Fusion releases less energy per reaction but more energy per unit mass of fuel
+      - Both release the same energy per unit mass
+    answer: 2
+    explanation: "Per reaction 17.6 MeV < 200 MeV, but per nucleon fusion gives 17.6/5 ≈ 3.5 MeV compared with about 0.85 MeV for fission. So per kilogram of fuel, fusion yields about four times more."
+
+  - id: phy-nuc-282
+    topic: nuclear-fusion
+    subtopic: Comparing fission and fusion
+    concept: Features of fission and fusion compared
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [fusion, fission, comparison, multi-concept]
+    stem: |-
+      Consider these statements:
+      I. Both fission and fusion release energy because the products have higher binding energy per nucleon.
+      II. Fission needs very high temperatures to start.
+      III. Fusion powers the sun and other stars.
+      IV. Nuclear reactors in operation today use fission.
+      Which are correct?
+    options:
+      - I, III and IV only
+      - I and II only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: "I, III and IV are correct. Fission is triggered by slow neutrons at ordinary temperatures; it is fusion that needs millions of kelvin, so II is false."
+
+  - id: phy-nuc-283
+    topic: nuclear-composition
+    subtopic: Notation
+    concept: Reading Z, A and N from nuclear notation
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [notation, neutron-number]
+    stem: |-
+      For the nuclide ^{197}_{79}Au, consider:
+      I. The nucleus contains 79 protons.
+      II. The nucleus contains 118 neutrons.
+      III. A neutral atom has 197 electrons.
+      IV. The nuclear charge is 79e.
+      Which are correct?
+    options:
+      - II, III and IV only
+      - I and III only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: "Z = 79 protons and charge 79e; N = 197 − 79 = 118. A neutral atom has Z = 79 electrons, not 197, so III is false."
+
+  - id: phy-nuc-284
+    topic: nuclear-composition
+    subtopic: Protons and neutrons
+    concept: Matching nuclides with their proton and neutron numbers
+    category: application
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [neutron-number, notation]
+    stem: |-
+      Match List I (nuclide) with List II (Z, N).
+      List I:
+      P. ^{16}_{8}O
+      Q. ^{17}_{8}O
+      R. ^{17}_{9}F
+      S. ^{18}_{9}F
+      List II:
+      1. Z = 8, N = 9
+      2. Z = 9, N = 8
+      3. Z = 8, N = 8
+      4. Z = 9, N = 9
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-2, R-1, S-4
+      - P-1, Q-3, R-2, S-4
+      - P-3, Q-1, R-2, S-4
+    answer: 3
+    explanation: "N = A − Z: O-16 (8, 8), O-17 (8, 9), F-17 (9, 8), F-18 (9, 9). O-17 and F-17 are isobars with swapped Z and N."
+
+  - id: phy-nuc-285
+    topic: atomic-mass-unit
+    subtopic: Ordering masses
+    concept: Ordering masses of neutron, hydrogen atom, proton and 1 u
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [nucleon-mass, ordering]
+    stem: Arrange in decreasing order of mass - the neutron, the hydrogen atom, the proton and 1 u.
+    options:
+      - Neutron > proton > 1 u > hydrogen atom
+      - Hydrogen atom > neutron > proton > 1 u
+      - Proton > neutron > hydrogen atom > 1 u
+      - Neutron > hydrogen atom > proton > 1 u
+    answer: 3
+    explanation: "m_n = 1.008665 u > m_H = 1.007825 u > m_p = 1.007276 u > 1 u. All three particles are slightly heavier than 1 u."
+
+  - id: phy-nuc-286
+    topic: discovery-of-neutron
+    subtopic: Historical order
+    concept: Chronological order of discoveries leading to the neutron
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [history, ordering]
+    stem: Arrange these discoveries in chronological order - the neutron, the atomic nucleus (alpha scattering), the electron, and the first artificial transmutation (proton emission from nitrogen).
+    options:
+      - Electron → nucleus → neutron → artificial transmutation
+      - Nucleus → electron → neutron → artificial transmutation
+      - Electron → artificial transmutation → nucleus → neutron
+      - Electron → nucleus → artificial transmutation → neutron
+    answer: 3
+    explanation: "Electron (Thomson, 1897), nucleus (Rutherford, 1911), artificial transmutation of nitrogen (Rutherford, 1919), neutron (Chadwick, 1932)."
+
+  - id: phy-nuc-287
+    topic: nuclear-size
+    subtopic: Doubling the radius
+    concept: A nucleus with twice the radius of He-4 has A = 32
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    formula: A_2 = A_1(R_2/R_1)^3
+    tags: [nuclear-radius]
+    stem: Which nucleus has a radius twice that of ^{4}_{2}He?
+    options:
+      - ^{64}_{30}Zn
+      - ^{8}_{4}Be
+      - ^{16}_{8}O
+      - ^{32}_{16}S
+    answer: 3
+    explanation: "A ∝ R^3, so doubling R multiplies A by 8: A = 4 × 8 = 32, i.e. S-32. Doubling A (Be-8) or quadrupling it (O-16) uses the wrong power."
+
+  - id: phy-nuc-288
+    topic: nuclear-size
+    subtopic: Rutherford scattering
+    concept: What alpha scattering reveals about the nucleus
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [closest-approach, rutherford]
+    stem: |-
+      From Rutherford's alpha scattering experiments and later work on nuclear size, which conclusions are correct?
+      I. The positive charge and almost all the mass of an atom are concentrated in a tiny nucleus.
+      II. The distance of closest approach of an alpha particle gives an upper limit on the nuclear radius.
+      III. Alpha particles of a few MeV touched the gold nucleus and measured its exact radius.
+      IV. Nuclear radii are of the order of 10^{-15} to 10^{-14} m.
+    options:
+      - I, II and IV only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "Closest approach (about 4 × 10^{-14} m for 5.5 MeV alphas on gold) is larger than the nucleus, so it only sets an upper limit. Low-energy alphas never reach the gold nucleus, so III is false; precise sizes came from higher-energy experiments."
+
+  - id: phy-nuc-289
+    topic: nuclear-density
+    subtopic: Liquid-drop analogy
+    concept: Constant density suggests nucleons are packed like molecules in a liquid drop
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [nuclear-density, saturation, multi-concept]
+    stem: The facts that nuclear density is constant and binding energy per nucleon is nearly constant suggest that a nucleus behaves like
+    options:
+      - a drop of incompressible liquid in which each nucleon occupies about the same volume
+      - a gas whose density rises with the number of particles
+      - a solid in which nucleons are held by electrons
+      - a miniature solar system with nucleons in orbits far apart
+    answer: 0
+    explanation: "In a liquid drop, density does not depend on size and each molecule interacts only with neighbours (like saturation of the short-range nuclear force). This analogy underlies the liquid drop model used to explain fission."
+
+  - id: phy-nuc-290
+    topic: mass-energy
+    subtopic: Energy scales
+    concept: Ordering of electron rest energy, deuteron binding energy, 1 u and proton rest energy
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [rest-energy, ordering]
+    stem: Arrange in increasing order - the rest energy of an electron, the binding energy of a deuteron, the energy equivalent of 1 u and the rest energy of a proton.
+    options:
+      - Electron rest energy < deuteron binding energy < 1 u < proton rest energy
+      - Deuteron binding energy < electron rest energy < 1 u < proton rest energy
+      - Electron rest energy < deuteron binding energy < proton rest energy < 1 u
+      - Deuteron binding energy < electron rest energy < proton rest energy < 1 u
+    answer: 0
+    explanation: "Values: 0.511 MeV < 2.22 MeV < 931.5 MeV < 938.3 MeV. The proton is slightly heavier than 1 u, and the deuteron's binding energy exceeds the electron's rest energy."
+
+  - id: phy-nuc-291
+    topic: mass-energy
+    subtopic: Consequences
+    concept: Correct and incorrect consequences of E = mc^2
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [mass-energy]
+    stem: Which statement about E = mc^2 is INCORRECT?
+    options:
+      - Energy can be converted into matter, as in pair production
+      - The energy released in nuclear reactions comes from a decrease in rest mass
+      - A small mass is equivalent to a very large energy because c^2 is huge
+      - It applies only to particles moving close to the speed of light
+    answer: 3
+    explanation: "E = mc^2 relates rest mass to rest energy for any body, even at rest; it is not restricted to fast particles. The other three are correct consequences of mass-energy equivalence."
+
+  - id: phy-nuc-292
+    topic: mass-defect-binding-energy
+    subtopic: Typical values
+    concept: Matching nuclei with their binding energy per nucleon
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [be-curve, binding-energy]
+    stem: |-
+      Match List I (nucleus) with List II (approximate binding energy per nucleon).
+      List I:
+      P. ^{2}H
+      Q. ^{4}He
+      R. ^{56}Fe
+      S. ^{238}U
+      List II:
+      1. 7.6 MeV
+      2. 8.8 MeV
+      3. 1.1 MeV
+      4. 7.1 MeV
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-1, R-2, S-4
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 0
+    explanation: "Deuteron 1.1 MeV, He-4 7.07 MeV, Fe-56 8.8 MeV (peak) and U-238 7.6 MeV. Swapping Fe and U reverses the trend beyond the peak."
+
+  - id: phy-nuc-293
+    topic: mass-defect-binding-energy
+    subtopic: Deuteron
+    concept: The deuteron is loosely bound
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [deuteron, binding-energy]
+    stem: |-
+      Statement I: The binding energy per nucleon of the deuteron is only about 1.1 MeV.
+      Statement II: A gamma photon of about 2.2 MeV or more can split a deuteron into a proton and a neutron.
+    options:
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+    answer: 2
+    explanation: "The deuteron's total binding energy is 2.22 MeV (1.1 MeV per nucleon), the weakest of all stable nuclei. A photon supplying at least 2.22 MeV can therefore photodisintegrate it. Both statements are correct."
+
+  - id: phy-nuc-294
+    topic: binding-energy-curve
+    subtopic: Hypothetical flat curve
+    concept: If E_bn were the same for all nuclei, fission and fusion would release no energy
+    category: application
+    format: statements
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    tags: [be-curve, fission, fusion]
+    stem: Suppose the binding energy per nucleon were exactly the same for all nuclei. Which statement would then be correct?
+    options:
+      - Fusion would release energy but fission would not
+      - Fission would release energy but fusion would not
+      - Neither fission nor fusion would release energy
+      - Both would release more energy than they do now
+    answer: 2
+    explanation: "Energy release in fission or fusion equals the increase in total binding energy, A × ΔE_{bn}. If E_{bn} were constant, the products and reactants (same A) would have equal total binding energy, so Q = 0 for both."
+
+  - id: phy-nuc-295
+    topic: binding-energy-curve
+    subtopic: Regions of the curve
+    concept: Fusion releases energy to the left of the peak, fission to the right
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [be-curve, graph, fission, fusion]
+    stem: On the graph of binding energy per nucleon against A, which pair of statements about energy release is correct?
+    options:
+      - Fusion releases energy for nuclei well to the left of the peak; fission releases energy for nuclei well to the right of the peak
+      - Fission releases energy for nuclei to the left of the peak; fusion for nuclei to the right
+      - Both release energy only for nuclei at the peak
+      - Both release energy for any nucleus, whatever its position
+    answer: 0
+    explanation: "Moving towards the peak (A ≈ 56) increases E_{bn}. Light nuclei (left) gain by fusing, heavy nuclei (right) gain by splitting."
+
+  - id: phy-nuc-296
+    topic: binding-energy-curve
+    subtopic: Fusion up to iron
+    concept: Fusion of two A = 28 nuclei into A = 56 releases energy
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [be-curve, fusion, stars]
+    stem: |-
+      Assertion (A): In massive stars, fusion of silicon-28 nuclei towards iron-56 releases energy.
+      Reason (R): The binding energy per nucleon of nuclei near A = 56 is greater than that of nuclei near A = 28.
+    options:
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+      - Both A and R are true and R is the correct explanation of A
+    answer: 3
+    explanation: "E_{bn} rises from about 8.4 MeV near A = 28 to about 8.8 MeV at A = 56, so building iron from silicon increases total binding energy and releases energy. R explains A; fusion beyond iron would need energy."
+
+  - id: phy-nuc-297
+    topic: nuclear-reactions-q-value
+    subtopic: Q from mass change
+    concept: Q-value from a given decrease in total rest mass
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: Q = Δm × 931.5 MeV
+    tags: [q-value]
+    stem: In a nuclear reaction the total rest mass decreases by 0.02 u. The energy released is about (1 u = 931.5 MeV)
+    options:
+      - 186 MeV
+      - 1.86 MeV
+      - 18.6 MeV
+      - 0.02 MeV
+    answer: 2
+    explanation: "Q = 0.02 × 931.5 = 18.63 MeV. The decrease in rest mass appears as kinetic energy of the products."
+
+  - id: phy-nuc-298
+    topic: nuclear-fission
+    subtopic: Reactor vs bomb
+    concept: Reactor keeps K = 1; a fission bomb has K > 1 uncontrolled
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [chain-reaction, reactor]
+    stem: The essential difference between a nuclear reactor and a fission bomb is that in the reactor the chain reaction is
+    options:
+      - controlled so that the multiplication factor stays at 1
+      - absent altogether
+      - produced by fusion instead of fission
+      - driven by fast protons instead of neutrons
+    answer: 0
+    explanation: "Both use a fission chain reaction. In a reactor control rods hold K = 1 for steady power; in a bomb K > 1 and the reaction grows explosively in microseconds."
+
+  - id: phy-nuc-299
+    topic: nuclear-fusion
+    subtopic: Energy from deuterium
+    concept: Energy from D–D fusion of 2 g of deuterium
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    formula: E = (N/2) × Q
+    tags: [fusion, deuterium, avogadro]
+    stem: Each D–D fusion ^{2}H + ^{2}H → ^{3}He + n releases 3.27 MeV. If all the nuclei in 2 g of deuterium fuse this way, the energy released is about (N_A = 6.02 × 10^{23} mol^{-1}, 1 MeV = 1.6 × 10^{-13} J)
+    options:
+      - 5.2 × 10^{-13} J
+      - 3.1 × 10^{11} J
+      - 6.3 × 10^{11} J
+      - 1.6 × 10^{11} J
+    answer: 3
+    explanation: "2 g of deuterium is 1 mol, i.e. 6.02 × 10^{23} nuclei, forming 3.01 × 10^{23} reacting pairs. E = 3.01 × 10^{23} × 3.27 × 1.6 × 10^{-13} ≈ 1.6 × 10^{11} J. Forgetting that two nuclei make one reaction doubles the answer."
+
+  - id: phy-nuc-300
+    topic: nuclear-force
+    subtopic: Nuclear vs Coulomb range
+    concept: Coulomb force is long-ranged whereas nuclear force is short-ranged
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [nuclear-force, coulomb-repulsion]
+    stem: |-
+      Statement I: The Coulomb force between two protons becomes negligible beyond a few femtometres.
+      Statement II: The nuclear force between two protons becomes negligible beyond a few femtometres.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "The Coulomb force falls as 1/r^2 and acts over long distances, so Statement I is wrong. The nuclear force is short-ranged and vanishes beyond a few fm, so Statement II is correct."
+
