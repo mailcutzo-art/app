@@ -7991,3 +7991,421 @@ questions:
       - 1s = 2s < 2p = 3s < 3p = 3d
     answer: 1
     explanation: In hydrogen, energy depends only on n, so orbitals with the same n are degenerate. The order 2s < 2p < 3s < 3p < 3d applies to multi-electron atoms.
+
+  - id: che-atom-381
+    topic: quantum-numbers
+    subtopic: Electrons in a subshell
+    concept: n = 3, l = 2 holds at most 10 electrons
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 20
+    ncert: true
+    battle: true
+    formula: electrons = 2(2l + 1)
+    tags: [subshell-capacity]
+    stem: The maximum number of electrons that can have n = 3 and l = 2 is
+    options:
+      - "6"
+      - "10"
+      - "5"
+      - "18"
+    answer: 1
+    explanation: n = 3, l = 2 is the 3d subshell with 2l + 1 = 5 orbitals, holding 10 electrons. 5 counts orbitals instead of electrons.
+
+  - id: che-atom-382
+    topic: quantum-numbers
+    subtopic: Magnetic quantum number
+    concept: m_l = +3 requires an f orbital
+    category: application
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [magnetic, f-orbitals]
+    stem: An electron with n = 4 has m_l = +3. It must be in a
+    options:
+      - 4p orbital
+      - 4d orbital
+      - 4s orbital
+      - 4f orbital
+    answer: 3
+    explanation: "|m_l| ≤ l, so m_l = +3 needs l = 3, which is an f orbital. With n = 4, that is 4f."
+
+  - id: che-atom-383
+    topic: quantum-numbers
+    subtopic: Dependence between quantum numbers
+    concept: l depends on n and m_l on l; m_s is independent
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [quantum-numbers, trap]
+    stem: |-
+      Which statements are correct?
+      I. The allowed values of m_l depend on the value of l.
+      II. The allowed values of l depend on the value of n.
+      III. The allowed values of m_s depend on the value of m_l.
+      IV. n can take the value zero.
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 0
+    explanation: l runs from 0 to n − 1 and m_l from −l to +l, so I and II hold. m_s is always ±½ whatever m_l is, and n starts at 1, so III and IV are false.
+
+  - id: che-atom-384
+    topic: quantum-numbers
+    subtopic: Orbitals in a shell
+    concept: Orbitals in n = 5 with l ≤ 2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [counting]
+    stem: How many orbitals are there in the n = 5 shell with l ≤ 2?
+    options:
+      - "25"
+      - "3"
+      - "9"
+      - "18"
+    answer: 2
+    explanation: "l = 0, 1, 2 give 5s (1), 5p (3) and 5d (5) orbitals: 9 in total. 25 is the total for n = 5, including 5f and 5g."
+
+  - id: che-atom-385
+    topic: quantum-numbers
+    subtopic: Spin quantum number
+    concept: Electron spin was proposed by Uhlenbeck and Goudsmit
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: true
+    battle: true
+    tags: [spin, history, ncert-line]
+    stem: The idea of electron spin, leading to the fourth quantum number, was proposed by
+    options:
+      - Schrödinger
+      - Uhlenbeck and Goudsmit
+      - Pauli
+      - Bohr and Sommerfeld
+    answer: 1
+    explanation: George Uhlenbeck and Samuel Goudsmit proposed in 1925 that the electron spins about its own axis, with two possible orientations (m_s = +½ or −½).
+
+  - id: che-atom-386
+    topic: quantum-numbers
+    subtopic: s orbitals
+    concept: s orbitals are spherical with m_l = 0
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [s-orbitals, magnetic]
+    stem: |-
+      Statement I: An electron with l = 0 occupies a spherically symmetrical orbital.
+      Statement II: Every s orbital has m_l = 0.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: l = 0 is an s orbital, which is spherical. For l = 0, m_l can only be 0, so each s subshell has a single orbital.
+
+  - id: che-atom-387
+    topic: quantum-numbers
+    subtopic: Quantum numbers of the valence electron
+    concept: The 4s electron of chromium has n = 4, l = 0, m_l = 0
+    category: application
+    format: direct
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [chromium, exception, allowed-values]
+    stem: Which set of quantum numbers (n, l, m_l, m_s) describes the single 4s electron of a ground-state chromium atom?
+    options:
+      - 4, 1, 0, +½
+      - 3, 2, 0, +½
+      - 4, 0, 0, +½
+      - 4, 0, 1, +½
+    answer: 2
+    explanation: Cr is [Ar] 3d^5 4s^1, and the lone 4s electron has n = 4, l = 0, m_l = 0 and m_s = +½ (or −½). 3, 2, 0 describes a 3d electron.
+
+  - id: che-atom-388
+    topic: quantum-numbers
+    subtopic: Counting electrons by l
+    concept: Zinc has 10 electrons with l = 2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [azimuthal, counting]
+    stem: How many electrons in a ground-state zinc atom (Z = 30) have l = 2?
+    options:
+      - "2"
+      - "10"
+      - "12"
+      - "20"
+    answer: 1
+    explanation: Zn is [Ar] 3d^{10} 4s^2. Only d electrons have l = 2, and there are 10 (in 3d).
+
+  - id: che-atom-389
+    topic: quantum-numbers
+    subtopic: Capacity of the n = 3 shell
+    concept: Subshells, orbitals and electrons of n = 3
+    category: application
+    format: match
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [shell-capacity, counting]
+    stem: |-
+      For the shell n = 3, match each quantity (List I) with its value (List II).
+      List I: P. Number of subshells; Q. Number of orbitals; R. Maximum number of electrons; S. Maximum number of electrons with m_l = +1
+      List II: 1. 9; 2. 4; 3. 18; 4. 3
+    options:
+      - P-4, Q-1, R-3, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-2, Q-1, R-3, S-4
+      - P-1, Q-4, R-3, S-2
+    answer: 0
+    explanation: n = 3 has 3 subshells (3s, 3p, 3d), 9 orbitals and 18 electrons. m_l = +1 occurs in one 3p and one 3d orbital, holding 4 electrons. So P-4, Q-1, R-3, S-2.
+
+  - id: che-atom-390
+    topic: quantum-numbers
+    subtopic: (n + l) rule
+    concept: Energy order 3p < 4s < 3d < 4p
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [n-plus-l, aufbau]
+    stem: Arrange 3d, 4s, 3p and 4p in increasing order of energy in a potassium atom.
+    options:
+      - 3p < 3d < 4s < 4p
+      - 4s < 3p < 3d < 4p
+      - 3p < 4s < 4p < 3d
+      - 3p < 4s < 3d < 4p
+    answer: 3
+    explanation: n + l gives 3p = 4, 4s = 4, 3d = 5 and 4p = 5; ties go to lower n first. So 3p < 4s < 3d < 4p.
+
+  - id: che-atom-391
+    topic: electronic-configuration
+    subtopic: Unpaired electrons in ions
+    concept: Co^{2+} (3d^7) has three unpaired electrons
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [ions, unpaired-electrons]
+    stem: How many unpaired electrons does Co^{2+} have? (Z of Co = 27)
+    options:
+      - "3"
+      - "7"
+      - "5"
+      - "1"
+    answer: 0
+    explanation: Co is [Ar] 3d^7 4s^2, so Co^{2+} is [Ar] 3d^7. Five d orbitals hold 7 electrons as 2 pairs plus 3 singles, giving 3 unpaired electrons.
+
+  - id: che-atom-392
+    topic: electronic-configuration
+    subtopic: Ground and excited states
+    concept: 1s^2 2s^1 2p^3 is an excited state of carbon
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [excited-state, carbon]
+    stem: Which configuration represents an excited state of a neutral carbon atom?
+    options:
+      - 1s^2 2s^2 2p^2
+      - 1s^2 2s^1 2p^3
+      - 1s^2 2s^2 2p^3
+      - 1s^2 2s^2 2p^1
+    answer: 1
+    explanation: Carbon has 6 electrons; 1s^2 2s^1 2p^3 still has 6 but with an electron promoted from 2s to 2p, so it is excited. 2s^2 2p^2 is the ground state, and the others have the wrong number of electrons.
+
+  - id: che-atom-393
+    topic: electronic-configuration
+    subtopic: Unpaired electrons
+    concept: Oxygen has two unpaired electrons
+    category: application
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [unpaired-electrons, hund]
+    stem: Which statement about unpaired electrons in ground-state atoms is INCORRECT?
+    options:
+      - Nitrogen has three unpaired electrons
+      - Carbon has two unpaired electrons
+      - Neon has no unpaired electrons
+      - Oxygen has four unpaired electrons
+    answer: 3
+    explanation: "Oxygen is 2p^4: one 2p orbital is paired and two are singly occupied, so it has 2 unpaired electrons, not 4. The others follow Hund's rule correctly."
+
+  - id: che-atom-394
+    topic: electronic-configuration
+    subtopic: Identifying elements
+    concept: Period 4 p-block element with three unpaired electrons is arsenic
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [identify-element, unpaired-electrons, multi-concept]
+    stem: An element in the fourth period and the p-block has three unpaired electrons in its ground state. Its configuration is
+    options:
+      - "[Ar] 3d^{10} 4s^2 4p^1"
+      - "[Ar] 3d^{10} 4s^2 4p^3"
+      - "[Ar] 3d^3 4s^2"
+      - "[Ar] 3d^{10} 4s^2 4p^5"
+    answer: 1
+    explanation: Three unpaired p electrons means np^3 (Hund's rule). In period 4 that is [Ar] 3d^{10} 4s^2 4p^3, arsenic. [Ar] 3d^3 4s^2 (vanadium) also has 3 unpaired electrons but is a d-block element.
+
+  - id: che-atom-395
+    topic: electronic-configuration
+    subtopic: Configuration of ions
+    concept: Cu^+ has no unpaired electrons
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ions, copper]
+    stem: |-
+      Assertion (A): The Cu^+ ion has no unpaired electrons.
+      Reason (R): Cu^+ has the configuration [Ar] 3d^{10}, with all d orbitals completely filled.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Removing the 4s electron from Cu ([Ar] 3d^{10} 4s^1) leaves [Ar] 3d^{10}. All ten d electrons are paired, which is why Cu^+ has no unpaired electrons.
+
+  - id: che-atom-396
+    topic: electronic-configuration
+    subtopic: Configuration of ions
+    concept: Cr^{3+} has three unpaired electrons
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [ions, chromium]
+    stem: A cation of chromium (Z = 24) is found to have three unpaired electrons, all in 3d orbitals, and no 4s electrons. The ion is
+    options:
+      - Cr^{2+}
+      - Cr^+
+      - Cr^{3+}
+      - Cr^{6+}
+    answer: 2
+    explanation: Cr is [Ar] 3d^5 4s^1. Cr^+ is 3d^5 (5 unpaired), Cr^{2+} is 3d^4 (4), Cr^{3+} is 3d^3 (3) and Cr^{6+} is 3d^0 (0).
+
+  - id: che-atom-397
+    topic: electronic-configuration
+    subtopic: Counting electrons by (n + l)
+    concept: Electrons with n + l = 4 in calcium
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [n-plus-l, counting]
+    stem: How many electrons in a ground-state calcium atom (Z = 20) have n + l = 4?
+    options:
+      - "2"
+      - "6"
+      - "10"
+      - "8"
+    answer: 3
+    explanation: Ca is 1s^2 2s^2 2p^6 3s^2 3p^6 4s^2. Subshells with n + l = 4 are 3p (3 + 1) and 4s (4 + 0), holding 6 + 2 = 8 electrons.
+
+  - id: che-atom-398
+    topic: electronic-configuration
+    subtopic: Rules of filling
+    concept: Matching principles to their statements
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [aufbau, hund, pauli, uncertainty]
+    stem: |-
+      Match the principle (List I) with its statement (List II).
+      List I: P. Pauli exclusion principle; Q. Hund's rule; R. Aufbau principle; S. Heisenberg uncertainty principle
+      List II: 1. Orbitals are filled in order of increasing energy; 2. Position and momentum cannot both be known exactly; 3. No two electrons have the same four quantum numbers; 4. Pairing in degenerate orbitals starts only after each is singly occupied
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: Pauli limits electrons by their quantum numbers, Hund governs pairing in degenerate orbitals, Aufbau sets the filling order, and Heisenberg concerns simultaneous measurement. So P-3, Q-4, R-1, S-2.
+
+  - id: che-atom-399
+    topic: electronic-configuration
+    subtopic: Counting electrons by subshell
+    concept: Iron has 12 p electrons
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [iron, counting]
+    stem: How many electrons in a ground-state iron atom (Z = 26) occupy p orbitals?
+    options:
+      - "6"
+      - "18"
+      - "12"
+      - "8"
+    answer: 2
+    explanation: Fe is 1s^2 2s^2 2p^6 3s^2 3p^6 3d^6 4s^2, so p electrons = 2p^6 + 3p^6 = 12. Mixing up p and d gives 6.
+
+  - id: che-atom-400
+    topic: electronic-configuration
+    subtopic: Configuration of ions
+    concept: Mn^{2+} and Fe^{3+} are isoelectronic 3d^5 ions
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [ions, isoelectronic, unpaired-electrons]
+    stem: |-
+      Statement I: In their ground states, chromium has six and manganese has five unpaired electrons.
+      Statement II: Mn^{2+} and Fe^{3+} are isoelectronic.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Cr (3d^5 4s^1) has 6 unpaired electrons and Mn (3d^5 4s^2) has 5. Mn^{2+} (25 − 2) and Fe^{3+} (26 − 3) both have 23 electrons, [Ar] 3d^5.
