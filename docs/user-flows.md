@@ -22,7 +22,12 @@ References: `docs/plan.md` (features), `docs/protocol.md` (live events), `docs/a
      response or a `4426` realtime close. It has one button, "Update on Play Store", and blocks
      everything else.
    - **Maintenance**, when the flag is set or a `503 MAINTENANCE` arrives. It shows the message
-     and a Retry button. It checks again automatically every 30 s.
+     and a Retry button. It checks again automatically every 30 s. Planned maintenance is announced
+     on Home 2 h ahead.
+   - **Neither gate ever interrupts a live match or tournament round.** It applies when the game
+     ends.
+   - **Suspended**, when the account is banned: the reason, the end date, the appeal contact and
+     Sign out.
    - **No network:**
      - with a cached profile, the app opens Home with the offline banner and cached data;
      - without one, it opens Sign-in with "You're offline. Connect to sign in."
@@ -49,16 +54,22 @@ References: `docs/plan.md` (features), `docs/protocol.md` (live events), `docs/a
    - **Failures** show a message that says what to do: "That sign-in has expired. Please try
      again", "Your Google email isn't verified", or "Google sign-in is temporarily unavailable".
    - **A banned account** sees the suspension notice.
-3. **Onboarding** (resumable; a step already done is skipped):
+3. **Onboarding.** Progress is saved on the phone, so an interrupted onboarding resumes where it
+   stopped:
+   0. At the top of step 1: "Signed in as x@gmail.com · **Switch account**". A wrong Google
+      account is never a dead end.
    1. **Name and username.** The username is checked live: available, taken, or not allowed.
+      Minors get only their first name pre-filled, with the note "Shown to other players".
    2. **Avatar:** a colour and a symbol.
    3. **Goal:** NEET or JEE. It decides the subjects shown everywhere and can be changed later in
       Settings.
-   4. **Birth year.** Minors get safer defaults.
+   4. **Birth year.** Minors get safer defaults. A student younger than 10 sees "Quiz Arena is for
+      students aged 10 and up", with **Sign out**, not a stuck form.
    5. **Notifications:** an explanation, then Android's permission prompt. This step only appears
       once push is enabled.
    - A 409 during onboarding means either "that username was just taken" (stay on step 1) or
      "already onboarded" (continue to Home). The code tells them apart.
+   - The last step links the Terms and the Privacy policy.
 4. **The first Home visit** shows a one-time welcome card: "+100 coins to start", and three
    ways to play (Battle, Practice, Arena).
 
@@ -104,24 +115,31 @@ state.
 5. **The searching screen:**
    - a pulse animation, the elapsed time, and a Cancel button;
    - a status line: "Looking in Kinematics…", then after 15 s "Widened to all of Physics".
+   - "3 players searching · usually 20 s", so a quiet hour is visible, not mysterious.
    - You can leave the screen and keep browsing. A pill at the top of every screen says
      "Searching · 0:32", and tapping it returns here.
-6. **At 45 s**, a sheet offers **Keep searching**, **Play a Practice Bot** (unrated, no coins),
-   **Invite a friend**, or **Cancel**.
-   - Choosing the bot cancels the queue first, which refunds a Casual entry.
+6. **At 45 s** (at 20 s on your first-ever search), a sheet offers **Keep searching**, **Play a
+   Practice Bot** (unrated, no coins), **Invite a friend**, or **Cancel**. Everyone gets the bot
+   offer, including rated searchers; the bot game itself is never rated.
+   - Choosing the bot or inviting a friend ends the search first, which refunds a Casual entry.
+   - The Battle tab also has **Practise vs Bot**, which starts at once.
    - The search stops by itself at 105 s: "No one was available. Try the Practice Bot or invite
      a friend."
-7. **If the app goes to the background** for more than 10 s, the search stops. On return:
-   "Your search stopped while you were away." Coins are refunded automatically, and the inbox
-   records it.
+7. **If the app goes to the background** for more than 10 s, the search stops. The app tells the
+   server when it goes to the background, so a quick look at WhatsApp never turns into a missed
+   match. On return: "Your search stopped while you were away." Coins are refunded automatically,
+   it never counts against you, and the inbox records it.
 
 **Match**
 8. **Opponent found.** The VS screen shows both avatars, names, ratings and levels, your record
    against this opponent ("You 3 – 1 Rahul"), and the chapter mix ("Kinematics + Laws of
    Motion").
-   - It appears wherever you are in the app. A match found while you were browsing takes over the
-     screen with a 3-second "Match found!" before the VS screen.
-9. **Ready.** The app sends ready automatically once the VS screen is up.
+   - It appears wherever you are in the app.
+9. **Ready.**
+   - **On the searching screen,** the app sends ready automatically once the VS screen is up.
+   - **Browsing elsewhere,** "Match found!" takes over the screen and needs **one tap within
+     10 s**. Nobody is thrown into a game mid-scroll. Missing it sends the opponent back to the
+     front of the queue and doesn't count against you.
    - **The opponent never gets ready** (10 s): "Your opponent didn't join." You go back to the
      front of the queue with your original waiting time, and see "Searching again…".
    - **You never get ready**, for example because the app was in the background: the match is
@@ -152,10 +170,14 @@ state.
     - **Victory**, **Defeat** or **Draw**, with the final scores;
     - a row of 7 dots (✓/✗, fast/slow);
     - the reason when it wasn't normal: "Rahul left", "Time ran out".
-    - "Results syncing…" shows until settlement arrives.
+    - "Results syncing…" shows until settlement arrives. After 20 s it says "Result saved.
+      Rewards will appear shortly", with Done enabled, and an inbox item confirms them later.
 14. **Settlement fills in:**
     - the rating change (animated), and **your new rank**: "You're now #42 in Physics · ↑5";
     - coins and XP, with a level-up celebration if one happened;
+    - a daily limit is said plainly: "Daily coin limit reached · resets at midnight", never a
+      silent zero;
+    - **Add friend** on your opponent's card;
     - mission progress, the streak, and any achievement earned;
     - **one tip line**: "You were slower on 4 of 7. Try a timed set in Kinematics."
 15. **Buttons:**
@@ -186,6 +208,9 @@ available. It is the same game flow as Quick Battle, with these differences:
    calls `POST /v1/rooms`.
 3. **Lobby:**
    - the code in big letters, **Share link** (Android share sheet) and **Copy code**;
+   - **The room survives the host leaving the app to share the link.** Friends who join see
+     "Waiting for Aarav to come back", and the host gets a notification "Riya joined". The room
+     closes only when the host ends it, everyone leaves, or after 15 minutes without activity;
    - **Invite friends**: a list with presence, and "Busy" chips;
    - your friend's slot shows "Waiting…";
    - a new user with no friends sees Share link as the main button.
@@ -235,14 +260,21 @@ It works like a friend room, but **the host controls the room**:
    - A confirmation sheet shows the fee and the refund rules. The coins are held, not spent yet.
    - "Full" disables the button. With too few coins, it shows "You need 15 coins".
    - **Withdraw** before the start gives a full refund.
-4. **Reminders** (inbox, plus push when enabled): at 1 h and 15 min before the start.
+4. **Reminders** at 1 h and 15 min before the start, and at the start itself:
+   - **local notifications** scheduled on the phone at registration, so they work without push;
+   - "Add to calendar";
+   - inbox items.
 5. **Check-in**, 15 → 2 min before the start:
-   - one tap from the card, the detail or the notification;
-   - **automatic** if the app is open and connected during the window;
-   - a player not checked in by the start is refunded and dropped. The inbox says "You didn't
+   - **always a deliberate tap**: **Check in** on the banner, the card, the detail or the
+     notification. Next to it, **Can't make it** withdraws with a full refund.
+   - A player not checked in by the start is refunded and dropped. The inbox says "You didn't
      check in; your 15 coins were returned".
-   - From 5 min before the start, quick battles can't be started ("Your tournament starts
-     soon").
+   - A quick battle or room that could still be running 2 minutes before the start can't be
+     started ("Your tournament starts soon").
+   - Registering for two tournaments whose times overlap isn't allowed.
+   - A tournament for the other exam can't be joined.
+   - **30 min before, if too few players:** "At risk: 3 more players needed. Invite friends." The
+     card always shows "5 of 8 needed" and "Prize now 625 of 2,500 · grows with players".
 6. **At the start:**
    - **Enough players:** round 1 pairs, and each player gets a full-screen "Round 1: you vs Aman.
      Join (90 s)" wherever they are in the app.
@@ -269,15 +301,28 @@ It works like a friend room, but **the host controls the room**:
 - **The leaderboards hub** has one card per board. Each card shows the **#1 player** (avatar, name,
   value), **your position**, and your change since yesterday.
 
+- **The hub starts with you:** "#42 Physics · #310 this week · Overall: 3 more rated games".
+
 | Board | Ranks by | Who is on it |
 |---|---|---|
-| **This week** | XP earned this IST week (Mon–Sun); resets Monday 00:00 IST | Everyone with any XP this week, so new players appear immediately |
+| **This week** | XP earned this IST week (Mon–Sun, no bot XP); resets Monday 00:00 IST | Everyone with XP this week, so new players appear immediately |
+| **Physics / Chemistry / Biology / Maths this week** | Battle points from games against people in that subject this week | After one game in the subject. It answers "who is leading Physics this week?" |
 | **Overall rating** | Rated battles and tournaments, all subjects | Players with at least 10 rated games and settled ratings |
-| **Physics / Chemistry / Biology / Maths** | Subject rating | Same rule, per subject |
+| **Physics / Chemistry / Biology / Maths rating** | Subject rating | Same rule, per subject |
 | **Friends** | You and your friends, by weekly XP or rating | You and your friends |
+| **Hall of Fame** (Arena) | The last 10 tournament winners per subject | Winners |
 
-- **Exam filter.** Every board can be filtered to **NEET** or **JEE** players (by each player's
-  goal).
+- **Exam filter.** Boards show your own exam (NEET or JEE) by default, with an **All India**
+  toggle.
+- **Leaders show up in more places:**
+  - the Battle tab ("Physics this week: Riya leads · you're #12");
+  - Home ("Leaders this week");
+  - the result screen (your move on the weekly and rating boards);
+  - Profile ("My positions").
+- **The weekly rhythm:**
+  - Sunday 6 pm IST: "2 h left: you're #4 in Physics, 60 points behind #3" (you can turn it off);
+  - Monday: a recap in the inbox;
+  - a "Physics Champion · Week 39" badge for each weekly #1.
 - **Board screen:**
   - the top 100, with your **sticky row** at the bottom showing your rank and the 10 above and
     below you;
@@ -285,6 +330,11 @@ It works like a friend room, but **the host controls the room**:
 - **Not on the board yet:** "Play 7 more rated battles to appear on this board", with a progress
   bar and a Play button.
 - **Last week's champions:** the top 3 of last week, kept for the week.
+- **Few players:** a board with fewer than 10 players says "Be one of the first on this board".
+- **Fair boards:**
+  - Bot XP never counts, and casual XP counts from at most 3 games per pair a day.
+  - Suspended players, and players under review, are hidden.
+  - Minors can opt out of public boards.
 - **Moving up:** after a rated game or tournament, the result screen shows the rank change. Big
   moves (entering the top 100, 10 or 3) are also inbox items.
 
@@ -341,25 +391,35 @@ against them. The actions are Challenge, Add friend, Block and Report.
 a link to its source (match, tournament, mission).
 
 **Settings**
-- profile and goal;
-- privacy;
-- notifications by type;
-- sound and haptics, and theme;
-- devices (sign out one, or all others);
-- licences and about;
-- sign out;
-- delete account (restorable for 7 days).
+- **Profile and goal.** Changing the goal shows what changes: boards, missions and tips switch;
+  the other subjects' ratings are kept under "Other subjects".
+- **Privacy:** who can send friend requests, who can challenge me, who sees me online, and
+  whether I appear on public boards. Minors start with the safest options.
+- **Notifications** by type, and quiet hours (default 22:30–07:00).
+- **Sound and haptics, and theme.**
+- **Devices:** sign out one, or all others.
+- **Help & feedback:** "Report a problem" (attaches the last error's reference), the grievance
+  officer's contact, the Terms and the Privacy policy.
+- **An analytics toggle.**
+- **Licences and about.**
+- **Sign out.** If practice answers aren't uploaded yet, it warns "12 answers aren't saved yet"
+  first.
+- **Delete account** (restorable for 7 days).
 
 ## 13. Account lifecycle
 - **Signing out** ends this device's session and returns to Sign-in. Signing out other devices
   takes effect on their next request.
-- **An expired session** (refresh token rejected) shows Sign-in with "Please sign in again."
-- **Banned:** a notice with the reason category and the appeal contact. Nothing else is
-  reachable.
+- **An expired session** (refresh token rejected) shows Sign-in with the reason: "Signed out from
+  another device", "Too many devices", or "Please sign in again".
+- **Suspended:** a screen with the reason category, the end date (if temporary), the appeal
+  contact and **Sign out**. It's never a splash screen retrying forever. A *restricted* account
+  keeps playing, with an inline notice on the actions it can't use.
 - **Delete:**
   - re-authenticate, then confirm;
   - the app signs out;
-  - signing in within 7 days offers "Restore my account".
+  - for 7 days everything is hidden, not erased. Signing in offers **Restore my account** or
+    **Sign out**, and a restore brings back the profile, friends, ranks and history exactly;
+  - after day 30 the account is erased for good.
 
 ## 14. Always-on behaviour
 - **Live banner layer.** Time-critical events appear on top of any screen:
@@ -368,9 +428,14 @@ a link to its source (match, tournament, mission).
   - an invite received;
   - a rematch request;
   - "Searching…" and "Tournament live" pills.
-
-  The realtime connection stays open while you're queued, in a room or registered in a
-  tournament that is about to start or is running, whatever tab you're on.
+- **Which prompt wins when several arrive together:** your live game, then a tournament round to
+  join, then a match found, then a rematch, then an invite, then check-in. Invites that arrive
+  during a game wait until it ends, and the sender sees "busy".
+- **The connection.** The app keeps one realtime connection whenever it's open and signed in, so
+  invites, inbox updates and tournament calls arrive on every tab. If the connection is down, it
+  checks invites and the unread count on resume, and every 20 s.
+- **Another phone.** Opening the app on another phone during a live game asks "Move the game
+  here?" instead of silently taking it over.
 - **Offline.**
   - A banner shows; cached screens stay usable.
   - Practice answers queue up.
@@ -412,5 +477,21 @@ kept for 180 days. The funnels:
 - **Retention:** `daily_active`, `mission_completed`, `streak_extended`, `leaderboard_viewed`,
   `notification_opened`.
 
+More events worth recording:
+- **Activation:** `deep_link_opened {kind, signed_in}` and `sign_in_failed {code}`, with the install
+  referrer on first open.
+- **Battle:** `mm_cancelled {reason, waited_s}`, `mm_requeued`, `settle_lag_ms`, `play_again`, plus
+  the players online and the wait on `mm_join` and `mm_found`.
+- **Friend and group:** `share_link_tapped`, `code_join {result}`, `room_closed {reason, started}`.
+- **Tournament:** `t_check_in_missed`, `t_cancelled {players, min}`, `t_no_show`.
+- **Economy:** `cap_reached {kind}`, `coins_insufficient {where}`, `streak_lost`,
+  `streak_freeze_used`, `level_up`.
+- **Health:** `error_shown {code, screen}`, `reconnect {gap_ms, resumed}`, `force_update_shown`,
+  `maintenance_shown`.
+
 The app sends only a few screen-level events (`POST /v1/events`, names from an allowlist). All the
 rest are recorded by the server when the action happens.
+
+**Minors are never tracked individually.** India's DPDP Act bars behavioural tracking of children,
+so events for users under 18 are stored without a stable user id (a per-session id and counts
+only). Everyone can turn analytics off in Settings.

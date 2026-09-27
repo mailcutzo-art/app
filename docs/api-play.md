@@ -33,12 +33,23 @@ Conventions are the same as `docs/api-learn.md`:
 `GET /v1/config` (no auth, already live) returns:
 
 ```json
-{"min_build": 12, "maintenance": false, "maintenance_message": null, "features": {"tournaments": true}, "server_time": "2026-09-27T16:00:00Z"}
+{"min_build": 12, "maintenance": false, "maintenance_message": null, "maintenance_at": null, "maintenance_until": null, "features": {"tournaments": true}, "server_time": "2026-09-27T16:00:00Z"}
 ```
 
-- `min_build`: the app shows Update required when its build is lower. Any `426` response means the
-  same thing.
-- `maintenance`: the app shows the Maintenance screen with `maintenance_message`.
+- `min_build`: the app shows Update required when its build is lower.
+- **The build header.** Every request carries `X-App-Build`. Below `min_build`, requests get `426
+  UPDATE_REQUIRED`. These paths are exempt: `/v1/config`, `/v1/auth/*`, the health checks and
+  `/v1/matches/*`, so a game in progress can finish.
+- **Gates wait for live play.** The app shows the update or maintenance gate only after the
+  current match or tournament round ends.
+- `maintenance`: the app shows the Maintenance screen with `maintenance_message`. All other paths
+  return `503 MAINTENANCE`.
+- **Planned maintenance.** `maintenance_at` and `maintenance_until`:
+  - Home shows a banner from 2 h before the start.
+  - New searches and rooms are refused from 10 min before; running matches finish.
+  - Tournaments that overlap the window are cancelled and refunded before check-in, with an inbox
+    note.
+- Maintenance settings live in the database (`app_config`), so they change without a redeploy.
 
 ## Home
 
@@ -88,9 +99,17 @@ never blanks the screen.
   "casual_fee": 5,
   "cooldown_until": null,
   "active": null,
-  "last": {"subject": "physics", "chapter": null, "mode": "rated"}
+  "last": {"subject": "physics", "chapter": null, "mode": "rated"},
+  "online": {"physics": {"searching": 3, "p50_wait_s": 20}},
+  "first_search": true,
+  "leaders": {"physics": {"leader": {/* row */}, "me": {"position": 12}}}
 }
 ```
+
+- `online` lets the tab say "3 players searching · usually 20 s".
+- `first_search` makes the Practice Bot offer appear at 20 s instead of 45 s.
+- `leaders` shows "Physics this week: Riya leads · you're #12" for the selected subject.
+- A Practice Bot game can be started straight from the tab (`mm.join {mode: "bot"}`).
 
 `active` is `{"kind": "queue" | "match" | "room" | "tournament", "id", "title", "action"}` when the
 user is already busy. The app then shows **Go there** instead of Find opponent.
@@ -152,35 +171,68 @@ everyone.
 
 **Boards**
 
-| Board | Ranks by | Eligible |
-|---|---|---|
-| `weekly_xp` | XP this IST week (Mon 00:00 to Sun 23:59 IST). Ties go to whoever reached the total first | Anyone with XP this week |
-| `weekly_xp:last` | Last week's final standings | The same |
-| `rating:overall` | Overall rating | At least 10 rated games and RD ≤ 110 |
-| `rating:{subject}` | Subject rating | The same, per subject |
-| `friends:weekly_xp`, `friends:rating` | You and your friends | You and your friends |
+| Board | Ranks by | Resets | Eligible |
+|---|---|---|---|
+| `weekly_xp` | XP this IST week, excluding Practice Bot XP | Monday 00:00 IST | Anyone with XP this week |
+| `weekly:{subject}` | **Battle points** this week from games against people (rated, casual, tournament) in that subject | Weekly | After 1 game in the subject |
+| `weekly_xp:last`, `weekly:{subject}:last` | Last week's final standings | Kept for a week | The same |
+| `rating:overall` | Overall rating | Never | At least 10 rated games and RD ≤ 110 |
+| `rating:{subject}` | Subject rating | Never | The same, per subject |
+| `friends:weekly_xp`, `friends:rating` | You and your friends | Weekly / never | You and your friends |
+| `hall_of_fame:{subject}` | The last 10 tournament winners | Rolling | Tournament winners |
 
-- **Excluded:** banned players, and players pending deletion.
+`weekly:{subject}` answers "who is leading Physics this week?". Bots can't farm it, and every
+Monday gives everyone a fresh start.
+
+**Rules**
+- **Exam filter.** Boards default to the viewer's own exam (NEET or JEE), with an "All India"
+  toggle. NEET views never show Maths, and JEE views never show Biology.
+- **Ties** go to whoever reached the value first.
+- **Integrity:**
+  - Practice Bot XP (itself capped at 60 a day) never counts.
+  - Casual XP counts from at most 3 games per pair of players per 24 h.
+  - Banned players, players pending deletion and players under an anti-cheat review never appear.
+- **Stale ratings.** Ratings of idle players grow more uncertain every night. A player whose RD
+  rises above 110 leaves the rating boards until they play again.
+- **Minors** can opt out of public boards (privacy settings). Non-friends see only their name,
+  avatar and level.
+- **Few players:**
+  - a board filtered below 10 players says "Be one of the first on this board" and offers All
+    India;
+  - empty subject boards are hidden;
+  - percentiles appear only on boards with 50 or more players.
 - **Change figures:** `change_1d` is the position change since the previous day's snapshot.
-- **Moving into the top 100, 10 or 3** of any board creates an inbox item.
+- **Moving into the top 100, 10 or 3** of any board creates an inbox item. Each weekly #1 per
+  subject and exam earns a "Physics Champion · Week 39" badge.
+- **Hub header.** The hub starts with the viewer's own positions ("#42 Physics · #310 this week ·
+  Overall: 3 more rated games"). Weekly cards show "Ends in 2 d 4 h".
 
 ## Tournaments
 
 | Endpoint | Returns or does |
 |---|---|
-| `GET /v1/tournaments?status=open\|upcoming\|live\|finished&goal=&cursor=` | Cards: `{"id", "title", "subject", "tone", "status", "reg_opens_at", "checkin_opens_at", "starts_at", "rounds", "entry_fee", "prize_pool", "effective_pool", "players", "capacity", "me": {"registered", "checked_in", "withdrawn"} \| null}` |
+| `GET /v1/tournaments?status=open\|upcoming\|live\|finished&goal=&cursor=` | Cards: `{"id", "title", "goal": "neet" \| "jee" \| "any", "subject", "tone", "status", "reg_opens_at", "checkin_opens_at", "starts_at", "ends_at_estimate", "rounds", "entry_fee", "prize_pool", "effective_pool", "players", "min_players", "capacity", "me": {"registered", "checked_in", "withdrawn"} \| null}`. The app shows "5 of 8 needed" and "Prize now 625 of 2,500 · grows with players" |
 | `GET /v1/me/tournaments?cursor=` | Your upcoming, live and past tournaments. Past ones add `final_rank`, `players` and `prize` |
 | `GET /v1/tournaments/{id}` | Detail: rules, the round schedule, the prize table for the current player count, `status`, `current_round`, and `me` (registered, checked in, record, points, rank, next pairing) |
-| `POST /v1/tournaments/{id}/register` | Holds the entry fee. Needs an Idempotency-Key. Errors: `TOURNAMENT_FULL`, `REGISTRATION_CLOSED`, `INSUFFICIENT_COINS`, and `NOT_ALLOWED` (paid registration blocked for 7 days after 3 no-shows) |
+| `POST /v1/tournaments/{id}/register` | Holds the entry fee. Needs an Idempotency-Key. Errors: `TOURNAMENT_FULL`, `REGISTRATION_CLOSED`, `INSUFFICIENT_COINS`, `SCHEDULE_CONFLICT` (overlaps another tournament you entered), and `NOT_ALLOWED` with `reason`: `no_shows` (paid registration blocked for 7 days after 3 no-shows) or `exam` (the tournament is for the other exam) |
 | `DELETE /v1/tournaments/{id}/register` | Withdraw. Before the start, the fee is fully refunded. After the start, you stay in the standings for tie-breaks, can't win a prize, and get no refund |
-| `POST /v1/tournaments/{id}/check-in` | Allowed from 15 min to 2 min before the start. Errors: `CHECK_IN_CLOSED` and `NOT_REGISTERED`. Opening the realtime connection during the window also checks you in |
+| `POST /v1/tournaments/{id}/check-in` | Allowed from 15 min to 2 min before the start. Always a deliberate tap, from the banner, the notification or the tournament screen. The same banner offers **Can't make it**, a withdraw with a full refund. Errors: `CHECK_IN_CLOSED` and `NOT_REGISTERED` |
 | `GET /v1/tournaments/{id}/standings?cursor=` | Rows: `{"position", "user", "points", "w", "d", "l", "bh_c1", "bh", "sb", "withdrawn"}`, plus `me` |
 | `GET /v1/tournaments/{id}/me` | Your games by round: opponent, result, points, `match_id` (or a bye), and the current pairing |
 
 **Rules for players who are registered or checked in:**
-- From 5 min before the start, starting a quick battle or joining a room returns `BUSY`, with
-  the tournament in `details.active`.
-- A tournament cancelled for too few players refunds everyone and sends an inbox item.
+- A quick battle or room that could still be running 2 minutes before the start (its longest
+  possible length crosses that time) returns `BUSY`, with the tournament in `details.active`.
+- **Reminders don't need push.** At registration the app schedules **local notifications** on the
+  device for 1 h and 15 min before the start and for the start itself. It also offers "Add to
+  calendar".
+- **At risk.** 30 min before the start, if too few players are registered, registrants get an
+  "At risk: 3 more players needed" inbox item. A tournament cancelled for too few players refunds
+  everyone and sends an inbox item.
+- **Rounds.** The number of rounds never exceeds the field: min(configured, players − 1,
+  ⌈log₂ players⌉ + 2).
+- **Exam.** A tournament's `goal` is `neet`, `jee` or `any`. `any` is only allowed for subjects
+  both exams share (Physics, Chemistry).
 
 ## Profiles and stats
 
@@ -199,10 +251,19 @@ everyone.
 Example titles: "Casual battle entry", "Casual battle won", "Refund: match cancelled", "Tournament
 prize: #3 in Physics Sunday Cup", "Daily missions bonus".
 
-## Missions
+## Missions, streaks and achievements
 
-`GET /v1/me/missions` returns the same shape as Home's `missions`. Rewards are credited
-automatically.
+| Endpoint | Returns or does |
+|---|---|
+| `GET /v1/me/missions` | The same shape as Home's `missions`. Rewards are credited automatically |
+| `POST /v1/me/missions/{id}/swap` | One free swap a day, for a different mission |
+| `POST /v1/me/streak/freezes` | Buy a streak freeze (50 coins, hold at most 2). Needs an Idempotency-Key |
+| `GET /v1/me/streak?days=30` | A calendar of active days, and the freezes used |
+| `GET /v1/me/achievements` | Earned achievements and progress on the others |
+
+Missions are written so they can always be done:
+- "Play 1 rated battle or tournament game", never "win".
+- A brand-new player's review mission becomes "10 questions in any chapter".
 
 ## Inbox and push
 
@@ -215,10 +276,19 @@ automatically.
 | `GET /v1/me/settings/notifications` | `{"kinds": {"invites": true, "tournaments": true, "friends": true, "missions": true, "streaks": true}}` |
 | `PUT /v1/me/settings/notifications` | Same body as the `GET` |
 
-**Kinds:** `invite`, `friend_request`, `friend_accepted`, `tournament_reminder`,
-`tournament_check_in`, `tournament_round`, `tournament_result`, `tournament_cancelled`, `refund`,
-`prize`, `match_forfeit`, `mission_done`, `level_up`, `achievement`, `rank_milestone`,
-`streak_risk` and `account`.
+**Kinds:**
+- **Invites and friends:** `invite`, `friend_request`, `friend_accepted`.
+- **Tournaments:** `tournament_reminder`, `tournament_check_in`, `tournament_round`,
+  `tournament_at_risk`, `tournament_result`, `tournament_cancelled`, `tournament_withdrawn`.
+- **Coins and matches:** `refund`, `prize`, `match_forfeit`, `match_aborted` (the cooldown
+  strike), `match_settled` (settlement that arrived late).
+- **Progress:** `mission_done`, `level_up`, `achievement`, `rank_milestone`, `weekly_result`
+  (Monday recap), `streak_risk`, `streak_freeze_used`, `streak_lost`.
+- **Other:** `question_report` (the outcome of a question you reported), `account`.
+
+**Quiet hours.** From 22:30 to 07:00 IST, notifications go to the inbox only, without push, except
+time-critical things the user started (their own tournament round or match). The hours are
+adjustable in settings.
 
 ## Social
 
@@ -234,13 +304,36 @@ automatically.
 | `GET /v1/me/activity?cursor=` | Friends' notable events from the last 7 days |
 | `POST /v1/blocks` and `DELETE /v1/blocks/{user_id}` | Block or unblock. `GET /v1/me/blocks` lists blocks |
 | `POST /v1/reports` | Body `{"user_id", "match_id"?, "reason": "cheating" \| "offensive_name" \| "harassment" \| "other", "note"?}` → `202` |
+| `GET /v1/me/opponents?days=30` | Recent opponents (people, not bots), each with an `h2h` record, `relationship` and **Add friend**, so a good game can turn into a friendship |
+| `GET /v1/me/settings/privacy` and `PUT` | `{"friend_requests": "everyone" \| "played_with" \| "nobody", "challenges": "friends" \| "everyone" \| "nobody", "presence": "friends" \| "nobody", "public_boards": true}`. Minors default to `played_with`, `friends` and `friends`. Explains any `NOT_ALLOWED` |
 
 ## Account
 
 | Endpoint | Does |
 |---|---|
 | `POST /v1/me/delete` | Body `{"confirm": "DELETE"}` plus a fresh sign-in proof (Google ID token or dev login). Returns `202`, and ends every session |
-| `POST /v1/me/restore` | Allowed within 7 days of a delete. Signing in to an account pending deletion returns `user.status = "pending_deletion"`, and the app offers Restore |
+| `POST /v1/me/restore` | Allowed within 7 days of a delete |
+| `POST /v1/feedback` | Body `{"kind": "problem" \| "idea" \| "coins" \| "ban_appeal", "message", "request_id"?}` → `202`. The app attaches the last error's request id |
+
+**Deletion in detail**
+- **For 7 days** the account is **hidden, not erased**: profile, friendships, ranks and history
+  are soft-hidden, so a restore brings everything back exactly. Tournament entries stay withdrawn
+  and refunded.
+- **Signing in during those 7 days** gives a restricted session that can only call `GET /v1/me`
+  (`status: "pending_deletion"`, with `restore_until`), `POST /v1/me/restore` and logout. The app
+  shows Restore or Sign out.
+- **On day 30** the account is erased for good, including its Google link. The same Google account
+  can then sign up again as a new player.
+
+**Bans and restrictions**
+- `ACCOUNT_BANNED` (403) carries `details {"reason": "cheating" | "abuse" | "offensive_name" |
+  "other", "until": <ISO or null>, "appeal": "<contact>"}`. The app shows a Suspended screen with
+  the reason, the end date, the appeal contact and Sign out.
+- A `restricted` account keeps playing. Blocked actions show an inline notice, and the change is an
+  `account` inbox item.
+- `SESSION_REVOKED` (401) carries `details.reason` (`logout`, `signed_out`, `replaced`,
+  `session_limit` or `refresh_reuse`), so the app can say "Signed out from another device" rather
+  than a vague "session ended".
 
 ## Client analytics events
 
@@ -248,4 +341,7 @@ automatically.
 - A request holds at most 20 events. Names come from an allowlist (screen-level events such as
   `leaderboard_viewed`, `review_opened`, `notification_opened`).
 - `props` holds small scalars only, never personal data.
+- **Minors.** India's DPDP Act bars behavioural tracking of children. For users under 18, events are
+  stored **without** a stable user id (only a per-session id and counts). Settings has an analytics
+  toggle for everyone.
 - Everything else in `docs/user-flows.md` §15 is recorded by the server.

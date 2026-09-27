@@ -169,6 +169,15 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
 ### `GET /v1/practice/sessions/{id}`
 Returns the same body as creation, plus `"answers": [{"position", "selected_option", "outcome",
 "time_ms"}]` and `"finished": false`. The app uses it to resume a session ("Continue practice").
+Finished sessions stay readable, with their answers for review, for 90 days.
+
+### `GET /v1/me/practice/sessions?cursor=`
+Practice history, newest first (Profile → History → Practice):
+`{"items": [{"session_id", "mode", "title", "created_at", "finished_at", "answered", "correct",
+"score", "max_score"}], "next_cursor"}`.
+
+A worker finishes expired unfinished sessions with a partial summary, so they leave "Continue
+practice" and appear here. `continue` in progress never points at an expired session.
 
 ### `POST /v1/practice/sessions/{id}/answers`
 Uploads answers, one at a time or in batches of up to 50. The app queues them while offline, so
@@ -198,6 +207,10 @@ this is idempotent.
   at 10 minutes, or at the per-question limit.
 - `answer_changes` counts how often the pick changed before submitting (challenge).
 - `answered_at` is clamped into the session's lifetime.
+- **Late uploads.** Answers are judged by their clamped `answered_at`, not by upload time. An answer
+  given while the session was alive is accepted for up to 7 days after the session expired, so a
+  phone that was offline for a while loses nothing. `session_expired` means the answer itself came
+  after expiry.
 - **De-duplication.** Answers are de-duplicated by `client_answer_id`, and only the first answer
   per `position` counts.
 
@@ -206,7 +219,7 @@ this is idempotent.
 ```json
 {
   "results": [{"client_answer_id": "6b0e…", "status": "accepted", "outcome": "correct"}],
-  "xp": {"delta": 2, "total": 1234, "level": 4, "into_level": 34, "for_next": 250}
+  "xp": {"delta": 2, "total": 1234, "level": 4, "into_level": 34, "for_next": 250, "capped": false, "resets_at": null}
 }
 ```
 
@@ -288,6 +301,21 @@ automatically.
 - Boxes come due after 1, 3, 7, 14 and 30 days.
 - A correct review moves the question up a box, and a wrong one sends it back to box 1.
 - A correct answer from box 5 retires the question.
+
+**Daily caps are always explained.** When the 300-a-day practice XP cap cuts an award,
+`xp.capped` is true and `resets_at` is the next IST midnight. The app then shows "Daily practice
+XP limit reached · resets at midnight" instead of a puzzling small number.
+
+## Reporting a question
+
+`POST /v1/questions/{ref}/reports {"reason": "wrong_answer" | "typo" | "unclear" | "other",
+"note": "…"}` → `202`.
+- It's available from practice, review and search.
+- Limited to 20 a day. A repeat report of the same question by the same user is accepted again
+  without creating a duplicate.
+- When a moderator resolves it, the reporter gets a `question_report` inbox item.
+- **A battle question found to be wrong:** ratings from past games stand, and the question is
+  retired, so it leaves reviews and bookmarks.
 
 ## Search and single questions
 

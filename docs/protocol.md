@@ -25,7 +25,7 @@ Practice Bot, Play with Friend, Group Battle) and tournament games all use it. R
    ```json
    {"v": 1, "t": "hello", "id": "c1", "d": {
      "ticket": "q3Jd…", "proto": 1, "build": 57, "platform": "android",
-     "resume": [{"ch": "m:01929c2e-…", "last_seq": 41}]
+     "resume": [{"ch": "m:01929c2e-…", "last_seq": 41}], "takeover": false
    }}
    ```
 
@@ -43,8 +43,22 @@ Practice Bot, Play with Friend, Group Battle) and tournament games all use it. R
    running tournament. After a crash or a cold start, the app uses it to jump straight back into
    the game.
 
-A user has **one live connection**. A newer connection closes the older one with `4409`
-("Playing on another device").
+**When the app connects.** It keeps **one connection whenever it is in the foreground and signed
+in**, on every tab. That way invites, inbox updates and tournament calls arrive live wherever the
+user is. It lets the connection go shortly after the app goes to the background, and a live match
+keeps its own grace rules.
+
+**One connection per user.** A newer connection normally replaces the older one, which closes with
+`4409` ("Playing on another device").
+- **A live match on another device is not taken over by accident.** If `takeover` isn't true,
+  the server answers `error {"code": "LIVE_ELSEWHERE", "details": {"match_id"}}` and closes only
+  the new connection with `4409`.
+- The app then asks "Move the game here?" and reconnects with `takeover: true`.
+
+**App state.** After every `welcome`, and whenever it changes, the client sends
+`client.state {"state": "foreground" | "background"}`. The server uses it to stop a queued
+search after 10 s in the background (no penalty), and as an anti-cheat signal for a question
+left open while the app is in the background.
 
 ## 2. Envelope
 
@@ -74,11 +88,13 @@ v1. Breaking changes get a new endpoint, `/v2/ws`, served alongside v1 for at le
 
 ## 3. Keeping the connection healthy
 
-- **Heartbeat.** The server sends `ping {"n": 7}` every `hb_s` seconds (10 s, or 5 s while the
-  user is in a match), and the client answers `pong {"n": 7}` at once. The server measures the
+- **Heartbeat.** The server sends `ping {"n": 7}` every `hb_s` seconds, and the client answers
+  `pong {"n": 7}` at once. `hb_s` is 30 s when the user is idle, 10 s while queued or in a room,
+  and 5 s in a match. The server announces a new interval with `hb {"s": 5}`. The server measures the
   round trip. Its median over the last 10 samples sets this player's latency allowance
   (section 7).
-- **Stale connections.** Without any frame for 12 s in a match (30 s otherwise), the server closes
+- **Stale connections.** Without any frame for 12 s in a match (25 s while queued or in a room, 70 s
+  when idle), the server closes
   the connection and treats the player as disconnected. On the client side, if no frame arrives
   for `2 × hb_s + 2` seconds, the client assumes the connection is dead and reconnects.
 - **Clock sync.** The client sends `clock.ping {"c0": <client monotonic ms>}` and the server answers
@@ -106,6 +122,7 @@ v1. Breaking changes get a new endpoint, `/v2/ws`, served alongside v1 for at le
 | `COOLDOWN` | Queueing blocked for a while (repeated aborts). `details.until` |
 | `RATE_LIMITED` | Too many requests of this kind. `details.retry_after_s` |
 | `UNAVAILABLE` | Maintenance or overload; retry later |
+| `LIVE_ELSEWHERE` | A live match is running on another device; reconnect with `takeover: true` to move it here |
 
 **Limits**
 - Inbound frames: at most 4 KiB, and 10 per second with bursts of 30.
@@ -136,9 +153,9 @@ Client → server:
 
 | Type | Payload | Notes |
 |---|---|---|
-| `mm.join` | `{"mode": "rated" \| "casual", "subject": "physics", "chapter": "kinematics" \| null, "idem": "<uuid>"}` | `chapter: null` means "All chapters". A repeat with the same `idem` returns the existing ticket. Casual holds the 5-coin entry |
+| `mm.join` | `{"mode": "rated" \| "casual" \| "bot", "subject": "physics", "chapter": "kinematics" \| null, "idem": "<uuid>"}` | `chapter: null` means "All chapters". A repeat with the same `idem` returns the existing ticket. Casual holds the 5-coin entry. `bot` starts a Practice Bot game at once, with no queue and no coins, and replies with `mm.found {bot: true}` |
 | `mm.cancel` | `{}` | Releases the queue slot and any coin hold |
-| `mm.respond` | `{"choice": "keep" \| "bot" \| "invite" \| "cancel"}` | Answer to `mm.timeout` |
+| `mm.respond` | `{"choice": "keep" \| "bot" \| "invite" \| "cancel"}` | Answer to `mm.timeout`. `bot`, `invite` and `cancel` end the ticket first, which releases any casual hold (`mm.cancelled {refunded}`) |
 
 Server → client (channel `u`):
 
@@ -146,8 +163,9 @@ Server → client (channel `u`):
 |---|---|
 | `mm.queued` | `{"ticket_id", "mode", "subject", "chapter", "joined_at"}` |
 | `mm.status` | `{"waited_s": 17, "widened": true, "window": 250 \| null}`. Sent when something changes: the search widens to the whole subject at 15 s, or the rating range grows |
-| `mm.timeout` | `{"waited_s": 45, "options": ["keep", "bot", "invite", "cancel"]}`. `bot` is offered only for casual and unrated play, never for rated |
-| `mm.cancelled` | `{"reason": "user" \| "timeout" \| "disconnected" \| "cooldown", "refunded": 5}`. Any hold is released, and `refunded` says how many coins came back (0 for rated). `timeout` means no one was found in 105 s; `disconnected` means the app was away for more than 10 s. Also kept in the inbox |
+| `mm.status` (extended) | Also carries `online` (players searching in this subject right now) and `p50_wait_s` (the typical wait at this hour), so the app can say "3 players searching · usually 20 s" |
+| `mm.timeout` | `{"waited_s": 45, "options": ["keep", "bot", "invite", "cancel"]}`. Offered to everyone. The bot game itself is always unrated and coin-free, even when the search was rated. On a player's first-ever search the bot is also offered at 20 s |
+| `mm.cancelled` | `{"reason": "user" \| "timeout" \| "background" \| "disconnected" \| "cooldown", "refunded": 5}`. Any hold is released, and `refunded` says how many coins came back (0 for rated). `timeout` means no one was found in 105 s. `background` means the app was in the background for more than 10 s; it never counts as an abort. `disconnected` means the connection was lost for more than 10 s. Also kept in the inbox |
 | `mm.requeued` | `{"reason": "opponent_not_ready" \| "match_failed", "waited_s": 31}`. The found match fell through and the ticket is back at the front of the queue with its original waiting time. The app says "Your opponent didn't join. Searching again…" |
 | `mm.found` | `{"match_id", "ch": "m:<id>", "mode", "opponent": {…player card…, "rating": {…}, "record": {"wins": 3, "losses": 1, "draws": 0}}, "sources": [{"chapter": "kinematics", "name": "Motion in a Straight Line", "count": 4}, {"chapter": "laws-of-motion", "name": "Laws of Motion", "count": 3}], "bot": false}`. `record` is your head-to-head record against this opponent. The app shows the found screen wherever the user is |
 
@@ -188,9 +206,9 @@ Server → client (channel `m:<match_id>`, with `seq`):
 | `q.reveal` | `{"q": 1, "correct": "k2P9x", "players": {"<uid>": {"opt": "k2P9x" \| null, "correct": true, "pts": 132, "time_ms": 6010, "speed": "fast" \| "slow" \| "even" \| null}}, "totals": {"<uid>": {"points": 382, "correct": 3}}, "ref": "<question ref>"}` |
 | `opp.conn` | `{"uid", "state": "connected" \| "reconnecting" \| "left", "grace_until": 1790000031000}` |
 | `emote` | `{"uid", "e": "gg"}` |
-| `match.end` | `{"result": "win" \| "loss" \| "draw", "reason": "normal" \| "forfeit" \| "opponent_forfeit" \| "aborted" \| "voided", "totals": {…}, "ranking": [["<uid>"], …]}`. `result` is from the receiver's point of view |
-| `match.settled` | `{"rating": {"scope": "physics", "before": "1502?", "after": "1518?", "delta": 16} \| null, "rank": {"board": "rating:physics", "before": 47, "after": 42} \| {"board": "rating:physics", "games_to_rank": 6} \| null, "coins": {"delta": 10, "balance": 245}, "xp": {"delta": 30, "level": 4, "into_level": 120, "for_next": 250, "level_up": false}, "missions": [{"id", "title", "progress", "target", "done"}], "streak": {"days": 5, "extended": true}, "achievements": [{"id", "title"}], "tip": {"message", "action", "params"} \| null}` |
-| `rematch.status` | `{"match_id", "state": "offered" \| "accepted" \| "declined" \| "expired", "by": "<uid>"}` |
+| `match.end` | `{"result": "win" \| "loss" \| "draw", "reason": "normal" \| "forfeit" \| "opponent_forfeit" \| "left" \| "disconnected" \| "no_show" \| "ended_by_host" \| "aborted" \| "voided", "totals": {…}, "ranking": [["<uid>"], …]}`. `result` is from the receiver's point of view. `left` means someone chose to leave, `disconnected` means someone was away past their grace, `no_show` means a tournament player never got ready, and `ended_by_host` means a group host ended the game early on the current scores |
+| `match.settled` | `{"rating": {"scope": "physics", "before": "1502?", "after": "1518?", "delta": 16} \| null, "rank": {"board": "rating:physics", "before": 47, "after": 42} \| {"board": "rating:physics", "games_to_rank": 6} \| null, "coins": {"delta": 10, "balance": 245, "capped": false}, "xp": {"delta": 30, "level": 4, "into_level": 120, "for_next": 250, "level_up": false, "capped": false}, "resets_at": "<next IST midnight>", "missions": [{"id", "title", "progress", "target", "done"}], "streak": {"days": 5, "extended": true}, "achievements": [{"id", "title"}], "tip": {"message", "action", "params"} \| null}` |
+| `rematch.status` | `{"match_id", "state": "offered" \| "accepted" \| "declined" \| "expired" \| "failed", "by": "<uid>", "reason": "insufficient_coins" \| "opponent_left" \| null}` |
 
 - **Question timing.** `q.show` is sent about 400 ms before `shown_at`, so every client has it
   before it goes live. The client keeps the question hidden until its synced clock reaches
@@ -257,7 +275,7 @@ Server → client (channel `r:<room_id>`, with `seq`):
 
 | Type | Payload |
 |---|---|
-| `room.state` | The whole lobby: `{"room_id", "kind", "code", "host", "status": "lobby" \| "playing" \| "finished", "locked", "settings", "members": [card + `ready`, `connected`, `role`]}`. Sent on join and after every change |
+| `room.state` | The whole lobby: `{"room_id", "kind", "code", "host", "status": "lobby" \| "playing" \| "finished", "locked", "settings", "members": [card + `ready`, `connected`, `away`, `role`], "rematch": {"offered_by", "until"} \| null}`. Sent on join and after every change. `away` means the member's app is in the background |
 | `room.started` | `{"match_id", "ch": "m:<id>"}` |
 | `room.kicked` | `{"room_id"}` (to the kicked player) |
 | `room.closed` | `{"room_id", "reason": "host_ended" \| "idle" \| "host_left" \| "empty"}` |
@@ -265,7 +283,12 @@ Server → client (channel `r:<room_id>`, with `seq`):
 - **Settings.** Friend duels are always unrated and free. Settings are subject, chapter or All,
   question count and seconds per question. Group battles add difficulty, late join, the
   leaderboard between questions, and who can join.
-- **Codes.** Codes use Crockford base32 and expire 10 minutes after the lobby empties or closes.
+- **Codes.** Codes use Crockford base32 and work for as long as the room exists.
+- **Lobby lifetime.** A host who switches apps to share the link keeps the room:
+  - A lobby closes only on `room.end`, when everyone leaves, or after 15 minutes without activity.
+  - Members see "Waiting for Aarav to come back" while the host is away.
+  - The host gets a notification when someone joins.
+  - During a game, the usual grace rules apply instead.
 - **Code guesses.** Wrong codes are rate-limited per user (5 a minute, 30 an hour).
 - **Invites** are created over REST (`docs/api-play.md`) and delivered live on `u`:
   - `invite.received {"invite_id", "from": card, "kind", "room_id", "subject", "expires_at"}`
@@ -283,7 +306,8 @@ Server → client (channel `r:<room_id>`, with `seq`):
 
   | Type | When |
   |---|---|
-  | `t.check_in {"tournament_id", "title", "closes_at"}` | The check-in window opened. Opening the connection during the window checks you in automatically |
+  | `t.check_in {"tournament_id", "title", "starts_at", "closes_at"}` | The check-in window opened. The app shows **Check in** and **Can't make it** (withdraw with a full refund). Check-in is always a deliberate tap, on the banner, the notification or the tournament screen, never automatic |
+  | `t.at_risk {"tournament_id", "players", "needed"}` | 30 minutes before the start, if too few players have registered: "3 more players needed. Invite friends" |
   | `t.checked_in {"tournament_id"}` | You are checked in |
   | `t.pairing {"tournament_id", "round", "match_id", "ch": "m:<id>", "opponent": {…}, "ready_by": <ms>}` | Your game for this round. You have 90 s to send `match.ready`; the app shows a full-screen "Join" wherever the user is |
   | `t.bye {"tournament_id", "round", "points": 1}` | You have a bye this round |
