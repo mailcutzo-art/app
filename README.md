@@ -16,8 +16,11 @@ Live quiz battles, Swiss tournaments and practice for NEET and JEE aspirants.
   a catalog app and golden screenshots of mock screens
   (`mobile/packages/design_system/example/test/goldens/`).
 - **Phase 2 (foundations):** backend core in progress.
-- **Content:** a small test question set for NEET and JEE ([`content/`](content/), format in
-  [`docs/content-format.md`](docs/content-format.md)), validated in CI. The real bank comes later.
+- **Content:** the NEET Physics and Chemistry bank (50 chapters from
+  [`content/syllabus.yaml`](content/syllabus.yaml), about 500 questions each) plus a small Biology
+  and Maths test set ([`content/`](content/), format in
+  [`docs/content-format.md`](docs/content-format.md)), validated in CI.
+  `content/tools/export_seed.py` writes database-ready seed JSON with stable ids.
 
 ## Working on the mobile app
 

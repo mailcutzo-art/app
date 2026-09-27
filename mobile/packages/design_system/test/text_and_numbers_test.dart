@@ -6,7 +6,8 @@ String _plain(List<InlineSpan> spans) => spans.map((s) {
   if (s is TextSpan) return s.text ?? '';
   if (s is WidgetSpan) {
     final text = (s.child as Transform).child! as Text;
-    return '[${text.data}]';
+    final nested = text.textSpan as TextSpan?;
+    return '[${text.data ?? _plain(nested!.children!)}]';
   }
   return '?';
 }).join();
@@ -42,6 +43,74 @@ void main() {
 
     test('a trailing caret or underscore is kept literally', () {
       expect(_plain(parseQuizMarkup('x_ and y^', base)), 'x_ and y^');
+    });
+
+    test('scripts nest inside braced scripts', () {
+      expect(_plain(parseQuizMarkup('d_{x^2−y^2} and d_{z^2}', base)), 'd[x2−y2] and d[z2]');
+      expect(_plain(parseQuizMarkup('e^{-x^2}', base)), 'e[−x2]');
+    });
+
+    test('a lone star inside a script is literal, not italics', () {
+      final spans = parseQuizMarkup('σ^{*}2s is antibonding', base);
+      expect(_plain(spans), 'σ[*]2s is antibonding');
+      expect((spans.last as TextSpan).style!.fontStyle, isNull);
+    });
+
+    test('line breaks are kept for statement questions', () {
+      const stem = 'Assertion (A): x\nReason (R): y';
+      expect(_plain(parseQuizMarkup(stem, base)), stem);
+    });
+  });
+
+  group('question widgets', () {
+    Widget wrap(Widget child) => MaterialApp(
+      theme: AppTheme.light(),
+      home: Scaffold(body: SingleChildScrollView(child: child)),
+    );
+
+    testWidgets('QuestionCard shows a figure description until artwork exists', (tester) async {
+      await tester.pumpWidget(
+        wrap(
+          const QuestionCard(
+            number: 1,
+            total: 7,
+            text: 'Statement I: a\nStatement II: b',
+            figure: QuestionFigure(description: 'A block on a 30° incline'),
+          ),
+        ),
+      );
+      expect(find.text('FIGURE'), findsOneWidget);
+      expect(find.textContaining('30° incline', findRichText: true), findsOneWidget);
+    });
+
+    testWidgets('QuestionFigure prefers the image and labels it', (tester) async {
+      final semantics = tester.ensureSemantics();
+      await tester.pumpWidget(
+        wrap(
+          const QuestionFigure(
+            description: 'Ray diagram of a convex lens',
+            image: SizedBox(width: 100, height: 60),
+          ),
+        ),
+      );
+      expect(find.text('FIGURE'), findsNothing);
+      expect(find.bySemanticsLabel('Ray diagram of a convex lens'), findsOneWidget);
+      semantics.dispose();
+    });
+
+    testWidgets('ExplanationCard shows the formula when given', (tester) async {
+      await tester.pumpWidget(
+        wrap(
+          const ExplanationCard(
+            text: 'Using s = ut + ½at^2 with u = 0.',
+            formula: 's = ut + ½at^2',
+            correct: true,
+          ),
+        ),
+      );
+      expect(find.text('EXPLANATION'), findsOneWidget);
+      expect(find.textContaining('with u = 0', findRichText: true), findsOneWidget);
+      expect(find.textContaining('s = ut + ½at', findRichText: true), findsNWidgets(2));
     });
   });
 

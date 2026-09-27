@@ -3,6 +3,8 @@
 Validate from the repo root (exits non-zero and lists every problem):
 
     uv run --with pyyaml --with pydantic python content/tools/validate.py
+    uv run --with pyyaml --with pydantic python content/tools/validate.py --stats \
+        content/questions/physics/waves.yaml     # only these chapter files, plus a summary
 
 The backend's seed command imports ``load`` from this file, so CI and the loader share one set of
 rules and one set of models.
@@ -26,6 +28,16 @@ MIN_BATTLE_PER_CHAPTER = 7
 MAX_ANSWER_SHARE = 0.45
 MIN_QUESTIONS_PER_TOPIC = 2
 MIN_CATEGORIES_PER_CHAPTER = 2
+MAX_TOPICS_PER_CHAPTER = 12
+MAX_STEM = 700
+MAX_BATTLE_STEM = 180
+# Options are shuffled in battles and labelled A–D by position, so they must never point at
+# each other.
+OPTION_XREF = re.compile(
+    r"\b(all|none|both|neither) of (the )?(above|these)\b|\bboth \(?[A-D]\)? and \(?[A-D]\)?(\W|$)"
+    r"|\boption \(?[A-D]\)?(\W|$)",
+    re.IGNORECASE,
+)
 LATEX = re.compile(r"\\[a-zA-Z]+|\$")
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 WORD = re.compile(r"^[A-Z]{3,12}$")
@@ -43,6 +55,21 @@ class Category(StrEnum):
     NUMERICAL = "numerical"
     FACTUAL = "factual"
     APPLICATION = "application"
+
+
+class Format(StrEnum):
+    """How a question is presented (NEET styles), independent of its category."""
+
+    DIRECT = "direct"  # a plain single-idea question
+    STATEMENTS = "statements"  # the options are statements: pick the correct or incorrect one
+    MULTI_STATEMENT = "multi-statement"  # statements I–IV in the stem, options combine them
+    STATEMENT_PAIR = "statement-pair"  # Statement I / Statement II
+    ASSERTION_REASON = "assertion-reason"  # Assertion (A) / Reason (R)
+    MATCH = "match"  # List I (P–S) with List II (1–4)
+    ORDERING = "ordering"  # arrange in increasing / decreasing order
+    GRAPH = "graph"  # read or pick a graph (described in words, or drawn: see `diagram`)
+    DIAGRAM = "diagram"  # needs the figure in `diagram`
+    CASE = "case"  # an experiment or real-life situation
 
 
 def _normalize(text: str) -> str:
@@ -90,10 +117,10 @@ class Catalog(_Model):
 class _QuestionBase(_Model):
     id: Text
     category: Category
-    stem: Annotated[str, Field(min_length=10, max_length=300)]
-    options: list[Annotated[str, Field(min_length=1, max_length=120)]]
+    stem: Annotated[str, Field(min_length=10, max_length=MAX_STEM)]
+    options: list[Annotated[str, Field(min_length=1, max_length=160)]]
     answer: int = Field(ge=0, le=3)
-    explanation: Annotated[str, Field(min_length=10, max_length=1200)]
+    explanation: Annotated[str, Field(min_length=10, max_length=1500)]
     tags: list[str] = []
 
     @field_validator("options")
@@ -107,10 +134,18 @@ class _QuestionBase(_Model):
 
 
 class Question(_QuestionBase):
-    topic: Slug
+    topic: Slug  # the chapter's module
     exams: list[Exam] | None = Field(default=None, min_length=1)
-    difficulty: int = Field(ge=1, le=5)
+    difficulty: int = Field(ge=1, le=5)  # easy 1–2, medium 3, hard 4–5
     battle: bool = False
+    # Optional metadata for the real bank (see docs/content-format.md).
+    subtopic: Annotated[str, Field(min_length=2, max_length=80)] | None = None
+    concept: Annotated[str, Field(min_length=2, max_length=120)] | None = None
+    format: Format = Format.DIRECT
+    time: int | None = Field(default=None, ge=10, le=600)  # typical seconds to answer
+    ncert: bool | None = None  # rests directly on NCERT text
+    formula: Annotated[str, Field(min_length=1, max_length=200)] | None = None
+    diagram: Annotated[str, Field(min_length=40, max_length=1500)] | None = None
 
     @field_validator("exams")
     @classmethod
@@ -134,7 +169,8 @@ class Chapter(_Model):
     slug: Slug
     name: Text
     order: int = Field(ge=1)
-    topics: list[Topic] = Field(min_length=2, max_length=8)
+    classes: list[Literal[11, 12]] | None = Field(default=None, min_length=1)  # NCERT class
+    topics: list[Topic] = Field(min_length=2, max_length=MAX_TOPICS_PER_CHAPTER)
 
 
 class ChapterFile(_Model):
@@ -247,10 +283,27 @@ def _check_chapter(data: ChapterFile, where: str, exams_for_subject: set[str]) -
     return problems
 
 
-def load(root: Path = ROOT) -> tuple[Content, list[str]]:
-    """Parse and check every content file under ``root``; returns what parsed and all problems."""
+def _read_syllabus(root: Path) -> dict[str, dict[str, dict[str, object]]]:
+    """``syllabus.yaml`` as subject -> chapter slug -> entry; empty when there is none."""
+    path = root / "syllabus.yaml"
+    if not path.is_file():
+        return {}
+    data = _read(path) or {}
+    return {subject: {c["slug"]: c for c in entries} for subject, entries in data.items()}  # type: ignore[union-attr]
+
+
+def load(root: Path = ROOT, only: set[Path] | None = None) -> tuple[Content, list[str]]:
+    """Parse and check every content file under ``root``; returns what parsed and all problems.
+
+    ``only`` limits the run to those chapter files (passages and words, which refer to every
+    chapter, are then skipped).
+    """
     content = Content()
     problems: list[str] = []
+    try:
+        syllabus = _read_syllabus(root)
+    except (OSError, yaml.YAMLError, KeyError, TypeError) as e:
+        return content, [f"syllabus.yaml: {e}"]
     try:
         content.catalog = Catalog.model_validate(_read(root / "catalog.yaml"))
     except (OSError, ValidationError, yaml.YAMLError) as e:
@@ -284,6 +337,8 @@ def load(root: Path = ROOT) -> tuple[Content, list[str]]:
                 problems.append(f"{where}: {q.id}: {issue}")
 
     for path in sorted((root / "questions").glob("*/*.yaml")):
+        if only and path.resolve() not in only:
+            continue
         where = str(path.relative_to(root))
         try:
             data = ChapterFile.model_validate(_read(path))
@@ -316,14 +371,42 @@ def load(root: Path = ROOT) -> tuple[Content, list[str]]:
             topics[subject].setdefault(topic.slug, chapter.slug)
 
         prefix = f"{subject[:3]}-"
+        entry = syllabus.get(subject, {}).get(chapter.slug)
+        if subject in syllabus and entry is None:
+            problems.append(f"{where}: chapter {chapter.slug} is not in syllabus.yaml")
+        if entry:
+            prefix = f"{subject[:3]}-{entry['prefix']}-"
+            for attr in ("name", "order", "classes"):
+                if getattr(chapter, attr) != entry[attr]:
+                    problems.append(
+                        f"{where}: chapter {attr} {getattr(chapter, attr)!r} doesn't match "
+                        f"syllabus.yaml ({entry[attr]!r})"
+                    )
         for q in data.questions:
             check_question(q, where)
-            if not re.match(rf"^{prefix}[a-z0-9]+-\d{{3}}$", q.id):
-                problems.append(f"{where}: id {q.id} should look like {prefix}<chap>-<nnn>")
-            if q.battle and len(q.stem) > 180:
+            if not re.match(rf"^{prefix}([a-z0-9]+-)?\d{{3}}$", q.id):
+                problems.append(f"{where}: id {q.id} should look like {prefix}<nnn>")
+            if q.battle and len(q.stem) > MAX_BATTLE_STEM:
                 problems.append(f"{where}: {q.id} is too long for a battle question")
+            if q.battle and q.diagram:
+                problems.append(f"{where}: {q.id} needs a diagram, so it can't be in battles")
+            if q.format == Format.DIAGRAM and not q.diagram:
+                problems.append(f"{where}: {q.id} has format diagram but no diagram description")
+            for option in q.options:
+                if OPTION_XREF.search(option):
+                    problems.append(
+                        f"{where}: {q.id} option {option!r} refers to other options, which are "
+                        "shuffled"
+                    )
+            for extra in (q.formula, q.diagram, q.subtopic, q.concept):
+                issue = _markup_problem(extra) if extra else None
+                if issue:
+                    problems.append(f"{where}: {q.id}: {issue}")
         problems.extend(_check_chapter(data, where, exams_by_subject[subject]))
         content.chapters.append(data)
+
+    if only:  # passages and words refer to every chapter, so a partial run skips them
+        return content, problems
 
     passage_ids: set[str] = set()
     for path in sorted((root / "passages").glob("*.yaml")):
@@ -371,8 +454,36 @@ def load(root: Path = ROOT) -> tuple[Content, list[str]]:
     return content, problems
 
 
-def main() -> int:
-    content, problems = load()
+def _bucket(difficulty: int) -> str:
+    return "easy" if difficulty <= 2 else "medium" if difficulty == 3 else "hard"
+
+
+def _stats(data: ChapterFile) -> None:
+    qs = data.questions
+    n = len(qs) or 1
+
+    def share(counter: Counter[str]) -> str:
+        return ", ".join(f"{k} {v} ({100 * v // n}%)" for k, v in counter.most_common())
+
+    where = f"questions/{data.subject}/{data.chapter.slug}.yaml"
+    print(f"\n{where}: {len(qs)} questions, {sum(q.battle for q in qs)} battle")
+    print(f"  difficulty: {share(Counter(_bucket(q.difficulty) for q in qs))}")
+    print(f"  category:   {share(Counter(q.category.value for q in qs))}")
+    print(f"  format:     {share(Counter(q.format.value for q in qs))}")
+    print(f"  answer:     {share(Counter('ABCD'[q.answer] for q in qs))}")
+    print(f"  diagrams:   {sum(bool(q.diagram) for q in qs)}")
+    per_topic = Counter(q.topic for q in qs)
+    for t in data.chapter.topics:
+        print(f"  {t.slug}: {per_topic[t.slug]}")
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = sys.argv[1:] if argv is None else argv
+    only = {Path(a).resolve() for a in args if a != "--stats"} or None
+    content, problems = load(ROOT, only)
+    if "--stats" in args:
+        for chapter in content.chapters:
+            _stats(chapter)
     for problem in problems:
         print(f"✗ {problem}")
     totals = Counter(c.subject for c in content.chapters for _ in c.questions)

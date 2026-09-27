@@ -15,8 +15,11 @@ import 'numbers.dart';
 import 'pressable.dart';
 import 'quiz_text.dart';
 
-/// Question stem card: "QUESTION 3 / 7", an optional chapter tag, then the
-/// rich question text.
+/// Question stem card: "QUESTION 3 / 7", an optional chapter tag, the rich
+/// question text, then an optional [figure] (see [QuestionFigure]).
+///
+/// Stems may span several lines (statement, assertion–reason and match
+/// questions), so the card grows with its text; put it in a scroll view.
 class QuestionCard extends StatelessWidget {
   const QuestionCard({
     super.key,
@@ -25,6 +28,7 @@ class QuestionCard extends StatelessWidget {
     required this.text,
     this.tag,
     this.tone = PastelTone.sky,
+    this.figure,
   });
 
   final int number;
@@ -32,6 +36,9 @@ class QuestionCard extends StatelessWidget {
   final String text;
   final String? tag;
   final PastelTone tone;
+
+  /// Drawn below the stem, e.g. a [QuestionFigure].
+  final Widget? figure;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +70,115 @@ class QuestionCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.lg),
           QuizText(text, style: context.text.titleLarge.copyWith(fontSize: 21, height: 29 / 21)),
+          if (figure != null) ...[const SizedBox(height: AppSpacing.lg), figure!],
+        ],
+      ),
+    );
+  }
+}
+
+/// The figure a question refers to. Shows [image] when there is one; until
+/// artwork exists it shows the question's diagram [description] as a labelled
+/// panel so the question stays answerable.
+class QuestionFigure extends StatelessWidget {
+  const QuestionFigure({super.key, required this.description, this.image})
+    : assert(description != '' || image != null);
+
+  /// What the figure shows, in quiz markup.
+  final String description;
+
+  /// The drawn figure, e.g. an `SvgPicture` or `Image`.
+  final Widget? image;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = context.text;
+    if (image != null) {
+      return Semantics(
+        image: true,
+        label: description,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(AppRadii.md)),
+          child: image,
+        ),
+      );
+    }
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        color: colors.surfaceSunken,
+        borderRadius: const BorderRadius.all(Radius.circular(AppRadii.md)),
+        border: Border.all(color: colors.outline),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const OverlineBadge(label: 'Figure'),
+          const SizedBox(height: AppSpacing.sm),
+          QuizText(description, style: text.bodyMedium.copyWith(color: colors.inkMuted)),
+        ],
+      ),
+    );
+  }
+}
+
+/// The worked explanation shown after answering, with the formula used (if
+/// any) set apart underneath.
+class ExplanationCard extends StatelessWidget {
+  const ExplanationCard({super.key, required this.text, this.formula, this.correct});
+
+  /// Explanation in quiz markup.
+  final String text;
+
+  /// Formula in quiz markup, e.g. `v^2 = u^2 + 2as`.
+  final String? formula;
+
+  /// Whether the player got it right; tints the header. Null for a neutral card.
+  final bool? correct;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final type = context.text;
+    final tone = switch (correct) {
+      true => PastelTone.mint,
+      false => PastelTone.rose,
+      null => PastelTone.neutral,
+    };
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.xl),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        borderRadius: AppRadii.card,
+        border: Border.all(color: colors.outline),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          OverlineBadge(label: 'Explanation', tone: tone),
+          const SizedBox(height: AppSpacing.md),
+          QuizText(text, style: type.bodyLarge),
+          if (formula != null && formula!.isNotEmpty) ...[
+            const SizedBox(height: AppSpacing.md),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.sm,
+              ),
+              decoration: BoxDecoration(
+                color: colors.surfaceMuted,
+                borderRadius: const BorderRadius.all(Radius.circular(AppRadii.xs)),
+              ),
+              child: QuizText(
+                formula!,
+                style: type.bodyMedium.copyWith(fontWeight: FontWeight.w600),
+              ),
+            ),
+          ],
         ],
       ),
     );
