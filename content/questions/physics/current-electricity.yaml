@@ -8490,3 +8490,2188 @@ questions:
     answer: 2
     explanation: "First: X = 6 × 40/60 = 4.00 Ω. After interchange, X is in the right gap: X = 6 × (100 − 60.4)/60.4 ≈ 3.93 Ω. The mean ≈ 3.97 Ω reduces end errors."
 
+  - id: phy-cur-401
+    topic: electric-current
+    subtopic: Non-uniform current density
+    concept: Integrating J = J_0(1 − r/R) over the cross-section
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: I = ∫J · 2πr dr
+    tags: [current-density, calculus]
+    stem: In a wire of radius R, the current density falls linearly from J_0 at the axis to zero at the surface, J = J_0(1 − r/R). What is the total current?
+    options:
+      - πJ_0R^2/3
+      - πJ_0R^2/2
+      - 2πJ_0R^2/3
+      - πJ_0R^2
+    answer: 0
+    explanation: "I = ∫J_0(1 − r/R)2πr dr from 0 to R = 2πJ_0(R^2/2 − R^2/3) = πJ_0R^2/3. Using the average of J_0 and 0 times the area gives πJ_0R^2/2, which ignores that the outer rings have larger area."
+
+  - id: phy-cur-402
+    topic: electric-current
+    subtopic: Average current
+    concept: Average current = total charge ÷ time
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [calculus, average-current]
+    stem: The current in a wire varies as I = (4 − 2t) A from t = 0 until it becomes zero. What is the average current over this interval?
+    options:
+      - 4 A
+      - 1 A
+      - 2 A
+      - 3 A
+    answer: 2
+    explanation: "The current reaches zero at t = 2 s. q = ∫(4 − 2t) dt from 0 to 2 = 8 − 4 = 4 C, so the average current is 4/2 = 2 A."
+
+  - id: phy-cur-403
+    topic: electric-current
+    subtopic: Instantaneous vs average current
+    concept: For I = 3t^2, instantaneous current at t is 3 times the average over 0 to t
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [calculus, average-current]
+    stem: The current in a conductor varies as I = 3t^2 ampere. What is the ratio of the instantaneous current at t = 2 s to the average current over the first 2 s?
+    options:
+      - "1"
+      - "2"
+      - "1.5"
+      - "3"
+    answer: 3
+    explanation: "q = ∫3t^2 dt from 0 to 2 = 8 C, so I_avg = 4 A. At t = 2 s, I = 12 A. The ratio is 3."
+
+  - id: phy-cur-404
+    topic: electric-current
+    subtopic: Current from current density
+    concept: I = Jπr^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: I = JA
+    tags: [current-density]
+    stem: A wire of diameter 2 mm carries a uniform current density of 2 × 10^6 A m^{-2}. What current does it carry?
+    options:
+      - 25.1 A
+      - 6.28 A
+      - 2 A
+      - 12.6 A
+    answer: 1
+    explanation: "A = π(1 × 10^{-3})^2 = π × 10^{-6} m^2, so I = JA = 2π ≈ 6.28 A. Using the diameter as radius gives 25.1 A."
+
+  - id: phy-cur-405
+    topic: electric-current
+    subtopic: Coulomb and electrons
+    concept: 1 C corresponds to about 6.25 × 10^18 electrons
+    category: factual
+    format: statements
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [electron-count]
+    stem: Which statement about the coulomb and the electronic charge is correct?
+    options:
+      - One coulomb is the charge of about 6.25 × 10^{18} electrons
+      - An electron carries a charge of 1 C
+      - One ampere equals one coulomb per hour
+      - The total charge of 10^{19} electrons is 1.6 mC
+    answer: 0
+    explanation: "1/(1.6 × 10^{-19}) ≈ 6.25 × 10^{18}. An electron carries 1.6 × 10^{-19} C, 1 A = 1 C s^{-1}, and 10^{19} electrons carry 1.6 C, not 1.6 mC."
+
+  - id: phy-cur-406
+    topic: electric-current
+    subtopic: Charge carriers
+    concept: Carriers in metals, electrolytes and electron beams
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [charge-carriers, conventional-current]
+    stem: |-
+      Consider the following statements.
+      I. In a metal, current is carried by free electrons.
+      II. In an electrolyte, current is carried by positive and negative ions.
+      III. In a metal, the positive ions of the lattice also drift and carry part of the current.
+      IV. For an electron beam in vacuum, the conventional current is opposite to the direction of the beam.
+      Which statements are correct?
+    options:
+      - I and III only
+      - II, III and IV only
+      - I, II and IV only
+      - I, II, III and IV
+    answer: 2
+    explanation: "I, II and IV are correct. The lattice ions in a metal are fixed in position and only vibrate, so III is wrong."
+
+  - id: phy-cur-407
+    topic: electric-current
+    subtopic: Zero net current and field
+    concept: Net current can be zero with charges crossing; metal current needs a field
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [misconception, electric-field]
+    stem: |-
+      Statement I: A steady current can flow through an ordinary metal wire with no electric field inside it.
+      Statement II: The net current through a surface can be zero even though charges are crossing it.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "In an ordinary conductor a field is needed to keep the drift going against collisions, so Statement I is wrong. Random thermal motion sends equal charges both ways across a surface, giving zero net current, so Statement II is right."
+
+  - id: phy-cur-408
+    topic: electric-current
+    subtopic: Instant response of a circuit
+    concept: Thermal speed is not why current starts at once
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [drift-speed, misconception]
+    stem: |-
+      Assertion (A): When a circuit is switched on, current is established throughout it almost instantaneously.
+      Reason (R): Free electrons in a metal have random thermal speeds of about 10^5 m s^{-1}.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 1
+    explanation: "Both are true, but the current starts everywhere at once because the electric field is set up throughout the circuit at nearly the speed of light. Random thermal motion carries no net charge, so R does not explain A."
+
+  - id: phy-cur-409
+    topic: electric-current
+    subtopic: Current from charge functions
+    concept: I = dq/dt for different q(t)
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [calculus]
+    stem: |-
+      Match List I (charge through a cross-section, q in C, t in s) with List II (current).
+      P. q = 3t
+      Q. q = t^2
+      R. q = 5
+      S. q = 2 sin t
+      1. zero
+      2. 2 cos t
+      3. 3 A (constant)
+      4. 2t
+    options:
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: "I = dq/dt: 3 A; 2t; 0 (constant charge means no flow); 2 cos t."
+
+  - id: phy-cur-410
+    topic: electric-current
+    subtopic: Average current from a triangular pulse
+    concept: Area under I–t graph divided by time
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [graph-area, average-current]
+    stem: A current pulse rises linearly from 0 at t = 0 to 6 A at t = 2 s and then falls linearly to 0 at t = 6 s. What is the average current over the 6 s?
+    options:
+      - 3 A
+      - 6 A
+      - 2 A
+      - 18 A
+    answer: 0
+    explanation: "Charge = area of the triangle = ½ × 6 × 6 = 18 C, so I_avg = 18/6 = 3 A. 18 is the charge, not the current."
+
+  - id: phy-cur-411
+    topic: drift-velocity
+    subtopic: Field from drift speed
+    concept: E = v_d/μ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: E = v_d/μ
+    tags: [mobility]
+    stem: Electrons with mobility 5 × 10^{-3} m^2 V^{-1} s^{-1} drift at 1 × 10^{-3} m s^{-1} in a wire. What is the electric field in the wire?
+    options:
+      - 5 × 10^{-6} V m^{-1}
+      - 5 V m^{-1}
+      - 0.02 V m^{-1}
+      - 0.2 V m^{-1}
+    answer: 3
+    explanation: "E = v_d/μ = 10^{-3}/(5 × 10^{-3}) = 0.2 V m^{-1}. Multiplying instead of dividing gives 5 × 10^{-6}."
+
+  - id: phy-cur-412
+    topic: drift-velocity
+    subtopic: Different metals
+    concept: Same I and A; v_d ∝ 1/n
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [drift-speed, proportionality]
+    stem: Copper (n = 8.5 × 10^{28} m^{-3}) and aluminium (n = 18.1 × 10^{28} m^{-3}) wires of equal cross-section carry equal currents. What is the ratio v_{Cu}/v_{Al} of drift speeds?
+    options:
+      - "0.47"
+      - "2.13"
+      - "1"
+      - "4.5"
+    answer: 1
+    explanation: "v_d = I/(neA), so v_{Cu}/v_{Al} = n_{Al}/n_{Cu} = 18.1/8.5 ≈ 2.13. The metal with fewer free electrons needs a faster drift to carry the same current."
+
+  - id: phy-cur-413
+    topic: drift-velocity
+    subtopic: Drift time along a wire
+    concept: t = L/v_d with v_d from I = neAv_d
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [drift-speed, multi-concept]
+    stem: A copper wire of cross-section 2 mm^2 (n = 8.5 × 10^{28} m^{-3}) carries 3 A. Roughly how long does an electron take to drift 1 m along it?
+    options:
+      - 15 min
+      - 25 h
+      - about 2.5 h
+      - 25 s
+    answer: 2
+    explanation: "v_d = 3/(8.5 × 10^{28} × 1.6 × 10^{-19} × 2 × 10^{-6}) ≈ 1.1 × 10^{-4} m s^{-1}. Time = 1/v_d ≈ 9 × 10^3 s ≈ 2.5 h."
+
+  - id: phy-cur-414
+    topic: drift-velocity
+    subtopic: Current from mobility
+    concept: I = neAμE
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: I = neAμE
+    tags: [mobility, multi-concept]
+    stem: A wire of cross-section 1 mm^2 has 5 × 10^{28} free electrons per m^3 with mobility 4 × 10^{-3} m^2 V^{-1} s^{-1}. If the field inside is 0.1 V m^{-1}, what current flows?
+    options:
+      - 3.2 A
+      - 0.32 A
+      - 32 A
+      - 1.6 A
+    answer: 0
+    explanation: "v_d = μE = 4 × 10^{-4} m s^{-1}; I = neAv_d = 5 × 10^{28} × 1.6 × 10^{-19} × 10^{-6} × 4 × 10^{-4} = 3.2 A."
+
+  - id: phy-cur-415
+    topic: drift-velocity
+    subtopic: Relaxation time
+    concept: τ decreases with temperature in metals
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [relaxation-time]
+    stem: Which statement about the relaxation time of free electrons in a metal is correct?
+    options:
+      - It is the time an electron takes to cross the wire
+      - It decreases as the temperature of the metal increases
+      - It is independent of temperature
+      - It is of the order of 1 s
+    answer: 1
+    explanation: "τ is the average time between collisions, about 10^{-14} s. Stronger lattice vibrations at higher temperature make collisions more frequent, so τ falls."
+
+  - id: phy-cur-416
+    topic: drift-velocity
+    subtopic: Thin and thick wires in series
+    concept: Same I; J, E and v_d larger in the thinner wire
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [drift-speed, current-density, multi-concept]
+    stem: |-
+      Wires A and B of the same material are joined in series; A is thinner than B. With current flowing, consider the statements.
+      I. The current in A equals the current in B.
+      II. The drift speed in A is larger than in B.
+      III. The electric field in A is larger than in B.
+      IV. The current density in A equals that in B.
+      Which are correct?
+    options:
+      - I, II and III only
+      - I and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: "In series I is common. J = I/A and v_d = J/(ne) are larger in the thinner wire, and E = ρJ is larger too. IV is wrong."
+
+  - id: phy-cur-417
+    topic: drift-velocity
+    subtopic: Stretched wire at fixed voltage
+    concept: Doubling L at fixed V halves v_d and quarters I
+    category: application
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [stretching, drift-speed]
+    stem: |-
+      A wire is stretched to double its length (volume constant) and reconnected to the same voltage.
+      Statement I: The drift speed of electrons doubles.
+      Statement II: The current halves.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 1
+    explanation: "E = V/2L halves, so v_d halves (not doubles). R becomes 4R, so the current becomes one-fourth (not half). Both statements are wrong."
+
+  - id: phy-cur-418
+    topic: drift-velocity
+    subtopic: Drift speed and temperature
+    concept: v_d at fixed E depends on τ, which depends on temperature
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [relaxation-time, temperature]
+    stem: |-
+      Assertion (A): For a fixed electric field, the drift speed of electrons in a metal does not depend on temperature.
+      Reason (R): The relaxation time of electrons in a metal decreases as the temperature rises.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "R is true, and because v_d = eEτ/m, a smaller τ at higher temperature means a smaller drift speed. So A is false."
+
+  - id: phy-cur-419
+    topic: drift-velocity
+    subtopic: Comparing speeds
+    concept: Drift speed ≪ sound ≪ thermal speed ≪ signal speed
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [orders-of-magnitude, ordering]
+    stem: |-
+      Arrange in increasing order of magnitude.
+      P. Drift speed of electrons in a copper wire
+      Q. Speed of sound in air
+      R. Random thermal speed of free electrons in copper
+      S. Speed at which an electrical signal travels along a wire
+    options:
+      - P < R < Q < S
+      - Q < P < R < S
+      - P < Q < R < S
+      - P < Q < S < R
+    answer: 2
+    explanation: "Drift ~10^{-4} m s^{-1} < sound ~330 m s^{-1} < thermal ~10^5 m s^{-1} < signal ~10^8 m s^{-1}."
+
+  - id: phy-cur-420
+    topic: drift-velocity
+    subtopic: Drift speed vs temperature
+    concept: At fixed V, v_d falls with rising temperature in a metal
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, relaxation-time]
+    stem: A fixed potential difference is kept across a copper wire while its temperature is slowly raised. How does the drift speed of the electrons vary with temperature?
+    options:
+      - It rises steadily
+      - It decreases steadily
+      - It stays constant
+      - It first rises and then falls
+    answer: 1
+    explanation: "E is fixed but τ falls with temperature, so v_d = eEτ/m decreases steadily, as does the current."
+
+  - id: phy-cur-421
+    topic: ohms-law-resistivity
+    subtopic: Thin and thick wires in series
+    concept: Voltage divides as R ∝ 1/r^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [voltage-division, proportionality]
+    stem: Two wires of the same material and length, of radii r and 2r, are connected in series across an ideal 10 V battery. What is the potential difference across the thinner wire?
+    options:
+      - 2 V
+      - 5 V
+      - 8 V
+      - 6.7 V
+    answer: 2
+    explanation: "R ∝ 1/r^2 gives R_thin = 4R_thick. In series, V divides in proportion to R: V_thin = 10 × 4/5 = 8 V."
+
+  - id: phy-cur-422
+    topic: ohms-law-resistivity
+    subtopic: Stretch then cut
+    concept: Combining stretching and parallel connection
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [stretching, cutting-wire, multi-concept]
+    stem: A 4 Ω wire is stretched uniformly to double its length. It is then cut into two equal halves, which are connected in parallel. What is the final resistance?
+    options:
+      - 16 Ω
+      - 4 Ω
+      - 8 Ω
+      - 2 Ω
+    answer: 1
+    explanation: "Stretching to 2L gives 16 Ω. Each half is 8 Ω, and two 8 Ω in parallel give 4 Ω."
+
+  - id: phy-cur-423
+    topic: ohms-law-resistivity
+    subtopic: Current density from V, ρ and L
+    concept: J = E/ρ = V/(ρL)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: J = V/(ρL)
+    tags: [current-density]
+    stem: A potential difference of 2 V is applied across a 1 m long wire of resistivity 2 × 10^{-8} Ω m. What is the current density in it?
+    options:
+      - 4 × 10^{-8} A m^{-2}
+      - 1 × 10^{-8} A m^{-2}
+      - 1 × 10^6 A m^{-2}
+      - 1 × 10^8 A m^{-2}
+    answer: 3
+    explanation: "E = V/L = 2 V m^{-1}, and J = E/ρ = 2/(2 × 10^{-8}) = 10^8 A m^{-2}. The area is not needed."
+
+  - id: phy-cur-424
+    topic: ohms-law-resistivity
+    subtopic: Round vs square wire
+    concept: Resistance ratio from cross-sectional areas
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [proportionality]
+    stem: Two wires of the same material and length have cross-sections of a circle of diameter d and a square of side d. What is R_{circle}/R_{square}?
+    options:
+      - 4/π
+      - π/4
+      - "1"
+      - 2/π
+    answer: 0
+    explanation: "Areas are πd^2/4 and d^2. R ∝ 1/A, so R_{circle}/R_{square} = d^2/(πd^2/4) = 4/π ≈ 1.27."
+
+  - id: phy-cur-425
+    topic: ohms-law-resistivity
+    subtopic: Ohmic conductor
+    concept: Resistance of an ohmic conductor is independent of V at constant temperature
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [ohmic-devices]
+    stem: Which statement about an ohmic conductor kept at constant temperature is INCORRECT?
+    options:
+      - Its V–I graph is a straight line through the origin
+      - Reversing V reverses I without changing its magnitude
+      - Its resistance changes as the applied voltage changes
+      - Doubling V doubles I
+    answer: 2
+    explanation: "For an ohmic conductor at constant temperature R is constant, independent of V. The other three statements describe ohmic behaviour correctly."
+
+  - id: phy-cur-426
+    topic: ohms-law-resistivity
+    subtopic: Effects of stretching
+    concept: R, ρ, I and v_d after stretching to 3L at fixed V
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [stretching, drift-speed, multi-concept]
+    stem: |-
+      A wire is stretched to three times its length (volume constant) and connected to the same voltage as before. Consider the statements.
+      I. Its resistance becomes 9 times.
+      II. Its resistivity is unchanged.
+      III. The current becomes one-ninth.
+      IV. The drift speed becomes one-third.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: "R ∝ L^2 gives 9R, ρ is a material property, I = V/9R, and E = V/3L makes v_d one-third. All four are correct."
+
+  - id: phy-cur-427
+    topic: ohms-law-resistivity
+    subtopic: Resistivity ranges
+    concept: Semiconductors lie between metals and insulators
+    category: factual
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [resistivity, ncert-line]
+    stem: |-
+      Statement I: The resistivity of semiconductors lies between that of metals and that of insulators.
+      Statement II: Good insulators have resistivities of the order of 10^{14} to 10^{16} Ω m.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Metals have ρ ~10^{-8} to 10^{-6} Ω m and insulators ~10^{14} to 10^{16} Ω m (NCERT), with semiconductors in between. Both statements are correct."
+
+  - id: phy-cur-428
+    topic: ohms-law-resistivity
+    subtopic: Linear V–I graph
+    concept: Ohmic resistance does not depend on current at fixed temperature
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [ohmic-devices, graph]
+    stem: |-
+      Assertion (A): The V–I graph of a metallic wire at constant temperature is a straight line through the origin.
+      Reason (R): The resistance of a metallic wire at constant temperature depends on the current through it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: "A is true. R is false: the graph is straight precisely because R stays constant at constant temperature, whatever the current."
+
+  - id: phy-cur-429
+    topic: ohms-law-resistivity
+    subtopic: Typical resistivities
+    concept: Orders of magnitude of resistivity for different materials
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [resistivity, orders-of-magnitude]
+    stem: |-
+      Match List I (material) with List II (approximate resistivity at room temperature).
+      P. Silver
+      Q. Nichrome
+      R. Germanium
+      S. Glass
+      1. 10^{-6} Ω m
+      2. 10^{12} Ω m
+      3. 10^{-8} Ω m
+      4. 0.5 Ω m
+    options:
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-1, R-2, S-4
+    answer: 2
+    explanation: "Silver 1.6 × 10^{-8}, nichrome ~10^{-6}, germanium ~0.46 and glass 10^{10}–10^{14} Ω m (NCERT table)."
+
+  - id: phy-cur-430
+    topic: ohms-law-resistivity
+    subtopic: I–V graphs at two temperatures
+    concept: With I on the y-axis, the hotter metal wire has the smaller slope
+    category: application
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph-slope, temperature, trap]
+    stem: I–V graphs (I on the y-axis) of the same metal wire are drawn at temperatures T_1 and T_2. Both are straight lines through the origin, and the T_1 line is less steep. Which is correct?
+    options:
+      - T_1 = T_2
+      - T_1 < T_2
+      - The wire must be a semiconductor
+      - T_1 > T_2
+    answer: 3
+    explanation: "With I on the y-axis the slope is 1/R. A smaller slope means larger R, which for a metal means a higher temperature: T_1 > T_2."
+
+  - id: phy-cur-431
+    topic: temperature-dependence
+    subtopic: Changing the reference temperature
+    concept: Convert through R_0 when α refers to 0 °C
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [temperature-coefficient, trap]
+    stem: A coil has resistance 5 Ω at 50 °C, and its temperature coefficient referred to 0 °C is 4 × 10^{-3} °C^{-1}. What is its resistance at 150 °C?
+    options:
+      - 7 Ω
+      - 6.67 Ω
+      - 6 Ω
+      - 8 Ω
+    answer: 1
+    explanation: "R_0 = 5/(1 + 0.2) = 25/6 Ω, so R_{150} = (25/6)(1 + 0.6) ≈ 6.67 Ω. Applying α directly from 50 °C gives 7 Ω, which uses the wrong reference."
+
+  - id: phy-cur-432
+    topic: temperature-dependence
+    subtopic: Filament temperature
+    concept: Temperature rise from hot-to-cold resistance ratio
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [tungsten, multi-concept]
+    stem: A tungsten filament has resistance 50 Ω at 20 °C and 500 Ω when glowing. Taking a constant α = 4.5 × 10^{-3} °C^{-1} (referred to 20 °C), its working temperature is
+    options:
+      - 2000 °C
+      - 1820 °C
+      - 2020 °C
+      - 2220 °C
+    answer: 2
+    explanation: "ΔT = (500 − 50)/(50 × 4.5 × 10^{-3}) = 450/0.225 = 2000 °C, so T = 2020 °C. 2000 °C is only the rise."
+
+  - id: phy-cur-433
+    topic: temperature-dependence
+    subtopic: α from resistivity data
+    concept: α = Δρ/(ρ_1ΔT)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [temperature-coefficient]
+    stem: A metal has resistivity 1.70 × 10^{-8} Ω m at 20 °C and 2.38 × 10^{-8} Ω m at 120 °C. Its temperature coefficient of resistivity (referred to 20 °C) is
+    options:
+      - 4 × 10^{-3} °C^{-1}
+      - 4 × 10^{-2} °C^{-1}
+      - 2.9 × 10^{-3} °C^{-1}
+      - 6.8 × 10^{-3} °C^{-1}
+    answer: 0
+    explanation: "α = (2.38 − 1.70)/(1.70 × 100) = 0.68/170 = 4 × 10^{-3} °C^{-1}. Dividing by 2.38 instead of 1.70 gives about 2.9 × 10^{-3}."
+
+  - id: phy-cur-434
+    topic: temperature-dependence
+    subtopic: Power of a hot heater
+    concept: At fixed V, P ∝ 1/R, and R rises with temperature
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [heater, multi-concept]
+    stem: A nichrome heater (α = 1.7 × 10^{-4} °C^{-1}) draws 1000 W just after switch-on at room temperature. Its temperature then rises by 800 °C. At the same voltage, its steady power is about
+    options:
+      - 1136 W
+      - 1000 W
+      - 864 W
+      - 880 W
+    answer: 3
+    explanation: "R_hot = R_cold(1 + 1.7 × 10^{-4} × 800) = 1.136R_cold. At fixed V, P = 1000/1.136 ≈ 880 W. Subtracting 13.6% (864 W) is only an approximation."
+
+  - id: phy-cur-435
+    topic: temperature-dependence
+    subtopic: Why semiconductor resistivity falls
+    concept: In semiconductors, the rise in n outweighs the fall in τ
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [semiconductors, relaxation-time]
+    stem: Which statement correctly explains the temperature dependence of a semiconductor's resistivity?
+    options:
+      - Its relaxation time increases with temperature
+      - Its carrier density does not change with temperature
+      - Both n and τ change, but the increase in carrier density dominates
+      - Its electrons become heavier at higher temperature
+    answer: 2
+    explanation: "ρ = m/(ne^2τ). τ falls on heating, but n rises much faster in a semiconductor, so ρ decreases overall."
+
+  - id: phy-cur-436
+    topic: temperature-dependence
+    subtopic: Typical values
+    concept: Room-temperature ρ and α values of copper and nichrome
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [temperature-coefficient, ncert-line]
+    stem: |-
+      Consider the following statements (values near room temperature).
+      I. The resistivity of copper is about 1.7 × 10^{-8} Ω m.
+      II. The temperature coefficient of copper is about 4 × 10^{-3} °C^{-1}.
+      III. The temperature coefficient of nichrome is about 1.7 × 10^{-4} °C^{-1}.
+      IV. The temperature coefficient of silicon is positive.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "I, II and III match NCERT's table. Silicon, a semiconductor, has a negative temperature coefficient, so IV is wrong."
+
+  - id: phy-cur-437
+    topic: temperature-dependence
+    subtopic: α from an R–t graph
+    concept: α = slope/R_0 of a straight R–t graph
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, temperature-coefficient]
+    stem: |-
+      Statement I: The temperature coefficient of a metal can be found by dividing the slope of its R–t graph by its resistance at 0 °C.
+      Statement II: For a metal, the R–t graph between 0 °C and 100 °C is nearly a straight line.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "R = R_0(1 + αt) is linear with slope R_0α, so α = slope/R_0. This linear relation holds well for metals over ordinary temperature ranges. Both statements are correct."
+
+  - id: phy-cur-438
+    topic: temperature-dependence
+    subtopic: Metal vs semiconductor on heating
+    concept: Opposite signs of α make equal resistances diverge on heating
+    category: application
+    format: assertion-reason
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [semiconductors, application]
+    stem: |-
+      Assertion (A): A copper wire and a silicon strip having equal resistances at room temperature will still have equal resistances when both are heated by 50 °C.
+      Reason (R): Copper has a positive and silicon a negative temperature coefficient of resistivity.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "R is true, and it shows why A is false: on heating the copper's resistance rises while the silicon's falls, so they no longer match."
+
+  - id: phy-cur-439
+    topic: temperature-dependence
+    subtopic: Comparing temperature coefficients
+    concept: Ordering α for semiconductor, manganin, nichrome and copper
+    category: factual
+    format: ordering
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [temperature-coefficient, ordering]
+    stem: |-
+      Arrange in increasing order of temperature coefficient of resistivity (taking sign into account).
+      P. Copper
+      Q. Nichrome
+      R. Manganin
+      S. Silicon
+    options:
+      - R < S < Q < P
+      - S < Q < R < P
+      - P < Q < R < S
+      - S < R < Q < P
+    answer: 3
+    explanation: "Silicon is negative; manganin ~10^{-5}, nichrome ~1.7 × 10^{-4} and copper ~3.9 × 10^{-3} °C^{-1}. So S < R < Q < P."
+
+  - id: phy-cur-440
+    topic: temperature-dependence
+    subtopic: Cold and hot resistance of a bulb
+    concept: Low-voltage reading gives cold resistance; rated reading gives hot resistance
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [tungsten, experimental]
+    stem: A student finds that a 220 V lamp draws 0.1 A when 1 V is applied, and 0.45 A at 220 V. The ratio of the filament's working resistance to its cold resistance is about
+    options:
+      - "49"
+      - "4.5"
+      - "220"
+      - "10"
+    answer: 0
+    explanation: "Cold: R = 1/0.1 = 10 Ω (the filament hardly warms at 1 V). Hot: R = 220/0.45 ≈ 489 Ω. The ratio is about 49, showing the strong rise of tungsten's resistivity with temperature."
+
+  - id: phy-cur-441
+    topic: electrical-power
+    subtopic: Series vs parallel power ratio
+    concept: P_p/P_s = (R_1 + R_2)^2/(R_1R_2) ≥ 4
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [series-parallel, multi-concept]
+    stem: Two resistors are connected across the same ideal voltage source, first in series and then in parallel. What is the minimum possible value of P_{parallel}/P_{series}?
+    options:
+      - "1"
+      - "2"
+      - "4"
+      - "9"
+    answer: 2
+    explanation: "P_p/P_s = R_s/R_p = (R_1 + R_2)^2/(R_1R_2) ≥ 4 by the AM–GM inequality, with equality when R_1 = R_2."
+
+  - id: phy-cur-442
+    topic: electrical-power
+    subtopic: Three bulbs in series
+    concept: The lowest-wattage bulb is brightest in series
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [bulbs-series, trap]
+    stem: Bulbs rated 40 W, 60 W and 100 W (all 220 V) are connected in series across 220 V. Which glows brightest?
+    options:
+      - The 40 W bulb
+      - The 60 W bulb
+      - The 100 W bulb
+      - All glow equally
+    answer: 0
+    explanation: "R = V^2/P is largest for the 40 W bulb. In series the current is common, so P = I^2R is greatest in the 40 W bulb."
+
+  - id: phy-cur-443
+    topic: electrical-power
+    subtopic: Heater on half voltage
+    concept: At half voltage, power is one-fourth, so time is four times
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [heater, proportionality]
+    stem: A 220 V kettle boils a quantity of water in 10 min. If it is run on 110 V (resistance constant, no heat losses), the same water boils in
+    options:
+      - 5 min
+      - 20 min
+      - 10 min
+      - 40 min
+    answer: 3
+    explanation: "P = V^2/R becomes one-fourth, so the same heat takes four times as long: 40 min."
+
+  - id: phy-cur-444
+    topic: electrical-power
+    subtopic: Effect of transmission voltage
+    concept: Line loss ∝ 1/V^2 for fixed power
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [power-transmission, proportionality]
+    stem: The same power is sent through the same line first at 250 V and then at 2500 V. By what factor is the power lost in the line reduced?
+    options:
+      - "10"
+      - "100"
+      - "1000"
+      - "1"
+    answer: 1
+    explanation: "I = P/V falls by 10, and the loss I^2R falls by 10^2 = 100."
+
+  - id: phy-cur-445
+    topic: electrical-power
+    subtopic: Hot element, cool cord
+    concept: Same current; heating ∝ R
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [joule-heating, application]
+    stem: The element of an electric iron becomes red hot while its connecting cord stays nearly cool. Which statement explains this?
+    options:
+      - The cord carries a smaller current than the element
+      - The cord is at a lower voltage so no heat is produced in it
+      - Copper cannot produce Joule heating
+      - The element and cord carry the same current, but the element's resistance is much larger
+    answer: 3
+    explanation: "In series the current is the same; heat per second I^2R is much larger in the high-resistance element than in the low-resistance copper cord."
+
+  - id: phy-cur-446
+    topic: electrical-power
+    subtopic: Bulb calculations
+    concept: Resistance, current, reduced-voltage power and energy of a bulb
+    category: numerical
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [power-rating, kwh]
+    stem: |-
+      For a 100 W, 220 V bulb (resistance assumed constant), consider the statements.
+      I. Its resistance is 484 Ω.
+      II. Its rated current is about 0.45 A.
+      III. On a 110 V supply it consumes 50 W.
+      IV. Used for 10 hours at rated voltage, it consumes 1 kWh.
+      Which are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, III and IV only
+      - I, II and IV only
+    answer: 3
+    explanation: "R = 220^2/100 = 484 Ω; I = 100/220 ≈ 0.45 A; 0.1 kW × 10 h = 1 kWh. III is wrong: at half voltage P = 25 W."
+
+  - id: phy-cur-447
+    topic: electrical-power
+    subtopic: Nature of Joule heating
+    concept: Joule heating is irreversible and independent of current direction
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [joule-heating]
+    stem: |-
+      Statement I: Joule heating in a resistor is an irreversible process.
+      Statement II: The heat produced in a resistor does not depend on the direction of the current.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Reversing the current does not cool the resistor: H = I^2Rt depends on I^2, and the energy lost to heat is not recovered. Both statements are correct."
+
+  - id: phy-cur-448
+    topic: electrical-power
+    subtopic: Unequal bulbs in series
+    concept: Higher-resistance bulb glows brighter in series
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [bulbs-series]
+    stem: |-
+      Assertion (A): When 100 W and 25 W bulbs (both rated 220 V) are connected in series across 220 V, the 25 W bulb glows brighter.
+      Reason (R): The 25 W bulb has the higher resistance, and in series the power in each bulb is proportional to its resistance.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "R = V^2/P gives the 25 W bulb four times the resistance. With a common current, P = I^2R ∝ R, so it dissipates more power and glows brighter. R explains A."
+
+  - id: phy-cur-449
+    topic: electrical-power
+    subtopic: Power with identical resistors
+    concept: Power of combinations across a fixed voltage
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [series-parallel, proportionality]
+    stem: |-
+      A single resistor R dissipates P_0 across an ideal source of voltage V. Match List I (arrangement of identical resistors R across the same source) with List II (total power).
+      P. One resistor
+      Q. Two in series
+      R. Two in parallel
+      S. Three in parallel
+      1. 2P_0
+      2. P_0/2
+      3. 3P_0
+      4. P_0
+    options:
+      - P-4, Q-1, R-2, S-3
+      - P-4, Q-2, R-1, S-3
+      - P-1, Q-2, R-4, S-3
+      - P-4, Q-2, R-3, S-1
+    answer: 1
+    explanation: "At fixed V, P ∝ 1/R_eq: R gives P_0; 2R gives P_0/2; R/2 gives 2P_0; R/3 gives 3P_0."
+
+  - id: phy-cur-450
+    topic: electrical-power
+    subtopic: P–R graph at fixed voltage
+    concept: P = V^2/R is a rectangular hyperbola
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [graph]
+    stem: At a fixed supply voltage, the graph of power consumed (y-axis) against resistance (x-axis) is
+    options:
+      - a straight line through the origin
+      - a parabola
+      - a rectangular hyperbola
+      - a horizontal line
+    answer: 2
+    explanation: "P = V^2/R, so PR = constant: a rectangular hyperbola. At fixed current P = I^2R would instead be a straight line through the origin."
+
+  - id: phy-cur-451
+    topic: resistor-combinations
+    subtopic: Unequal square, opposite corners
+    concept: Two paths of a quadrilateral in parallel
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [square-network]
+    stem: Resistors AB = 1 Ω, BC = 2 Ω, CD = 3 Ω and DA = 4 Ω form a closed loop ABCD. What is the equivalent resistance between A and C?
+    options:
+      - 10 Ω
+      - 2.1 Ω
+      - 2.5 Ω
+      - 0.9 Ω
+    answer: 1
+    explanation: "Path ABC = 3 Ω and path ADC = 7 Ω are in parallel: 3 × 7/10 = 2.1 Ω."
+
+  - id: phy-cur-452
+    topic: resistor-combinations
+    subtopic: Unequal square, adjacent corners
+    concept: One side in parallel with the other three in series
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [square-network]
+    stem: Resistors AB = 1 Ω, BC = 2 Ω, CD = 3 Ω and DA = 4 Ω form a closed loop ABCD. What is the equivalent resistance between A and B?
+    options:
+      - 1 Ω
+      - 10 Ω
+      - 2.1 Ω
+      - 0.9 Ω
+    answer: 3
+    explanation: "AB (1 Ω) is in parallel with B-C-D-A (2 + 3 + 4 = 9 Ω): 1 × 9/10 = 0.9 Ω."
+
+  - id: phy-cur-453
+    topic: resistor-combinations
+    subtopic: Infinite ladder with unequal resistors
+    concept: X = R_1 + R_2X/(R_2 + X)
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 120
+    ncert: false
+    battle: false
+    diagram: "Infinite ladder between terminals A (top rail) and B (bottom rail). Each section has a 1 Ω series resistor in the top rail followed by a 2 Ω shunt resistor from the top rail to the bottom rail. The sections repeat forever to the right."
+    tags: [infinite-ladder]
+    stem: What is the equivalent resistance between A and B of the infinite ladder shown?
+    options:
+      - 2 Ω
+      - 3 Ω
+      - 1.5 Ω
+      - 1 Ω
+    answer: 0
+    explanation: "X = 1 + 2X/(2 + X). Then X(2 + X) = (2 + X) + 2X, giving X^2 − X − 2 = 0, so X = 2 Ω (the positive root)."
+
+  - id: phy-cur-454
+    topic: resistor-combinations
+    subtopic: Triangle with a midpoint
+    concept: Symmetric paths from a vertex to the midpoint of the opposite side
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [triangle, symmetry]
+    stem: A uniform wire of resistance 18 Ω is bent into an equilateral triangle ABC. D is the midpoint of side BC. What is the resistance between A and D?
+    options:
+      - 9 Ω
+      - 6 Ω
+      - 4.5 Ω
+      - 3 Ω
+    answer: 2
+    explanation: "Each side is 6 Ω and BD = DC = 3 Ω. Paths A-B-D and A-C-D are each 9 Ω and are in parallel: 4.5 Ω."
+
+  - id: phy-cur-455
+    topic: resistor-combinations
+    subtopic: Adding a parallel branch to an ideal source
+    concept: Existing branch currents are unchanged with an ideal source
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [parallel, application]
+    stem: Two resistors are connected in parallel across an ideal battery. A third resistor is now added in parallel. Which statement is correct?
+    options:
+      - The currents through the first two resistors remain unchanged
+      - The currents through the first two resistors decrease
+      - The total current from the battery decreases
+      - The voltage across the first two resistors increases
+    answer: 0
+    explanation: "An ideal battery keeps the same voltage across each branch, so the existing currents are unchanged; the battery simply supplies the extra current for the new branch."
+
+  - id: phy-cur-456
+    topic: resistor-combinations
+    subtopic: Mixed circuit analysis
+    concept: Equivalent resistance, total current, and branch values
+    category: numerical
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [series-parallel]
+    stem: |-
+      A 2 Ω resistor is in series with two 4 Ω resistors that are in parallel, across an ideal 8 V battery. Consider the statements.
+      I. The equivalent resistance is 4 Ω.
+      II. The battery supplies 2 A.
+      III. The potential difference across the 2 Ω resistor is 4 V.
+      IV. Each 4 Ω resistor carries 1 A.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - I, II, III and IV
+      - II and IV only
+    answer: 2
+    explanation: "4 ∥ 4 = 2 Ω, so R = 4 Ω and I = 2 A. The 2 Ω resistor takes 4 V, the parallel pair 4 V, so each 4 Ω carries 1 A. All four are correct."
+
+  - id: phy-cur-457
+    topic: resistor-combinations
+    subtopic: Adding resistors with an ideal source
+    concept: Series addition reduces existing voltages; parallel addition does not
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [series, parallel]
+    stem: |-
+      An ideal battery supplies a set of resistors.
+      Statement I: If an extra resistor is added in series, the potential difference across each existing resistor decreases.
+      Statement II: If an extra resistor is added in parallel with existing parallel branches, the potential difference across each existing branch decreases.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "In series the current falls, so each IR drop falls. In parallel across an ideal source, every branch keeps the full source voltage."
+
+  - id: phy-cur-458
+    topic: resistor-combinations
+    subtopic: Current in parallel branches
+    concept: Largest resistance in parallel carries the least current
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [parallel, misconception]
+    stem: |-
+      Assertion (A): In a parallel combination, the resistor with the largest resistance carries the largest current.
+      Reason (R): The current in each branch of a parallel combination is V/R, where V is common to all branches.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: "R is true, and it shows I ∝ 1/R, so the largest resistance carries the smallest current. A is false."
+
+  - id: phy-cur-459
+    topic: resistor-combinations
+    subtopic: Comparing circuit currents
+    concept: Ordering currents from different combinations on one source
+    category: numerical
+    format: ordering
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [ordering, series-parallel]
+    stem: |-
+      Each circuit uses an ideal 6 V battery. Arrange the battery currents in increasing order.
+      P. A single 3 Ω resistor
+      Q. 3 Ω and 6 Ω in series
+      R. 3 Ω and 6 Ω in parallel
+      S. Two 3 Ω resistors in parallel, in series with 6 Ω
+    options:
+      - Q < P < S < R
+      - S < Q < P < R
+      - Q < S < R < P
+      - Q < S < P < R
+    answer: 3
+    explanation: "P: 6/3 = 2 A; Q: 6/9 ≈ 0.67 A; R: 6/2 = 3 A; S: 6/7.5 = 0.8 A. So Q < S < P < R."
+
+  - id: phy-cur-460
+    topic: resistor-combinations
+    subtopic: Network with a shorting wire
+    concept: A zero-resistance wire removes the resistor it bypasses
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    diagram: "Three points A, B and C. A 3 Ω resistor joins A to C, a 6 Ω resistor joins C to B, and a 4 Ω resistor joins A directly to B. In addition, a plain wire of zero resistance joins C directly to B, in parallel with the 6 Ω resistor."
+    tags: [short-circuit, trap]
+    stem: What is the equivalent resistance between A and B in the network shown?
+    options:
+      - 13 Ω
+      - 12/7 Ω
+      - 4 Ω
+      - 36/13 Ω
+    answer: 1
+    explanation: "The wire shorts the 6 Ω resistor, so C is at B's potential. Then 3 Ω and 4 Ω are both between A and B, in parallel: 12/7 ≈ 1.71 Ω. Ignoring the wire gives (3 + 6) ∥ 4 = 36/13 Ω."
+
+  - id: phy-cur-461
+    topic: cell-emf
+    subtopic: Two loads for a given power
+    concept: P = E^2R/(R + r)^2 has two solutions for R
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [max-power, quadratic]
+    stem: A cell of emf 6 V and internal resistance 1 Ω is to deliver 8 W to an external resistor. What resistance(s) will do this?
+    options:
+      - 2 Ω or 0.5 Ω
+      - 1 Ω only
+      - 4 Ω or 0.25 Ω
+      - 2 Ω only
+    answer: 0
+    explanation: "36R/(R + 1)^2 = 8 gives 2R^2 − 5R + 2 = 0, so R = 2 Ω or 0.5 Ω. Their product equals r^2 = 1, as expected. The maximum available power, 9 W at R = 1 Ω, exceeds 8 W."
+
+  - id: phy-cur-462
+    topic: cell-emf
+    subtopic: Voltmeter reading
+    concept: A finite-resistance voltmeter reads E R_V/(R_V + r)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [voltmeter, internal-resistance]
+    stem: A cell of emf 1.5 V and internal resistance 1 Ω is connected directly to a voltmeter of resistance 299 Ω. What does the voltmeter read?
+    options:
+      - 1.5 V
+      - 1.45 V
+      - 1.4 V
+      - 1.495 V
+    answer: 3
+    explanation: "I = 1.5/300 = 5 mA and V = IR_V = 1.495 V. The small drop Ir = 0.005 V is why a high-resistance voltmeter reads close to the emf."
+
+  - id: phy-cur-463
+    topic: cell-emf
+    subtopic: Power sharing inside and outside
+    concept: "P_R : P_r = R : r"
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [power, internal-resistance]
+    stem: A cell of internal resistance r is connected to an external resistance R = 3r. What is the ratio of power dissipated in R to that dissipated inside the cell?
+    options:
+      - "1 : 3"
+      - "9 : 1"
+      - "3 : 1"
+      - "1 : 1"
+    answer: 2
+    explanation: "The same current flows through R and r, so P_R/P_r = I^2R/I^2r = R/r = 3."
+
+  - id: phy-cur-464
+    topic: cell-emf
+    subtopic: E and r from two terminal voltages
+    concept: V = ER/(R + r) for two loads
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [internal-resistance, simultaneous-equations]
+    stem: A cell's terminal voltage is 1.6 V with a 4 Ω load and 1.8 V with a 9 Ω load. What are its emf and internal resistance?
+    options:
+      - 1.8 V and 0.5 Ω
+      - 2 V and 1 Ω
+      - 2 V and 0.5 Ω
+      - 2.2 V and 1.5 Ω
+    answer: 1
+    explanation: "Currents are 0.4 A and 0.2 A. E = 1.6 + 0.4r = 1.8 + 0.2r gives r = 1 Ω and E = 2 V."
+
+  - id: phy-cur-465
+    topic: cell-emf
+    subtopic: Emf vs potential difference
+    concept: Emf exists in open circuit; terminal PD depends on current
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [emf, confused-pair]
+    stem: Which statement correctly distinguishes emf from terminal potential difference?
+    options:
+      - Emf exists only when current flows, while terminal PD exists even in open circuit
+      - Emf is present even in open circuit, while the terminal PD depends on the current drawn
+      - Both are always equal for a real cell
+      - Emf is measured in newtons and PD in volts
+    answer: 1
+    explanation: "Emf is a property of the cell and is present whether or not current flows. The terminal PD equals E only when I = 0 and otherwise differs by Ir. Both are measured in volts."
+
+  - id: phy-cur-466
+    topic: cell-emf
+    subtopic: Full analysis of a simple circuit
+    concept: Current, terminal voltage, load power and efficiency
+    category: numerical
+    format: multi-statement
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [efficiency, terminal-voltage]
+    stem: |-
+      A cell of emf 12 V and internal resistance 2 Ω is connected to a 4 Ω resistor. Consider the statements.
+      I. The current is 2 A.
+      II. The terminal voltage is 8 V.
+      III. The power in the 4 Ω resistor is 16 W.
+      IV. The efficiency is 50%.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: "I = 12/6 = 2 A, V = 12 − 4 = 8 V, P_R = 4 × 4 = 16 W. Efficiency = R/(R + r) = 4/6 ≈ 67%, so IV is wrong; 50% needs R = r."
+
+  - id: phy-cur-467
+    topic: cell-emf
+    subtopic: Power vs efficiency
+    concept: Maximum power and maximum efficiency occur at different loads
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [max-power, efficiency, trap]
+    stem: |-
+      Statement I: A cell delivers maximum power and works at maximum efficiency for the same external resistance.
+      Statement II: The efficiency R/(R + r) approaches 100% as the external resistance becomes very large.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: "Maximum power occurs at R = r, where efficiency is only 50%. Efficiency R/(R + r) keeps rising towards 100% as R → ∞, while the power falls towards zero."
+
+  - id: phy-cur-468
+    topic: cell-emf
+    subtopic: High-resistance voltmeter
+    concept: Less current drawn means reading closer to emf
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [voltmeter, experimental]
+    stem: |-
+      Assertion (A): A voltmeter of higher resistance gives a reading closer to the emf of a cell when connected across it.
+      Reason (R): A higher-resistance voltmeter draws less current, so the drop across the internal resistance is smaller.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "The reading is E − Ir. A larger voltmeter resistance means a smaller I and hence a smaller Ir, so the reading approaches E."
+
+  - id: phy-cur-469
+    topic: cell-emf
+    subtopic: One cell, different loads
+    concept: Current, power, voltage and efficiency for various R
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [terminal-voltage, efficiency, max-power]
+    stem: |-
+      A cell has emf 10 V and internal resistance 1 Ω. Match List I (external resistance) with List II (quantity).
+      P. R = 0 (current)
+      Q. R = 1 Ω (power in R)
+      R. R = 4 Ω (terminal voltage)
+      S. R = 9 Ω (efficiency)
+      1. 25 W
+      2. 90%
+      3. 10 A
+      4. 8 V
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-1, R-2, S-4
+    answer: 0
+    explanation: "Short circuit: 10/1 = 10 A. R = r: E^2/4r = 25 W. R = 4: I = 2 A, V = 8 V. R = 9: η = 9/10 = 90%."
+
+  - id: phy-cur-470
+    topic: cell-emf
+    subtopic: V–I lines of two cells
+    concept: Same intercept means same emf; steeper line means larger r
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, internal-resistance]
+    stem: Terminal voltage (y-axis) vs current (x-axis) is plotted for cells A and B. Both lines start from the same point on the V-axis, and A's line falls more steeply. Which is correct?
+    options:
+      - A has the larger emf
+      - B has the larger internal resistance
+      - They have equal emf, and A has the larger internal resistance
+      - They have equal internal resistance, and B has the larger emf
+    answer: 2
+    explanation: "V = E − Ir: the common V-intercept means equal E, and the magnitude of the slope is r, so A has the larger internal resistance."
+
+  - id: phy-cur-471
+    topic: cell-combinations
+    subtopic: Zero terminal voltage of one cell
+    concept: The cell with smaller E/r can have zero terminal PD
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [series-cells, multi-concept]
+    stem: Cells of emf 1.5 V (internal resistance 0.5 Ω) and 2 V (internal resistance 1 Ω) are connected in series, aiding, across an external resistor R. For which cell, and at what R, can the terminal potential difference become zero?
+    options:
+      - The 2 V cell, at R = 0.25 Ω
+      - The 1.5 V cell, at R = 0.25 Ω
+      - The 2 V cell, at R = 0.5 Ω
+      - The 1.5 V cell, at R = 1 Ω
+    answer: 0
+    explanation: "Terminal PD E_i − Ir_i = 0 needs I = E_i/r_i: 3 A for the 1.5 V cell, 2 A for the 2 V cell. The maximum current, at R = 0, is 3.5/1.5 ≈ 2.33 A, so only 2 A is possible: 3.5/(R + 1.5) = 2 gives R = 0.25 Ω, for the 2 V cell."
+
+  - id: phy-cur-472
+    topic: cell-combinations
+    subtopic: Battery parameters from two loads
+    concept: Solve nE and nr from two currents
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [series-cells, simultaneous-equations]
+    stem: A battery of 10 identical cells in series drives 5 A through a 2 Ω resistor and 2.5 A through a 5 Ω resistor. What are the emf and internal resistance of each cell?
+    options:
+      - 1.5 V and 1 Ω
+      - 15 V and 0.1 Ω
+      - 1.5 V and 0.1 Ω
+      - 1.25 V and 0.1 Ω
+    answer: 2
+    explanation: "For the battery, E_b = 5(2 + r_b) = 2.5(5 + r_b), giving r_b = 1 Ω and E_b = 15 V. Each cell has 1.5 V and 0.1 Ω. 15 V and 1 Ω describe the whole battery."
+
+  - id: phy-cur-473
+    topic: cell-combinations
+    subtopic: Four cells in parallel
+    concept: I = E/(R + r/m)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [parallel-cells]
+    stem: Four cells, each of emf 1.5 V and internal resistance 1 Ω, are connected in parallel across a 1.75 Ω resistor. What current flows in the resistor?
+    options:
+      - 3.43 A
+      - 0.5 A
+      - 1.5 A
+      - 0.75 A
+    answer: 3
+    explanation: "E_eq = 1.5 V, r_eq = 0.25 Ω, so I = 1.5/(1.75 + 0.25) = 0.75 A."
+
+  - id: phy-cur-474
+    topic: cell-combinations
+    subtopic: Choosing among groupings
+    concept: Comparing currents for different groupings of six cells
+    category: application
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [mixed-grouping, multi-concept]
+    stem: Six cells, each of emf 2 V and internal resistance 1 Ω, drive current through a 1.5 Ω resistor. Which grouping gives the largest current, and what is it?
+    options:
+      - 2 rows of 3 cells; 2 A
+      - 3 rows of 2 cells; 1.85 A
+      - All 6 in series; 1.6 A
+      - All 6 in parallel; 1.2 A
+    answer: 0
+    explanation: "2 rows of 3: 6 V, 1.5 Ω internal, I = 6/3 = 2 A. 3 rows of 2: 4 V, 2/3 Ω, I ≈ 1.85 A. Series: 12/7.5 = 1.6 A. Parallel: 2/(1.5 + 1/6) = 1.2 A. The best grouping makes the internal resistance equal to R."
+
+  - id: phy-cur-475
+    topic: cell-combinations
+    subtopic: Unequal cells in series
+    concept: Emfs add algebraically and internal resistances add
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [series-cells]
+    stem: Several cells with different emfs and internal resistances are connected in series. Which statement is correct?
+    options:
+      - The total emf is the largest single emf
+      - The total internal resistance is that of the weakest cell
+      - The total emf is the algebraic sum of the emfs, and the total internal resistance is the sum of the internal resistances
+      - The total internal resistance is found by adding reciprocals
+    answer: 2
+    explanation: "For series cells E_eq = ΣE_i (with signs for orientation) and r_eq = Σr_i. Adding reciprocals applies to resistances in parallel."
+
+  - id: phy-cur-476
+    topic: cell-combinations
+    subtopic: Unequal cells in parallel, no load
+    concept: Circulating current, terminal voltage and equivalent emf
+    category: numerical
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [parallel-cells, charging]
+    stem: |-
+      Cells of emf 3 V and 1 V, each of internal resistance 1 Ω, are connected in parallel with like terminals together and no external load. Consider the statements.
+      I. A current of 1 A circulates between them.
+      II. The common terminal voltage is 2 V.
+      III. The 1 V cell is being charged.
+      IV. The equivalent emf of the combination is 2 V.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II, III and IV
+      - II and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: "I = (3 − 1)/2 = 1 A; V = 3 − 1 × 1 = 2 V = 1 + 1 × 1; the current enters the 1 V cell's positive terminal, charging it; E_eq = (3 + 1)/2 = 2 V. All four are correct."
+
+  - id: phy-cur-477
+    topic: cell-combinations
+    subtopic: Maximum current grouping
+    concept: Matching gives maximum current but only 50% efficiency
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [mixed-grouping, efficiency]
+    stem: |-
+      A fixed number of identical cells is grouped to send the largest current through a given resistor R.
+      Statement I: In the best grouping, the internal resistance of the battery equals R.
+      Statement II: This grouping also gives the highest efficiency.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Maximum current (and power) needs nr/m = R, which means half the power is wasted inside the battery: efficiency 50%, not the highest."
+
+  - id: phy-cur-478
+    topic: cell-combinations
+    subtopic: Fresh and old cells in parallel
+    concept: A stronger cell discharges into a weaker one
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [parallel-cells, application]
+    stem: |-
+      Assertion (A): Connecting a fresh cell in parallel with a nearly exhausted cell of lower emf wastes the fresh cell's energy.
+      Reason (R): The fresh cell drives a current through the weaker cell even when no load is connected.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "The loop of the two cells has a net emf, so a current (E_1 − E_2)/(r_1 + r_2) flows continuously, draining the fresh cell. R explains A."
+
+  - id: phy-cur-479
+    topic: cell-combinations
+    subtopic: Current for different groupings
+    concept: Matching arrangements with load currents
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [series-parallel-cells]
+    stem: |-
+      Cells of emf 2 V and internal resistance 1 Ω each are connected to a 2 Ω resistor. Match List I with List II (current in the resistor).
+      P. One cell
+      Q. Two cells in series
+      R. Two cells in parallel
+      S. Three cells in series
+      1. 1.2 A
+      2. 0.8 A
+      3. 2/3 A
+      4. 1 A
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 2
+    explanation: "P: 2/3 A; Q: 4/4 = 1 A; R: 2/(2 + 0.5) = 0.8 A; S: 6/5 = 1.2 A."
+
+  - id: phy-cur-480
+    topic: cell-combinations
+    subtopic: Reversed cell in a remote
+    concept: Two equal cells in opposition give zero emf
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: false
+    tags: [reversed-cell, application]
+    stem: A remote control uses two identical 1.5 V cells in series. One cell is inserted the wrong way round. What is the emf available to the remote?
+    options:
+      - 3 V
+      - 1.5 V
+      - 0.75 V
+      - 0 V
+    answer: 3
+    explanation: "The reversed cell opposes the other: 1.5 − 1.5 = 0 V, so the remote does not work."
+
+  - id: phy-cur-481
+    topic: kirchhoffs-laws
+    subtopic: Unbalanced bridge with a wire
+    concept: Current in a zero-resistance link of an unbalanced bridge
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 150
+    ncert: false
+    battle: false
+    diagram: "Bridge ABCD with an ideal 3 V battery, positive at A and negative at C. Arms: AB = 1 Ω, BC = 1 Ω, AD = 1 Ω, DC = 2 Ω. A wire of zero resistance connects B and D."
+    tags: [unbalanced-bridge, multi-concept]
+    stem: In the circuit shown, what current flows through the wire BD?
+    options:
+      - zero
+      - 3/7 A
+      - 9/7 A
+      - 12/7 A
+    answer: 1
+    explanation: "The wire makes B and D one node. A to node: 1 ∥ 1 = 0.5 Ω; node to C: 1 ∥ 2 = 2/3 Ω; total 7/6 Ω, I = 18/7 A. AB carries 9/7 A (half of I). The node-to-C drop is 12/7 V, so BC carries 12/7 A. At B, 12/7 − 9/7 = 3/7 A must arrive through the wire from D."
+
+  - id: phy-cur-482
+    topic: kirchhoffs-laws
+    subtopic: Terminal voltage of a cell in a loop
+    concept: V = E − Ir for each discharging cell
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [single-loop, terminal-voltage]
+    stem: A 12 V cell and a 6 V cell, each with internal resistance 1 Ω, are connected in series, aiding, with a 4 Ω resistor. What is the terminal potential difference of the 6 V cell?
+    options:
+      - 9 V
+      - 6 V
+      - 3 V
+      - 0 V
+    answer: 2
+    explanation: "I = 18/(4 + 1 + 1) = 3 A. The 6 V cell is discharging, so its terminal PD is 6 − 3 × 1 = 3 V."
+
+  - id: phy-cur-483
+    topic: kirchhoffs-laws
+    subtopic: Star junction
+    concept: Junction rule with known outer potentials
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [junction-rule, multi-concept]
+    stem: Points A, B and C are held at 10 V, 6 V and 0 V. They are joined to a common junction O through resistors of 2 Ω (AO), 3 Ω (BO) and 6 Ω (CO). What is the potential of O?
+    options:
+      - 5.33 V
+      - 6 V
+      - 10 V
+      - 7 V
+    answer: 3
+    explanation: "Junction rule at O: (10 − V)/2 + (6 − V)/3 + (0 − V)/6 = 0. Multiplying by 6: 30 − 3V + 12 − 2V − V = 0, so V = 7 V."
+
+  - id: phy-cur-484
+    topic: kirchhoffs-laws
+    subtopic: Equal cells in opposition
+    concept: Zero net emf in a loop gives zero current
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [single-loop]
+    stem: Two cells, each of emf 2 V and internal resistance 1 Ω, are connected in series opposition with a 2 Ω resistor in a single loop. What current flows?
+    options:
+      - zero
+      - 1 A
+      - 2 A
+      - 0.5 A
+    answer: 0
+    explanation: "Net emf round the loop is 2 − 2 = 0, so I = 0 regardless of the resistances."
+
+  - id: phy-cur-485
+    topic: kirchhoffs-laws
+    subtopic: Loop equation for a real cell
+    concept: E − Ir − IR = 0
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [loop-rule]
+    stem: A cell of emf E and internal resistance r drives current I through an external resistor R. Which is the correct loop equation?
+    options:
+      - E + Ir + IR = 0
+      - E − IR = 0
+      - E + Ir − IR = 0
+      - E − Ir − IR = 0
+    answer: 3
+    explanation: "Going round in the direction of the current, the cell gives +E and both resistances give drops: E − Ir − IR = 0, i.e. I = E/(R + r)."
+
+  - id: phy-cur-486
+    topic: kirchhoffs-laws
+    subtopic: Star junction currents
+    concept: Directions and values of currents at a star junction
+    category: numerical
+    format: multi-statement
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [junction-rule, multi-concept]
+    stem: |-
+      Points A (10 V), B (6 V) and C (0 V) are joined to a junction O through 2 Ω (AO), 3 Ω (BO) and 6 Ω (CO). Consider the statements.
+      I. The potential of O is 7 V.
+      II. Current flows from A towards O.
+      III. Current flows from O towards B.
+      IV. The current through the 6 Ω resistor is 7/6 A.
+      Which are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 3
+    explanation: "V_O = 7 V. AO: (10 − 7)/2 = 1.5 A towards O. OB: (7 − 6)/3 = 1/3 A towards B. OC: 7/6 A towards C. Check: 1.5 = 1/3 + 7/6. All four are correct."
+
+  - id: phy-cur-487
+    topic: kirchhoffs-laws
+    subtopic: Power of Kirchhoff's rules
+    concept: Rules work for any number of wires and for irreducible networks
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [validity]
+    stem: |-
+      Statement I: Kirchhoff's junction rule applies to a junction of any number of wires.
+      Statement II: Kirchhoff's rules can solve networks that cannot be reduced to series and parallel combinations.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: "Charge conservation holds at any junction, and the two rules together give enough equations for any network, including unbalanced bridges. Both are correct."
+
+  - id: phy-cur-488
+    topic: kirchhoffs-laws
+    subtopic: Loop of two unequal cells
+    concept: Loop rule predicts current between parallel unequal cells
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [parallel-cells, loop-rule]
+    stem: |-
+      Assertion (A): When two cells of unequal emf are connected in parallel with like terminals together, current flows through them even with no external load.
+      Reason (R): Applying the loop rule to the loop formed by the two cells gives a current (E_1 − E_2)/(r_1 + r_2).
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "Around the two-cell loop, E_1 − Ir_1 − Ir_2 − E_2 = 0, giving a non-zero current whenever E_1 ≠ E_2. R explains A."
+
+  - id: phy-cur-489
+    topic: kirchhoffs-laws
+    subtopic: Potentials with an earthed middle point
+    concept: Ordering potentials around a circuit with a chosen zero
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [potential-at-point, ordering]
+    stem: |-
+      An ideal 12 V battery drives current through 1 Ω, 2 Ω and 3 Ω resistors in series (in that order from the positive terminal). The junction of the 2 Ω and 3 Ω resistors is earthed. Arrange in increasing order of potential.
+      P. Positive terminal
+      Q. Junction of 1 Ω and 2 Ω
+      R. Earthed junction
+      N. Negative terminal
+    options:
+      - N < R < Q < P
+      - R < N < Q < P
+      - N < Q < R < P
+      - P < Q < R < N
+    answer: 0
+    explanation: "I = 2 A. P = +6 V, Q = 6 − 2 = +4 V, R = 0 V, N = −6 V. So N < R < Q < P."
+
+  - id: phy-cur-490
+    topic: kirchhoffs-laws
+    subtopic: Jump-starting a car
+    concept: Current between batteries = ΔE/total resistance
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [application, charging]
+    stem: A good battery (12.5 V, internal resistance 0.02 Ω) is connected positive-to-positive and negative-to-negative to a weak battery (10 V, internal resistance 0.05 Ω) with cables of total resistance 0.03 Ω. What current flows into the weak battery?
+    options:
+      - 250 A
+      - 125 A
+      - 25 A
+      - 2.5 A
+    answer: 2
+    explanation: "Around the loop the emfs oppose: I = (12.5 − 10)/(0.02 + 0.05 + 0.03) = 2.5/0.1 = 25 A, charging the weak battery."
+
+  - id: phy-cur-491
+    topic: wheatstone-bridge
+    subtopic: Two unknowns in a metre bridge
+    concept: Solving two balance conditions
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [metre-bridge, simultaneous-equations]
+    stem: Resistances X (left gap) and Y (right gap) balance a metre bridge at 40 cm. When 10 Ω is added in series with X, the balance point moves to 60 cm. What are X and Y?
+    options:
+      - X = 12 Ω, Y = 8 Ω
+      - X = 8 Ω, Y = 12 Ω
+      - X = 4 Ω, Y = 6 Ω
+      - X = 6 Ω, Y = 9 Ω
+    answer: 1
+    explanation: "X/Y = 40/60 = 2/3 and (X + 10)/Y = 60/40 = 3/2. Subtracting, 10/Y = 3/2 − 2/3 = 5/6, so Y = 12 Ω and X = 8 Ω."
+
+  - id: phy-cur-492
+    topic: wheatstone-bridge
+    subtopic: Resistance per unit length of a wire
+    concept: Find X by metre bridge, then divide by its length
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [metre-bridge, experimental]
+    stem: A 0.5 m length of a wire is placed in the left gap of a metre bridge and a 2 Ω resistor in the right gap. The null point is at 60 cm. What is the resistance per unit length of the wire?
+    options:
+      - 4 Ω m^{-1}
+      - 1.5 Ω m^{-1}
+      - 3 Ω m^{-1}
+      - 6 Ω m^{-1}
+    answer: 3
+    explanation: "X = 2 × 60/40 = 3 Ω for 0.5 m, so the wire has 3/0.5 = 6 Ω m^{-1}."
+
+  - id: phy-cur-493
+    topic: wheatstone-bridge
+    subtopic: Current in a balanced network
+    concept: Remove the null arm, then find total current
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [balanced-bridge]
+    stem: In a Wheatstone network, P = 3 Ω and Q = 6 Ω form one side, R = 4 Ω and S = 8 Ω the other, and a galvanometer joins the midpoints. An ideal 6 V battery is connected across the network. What current does the battery supply?
+    options:
+      - 7/6 A
+      - 2 A
+      - 1/2 A
+      - 3/2 A
+    answer: 0
+    explanation: "P/Q = R/S = 1/2, so the galvanometer carries no current. The network is 9 Ω ∥ 12 Ω = 36/7 Ω, and I = 6 × 7/36 = 7/6 A."
+
+  - id: phy-cur-494
+    topic: wheatstone-bridge
+    subtopic: Predicting the null point
+    concept: l = 100X/(X + R)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [metre-bridge]
+    stem: In a metre bridge, a 6 Ω resistor is in the left gap and a 4 Ω resistor in the right gap. Where is the null point, measured from the left end?
+    options:
+      - 40 cm
+      - 66.7 cm
+      - 60 cm
+      - 50 cm
+    answer: 2
+    explanation: "l/(100 − l) = 6/4 gives l = 100 × 6/10 = 60 cm."
+
+  - id: phy-cur-495
+    topic: wheatstone-bridge
+    subtopic: Using the jockey
+    concept: Sliding a pressed jockey damages the wire's uniformity
+    category: factual
+    format: statements
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: false
+    tags: [metre-bridge, experimental]
+    stem: In a metre bridge experiment, why should the jockey not be slid along the wire while it is pressed?
+    options:
+      - It scrapes the wire, making its cross-section non-uniform
+      - It changes the emf of the cell
+      - It short-circuits the galvanometer
+      - It reverses the current in the wire
+    answer: 0
+    explanation: "The method assumes resistance ∝ length, which needs a uniform wire. Scraping with a pressed jockey spoils that uniformity."
+
+  - id: phy-cur-496
+    topic: wheatstone-bridge
+    subtopic: Sources of error
+    concept: Non-uniform wire, end resistance and heating cause errors
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [metre-bridge, experimental]
+    stem: |-
+      Which of the following can cause errors in a metre bridge measurement?
+      I. A bridge wire of non-uniform cross-section
+      II. Resistance at the ends of the wire and at the contacts
+      III. Heating of the wire due to current passed for a long time
+      IV. Using a galvanometer of high resistance, which changes the balance condition
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: "I, II and III all make the effective resistances differ from those assumed. IV is not an error: at balance no current flows through the galvanometer, so its resistance does not affect the balance point."
+
+  - id: phy-cur-497
+    topic: wheatstone-bridge
+    subtopic: Changing the bridge wire
+    concept: Only the ratio of the two segments matters
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [metre-bridge, null-method]
+    stem: |-
+      A metre bridge is balanced.
+      Statement I: If the galvanometer and cell are interchanged, the balance point stays the same.
+      Statement II: If the bridge wire is replaced by a thicker uniform wire of the same material and length, the balance point changes.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "Interchanging cell and galvanometer preserves the balance condition. For any uniform wire the two segments' resistances are in the ratio l : (100 − l), so the wire's thickness does not move the balance point."
+
+  - id: phy-cur-498
+    topic: wheatstone-bridge
+    subtopic: Independence from wire resistance
+    concept: Balance depends only on the ratio of segment lengths
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [metre-bridge, null-method]
+    stem: |-
+      Assertion (A): The balance point of a metre bridge does not depend on the resistance per unit length of the bridge wire.
+      Reason (R): For a uniform wire, only the ratio of the resistances of its two segments enters the balance condition, and this equals the ratio of their lengths.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: "X/R = (λl)/(λ(100 − l)) = l/(100 − l); the resistance per unit length λ cancels. R explains A."
+
+  - id: phy-cur-499
+    topic: wheatstone-bridge
+    subtopic: Balanced networks
+    concept: Equivalent resistance of several balanced bridges
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [balanced-bridge]
+    stem: |-
+      Each network below is a Wheatstone bridge with arms (P, Q) in one path and (R, S) in the other and a 5 Ω resistor between the midpoints. Match List I with List II (equivalent resistance between the battery terminals).
+      W. P = Q = R = S = 5 Ω
+      X. P = 1 Ω, Q = 2 Ω, R = 2 Ω, S = 4 Ω
+      Y. P = 1 Ω, Q = 1 Ω, R = 3 Ω, S = 3 Ω
+      Z. P = 4 Ω, Q = 8 Ω, R = 4 Ω, S = 8 Ω
+      1. 6 Ω
+      2. 1.5 Ω
+      3. 5 Ω
+      4. 2 Ω
+    options:
+      - W-3, X-2, Y-4, Z-1
+      - W-1, X-4, Y-2, Z-3
+      - W-3, X-4, Y-1, Z-2
+      - W-3, X-4, Y-2, Z-1
+    answer: 3
+    explanation: "All four are balanced, so the 5 Ω bridge arm drops out. W: 10 ∥ 10 = 5 Ω. X: 3 ∥ 6 = 2 Ω. Y: 2 ∥ 6 = 1.5 Ω. Z: 12 ∥ 12 = 6 Ω."
+
+  - id: phy-cur-500
+    topic: wheatstone-bridge
+    subtopic: Balance length vs unknown resistance
+    concept: l = 100X/(X + R) rises and saturates
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [metre-bridge, graph]
+    stem: In a metre bridge with a fixed resistor R in the right gap, the balance length l (from the left end) is plotted against the unknown X in the left gap. The graph
+    options:
+      - is a straight line through the origin
+      - starts at zero, rises through 50 cm at X = R, and approaches 100 cm for large X
+      - falls from 100 cm to zero as X increases
+      - is constant at 50 cm
+    answer: 1
+    explanation: "l = 100X/(X + R): zero at X = 0, 50 cm when X = R, and tending to 100 cm as X → ∞. It is a curve, not a straight line."
+

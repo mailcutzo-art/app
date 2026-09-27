@@ -312,8 +312,8 @@ questions:
     concept: Gauge pressure under two immiscible layers adds ρgh of each
     category: numerical
     format: direct
-    difficulty: 3
-    time: 60
+    difficulty: 4
+    time: 90
     ncert: false
     battle: false
     formula: P_g = ρ_1gh_1 + ρ_2gh_2
@@ -2438,10 +2438,10 @@ questions:
     concept: Using P = P_a + ρgh at two depths
     category: numerical
     format: direct
-    difficulty: 3
-    time: 60
+    difficulty: 4
+    time: 90
     ncert: false
-    battle: true
+    battle: false
     tags: [hydrostatic-pressure]
     stem: The absolute pressure at the bottom of a lake is 3 atm and the pressure at its surface is 1 atm. The absolute pressure at half the depth is
     options:
@@ -2855,8 +2855,8 @@ questions:
     concept: Larger total cross-section means slower flow
     category: numerical
     format: direct
-    difficulty: 3
-    time: 55
+    difficulty: 4
+    time: 90
     ncert: false
     battle: false
     tags: [continuity, biology-link]
@@ -4798,10 +4798,10 @@ questions:
     concept: Using the extra submerged volume to find the block volume
     category: numerical
     format: direct
-    difficulty: 3
-    time: 60
+    difficulty: 4
+    time: 90
     ncert: false
-    battle: true
+    battle: false
     tags: [flotation]
     stem: A block floats in water with 3/5 of its volume submerged. When a 40 g mass is placed on it, it is just fully submerged. The volume of the block is
     options:
@@ -5200,8 +5200,8 @@ questions:
     concept: Continuity plus Bernoulli for a pipe whose radius halves
     category: numerical
     format: direct
-    difficulty: 3
-    time: 60
+    difficulty: 4
+    time: 90
     ncert: false
     battle: false
     tags: [bernoulli, continuity, multi-concept]
@@ -6137,8 +6137,8 @@ questions:
     concept: Including cos θ in h = 2S cos θ/(rρg)
     category: numerical
     format: direct
-    difficulty: 3
-    time: 60
+    difficulty: 4
+    time: 90
     ncert: true
     battle: false
     tags: [capillary-rise]
@@ -8470,3 +8470,2164 @@ questions:
     answer: 1
     explanation: NCERT defines the angle of contact as the angle between the tangent to the liquid surface at the point of contact and the solid surface inside the liquid. It depends on both the liquid and the solid.
 
+
+  - id: phy-mpf-401
+    topic: pressure-pascal
+    subtopic: Hydraulic lift analysis
+    concept: Force, displacement, pressure and work in a hydraulic lift
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    tags: [hydraulic-lift, multi-concept]
+    stem: |-
+      In an ideal hydraulic lift, the pistons have areas 10 cm^2 and 500 cm^2 and a force of 100 N acts on the small piston. Consider:
+      I. The large piston can support 5000 N.
+      II. If the small piston moves down 50 cm, the large piston rises 1 cm.
+      III. The pressure in the liquid due to the applied force is 1.0 × 10^5 Pa.
+      IV. The work done on the load exceeds the work done by the 100 N force.
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II, III and IV
+      - II and III only
+      - I, II and III only
+    answer: 3
+    explanation: "P = 100/10^{-3} = 10^5 Pa; F_2 = 10^5 × 0.05 = 5000 N; volume conservation gives 50 × 10 = 1 × 500 (cm^3). Work in = 100 × 0.5 = 50 J = work out = 5000 × 0.01 J, so IV is wrong."
+
+  - id: phy-mpf-402
+    topic: pressure-pascal
+    subtopic: Pressure in a gas container
+    concept: Gravity-induced pressure differences in a gas are negligible over small heights
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [pascal-law]
+    stem: The pressure of the gas in a closed cylinder 1 m tall is taken to be the same at the top and the bottom. This is justified because
+    options:
+      - gases have no weight
+      - gas molecules move too fast to feel gravity
+      - Pascal's law does not apply to gases
+      - the density of the gas is so small that ρgh over 1 m is negligible
+    answer: 3
+    explanation: For air, ρgh over 1 m is only about 13 Pa compared with 10^5 Pa, so the pressure is effectively uniform. Gases do have weight, as a tall atmosphere shows.
+
+  - id: phy-mpf-403
+    topic: pressure-pascal
+    subtopic: Effect of changing piston size
+    concept: Output force ∝ area ∝ d^2; displacement ∝ 1/area; pressure fixed by input
+    category: application
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [hydraulic-lift, match, proportionality]
+    stem: |-
+      In a hydraulic lift the input force and small piston are unchanged. Match each change in List I with its effect in List II.
+      List I: P. Area of large piston doubled, effect on output force; Q. Diameter of large piston doubled, effect on output force; R. Area of large piston doubled, effect on its rise per input stroke; S. Area of large piston doubled, effect on liquid pressure
+      List II: 1. Halves; 2. Unchanged; 3. Doubles; 4. Becomes four times
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+    answer: 2
+    explanation: F_2 = P A_2, so doubling A_2 doubles F_2 and doubling the diameter quadruples it. The displaced volume is fixed, so the rise halves. The pressure is set by F_1/A_1 and is unchanged.
+
+  - id: phy-mpf-404
+    topic: pressure-pascal
+    subtopic: Pistons at different heights
+    concept: Balance of a hydraulic lift including the hydrostatic term
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [hydraulic-lift, hydrostatic-pressure, multi-concept]
+    stem: A load of 1000 kg rests on the large piston (area 0.1 m^2) of a hydraulic lift filled with oil of density 800 kg m^{-3}. The small piston (area 0.001 m^2) is 2 m higher than the large one. Taking g = 10 m s^{-2}, what mass on the small piston keeps the system in equilibrium?
+    options:
+      - 10 kg
+      - 8.4 kg
+      - 11.6 kg
+      - 1.6 kg
+    answer: 1
+    explanation: "Pressure under the large piston = 10^4/0.1 = 10^5 Pa. At the small piston, 2 m higher, it is 10^5 − 800 × 10 × 2 = 8.4 × 10^4 Pa. So mg = 8.4 × 10^4 × 10^{-3} = 84 N, m = 8.4 kg. Ignoring the height difference gives 10 kg."
+
+  - id: phy-mpf-405
+    topic: pressure-pascal
+    subtopic: Fluids and shear
+    concept: A fluid at rest exerts only normal forces and cannot sustain shear stress
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [pressure-basic]
+    stem: |-
+      Statement I: The force exerted by a fluid at rest on any surface in contact with it is perpendicular to that surface.
+      Statement II: A fluid at rest can sustain a steady shearing stress.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: A fluid flows under any shear stress, so at rest it can exert only normal forces. That is why the force due to pressure is always perpendicular to the surface.
+
+  - id: phy-mpf-406
+    topic: pressure-pascal
+    subtopic: Pressure units
+    concept: Relations among pascal, bar, torr and atmosphere
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [units]
+    stem: |-
+      Consider the statements:
+      I. 1 Pa = 1 N m^{-2}
+      II. 1 bar = 10^5 Pa
+      III. 1 torr = 1 mm of Hg (approximately)
+      IV. 1 atm = 760 torr
+      Which of these are correct?
+    options:
+      - I, II, III and IV
+      - I and II only
+      - I, II and IV only
+      - II, III and IV only
+    answer: 0
+    explanation: All four are standard relations; 1 atm = 760 mm of Hg = 760 torr = 1.013 × 10^5 Pa.
+
+  - id: phy-mpf-407
+    topic: pressure-pascal
+    subtopic: Comparing pressures on the ground
+    concept: Pressure = weight/area across very different cases
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [pressure-basic, ordering]
+    stem: |-
+      Arrange in increasing order of pressure exerted (g = 10 m s^{-2}):
+      P. A 2 kg brick resting on its 20 cm × 10 cm face
+      Q. The same brick resting on its 10 cm × 5 cm face
+      R. A 60 kg person standing on both feet, each of area 150 cm^2
+      S. A needle pressed with 1 N over a tip area of 0.01 mm^2
+    options:
+      - P < R < Q < S
+      - Q < P < R < S
+      - P < Q < R < S
+      - P < Q < S < R
+    answer: 2
+    explanation: "P = 20/0.02 = 1000 Pa, Q = 20/0.005 = 4000 Pa, R = 600/0.03 = 2 × 10^4 Pa, S = 1/10^{-8} = 10^8 Pa."
+
+  - id: phy-mpf-408
+    topic: pressure-pascal
+    subtopic: Output force versus piston area
+    concept: For fixed input pressure, output force is proportional to piston area
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [hydraulic-lift, graph]
+    stem: With a fixed force on a fixed small piston, the output force of a hydraulic lift is plotted (y-axis) against the area of the large piston (x-axis). The graph is
+    options:
+      - a rectangular hyperbola
+      - a straight line through the origin
+      - a horizontal line
+      - a parabola through the origin
+    answer: 1
+    explanation: F_2 = (F_1/A_1) × A_2 with F_1/A_1 constant, so F_2 ∝ A_2, a straight line through the origin.
+
+  - id: phy-mpf-409
+    topic: pressure-depth
+    subtopic: Container in downward-accelerating lift
+    concept: Gauge pressure at depth becomes ρ(g − a)h
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [hydrostatic-pressure, multi-concept]
+    stem: A beaker of water is in a lift accelerating downward with acceleration g/2. Which statement about the gauge pressure at depth h in the water is correct?
+    options:
+      - It equals ρgh, as in a stationary lift.
+      - It equals 3ρgh/2.
+      - It is zero.
+      - It equals ρgh/2.
+    answer: 3
+    explanation: The effective gravity inside the lift is g − a = g/2, so the gauge pressure is ρ(g/2)h. It would be zero only in free fall.
+
+  - id: phy-mpf-410
+    topic: pressure-depth
+    subtopic: Force on a submerged gate
+    concept: Force on a vertical submerged plate = pressure at its centroid × area
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [side-wall-force, multi-concept]
+    stem: A vertical rectangular sluice gate, 1 m wide and 2 m tall, has its top edge 2 m below the water surface. Ignoring atmospheric pressure and taking g = 10 m s^{-2}, the force of the water on the gate is
+    options:
+      - 4.0 × 10^4 N
+      - 6.0 × 10^4 N
+      - 8.0 × 10^4 N
+      - 3.0 × 10^4 N
+    answer: 1
+    explanation: Pressure rises linearly from ρg × 2 at the top to ρg × 4 at the bottom, averaging ρg × 3 = 3 × 10^4 Pa. F = 3 × 10^4 × (1 × 2) = 6.0 × 10^4 N.
+
+  - id: phy-mpf-411
+    topic: pressure-depth
+    subtopic: U-tube principles
+    concept: Equal pressure applies at the same level only within the same continuous liquid
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [u-tube, trap]
+    stem: |-
+      Consider the statements about U-tubes open to the air:
+      I. A single liquid at rest stands at the same level in both arms.
+      II. If a lighter immiscible liquid is poured into one arm, the free surface in that arm ends up higher than the free surface in the other arm.
+      III. Points at the same horizontal level in the same continuous liquid are at equal pressure.
+      IV. Points at the same horizontal level are at equal pressure even if they lie in two different liquids.
+      Which of these are correct?
+    options:
+      - I and III only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: The equal-level rule needs a continuous path through the same liquid at rest, so IV is wrong. A lighter liquid needs a taller column to balance a given pressure, so its surface stands higher.
+
+  - id: phy-mpf-412
+    topic: pressure-depth
+    subtopic: Equivalent columns
+    concept: Water column equivalent to mercury column
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [hydrostatic-pressure]
+    stem: A 68 cm column of water exerts the same pressure as a mercury column (relative density 13.6) of height
+    options:
+      - 5 cm
+      - 9.25 m
+      - 50 cm
+      - 0.5 cm
+    answer: 0
+    explanation: ρ_w h_w = ρ_{Hg} h_{Hg}, so h_{Hg} = 68/13.6 = 5 cm.
+
+  - id: phy-mpf-413
+    topic: pressure-depth
+    subtopic: Water supply in tall buildings
+    concept: Tap pressure depends on height of the tank level above the tap
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [hydrostatic-pressure]
+    stem: A building is supplied from a tank on its roof. Residents on the top floor complain of a weak flow compared with those on the ground floor. The main reason is that
+    options:
+      - water is more viscous at the top floor
+      - atmospheric pressure is much higher at the top floor
+      - the pipes to the top floor are wider
+      - the gauge pressure at a tap equals ρgh, where h is the height of the tank water level above the tap, which is small for the top floor
+    answer: 3
+    explanation: Taps on lower floors lie much farther below the tank level, so the water there has a larger gauge pressure ρgh and flows out faster.
+
+  - id: phy-mpf-414
+    topic: pressure-depth
+    subtopic: Pressure–depth graph in an accelerating lift
+    concept: Slope of gauge pressure versus depth becomes ρ(g + a)
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [hydrostatic-pressure, graph, multi-concept]
+    stem: Gauge pressure is plotted against depth for water in a beaker, first with the lift at rest and then with the lift accelerating upward. Compared with the first graph, the second is a straight line through the origin with
+    options:
+      - a greater slope
+      - a smaller slope
+      - the same slope
+      - a negative slope
+    answer: 0
+    explanation: In a lift accelerating upward, g_{eff} = g + a, so P_g = ρ(g + a)h and the slope ρ(g + a) is larger.
+
+  - id: phy-mpf-415
+    topic: pressure-depth
+    subtopic: Gauge pressures in different liquids
+    concept: Calculating ρgh for several liquids
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [hydrostatic-pressure, match]
+    stem: |-
+      Match each point in List I with its gauge pressure in List II (g = 10 m s^{-2}).
+      List I: P. 1 m below the surface of mercury (13600 kg m^{-3}); Q. 10 m below the surface of water; R. 5 m below the surface of oil (800 kg m^{-3}); S. 2 m below the surface of glycerine (1250 kg m^{-3})
+      List II: 1. 2.5 × 10^4 Pa; 2. 4.0 × 10^4 Pa; 3. 1.0 × 10^5 Pa; 4. 1.36 × 10^5 Pa
+    options:
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-3, R-2, S-1
+    answer: 3
+    explanation: "ρgh: mercury 13600 × 10 × 1 = 1.36 × 10^5; water 1000 × 10 × 10 = 10^5; oil 800 × 10 × 5 = 4 × 10^4; glycerine 1250 × 10 × 2 = 2.5 × 10^4 Pa."
+
+  - id: phy-mpf-416
+    topic: pressure-depth
+    subtopic: Pool and lake
+    concept: Pressure at a given depth is the same in a pool and in a lake
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [hydrostatic-paradox]
+    stem: |-
+      Assertion (A): The pressure 10 m deep in a small swimming pool equals the pressure 10 m deep in a large freshwater lake.
+      Reason (R): The pressure in a liquid at rest depends only on the depth, the density of the liquid, g and the pressure at the surface.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: P = P_a + ρgh has no dependence on the size of the water body, so both pressures are equal. R explains A.
+
+  - id: phy-mpf-417
+    topic: atmospheric-gauge-pressure
+    subtopic: Barometer in a lift
+    concept: A barometer in a lift accelerating upward reads less
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [barometer, multi-concept, trap]
+    stem: A mercury barometer is carried in a lift. Which statement is correct?
+    options:
+      - It reads more when the lift accelerates upward.
+      - It reads the same whatever the motion of the lift.
+      - It reads less when the lift accelerates upward, because the column must satisfy P_a = ρ(g + a)h.
+      - It reads zero when the lift moves up at constant speed.
+    answer: 2
+    explanation: With upward acceleration, g_{eff} = g + a, so the same air pressure supports a shorter column. At constant velocity the reading is normal; in free fall the mercury would fill the tube.
+
+  - id: phy-mpf-418
+    topic: atmospheric-gauge-pressure
+    subtopic: Barometer in a lift
+    concept: h' = h g/(g + a)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [barometer, multi-concept]
+    stem: A barometer reads 76 cm of mercury in a stationary lift. What does it read when the lift accelerates upward at g/4 (air pressure in the lift unchanged)?
+    options:
+      - 95 cm
+      - 57 cm
+      - 76 cm
+      - 60.8 cm
+    answer: 3
+    explanation: ρg × 76 = ρ(5g/4)h', so h' = 76 × 4/5 = 60.8 cm. Using (g − a) instead gives the wrong value.
+
+  - id: phy-mpf-419
+    topic: atmospheric-gauge-pressure
+    subtopic: Atmospheric pressure facts
+    concept: Origin and measurement of atmospheric pressure
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [atmosphere]
+    stem: |-
+      Consider the statements:
+      I. Atmospheric pressure decreases with altitude.
+      II. Atmospheric pressure is measured with a barometer.
+      III. Atmospheric pressure is due to the weight of the air column above.
+      IV. At sea level, atmospheric pressure supports a 76 m column of mercury.
+      Which of these are correct?
+    options:
+      - I, II and III only
+      - I and III only
+      - I, II, III and IV
+      - II and IV only
+    answer: 0
+    explanation: The mercury column is 76 cm, not 76 m, so IV is wrong. The other three statements are correct.
+
+  - id: phy-mpf-420
+    topic: atmospheric-gauge-pressure
+    subtopic: Absolute pressure from a manometer
+    concept: Absolute pressure = atmospheric + manometer difference
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [manometer]
+    stem: When P_a = 76 cm of Hg, an open-tube mercury manometer on a gas cylinder shows the mercury 10 cm higher in the open arm. The absolute pressure of the gas is (1 cm of Hg ≈ 1333 Pa)
+    options:
+      - 1.33 × 10^4 Pa
+      - 8.8 × 10^4 Pa
+      - 1.15 × 10^5 Pa
+      - 1.01 × 10^5 Pa
+    answer: 2
+    explanation: Absolute pressure = 76 + 10 = 86 cm of Hg ≈ 86 × 1333 ≈ 1.15 × 10^5 Pa. Subtracting instead gives 66 cm (8.8 × 10^4 Pa).
+
+  - id: phy-mpf-421
+    topic: atmospheric-gauge-pressure
+    subtopic: Inverted glass with card
+    concept: Atmospheric pressure can hold up a column of water
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [atmosphere]
+    stem: |-
+      Assertion (A): A glass filled to the brim with water and covered with a card can be turned upside down without the water falling out.
+      Reason (R): The upward force of atmospheric pressure on the card is much greater than the weight of the water above it.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Atmospheric pressure can support about 10 m of water, far more than the few centimetres in a glass, so the air pushing up on the card holds the water in.
+
+  - id: phy-mpf-422
+    topic: atmospheric-gauge-pressure
+    subtopic: Manometer calibration
+    concept: Level difference is proportional to gauge pressure, slope 1/(ρg)
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [manometer, graph]
+    stem: For an open-tube manometer containing a liquid of density ρ, the graph of level difference h (y-axis) against the gauge pressure of the gas (x-axis) is
+    options:
+      - a straight line through the origin with slope ρg
+      - a rectangular hyperbola
+      - a straight line through the origin with slope 1/(ρg)
+      - a straight line with intercept equal to atmospheric pressure
+    answer: 2
+    explanation: h = P_g/(ρg), so h is proportional to P_g with slope 1/(ρg). A lighter liquid gives a steeper line (more sensitive).
+
+  - id: phy-mpf-423
+    topic: atmospheric-gauge-pressure
+    subtopic: Fountain pen in a plane
+    concept: Lower outside pressure makes trapped air push ink out
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [atmosphere]
+    stem: A fountain pen filled at ground level tends to leak ink when taken up in an aircraft whose cabin is at a lower pressure. This happens because
+    options:
+      - ink becomes less viscous at altitude
+      - the air trapped in the pen, still at the higher ground-level pressure, pushes ink out against the lower outside pressure
+      - gravity is weaker at altitude
+      - the surface tension of ink increases at altitude
+    answer: 1
+    explanation: The air inside the ink reservoir is at a higher pressure than the cabin air, so the pressure difference forces ink out through the nib.
+
+  - id: phy-mpf-424
+    topic: atmospheric-gauge-pressure
+    subtopic: Pressure in closed tanks
+    concept: Pressure at depth is surface pressure plus ρgh, open or closed tank
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [gauge-pressure, hydrostatic-pressure]
+    stem: |-
+      Statement I: In an open tank, the absolute pressure at depth h is P_a + ρgh.
+      Statement II: In a closed tank with gas at pressure P_0 above the liquid, the absolute pressure at depth h is P_0 + ρgh.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: In both cases the pressure at depth h equals the pressure acting on the liquid surface plus ρgh; the surface pressure is P_a in an open tank and P_0 in a closed one.
+
+  - id: phy-mpf-425
+    topic: buoyancy
+    subtopic: Half-immersed block
+    concept: Tension = weight − buoyant force on the immersed part
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [buoyancy, apparent-weight]
+    stem: A 5 kg block of volume 10^{-3} m^3 hangs from a string with half of its volume under water. Taking g = 10 m s^{-2}, the tension in the string is
+    options:
+      - 50 N
+      - 40 N
+      - 55 N
+      - 45 N
+    answer: 3
+    explanation: The buoyant force on half the volume is 1000 × 0.5 × 10^{-3} × 10 = 5 N, so T = 50 − 5 = 45 N.
+
+  - id: phy-mpf-426
+    topic: buoyancy
+    subtopic: Balloon payload
+    concept: Payload = (ρ_{air} − ρ_{gas})V − mass of balloon
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [buoyancy, balloon, multi-concept]
+    stem: A helium balloon of volume 20 m^3 has a fabric mass of 5 kg. With densities of air 1.3 kg m^{-3} and helium 0.18 kg m^{-3}, the largest extra mass it can lift is about
+    options:
+      - 26 kg
+      - 22.4 kg
+      - 17.4 kg
+      - 21 kg
+    answer: 2
+    explanation: "Lift capacity (in mass) = (1.3 − 0.18) × 20 = 22.4 kg. Subtracting the 5 kg fabric leaves about 17.4 kg for the payload."
+
+  - id: phy-mpf-427
+    topic: buoyancy
+    subtopic: Floating in a lift accelerating downward
+    concept: Buoyant force scales with g_eff while the submerged fraction stays the same
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [flotation, multi-concept]
+    stem: |-
+      A block floats in water in a lift that starts accelerating downward with acceleration a < g. Consider:
+      I. The fraction of the block under water stays the same.
+      II. The buoyant force on the block decreases.
+      III. The block rises partly out of the water.
+      IV. If the lift were in free fall, the buoyant force would be zero.
+      Which of these are correct?
+    options:
+      - I, II and IV only
+      - II and III only
+      - I and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: Both the effective weight m(g − a) and the buoyant force ρV_{in}(g − a) scale by the same factor, so V_{in} is unchanged (III wrong) while the buoyant force decreases. In free fall g_{eff} = 0 and buoyancy vanishes.
+
+  - id: phy-mpf-428
+    topic: buoyancy
+    subtopic: Relative density from weighings
+    concept: RD = W_{air}/(W_{air} − W_{water})
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [relative-density, match]
+    stem: |-
+      Match each solid (weights in air and fully immersed in water) with its relative density.
+      List I: P. 20 N in air, 15 N in water; Q. 30 N in air, 20 N in water; R. 12 N in air, 10 N in water; S. 16 N in air, 8 N in water
+      List II: 1. 2; 2. 3; 3. 4; 4. 6
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-4, Q-2, R-3, S-1
+    answer: 0
+    explanation: "RD = W_{air}/loss: P 20/5 = 4, Q 30/10 = 3, R 12/2 = 6, S 16/8 = 2."
+
+  - id: phy-mpf-429
+    topic: buoyancy
+    subtopic: Apparent loss of weight
+    concept: Apparent loss of weight equals the weight of liquid displaced
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [archimedes, apparent-weight]
+    stem: Which statement about a solid fully immersed in a liquid is correct?
+    options:
+      - Its mass decreases while it is immersed.
+      - Its apparent loss of weight equals the weight of the liquid it displaces.
+      - Its apparent loss of weight equals its own weight.
+      - Its apparent loss of weight depends on how deep it is immersed.
+    answer: 1
+    explanation: The buoyant force, equal to the weight of displaced liquid, reduces the apparent weight; the mass is unchanged, and for an incompressible liquid the loss does not depend on depth.
+
+  - id: phy-mpf-430
+    topic: buoyancy
+    subtopic: Hidden cavity
+    concept: Volume of a cavity from weighings in air and water
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [relative-density, multi-concept]
+    stem: A metal piece weighs 210 gf in air and 180 gf in water. The density of the metal is 10.5 g cm^{-3}. The volume of the cavity inside it is
+    options:
+      - 10 cm^3
+      - 20 cm^3
+      - 30 cm^3
+      - zero
+    answer: 0
+    explanation: Loss of weight 30 gf means the total volume is 30 cm^3. The metal itself occupies 210/10.5 = 20 cm^3, so the cavity is 10 cm^3.
+
+  - id: phy-mpf-431
+    topic: buoyancy
+    subtopic: Buoyancy of air
+    concept: Air exerts a small buoyant force, so bodies weigh slightly less in air than in vacuum
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [archimedes]
+    stem: |-
+      Assertion (A): A large block of foam weighed on a spring balance in air reads slightly less than its true weight in vacuum.
+      Reason (R): Air, like any fluid, exerts a buoyant force equal to the weight of air displaced.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Archimedes' principle applies to air too; the upthrust of displaced air reduces the balance reading, noticeably so for large, light objects.
+
+  - id: phy-mpf-432
+    topic: buoyancy
+    subtopic: String tension while lowering
+    concept: Tension falls linearly while a block enters water, then stays constant
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [apparent-weight, graph]
+    stem: A heavy cuboid hanging from a spring balance is lowered slowly into water until it is well below the surface. The graph of the balance reading (y-axis) against the depth of its lower face (x-axis) is
+    options:
+      - constant throughout
+      - a straight line rising from zero
+      - a curve that keeps falling to zero
+      - constant until the block touches the water, then a falling straight line until it is fully immersed, then constant again
+    answer: 3
+    explanation: Reading = weight − buoyant force. The buoyant force grows linearly with immersed depth until the block is fully under, then stays constant, so the reading falls linearly and then levels off.
+
+  - id: phy-mpf-433
+    topic: streamline-flow
+    subtopic: Tube of flow
+    concept: A tube of flow is bounded by streamlines, so no fluid crosses its sides
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [streamlines, continuity]
+    stem: |-
+      Consider the statements about a tube of flow in steady flow of an incompressible liquid:
+      I. No fluid crosses the side boundary of the tube.
+      II. The volume flow rate is the same through every cross-section of the tube.
+      III. The tube is made up of a bundle of streamlines.
+      IV. The speed of the fluid is the same at every cross-section.
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: The tube's walls are streamlines, so fluid moves along them, not across; hence Av is constant. The speed changes with area, so IV is wrong.
+
+  - id: phy-mpf-434
+    topic: streamline-flow
+    subtopic: Speed from flow rate
+    concept: v = Q/(πr^2)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [flow-rate]
+    stem: Water flows at 1.5 litres per second through a pipe of internal diameter 5 cm. The average speed of flow is about
+    options:
+      - 0.19 m s^{-1}
+      - 0.76 m s^{-1}
+      - 3.0 m s^{-1}
+      - 1.5 m s^{-1}
+    answer: 1
+    explanation: A = π(0.025)^2 ≈ 1.96 × 10^{-3} m^2. v = 1.5 × 10^{-3}/1.96 × 10^{-3} ≈ 0.76 m s^{-1}. Using the diameter as radius gives 0.19 m s^{-1}.
+
+  - id: phy-mpf-435
+    topic: streamline-flow
+    subtopic: Speed across a river
+    concept: Continuity gives average speed; real speed varies across a section due to viscosity
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [continuity, velocity-profile]
+    stem: |-
+      Statement I: In a river, water flows fastest near the middle of the surface and slowest near the banks and bed.
+      Statement II: The equation of continuity shows that the speed is the same at every point of a given cross-section.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Viscosity holds back the water near the banks and bed. The continuity equation involves the average speed across a section; it does not say the speed is uniform.
+
+  - id: phy-mpf-436
+    topic: streamline-flow
+    subtopic: Diameter and speed ratios
+    concept: "v_1 : v_2 = d_2^2 : d_1^2"
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [continuity, match, proportionality]
+    stem: |-
+      For steady flow through two sections of the same pipe, match the diameter ratio d_1 : d_2 in List I with the speed ratio v_1 : v_2 in List II.
+      List I: P. 1 : 2; Q. 2 : 1; R. 1 : 3; S. 3 : 1
+      List II: 1. 1 : 4; 2. 4 : 1; 3. 1 : 9; 4. 9 : 1
+    options:
+      - P-1, Q-2, R-3, S-4
+      - P-2, Q-1, R-3, S-4
+      - P-2, Q-1, R-4, S-3
+      - P-4, Q-3, R-2, S-1
+    answer: 2
+    explanation: "v ∝ 1/d^2, so the narrower section is faster by the square of the diameter ratio. 1 : 2 gives 4 : 1, 2 : 1 gives 1 : 4, 1 : 3 gives 9 : 1 and 3 : 1 gives 1 : 9."
+
+  - id: phy-mpf-437
+    topic: streamline-flow
+    subtopic: Nozzle and fountain
+    concept: Continuity gives jet speed; energy gives its height
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [continuity, multi-concept]
+    stem: Water flows at 1 m s^{-1} in a hose of cross-section 10 cm^2 fitted with a nozzle of cross-section 1 cm^2 pointing vertically upward. Taking g = 10 m s^{-2}, the jet rises to a height of about
+    options:
+      - 5 cm
+      - 50 cm
+      - 10 m
+      - 5 m
+    answer: 3
+    explanation: By continuity the jet leaves at 10 m s^{-1}. It rises to h = v^2/2g = 100/20 = 5 m.
+
+  - id: phy-mpf-438
+    topic: streamline-flow
+    subtopic: Width of a falling stream
+    concept: Stream radius decreases with fall distance, rapidly at first
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [continuity, graph, multi-concept]
+    stem: A smooth stream of water falls from a tap. The graph of the stream's radius (y-axis) against the distance fallen below the tap (x-axis) is best described as
+    options:
+      - a horizontal line
+      - a straight line decreasing to zero
+      - a decreasing curve that falls quickly near the tap and more slowly farther down
+      - an increasing curve
+    answer: 2
+    explanation: v = √(u^2 + 2gy) grows quickly at first and then more slowly, and continuity gives r ∝ 1/√v ∝ (u^2 + 2gy)^{−1/4}. So the radius shrinks rapidly near the tap and gradually further down, never reaching zero.
+
+  - id: phy-mpf-439
+    topic: streamline-flow
+    subtopic: Laminar versus turbulent
+    concept: Turbulent flow dissipates more energy than laminar flow
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [turbulence, trap]
+    stem: Which one of the following statements about laminar and turbulent flow is INCORRECT?
+    options:
+      - In laminar flow adjacent layers slide smoothly past each other.
+      - Turbulent flow shows eddies and irregular fluctuations.
+      - Turbulent flow dissipates less energy than laminar flow.
+      - Flow tends to become turbulent at high speeds.
+    answer: 2
+    explanation: Eddies in turbulent flow transfer energy rapidly into heat, so turbulence dissipates more energy, not less. That is why turbulence is avoided in pipelines and minimised by streamlined shapes.
+
+  - id: phy-mpf-440
+    topic: streamline-flow
+    subtopic: Comparing flow rates
+    concept: Volume flow rate = Av
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [flow-rate, ordering]
+    stem: |-
+      Arrange these pipes in increasing order of volume flow rate:
+      P. Area 2 cm^2, speed 3 m s^{-1}
+      Q. Area 1 cm^2, speed 5 m s^{-1}
+      R. Area 4 cm^2, speed 1 m s^{-1}
+      S. Diameter 2 cm, speed 2 m s^{-1}
+    options:
+      - R < Q < P < S
+      - Q < R < P < S
+      - R < P < Q < S
+      - R < Q < S < P
+    answer: 0
+    explanation: "In cm^2 m s^{-1}: P = 6, Q = 5, R = 4, S = π × 1^2 × 2 ≈ 6.28. So R < Q < P < S."
+
+  - id: phy-mpf-441
+    topic: bernoulli-principle
+    subtopic: Energy in a horizontal pipe
+    concept: Total mechanical energy per unit volume is constant, not maximum at the constriction
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [bernoulli, trap]
+    stem: An ideal liquid flows through a horizontal pipe that has a narrow section. Which statement is INCORRECT?
+    options:
+      - The kinetic energy per unit volume is greatest in the narrow section.
+      - The pressure is least in the narrow section.
+      - The total energy per unit volume (P + ½ρv^2) is greatest in the narrow section.
+      - The volume flow rate is the same in the wide and narrow sections.
+    answer: 2
+    explanation: For an ideal fluid P + ½ρv^2 (+ ρgh) is the same everywhere along a streamline; in the narrow section kinetic energy per volume rises and pressure falls by the same amount.
+
+  - id: phy-mpf-442
+    topic: bernoulli-principle
+    subtopic: Flow down an inclined pipe
+    concept: Bernoulli with speed increase and height drop together
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [bernoulli, multi-concept]
+    stem: Water flows from point 1 to point 2, which is 3 m lower, in a pipe that narrows so that the speed rises from 2 m s^{-1} to 4 m s^{-1}. Taking g = 10 m s^{-2}, the pressure at point 2 compared with point 1 is
+    options:
+      - 2.4 × 10^4 Pa higher
+      - 3.6 × 10^4 Pa higher
+      - 6.0 × 10^3 Pa lower
+      - 2.4 × 10^4 Pa lower
+    answer: 0
+    explanation: "P_2 − P_1 = ½ρ(v_1^2 − v_2^2) + ρg(h_1 − h_2) = 500 × (4 − 16) + 1000 × 10 × 3 = −6000 + 30000 = +2.4 × 10^4 Pa."
+
+  - id: phy-mpf-443
+    topic: bernoulli-principle
+    subtopic: Flow through a constriction
+    concept: Speed, pressure and flow rate at a constriction
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [bernoulli, continuity]
+    stem: |-
+      For an ideal liquid in steady flow through a horizontal pipe with a constriction, consider:
+      I. The speed is greatest in the constriction.
+      II. The pressure is least in the constriction.
+      III. P + ½ρv^2 has the same value in the wide part and the constriction.
+      IV. The volume flow rate is greater in the constriction.
+      Which of these are correct?
+    options:
+      - I and II only
+      - II, III and IV only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: The volume flow rate is the same everywhere (continuity), so IV is wrong. The liquid speeds up in the constriction, and its pressure falls to keep P + ½ρv^2 constant.
+
+  - id: phy-mpf-444
+    topic: bernoulli-principle
+    subtopic: Faster air, lower pressure
+    concept: Rise in kinetic energy per volume lowers the pressure energy per volume
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [bernoulli]
+    stem: |-
+      Assertion (A): Where the speed of air flowing horizontally increases, its pressure decreases.
+      Reason (R): Along a horizontal streamline, the sum of pressure and kinetic energy per unit volume stays constant.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: With h constant, P + ½ρv^2 = constant; an increase in ½ρv^2 must be balanced by a fall in P. R explains A.
+
+  - id: phy-mpf-445
+    topic: bernoulli-principle
+    subtopic: Siphon
+    concept: Outflow speed of a siphon depends on the drop from the water surface to the outlet
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [bernoulli, torricelli]
+    stem: A siphon tube drains water from a large open tank. The outlet end is 0.8 m below the water surface in the tank. Neglecting viscosity and taking g = 10 m s^{-2}, the speed of water leaving the siphon is
+    options:
+      - 2 m s^{-1}
+      - 16 m s^{-1}
+      - 8 m s^{-1}
+      - 4 m s^{-1}
+    answer: 3
+    explanation: Both the tank surface and the outlet are at atmospheric pressure, so Bernoulli gives v = √(2gh) = √(2 × 10 × 0.8) = 4 m s^{-1}, where h is the vertical drop to the outlet.
+
+  - id: phy-mpf-446
+    topic: bernoulli-principle
+    subtopic: Special cases of Bernoulli's equation
+    concept: Bernoulli's equation reduces to known results in special cases
+    category: application
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [bernoulli, match, multi-concept]
+    stem: |-
+      Match the special case of Bernoulli's equation in List I with the result in List II.
+      List I: P. Fluid at rest (v = 0); Q. Horizontal flow (h constant); R. Open tank emptying through a small hole; S. Free jet in air (P constant)
+      List II: 1. Torricelli's law of efflux; 2. Pressure increases linearly with depth; 3. Venturi effect, lower pressure at higher speed; 4. ½v^2 + gh constant, as for a freely falling body
+    options:
+      - P-2, Q-3, R-1, S-4
+      - P-3, Q-2, R-1, S-4
+      - P-2, Q-1, R-3, S-4
+      - P-2, Q-3, R-4, S-1
+    answer: 0
+    explanation: v = 0 gives hydrostatics; constant h gives P + ½ρv^2 constant (Venturi); a draining tank gives v = √(2gh); with P constant, ½v^2 + gh is constant, like projectile motion.
+
+  - id: phy-mpf-447
+    topic: bernoulli-principle
+    subtopic: Basis and consequence
+    concept: A slowing fluid gains pressure; Bernoulli is an energy (not momentum) result
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [bernoulli]
+    stem: |-
+      Statement I: When an ideal fluid slows down along a horizontal streamline, its pressure rises.
+      Statement II: Bernoulli's equation is derived from the law of conservation of linear momentum.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: With h constant, a drop in ½ρv^2 means a rise in P. Bernoulli's equation comes from the work-energy theorem (energy conservation), not momentum conservation.
+
+  - id: phy-mpf-448
+    topic: bernoulli-principle
+    subtopic: Dynamic pressure of wind
+    concept: ½ρv^2 for air
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [bernoulli]
+    stem: Wind blows at 40 m s^{-1}. Taking the density of air as 1.2 kg m^{-3}, its kinetic energy per unit volume (dynamic pressure) is
+    options:
+      - 48 Pa
+      - 1920 Pa
+      - 24 Pa
+      - 960 Pa
+    answer: 3
+    explanation: ½ρv^2 = ½ × 1.2 × 1600 = 960 Pa. This is the maximum pressure drop such wind can cause over a roof.
+
+  - id: phy-mpf-449
+    topic: bernoulli-applications
+    subtopic: Speed needed over a wing
+    concept: Lift per area equals weight per area; solve for top-surface speed
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    tags: [dynamic-lift, multi-concept]
+    stem: A 3000 kg aircraft in level flight has a total wing area of 30 m^2. Air (density 1.25 kg m^{-3}) flows under the wings at 60 m s^{-1}. Taking g = 10 m s^{-2}, the air speed over the top of the wings must be about
+    options:
+      - 64 m s^{-1}
+      - 72 m s^{-1}
+      - 100 m s^{-1}
+      - 85 m s^{-1}
+    answer: 1
+    explanation: "Required ΔP = mg/A = 3 × 10^4/30 = 1000 Pa. ½ × 1.25 × (v^2 − 3600) = 1000 gives v^2 = 5200, so v ≈ 72 m s^{-1}."
+
+  - id: phy-mpf-450
+    topic: bernoulli-applications
+    subtopic: Magnus effect
+    concept: The Magnus effect needs spin
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [magnus-effect, trap]
+    stem: Which statement about the Magnus effect is INCORRECT?
+    options:
+      - It arises from a pressure difference caused by different air speeds on two sides of the ball.
+      - It requires the ball to be spinning.
+      - It is an example of dynamic lift.
+      - A non-spinning smooth ball moving through still air also swings sideways because of it.
+    answer: 3
+    explanation: Without spin, the flow round a smooth ball is symmetric and there is no sideways Magnus force. Spin makes the air speed unequal on the two sides, creating the pressure difference.
+
+  - id: phy-mpf-451
+    topic: bernoulli-applications
+    subtopic: Efflux in an accelerating lift
+    concept: v = √(2g_{eff}h)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [torricelli, multi-concept]
+    stem: Water flows out of a small hole in a tank at speed v when the tank is at rest. If the tank is in a lift accelerating upward at g, with the same depth of water above the hole, the speed of efflux relative to the tank becomes
+    options:
+      - 2v
+      - v
+      - v/√2
+      - √2 v
+    answer: 3
+    explanation: In the lift, g_{eff} = 2g, so v' = √(2 × 2g × h) = √2 × √(2gh) = √2 v.
+
+  - id: phy-mpf-452
+    topic: bernoulli-applications
+    subtopic: Venturimeter facts
+    concept: How a venturimeter works
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [venturimeter]
+    stem: |-
+      Consider the statements about a venturimeter:
+      I. It measures the speed of flow of a fluid in a pipe.
+      II. The pressure in its throat is lower than in the main pipe.
+      III. A manometer is used to measure the pressure difference.
+      IV. It works only for gases and not for liquids.
+      Which of these are correct?
+    options:
+      - I, II and III only
+      - I and II only
+      - II and III only
+      - I, II, III and IV
+    answer: 0
+    explanation: A venturimeter works for any incompressible fluid, including liquids, so IV is wrong. It infers the flow speed from the pressure drop at its throat, read by a manometer.
+
+  - id: phy-mpf-453
+    topic: bernoulli-applications
+    subtopic: Carburettor
+    concept: Fast air through a narrow throat draws fuel in
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [bernoulli]
+    stem: In a car carburettor, air rushes through a narrow throat past a fine fuel nozzle, and petrol is drawn into the air stream. The petrol is drawn in because
+    options:
+      - the petrol is heated and expands
+      - the petrol is lighter than air
+      - the air speed in the throat is high, so the pressure there falls below that on the petrol in the float chamber
+      - the air stream exerts a buoyant force on petrol
+    answer: 2
+    explanation: The narrow throat speeds up the air and lowers its pressure (Venturi effect). The higher pressure on the petrol surface in the float chamber pushes petrol out of the nozzle.
+
+  - id: phy-mpf-454
+    topic: bernoulli-applications
+    subtopic: Take-off into the wind
+    concept: Lift depends on air speed relative to the wing
+    category: application
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [dynamic-lift]
+    stem: |-
+      Assertion (A): Aircraft usually take off facing into the wind.
+      Reason (R): The lift depends on the speed of air relative to the wings, so a headwind gives more lift at a given ground speed.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A headwind adds to the relative air speed over the wings, increasing the pressure difference and lift, so the aircraft can leave the ground at a lower ground speed.
+
+  - id: phy-mpf-455
+    topic: bernoulli-applications
+    subtopic: Devices and principles
+    concept: Matching fluid devices to the principle they use
+    category: factual
+    format: match
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [match, confused-pair]
+    stem: |-
+      Match each device in List I with the principle it relies on in List II.
+      List I: P. Atomiser; Q. Hydraulic brakes; R. Hydrometer; S. Blotting paper
+      List II: 1. Archimedes' principle; 2. Capillary action; 3. Bernoulli's principle; 4. Pascal's law
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: An atomiser uses the low pressure of a fast jet (Bernoulli), brakes transmit pressure (Pascal), a hydrometer floats to a depth set by the liquid density (Archimedes), and blotting paper soaks ink by capillarity.
+
+  - id: phy-mpf-456
+    topic: bernoulli-applications
+    subtopic: Tank on a stand
+    concept: Range of a horizontal jet from a hole at the bottom of a raised tank
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [torricelli, projectile, multi-concept]
+    stem: A tank on a 3 m high stand holds water 2 m deep. Water spurts horizontally from a small hole at the bottom of the tank. Taking g = 10 m s^{-2}, it hits the ground at a horizontal distance of about
+    options:
+      - 2.0 m
+      - 4.9 m
+      - 6.3 m
+      - 3.5 m
+    answer: 1
+    explanation: "v = √(2 × 10 × 2) = √40 m s^{-1}; fall time t = √(2 × 3/10) = √0.6 s. Range = √40 × √0.6 = √24 ≈ 4.9 m, i.e. 2√(2 × 3)."
+
+  - id: phy-mpf-457
+    topic: bernoulli-applications
+    subtopic: Draining tank
+    concept: Water level falls quickly at first and then more slowly
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [torricelli, graph]
+    stem: A wide open tank drains through a small hole in its base. The graph of the water height h (y-axis) against time t (x-axis) is
+    options:
+      - a straight line falling at a constant rate
+      - a curve that falls slowly at first and then faster
+      - a curve that falls quickly at first and then more slowly until the tank is empty
+      - a horizontal line until the tank suddenly empties
+    answer: 2
+    explanation: The outflow rate ∝ √h, so the level falls fastest when the tank is full and more slowly as h decreases (in fact √h decreases linearly with time).
+
+  - id: phy-mpf-458
+    topic: viscosity
+    subtopic: Laminar flow
+    concept: In laminar flow layers move with different velocities
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [velocity-profile, trap]
+    stem: Which one of the following statements about laminar flow of a viscous liquid through a pipe is INCORRECT?
+    options:
+      - The layer in contact with the wall is at rest.
+      - The flow can be pictured as layers sliding over one another.
+      - All the layers move with the same velocity.
+      - Viscous forces act between adjacent layers.
+    answer: 2
+    explanation: In laminar flow the velocity changes from zero at the wall to a maximum on the axis; it is this relative motion of layers that viscosity opposes.
+
+  - id: phy-mpf-459
+    topic: viscosity
+    subtopic: Combined changes
+    concept: F ∝ v/l, so doubling v and halving l quadruples F
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [viscous-force, proportionality]
+    stem: A force F keeps a plate sliding over an oil film. If the speed is doubled and the film thickness is halved (same oil and area), the force needed becomes
+    options:
+      - F
+      - 2F
+      - F/4
+      - 4F
+    answer: 3
+    explanation: F = ηAv/l. Doubling v and halving l each double the force, so it becomes 4F.
+
+  - id: phy-mpf-460
+    topic: viscosity
+    subtopic: Comparing viscosities
+    concept: Relative viscosities of common fluids
+    category: factual
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [viscosity-basic]
+    stem: |-
+      Consider the statements (at ordinary temperatures):
+      I. Honey is more viscous than water.
+      II. Blood is more viscous than water.
+      III. Air is less viscous than water.
+      IV. Glycerine is less viscous than water.
+      Which of these are correct?
+    options:
+      - I, II and III only
+      - I and II only
+      - II, III and IV only
+      - I, III and IV only
+    answer: 0
+    explanation: Glycerine (about 830 mPa s) is far more viscous than water (about 1 mPa s), so IV is wrong. Blood is about 2.7 mPa s and air only about 0.02 mPa s.
+
+  - id: phy-mpf-461
+    topic: viscosity
+    subtopic: Typical viscosities
+    concept: NCERT table values of viscosity
+    category: factual
+    format: match
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [viscosity-basic, match, ncert-line]
+    stem: |-
+      Match each fluid in List I with its approximate coefficient of viscosity in List II.
+      List I: P. Water at 20 °C; Q. Glycerine at 20 °C; R. Air at 0 °C; S. Blood at 37 °C
+      List II: 1. 0.017 mPa s; 2. 2.7 mPa s; 3. 1.0 mPa s; 4. 830 mPa s
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-2, S-1
+    answer: 0
+    explanation: NCERT lists water (20 °C) 1.0, glycerine 830, air (0 °C) 0.017 and blood (37 °C) 2.7 mPa s.
+
+  - id: phy-mpf-462
+    topic: viscosity
+    subtopic: Molecular reason for temperature dependence
+    concept: Liquid viscosity falls as molecules more easily overcome cohesive forces
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [temperature-dependence]
+    stem: |-
+      Assertion (A): The viscosity of a liquid decreases as its temperature rises.
+      Reason (R): At higher temperature, liquid molecules have more kinetic energy and more easily overcome the cohesive forces between layers.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Viscosity of liquids comes mainly from intermolecular attraction; warmer molecules break free more easily, so layers slide more freely.
+
+  - id: phy-mpf-463
+    topic: viscosity
+    subtopic: Reynolds number of oil flow
+    concept: R_e = ρvd/η for a viscous oil
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [reynolds-number]
+    stem: Oil of density 900 kg m^{-3} and viscosity 0.09 Pa s flows at 1 m s^{-1} through a pipe of diameter 10 cm. The Reynolds number is
+    options:
+      - "100"
+      - "1000"
+      - "10"
+      - "10000"
+    answer: 1
+    explanation: R_e = 900 × 1 × 0.1/0.09 = 1000, so the flow is laminar.
+
+  - id: phy-mpf-464
+    topic: viscosity
+    subtopic: Velocity profile in a pipe
+    concept: Laminar flow in a pipe has a parabolic velocity profile
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [velocity-profile, graph]
+    stem: For laminar flow of a viscous liquid through a straight pipe, the graph of speed (y-axis) against distance across a diameter from one wall to the other (x-axis) is
+    options:
+      - a horizontal straight line
+      - a V shape with minimum at the centre
+      - an inverted parabola, zero at both walls and maximum at the centre
+      - a straight line rising from one wall to the other
+    answer: 2
+    explanation: The speed is zero at the walls and greatest on the axis; for laminar flow the profile is parabolic.
+
+  - id: phy-mpf-465
+    topic: viscosity
+    subtopic: Direction of viscous force
+    concept: Viscous force is tangential and independent of normal pressure
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [viscous-force, confused-pair]
+    stem: |-
+      Statement I: The viscous force on a layer of fluid acts perpendicular to the layer.
+      Statement II: Unlike solid friction, the viscous force does not depend on the normal pressure between the layers.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: Viscous force is tangential, acting along the layers to oppose their relative motion. It depends on η, area and velocity gradient, not on normal pressure.
+
+  - id: phy-mpf-466
+    topic: stokes-terminal-velocity
+    subtopic: Glass bead in water
+    concept: Terminal velocity of a small bead
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [terminal-velocity]
+    stem: A glass bead of radius 0.1 mm and density 2500 kg m^{-3} falls through water (η = 1.0 × 10^{-3} Pa s). Taking g = 10 m s^{-2}, its terminal velocity is about
+    options:
+      - 5.6 cm s^{-1}
+      - 0.33 cm s^{-1}
+      - 33 cm s^{-1}
+      - 3.3 cm s^{-1}
+    answer: 3
+    explanation: "v_t = 2r^2(ρ − σ)g/(9η) = 2 × 10^{-8} × 1500 × 10/(9 × 10^{-3}) = 3 × 10^{-4}/9 × 10^{-3} ≈ 0.033 m s^{-1} = 3.3 cm s^{-1}. Using 2500 instead of 1500 gives 5.6 cm s^{-1}."
+
+  - id: phy-mpf-467
+    topic: stokes-terminal-velocity
+    subtopic: Condition for terminal velocity
+    concept: Terminal velocity is reached when the net force becomes zero
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [terminal-velocity]
+    stem: Which statement about a small sphere falling through a viscous liquid is correct?
+    options:
+      - It reaches terminal velocity when the viscous force equals its weight alone, ignoring buoyancy.
+      - Its acceleration increases as its speed increases.
+      - Its terminal velocity is reached when the net force on it becomes zero.
+      - The viscous force on it is greatest at the moment of release.
+    answer: 2
+    explanation: At terminal velocity, weight = buoyant force + viscous drag, so the net force and acceleration are zero. Drag starts at zero and grows with speed, so acceleration decreases.
+
+  - id: phy-mpf-468
+    topic: stokes-terminal-velocity
+    subtopic: Errors in the falling-ball experiment
+    concept: Sources of error when finding viscosity from terminal velocity
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    tags: [terminal-velocity, experimental]
+    stem: |-
+      In measuring the viscosity of glycerine by timing a falling steel ball, which could cause errors?
+      I. The jar being too narrow, so the walls affect the flow
+      II. Starting the timing before the ball reaches terminal velocity
+      III. A change in the temperature of the glycerine during the experiment
+      IV. The mass of the glass jar
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: Stokes' law assumes an unbounded fluid; the speed must be terminal; and viscosity depends strongly on temperature. The mass of the jar plays no part.
+
+  - id: phy-mpf-469
+    topic: stokes-terminal-velocity
+    subtopic: Power dissipated
+    concept: Rate of heating at terminal velocity = drag × speed
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [terminal-velocity]
+    stem: A ball falls through oil at a terminal velocity of 0.05 m s^{-1}, and the viscous drag on it is 0.06 N. Heat is produced in the oil at the rate of
+    options:
+      - 1.2 W
+      - 0.83 mW
+      - 3 W
+      - 3 mW
+    answer: 3
+    explanation: At terminal velocity all the work done by gravity (net of buoyancy) is dissipated. Power = Fv = 0.06 × 0.05 = 3 × 10^{-3} W.
+
+  - id: phy-mpf-470
+    topic: stokes-terminal-velocity
+    subtopic: Acceleration–time graph
+    concept: Acceleration falls from its initial value towards zero
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [terminal-velocity, graph]
+    stem: A sphere is released from rest in a viscous liquid. The graph of its acceleration (y-axis) against time (x-axis) is
+    options:
+      - a horizontal line at g
+      - a curve starting at g(1 − σ/ρ) and decreasing gradually towards zero
+      - a straight line rising from zero
+      - a curve starting at zero and rising to g
+    answer: 1
+    explanation: At release only weight and buoyancy act, giving a = g(1 − σ/ρ). As the speed and drag grow, the acceleration decreases, approaching zero as the speed approaches terminal velocity.
+
+  - id: phy-mpf-471
+    topic: stokes-terminal-velocity
+    subtopic: Changing the conditions
+    concept: v_t ∝ r^2(ρ − σ)/η
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [terminal-velocity, match, proportionality]
+    stem: |-
+      Match each change in List I with the factor by which the terminal velocity of a small sphere changes (List II), other things unchanged.
+      List I: P. Radius doubled; Q. Viscosity of the liquid doubled; R. (ρ − σ) doubled; S. Radius halved
+      List II: 1. 1/4; 2. 1/2; 3. 2; 4. 4
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-2, R-4, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-1, R-3, S-2
+    answer: 2
+    explanation: v_t = 2r^2(ρ − σ)g/(9η), so doubling r gives 4, doubling η gives 1/2, doubling (ρ − σ) gives 2 and halving r gives 1/4.
+
+  - id: phy-mpf-472
+    topic: stokes-terminal-velocity
+    subtopic: Dust in air
+    concept: Very small particles have tiny terminal velocities and stay suspended
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [terminal-velocity]
+    stem: |-
+      Assertion (A): Fine dust particles stay suspended in air for a long time.
+      Reason (R): The terminal velocity of a small particle is proportional to the square of its radius, so for very small particles it is extremely small.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: For tiny r, v_t ∝ r^2 is extremely small, so even gentle air currents keep the dust aloft.
+
+  - id: phy-mpf-473
+    topic: stokes-terminal-velocity
+    subtopic: Timing a smaller ball
+    concept: Using v_t ∝ r^2 to find a fall time
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [terminal-velocity, proportionality]
+    stem: A steel ball of radius 2 mm falls through oil at a terminal velocity of 4 cm s^{-1}. How long does a steel ball of radius 1 mm take to fall 20 cm at its terminal velocity in the same oil?
+    options:
+      - 5 s
+      - 10 s
+      - 2.5 s
+      - 20 s
+    answer: 3
+    explanation: Halving r divides v_t by 4, giving 1 cm s^{-1}. Time = 20/1 = 20 s.
+
+  - id: phy-mpf-474
+    topic: surface-tension-energy
+    subtopic: Splitting into 27 drops
+    concept: Work = S × (increase in area) when a drop splits into n drops
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [surface-energy, drops, multi-concept]
+    stem: A water drop of radius 3 mm (S = 0.07 N m^{-1}) is split into 27 identical droplets. The work done is about
+    options:
+      - 7.9 × 10^{-6} J
+      - 2.4 × 10^{-5} J
+      - 1.6 × 10^{-5} J
+      - 3.2 × 10^{-5} J
+    answer: 2
+    explanation: "Each droplet has radius 1 mm. Area increase = 4π(27 × 1 − 9) mm^2 = 72π × 10^{-6} m^2. W = 0.07 × 72π × 10^{-6} ≈ 1.6 × 10^{-5} J."
+
+  - id: phy-mpf-475
+    topic: surface-tension-energy
+    subtopic: Stretched-membrane behaviour
+    concept: A liquid surface tends to contract like a stretched membrane
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [surface-tension]
+    stem: Which statement about the surface of a liquid is correct?
+    options:
+      - Its surface tension increases as its area increases.
+      - Surface tension acts perpendicular to the liquid surface.
+      - Surface tension depends on the total amount of liquid present.
+      - The surface behaves like a stretched membrane that tends to contract to the smallest possible area.
+    answer: 3
+    explanation: Surface tension makes a liquid surface contract to minimum area, like a stretched membrane, but unlike a membrane its tension does not grow as it is stretched. It acts along the surface and does not depend on the amount of liquid.
+
+  - id: phy-mpf-476
+    topic: surface-tension-energy
+    subtopic: Weighted slider
+    concept: Weight balanced by 2SL on a soap-film slider
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    tags: [soap-film]
+    stem: A soap film on a vertical U-shaped frame supports a light horizontal slider of length 5 cm carrying a load of 1.5 × 10^{-3} N. The surface tension of the soap solution is
+    options:
+      - 0.03 N m^{-1}
+      - 0.0075 N m^{-1}
+      - 0.015 N m^{-1}
+      - 0.06 N m^{-1}
+    answer: 2
+    explanation: The film pulls up with 2SL = W, so S = 1.5 × 10^{-3}/(2 × 0.05) = 0.015 N m^{-1}. Forgetting the factor 2 gives 0.03.
+
+  - id: phy-mpf-477
+    topic: surface-tension-energy
+    subtopic: Demonstrations of surface tension
+    concept: Everyday demonstrations of a contracting surface
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [surface-tension, soap-film]
+    stem: |-
+      Which of the following demonstrate surface tension?
+      I. A light slider on a soap-film frame is pulled inward by the film.
+      II. A loop of thread lying on a soap film becomes a circle when the film inside the loop is broken.
+      III. Water forms beads on a greasy plate.
+      IV. The surface tension of water is the same at all temperatures.
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: The contracting film pulls the slider and pulls the thread into a circle (maximum area enclosed, minimum film area); beads form as water minimises its area on a non-wetting surface. IV is false, as surface tension decreases with temperature.
+
+  - id: phy-mpf-478
+    topic: surface-tension-energy
+    subtopic: Typical values
+    concept: Approximate surface tensions of mercury, water and soap solution
+    category: factual
+    format: match
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [surface-tension, match]
+    stem: |-
+      Match List I with the approximate surface tension in List II.
+      List I: P. Mercury at 20 °C; Q. Water at 20 °C; R. Soap solution; S. Any liquid at its critical temperature
+      List II: 1. about 0.025 N m^{-1}; 2. zero; 3. about 0.47 N m^{-1}; 4. about 0.073 N m^{-1}
+    options:
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+    answer: 2
+    explanation: Mercury has a high surface tension (≈ 0.47 N m^{-1}), water ≈ 0.073, soap solution ≈ 0.025, and surface tension vanishes at the critical temperature.
+
+  - id: phy-mpf-479
+    topic: surface-tension-energy
+    subtopic: Surface energy of drops
+    concept: Surface energy of a drop ∝ r^2
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [surface-energy, graph]
+    stem: For drops of the same liquid, the graph of surface energy E (y-axis) against radius r (x-axis) is
+    options:
+      - a straight line through the origin
+      - a rectangular hyperbola
+      - a parabola through the origin, E ∝ r^2
+      - a horizontal line
+    answer: 2
+    explanation: E = S × 4πr^2 ∝ r^2, a parabola through the origin.
+
+  - id: phy-mpf-480
+    topic: surface-tension-energy
+    subtopic: Interfaces
+    concept: Surface tension depends on the media; surface energy per area equals S
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [surface-tension, surface-energy]
+    stem: |-
+      Statement I: The surface tension of a liquid depends on the medium it is in contact with; a liquid–liquid interface has its own surface tension.
+      Statement II: At constant temperature, the surface energy per unit area of a liquid surface is numerically equal to its surface tension.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: NCERT notes that surface tension is a property of the interface between two media (e.g. water–air or water–oil). The work per unit area to extend a surface isothermally equals S.
+
+  - id: phy-mpf-481
+    topic: surface-tension-energy
+    subtopic: Film on a ring
+    concept: Surface energy of a plane film with two surfaces = 2SA
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    tags: [surface-energy, soap-film]
+    stem: A flat soap film is formed across a circular wire ring of radius 5 cm (S = 0.03 N m^{-1}). The surface energy of the film is about
+    options:
+      - 2.4 × 10^{-4} J
+      - 9.4 × 10^{-4} J
+      - 4.7 × 10^{-2} J
+      - 4.7 × 10^{-4} J
+    answer: 3
+    explanation: The film has two faces of area πr^2 each, so E = 2 × π × 0.0025 × 0.03 ≈ 4.7 × 10^{-4} J. Counting one face gives about 2.4 × 10^{-4} J.
+
+  - id: phy-mpf-482
+    topic: surface-tension-energy
+    subtopic: Oil on stagnant water
+    concept: Oil lowers surface tension so mosquito larvae cannot hang from the surface
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [surface-tension]
+    stem: Spreading a thin layer of kerosene on ponds helps control mosquitoes, because the larvae, which hang from the water surface to breathe, drown. The film works mainly by
+    options:
+      - making the water denser
+      - increasing the viscosity of the water
+      - raising the water temperature
+      - lowering the surface tension, so the surface can no longer support the larvae
+    answer: 3
+    explanation: The larvae rely on the surface film to hang at the surface. The oil layer lowers the surface tension, the larvae cannot stay attached and they drown.
+
+  - id: phy-mpf-483
+    topic: drops-bubbles
+    subtopic: Equal excess pressures
+    concept: Comparing a drop (2S/r) and a soap bubble (4S/r) with different surface tensions
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [excess-pressure, multi-concept]
+    stem: A soap bubble (S = 0.025 N m^{-1}) and a water drop (S = 0.075 N m^{-1}) have equal excess pressures. The ratio of the radius of the bubble to that of the drop is
+    options:
+      - "1 : 3"
+      - "3 : 2"
+      - "2 : 3"
+      - "3 : 1"
+    answer: 2
+    explanation: 4 × 0.025/r_b = 2 × 0.075/r_d, so r_b/r_d = 0.1/0.15 = 2/3.
+
+  - id: phy-mpf-484
+    topic: drops-bubbles
+    subtopic: Rising bubble
+    concept: A rising bubble expands because the outside pressure falls
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [excess-pressure, hydrostatic-pressure]
+    stem: An air bubble rises from the bottom of a deep lake to the surface. Which statement is INCORRECT?
+    options:
+      - The pressure of the water around the bubble decreases as it rises.
+      - The radius of the bubble decreases as it rises.
+      - The excess pressure due to surface tension is greater when the bubble is smaller.
+      - The buoyant force on the bubble increases as it grows.
+    answer: 1
+    explanation: The surrounding pressure falls as the bubble rises, so the air inside expands and the radius increases, not decreases.
+
+  - id: phy-mpf-485
+    topic: drops-bubbles
+    subtopic: Connected bubbles
+    concept: The smaller bubble shrinks to a cap of the same radius as the larger one
+    category: concept
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [soap-bubble, multi-concept]
+    stem: |-
+      Two soap bubbles of unequal radii are connected through a tube. Consider:
+      I. Air flows from the smaller bubble to the larger one.
+      II. The smaller bubble keeps shrinking.
+      III. Equilibrium is reached when what remains of the smaller bubble forms a cap whose radius of curvature equals that of the larger bubble.
+      IV. The system settles with two bubbles of equal radius.
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - I, II and III only
+      - II and III only
+    answer: 2
+    explanation: The smaller bubble has the higher pressure and loses air; as it shrinks its pressure rises further. It ends as a shallow cap on the tube with the same curvature (hence the same excess pressure) as the large bubble. Equal bubbles would be an unstable state.
+
+  - id: phy-mpf-486
+    topic: drops-bubbles
+    subtopic: Blowing a bubble from a ring
+    concept: Excess pressure peaks when the film is a hemisphere
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [soap-bubble, graph, multi-concept]
+    stem: A soap film across the mouth of a pipe of radius a is slowly blown into a bubble. The graph of excess pressure (y-axis) against the volume of air blown in (x-axis) is
+    options:
+      - a straight line rising steadily
+      - a horizontal line
+      - a curve that falls steadily from the start
+      - a curve that rises to a maximum when the film is a hemisphere of radius a, then falls
+    answer: 3
+    explanation: A flat film has infinite radius (zero excess pressure). As it bulges, its radius of curvature falls to a minimum of a at the hemisphere, where 4S/r peaks; beyond that the bubble grows and the pressure falls.
+
+  - id: phy-mpf-487
+    topic: drops-bubbles
+    subtopic: Splitting drops
+    concept: Splitting into n drops multiplies excess pressure by n^{1/3}
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [excess-pressure, drops, match]
+    stem: |-
+      A liquid drop is split into n identical droplets. Match the value of n (List I) with the factor by which the excess pressure in each droplet exceeds that in the original drop (List II).
+      List I: P. n = 8; Q. n = 27; R. n = 64; S. n = 1000
+      List II: 1. 10; 2. 4; 3. 3; 4. 2
+    options:
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-1, Q-2, R-3, S-4
+    answer: 0
+    explanation: r = R/n^{1/3} and ΔP ∝ 1/r, so the factor is n^{1/3}. 8 → 2, 27 → 3, 64 → 4, 1000 → 10.
+
+  - id: phy-mpf-488
+    topic: drops-bubbles
+    subtopic: Bubbles at the same depth
+    concept: A smaller bubble at the same depth has higher internal pressure
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [excess-pressure]
+    stem: |-
+      Assertion (A): At the same depth in water, the air pressure inside a small bubble is greater than that inside a larger bubble.
+      Reason (R): The pressure inside a bubble in a liquid exceeds the surrounding liquid pressure by 2S/r.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The outside pressure is the same at a given depth, and the excess 2S/r is larger for the smaller radius. R explains A.
+
+  - id: phy-mpf-489
+    topic: drops-bubbles
+    subtopic: Radius from excess pressure
+    concept: r = 4S/ΔP for a soap bubble
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [soap-bubble, excess-pressure]
+    stem: The air inside a soap bubble (S = 0.025 N m^{-1}) is at 1000 Pa above atmospheric pressure. The radius of the bubble is
+    options:
+      - 0.05 mm
+      - 1 mm
+      - 0.1 mm
+      - 1 cm
+    answer: 2
+    explanation: r = 4S/ΔP = 0.1/1000 = 10^{-4} m = 0.1 mm. Using 2S gives 0.05 mm.
+
+  - id: phy-mpf-490
+    topic: drops-bubbles
+    subtopic: What excess pressure depends on
+    concept: Excess pressure depends on S and r, not on the outside pressure
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [excess-pressure]
+    stem: |-
+      Statement I: The excess pressure inside a liquid drop does not depend on the pressure of the surrounding air.
+      Statement II: The excess pressure inside a drop of given radius is the same for all liquids.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: ΔP = 2S/r depends only on the surface tension and radius; the outside pressure only sets the level to which it is added. Different liquids have different S, so II is wrong.
+
+  - id: phy-mpf-491
+    topic: drops-bubbles
+    subtopic: Radius for a given excess pressure
+    concept: r = 2S/ΔP (one surface) or 4S/ΔP (two surfaces)
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [excess-pressure, ordering, multi-concept]
+    stem: |-
+      Each of the following has an excess pressure of 100 Pa. Arrange them in increasing order of radius.
+      P. A water drop (S = 0.07 N m^{-1})
+      Q. A soap bubble (S = 0.025 N m^{-1})
+      R. An air bubble inside mercury (S = 0.47 N m^{-1})
+      S. A soap bubble (S = 0.04 N m^{-1})
+    options:
+      - P < Q < S < R
+      - Q < P < R < S
+      - Q < S < P < R
+      - Q < P < S < R
+    answer: 3
+    explanation: "r = 2S/ΔP for P and R, 4S/ΔP for Q and S. P = 1.4 mm, Q = 1.0 mm, R = 9.4 mm, S = 1.6 mm. So Q < P < S < R."
+
+  - id: phy-mpf-492
+    topic: angle-contact-capillarity
+    subtopic: Radius for a given rise
+    concept: r = 2S cos θ/(ρgh)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [capillary-rise]
+    stem: What radius of glass capillary is needed for water (S = 0.07 N m^{-1}, θ = 0°) to rise 10 cm? (g = 10 m s^{-2})
+    options:
+      - 0.07 mm
+      - 1.4 mm
+      - 0.28 mm
+      - 0.14 mm
+    answer: 3
+    explanation: r = 2S/(ρgh) = 0.14/(1000 × 10 × 0.1) = 1.4 × 10^{-4} m = 0.14 mm.
+
+  - id: phy-mpf-493
+    topic: angle-contact-capillarity
+    subtopic: Energy in capillary rise
+    concept: Only half the work done by surface tension is stored as potential energy
+    category: concept
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [capillary-rise, surface-energy, multi-concept]
+    stem: When water rises in a capillary tube to height h, which statement about energy is correct?
+    options:
+      - All the work done by surface tension is stored as gravitational potential energy of the raised water.
+      - The raised water gains potential energy equal to half the work done by surface tension; the other half is dissipated as heat.
+      - No work is done by surface tension, because the tube does not move.
+      - The raised water gains potential energy equal to twice the work done by surface tension.
+    answer: 1
+    explanation: Surface tension does work F h = (2πrS cos θ)h, while the column's centre of mass rises only h/2, so its potential energy is mgh/2 = (2πrS cos θ)h/2. The rest is lost to heat as the water oscillates and settles.
+
+  - id: phy-mpf-494
+    topic: angle-contact-capillarity
+    subtopic: Factors increasing capillary rise
+    concept: h increases with smaller r, lower temperature and smaller g
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [capillary-rise, multi-concept]
+    stem: |-
+      Water rises in a glass capillary. The height of rise would INCREASE if:
+      I. a narrower tube were used
+      II. the water were cooled
+      III. the tube and beaker were in a lift accelerating upward
+      IV. the experiment were done on the Moon
+      Which of these are correct?
+    options:
+      - I and II only
+      - I, II and IV only
+      - I, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: h = 2S cos θ/(rρg_{eff}). A smaller r, a larger S (cooler water) and a smaller g (Moon) all increase h. Upward acceleration raises g_{eff} and reduces h, so III is wrong.
+
+  - id: phy-mpf-495
+    topic: angle-contact-capillarity
+    subtopic: Outcomes in capillary tubes
+    concept: Rise, fall or no change depending on θ and g_eff
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [capillary-rise, angle-of-contact, match]
+    stem: |-
+      Match each situation in List I with the observation in List II.
+      List I: P. Water in a clean glass capillary; Q. Mercury in a glass capillary; R. A liquid with angle of contact 90°; S. Water in a glass capillary in a lift accelerating upward
+      List II: 1. Neither rises nor falls; the meniscus is flat; 2. Rises less than when the lift is at rest; 3. Rises, with a concave meniscus; 4. Is depressed, with a convex meniscus
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-1, R-4, S-2
+    answer: 0
+    explanation: Water wets glass and rises; mercury is depressed with a convex meniscus; cos 90° = 0 gives no rise or fall; in an upward-accelerating lift g_{eff} = g + a, so the rise is smaller.
+
+  - id: phy-mpf-496
+    topic: angle-contact-capillarity
+    subtopic: Temperature and capillary rise
+    concept: Cooler liquids rise higher because surface tension is larger
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [capillary-rise, temperature-dependence]
+    stem: |-
+      Assertion (A): Water rises higher in a given capillary tube when it is cold than when it is warm.
+      Reason (R): The surface tension of water decreases as its temperature rises.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: h ∝ S, and S is larger for cold water, so the rise is greater. R explains A.
+
+  - id: phy-mpf-497
+    topic: angle-contact-capillarity
+    subtopic: Rise between parallel plates
+    concept: Between plates separated by d, h = 2S cos θ/(ρgd)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: h = 2S cos θ/(ρgd)
+    tags: [capillary-rise, multi-concept]
+    stem: Two clean vertical glass plates are held parallel, 0.5 mm apart, with their lower edges in water (S = 0.07 N m^{-1}, θ = 0°). Taking g = 10 m s^{-2}, the water rises between them by
+    options:
+      - 1.4 cm
+      - 5.6 cm
+      - 0.7 cm
+      - 2.8 cm
+    answer: 3
+    explanation: "Per unit length of the plates, the upward pull 2S (one meniscus line on each plate) balances the weight ρghd. So h = 2S/(ρgd) = 0.14/(10^4 × 5 × 10^{-4}) = 0.028 m = 2.8 cm, the same as in a tube of radius equal to the gap."
+
+  - id: phy-mpf-498
+    topic: angle-contact-capillarity
+    subtopic: Capillary rise versus temperature
+    concept: h falls as temperature rises
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [capillary-rise, graph, temperature-dependence]
+    stem: The height of capillary rise of water in a given glass tube is measured at different temperatures. The graph of height (y-axis) against temperature (x-axis) is
+    options:
+      - an increasing curve
+      - a decreasing curve
+      - a horizontal line
+      - a curve with a maximum at 4 °C
+    answer: 1
+    explanation: h = 2S cos θ/(rρg), and S decreases with temperature much faster than ρ does, so the height decreases as the water warms.
+
+  - id: phy-mpf-499
+    topic: angle-contact-capillarity
+    subtopic: Ploughing and soil moisture
+    concept: Breaking fine capillaries in soil reduces the rise of water to the surface
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [capillary-rise]
+    stem: Farmers plough the top layer of the soil after rains to keep moisture in the ground during a dry spell. This works because ploughing
+    options:
+      - increases the surface tension of soil water
+      - breaks up the fine capillaries through which water would rise to the surface and evaporate
+      - makes the soil denser
+      - increases the angle of contact to zero
+    answer: 1
+    explanation: Compact soil has fine pores that act as capillaries, carrying water up to the surface where it evaporates. Loosening the top layer breaks these channels, so moisture stays below.
+
+  - id: phy-mpf-500
+    topic: angle-contact-capillarity
+    subtopic: Height and mass of the raised column
+    concept: h ∝ 1/r but the mass of liquid raised ∝ r
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [capillary-rise, proportionality, trap]
+    stem: |-
+      Statement I: The height of capillary rise is inversely proportional to the radius of the tube.
+      Statement II: The mass of liquid raised in a capillary tube is directly proportional to the radius of the tube.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: h ∝ 1/r, but the weight raised equals the upward pull 2πrS cos θ, so the mass raised ∝ r. A wider tube raises a shorter but heavier column.

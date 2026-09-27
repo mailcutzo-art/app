@@ -8550,3 +8550,2149 @@ questions:
       - Statement I is incorrect but Statement II is correct
     answer: 3
     explanation: Adding a series resistance changes the voltage needed, not the coil current. Full scale still means I_g through the coil and the series resistor, so only Statement II is correct.
+
+  - id: phy-mcm-401
+    topic: lorentz-force
+    subtopic: Magnetic versus electric force
+    concept: Ratio of magnetic to electric force is vB/E
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: F_m/F_e = vB/E
+    tags: [lorentz-force, ratio]
+    stem: A charge moves at 2 × 10^6 m s^{-1} perpendicular to B = 0.01 T in a region that also has E = 10^5 V m^{-1}. The ratio of magnetic force to electric force on it is
+    options:
+      - "5"
+      - "0.2"
+      - "0.02"
+      - "2"
+    answer: 1
+    explanation: F_m/F_e = qvB/(qE) = vB/E = 2 × 10^6 × 0.01/10^5 = 0.2.
+
+  - id: phy-mcm-402
+    topic: lorentz-force
+    subtopic: Oblique velocity
+    concept: Only v perpendicular to B contributes; direction from î × k̂
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: F = q(v × B)
+    tags: [vectors, magnetic-force]
+    stem: A 5 μC charge moves with velocity (4î + 3k̂) × 10^3 m s^{-1} in a field B = 0.2k̂ T. The magnetic force on it is
+    options:
+      - 5 × 10^{-3} N along −y
+      - 4 × 10^{-3} N along +y
+      - 3 × 10^{-3} N along −y
+      - 4 × 10^{-3} N along −y
+    answer: 3
+    explanation: The k̂ part of v is along B and gives nothing. F = 5 × 10^{-6} × 4 × 10^3 × 0.2 (î × k̂) = 4 × 10^{-3} N × (−ĵ).
+
+  - id: phy-mcm-403
+    topic: lorentz-force
+    subtopic: Velocity versus kinetic energy
+    concept: B can change velocity but not kinetic energy
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [work, kinetic-energy]
+    stem: |-
+      Statement I: A static magnetic field can accelerate a charged particle, in the sense of changing its velocity.
+      Statement II: A static magnetic field can change the kinetic energy of a charged particle.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: The magnetic force changes the direction of velocity, which is an acceleration. Being perpendicular to v, it does no work, so the kinetic energy cannot change.
+
+  - id: phy-mcm-404
+    topic: lorentz-force
+    subtopic: Neutral particles
+    concept: Neutrons are unaffected by magnetic force
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: false
+    tags: [neutron, magnetic-force]
+    stem: |-
+      Assertion (A): A beam of neutrons passes through a uniform magnetic field without being deflected.
+      Reason (R): Neutrons carry no net electric charge.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The magnetic force q(v × B) vanishes when q = 0, so the neutral neutrons move straight through. R directly explains A.
+
+  - id: phy-mcm-405
+    topic: lorentz-force
+    subtopic: Directions for electrons and protons
+    concept: Force directions from v × B with sign of charge
+    category: application
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [direction, cross-product, match]
+    stem: |-
+      All particles move in a uniform field B along +y. Match each particle and its velocity direction (List I) with the direction of the magnetic force (List II).
+      P. Proton moving along +x
+      Q. Electron moving along +x
+      R. Proton moving along +z
+      S. Electron moving along +z
+      List II: 1. +z  2. −z  3. −x  4. +x
+    options:
+      - P-2, Q-1, R-3, S-4
+      - P-1, Q-2, R-3, S-4
+      - P-1, Q-2, R-4, S-3
+      - P-1, Q-3, R-2, S-4
+    answer: 1
+    explanation: î × ĵ = k̂, so a proton along +x feels +z and an electron −z. k̂ × ĵ = −î, so a proton along +z feels −x and an electron +x.
+
+  - id: phy-mcm-406
+    topic: lorentz-force
+    subtopic: Parallel E and B along v
+    concept: Only the electric force acts when v ∥ B
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [lorentz-force]
+    stem: A charge q moves along the direction of uniform fields E and B, which are parallel to each other. The net Lorentz force on it is
+    options:
+      - qE along the fields
+      - q(E + vB) along the fields
+      - qvB perpendicular to the fields
+      - zero
+    answer: 0
+    explanation: With v ∥ B the magnetic force is zero, leaving only qE along the fields. The charge speeds up (or slows down) along a straight line.
+
+  - id: phy-mcm-407
+    topic: lorentz-force
+    subtopic: Magnetic force against gravity
+    concept: Speed at which qvB balances mg for a proton
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: qvB = mg
+    tags: [gravity, proton, multi-concept]
+    stem: A proton (m = 1.67 × 10^{-27} kg) moves horizontally in a horizontal magnetic field of 10^{-4} T perpendicular to its velocity. The speed at which the magnetic force just balances its weight is about (g = 9.8 m s^{-2})
+    options:
+      - 10^3 m s^{-1}
+      - 1 m s^{-1}
+      - 10^{-6} m s^{-1}
+      - 10^{-3} m s^{-1}
+    answer: 3
+    explanation: evB = mg gives v = mg/(eB) = 1.67 × 10^{-27} × 9.8/(1.6 × 10^{-19} × 10^{-4}) ≈ 1.0 × 10^{-3} m s^{-1}. Gravity on a proton is usually negligible compared with magnetic forces.
+
+  - id: phy-mcm-408
+    topic: lorentz-force
+    subtopic: Parts of the Lorentz force
+    concept: Electric part can do work, magnetic part cannot
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [lorentz-force, work]
+    stem: |-
+      Consider the Lorentz force F = q(E + v × B).
+      I. It combines electric and magnetic forces.
+      II. The electric part can do work on the charge.
+      III. The magnetic part can do work on the charge.
+      IV. The magnetic part vanishes when v is parallel to B.
+      Which statements are correct?
+    options:
+      - I and III only
+      - I, II and IV only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: qE can have a component along v and so does work. q(v × B) is always perpendicular to v and never does work, and it vanishes for v ∥ B.
+
+  - id: phy-mcm-409
+    topic: lorentz-force
+    subtopic: No net force
+    concept: Zero force does not require E = 0 and B = 0
+    category: application
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [crossed-fields, trap]
+    stem: A charged particle moving through a region experiences no net force. Which conclusion is valid?
+    options:
+      - The magnetic field must be zero
+      - The electric field must be zero
+      - Both E and B could be non-zero
+      - The particle must be neutral
+    answer: 2
+    explanation: With crossed E and B and v = E/B the forces cancel even though neither field is zero. So none of the other conclusions follows necessarily.
+
+  - id: phy-mcm-410
+    topic: lorentz-force
+    subtopic: Finding B from the force
+    concept: Inferring the field direction for an electron
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [direction, electron]
+    stem: An electron moving along +x experiences a magnetic force along +y. If B is perpendicular to both, B points along
+    options:
+      - −z
+      - +x
+      - −y
+      - +z
+    answer: 3
+    explanation: F = −e(v × B), so v × B must be along −y. î × k̂ = −ĵ, so B is along +z.
+
+  - id: phy-mcm-411
+    topic: circular-helical-motion
+    subtopic: Aurora
+    concept: Charged particles spiral along Earth's field lines towards the poles
+    category: application
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [helix, aurora, ncert-line]
+    stem: Charged particles from the Sun reach the upper atmosphere mainly near the magnetic poles, producing the aurora. This happens because the particles
+    options:
+      - spiral in helical paths around the Earth's field lines, which converge near the poles
+      - move straight along the equator where the field is strongest
+      - are attracted by the magnetic poles like iron filings
+      - lose all their energy in the magnetic field
+    answer: 0
+    explanation: A charged particle with a velocity component along B moves in a helix around the field lines. The Earth's field lines dip into the atmosphere near the poles, guiding the particles there.
+
+  - id: phy-mcm-412
+    topic: circular-helical-motion
+    subtopic: Electron and positron
+    concept: Equal mass, opposite charge gives equal radii, opposite senses
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [positron, radius]
+    stem: An electron and a positron enter a uniform magnetic field perpendicularly with the same velocity. They move on circles of
+    options:
+      - different radii in the same sense
+      - equal radii in opposite senses
+      - equal radii in the same sense
+      - different radii in opposite senses
+    answer: 1
+    explanation: They have equal mass and equal magnitude of charge, so r = mv/(eB) is the same. Opposite charges make them curve in opposite senses.
+
+  - id: phy-mcm-413
+    topic: circular-helical-motion
+    subtopic: Time for a quarter turn
+    concept: t = T/4 = πm/(2qB)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    formula: t = πm/(2qB)
+    tags: [period, time]
+    stem: A particle with q/m = 10^8 C kg^{-1} turns through 90° in a uniform 0.25 T field. The time taken is about
+    options:
+      - 251 ns
+      - 126 ns
+      - 62.8 ns
+      - 31.4 ns
+    answer: 2
+    explanation: ω = (q/m)B = 2.5 × 10^7 rad s^{-1}. Turning through π/2 takes t = (π/2)/ω ≈ 6.28 × 10^{-8} s = 62.8 ns.
+
+  - id: phy-mcm-414
+    topic: circular-helical-motion
+    subtopic: Straight paths and radius
+    concept: Straight line when v ∥ B; r ∝ p
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [trajectory, momentum]
+    stem: |-
+      Statement I: A charged particle in a uniform magnetic field can never move along a straight line.
+      Statement II: For motion perpendicular to a uniform field, the radius of the path is proportional to the particle's momentum.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: A particle moving along B feels no force and goes straight, so Statement I is wrong. r = p/(qB) ∝ p, so Statement II is correct.
+
+  - id: phy-mcm-415
+    topic: circular-helical-motion
+    subtopic: Periods of proton and α
+    concept: T ∝ m/q differs for proton and α
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [period, alpha-particle]
+    stem: |-
+      Assertion (A): A proton and an α-particle accelerated through the same potential difference have different periods of revolution in the same magnetic field.
+      Reason (R): The period 2πm/(qB) depends only on the ratio m/q, which differs for the two particles.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: T does not depend on speed, so the accelerating voltage is irrelevant. m/q is m_p/e for the proton and 2m_p/e for the α-particle, so T_α = 2T_p.
+
+  - id: phy-mcm-416
+    topic: circular-helical-motion
+    subtopic: Magnetic shielding of a plate
+    concept: Electrons miss a plate at distance d if r < d
+    category: application
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: r = mv/(eB) < d
+    tags: [radius, electron, multi-concept]
+    stem: Electrons leave a flat plate perpendicular to it with speed 1.76 × 10^6 m s^{-1}. A second parallel plate is 1 cm away, and a uniform magnetic field parallel to the plates fills the gap. Taking e/m = 1.76 × 10^{11} C kg^{-1}, the minimum field that stops electrons reaching the second plate is
+    options:
+      - 10^{-4} T
+      - 10^{-3} T
+      - 10^{-2} T
+      - 2 × 10^{-3} T
+    answer: 1
+    explanation: An electron starting perpendicular to the plate reaches at most a distance r from it. It misses the second plate if r = v/((e/m)B) ≤ d, so B ≥ v/((e/m)d) = 1.76 × 10^6/(1.76 × 10^{11} × 0.01) = 10^{-3} T.
+
+  - id: phy-mcm-417
+    topic: circular-helical-motion
+    subtopic: Coordinate versus time
+    concept: Projection of uniform circular motion is simple harmonic
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [graph, circular-motion]
+    stem: A charged particle moves in a circle in the xy-plane in a uniform field along z. The graph of its x-coordinate against time is
+    options:
+      - a straight line
+      - a parabola
+      - an exponential curve
+      - a sine (or cosine) curve
+    answer: 3
+    explanation: Uniform circular motion projected on a diameter is simple harmonic, so x varies sinusoidally with time at angular frequency qB/m.
+
+  - id: phy-mcm-418
+    topic: circular-helical-motion
+    subtopic: Sense of rotation from the force
+    concept: Positive charge along +x in B along +z turns clockwise seen from +z
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [direction, circular-motion]
+    stem: |-
+      A positive charge is projected along +x from the origin in a uniform field B along +z.
+      I. It moves in a circle in the xy-plane.
+      II. The initial force on it is along −y.
+      III. It circulates clockwise as seen from the +z axis.
+      IV. Its z-coordinate increases with time.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - II and III only
+      - I, II and III only
+      - I, II, III and IV
+    answer: 2
+    explanation: F = q(î × k̂)vB = −ĵ direction, so it turns towards −y, i.e. clockwise seen from +z, staying in the xy-plane. With no velocity along z, z stays zero, so IV is false.
+
+  - id: phy-mcm-419
+    topic: circular-helical-motion
+    subtopic: Proton versus α under different conditions
+    concept: r_p/r_α depends on what is kept equal
+    category: application
+    format: match
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    tags: [radius, alpha-particle, match, multi-concept]
+    stem: |-
+      A proton and an α-particle move perpendicular to the same uniform field. Match the condition (List I) with the ratio r_p/r_α (List II).
+      P. Same speed  Q. Same momentum  R. Same kinetic energy  S. Accelerated through the same potential difference
+      List II: 1. 1  2. 2  3. 1/√2  4. 1/2
+    options:
+      - P-4, Q-1, R-2, S-3
+      - P-2, Q-4, R-1, S-3
+      - P-4, Q-2, R-3, S-1
+      - P-4, Q-2, R-1, S-3
+    answer: 3
+    explanation: r = mv/(qB) ∝ m/q at equal speed (1/2); ∝ 1/q at equal momentum (2); ∝ √m/q at equal K (1); ∝ √(m/q) after the same V (1/√2).
+
+  - id: phy-mcm-420
+    topic: circular-helical-motion
+    subtopic: Equivalent current
+    concept: I = q/T = q²B/(2πm)
+    category: application
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: I = q/T
+    tags: [current, period]
+    stem: A particle of charge q and mass m circulates in a uniform magnetic field B. The equivalent current of its motion is
+    options:
+      - q^2B/(2πm)
+      - qB/(2πm)
+      - 2πm/(q^2B)
+      - q^2B/m
+    answer: 0
+    explanation: The charge passes a point once each period T = 2πm/(qB), so I = q/T = q^2B/(2πm). It is independent of the speed.
+
+  - id: phy-mcm-421
+    topic: circular-helical-motion
+    subtopic: Oblique entry into a field
+    concept: Chord length 2r sinθ for entry at angle θ to the boundary
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    diagram: "The x-axis is the boundary of a uniform magnetic field that fills the region y > 0, pointing into the page. A positive particle crosses the boundary at the origin O with its velocity at 30° above the +x direction. Inside the field it moves along a circular arc of radius r = 10 cm and leaves through the x-axis at point X. Mark O, X, the 30° angle and the radius r."
+    formula: OX = 2r sinθ
+    tags: [radius, field-region, geometry]
+    stem: For the particle in the figure (radius of curvature 10 cm, entering at 30° to the boundary), the distance OX between the entry and exit points is
+    options:
+      - 20 cm
+      - 17.3 cm
+      - 10 cm
+      - 5 cm
+    answer: 2
+    explanation: The entry and exit points lie on the circle, and the chord OX makes the same angle with the velocity at both ends. The chord subtends 2 × 30° at the centre (on the short side), so OX = 2r sin 30° = r = 10 cm.
+
+  - id: phy-mcm-422
+    topic: circular-helical-motion
+    subtopic: Electron orbit radius
+    concept: r = v/((e/m)B)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: r = mv/(eB)
+    tags: [electron, radius]
+    stem: An electron moving at 10^7 m s^{-1} enters perpendicularly a field of 1 mT. Taking e/m = 1.76 × 10^{11} C kg^{-1}, the radius of its path is about
+    options:
+      - 0.57 cm
+      - 57 cm
+      - 1.76 cm
+      - 5.7 cm
+    answer: 3
+    explanation: r = v/((e/m)B) = 10^7/(1.76 × 10^{11} × 10^{-3}) ≈ 0.057 m = 5.7 cm.
+
+  - id: phy-mcm-423
+    topic: velocity-selector-cyclotron
+    subtopic: Units of E/B
+    concept: E/B has the unit of speed
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [units, velocity-selector]
+    stem: The ratio of electric field to magnetic field, E/B, has the SI unit of
+    options:
+      - m s^{-1}
+      - m s^{-2}
+      - N C^{-1}
+      - s m^{-1}
+    answer: 0
+    explanation: E is in N C^{-1} and B in N s C^{-1} m^{-1}, so E/B is in m s^{-1}, consistent with the velocity-selector condition v = E/B.
+
+  - id: phy-mcm-424
+    topic: velocity-selector-cyclotron
+    subtopic: Orbit radius at a given energy
+    concept: r = √(2mK)/(qB) inside a cyclotron
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: r = √(2mK)/(qB)
+    tags: [cyclotron, radius]
+    stem: In a cyclotron with B = 1 T, at what radius does a proton (m = 1.67 × 10^{-27} kg) have a kinetic energy of 1 MeV?
+    options:
+      - 1.4 cm
+      - 14 cm
+      - 29 cm
+      - 7 cm
+    answer: 1
+    explanation: K = 1.6 × 10^{-13} J. r = √(2mK)/(qB) = √(2 × 1.67 × 10^{-27} × 1.6 × 10^{-13})/(1.6 × 10^{-19}) ≈ 2.31 × 10^{-20}/1.6 × 10^{-19} ≈ 0.14 m.
+
+  - id: phy-mcm-425
+    topic: velocity-selector-cyclotron
+    subtopic: Selector with mass separation
+    concept: After speed selection, radius ∝ m/q separates isotopes
+    category: application
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [velocity-selector, mass-spectrometer]
+    stem: Ions pass through a velocity selector and then enter a region of uniform magnetic field only. Which statement is correct?
+    options:
+      - All ions then move on circles of the same radius
+      - Ions of larger charge move on larger circles
+      - Ions with the same charge are separated according to their masses, r ∝ m
+      - The ions speed up in the second region
+    answer: 2
+    explanation: All emerging ions have v = E/B. In the second field r = mv/(qB'), so for the same q the radius is proportional to mass, which separates isotopes. The magnetic field does not change their speed.
+
+  - id: phy-mcm-426
+    topic: velocity-selector-cyclotron
+    subtopic: Role of gap voltage
+    concept: K_max is set by B and R, not by the gap voltage
+    category: concept
+    format: assertion-reason
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    tags: [cyclotron, trap]
+    stem: |-
+      Assertion (A): Doubling the voltage across the dees of a cyclotron doubles the maximum kinetic energy of the emerging ions.
+      Reason (R): The energy gained by an ion at each crossing of the gap is qV.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: K_max = q^2B^2R^2/(2m) depends on B and the dee radius only. A larger V just means fewer revolutions to reach it. R is true.
+
+  - id: phy-mcm-427
+    topic: velocity-selector-cyclotron
+    subtopic: Time inside a cyclotron
+    concept: Total time = number of revolutions × period
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: N = K/(2qV), t = N × 2πm/(qB)
+    tags: [cyclotron, time, multi-concept]
+    stem: Protons are accelerated to 10 MeV in a cyclotron with B = 1 T, gaining 50 keV at each gap crossing. Taking the period to be 6.6 × 10^{-8} s, the time a proton spends in the machine is about
+    options:
+      - 13 μs
+      - 6.6 μs
+      - 0.66 μs
+      - 66 μs
+    answer: 1
+    explanation: Each revolution gives 2 × 50 keV = 100 keV, so N = 10 MeV/0.1 MeV = 100 revolutions. t = 100 × 6.6 × 10^{-8} s ≈ 6.6 μs.
+
+  - id: phy-mcm-428
+    topic: velocity-selector-cyclotron
+    subtopic: Radius versus revolutions
+    concept: r ∝ √n in a cyclotron
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, cyclotron, radius]
+    stem: For an ion in a cyclotron, the graph of orbit radius r against the number of revolutions n is
+    options:
+      - a straight line through the origin
+      - a horizontal line
+      - a curve rising ever more steeply, like r ∝ n^2
+      - a curve rising ever more slowly, like r ∝ √n
+    answer: 3
+    explanation: K grows linearly with n and r ∝ √K, so r ∝ √n. Successive orbits get closer together as the radius grows.
+
+  - id: phy-mcm-429
+    topic: velocity-selector-cyclotron
+    subtopic: Behaviour in crossed fields
+    concept: Outcomes for different speeds in a velocity selector
+    category: concept
+    format: match
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [velocity-selector, match]
+    stem: |-
+      A positive ion enters a velocity selector (crossed E and B). Match the situation (List I) with the result (List II).
+      P. v = E/B  Q. v > E/B  R. v < E/B  S. v = E/B but E is switched off
+      List II: 1. Deflected along the electric force  2. Moves on a circle of radius mv/(qB)  3. Passes undeflected  4. Deflected along the magnetic force
+    options:
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+      - P-2, Q-4, R-1, S-3
+      - P-3, Q-4, R-2, S-1
+    answer: 1
+    explanation: At v = E/B the forces cancel. Faster ions feel qvB > qE and bend along the magnetic force; slower ones bend along the electric force. With E off only B acts, giving a circle of radius mv/(qB).
+
+  - id: phy-mcm-430
+    topic: velocity-selector-cyclotron
+    subtopic: Separating isotopes
+    concept: Difference in diameters 2vΔm/(qB)
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 110
+    ncert: false
+    battle: false
+    formula: d = 2mv/(qB)
+    tags: [mass-spectrometer, isotopes, multi-concept]
+    stem: Singly charged ions of masses 20 u and 22 u (1 u = 1.66 × 10^{-27} kg) leave a velocity selector at 10^5 m s^{-1} and enter a 0.5 T field, each completing a semicircle before striking a plate. The separation of the two spots is about
+    options:
+      - 8.3 mm
+      - 4.2 mm
+      - 16.6 mm
+      - 0.83 mm
+    answer: 0
+    explanation: Each spot is a diameter 2mv/(qB) from the entry slit. The separation is 2vΔm/(qB) = 2 × 10^5 × 2 × 1.66 × 10^{-27}/(1.6 × 10^{-19} × 0.5) ≈ 8.3 × 10^{-3} m. Using radii instead of diameters gives 4.2 mm.
+
+  - id: phy-mcm-431
+    topic: velocity-selector-cyclotron
+    subtopic: Deuteron versus α-particle
+    concept: Same frequency, different K_max for d and α
+    category: application
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [cyclotron, deuteron, alpha-particle]
+    stem: |-
+      In the same cyclotron:
+      Statement I: Deuterons and α-particles have the same cyclotron frequency.
+      Statement II: Deuterons and α-particles reach the same maximum kinetic energy.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Both have q/m = e/(2m_p), so ν = qB/(2πm) is the same. K_max ∝ q^2/m, which is e^2/(2m_p) for the deuteron and 4e^2/(4m_p) = e^2/m_p for the α-particle, twice as large.
+
+  - id: phy-mcm-432
+    topic: velocity-selector-cyclotron
+    subtopic: Energy per gap crossing
+    concept: ΔK = qV with q = 2e for α
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: false
+    battle: true
+    formula: ΔK = qV
+    tags: [cyclotron, alpha-particle]
+    stem: An α-particle crosses the gap of a cyclotron when the potential difference between the dees is 10 kV. The energy it gains in this crossing is
+    options:
+      - 5 keV
+      - 10 keV
+      - 40 keV
+      - 20 keV
+    answer: 3
+    explanation: ΔK = qV = 2e × 10 kV = 20 keV. Using e alone gives 10 keV.
+
+  - id: phy-mcm-433
+    topic: velocity-selector-cyclotron
+    subtopic: Maximum energies of ions
+    concept: K_max ∝ q²/m ordering
+    category: application
+    format: ordering
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [cyclotron, ordering]
+    stem: The same cyclotron accelerates P. protons, Q. deuterons, R. tritons (charge e, mass 3m_p) and S. helium-3 nuclei (charge 2e, mass 3m_p). Their maximum kinetic energies in increasing order are
+    options:
+      - Q, R, P, S
+      - R, Q, P, S
+      - R, Q, S, P
+      - S, P, Q, R
+    answer: 1
+    explanation: K_max ∝ q^2/m. In units of e^2/m_p, P = 1, Q = 1/2, R = 1/3 and S = 4/3. So R < Q < P < S.
+
+  - id: phy-mcm-434
+    topic: velocity-selector-cyclotron
+    subtopic: Path of ion in a cyclotron
+    concept: Ion follows semicircles of increasing radius
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: true
+    battle: true
+    tags: [cyclotron]
+    stem: The path of an ion inside a cyclotron is best described as
+    options:
+      - a series of semicircles of increasing radius
+      - a circle of fixed radius
+      - a straight line across the gap
+      - a helix along the magnetic field
+    answer: 0
+    explanation: In each dee the ion moves on a semicircle; after each gap crossing its speed and radius increase, so the path spirals outward.
+
+  - id: phy-mcm-435
+    topic: force-on-conductor
+    subtopic: Wire along a solenoid's axis
+    concept: No force on a wire parallel to the solenoid's field
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [solenoid, force-on-wire]
+    stem: A straight current-carrying wire lies along the axis of a long current-carrying solenoid. The magnetic force on the wire due to the solenoid is
+    options:
+      - radially outward
+      - along the axis
+      - zero
+      - radially inward
+    answer: 2
+    explanation: Inside the solenoid B is along the axis, parallel to the wire, so I(L × B) = 0.
+
+  - id: phy-mcm-436
+    topic: force-on-conductor
+    subtopic: Swinging wire
+    concept: tanθ = BIL/(mg) for a wire hung on threads
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: tanθ = BIL/(mg)
+    tags: [equilibrium, force-on-wire, multi-concept]
+    stem: A horizontal wire of mass 10 g and length 0.5 m hangs from two light vertical threads in a uniform vertical field of 0.2 T. When a current of 1 A flows, the threads swing to a new equilibrium at an angle θ to the vertical. θ is (g = 10 m s^{-2})
+    options:
+      - 30°
+      - 45°
+      - 60°
+      - 90°
+    answer: 1
+    explanation: The magnetic force BIL = 0.2 × 1 × 0.5 = 0.1 N is horizontal and the weight mg = 0.1 N is vertical. tan θ = BIL/(mg) = 1, so θ = 45°.
+
+  - id: phy-mcm-437
+    topic: force-on-conductor
+    subtopic: Straight wire along B
+    concept: No force and no torque on a wire parallel to B
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [force-on-wire, torque, trap]
+    stem: |-
+      Assertion (A): A straight current-carrying wire placed parallel to a uniform magnetic field experiences a torque.
+      Reason (R): The magnetic force on such a wire is zero.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: Every element has dl ∥ B, so each element's force is zero; with no forces there can be no torque. A is false and R is true.
+
+  - id: phy-mcm-438
+    topic: force-on-conductor
+    subtopic: Square loop with sides along B
+    concept: Forces on a loop with two sides parallel to B form a couple
+    category: application
+    format: diagram
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    diagram: "A square loop ABCD of side a lies in the plane of the page. A uniform magnetic field B points to the right, parallel to sides AB and DC. Current I flows A → B → C → D → A, with AB along the bottom (left to right) and DC along the top. Sides BC and DA are vertical."
+    formula: τ = IAB
+    tags: [current-loop, torque]
+    stem: For the square loop shown (side a, current I, field B parallel to two of its sides), the net force and the torque on the loop are
+    options:
+      - net force zero, torque Ia^2B
+      - net force 2IaB, torque zero
+      - net force zero, torque zero
+      - net force IaB, torque Ia^2B
+    answer: 0
+    explanation: AB and DC are parallel to B and feel no force. BC and DA feel equal forces IaB in opposite directions (out of and into the page), a distance a apart. So the net force is zero and the couple gives τ = IaB × a = Ia^2B.
+
+  - id: phy-mcm-439
+    topic: force-on-conductor
+    subtopic: Reaction on the magnet
+    concept: The wire exerts an equal and opposite force on the magnet
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [newtons-third-law]
+    stem: A current-carrying wire lies between the poles of a magnet resting on a balance. Which statement is correct?
+    options:
+      - The magnet exerts a force on the wire, but the wire exerts none on the magnet
+      - The wire exerts on the magnet a force equal and opposite to the one it experiences
+      - The balance reading cannot change when the current is switched on
+      - The force on the wire is along the field lines
+    answer: 1
+    explanation: By Newton's third law the wire pushes back on the magnet with an equal and opposite force, which can change the balance reading. The force on the wire is perpendicular to B.
+
+  - id: phy-mcm-440
+    topic: force-on-conductor
+    subtopic: Non-uniform field along a wire
+    concept: Integrating I B(x) dx along a straight wire
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: F = ∫ I B dx
+    tags: [non-uniform-field, integration]
+    stem: A wire along the x-axis from x = 0 to x = 1 m carries 2 A in the +x direction. The field is B = 0.1(1 + x) ĵ T, with x in metres. The magnetic force on the wire is
+    options:
+      - 0.2 N along +z
+      - 0.4 N along +z
+      - 0.3 N along +z
+      - 0.3 N along −z
+    answer: 2
+    explanation: dF = I dx (î × ĵ)B = 2 × 0.1(1 + x) dx k̂. Integrating from 0 to 1 gives 0.2 × 1.5 = 0.3 N along +z.
+
+  - id: phy-mcm-441
+    topic: force-on-conductor
+    subtopic: Forces on shaped wires
+    concept: Force equals BI times the end-to-end distance
+    category: application
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [effective-length, match]
+    stem: |-
+      Each wire lies in a plane perpendicular to a uniform field B and carries current I. Match the wire (List I) with the magnitude of the force on it (List II).
+      P. Straight wire of length L  Q. Semicircle of radius R  R. Closed circle of radius R  S. Quarter circle of radius R
+      List II: 1. zero  2. √2 BIR  3. BIL  4. 2BIR
+    options:
+      - P-3, Q-2, R-1, S-4
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-1, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: The force equals BI times the straight distance between the ends. That distance is L, 2R, 0 and √2 R (the chord of a 90° arc) respectively.
+
+  - id: phy-mcm-442
+    topic: force-on-conductor
+    subtopic: Rod on rails
+    concept: Features of the force on a rod on rails in a vertical field
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    tags: [rails, force-on-wire]
+    stem: |-
+      A metal rod carrying current rests across horizontal rails in a vertical uniform magnetic field.
+      I. The magnetic force on the rod is horizontal.
+      II. Reversing the current reverses the direction of the force.
+      III. Doubling B doubles the acceleration (no friction).
+      IV. The magnetic force depends on the rod's mass.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - II and IV only
+      - I, II, III and IV
+      - I, II and III only
+    answer: 3
+    explanation: F = I(L × B) is horizontal (L horizontal, B vertical), reverses with I and is proportional to B; with no friction a = F/m doubles with B. The force BIL does not involve the mass.
+
+  - id: phy-mcm-443
+    topic: force-on-conductor
+    subtopic: Force on a wire
+    concept: F = BIL with B = 0.05 T
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: false
+    battle: true
+    formula: F = BIL
+    tags: [force-on-wire]
+    stem: A 2 m wire carrying 3 A lies perpendicular to a uniform field of 0.05 T. The force on it is
+    options:
+      - 0.3 N
+      - 0.15 N
+      - 3 N
+      - 0.03 N
+    answer: 0
+    explanation: F = BIL = 0.05 × 3 × 2 = 0.3 N.
+
+  - id: phy-mcm-444
+    topic: force-on-conductor
+    subtopic: Simple motor
+    concept: Reversing both current and field keeps rotation unchanged
+    category: application
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [motor, direction]
+    stem: In a simple DC motor, both the current through the coil and the direction of the magnetic field are reversed. The coil will
+    options:
+      - rotate in the opposite direction
+      - rotate in the same direction as before
+      - stop rotating
+      - vibrate without rotating
+    answer: 1
+    explanation: The force on each side, I(L × B), changes sign twice, so the forces and torque are unchanged and the rotation continues in the same direction.
+
+  - id: phy-mcm-445
+    topic: force-on-conductor
+    subtopic: Force versus orientation
+    concept: F = BIL sinθ as the wire turns
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: false
+    tags: [graph, force-on-wire]
+    stem: A straight current-carrying wire is slowly rotated in a uniform field, so that the angle θ between it and B goes from 0° to 90°. The graph of force against θ is
+    options:
+      - a straight line rising from zero
+      - a curve falling from a maximum to zero
+      - a horizontal line
+      - a curve rising from zero to a maximum, following sin θ
+    answer: 3
+    explanation: F = BIL sin θ is zero at 0° (wire along B) and rises along a sine curve to its maximum BIL at 90°.
+
+  - id: phy-mcm-446
+    topic: biot-savart-law
+    subtopic: Field in gauss
+    concept: Loop field expressed in gauss
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: B = μ_0 I/(2R)
+    tags: [circular-loop, units]
+    stem: A single loop of radius 2π cm carries 10 A. The field at its centre in gauss is
+    options:
+      - 10 G
+      - 0.1 G
+      - 1 G
+      - 10^{-4} G
+    answer: 2
+    explanation: B = μ_0 I/(2R) = 4π × 10^{-7} × 10/(2 × 0.02π) = 10^{-4} T = 1 G, since 1 T = 10^4 G.
+
+  - id: phy-mcm-447
+    topic: biot-savart-law
+    subtopic: Loop with straight wire
+    concept: Straight wire plus loop, B = (μ₀I/2R)(1 + 1/π)
+    category: application
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    diagram: "A long straight insulated wire runs horizontally from left to right. At one point it is wound into a single circular loop of radius R lying in the same plane, tangent to the straight parts, and then continues straight to the right. The current I in the loop circulates in the sense that makes its field at the centre O point out of the page, the same direction as the field of the straight part at O."
+    formula: B = μ_0 I/(2R) + μ_0 I/(2πR)
+    tags: [superposition, circular-loop, straight-wire]
+    stem: For the wire shown (a long straight wire with a circular loop of radius R, fields at the centre in the same direction), the field at the centre O is
+    options:
+      - (μ_0 I/2R)(1 + 1/π)
+      - (μ_0 I/2R)(1 − 1/π)
+      - μ_0 I/(2R)
+      - (μ_0 I/2R)(1 + 2/π)
+    answer: 0
+    explanation: The loop gives μ_0 I/(2R) and the long straight wire at distance R gives μ_0 I/(2πR). Both are in the same direction, so B = (μ_0 I/2R)(1 + 1/π).
+
+  - id: phy-mcm-448
+    topic: biot-savart-law
+    subtopic: Loop as a dipole
+    concept: Far axial field ∝ 1/x³; centre field is along the axis
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [axial-field, magnetic-dipole]
+    stem: |-
+      Statement I: Far from a circular current loop, its axial field falls off as 1/x^3, like that of a magnetic dipole.
+      Statement II: At the centre of the loop the field lies in the plane of the loop.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: For x ≫ R, B ≈ μ_0 I R^2/(2x^3), a dipole-like 1/x^3 field. At the centre the field is along the axis, perpendicular to the plane.
+
+  - id: phy-mcm-449
+    topic: biot-savart-law
+    subtopic: Concentric loops, same sense
+    concept: Same-sense concentric currents add at the centre
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [circular-loop, superposition]
+    stem: |-
+      Assertion (A): Two concentric coplanar loops carrying currents in the same sense produce a larger field at the centre than either loop alone.
+      Reason (R): At the centre, the fields of both loops are along the common axis and in the same direction.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Same-sense currents give fields at the centre pointing the same way along the axis, so they add. R explains A.
+
+  - id: phy-mcm-450
+    topic: biot-savart-law
+    subtopic: Semicircle field
+    concept: B = μ₀I/(4R) numerically
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: B = μ_0 I/(4R)
+    tags: [arc]
+    stem: A semicircular wire of radius 5 cm carries 10 A. The magnetic field at its centre is about
+    options:
+      - 1.26 × 10^{-4} T
+      - 3.14 × 10^{-5} T
+      - 2 × 10^{-5} T
+      - 6.28 × 10^{-5} T
+    answer: 3
+    explanation: B = μ_0 I/(4R) = 4π × 10^{-7} × 10/(4 × 0.05) = 2π × 10^{-5} ≈ 6.28 × 10^{-5} T, half the full-loop value 1.26 × 10^{-4} T.
+
+  - id: phy-mcm-451
+    topic: biot-savart-law
+    subtopic: Shape of loop and centre field
+    concept: For fixed perimeter, fewer polygon sides give a larger centre field
+    category: application
+    format: ordering
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: B = (μ_0 I/4πd)(sinα + sinβ)
+    tags: [finite-wire, ordering, multi-concept]
+    stem: Equal lengths of wire carrying equal currents are bent into P. a circle, Q. a square, R. an equilateral triangle and S. a regular hexagon. The magnetic fields at their centres in increasing order are
+    options:
+      - R, Q, S, P
+      - P, S, Q, R
+      - P, Q, S, R
+      - S, P, Q, R
+    answer: 1
+    explanation: For perimeter L, B at the centre is μ_0 I/(πL) times π^2 ≈ 9.87 (circle), 6√3 ≈ 10.4 (hexagon), 16/√2 × √2 = 11.3 (square) and 13.5 (triangle). So P < S < Q < R; sharper corners bring the wire closer to the centre.
+
+  - id: phy-mcm-452
+    topic: biot-savart-law
+    subtopic: Axial field value
+    concept: Axial field at x = 4 cm for R = 3 cm
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: B = μ_0 I R^2/[2(R^2 + x^2)^{3/2}]
+    tags: [axial-field]
+    stem: A single circular loop of radius 3 cm carries 1 A. The magnetic field on its axis 4 cm from the centre is about
+    options:
+      - 2.1 × 10^{-5} T
+      - 4.5 × 10^{-6} T
+      - 9.0 × 10^{-6} T
+      - 1.6 × 10^{-5} T
+    answer: 1
+    explanation: R^2 + x^2 = 25 × 10^{-4} m^2, so (R^2 + x^2)^{3/2} = 1.25 × 10^{-4} m^3. B = 4π × 10^{-7} × 9 × 10^{-4}/(2 × 1.25 × 10^{-4}) ≈ 4.5 × 10^{-6} T.
+
+  - id: phy-mcm-453
+    topic: biot-savart-law
+    subtopic: Dependence in the Biot–Savart law
+    concept: dB ∝ I dl sinθ/r²
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [biot-savart]
+    stem: |-
+      According to the Biot–Savart law, the field dB of a current element I dl at distance r is:
+      I. proportional to I
+      II. proportional to dl
+      III. inversely proportional to r^2
+      IV. proportional to cos θ, where θ is the angle between dl and r
+      Which statements are correct?
+    options:
+      - I, II and III only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: dB = (μ_0/4π) I dl sin θ/r^2. It depends on sin θ, not cos θ, so IV is false.
+
+  - id: phy-mcm-454
+    topic: biot-savart-law
+    subtopic: Field versus number of turns
+    concept: B ∝ N for a flat coil of fixed radius
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: false
+    tags: [graph, circular-coil]
+    stem: Flat circular coils of the same radius carry the same current but have different numbers of turns N. The graph of the field at the centre against N is
+    options:
+      - a rectangular hyperbola
+      - a parabola
+      - a straight line through the origin
+      - a horizontal line
+    answer: 2
+    explanation: B = μ_0 N I/(2R) ∝ N at fixed I and R, a straight line through the origin.
+
+  - id: phy-mcm-455
+    topic: biot-savart-law
+    subtopic: Changing turns and current
+    concept: B ∝ NI at fixed radius
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: B = μ_0 N I/(2R)
+    tags: [circular-coil, proportionality]
+    stem: A 50-turn coil gives 2.5 × 10^{-4} T at its centre. The current is halved and the coil is rewound on the same radius with 150 turns. The new field at the centre is
+    options:
+      - 7.5 × 10^{-4} T
+      - 3.75 × 10^{-4} T
+      - 1.25 × 10^{-4} T
+      - 2.5 × 10^{-4} T
+    answer: 1
+    explanation: B ∝ NI. N becomes 3 times and I half, so B becomes 1.5 times, 3.75 × 10^{-4} T.
+
+  - id: phy-mcm-456
+    topic: biot-savart-law
+    subtopic: Reversing the current
+    concept: Reversing the current reverses the field direction
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [direction, circular-loop]
+    stem: Which statement about the magnetic field of a circular current loop is INCORRECT?
+    options:
+      - It is zero at points on the line of any single straight current element
+      - It is along the axis at the centre of the loop
+      - It increases in proportion to the current
+      - Its direction at the centre does not depend on the direction of the current
+    answer: 3
+    explanation: Reversing the current reverses the field at the centre (right-hand rule). The other statements follow from the Biot–Savart law.
+
+  - id: phy-mcm-457
+    topic: biot-savart-law
+    subtopic: Coil wound from fixed wire
+    concept: Winding N turns from fixed length multiplies B by N²
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    formula: B = μ_0 N I/(2R), R = L/(2πN)
+    tags: [circular-coil, multi-concept]
+    stem: A 6.28 m wire carrying 1 A is wound into a flat circular coil of 10 turns. The field at its centre is about
+    options:
+      - 6.28 × 10^{-5} T
+      - 6.28 × 10^{-6} T
+      - 6.28 × 10^{-7} T
+      - 1.26 × 10^{-5} T
+    answer: 0
+    explanation: Each turn has circumference 0.628 m, so R = 0.1 m. B = μ_0 N I/(2R) = 4π × 10^{-7} × 10 × 1/0.2 ≈ 6.28 × 10^{-5} T, 100 times the single-turn value.
+
+  - id: phy-mcm-458
+    topic: amperes-law
+    subtopic: Units of μ₀
+    concept: μ₀ in T m A⁻¹ equals N A⁻² and H m⁻¹
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [units, permeability]
+    stem: Which of the following is NOT a correct SI unit for μ_0?
+    options:
+      - T m A^{-1}
+      - N A^{-2}
+      - H m^{-1}
+      - N A^{-1} m^{-1}
+    answer: 3
+    explanation: From B = μ_0 I/(2πr), μ_0 is in T m A^{-1} = N A^{-2}, also written H m^{-1}. N A^{-1} m^{-1} is the tesla, the unit of B.
+
+  - id: phy-mcm-459
+    topic: amperes-law
+    subtopic: Non-uniform current density
+    concept: J = kr gives B = μ₀kr²/3 inside
+    category: application
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: ∮B·dl = μ_0 ∫J dA
+    tags: [current-density, integration]
+    stem: A long cylindrical conductor carries current with density J = kr, where r is the distance from the axis. The magnetic field inside it at distance r is
+    options:
+      - μ_0 k r/2
+      - μ_0 k r^3/3
+      - μ_0 k r^2/3
+      - μ_0 k r^2/2
+    answer: 2
+    explanation: I_enc = ∫ kr × 2πr dr = 2πk r^3/3. B × 2πr = μ_0 × 2πk r^3/3 gives B = μ_0 k r^2/3.
+
+  - id: phy-mcm-460
+    topic: amperes-law
+    subtopic: Solenoid radius
+    concept: B = μ₀nI has no dependence on radius
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [solenoid]
+    stem: |-
+      Assertion (A): Two long solenoids with the same turns per unit length and current, but different radii, have the same field inside.
+      Reason (R): The field inside a long solenoid, μ_0 n I, depends only on the turns per unit length and the current.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Ampère's law with a rectangular loop gives B = μ_0 n I with no radius in it, so equal n and I give equal fields. R explains A.
+
+  - id: phy-mcm-461
+    topic: amperes-law
+    subtopic: Field lines of a straight wire
+    concept: Concentric circular lines, denser near the wire
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [field-lines, straight-wire]
+    stem: |-
+      Statement I: The magnetic field lines of a long straight current are concentric circles centred on the wire.
+      Statement II: These field lines are more closely spaced near the wire than far from it.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: By symmetry the lines are circles around the wire, and B = μ_0 I/(2πr) is larger closer in, which is shown by denser lines.
+
+  - id: phy-mcm-462
+    topic: amperes-law
+    subtopic: Toroid current
+    concept: I = 2πrB/(μ₀N)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    formula: B = μ_0 N I/(2πr)
+    tags: [toroid]
+    stem: A toroid of 2000 turns and mean radius 0.2 m must produce a field of 4 × 10^{-3} T in its core. The current required is
+    options:
+      - 0.5 A
+      - 4 A
+      - 1 A
+      - 2 A
+    answer: 3
+    explanation: I = 2πrB/(μ_0 N) = 2π × 0.2 × 4 × 10^{-3}/(4π × 10^{-7} × 2000) = 1.6π × 10^{-3}/(8π × 10^{-4}) = 2 A.
+
+  - id: phy-mcm-463
+    topic: amperes-law
+    subtopic: Field versus 1/r
+    concept: B ∝ 1/r gives a straight line on a B versus 1/r plot
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: false
+    tags: [graph, straight-wire]
+    stem: For points outside a long straight current-carrying wire, the graph of B against 1/r (r being the distance from the wire) is
+    options:
+      - a rectangular hyperbola
+      - a straight line through the origin
+      - a parabola
+      - a straight line with negative slope
+    answer: 1
+    explanation: B = (μ_0 I/2π)(1/r), so B is proportional to 1/r, a straight line through the origin with slope μ_0 I/(2π).
+
+  - id: phy-mcm-464
+    topic: amperes-law
+    subtopic: Underground cable
+    concept: Field of a long cable at a given depth
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: B = μ_0 I/(2πr)
+    tags: [straight-wire, real-world]
+    stem: A long straight DC cable carrying 500 A runs horizontally 5 m below a compass. The magnetic field produced by the cable at the compass is
+    options:
+      - 10^{-4} T
+      - 2 × 10^{-7} T
+      - 2 × 10^{-6} T
+      - 2 × 10^{-5} T
+    answer: 3
+    explanation: B = μ_0 I/(2πr) = 2 × 10^{-7} × 500/5 = 2 × 10^{-5} T, comparable to the Earth's field, which is why such cables can disturb compasses.
+
+  - id: phy-mcm-465
+    topic: amperes-law
+    subtopic: Ideal solenoid
+    concept: Uniform axial field inside, negligible outside
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [solenoid]
+    stem: |-
+      For a long, tightly wound solenoid carrying a steady current:
+      I. The field inside, well away from the ends, is uniform.
+      II. The field inside is along the axis.
+      III. The field outside is negligible.
+      IV. The field inside depends on the radius of the solenoid.
+      Which statements are correct?
+    options:
+      - I and IV only
+      - I, II and III only
+      - II and III only
+      - I, II, III and IV
+    answer: 1
+    explanation: B = μ_0 n I is uniform, axial and independent of radius inside, and the field outside is negligible. IV is false.
+
+  - id: phy-mcm-466
+    topic: amperes-law
+    subtopic: Multi-layer solenoid
+    concept: Layers add to n
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    formula: B = μ_0 n I
+    tags: [solenoid, trap]
+    stem: A solenoid 50 cm long has two layers of winding, each of 500 turns, carrying 1 A in the same sense. The field inside it is about
+    options:
+      - 1.26 × 10^{-3} T
+      - 2.51 × 10^{-3} T
+      - 6.28 × 10^{-4} T
+      - 5.03 × 10^{-3} T
+    answer: 1
+    explanation: The total turns are 1000 over 0.5 m, so n = 2000 m^{-1}. B = μ_0 n I = 4π × 10^{-7} × 2000 × 1 ≈ 2.51 × 10^{-3} T. Counting only one layer gives 1.26 × 10^{-3} T.
+
+  - id: phy-mcm-467
+    topic: amperes-law
+    subtopic: Field at points around a solid wire
+    concept: B inside ∝ r, outside ∝ 1/r at given points
+    category: numerical
+    format: match
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [cylindrical-conductor, match]
+    stem: |-
+      A long solid wire of radius a carries a uniform current I. Match the distance from its axis (List I) with the field there (List II).
+      P. r = 0  Q. r = a/2  R. r = a  S. r = 4a
+      List II: 1. μ_0 I/(2πa)  2. μ_0 I/(8πa)  3. zero  4. μ_0 I/(4πa)
+    options:
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-4, R-2, S-1
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-1, S-2
+    answer: 3
+    explanation: Inside, B = μ_0 I r/(2πa^2), giving 0 on the axis, μ_0 I/(4πa) at a/2 and μ_0 I/(2πa) at the surface. Outside, B = μ_0 I/(2πr) gives μ_0 I/(8πa) at 4a.
+
+  - id: phy-mcm-468
+    topic: amperes-law
+    subtopic: Toroid versus solenoid
+    concept: Same n and I give the same field
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: true
+    tags: [toroid, solenoid]
+    stem: A long solenoid and a toroid have the same number of turns per unit length and carry the same current. Compared with the solenoid, the field inside the toroid's core is
+    options:
+      - twice as large
+      - half as large
+      - zero
+      - the same
+    answer: 3
+    explanation: The toroid field μ_0 N I/(2πr) equals μ_0 n I with n = N/(2πr), the same as a solenoid's μ_0 n I.
+
+  - id: phy-mcm-469
+    topic: amperes-law
+    subtopic: Crossed wires
+    concept: Fields of two perpendicular wires can cancel at a point
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [superposition, straight-wire, direction]
+    stem: Two long straight insulated wires lie along the x- and y-axes, carrying equal currents in the +x and +y directions. The net magnetic field at the point (d, d, 0) is
+    options:
+      - μ_0 I/(πd) along +z
+      - zero
+      - μ_0 I/(2πd) along −z
+      - μ_0 I/(πd) along −z
+    answer: 1
+    explanation: The wire along x (current +x) gives a field along +z at a point with y > 0. The wire along y (current +y) gives a field along −z at a point with x > 0. The distances are equal, so the fields cancel.
+
+  - id: phy-mcm-470
+    topic: parallel-currents
+    subtopic: Battery leads
+    concept: Supply and return leads carry opposite currents and repel
+    category: application
+    format: direct
+    difficulty: 3
+    time: 30
+    ncert: false
+    battle: true
+    tags: [parallel-wires, real-world]
+    stem: The two long parallel leads connecting a car battery to its starter motor carry a large current. The leads
+    options:
+      - attract each other
+      - repel each other
+      - exert no force on each other
+      - twist about each other
+    answer: 1
+    explanation: The current goes out along one lead and returns along the other, so the currents are antiparallel and the leads repel.
+
+  - id: phy-mcm-471
+    topic: parallel-currents
+    subtopic: Wire held up by attraction
+    concept: Attraction from a wire above balances the weight of a lower wire
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: μ_0 I_1 I_2/(2πd) = λg
+    tags: [levitation, parallel-wires]
+    stem: A fixed long horizontal wire carries 100 A. A parallel wire of mass per unit length 5 × 10^{-3} kg m^{-1} is held in equilibrium 1 cm directly below it by magnetic attraction alone. The current in the lower wire is (g = 10 m s^{-2})
+    options:
+      - 50 A, opposite
+      - 12.5 A, same direction
+      - 25 A, same direction
+      - 25 A, opposite
+    answer: 2
+    explanation: An upward attraction needs parallel currents. 2 × 10^{-7} × 100 × I/0.01 = 5 × 10^{-3} × 10 gives 2 × 10^{-3} I = 0.05, so I = 25 A in the same direction. (This equilibrium is unstable.)
+
+  - id: phy-mcm-472
+    topic: parallel-currents
+    subtopic: Force per unit length
+    concept: Uniform field along an infinite wire gives force per length independent of length
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [parallel-wires]
+    stem: |-
+      Assertion (A): For two very long parallel wires, the force per unit length does not depend on how long the wires are.
+      Reason (R): Each wire lies in the field μ_0 I/(2πd) of the other, which has the same magnitude all along its length.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Each metre of wire 2 sits in the same field B_1 = μ_0 I_1/(2πd) and feels I_2 B_1. The total force grows with length, but the force per metre is constant, as R explains.
+
+  - id: phy-mcm-473
+    topic: parallel-currents
+    subtopic: Unknown current
+    concept: I₂ = (F/L)d/(2 × 10⁻⁷ I₁)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    formula: F/L = μ_0 I_1 I_2/(2πd)
+    tags: [parallel-wires]
+    stem: Two long parallel wires 20 cm apart exert a force of 10^{-4} N per metre on each other. One carries 10 A. The other carries
+    options:
+      - 1 A
+      - 5 A
+      - 20 A
+      - 10 A
+    answer: 3
+    explanation: I_2 = (F/L)d/(2 × 10^{-7} I_1) = 10^{-4} × 0.2/(2 × 10^{-6}) = 10 A.
+
+  - id: phy-mcm-474
+    topic: parallel-currents
+    subtopic: Force on a wire between two wires
+    concept: Net force ∝ 1/x − 1/(d − x)
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, parallel-wires, superposition]
+    stem: Wires A and B, a distance d apart, carry equal currents in the same direction. A third parallel wire C (current in the same direction) is placed between them at distance x from A. The graph of net force on C (taken positive towards B) against x is
+    options:
+      - constant between the wires
+      - zero at the midpoint, large and negative near A, large and positive near B
+      - maximum at the midpoint and zero near the wires
+      - zero at the midpoint, large and positive near A, large and negative near B
+    answer: 1
+    explanation: C is attracted to both. Net force towards B ∝ 1/(d − x) − 1/x. Near A the 1/x term dominates (pull towards A, negative); near B it is positive; at x = d/2 it is zero.
+
+  - id: phy-mcm-475
+    topic: parallel-currents
+    subtopic: Stability of the middle wire
+    concept: Midpoint equilibrium is unstable along the line joining the wires
+    category: application
+    format: statements
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [equilibrium, parallel-wires]
+    stem: A wire C lies midway between two fixed parallel wires A and B, all carrying equal currents in the same direction. Which statement is correct?
+    options:
+      - C is in stable equilibrium for small displacements towards A or B
+      - C is not in equilibrium at the midpoint
+      - The net force on C is directed towards A
+      - C is in unstable equilibrium for small displacements towards A or B
+    answer: 3
+    explanation: At the midpoint the attractions cancel. If C moves towards A, A's attraction grows and B's weakens, pulling C further towards A, so the equilibrium is unstable.
+
+  - id: phy-mcm-476
+    topic: parallel-currents
+    subtopic: Force values
+    concept: Computing F/L = 2 × 10⁻⁷ I₁I₂/d for several pairs
+    category: numerical
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [parallel-wires, match]
+    stem: |-
+      Match each pair of long parallel wires (List I) with the force per metre between them (List II).
+      P. 2 A and 3 A, 1 m apart  Q. 1 A and 1 A, 0.5 m apart  R. 4 A and 2 A, 2 m apart  S. 3 A and 1 A, 3 m apart
+      List II: 1. 2 × 10^{-7} N  2. 8 × 10^{-7} N  3. 1.2 × 10^{-6} N  4. 4 × 10^{-7} N
+    options:
+      - P-3, Q-2, R-4, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-2, Q-4, R-3, S-1
+      - P-3, Q-4, R-1, S-2
+    answer: 1
+    explanation: F/L = 2 × 10^{-7} I_1 I_2/d. P = 2 × 10^{-7} × 6 = 1.2 × 10^{-6}, Q = 2 × 10^{-7} × 2 = 4 × 10^{-7}, R = 2 × 10^{-7} × 4 = 8 × 10^{-7}, S = 2 × 10^{-7} × 1 N.
+
+  - id: phy-mcm-477
+    topic: parallel-currents
+    subtopic: Wire and loop
+    concept: A loop in a wire's non-uniform field can feel a net force
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [non-uniform-field, current-loop]
+    stem: |-
+      Statement I: A long straight current-carrying wire exerts no magnetic force on a parallel beam of neutral atoms moving beside it.
+      Statement II: A long straight current-carrying wire exerts no net force on a current loop lying near it in the same plane.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Neutral atoms carry no net charge, so q(v × B) = 0. The wire's field is non-uniform (∝ 1/r), so the forces on the near and far sides of a loop do not cancel.
+
+  - id: phy-mcm-478
+    topic: parallel-currents
+    subtopic: Field of two antiparallel wires
+    concept: Field on the bisector of antiparallel currents is parallel to the line joining them
+    category: numerical
+    format: diagram
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    diagram: "Cross-section view: two long parallel wires pass perpendicularly through the page at points A and B, a distance 2d apart on a horizontal line. A carries current I out of the page and B carries current I into the page. Point P lies on the perpendicular bisector of AB at distance d above the midpoint M. Draw the field vectors at P due to each wire, each perpendicular to the line joining P to that wire."
+    formula: B = μ_0 I/(2πr)
+    tags: [superposition, vector-addition, parallel-wires]
+    stem: For the two antiparallel wires shown (currents I, separation 2d), the magnitude of the net magnetic field at P, a distance d from the midpoint on the perpendicular bisector, is
+    options:
+      - μ_0 I/(2πd)
+      - μ_0 I/(πd)
+      - μ_0 I/(2√2 πd)
+      - zero
+    answer: 0
+    explanation: Each wire is √2 d from P and gives μ_0 I/(2π√2 d). For antiparallel currents the components perpendicular to AB cancel and those parallel to AB add, 2 × μ_0 I/(2π√2 d) × cos 45° = μ_0 I/(2πd).
+
+  - id: phy-mcm-479
+    topic: parallel-currents
+    subtopic: Force per unit length
+    concept: F/L for 10 A each, 1 m apart
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: false
+    battle: true
+    formula: F/L = μ_0 I_1 I_2/(2πd)
+    tags: [parallel-wires]
+    stem: Two long parallel wires 1 m apart each carry 10 A. The force per metre between them is
+    options:
+      - 2 × 10^{-7} N
+      - 2 × 10^{-6} N
+      - 10^{-5} N
+      - 2 × 10^{-5} N
+    answer: 3
+    explanation: F/L = 2 × 10^{-7} × 10 × 10/1 = 2 × 10^{-5} N per metre.
+
+  - id: phy-mcm-480
+    topic: parallel-currents
+    subtopic: Zero net force on an outer wire
+    concept: Choosing a current so that forces on the third wire cancel
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [parallel-wires, superposition]
+    stem: Three long parallel wires A, B and C lie in a plane at x = 0, d and 2d. B carries 3 A. For the net force on C to be zero (whatever the current in C), A must carry
+    options:
+      - 6 A in the same direction as B
+      - 6 A opposite to B
+      - 1.5 A opposite to B
+      - 3 A opposite to B
+    answer: 1
+    explanation: The net field at C must vanish. B at distance d gives μ_0 × 3/(2πd); A at distance 2d must give an equal and opposite field, μ_0 I_A/(4πd), so I_A = 6 A, opposite to B.
+
+  - id: phy-mcm-481
+    topic: torque-dipole
+    subtopic: Scaling maximum torque
+    concept: τ_max = mB
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: false
+    battle: true
+    tags: [torque, proportionality]
+    stem: The magnetic moment of a coil is doubled and the field it is placed in is halved. The maximum torque on the coil becomes
+    options:
+      - twice
+      - four times
+      - unchanged
+      - half
+    answer: 2
+    explanation: τ_max = mB, and doubling m while halving B leaves the product unchanged.
+
+  - id: phy-mcm-482
+    topic: torque-dipole
+    subtopic: Orbital moment from speed
+    concept: μ = evr/2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: true
+    battle: false
+    formula: μ = evr/2
+    tags: [orbital-moment]
+    stem: The electron in a hydrogen atom moves at 2.2 × 10^6 m s^{-1} in an orbit of radius 0.53 Å. Its orbital magnetic moment is about
+    options:
+      - 1.9 × 10^{-23} A m^2
+      - 9.3 × 10^{-24} A m^2
+      - 4.7 × 10^{-24} A m^2
+      - 9.3 × 10^{-28} A m^2
+    answer: 1
+    explanation: I = ev/(2πr) and A = πr^2, so μ = evr/2 = 1.6 × 10^{-19} × 2.2 × 10^6 × 0.53 × 10^{-10}/2 ≈ 9.3 × 10^{-24} A m^2. Dropping the factor 2 gives 1.9 × 10^{-23}.
+
+  - id: phy-mcm-483
+    topic: torque-dipole
+    subtopic: Rotation without net force
+    concept: Zero net force does not prevent rotation
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [torque, trap]
+    stem: |-
+      Assertion (A): A current loop in a uniform magnetic field cannot rotate because the net force on it is zero.
+      Reason (R): The net magnetic force on a closed current loop in a uniform field is zero.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: R is true, but zero net force still allows a couple, τ = m × B, which rotates the loop. So A is false.
+
+  - id: phy-mcm-484
+    topic: torque-dipole
+    subtopic: Hinged loop
+    concept: Balancing magnetic and gravitational torques on a hinged loop
+    category: application
+    format: case
+    difficulty: 5
+    time: 150
+    ncert: false
+    battle: false
+    formula: tanθ = 2BIa/(mg)
+    tags: [torque, equilibrium, multi-concept]
+    stem: A square loop of side 0.1 m and mass 10 g hangs from a frictionless horizontal hinge along its top side, in a uniform vertical field of 0.5 T. When 1 A flows, the loop swings out and settles at angle θ from the vertical. θ is (g = 10 m s^{-2})
+    options:
+      - 30°
+      - 45°
+      - 60°
+      - 26.6°
+    answer: 1
+    explanation: Only the bottom side gives a torque about the hinge, BIa × a cos θ. Gravity gives mg(a/2) sin θ. Equating, tan θ = 2BIa/(mg) = 2 × 0.5 × 1 × 0.1/0.1 = 1, so θ = 45°.
+
+  - id: phy-mcm-485
+    topic: torque-dipole
+    subtopic: Validity of τ = m × B
+    concept: Torque formula holds for any planar loop
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: false
+    tags: [torque, ncert-line]
+    stem: Which statement about the torque on a planar current loop in a uniform field is correct?
+    options:
+      - τ = NIAB sin θ, derived for a rectangle, holds for a planar loop of any shape
+      - The torque depends on the shape of the loop for a given area
+      - The torque is maximum when the plane of the loop is perpendicular to B
+      - The torque is zero when m ⟂ B
+    answer: 0
+    explanation: NCERT notes that τ = m × B, derived for a rectangular loop, holds for any planar loop, since any shape can be built from small rectangles. It is maximum when m ⟂ B (plane parallel to B).
+
+  - id: phy-mcm-486
+    topic: torque-dipole
+    subtopic: Comparing magnetic moments
+    concept: Ranking m = NIA for several coils
+    category: numerical
+    format: ordering
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [magnetic-moment, ordering]
+    stem: |-
+      Arrange the magnetic moments in increasing order.
+      P. 10 turns of area 0.01 m^2 carrying 1 A
+      Q. a single circular loop of radius 0.2 m carrying 1 A
+      R. a single square loop of side 0.1 m carrying 5 A
+      S. a coil of 100 turns of area 10^{-3} m^2 carrying 2 A
+    options:
+      - P, R, Q, S
+      - R, P, Q, S
+      - R, Q, P, S
+      - R, P, S, Q
+    answer: 1
+    explanation: m = NIA gives P = 0.1, Q = π × 0.04 ≈ 0.126, R = 5 × 0.01 = 0.05 and S = 0.2 A m^2. So R < P < Q < S.
+
+  - id: phy-mcm-487
+    topic: torque-dipole
+    subtopic: Energy change on rotation
+    concept: W = mB(cos60° − cos90°)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: W = mB(cosθ_1 − cosθ_2)
+    tags: [work, potential-energy]
+    stem: A coil of magnetic moment 2 A m^2 in a 0.3 T field is turned from 60° to 90° (angle between m and B). The work done by the external agent is
+    options:
+      - 0.6 J
+      - 0.52 J
+      - zero
+      - 0.3 J
+    answer: 3
+    explanation: W = mB(cos 60° − cos 90°) = 2 × 0.3 × 0.5 = 0.3 J.
+
+  - id: phy-mcm-488
+    topic: torque-dipole
+    subtopic: Factors fixing magnetic moment
+    concept: m depends on N, I and A, not on B
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [magnetic-moment]
+    stem: |-
+      The magnetic moment of a flat current coil is proportional to:
+      I. the number of turns
+      II. the area of each turn
+      III. the current
+      IV. the external magnetic field in which it is placed
+    options:
+      - I, II and III only
+      - I and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 0
+    explanation: m = NIA is a property of the coil and its current. The external field determines the torque mB sin θ, not m itself.
+
+  - id: phy-mcm-489
+    topic: torque-dipole
+    subtopic: Loop in non-uniform field
+    concept: Non-uniform field gives force and torque; aligned loop in uniform field gives neither
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 50
+    ncert: false
+    battle: false
+    tags: [non-uniform-field, torque]
+    stem: |-
+      Statement I: A current loop in a non-uniform magnetic field can experience both a net force and a torque.
+      Statement II: A current loop in a uniform field with its magnetic moment parallel to the field experiences neither a net force nor a torque.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: In a non-uniform field the forces need not cancel, so there can be a net force as well as a torque. In a uniform field the net force is always zero, and m ∥ B gives τ = 0.
+
+  - id: phy-mcm-490
+    topic: torque-dipole
+    subtopic: Moment of a small square loop
+    concept: m = I a²
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: false
+    battle: true
+    formula: m = IA
+    tags: [magnetic-moment]
+    stem: A square loop of side 2 cm carries a current of 5 A. Its magnetic moment is
+    options:
+      - 0.1 A m^2
+      - 2 × 10^{-3} A m^2
+      - 2 × 10^{-2} A m^2
+      - 4 × 10^{-4} A m^2
+    answer: 1
+    explanation: A = (0.02)^2 = 4 × 10^{-4} m^2, so m = IA = 5 × 4 × 10^{-4} = 2 × 10^{-3} A m^2.
+
+  - id: phy-mcm-491
+    topic: torque-dipole
+    subtopic: Angle measured from the plane
+    concept: τ = NIAB cosα when α is the angle between the plane and B
+    category: application
+    format: diagram
+    difficulty: 4
+    time: 70
+    ncert: true
+    battle: false
+    diagram: "A rectangular coil PQRS of N turns, sides PQ = RS = a (vertical, parallel to the rotation axis) and QR = SP = b, pivots about a vertical axis through the midpoints of QR and SP. A uniform horizontal field B points to the right. Top view: the plane of the coil makes an angle α with B; the normal to the coil makes 90° − α with B. Forces on PQ and RS are equal, opposite and horizontal, perpendicular to B."
+    formula: τ = NIAB sin(90° − α)
+    tags: [torque, rectangular-coil]
+    stem: For the coil shown (N turns, area A = ab, current I), whose plane makes angle α with the uniform field B, the torque about the axis is
+    options:
+      - NIAB sin α
+      - NIAB tan α
+      - NIAB cos α
+      - NIAB
+    answer: 2
+    explanation: The normal (direction of m) makes 90° − α with B, so τ = NIAB sin(90° − α) = NIAB cos α. It is maximum when the plane is along B (α = 0).
+
+  - id: phy-mcm-492
+    topic: galvanometer
+    subtopic: Current through the shunt
+    concept: Shunt carries I − I_g
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 25
+    ncert: false
+    battle: true
+    tags: [shunt, ammeter]
+    stem: A galvanometer with full-scale current 10 mA is shunted to make a 0–1 A ammeter. At full scale, the current through the shunt is
+    options:
+      - 10 mA
+      - 1 A
+      - 0.01 A
+      - 0.99 A
+    answer: 3
+    explanation: The galvanometer carries I_g = 0.01 A, so the shunt carries 1 − 0.01 = 0.99 A.
+
+  - id: phy-mcm-493
+    topic: galvanometer
+    subtopic: Reducing deflection with a shunt
+    concept: I_g/I = S/(G + S)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 55
+    ncert: false
+    battle: false
+    formula: I_g/I = S/(G + S)
+    tags: [shunt]
+    stem: A 60 Ω galvanometer is shunted so that its deflection falls to one-fourth for the same main current. The shunt resistance is
+    options:
+      - 20 Ω
+      - 15 Ω
+      - 240 Ω
+      - 180 Ω
+    answer: 0
+    explanation: The coil now carries I/4, so S/(G + S) = 1/4, giving 4S = G + S and S = G/3 = 20 Ω. The value 15 Ω wrongly uses G/4.
+
+  - id: phy-mcm-494
+    topic: galvanometer
+    subtopic: Loading effect of a voltmeter
+    concept: A voltmeter slightly lowers the p.d. it measures
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [voltmeter, loading]
+    stem: |-
+      Assertion (A): A real voltmeter connected across a resistor in a circuit reads slightly less than the p.d. across it before the voltmeter was connected.
+      Reason (R): The voltmeter in parallel lowers the effective resistance of that part of the circuit.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: The parallel combination has lower resistance than the resistor alone, so it takes a smaller share of the source voltage. The effect is small only when the voltmeter's resistance is very large.
+
+  - id: phy-mcm-495
+    topic: galvanometer
+    subtopic: Shunts for two ranges
+    concept: S = I_g G/(I − I_g), ratio of shunts for 1 A and 10 A
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: S = I_g G/(I − I_g)
+    tags: [shunt, ammeter, multi-range]
+    stem: A galvanometer with full-scale current 1 mA is to be made into ammeters of range 1 A (shunt S_1) and 10 A (shunt S_2). The ratio S_1/S_2 is about
+    options:
+      - 1/10
+      - "10"
+      - "100"
+      - "1"
+    answer: 1
+    explanation: S = I_g G/(I − I_g), so S_1/S_2 = (10 − 0.001)/(1 − 0.001) ≈ 10. The larger range needs the smaller shunt.
+
+  - id: phy-mcm-496
+    topic: galvanometer
+    subtopic: Construction of meters
+    concept: Ammeter is a galvanometer with a low parallel shunt
+    category: factual
+    format: statements
+    difficulty: 3
+    time: 35
+    ncert: true
+    battle: false
+    tags: [ammeter, voltmeter, trap]
+    stem: Which statement is INCORRECT?
+    options:
+      - A voltmeter is a galvanometer with a high resistance in series
+      - An ammeter has a lower resistance than the galvanometer it is made from
+      - An ammeter is a galvanometer with a high resistance in series
+      - A shunt is a low resistance connected in parallel with the galvanometer
+    answer: 2
+    explanation: An ammeter is a galvanometer with a low-resistance shunt in parallel. A high series resistance makes a voltmeter.
+
+  - id: phy-mcm-497
+    topic: galvanometer
+    subtopic: Shunt versus range
+    concept: S = I_g G/(I − I_g) decreases as range increases
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, shunt]
+    stem: Ammeters of different ranges I (all greater than I_g) are made from the same galvanometer. The graph of shunt resistance S against range I is
+    options:
+      - a straight line through the origin
+      - a horizontal line
+      - a curve rising steadily with I
+      - a curve falling steadily, approaching zero for large I
+    answer: 3
+    explanation: S = I_g G/(I − I_g) becomes very large as I approaches I_g and falls towards zero as I grows, so it decreases steadily with range.
+
+  - id: phy-mcm-498
+    topic: galvanometer
+    subtopic: Rules of conversion
+    concept: Shunt for ammeter, series resistance for voltmeter, range dependence
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [ammeter, voltmeter, shunt]
+    stem: |-
+      About converting a galvanometer into meters:
+      I. For an ammeter, a shunt is connected in parallel.
+      II. For a voltmeter, a resistance is connected in series.
+      III. An ammeter of larger range needs a smaller shunt.
+      IV. A voltmeter of larger range needs a smaller series resistance.
+      Which statements are correct?
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: S = I_g G/(I − I_g) falls as I rises, while R = V/I_g − G rises with V. So IV is false and the others are correct.
+
+  - id: phy-mcm-499
+    topic: galvanometer
+    subtopic: Figure of merit
+    concept: Figure of merit and sensitivity are inversely related
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    tags: [figure-of-merit, sensitivity]
+    stem: |-
+      Statement I: The figure of merit of a galvanometer is the current needed to produce a deflection of one division.
+      Statement II: A galvanometer with a smaller figure of merit is more sensitive.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Figure of merit = current per division, the reciprocal of current sensitivity. A smaller figure of merit means less current is needed per division, i.e. higher sensitivity.
+
+  - id: phy-mcm-500
+    topic: galvanometer
+    subtopic: Ohms-per-volt rating
+    concept: A rating of R ohm per volt means I_g = 1/R
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: false
+    formula: R_V = V/I_g
+    tags: [voltmeter]
+    stem: A voltmeter is rated at 20,000 Ω per volt. The current through its coil at full-scale deflection is
+    options:
+      - 20 μA
+      - 5 mA
+      - 0.5 mA
+      - 50 μA
+    answer: 3
+    explanation: Resistance per volt = R_V/V = 1/I_g, so I_g = 1/20,000 A = 50 μA, whatever the range.
