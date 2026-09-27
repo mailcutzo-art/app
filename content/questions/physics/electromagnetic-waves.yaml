@@ -2638,3 +2638,680 @@ questions:
       - rotation of molecules
     answer: 2
     explanation: Light frequencies (~10^{14} Hz) are far above circuit frequencies; they arise when electrons in atoms and molecules change energy levels. Nuclear transitions give gamma rays.
+  - id: phy-emw-132
+    topic: nature-of-em-waves
+    subtopic: Writing the B field
+    concept: B = (E_0/c) sin(ωt − kx) k̂ for E = E_0 sin(ωt − kx) ĵ
+    category: application
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [wave-equation, direction]
+    stem: The electric field of a plane wave in vacuum is E = E_0 sin(ωt − kx) ĵ. The accompanying magnetic field is
+    options:
+      - (E_0/c) cos(ωt − kx) k̂
+      - cE_0 sin(ωt − kx) k̂
+      - (E_0/c) sin(ωt − kx) î
+      - (E_0/c) sin(ωt − kx) k̂
+    answer: 3
+    explanation: B is in phase with E, has amplitude E_0/c, and must be perpendicular to both ĵ and the propagation direction +î so that E × B is along +î; ĵ × k̂ = î, so B is along +k̂.
+  - id: phy-emw-133
+    topic: nature-of-em-waves
+    subtopic: Reading the wave equation
+    concept: ω = ck for a wave in vacuum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: ω = ck
+    tags: [wave-equation]
+    stem: The electric field of a light wave in vacuum is E_x = 36 sin(1.2 × 10^7 z − ωt) V m^{-1}. The value of ω is
+    options:
+      - 4 × 10^{-2} rad s^{-1}
+      - 3.6 × 10^{15} rad s^{-1}
+      - 2.5 × 10^{-1} rad s^{-1}
+      - 1.2 × 10^{15} rad s^{-1}
+    answer: 1
+    explanation: In vacuum ω = ck = 3 × 10^8 × 1.2 × 10^7 = 3.6 × 10^{15} rad s^{-1}.
+  - id: phy-emw-134
+    topic: nature-of-em-waves
+    subtopic: Field ratio in a medium
+    concept: E_0/B_0 = v = c/n in a medium
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    formula: E_0 = vB_0
+    tags: [speed-in-medium, amplitude-ratio, trap]
+    stem: A light wave travels in glass of refractive index 1.5. The amplitude of its magnetic field is 2 × 10^{-8} T. The amplitude of its electric field is
+    options:
+      - 6 V m^{-1}
+      - 9 V m^{-1}
+      - 3 V m^{-1}
+      - 4 V m^{-1}
+    answer: 3
+    explanation: In a medium E_0/B_0 = v = c/n = 2 × 10^8 m s^{-1}, so E_0 = 2 × 10^8 × 2 × 10^{-8} = 4 V m^{-1}. Using c gives the vacuum value 6 V m^{-1}.
+  - id: phy-emw-135
+    topic: nature-of-em-waves
+    subtopic: General properties
+    concept: EM waves are transverse, carry energy and momentum, can be polarised, need no medium
+    category: concept
+    format: multi-statement
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [properties]
+    stem: |-
+      Consider these statements about electromagnetic waves:
+      I. They are transverse.
+      II. They carry energy and momentum.
+      III. They can be polarised.
+      IV. They require a material medium to propagate.
+      Which are correct?
+    options:
+      - I and IV only
+      - I, II and IV only
+      - II and III only
+      - I, II and III only
+    answer: 3
+    explanation: EM waves are transverse (I), carry energy and momentum (II), and can be polarised (III). They travel through vacuum, so IV is false.
+  - id: phy-emw-136
+    topic: nature-of-em-waves
+    subtopic: Direction of B
+    concept: Reversing propagation with the same E reverses B
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [direction, cross-product]
+    stem: An electromagnetic wave travels along −x with its electric field along +y at some instant. The magnetic field at that instant is along
+    options:
+      - +z
+      - −y
+      - −z
+      - +x
+    answer: 2
+    explanation: E × B must point along −î. With E along ĵ, ĵ × (−k̂) = −î, so B is along −z.
+  - id: phy-emw-137
+    topic: nature-of-em-waves
+    subtopic: Direction of B
+    concept: B direction for E along (î + ĵ)/√2 and propagation along +z
+    category: application
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    tags: [direction, cross-product, vectors]
+    stem: A plane electromagnetic wave travels along +z. At an instant, its electric field at a point is along (î + ĵ)/√2. The magnetic field there is along
+    options:
+      - (î − ĵ)/√2
+      - (−î + ĵ)/√2
+      - (î + ĵ)/√2
+      - k̂
+    answer: 1
+    explanation: B must be perpendicular to E and to k̂, with E × B along +k̂. (î + ĵ) × (−î + ĵ) = î × ĵ + ĵ × (−î) = 2k̂, so B is along (−î + ĵ)/√2. The opposite choice (î − ĵ) would give −k̂.
+  - id: phy-emw-138
+    topic: nature-of-em-waves
+    subtopic: Direction of propagation
+    concept: Propagation along E × B
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [direction, cross-product]
+    stem: At a point, the electric field of an electromagnetic wave is along +x and the magnetic field is along +y. The wave travels along
+    options:
+      - +x
+      - −z
+      - +y
+      - +z
+    answer: 3
+    explanation: The direction of propagation is along E × B = î × ĵ = +k̂, i.e. +z.
+  - id: phy-emw-139
+    topic: nature-of-em-waves
+    subtopic: Field magnitudes
+    concept: B = |E|/c using the magnitude of the E vector
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: B = E/c
+    tags: [amplitude-ratio, vectors]
+    stem: At an instant, the electric field of a plane electromagnetic wave in vacuum at a point is (30î + 40ĵ) V m^{-1}. The magnitude of the magnetic field there is about
+    options:
+      - 1.67 × 10^{-7} T
+      - 2.33 × 10^{-7} T
+      - 1.33 × 10^{-7} T
+      - 1.5 × 10^{10} T
+    answer: 0
+    explanation: "|E| = √(30^2 + 40^2) = 50 V m^{-1}, so B = E/c = 50/3 × 10^8 ≈ 1.67 × 10^{-7} T. Adding the components (70) gives 2.33 × 10^{-7} T."
+  - id: phy-emw-140
+    topic: nature-of-em-waves
+    subtopic: Field ratio in a medium
+    concept: E/B equals wave speed in the medium, not c
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [speed-in-medium, amplitude-ratio, trap]
+    stem: |-
+      Statement I: For an electromagnetic wave in any medium, the ratio E_0/B_0 equals 3 × 10^8 m s^{-1}.
+      Statement II: For an electromagnetic wave in a medium of refractive index 2, E_0/B_0 = 1.5 × 10^8 m s^{-1}.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: E_0/B_0 equals the wave speed in the medium, v = c/n. For n = 2 it is 1.5 × 10^8 m s^{-1}; it equals c only in vacuum.
+  - id: phy-emw-141
+    topic: nature-of-em-waves
+    subtopic: Wavelength and frequency
+    concept: λ = c/ν for visible light
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    formula: λ = c/ν
+    tags: [wavelength]
+    stem: Light of frequency 5 × 10^{14} Hz travels in vacuum. Its wavelength is
+    options:
+      - 500 nm
+      - 600 nm
+      - 1.67 μm
+      - 60 nm
+    answer: 1
+    explanation: λ = c/ν = 3 × 10^8/5 × 10^{14} = 6 × 10^{-7} m = 600 nm.
+  - id: phy-emw-142
+    topic: nature-of-em-waves
+    subtopic: Wave number and frequency
+    concept: ν = ck/2π
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: ν = ck/2π
+    tags: [wave-equation, trap]
+    stem: A plane electromagnetic wave in vacuum has angular wave number k = 10^7 rad m^{-1}. Its frequency is about
+    options:
+      - 3 × 10^{15} Hz
+      - 4.8 × 10^{14} Hz
+      - 3.3 × 10^{-2} Hz
+      - 1.9 × 10^{16} Hz
+    answer: 1
+    explanation: ω = ck = 3 × 10^{15} rad s^{-1}, so ν = ω/2π ≈ 4.8 × 10^{14} Hz (λ = 2π/k ≈ 628 nm, visible). 3 × 10^{15} is ω, not ν.
+  - id: phy-emw-143
+    topic: nature-of-em-waves
+    subtopic: Speed in a medium
+    concept: v depends on both ε and μ
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [speed-in-medium, refractive-index]
+    stem: |-
+      Statement I: The speed of electromagnetic waves in a medium depends only on its permittivity.
+      Statement II: The refractive index of a medium is n = √(μ_r ε_r).
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: v = 1/√(με) depends on both permeability and permittivity, so Statement I is wrong. n = c/v = √(μ_r ε_r), so Statement II is right.
+  - id: phy-emw-144
+    topic: nature-of-em-waves
+    subtopic: Speed in a medium
+    concept: v = c/√(μ_r ε_r) with μ_r ≠ 1
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: v = c/√(μ_r ε_r)
+    tags: [speed-in-medium]
+    stem: A medium has relative permeability 2 and relative permittivity 8. The speed of electromagnetic waves in it is
+    options:
+      - 7.5 × 10^7 m s^{-1}
+      - 1.5 × 10^8 m s^{-1}
+      - 3.75 × 10^7 m s^{-1}
+      - 1.2 × 10^9 m s^{-1}
+    answer: 0
+    explanation: v = c/√(μ_r ε_r) = 3 × 10^8/√16 = 7.5 × 10^7 m s^{-1}.
+  - id: phy-emw-145
+    topic: nature-of-em-waves
+    subtopic: Travel time
+    concept: Sunlight takes about 500 s to reach the earth
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    formula: t = d/c
+    tags: [speed-of-light]
+    stem: The sun is 1.5 × 10^{11} m from the earth. The time taken by sunlight to reach the earth is about
+    options:
+      - 50 s
+      - 5000 s
+      - 500 s
+      - 8 s
+    answer: 2
+    explanation: t = d/c = 1.5 × 10^{11}/3 × 10^8 = 500 s, about 8.3 minutes.
+  - id: phy-emw-146
+    topic: nature-of-em-waves
+    subtopic: Snapshot of the wave
+    concept: E and B sinusoids are in phase in perpendicular planes
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [graph, phase]
+    stem: A snapshot of a plane electromagnetic wave travelling along x is drawn, with E plotted in the xy-plane and B in the xz-plane. Which describes the correct picture?
+    options:
+      - Two sine curves of equal wavelength whose maxima occur at the same x
+      - Two sine curves of equal wavelength shifted by a quarter wavelength
+      - Two sine curves of different wavelengths in the same plane
+      - A sine curve for E and a straight line for B
+    answer: 0
+    explanation: E and B have the same wavelength and are in phase, so their crests and zeros occur at the same x, but they lie in perpendicular planes.
+  - id: phy-emw-147
+    topic: nature-of-em-waves
+    subtopic: Dispersion relation in vacuum
+    concept: ω/k must equal c in vacuum
+    category: application
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: ω/k = c
+    tags: [wave-equation]
+    stem: E = E_0 sin(kx − ωt) is proposed for an electromagnetic wave in vacuum (SI units). Which pair of values is possible?
+    options:
+      - k = 2 rad m^{-1}, ω = 3 × 10^8 rad s^{-1}
+      - k = 6 × 10^8 rad m^{-1}, ω = 2 rad s^{-1}
+      - k = 2 rad m^{-1}, ω = 6 × 10^8 rad s^{-1}
+      - k = 1 rad m^{-1}, ω = 1.5 × 10^8 rad s^{-1}
+    answer: 2
+    explanation: In vacuum ω/k = c = 3 × 10^8 m s^{-1}. Only k = 2, ω = 6 × 10^8 satisfies this.
+  - id: phy-emw-148
+    topic: nature-of-em-waves
+    subtopic: NCERT problem
+    concept: B_0, ω, k and λ from E_0 and ν
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: B_0 = E_0/c, λ = c/ν
+    tags: [amplitude-ratio, wavelength]
+    stem: An electromagnetic wave in vacuum has E_0 = 120 N C^{-1} and frequency 50 MHz. Its B_0 and wavelength are
+    options:
+      - 400 nT and 6 m
+      - 400 nT and 60 m
+      - 4 μT and 6 m
+      - 36 T and 0.6 m
+    answer: 0
+    explanation: B_0 = E_0/c = 120/3 × 10^8 = 4 × 10^{-7} T = 400 nT, and λ = c/ν = 3 × 10^8/5 × 10^7 = 6 m.
+  - id: phy-emw-149
+    topic: nature-of-em-waves
+    subtopic: Wave number and frequency
+    concept: k ∝ ω in vacuum
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: false
+    battle: true
+    tags: [wave-equation, proportionality]
+    stem: If the frequency of an electromagnetic wave in vacuum is doubled, its angular wave number k
+    options:
+      - is halved
+      - stays the same
+      - becomes four times
+      - is doubled
+    answer: 3
+    explanation: k = ω/c with c fixed, so doubling ω doubles k (the wavelength halves).
+  - id: phy-emw-150
+    topic: energy-momentum
+    subtopic: Intensity from rms field
+    concept: I = cε_0E_{rms}^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: I = cε_0E_{rms}^2
+    tags: [intensity, rms-field]
+    stem: The rms electric field of a light beam is 6 V m^{-1}. Its intensity is about
+    options:
+      - 0.048 W m^{-2}
+      - 0.19 W m^{-2}
+      - 0.016 W m^{-2}
+      - 0.096 W m^{-2}
+    answer: 3
+    explanation: I = cε_0E_{rms}^2 = 3 × 10^8 × 8.85 × 10^{-12} × 36 ≈ 0.096 W m^{-2}. Using ½cε_0E^2 with the rms value gives the wrong 0.048.
+  - id: phy-emw-151
+    topic: energy-momentum
+    subtopic: Field of sunlight
+    concept: E_0 = √(2I/cε_0)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: E_0 = √(2I/cε_0)
+    tags: [intensity, solar]
+    stem: Sunlight reaching the top of the atmosphere has intensity about 1.33 kW m^{-2}. The peak electric field in it is about
+    options:
+      - 1000 V m^{-1}
+      - 700 V m^{-1}
+      - 100 V m^{-1}
+      - 3.3 × 10^{-6} V m^{-1}
+    answer: 0
+    explanation: E_0 = √(2I/cε_0) = √(2 × 1330/2.655 × 10^{-3}) ≈ √(1.0 × 10^6) ≈ 1000 V m^{-1}. 700 V m^{-1} is the rms value.
+  - id: phy-emw-152
+    topic: energy-momentum
+    subtopic: Field of sunlight
+    concept: B_0 = E_0/c from intensity
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: I = cB_0^2/2μ_0
+    tags: [intensity, solar, multi-concept]
+    stem: For sunlight of intensity 1.33 kW m^{-2}, the peak magnetic field is about
+    options:
+      - 3.3 × 10^{-3} T
+      - 3.3 × 10^{-6} T
+      - 2.4 × 10^{-6} T
+      - 3.3 × 10^{-9} T
+    answer: 1
+    explanation: E_0 = √(2I/cε_0) ≈ 1000 V m^{-1}, so B_0 = E_0/c ≈ 3.3 × 10^{-6} T. (2.4 × 10^{-6} T is the rms value.)
+  - id: phy-emw-153
+    topic: energy-momentum
+    subtopic: Energy in a region
+    concept: U = (I/c) × volume
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: true
+    battle: false
+    formula: U = u V = (I/c) A L
+    tags: [energy-density, intensity, multi-concept]
+    stem: A light beam of intensity 30 W m^{-2} has cross-section 2 × 10^{-4} m^2. The electromagnetic energy contained in a 3 m length of the beam is
+    options:
+      - 6 × 10^{-11} J
+      - 1.8 × 10^{-2} J
+      - 2 × 10^{-11} J
+      - 6 × 10^{-3} J
+    answer: 0
+    explanation: u = I/c = 30/3 × 10^8 = 10^{-7} J m^{-3}. Volume = 2 × 10^{-4} × 3 = 6 × 10^{-4} m^3, so U = 6 × 10^{-11} J.
+  - id: phy-emw-154
+    topic: energy-momentum
+    subtopic: Laser radiation pressure
+    concept: I = P/A then pressure I/c
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: p = I/c
+    tags: [radiation-pressure, laser]
+    stem: A 1 mW laser beam with cross-sectional area 1 mm^2 falls normally on a perfectly absorbing surface. The radiation pressure is about
+    options:
+      - 3.3 × 10^{-12} N m^{-2}
+      - 6.7 × 10^{-6} N m^{-2}
+      - 3.3 × 10^{-6} N m^{-2}
+      - 3.3 × 10^{-9} N m^{-2}
+    answer: 2
+    explanation: I = P/A = 10^{-3}/10^{-6} = 1000 W m^{-2}, so pressure = I/c = 1000/3 × 10^8 ≈ 3.3 × 10^{-6} N m^{-2}.
+  - id: phy-emw-155
+    topic: energy-momentum
+    subtopic: Force of a laser on a mirror
+    concept: F = 2P/c for a perfectly reflected beam
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: F = 2P/c
+    tags: [radiation-pressure, laser, reflection]
+    stem: A 3 W laser beam falls normally on a perfect mirror and is fully reflected. The force on the mirror is
+    options:
+      - 10^{-8} N
+      - 2 × 10^{-8} N
+      - 2 × 10^{-9} N
+      - 9 × 10^8 N
+    answer: 1
+    explanation: Momentum per second in the beam is P/c; reflection doubles the change, so F = 2P/c = 2 × 3/3 × 10^8 = 2 × 10^{-8} N.
+  - id: phy-emw-156
+    topic: energy-momentum
+    subtopic: Force of an absorbed beam
+    concept: F = P/c for an absorbed beam
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: F = P/c
+    tags: [radiation-pressure]
+    stem: A 60 W beam of light is completely absorbed by a black surface. The force on the surface is
+    options:
+      - 4 × 10^{-7} N
+      - 2 × 10^{-8} N
+      - 1.8 × 10^{10} N
+      - 2 × 10^{-7} N
+    answer: 3
+    explanation: F = rate of momentum delivered = P/c = 60/3 × 10^8 = 2 × 10^{-7} N. 4 × 10^{-7} N would apply for total reflection.
+  - id: phy-emw-157
+    topic: energy-momentum
+    subtopic: Partial reflection
+    concept: Pressure = (1 + r)I/c for reflectivity r
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: P = (1 + r)I/c
+    tags: [radiation-pressure, reflection, multi-concept]
+    stem: Light of intensity 600 W m^{-2} falls normally on a surface that reflects 50% and absorbs 50% of it. The radiation pressure on the surface is
+    options:
+      - 2 × 10^{-6} N m^{-2}
+      - 4 × 10^{-6} N m^{-2}
+      - 1 × 10^{-6} N m^{-2}
+      - 3 × 10^{-6} N m^{-2}
+    answer: 3
+    explanation: The absorbed half contributes 0.5I/c and the reflected half 2 × 0.5I/c, total 1.5I/c = 1.5 × 600/3 × 10^8 = 3 × 10^{-6} N m^{-2}.
+  - id: phy-emw-158
+    topic: energy-momentum
+    subtopic: Energy transport
+    concept: Intensity is average power per unit area and travels at c
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [intensity, energy-density]
+    stem: Which statement about energy transport by an electromagnetic wave in vacuum is correct?
+    options:
+      - Energy is carried only by the electric field
+      - Intensity is the average energy crossing unit area per unit time and equals u_avg c
+      - Intensity is proportional to the amplitude of the electric field
+      - Energy is carried only when the wave is absorbed
+    answer: 1
+    explanation: Energy is shared equally by E and B and flows at c, so I = u_avg c. Intensity varies as the square of the field amplitude, not linearly.
+  - id: phy-emw-159
+    topic: energy-momentum
+    subtopic: Pressure and amplitude
+    concept: Radiation pressure ∝ E_0^2
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [radiation-pressure, proportionality]
+    stem: If the electric field amplitude of a beam falling on an absorbing surface is tripled, the radiation pressure becomes
+    options:
+      - 3 times
+      - √3 times
+      - 9 times
+      - unchanged
+    answer: 2
+    explanation: Pressure = I/c and I ∝ E_0^2, so tripling E_0 makes the pressure 9 times larger.
+  - id: phy-emw-160
+    topic: energy-momentum
+    subtopic: Radiation pressure
+    concept: Pressure on a perfect absorber is I/c, not 2I/c
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [radiation-pressure, trap]
+    stem: |-
+      Assertion (A): The radiation pressure on a perfectly absorbing surface is 2I/c, where I is the intensity.
+      Reason (R): Electromagnetic waves carry momentum.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: EM waves do carry momentum (R true). A perfect absorber takes up momentum U/c, giving pressure I/c; 2I/c applies to a perfect reflector, so A is false.
+  - id: phy-emw-161
+    topic: energy-momentum
+    subtopic: Momentum over time
+    concept: Time to receive a given momentum, t = pc/(IA)
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 80
+    ncert: false
+    battle: false
+    formula: F = IA/c
+    tags: [momentum, radiation-pressure, multi-concept]
+    stem: Light of intensity 1500 W m^{-2} falls normally on a perfectly absorbing plate of area 1 m^2. How long does it take for the plate to receive a momentum of 10^{-3} kg m s^{-1}?
+    options:
+      - 100 s
+      - 2 × 10^{-4} s
+      - 200 s
+      - 20 s
+    answer: 2
+    explanation: Force = IA/c = 1500/3 × 10^8 = 5 × 10^{-6} N. Time = p/F = 10^{-3}/5 × 10^{-6} = 200 s.
+  - id: phy-emw-162
+    topic: energy-momentum
+    subtopic: Dimensions of intensity
+    concept: Intensity has dimensions [M T^{-3}]
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [dimensions, intensity]
+    stem: The dimensional formula of the intensity of an electromagnetic wave is
+    options:
+      - "[M L^2 T^{-3}]"
+      - "[M T^{-3}]"
+      - "[M L^{-1} T^{-2}]"
+      - "[M L T^{-3}]"
+    answer: 1
+    explanation: Intensity = power/area = [M L^2 T^{-3}]/[L^2] = [M T^{-3}]. [M L^{-1} T^{-2}] is pressure or energy density.
+  - id: phy-emw-163
+    topic: energy-momentum
+    subtopic: Line source
+    concept: For a long line source I ∝ 1/r, so E_0 ∝ 1/√r
+    category: application
+    format: direct
+    difficulty: 4
+    time: 70
+    ncert: false
+    battle: false
+    tags: [line-source, proportionality]
+    stem: A long straight tube-light radiates uniformly outwards like a line source. If the distance from it is increased from r to 4r, the amplitude of the electric field becomes
+    options:
+      - one-sixteenth
+      - one-fourth
+      - one-half
+      - unchanged
+    answer: 2
+    explanation: Power spreads over a cylinder of area 2πrL, so I ∝ 1/r. Since I ∝ E_0^2, E_0 ∝ 1/√r, and at 4r it becomes 1/√4 = ½. The point-source answer would be one-fourth.
+  - id: phy-emw-164
+    topic: energy-momentum
+    subtopic: Momentum and energy
+    concept: Momentum carried by EM energy U is U/c
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: p = U/c
+    tags: [momentum, ncert-line]
+    stem: An electromagnetic wave carrying energy U also carries linear momentum equal to
+    options:
+      - Uc
+      - U/c^2
+      - U/c
+      - Uc^2
+    answer: 2
+    explanation: The momentum delivered by a wave carrying energy U is p = U/c, as stated in NCERT.
+  - id: phy-emw-165
+    topic: energy-momentum
+    subtopic: Solar sails
+    concept: A reflecting sail gains twice the momentum of an absorbing one
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [radiation-pressure, reflection, application]
+    stem: A spacecraft is to be pushed by sunlight using a large thin sail. For the greatest push from the same sunlight, the sail should be
+    options:
+      - black, so that it absorbs all the light
+      - transparent, so light passes through
+      - highly reflecting, like a mirror
+      - painted with a UV-absorbing coating
+    answer: 2
+    explanation: A perfect reflector receives momentum 2U/c, twice that of a perfect absorber (U/c). A transparent sail receives almost none.

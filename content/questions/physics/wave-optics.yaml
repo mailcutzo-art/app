@@ -1,0 +1,2096 @@
+subject: physics
+chapter:
+  slug: wave-optics
+  name: Wave Optics
+  order: 24
+  classes: [12]
+  topics:
+    - slug: huygens-wavefronts
+      name: Wavefronts and Huygens principle
+    - slug: huygens-reflection-refraction
+      name: Reflection, refraction and Doppler effect via wavefronts
+    - slug: coherent-superposition
+      name: Coherent and incoherent addition of waves
+    - slug: youngs-double-slit
+      name: Young's double-slit experiment
+    - slug: ydse-variations
+      name: YDSE with slabs, media and white light
+    - slug: single-slit-diffraction
+      name: Diffraction at a single slit
+    - slug: resolving-power
+      name: Resolving power and validity of ray optics
+    - slug: polarisation
+      name: Polarisation, Malus law and Brewster angle
+questions:
+  - id: phy-wop-001
+    topic: huygens-wavefronts
+    subtopic: Definition of wavefront
+    concept: A wavefront is the locus of points oscillating in the same phase
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [wavefront, ncert-line]
+    stem: A wavefront is best defined as the locus of all points that
+    options:
+      - are at the same distance from the source
+      - have the same amplitude of vibration
+      - oscillate in the same phase
+      - have the same speed of propagation
+    answer: 2
+    explanation: NCERT defines a wavefront as a surface of constant phase, i.e. the locus of points oscillating in phase. Points at equal distance from a point source happen to be in phase in a uniform medium, but equal distance is not the definition; in a non-uniform medium the wavefront is not a sphere.
+
+  - id: phy-wop-002
+    topic: huygens-wavefronts
+    subtopic: Shape of wavefronts
+    concept: A point source produces spherical wavefronts
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [wavefront-shape]
+    stem: The wavefronts emitted by a point source in a homogeneous medium are
+    options:
+      - spherical
+      - cylindrical
+      - plane
+      - elliptical
+    answer: 0
+    explanation: Disturbance from a point source spreads equally in all directions, so surfaces of constant phase are spheres centred on the source. A linear source gives cylindrical wavefronts, and a very distant source gives plane wavefronts.
+
+  - id: phy-wop-003
+    topic: huygens-wavefronts
+    subtopic: Shape of wavefronts
+    concept: A linear source (slit) produces cylindrical wavefronts
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    tags: [wavefront-shape]
+    stem: Light from a long illuminated narrow slit spreads out with wavefronts that are
+    options:
+      - spherical
+      - plane
+      - conical
+      - cylindrical
+    answer: 3
+    explanation: A long slit behaves as a line source, and all points at the same perpendicular distance from the line are in phase, so the wavefronts are coaxial cylinders. Spherical wavefronts need a point source.
+
+  - id: phy-wop-004
+    topic: huygens-wavefronts
+    subtopic: Ray and wavefront
+    concept: Rays are normal to the wavefront
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [ray, wavefront, ncert-line]
+    stem: The angle between a light ray and the wavefront at the point where it meets it is
+    options:
+      - 0°
+      - 45°
+      - 90°
+      - 180°
+    answer: 2
+    explanation: The direction of energy flow (the ray) is always perpendicular to the wavefront in an isotropic medium. So the angle is 90°.
+
+  - id: phy-wop-005
+    topic: huygens-wavefronts
+    subtopic: Plane wavefront
+    concept: Light from a very distant source reaches as plane wavefronts
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [plane-wavefront]
+    stem: Sunlight reaching the Earth can be treated as having plane wavefronts because
+    options:
+      - the Sun is a line source
+      - a small part of a very large sphere is nearly flat
+      - the atmosphere flattens the wavefronts
+      - sunlight is polarised
+    answer: 1
+    explanation: At a great distance from the source the radius of the spherical wavefront is huge, so any small portion of it is practically a plane. The atmosphere does not flatten wavefronts and polarisation has nothing to do with wavefront shape.
+
+  - id: phy-wop-006
+    topic: huygens-wavefronts
+    subtopic: Huygens construction
+    concept: Each point on a wavefront acts as a source of secondary wavelets
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    tags: [huygens-principle, ncert-line]
+    stem: According to Huygens principle, the new position of a wavefront after time t is obtained as
+    options:
+      - the backward envelope of the secondary wavelets
+      - the line joining the centres of the secondary wavelets
+      - the surface of maximum intensity of the wavelets
+      - the forward envelope (common tangent) of the secondary wavelets
+    answer: 3
+    explanation: Every point of the wavefront emits secondary wavelets moving with the wave speed; after time t, the forward common tangent (envelope) of these wavelets of radius vt gives the new wavefront. The backward envelope is rejected because no backwave is observed.
+
+  - id: phy-wop-007
+    topic: huygens-wavefronts
+    subtopic: Backwave
+    concept: Huygens assumed the amplitude of secondary wavelets is zero in the backward direction
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [backwave, ncert-line, trap]
+    stem: Why does Huygens construction ignore the backward envelope of secondary wavelets?
+    options:
+      - Backward wavelets travel slower
+      - The amplitude of secondary wavelets is taken as zero in the backward direction
+      - Backward wavelets are absorbed by the source
+      - Backward wavelets are always out of phase with the forward ones
+    answer: 1
+    explanation: Huygens ad hoc assumption (later justified by a more rigorous theory) is that the secondary wavelet amplitude is maximum in the forward direction and zero in the backward direction, so no backwave appears. Speed of the wavelets is the same in every direction.
+
+  - id: phy-wop-008
+    topic: huygens-wavefronts
+    subtopic: Intensity variation
+    concept: For a spherical wave amplitude falls as 1/r
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: A ∝ 1/r, I ∝ 1/r^2
+    tags: [spherical-wave, amplitude]
+    stem: For a spherical wavefront, if the distance from the point source is doubled, the amplitude becomes
+    options:
+      - one-fourth
+      - unchanged
+      - one-half
+      - 1/√2 times
+    answer: 2
+    explanation: Intensity of a spherical wave falls as 1/r^2 because the same power spreads over area 4πr^2; amplitude ∝ √I ∝ 1/r, so doubling r halves it. One-fourth is the change in intensity, not amplitude.
+
+  - id: phy-wop-009
+    topic: huygens-wavefronts
+    subtopic: Intensity variation
+    concept: For a cylindrical wave amplitude falls as 1/√r
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: I ∝ 1/r, A ∝ 1/√r
+    tags: [cylindrical-wave, amplitude, trap]
+    stem: For a cylindrical wavefront from a line source, how does amplitude vary with distance r from the source?
+    options:
+      - A ∝ 1/√r
+      - A ∝ 1/r
+      - A ∝ 1/r^2
+      - A is independent of r
+    answer: 0
+    explanation: Power per unit length spreads over the curved surface 2πrL, so intensity ∝ 1/r and amplitude ∝ √I ∝ 1/√r. The 1/r law for amplitude belongs to a spherical wave.
+
+  - id: phy-wop-010
+    topic: huygens-wavefronts
+    subtopic: Wavefront through optical devices
+    concept: A convex lens converts a plane wavefront into a converging spherical wavefront
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [lens, wavefront-shape, ncert-line]
+    stem: A plane wavefront falls normally on a thin convex lens. The emergent wavefront is
+    options:
+      - plane
+      - diverging spherical
+      - cylindrical
+      - converging spherical
+    answer: 3
+    explanation: The central part of the wavefront travels through the thickest glass and is delayed most, so the emergent wavefront is curved with its centre at the focus, i.e. a spherical wavefront converging to the focal point.
+
+  - id: phy-wop-011
+    topic: huygens-wavefronts
+    subtopic: Wavefront through optical devices
+    concept: A prism tilts a plane wavefront but keeps it plane
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [prism, wavefront-shape]
+    stem: A plane wavefront passes through a thin prism. The emerging wavefront is
+    options:
+      - plane but tilted
+      - spherical and converging
+      - spherical and diverging
+      - cylindrical
+    answer: 0
+    explanation: Near the base the wave goes through more glass and is delayed more than near the apex, and the delay varies linearly across the prism, so the wavefront stays plane but is tilted, i.e. the light is deviated towards the base.
+
+  - id: phy-wop-012
+    topic: huygens-wavefronts
+    subtopic: Wavefront through optical devices
+    concept: Matching incident wavefront with device and emergent wavefront
+    category: application
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: true
+    battle: false
+    tags: [wavefront-shape, lens, mirror, prism]
+    stem: |-
+      A plane wavefront is incident on each device in List I. Match with the emergent/reflected wavefront in List II.
+      List I: P. Thin prism; Q. Convex lens; R. Concave mirror; S. Concave lens
+      List II: 1. Spherical, diverging from a virtual focus; 2. Plane, tilted; 3. Spherical, converging to a point in front of the mirror; 4. Spherical, converging to a point behind the device
+    options:
+      - P-2, Q-4, R-1, S-3
+      - P-2, Q-4, R-3, S-1
+      - P-4, Q-2, R-3, S-1
+      - P-1, Q-4, R-3, S-2
+    answer: 1
+    explanation: A prism deviates the plane wavefront (P-2); a convex lens makes it converge to its focus beyond the lens (Q-4); a concave mirror reflects it as a converging spherical wavefront towards its focus in front of it (R-3); a concave lens makes it diverge as if from a virtual focus (S-1).
+
+  - id: phy-wop-013
+    topic: huygens-reflection-refraction
+    subtopic: Refraction by Huygens principle
+    concept: Snell's law from Huygens construction gives sin i/sin r = v_1/v_2
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: sin i / sin r = v_1/v_2 = n_2/n_1
+    tags: [snells-law, ncert-line]
+    stem: Using Huygens construction for refraction from medium 1 to medium 2, sin i/sin r equals
+    options:
+      - v_2/v_1
+      - v_1/v_2
+      - n_1/n_2
+      - v_1 v_2
+    answer: 1
+    explanation: In the time the incident wavefront travels BC = v_1τ in medium 1, the wavelet from A grows to AE = v_2τ in medium 2. Then sin i = BC/AC and sin r = AE/AC, so sin i/sin r = v_1/v_2 = n_2/n_1. Writing n_1/n_2 inverts the ratio.
+
+  - id: phy-wop-014
+    topic: huygens-reflection-refraction
+    subtopic: Speed in denser medium
+    concept: Wave theory predicts light is slower in the denser medium
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [corpuscular-theory, ncert-line, trap]
+    stem: When light bends towards the normal on entering water, the wave theory predicts that the speed of light in water is
+    options:
+      - greater than in air
+      - equal to that in air
+      - less than in air
+      - zero at the surface
+    answer: 2
+    explanation: Bending towards the normal means r < i, and from sin i/sin r = v_1/v_2 this requires v_2 < v_1. Newton's corpuscular theory predicted the opposite (faster in water); Foucault's measurement confirmed the wave-theory prediction.
+
+  - id: phy-wop-015
+    topic: huygens-reflection-refraction
+    subtopic: Frequency and wavelength on refraction
+    concept: Frequency stays constant; wavelength becomes λ/n in a medium
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: λ_medium = λ_0/n
+    tags: [wavelength-in-medium]
+    stem: Light of wavelength 600 nm in air enters glass of refractive index 1.5. Its wavelength in glass is
+    options:
+      - 900 nm
+      - 600 nm
+      - 300 nm
+      - 400 nm
+    answer: 3
+    explanation: Frequency is set by the source and does not change on refraction, while speed drops to c/n, so λ = λ_0/n = 600/1.5 = 400 nm. Multiplying by n (900 nm) is the common slip.
+
+  - id: phy-wop-016
+    topic: huygens-reflection-refraction
+    subtopic: Frequency and wavelength on refraction
+    concept: Frequency is unchanged on refraction
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [frequency, trap]
+    stem: When a light wave passes from air into glass, which quantity remains unchanged?
+    options:
+      - Frequency
+      - Wavelength
+      - Speed
+      - Direction (for oblique incidence)
+    answer: 0
+    explanation: Frequency depends on the source and is continuous across the boundary; speed and wavelength both decrease by the factor n, and the direction changes for oblique incidence.
+
+  - id: phy-wop-017
+    topic: huygens-reflection-refraction
+    subtopic: Doppler effect for light
+    concept: Fractional Doppler shift Δν/ν = −v_radial/c for v ≪ c
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: Δλ/λ = v_radial/c
+    tags: [doppler-effect, red-shift]
+    stem: A spectral line of wavelength 600 nm from a galaxy is observed at 606 nm. The speed of recession of the galaxy is about
+    options:
+      - 3 × 10^6 m s^{-1}
+      - 3 × 10^5 m s^{-1}
+      - 3 × 10^7 m s^{-1}
+      - 6 × 10^6 m s^{-1}
+    answer: 0
+    explanation: For v ≪ c, Δλ/λ = v/c. Here Δλ/λ = 6/600 = 0.01, so v = 0.01 × 3 × 10^8 = 3 × 10^6 m s^{-1}. The increase in wavelength (red shift) shows the galaxy is receding.
+
+  - id: phy-wop-018
+    topic: huygens-reflection-refraction
+    subtopic: Doppler effect for light
+    concept: A receding source shows red shift
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [doppler-effect, red-shift, ncert-line]
+    stem: Light from a star moving away from the Earth is observed to be
+    options:
+      - blue-shifted, with higher frequency
+      - unchanged in wavelength
+      - shifted to shorter wavelength
+      - red-shifted, with longer wavelength
+    answer: 3
+    explanation: For a receding source the observed frequency decreases and wavelength increases, moving the lines towards the red end of the spectrum (red shift). Blue shift indicates approach.
+
+  - id: phy-wop-019
+    topic: huygens-reflection-refraction
+    subtopic: Reflection by Huygens principle
+    concept: Huygens construction gives angle of incidence equal to angle of reflection
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [reflection, huygens-principle]
+    stem: In the Huygens construction for reflection at a plane surface, the triangles formed are congruent because
+    options:
+      - the reflected wavelet travels faster than the incident wave
+      - the incident and reflected waves travel in the same medium with the same speed
+      - the reflected wave has a phase change of π
+      - the surface absorbs part of the wave
+    answer: 1
+    explanation: Incident and reflected waves are in the same medium, so in time τ both travel the same distance vτ. The right triangles then share the hypotenuse and have an equal side, making them congruent and giving i = r. A phase change of π does not affect the geometry.
+
+  - id: phy-wop-020
+    topic: huygens-reflection-refraction
+    subtopic: Speed in medium
+    concept: Speed ratio from refractive indices
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: v = c/n
+    tags: [speed-of-light]
+    stem: The refractive indices of water and glass are 4/3 and 3/2. The ratio of speed of light in water to that in glass is
+    options:
+      - 8/9
+      - 9/8
+      - "2"
+      - 1/2
+    answer: 1
+    explanation: v ∝ 1/n, so v_water/v_glass = n_glass/n_water = (3/2)/(4/3) = 9/8. Light is faster in water since water is optically rarer; 8/9 inverts the ratio.
+
+  - id: phy-wop-021
+    topic: huygens-reflection-refraction
+    subtopic: Total internal reflection via wavefronts
+    concept: Critical angle when refracted wavelet cannot form a tangent
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: sin i_c = v_1/v_2
+    tags: [critical-angle]
+    stem: Light travels at 2 × 10^8 m s^{-1} in glass and 3 × 10^8 m s^{-1} in air. The sine of the critical angle for glass–air is
+    options:
+      - 3/2
+      - 1/3
+      - 2/3
+      - 1/2
+    answer: 2
+    explanation: At the critical angle the refracted wave grazes the surface, r = 90°, so sin i_c = v_glass/v_air = 2/3. A sine value of 3/2 is impossible.
+
+  - id: phy-wop-022
+    topic: huygens-reflection-refraction
+    subtopic: Doppler effect for light
+    concept: Doppler shift depends on the radial component of velocity
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [doppler-effect, radial-velocity]
+    stem: |-
+      Assertion (A): A star moving exactly perpendicular to the line of sight shows (in the non-relativistic approximation) no Doppler shift.
+      Reason (R): The Doppler shift of light depends on the component of the source velocity along the line joining source and observer.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: NCERT writes Δν/ν = −v_radial/c, so only the radial component matters. For purely transverse motion v_radial = 0 and the first-order shift vanishes, so R correctly explains A.
+
+  - id: phy-wop-023
+    topic: coherent-superposition
+    subtopic: Coherent sources
+    concept: Coherent sources maintain a constant phase difference
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [coherence, ncert-line]
+    stem: Two sources are called coherent if they
+    options:
+      - have the same amplitude
+      - have the same intensity
+      - maintain a constant phase difference with time
+      - are placed very close together
+    answer: 2
+    explanation: Coherence means the phase difference between the two sources does not change with time (which also requires the same frequency). Equal amplitude or intensity is not needed; unequal amplitudes only reduce fringe contrast.
+
+  - id: phy-wop-024
+    topic: coherent-superposition
+    subtopic: Resultant intensity
+    concept: Coherent equal intensities give 4I_0 at constructive interference
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: I = 4I_0 cos^2(φ/2)
+    tags: [constructive-interference]
+    stem: Two coherent waves each of intensity I_0 meet in phase. The resultant intensity is
+    options:
+      - 2I_0
+      - 4I_0
+      - I_0
+      - zero
+    answer: 1
+    explanation: Amplitudes add, giving 2a, and intensity ∝ amplitude^2, so I = 4I_0. 2I_0 is the result for incoherent sources, where intensities simply add.
+
+  - id: phy-wop-025
+    topic: coherent-superposition
+    subtopic: Incoherent addition
+    concept: Incoherent sources add intensities
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [incoherent, trap]
+    stem: Two incoherent sources each produce intensity I_0 at a point. The average intensity at the point is
+    options:
+      - 4I_0
+      - I_0
+      - zero
+      - 2I_0
+    answer: 3
+    explanation: For incoherent sources the phase difference changes rapidly and randomly, so ⟨cos φ⟩ = 0 and the intensities add, giving 2I_0 everywhere with no fringes.
+
+  - id: phy-wop-026
+    topic: coherent-superposition
+    subtopic: Resultant intensity
+    concept: I = 4I_0cos^2(φ/2) at a given phase difference
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: I = 4I_0 cos^2(φ/2)
+    tags: [intensity, phase-difference]
+    stem: Two coherent waves of equal intensity I_0 superpose with phase difference π/2. The resultant intensity is
+    options:
+      - 2I_0
+      - I_0
+      - 4I_0
+      - 3I_0
+    answer: 0
+    explanation: I = 4I_0cos^2(π/4) = 4I_0 × ½ = 2I_0. Note this equals the incoherent average, but only at this particular phase difference.
+
+  - id: phy-wop-027
+    topic: coherent-superposition
+    subtopic: Path and phase difference
+    concept: Phase difference = (2π/λ) × path difference
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: φ = (2π/λ)Δx
+    tags: [phase-difference]
+    stem: A path difference of λ/4 between two waves corresponds to a phase difference of
+    options:
+      - π
+      - π/4
+      - π/2
+      - 2π
+    answer: 2
+    explanation: φ = (2π/λ)Δx = (2π/λ)(λ/4) = π/2. A full wavelength corresponds to 2π.
+
+  - id: phy-wop-028
+    topic: coherent-superposition
+    subtopic: Maximum and minimum intensity
+    concept: I_max/I_min = ((√I_1 + √I_2)/(√I_1 − √I_2))^2
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: true
+    formula: I_max/I_min = ((√I_1+√I_2)/(√I_1−√I_2))^2
+    tags: [intensity-ratio]
+    stem: "Two coherent sources have intensities in the ratio 9 : 4. The ratio of maximum to minimum intensity in the interference pattern is"
+    options:
+      - "9 : 4"
+      - "13 : 5"
+      - "81 : 16"
+      - "25 : 1"
+    answer: 3
+    explanation: "Amplitude ratio is √9 : √4 = 3 : 2. I_max/I_min = (3+2)^2/(3−2)^2 = 25/1. Using intensity directly instead of amplitude gives the wrong 13 : 5 type answers."
+
+  - id: phy-wop-029
+    topic: coherent-superposition
+    subtopic: Maximum and minimum intensity
+    concept: Finding amplitude ratio from I_max/I_min
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: √(I_max/I_min) = (a_1+a_2)/(a_1−a_2)
+    tags: [intensity-ratio, amplitude-ratio]
+    stem: "In an interference pattern the ratio of maximum to minimum intensity is 16 : 1. The ratio of amplitudes of the two interfering waves is"
+    options:
+      - "4 : 1"
+      - "5 : 3"
+      - "16 : 1"
+      - "3 : 1"
+    answer: 1
+    explanation: "√(I_max/I_min) = 4 = (a_1+a_2)/(a_1−a_2). Solving, a_1 + a_2 = 4a_1 − 4a_2, so 3a_1 = 5a_2 and a_1 : a_2 = 5 : 3. Taking 4 : 1 confuses the amplitude sum ratio with the amplitude ratio."
+
+  - id: phy-wop-030
+    topic: coherent-superposition
+    subtopic: Coherent sources
+    concept: Two independent bulbs are not coherent
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [coherence, ncert-line, trap]
+    stem: No interference fringes are seen with light from two separate sodium lamps because
+    options:
+      - their wavelengths are slightly different always
+      - their phase difference changes randomly in about 10^{-10} s
+      - sodium light is polarised
+      - their intensities are too high
+    answer: 1
+    explanation: Atoms in independent sources emit randomly, so the phase relation changes in times of order 10^{-10} s. The pattern shifts too fast and averages out to uniform illumination. Coherent sources are therefore derived from a single source, as in Young's slits.
+
+  - id: phy-wop-031
+    topic: coherent-superposition
+    subtopic: Energy conservation in interference
+    concept: Interference redistributes energy; average intensity is conserved
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [energy-conservation, interference]
+    stem: Which statement about the interference of two coherent beams of equal intensity I_0 is correct?
+    options:
+      - Energy is destroyed at the dark fringes
+      - The average intensity over the pattern is 2I_0, so energy is only redistributed
+      - The average intensity over the pattern is 4I_0
+      - Energy is created at the bright fringes
+    answer: 1
+    explanation: Intensity varies from 0 to 4I_0 as 4I_0cos^2(φ/2), whose average is 2I_0, the same as the sum of the two beams. Interference simply redistributes energy from dark to bright regions, consistent with energy conservation.
+
+  - id: phy-wop-032
+    topic: coherent-superposition
+    subtopic: Resultant intensity
+    concept: I = I_1 + I_2 + 2√(I_1I_2)cos φ for unequal intensities
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: I = I_1 + I_2 + 2√(I_1 I_2) cos φ
+    tags: [intensity, unequal-intensity]
+    stem: Two coherent waves of intensities I and 4I superpose at a point with phase difference 60°. The resultant intensity is
+    options:
+      - 5I
+      - 9I
+      - 7I
+      - 3I
+    answer: 2
+    explanation: I_R = I + 4I + 2√(4I^2) cos 60° = 5I + 4I × ½ = 7I. 9I would require zero phase difference.
+
+  - id: phy-wop-033
+    topic: coherent-superposition
+    subtopic: Condition for interference
+    concept: Condition for minimum intensity is odd multiple of λ/2 path difference
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: Δx = (n + ½)λ
+    tags: [destructive-interference]
+    stem: Destructive interference of two coherent waves in phase at the sources occurs when the path difference is
+    options:
+      - nλ
+      - (2n + 1)λ/2
+      - nλ/4
+      - 2nλ
+    answer: 1
+    explanation: A path difference of an odd multiple of λ/2 gives a phase difference of an odd multiple of π, so the waves cancel. Whole multiples of λ give constructive interference.
+
+  - id: phy-wop-034
+    topic: coherent-superposition
+    subtopic: Resultant intensity
+    concept: Intensity at a point where intensity is fraction of maximum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: I = I_max cos^2(φ/2)
+    tags: [intensity, phase-difference]
+    stem: In interference of two equal-intensity coherent beams, at what minimum phase difference is the intensity one-fourth of the maximum?
+    options:
+      - π/3
+      - π/2
+      - π/4
+      - 2π/3
+    answer: 3
+    explanation: I/I_max = cos^2(φ/2) = 1/4, so cos(φ/2) = ½, φ/2 = π/3 and φ = 2π/3. Choosing π/3 forgets the factor of ½ in the argument.
+
+  - id: phy-wop-035
+    topic: youngs-double-slit
+    subtopic: Fringe width
+    concept: Fringe width β = λD/d
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 30
+    ncert: true
+    battle: true
+    formula: β = λD/d
+    tags: [fringe-width]
+    stem: In YDSE, λ = 600 nm, slit separation 0.3 mm and screen distance 1 m. The fringe width is
+    options:
+      - 2 mm
+      - 0.2 mm
+      - 1.8 mm
+      - 20 mm
+    answer: 0
+    explanation: β = λD/d = (600 × 10^{-9} × 1)/(0.3 × 10^{-3}) = 2 × 10^{-3} m = 2 mm.
+
+  - id: phy-wop-036
+    topic: youngs-double-slit
+    subtopic: Fringe width dependence
+    concept: Fringe width is inversely proportional to slit separation
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: β = λD/d
+    tags: [fringe-width, proportionality]
+    stem: In YDSE, if the slit separation is doubled and screen distance halved, the fringe width becomes
+    options:
+      - unchanged
+      - double
+      - half
+      - one-fourth
+    answer: 3
+    explanation: β ∝ D/d. With D → D/2 and d → 2d, β → β × (1/2)/2 = β/4.
+
+  - id: phy-wop-037
+    topic: youngs-double-slit
+    subtopic: Position of fringes
+    concept: Position of nth bright fringe y_n = nλD/d
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: y_n = nλD/d
+    tags: [fringe-position]
+    stem: In YDSE with d = 1 mm, D = 1 m and λ = 500 nm, the distance of the third bright fringe from the central maximum is
+    options:
+      - 0.5 mm
+      - 1.25 mm
+      - 1.5 mm
+      - 2.5 mm
+    answer: 2
+    explanation: y_3 = 3λD/d = 3 × 500 × 10^{-9} × 1/10^{-3} = 1.5 × 10^{-3} m = 1.5 mm. 1.25 mm is the position of the third dark fringe (2.5β); careful with bright versus dark.
+
+  - id: phy-wop-038
+    topic: youngs-double-slit
+    subtopic: Position of fringes
+    concept: Position of nth dark fringe y = (2n−1)λD/(2d)
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: y = (n − ½)β
+    tags: [dark-fringe]
+    stem: In YDSE the fringe width is 0.4 mm. The distance of the second dark fringe from the central bright fringe is
+    options:
+      - 0.6 mm
+      - 0.8 mm
+      - 0.2 mm
+      - 1.0 mm
+    answer: 0
+    explanation: Dark fringes lie at (n − ½)β, so the second dark fringe is at 1.5β = 1.5 × 0.4 = 0.6 mm. 0.8 mm is the second bright fringe.
+
+  - id: phy-wop-039
+    topic: youngs-double-slit
+    subtopic: Angular fringe width
+    concept: Angular fringe width θ = λ/d is independent of D
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: θ = λ/d
+    tags: [angular-width, trap]
+    stem: In YDSE, the angular fringe width depends on
+    options:
+      - wavelength and screen distance only
+      - wavelength and slit separation only
+      - screen distance and slit separation only
+      - wavelength, screen distance and slit separation
+    answer: 1
+    explanation: Angular width θ = β/D = λ/d, so it does not depend on the screen distance D. Linear fringe width depends on D, which is the tempting trap.
+
+  - id: phy-wop-040
+    topic: youngs-double-slit
+    subtopic: Angular fringe width
+    concept: Calculating angular fringe width
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: θ = λ/d
+    tags: [angular-width]
+    stem: The angular fringe width in a YDSE with λ = 600 nm and d = 0.5 mm is
+    options:
+      - 1.2 × 10^{-2} rad
+      - 3 × 10^{-4} rad
+      - 1.2 × 10^{-3} rad
+      - 1.2 × 10^{-4} rad
+    answer: 2
+    explanation: θ = λ/d = 600 × 10^{-9}/(0.5 × 10^{-3}) = 1.2 × 10^{-3} rad.
+
+  - id: phy-wop-041
+    topic: youngs-double-slit
+    subtopic: Central fringe
+    concept: Central fringe is bright because path difference is zero
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [central-maximum]
+    stem: The central fringe in YDSE (with identical, in-phase slits) is bright because
+    options:
+      - the path difference there is zero
+      - light is brightest along the axis of the source
+      - it is closest to the slits
+      - diffraction concentrates light there
+    answer: 0
+    explanation: Points on the perpendicular bisector of the slits are equidistant from both, so path difference is zero and the waves arrive in phase, giving a maximum.
+
+  - id: phy-wop-042
+    topic: youngs-double-slit
+    subtopic: Fringe width dependence
+    concept: Red light gives wider fringes than blue
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [fringe-width, wavelength]
+    stem: If blue light in a YDSE is replaced by red light, keeping everything else fixed, the fringes
+    options:
+      - become narrower
+      - disappear
+      - remain unchanged
+      - become wider
+    answer: 3
+    explanation: β = λD/d and λ_red > λ_blue, so the fringe width increases.
+
+  - id: phy-wop-043
+    topic: youngs-double-slit
+    subtopic: Number of fringes
+    concept: Number of fringes in a given width scales inversely with wavelength
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: Nβ = constant
+    tags: [fringe-count, wavelength]
+    stem: In YDSE, 12 fringes are observed in a certain region of the screen with light of wavelength 600 nm. How many fringes are seen in the same region with light of 400 nm?
+    options:
+      - "8"
+      - "12"
+      - "18"
+      - "24"
+    answer: 2
+    explanation: Width of the region = N_1β_1 = N_2β_2, with β ∝ λ. So N_2 = N_1λ_1/λ_2 = 12 × 600/400 = 18. Shorter wavelength gives narrower fringes and hence more of them.
+
+  - id: phy-wop-044
+    topic: youngs-double-slit
+    subtopic: Wavelength from fringe data
+    concept: Finding λ from measured fringe width
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 50
+    ncert: true
+    battle: false
+    formula: λ = βd/D
+    tags: [wavelength-measurement]
+    stem: In a YDSE the slits are 0.28 mm apart and the screen is 1.4 m away. The distance between the central bright fringe and the fourth bright fringe is 1.2 cm. The wavelength of light is
+    options:
+      - 600 nm
+      - 400 nm
+      - 500 nm
+      - 700 nm
+    answer: 0
+    explanation: 4β = 1.2 cm, so β = 3 × 10^{-3} m. λ = βd/D = 3 × 10^{-3} × 0.28 × 10^{-3}/1.4 = 6 × 10^{-7} m = 600 nm.
+
+  - id: phy-wop-045
+    topic: youngs-double-slit
+    subtopic: Intensity at a point
+    concept: Intensity at a point where path difference is λ/3
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: I = I_0 cos^2(πΔx/λ)
+    tags: [intensity, path-difference]
+    stem: In YDSE with equal slits, the maximum intensity is I_0. The intensity at a point where the path difference is λ/3 is
+    options:
+      - I_0/2
+      - 3I_0/4
+      - I_0/4
+      - I_0/3
+    answer: 2
+    explanation: φ = 2π/3, so I = I_0cos^2(φ/2) = I_0cos^2(π/3) = I_0/4. Using cos^2(2π/3) also gives ¼ here by coincidence, but the correct formula uses φ/2.
+
+  - id: phy-wop-046
+    topic: youngs-double-slit
+    subtopic: Intensity at a point
+    concept: Intensity at a distance β/4 from central maximum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: φ = 2πy/β
+    tags: [intensity, fringe-width]
+    stem: In YDSE with equal slits, the central maximum has intensity I_0. The intensity at a point one-quarter of a fringe width from the central maximum is
+    options:
+      - I_0/4
+      - zero
+      - 3I_0/4
+      - I_0/2
+    answer: 3
+    explanation: A shift of β corresponds to phase difference 2π, so y = β/4 gives φ = π/2. I = I_0cos^2(π/4) = I_0/2.
+
+  - id: phy-wop-047
+    topic: youngs-double-slit
+    subtopic: Shape of fringes
+    concept: YDSE fringes are hyperbolic, nearly straight near the centre
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [fringe-shape]
+    stem: On a screen parallel to the line joining two pinholes, the exact shape of the interference fringes in YDSE is
+    options:
+      - circular
+      - elliptical
+      - hyperbolic (almost straight near the centre)
+      - parabolic
+    answer: 2
+    explanation: The locus of points with a constant path difference from two points is a hyperboloid; its intersection with the screen is a hyperbola, which appears nearly as straight lines close to the centre. Circular fringes form on a screen perpendicular to the line joining the sources.
+
+  - id: phy-wop-048
+    topic: youngs-double-slit
+    subtopic: Fringe properties
+    concept: Statements about YDSE fringes
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [fringe-width, ydse]
+    stem: |-
+      Consider the following statements about YDSE with monochromatic light:
+      I. All bright fringes have equal width for small angles.
+      II. The width of a bright fringe equals the width of a dark fringe.
+      III. Fringe width increases when the slits are moved closer.
+      IV. The fringe width depends on the intensity of light.
+      Which are correct?
+    options:
+      - I and IV only
+      - I, II and III only
+      - II and IV only
+      - I, III and IV only
+    answer: 1
+    explanation: For small angles fringes are equally spaced, bright and dark bands have equal width, and β = λD/d grows as d decreases. Fringe width has nothing to do with intensity, so IV is false.
+
+  - id: phy-wop-049
+    topic: youngs-double-slit
+    subtopic: Fringe width dependence
+    concept: Moving screen away increases fringe width proportionally
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    formula: Δβ = λΔD/d
+    tags: [fringe-width, screen-distance]
+    stem: In a YDSE with slit separation 1 mm, the screen is moved 50 cm farther from the slits and the fringe width changes by 0.3 mm. The wavelength of light is
+    options:
+      - 400 nm
+      - 500 nm
+      - 600 nm
+      - 700 nm
+    answer: 2
+    explanation: Δβ = λΔD/d gives λ = Δβ × d/ΔD = 0.3 × 10^{-3} × 10^{-3}/0.5 = 6 × 10^{-7} m = 600 nm.
+
+  - id: phy-wop-050
+    topic: youngs-double-slit
+    subtopic: Coincidence of fringes
+    concept: Bright fringes of two wavelengths coincide where n_1λ_1 = n_2λ_2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: n_1 λ_1 = n_2 λ_2
+    tags: [coincidence, two-wavelengths, multi-concept]
+    stem: A YDSE uses light containing 650 nm and 520 nm, with d = 2 mm and D = 1.2 m. The least distance from the central maximum where bright fringes of both wavelengths coincide is
+    options:
+      - 1.56 mm
+      - 1.95 mm
+      - 3.12 mm
+      - 1.17 mm
+    answer: 0
+    explanation: Need n_1(650) = n_2(520), i.e. n_1/n_2 = 4/5, so n_1 = 4. y = 4 × 650 × 10^{-9} × 1.2/(2 × 10^{-3}) = 1.56 × 10^{-3} m = 1.56 mm. 1.95 mm is only the 5th fringe of 650 nm.
+
+  - id: phy-wop-051
+    topic: ydse-variations
+    subtopic: YDSE in a medium
+    concept: Immersing YDSE in a liquid reduces fringe width by factor μ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: β' = β/μ
+    tags: [medium, fringe-width]
+    stem: A YDSE gives fringe width 1.2 mm in air. The whole set-up is immersed in water (μ = 4/3). The new fringe width is
+    options:
+      - 1.6 mm
+      - 1.2 mm
+      - 0.9 mm
+      - 0.6 mm
+    answer: 2
+    explanation: In a medium λ becomes λ/μ, so β' = β/μ = 1.2 × 3/4 = 0.9 mm. Multiplying by μ (1.6 mm) is the classic error.
+
+  - id: phy-wop-052
+    topic: ydse-variations
+    subtopic: Thin film in one slit
+    concept: Fringe shift due to slab = (μ−1)tD/d
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: Δy = (μ − 1)tD/d
+    tags: [slab, fringe-shift]
+    stem: A thin glass sheet (μ = 1.5) of thickness 6 μm covers one slit in a YDSE with d = 1 mm and D = 1 m. The shift of the central fringe is
+    options:
+      - 6 mm
+      - 3 mm
+      - 9 mm
+      - 1.5 mm
+    answer: 1
+    explanation: The extra optical path is (μ−1)t = 0.5 × 6 × 10^{-6} = 3 × 10^{-6} m. Shift = (μ−1)tD/d = 3 × 10^{-6} × 1/10^{-3} = 3 × 10^{-3} m = 3 mm.
+
+  - id: phy-wop-053
+    topic: ydse-variations
+    subtopic: Thin film in one slit
+    concept: Central fringe shifts towards the slit covered by the slab
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [slab, fringe-shift, trap]
+    stem: When a thin transparent sheet is placed in front of the upper slit in YDSE, the fringe pattern
+    options:
+      - shifts downward
+      - shifts upward, towards the covered slit
+      - becomes narrower
+      - disappears
+    answer: 1
+    explanation: The sheet adds optical path (μ−1)t to the upper ray, so zero path difference now occurs where the upper geometric path is shorter, i.e. above the centre. The whole pattern shifts towards the covered slit, with fringe width unchanged.
+
+  - id: phy-wop-054
+    topic: ydse-variations
+    subtopic: Thin film in one slit
+    concept: Fringe width is unchanged by a slab over one slit
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [slab, fringe-width]
+    stem: |-
+      Assertion (A): Placing a thin glass plate in front of one slit in YDSE does not change the fringe width.
+      Reason (R): The plate adds the same extra optical path to every ray from that slit, so the whole pattern only shifts.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: A constant extra path (μ−1)t is added for all points on the screen, so every fringe moves by the same amount and the spacing λD/d is unaffected. R correctly explains A.
+
+  - id: phy-wop-055
+    topic: ydse-variations
+    subtopic: Thin film in one slit
+    concept: Number of fringes shifted = (μ−1)t/λ
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: N = (μ − 1)t/λ
+    tags: [slab, fringe-count]
+    stem: A mica sheet of refractive index 1.6 and thickness 5 μm is placed over one slit in YDSE with light of 600 nm. By how many fringes does the pattern shift?
+    options:
+      - "3"
+      - "8"
+      - "10"
+      - "5"
+    answer: 3
+    explanation: N = (μ−1)t/λ = 0.6 × 5 × 10^{-6}/(600 × 10^{-9}) = 3 × 10^{-6}/6 × 10^{-7} = 5.
+
+  - id: phy-wop-056
+    topic: ydse-variations
+    subtopic: Thin film in one slit
+    concept: Thickness from the number of fringes shifted
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: t = Nλ/(μ − 1)
+    tags: [slab, thickness]
+    stem: When a glass film (μ = 1.5) covers one slit of a YDSE using 500 nm light, the central maximum moves to where the 4th bright fringe was. The thickness of the film is
+    options:
+      - 4 μm
+      - 2 μm
+      - 1 μm
+      - 8 μm
+    answer: 0
+    explanation: (μ−1)t = 4λ, so t = 4 × 500 × 10^{-9}/0.5 = 4 × 10^{-6} m = 4 μm. Forgetting the (μ−1) factor gives 2 μm.
+
+  - id: phy-wop-057
+    topic: ydse-variations
+    subtopic: White light fringes
+    concept: With white light the central fringe is white and others coloured
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [white-light, ncert-line]
+    stem: When white light is used in YDSE, the central fringe is
+    options:
+      - white
+      - dark
+      - red
+      - violet
+    answer: 0
+    explanation: At the centre the path difference is zero for every wavelength, so all colours interfere constructively and the central fringe is white. On either side the fringes are coloured.
+
+  - id: phy-wop-058
+    topic: ydse-variations
+    subtopic: White light fringes
+    concept: Closest to central white fringe on either side is violet/blue edge; red farther
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [white-light, trap]
+    stem: In YDSE with white light, the first bright fringe nearest to the central white fringe on either side has its inner edge
+    options:
+      - red
+      - violet (blue)
+      - green
+      - white
+    answer: 1
+    explanation: Positions of bright fringes are ∝ λ, so the first maximum of violet/blue lies closest to the centre and red farther away. Hence the inner edge of the first coloured fringe is violet-blue and the outer edge is red.
+
+  - id: phy-wop-059
+    topic: ydse-variations
+    subtopic: Source slit width
+    concept: Widening the source slit reduces fringe visibility
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [source-size, visibility, ncert-line]
+    stem: In YDSE, as the width of the source slit S is increased (keeping other things fixed), the fringes
+    options:
+      - become wider but sharper
+      - shift towards one side
+      - become less and less distinct and finally disappear
+      - become narrower
+    answer: 2
+    explanation: Different parts of a wide source produce patterns shifted relative to each other, which overlap and wash out. NCERT states that for fringes to be seen, s/S < λ/d must hold; beyond this the fringes vanish. Fringe width itself does not change.
+
+  - id: phy-wop-060
+    topic: ydse-variations
+    subtopic: Unequal slits
+    concept: Unequal slit widths make minima non-zero
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [unequal-intensity, contrast]
+    stem: If one slit of a YDSE is made slightly narrower than the other, then
+    options:
+      - fringe width decreases
+      - the pattern disappears completely
+      - dark fringes are no longer perfectly dark
+      - central fringe becomes dark
+    answer: 2
+    explanation: Unequal amplitudes give I_min = (a_1 − a_2)^2 ≠ 0, so contrast drops and the dark fringes are not completely dark. Positions and width depend only on λ, D and d.
+
+  - id: phy-wop-061
+    topic: ydse-variations
+    subtopic: One slit closed
+    concept: Closing one slit gives single-slit diffraction pattern, not uniform
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [one-slit-closed, trap]
+    stem: In a YDSE, one slit is completely covered. On the screen one now observes
+    options:
+      - the same fringes with half intensity
+      - uniform darkness
+      - fringes of half the width
+      - a broad diffraction pattern of the single open slit
+    answer: 3
+    explanation: With one slit there is no second coherent source, so the two-slit interference fringes vanish; what remains is the single-slit diffraction pattern of the open slit (broad central bright region).
+
+  - id: phy-wop-062
+    topic: ydse-variations
+    subtopic: Oblique incidence / source shift
+    concept: Shifting the source moves the pattern in the opposite direction
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: true
+    tags: [source-shift]
+    stem: In YDSE, if the source slit S is moved slightly upward (parallel to the slits), the central bright fringe moves
+    options:
+      - downward
+      - upward
+      - nowhere
+      - to infinity
+    answer: 0
+    explanation: Moving S upward makes the path SS_2 (to the lower slit) longer, so zero net path difference now requires the screen path from S_1 to be longer, which happens below the centre. The pattern shifts opposite to the source displacement, without changing width.
+
+  - id: phy-wop-063
+    topic: ydse-variations
+    subtopic: YDSE in a medium
+    concept: Finding refractive index of liquid from change in fringe width
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: false
+    battle: true
+    formula: μ = β_air/β_liquid
+    tags: [medium, refractive-index]
+    stem: The fringe width in a YDSE is 3 mm in air and 2 mm when immersed in a liquid. The refractive index of the liquid is
+    options:
+      - "1.33"
+      - "1.25"
+      - "1.5"
+      - "1.67"
+    answer: 2
+    explanation: β ∝ λ and λ in the medium is λ/μ, so μ = β_air/β_liquid = 3/2 = 1.5.
+
+  - id: phy-wop-064
+    topic: ydse-variations
+    subtopic: Effects of changes
+    concept: Matching YDSE changes to effects
+    category: application
+    format: match
+    difficulty: 3
+    time: 80
+    ncert: true
+    battle: false
+    tags: [ydse, fringe-width, multi-concept]
+    stem: |-
+      Match the change in a YDSE (List I) with its effect (List II).
+      List I: P. Set-up immersed in water; Q. Mica sheet over one slit; R. Monochromatic source replaced by white light; S. Slit separation reduced
+      List II: 1. Pattern shifts with same fringe width; 2. Fringe width decreases; 3. Fringe width increases; 4. Central white fringe with coloured fringes
+    options:
+      - P-2, Q-1, R-4, S-3
+      - P-3, Q-1, R-4, S-2
+      - P-2, Q-4, R-1, S-3
+      - P-1, Q-2, R-4, S-3
+    answer: 0
+    explanation: In water λ drops and β decreases (P-2); a mica sheet only shifts the pattern (Q-1); white light gives a white central fringe with coloured ones beside it (R-4); reducing d increases β = λD/d (S-3).
+
+  - id: phy-wop-065
+    topic: single-slit-diffraction
+    subtopic: Condition for minima
+    concept: Minima at a sin θ = nλ
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: a sin θ = nλ
+    tags: [minima, ncert-line]
+    stem: For diffraction at a single slit of width a, the first minimum occurs at an angle θ given by
+    options:
+      - a sin θ = λ/2
+      - a sin θ = λ
+      - a sin θ = 3λ/2
+      - a sin θ = 2λ
+    answer: 1
+    explanation: Dividing the slit into two halves, each point in the upper half pairs with one in the lower half with path difference λ/2 when a sin θ = λ, so contributions cancel and the first minimum appears there. a sin θ = λ/2 is a common confusion with interference minima.
+
+  - id: phy-wop-066
+    topic: single-slit-diffraction
+    subtopic: Width of central maximum
+    concept: Angular width of central maximum = 2λ/a
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: 2θ = 2λ/a
+    tags: [central-maximum, angular-width]
+    stem: Light of wavelength 500 nm falls on a slit 0.1 mm wide. The angular width of the central maximum is
+    options:
+      - 5 × 10^{-3} rad
+      - 2.5 × 10^{-3} rad
+      - 1 × 10^{-2} rad
+      - 1 × 10^{-3} rad
+    answer: 2
+    explanation: Angular width = 2λ/a = 2 × 500 × 10^{-9}/10^{-4} = 10^{-2} rad. 5 × 10^{-3} rad is only the half-angle to the first minimum.
+
+  - id: phy-wop-067
+    topic: single-slit-diffraction
+    subtopic: Width of central maximum
+    concept: Linear width of central maximum = 2λD/a
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: w = 2λD/a
+    tags: [central-maximum, linear-width]
+    stem: A slit of width 0.2 mm is illuminated by 600 nm light and the screen is 2 m away. The width of the central bright band is
+    options:
+      - 6 mm
+      - 3 mm
+      - 12 mm
+      - 1.2 mm
+    answer: 2
+    explanation: w = 2λD/a = 2 × 600 × 10^{-9} × 2/(0.2 × 10^{-3}) = 1.2 × 10^{-2} m = 12 mm.
+
+  - id: phy-wop-068
+    topic: single-slit-diffraction
+    subtopic: Effect of slit width
+    concept: Narrower slit gives broader central maximum
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [slit-width, proportionality]
+    stem: If the width of the slit in a single-slit diffraction experiment is halved, the width of the central maximum
+    options:
+      - is halved
+      - doubles
+      - remains the same
+      - becomes four times
+    answer: 1
+    explanation: Width of the central maximum ∝ λ/a, so halving a doubles it. A narrower slit spreads light more.
+
+  - id: phy-wop-069
+    topic: single-slit-diffraction
+    subtopic: Secondary maxima
+    concept: Secondary maxima approximately at a sin θ = (n + ½)λ
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: a sin θ = (n + ½)λ
+    tags: [secondary-maxima, ncert-line]
+    stem: The first secondary maximum in single-slit diffraction occurs approximately at
+    options:
+      - a sin θ = λ
+      - a sin θ = λ/2
+      - a sin θ = 2λ
+      - a sin θ = 3λ/2
+    answer: 3
+    explanation: Divide the slit into three parts; two cancel and one third contributes, giving a secondary maximum near a sin θ = 3λ/2. a sin θ = λ is the first minimum, not a maximum.
+
+  - id: phy-wop-070
+    topic: single-slit-diffraction
+    subtopic: Intensity of secondary maxima
+    concept: Secondary maxima become progressively weaker
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [secondary-maxima, intensity]
+    stem: In single-slit diffraction, the intensity of successive secondary maxima
+    options:
+      - decreases as their order increases
+      - increases with order
+      - equals that of the central maximum
+      - remains the same for all orders
+    answer: 0
+    explanation: For the nth secondary maximum only a fraction 1/(2n+1) of the slit contributes uncancelled, so the intensity falls rapidly with order. The central maximum is by far the brightest.
+
+  - id: phy-wop-071
+    topic: single-slit-diffraction
+    subtopic: Interference vs diffraction
+    concept: Differences between interference and diffraction patterns
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [interference-vs-diffraction, ncert-line]
+    stem: Which statement correctly distinguishes a YDSE interference pattern from a single-slit diffraction pattern?
+    options:
+      - In diffraction all bright fringes have equal intensity
+      - In interference the central fringe is twice as wide as other fringes
+      - Interference fringes are of equal width while in diffraction the central maximum is twice as wide as the others
+      - Diffraction involves only two sources while interference involves a continuum of sources
+    answer: 2
+    explanation: In the ideal two-slit pattern fringes are equally spaced and of nearly equal intensity, while in single-slit diffraction the central maximum has twice the width of the secondary maxima, whose intensity decreases. Diffraction arises from a continuous family of sources across the slit, not two.
+
+  - id: phy-wop-072
+    topic: single-slit-diffraction
+    subtopic: Effect of wavelength
+    concept: Diffraction is more prominent when slit width is comparable to wavelength
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [diffraction-condition]
+    stem: Diffraction of light is most noticeable when the size of the obstacle or aperture is
+    options:
+      - much larger than the wavelength
+      - comparable to the wavelength
+      - exactly zero
+      - independent of wavelength
+    answer: 1
+    explanation: Angular spread ~ λ/a is large only when a is of the order of λ. For apertures much larger than λ the spreading is negligible and light travels essentially in straight lines. That is why sound (long λ) diffracts easily around doors while light does not.
+
+  - id: phy-wop-073
+    topic: single-slit-diffraction
+    subtopic: Position of minima
+    concept: Distance of nth minimum from centre = nλD/a
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: y_n = nλD/a
+    tags: [minima, linear-distance]
+    stem: In a single-slit experiment with a = 0.5 mm, λ = 500 nm and D = 1 m, the distance of the second minimum from the centre is
+    options:
+      - 1 mm
+      - 2 mm
+      - 0.5 mm
+      - 4 mm
+    answer: 1
+    explanation: y_2 = 2λD/a = 2 × 500 × 10^{-9} × 1/(0.5 × 10^{-3}) = 2 × 10^{-3} m = 2 mm.
+
+  - id: phy-wop-074
+    topic: single-slit-diffraction
+    subtopic: Finding slit width
+    concept: Slit width from angular position of first minimum
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: true
+    formula: a = λ/sin θ
+    tags: [slit-width, first-minimum]
+    stem: The first diffraction minimum for 600 nm light falls at 30° from the central axis. The width of the slit is
+    options:
+      - 0.3 μm
+      - 0.6 μm
+      - 2.4 μm
+      - 1.2 μm
+    answer: 3
+    explanation: a sin 30° = λ, so a = 600 nm/0.5 = 1200 nm = 1.2 μm.
+
+  - id: phy-wop-075
+    topic: single-slit-diffraction
+    subtopic: Effect of medium
+    concept: Immersing slit in liquid narrows central maximum
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: w' = w/μ
+    tags: [medium, central-maximum]
+    stem: The central maximum in a single-slit pattern is 6 mm wide in air. If the apparatus is immersed in a liquid of μ = 1.5, the width becomes
+    options:
+      - 4 mm
+      - 9 mm
+      - 6 mm
+      - 3 mm
+    answer: 0
+    explanation: In the liquid λ' = λ/μ, and width ∝ λ, so it becomes 6/1.5 = 4 mm.
+
+  - id: phy-wop-076
+    topic: single-slit-diffraction
+    subtopic: Coincidence of minima and maxima
+    concept: A minimum of one wavelength coinciding with a maximum of another
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: false
+    battle: false
+    formula: a sin θ = λ (min), a sin θ ≈ 3λ'/2 (first secondary max)
+    tags: [two-wavelengths, multi-concept]
+    stem: "In single-slit diffraction, the first minimum for light of wavelength λ_1 coincides with the first secondary maximum for wavelength λ_2. The ratio λ_1 : λ_2 is"
+    options:
+      - "1 : 2"
+      - "2 : 3"
+      - "3 : 2"
+      - "1 : 1"
+    answer: 2
+    explanation: "a sin θ = λ_1 for the first minimum and a sin θ = 3λ_2/2 for the first secondary maximum. Equating, λ_1 = 3λ_2/2, so λ_1 : λ_2 = 3 : 2."
+
+  - id: phy-wop-077
+    topic: single-slit-diffraction
+    subtopic: Everyday diffraction
+    concept: Coloured fringes around shadows are due to diffraction
+    category: application
+    format: case
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [real-life, diffraction]
+    stem: When a razor blade is held in front of a point source of light and its shadow is viewed closely on a screen, faint bright and dark bands appear at the edges of the shadow. The phenomenon responsible is
+    options:
+      - polarisation
+      - dispersion
+      - total internal reflection
+      - diffraction
+    answer: 3
+    explanation: Light bends slightly around the sharp edges of the obstacle into the geometrical shadow region, and the secondary wavelets interfere to form bands. This is diffraction; dispersion would need a change of medium.
+
+  - id: phy-wop-078
+    topic: single-slit-diffraction
+    subtopic: Central point of pattern
+    concept: At the centre all parts of slit are in phase, giving the principal maximum
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [central-maximum]
+    stem: |-
+      Assertion (A): The central point of a single-slit diffraction pattern is the brightest.
+      Reason (R): At the central point, contributions from all parts of the slit arrive in phase.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: For θ = 0 all path differences from points across the slit to the central point vanish, so the wavelets add in phase and the intensity is maximum. R directly explains A.
+
+  - id: phy-wop-079
+    topic: resolving-power
+    subtopic: Fresnel distance
+    concept: Fresnel distance z_F = a^2/λ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: z_F = a^2/λ
+    tags: [fresnel-distance, ncert-line]
+    stem: For an aperture of size 2 mm and light of wavelength 500 nm, the Fresnel distance is
+    options:
+      - 4 m
+      - 8 m
+      - 0.8 m
+      - 2 m
+    answer: 1
+    explanation: z_F = a^2/λ = (2 × 10^{-3})^2/(5 × 10^{-7}) = 4 × 10^{-6}/5 × 10^{-7} = 8 m. Beyond this distance diffraction spreading dominates over the aperture size.
+
+  - id: phy-wop-080
+    topic: resolving-power
+    subtopic: Validity of ray optics
+    concept: Ray optics is valid for distances much smaller than Fresnel distance
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [ray-optics-validity, ncert-line]
+    stem: Ray optics (straight-line propagation of a beam through an aperture) is a good approximation when the distance travelled is
+    options:
+      - much larger than a^2/λ
+      - exactly equal to a^2/λ
+      - much smaller than a^2/λ
+      - independent of the aperture size
+    answer: 2
+    explanation: The diffraction spread over distance z is about zλ/a; it is negligible compared with the aperture a only if z ≪ a^2/λ (the Fresnel distance). For larger distances the beam spreads significantly.
+
+  - id: phy-wop-081
+    topic: resolving-power
+    subtopic: Telescope resolution
+    concept: Limit of resolution of telescope Δθ = 1.22λ/D
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: Δθ = 1.22λ/D
+    tags: [telescope, angular-resolution]
+    stem: A telescope objective has diameter 1.22 m. The smallest angular separation it can resolve for light of 600 nm is
+    options:
+      - 6 × 10^{-7} rad
+      - 1.22 × 10^{-7} rad
+      - 7.3 × 10^{-7} rad
+      - 5 × 10^{-7} rad
+    answer: 0
+    explanation: Δθ = 1.22λ/D = 1.22 × 600 × 10^{-9}/1.22 = 6 × 10^{-7} rad.
+
+  - id: phy-wop-082
+    topic: resolving-power
+    subtopic: Telescope resolution
+    concept: Larger objective aperture improves resolving power
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: false
+    battle: true
+    tags: [telescope, resolving-power]
+    stem: The resolving power of an astronomical telescope can be increased by
+    options:
+      - decreasing the diameter of the objective
+      - using light of longer wavelength
+      - increasing the length of the tube
+      - increasing the diameter of the objective
+    answer: 3
+    explanation: Resolving power = D/(1.22λ), so a larger objective aperture (or shorter wavelength) resolves finer angular detail. Tube length does not enter.
+
+  - id: phy-wop-083
+    topic: resolving-power
+    subtopic: Microscope resolution
+    concept: Resolving power of microscope ∝ n sin β/λ; oil immersion helps
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    formula: RP = 2n sin β/(1.22λ)
+    tags: [microscope, oil-immersion]
+    stem: Oil immersion objectives are used in microscopes mainly to
+    options:
+      - increase magnification by increasing focal length
+      - increase resolving power by increasing the numerical aperture
+      - reduce chromatic aberration
+      - increase the wavelength of light
+    answer: 1
+    explanation: Minimum resolvable distance is 1.22λ/(2n sin β). The oil raises n, increasing the numerical aperture n sin β and hence the resolving power.
+
+  - id: phy-wop-084
+    topic: resolving-power
+    subtopic: Microscope resolution
+    concept: Shorter wavelength improves microscope resolution
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    formula: RP ∝ 1/λ
+    tags: [microscope, wavelength]
+    stem: A microscope uses 600 nm light. If 400 nm light is used instead, its resolving power becomes
+    options:
+      - 2/3 times
+      - unchanged
+      - 1.5 times
+      - 2.25 times
+    answer: 2
+    explanation: Resolving power ∝ 1/λ, so the ratio is 600/400 = 1.5. 2.25 would wrongly square the ratio.
+
+  - id: phy-wop-085
+    topic: resolving-power
+    subtopic: Beam spreading
+    concept: Diffraction spread of a beam = zλ/a
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: spread ≈ zλ/a
+    tags: [beam-spread, fresnel-distance]
+    stem: A parallel beam of 500 nm light passes through a 1 mm aperture. Roughly how wide does the diffraction spread become (beyond the aperture size) after travelling 10 m?
+    options:
+      - 0.5 mm
+      - 5 mm
+      - 50 mm
+      - 0.05 mm
+    answer: 1
+    explanation: Spread ≈ zλ/a = 10 × 5 × 10^{-7}/10^{-3} = 5 × 10^{-3} m = 5 mm. Here z exceeds z_F = a^2/λ = 2 m, so spreading is larger than the aperture itself.
+
+  - id: phy-wop-086
+    topic: resolving-power
+    subtopic: Limit of resolution of eye
+    concept: Rayleigh criterion for two sources
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [rayleigh-criterion]
+    stem: According to the Rayleigh criterion, two point sources are just resolved when
+    options:
+      - the central maximum of one falls on the first minimum of the other
+      - their central maxima coincide
+      - the first maxima of both coincide
+      - their intensities are equal
+    answer: 0
+    explanation: Two diffraction images are just resolved when the principal maximum of one coincides with the first minimum of the other, giving a noticeable dip between them.
+
+  - id: phy-wop-087
+    topic: resolving-power
+    subtopic: Fresnel distance
+    concept: Fresnel distance increases with aperture squared
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: z_F = a^2/λ
+    tags: [fresnel-distance, proportionality]
+    stem: If the aperture size is tripled for the same light, the Fresnel distance becomes
+    options:
+      - 3 times
+      - 1/9 times
+      - √3 times
+      - 9 times
+    answer: 3
+    explanation: z_F = a^2/λ, so tripling a gives 9 times the Fresnel distance.
+
+  - id: phy-wop-088
+    topic: resolving-power
+    subtopic: Telescope resolution
+    concept: Resolving power statements for telescope and microscope
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [telescope, microscope, resolving-power]
+    stem: |-
+      Statement I: Using violet light instead of red light increases the resolving power of a telescope.
+      Statement II: Increasing the focal length of the objective of a telescope increases its resolving power.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: Resolving power = D/(1.22λ), which increases for shorter (violet) wavelength, so I is correct. Focal length affects magnification, not resolving power, so II is incorrect.
+
+  - id: phy-wop-089
+    topic: polarisation
+    subtopic: Nature of light
+    concept: Polarisation shows light is a transverse wave
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [transverse-wave, ncert-line]
+    stem: The phenomenon of polarisation establishes that light waves are
+    options:
+      - longitudinal
+      - transverse
+      - stationary
+      - mechanical
+    answer: 1
+    explanation: Only transverse waves have a vibration direction perpendicular to propagation that can be selected or blocked; longitudinal waves such as sound cannot be polarised.
+
+  - id: phy-wop-090
+    topic: polarisation
+    subtopic: Polaroid and unpolarised light
+    concept: Unpolarised light through a polaroid is halved in intensity
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: I = I_0/2
+    tags: [polaroid, unpolarised-light]
+    stem: Unpolarised light of intensity 40 W m^{-2} passes through an ideal polaroid. The transmitted intensity is
+    options:
+      - 40 W m^{-2}
+      - 10 W m^{-2}
+      - 20 W m^{-2}
+      - zero
+    answer: 2
+    explanation: The average of cos^2θ over all orientations of the electric field is ½, so an ideal polaroid passes half the intensity of unpolarised light, 20 W m^{-2}.
+
+  - id: phy-wop-091
+    topic: polarisation
+    subtopic: Malus law
+    concept: I = I_0cos^2θ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: I = I_0 cos^2 θ
+    tags: [malus-law]
+    stem: Plane-polarised light of intensity I_0 is incident on an analyser whose axis makes 60° with the plane of polarisation. The transmitted intensity is
+    options:
+      - I_0/2
+      - 3I_0/4
+      - I_0/4
+      - I_0/√2
+    answer: 2
+    explanation: Malus law gives I = I_0cos^2 60° = I_0/4. 3I_0/4 would come from sin^2 60°.
+
+  - id: phy-wop-092
+    topic: polarisation
+    subtopic: Crossed polaroids
+    concept: Crossed polaroids transmit no light
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [crossed-polaroids]
+    stem: Two ideal polaroids have their pass axes at 90° to each other. Unpolarised light falls on the first. The final transmitted intensity is
+    options:
+      - zero
+      - half the incident intensity
+      - one-fourth the incident intensity
+      - equal to incident intensity
+    answer: 0
+    explanation: The first polaroid passes I_0/2 polarised along its axis; the second, at 90°, transmits (I_0/2)cos^2 90° = 0.
+
+  - id: phy-wop-093
+    topic: polarisation
+    subtopic: Three polaroids
+    concept: A middle polaroid at 45° between crossed polaroids transmits I_0/8
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: I = (I_0/2)cos^2θ cos^2(90° − θ)
+    tags: [three-polaroids, trap, multi-concept]
+    stem: A third polaroid is inserted between two crossed polaroids with its axis at 45° to the first. If unpolarised light of intensity I_0 falls on the first, the emergent intensity is
+    options:
+      - zero
+      - I_0/4
+      - I_0/2
+      - I_0/8
+    answer: 3
+    explanation: After P_1, I_0/2; after P_3 at 45°, (I_0/2)cos^2 45° = I_0/4; after P_2 (45° from P_3), (I_0/4) × ½ = I_0/8. Inserting the middle sheet lets light through that was fully blocked before.
+
+  - id: phy-wop-094
+    topic: polarisation
+    subtopic: Brewster law
+    concept: tan i_B = μ
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: tan i_B = μ
+    tags: [brewster-angle]
+    stem: The Brewster angle for light incident from air on a medium is 60°. The refractive index of the medium is
+    options:
+      - "1.5"
+      - √3
+      - 1/√3
+      - "2"
+    answer: 1
+    explanation: Brewster law gives μ = tan i_B = tan 60° = √3 ≈ 1.73.
+
+  - id: phy-wop-095
+    topic: polarisation
+    subtopic: Brewster law
+    concept: At Brewster angle reflected and refracted rays are perpendicular
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [brewster-angle, ncert-line]
+    stem: When unpolarised light is incident at the Brewster angle, the angle between the reflected and refracted rays is
+    options:
+      - 90°
+      - 60°
+      - 45°
+      - 180°
+    answer: 0
+    explanation: At i_B, i_B + r = 90°, which makes the reflected and refracted rays perpendicular. The reflected light is then completely plane polarised perpendicular to the plane of incidence.
+
+  - id: phy-wop-096
+    topic: polarisation
+    subtopic: Brewster law
+    concept: Angle of refraction at Brewster incidence is 90° − i_B
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: true
+    formula: r = 90° − i_B
+    tags: [brewster-angle, refraction]
+    stem: Light is incident on glass at the Brewster angle of 57°. The angle of refraction is
+    options:
+      - 57°
+      - 90°
+      - 33°
+      - 23°
+    answer: 2
+    explanation: At the polarising angle the reflected and refracted rays are perpendicular, so r = 90° − 57° = 33°.
+
+  - id: phy-wop-097
+    topic: polarisation
+    subtopic: Polarisation by scattering
+    concept: Light scattered at 90° from the sun direction is polarised
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [scattering, sky-polarisation, ncert-line]
+    stem: Skylight viewed through a rotating polaroid in a direction perpendicular to the sun's rays shows a variation in intensity. This shows that
+    options:
+      - scattered light at 90° is polarised
+      - the sun emits polarised light
+      - the polaroid emits light
+      - scattering changes the wavelength
+    answer: 0
+    explanation: Molecules oscillate in response to the incident field, and scattered light observed at 90° can only carry the field component perpendicular to both directions, so it is (nearly) plane polarised. Sunlight itself is unpolarised.
+
+  - id: phy-wop-098
+    topic: polarisation
+    subtopic: Malus law
+    concept: Angle for given transmitted fraction
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: cos^2θ = I/I_0
+    tags: [malus-law, angle]
+    stem: Unpolarised light passes through two polaroids and emerges with one-eighth of its original intensity. The angle between their pass axes is
+    options:
+      - 30°
+      - 45°
+      - 60°
+      - 90°
+    answer: 2
+    explanation: After the first polaroid I_0/2; then (I_0/2)cos^2θ = I_0/8 gives cos^2θ = ¼, θ = 60°. Forgetting the halving at the first polaroid gives a wrong angle.
+
+  - id: phy-wop-099
+    topic: polarisation
+    subtopic: Uses of polaroids
+    concept: Uses of polaroids
+    category: factual
+    format: statements
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [polaroid-uses]
+    stem: Which of the following is NOT a use of polaroids?
+    options:
+      - Sunglasses that cut glare from reflecting surfaces
+      - Viewing three-dimensional motion pictures
+      - Controlling light intensity in window panes of trains and aeroplanes
+      - Increasing the resolving power of microscopes
+    answer: 3
+    explanation: Polaroids reduce glare, control intensity when rotated relative to each other, and allow 3D viewing by sending differently polarised images to each eye. Resolving power depends on aperture and wavelength, not on polarisation.
+
+  - id: phy-wop-100
+    topic: polarisation
+    subtopic: Polaroid rotation
+    concept: Rotating polaroid in polarised light gives two maxima and two zeros per turn
+    category: concept
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [analyser, rotation]
+    stem: A polaroid is rotated through one complete turn (360°) in the path of a plane-polarised beam and the transmitted intensity is watched. How many times does the intensity become zero?
+    options:
+      - Once
+      - Four times
+      - Never
+      - Twice
+    answer: 3
+    explanation: I = I_0cos^2θ is zero at θ = 90° and 270°, so twice per rotation, with maxima at 0° and 180°. If the beam were unpolarised, the intensity would not change at all on rotation.
+

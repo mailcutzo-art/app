@@ -1,0 +1,1047 @@
+subject: physics
+chapter:
+  slug: nuclei
+  name: Nuclei
+  order: 27
+  classes: [12]
+  topics:
+    - slug: nuclear-composition
+      name: Composition of nucleus, isotopes, isobars and isotones
+    - slug: atomic-mass-unit
+      name: Atomic masses and the atomic mass unit
+    - slug: discovery-of-neutron
+      name: Discovery and properties of the neutron
+    - slug: nuclear-size
+      name: Size of the nucleus
+    - slug: nuclear-density
+      name: Nuclear density
+    - slug: mass-energy
+      name: Mass-energy equivalence
+    - slug: mass-defect-binding-energy
+      name: Mass defect and nuclear binding energy
+    - slug: binding-energy-curve
+      name: Binding energy per nucleon and its variation with A
+    - slug: nuclear-force
+      name: Nuclear force
+    - slug: nuclear-reactions-q-value
+      name: Nuclear reactions and Q-value
+    - slug: nuclear-fission
+      name: Nuclear fission and chain reaction
+    - slug: nuclear-fusion
+      name: Nuclear fusion and energy in stars
+questions:
+  - id: phy-nuc-001
+    topic: nuclear-composition
+    subtopic: Nucleon count
+    concept: Number of neutrons N = A − Z
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: N = A − Z
+    tags: [neutron-number]
+    stem: How many neutrons are present in the nucleus of ^{235}_{92}U?
+    options:
+      - "92"
+      - "143"
+      - "235"
+      - "327"
+    answer: 1
+    explanation: "The neutron number is N = A − Z = 235 − 92 = 143. 92 is the proton number and 235 is the total number of nucleons, not the neutron count."
+
+  - id: phy-nuc-002
+    topic: nuclear-composition
+    subtopic: Isotopes
+    concept: Isotopes have the same atomic number but different mass numbers
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [isotopes, ncert-line]
+    stem: Nuclides having the same atomic number but different mass numbers are called
+    options:
+      - isobars
+      - isotones
+      - isotopes
+      - isomers
+    answer: 2
+    explanation: "Isotopes of an element have the same Z (same number of protons) but different numbers of neutrons, hence different A. Isobars share A and isotones share N."
+
+  - id: phy-nuc-003
+    topic: nuclear-composition
+    subtopic: Isobars
+    concept: Isobars have the same mass number
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [isobars, confused-pair]
+    stem: Which pair of nuclides forms isobars?
+    options:
+      - ^{3}_{1}H and ^{3}_{2}He
+      - ^{12}_{6}C and ^{14}_{6}C
+      - ^{198}_{80}Hg and ^{197}_{79}Au
+      - ^{2}_{1}H and ^{4}_{2}He
+    answer: 0
+    explanation: "Isobars have the same mass number A. ^{3}H and ^{3}He both have A = 3. C-12 and C-14 are isotopes, while Hg-198 and Au-197 both have N = 118 and are isotones."
+
+  - id: phy-nuc-004
+    topic: nuclear-composition
+    subtopic: Isotones
+    concept: Isotones have the same number of neutrons
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    tags: [isotones, trap]
+    stem: Which nuclide is an isotone of ^{14}_{6}C?
+    options:
+      - ^{14}_{7}N
+      - ^{12}_{6}C
+      - ^{15}_{8}O
+      - ^{16}_{8}O
+    answer: 3
+    explanation: "C-14 has N = 14 − 6 = 8 neutrons. O-16 also has N = 16 − 8 = 8, so they are isotones. N-14 is an isobar (same A) and C-12 is an isotope; O-15 has only 7 neutrons."
+
+  - id: phy-nuc-005
+    topic: nuclear-composition
+    subtopic: Nuclear notation
+    concept: In ^{A}_{Z}X, A is the mass number and Z the atomic number
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [notation]
+    stem: In the symbol ^{A}_{Z}X for a nuclide, the superscript A represents the
+    options:
+      - number of protons
+      - number of neutrons
+      - total number of protons and neutrons
+      - number of electrons in the atom
+    answer: 2
+    explanation: "A is the mass number, the total number of nucleons (protons + neutrons). Z, the subscript, is the number of protons."
+
+  - id: phy-nuc-006
+    topic: atomic-mass-unit
+    subtopic: Definition of u
+    concept: 1 u is one-twelfth of the mass of a C-12 atom
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [amu, ncert-line]
+    stem: One atomic mass unit (1 u) is defined as
+    options:
+      - the mass of one hydrogen atom
+      - the mass of one proton
+      - one-sixteenth of the mass of an oxygen-16 atom
+      - one-twelfth of the mass of a carbon-12 atom
+    answer: 3
+    explanation: "By definition 1 u = (1/12) × mass of one ^{12}C atom = 1.660539 × 10^{-27} kg. The hydrogen atom and proton are slightly heavier than 1 u, and the O-16 based scale is an older chemical convention."
+
+  - id: phy-nuc-007
+    topic: atomic-mass-unit
+    subtopic: Value of u
+    concept: 1 u ≈ 1.66 × 10^{-27} kg
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [amu]
+    stem: The value of 1 atomic mass unit in kilograms is approximately
+    options:
+      - 1.66 × 10^{-27} kg
+      - 1.66 × 10^{-24} kg
+      - 9.11 × 10^{-31} kg
+      - 1.67 × 10^{-30} kg
+    answer: 0
+    explanation: "1 u = 1.660539 × 10^{-27} kg. 1.66 × 10^{-24} is the value in grams (a common unit slip), and 9.11 × 10^{-31} kg is the electron mass."
+
+  - id: phy-nuc-008
+    topic: atomic-mass-unit
+    subtopic: Average atomic mass
+    concept: Average atomic mass is the abundance-weighted mean of isotopic masses
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: m_{avg} = Σ f_i m_i
+    tags: [isotopic-abundance, ncert-line]
+    stem: Chlorine has two isotopes of masses 34.98 u and 36.98 u with relative abundances 75.4% and 24.6% respectively. The average atomic mass of chlorine is about
+    options:
+      - 35.98 u
+      - 35.47 u
+      - 35.00 u
+      - 36.49 u
+    answer: 1
+    explanation: "m = 0.754 × 34.98 + 0.246 × 36.98 = 26.37 + 9.10 = 35.47 u. The simple average 35.98 u ignores the abundances; the lighter isotope dominates, so the mean lies closer to 35 u."
+
+  - id: phy-nuc-009
+    topic: atomic-mass-unit
+    subtopic: Measuring atomic masses
+    concept: Atomic masses are measured accurately with a mass spectrometer
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [mass-spectrometer, ncert-line]
+    stem: The instrument used to measure atomic masses and to detect isotopes accurately is the
+    options:
+      - cyclotron
+      - Geiger counter
+      - mass spectrometer
+      - spectrometer for visible light
+    answer: 2
+    explanation: "A mass spectrometer separates ions by their mass-to-charge ratio, giving accurate atomic masses and revealing isotopes. A cyclotron accelerates charged particles and a Geiger counter detects radiation."
+
+  - id: phy-nuc-010
+    topic: discovery-of-neutron
+    subtopic: Chadwick's experiment
+    concept: Chadwick discovered the neutron in 1932
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [chadwick, ncert-line]
+    stem: The neutron was discovered in 1932 by
+    options:
+      - Ernest Rutherford
+      - James Chadwick
+      - J. J. Thomson
+      - Enrico Fermi
+    answer: 1
+    explanation: "James Chadwick discovered the neutron in 1932 and received the 1935 Nobel Prize for it. Rutherford had suggested a neutral particle earlier, but did not discover it."
+
+  - id: phy-nuc-011
+    topic: discovery-of-neutron
+    subtopic: Chadwick's experiment
+    concept: Neutrons were produced by bombarding beryllium with alpha particles
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [chadwick, ncert-line]
+    stem: In Chadwick's experiment, the neutral radiation that led to the discovery of the neutron was produced when
+    options:
+      - beryllium was bombarded with alpha particles
+      - gold foil was bombarded with alpha particles
+      - uranium was bombarded with slow neutrons
+      - hydrogen gas was bombarded with electrons
+    answer: 0
+    explanation: "Alpha particles striking light nuclei such as beryllium emitted a highly penetrating neutral radiation. Chadwick showed it knocked out protons from paraffin with energies that only a neutral particle of about proton mass could explain."
+
+  - id: phy-nuc-012
+    topic: nuclear-size
+    subtopic: R = R_0A^{1/3}
+    concept: Nuclear radius varies as the cube root of mass number
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    formula: R = R_0A^{1/3}
+    tags: [nuclear-radius, ncert-line]
+    stem: The radius R of a nucleus of mass number A is proportional to
+    options:
+      - A
+      - A^{2}
+      - A^{1/3}
+      - A^{2/3}
+    answer: 2
+    explanation: "Experiments show R = R_0A^{1/3} with R_0 ≈ 1.2 × 10^{-15} m. So the volume (∝ R^3) is proportional to A. A^{2/3} is how the surface area scales."
+
+  - id: phy-nuc-013
+    topic: nuclear-size
+    subtopic: Value of R_0
+    concept: R_0 ≈ 1.2 fm
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [nuclear-radius]
+    stem: In R = R_0A^{1/3}, the value of the constant R_0 is about
+    options:
+      - 1.2 × 10^{-10} m
+      - 5.3 × 10^{-11} m
+      - 1.2 × 10^{-12} m
+      - 1.2 × 10^{-15} m
+    answer: 3
+    explanation: "R_0 ≈ 1.2 × 10^{-15} m = 1.2 fm. 5.3 × 10^{-11} m is the Bohr radius of hydrogen; atomic sizes are about 10^{-10} m, some 10^{4}–10^{5} times larger than nuclei."
+
+  - id: phy-nuc-014
+    topic: nuclear-size
+    subtopic: Radius calculation
+    concept: Radius of Al-27 nucleus = 3R_0
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: R = R_0A^{1/3}
+    tags: [nuclear-radius]
+    stem: Taking R_0 = 1.2 fm, the radius of the nucleus ^{27}_{13}Al is
+    options:
+      - 3.6 fm
+      - 2.4 fm
+      - 32.4 fm
+      - 4.8 fm
+    answer: 0
+    explanation: "R = 1.2 × 27^{1/3} = 1.2 × 3 = 3.6 fm. Multiplying R_0 by A directly (32.4 fm) forgets the cube root."
+
+  - id: phy-nuc-015
+    topic: nuclear-size
+    subtopic: Ratio of radii
+    concept: R_1/R_2 = (A_1/A_2)^{1/3}
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: R ∝ A^{1/3}
+    tags: [nuclear-radius, ratio]
+    stem: The ratio of the nuclear radii of ^{27}_{13}Al and ^{125}_{52}Te is
+    options:
+      - "27 : 125"
+      - "3 : 5"
+      - "9 : 25"
+      - "5 : 3"
+    answer: 1
+    explanation: "R ∝ A^{1/3}, so R_{Al}/R_{Te} = (27/125)^{1/3} = 3/5. The ratio 27 : 125 is that of the volumes, and 9 : 25 that of the surface areas."
+
+  - id: phy-nuc-016
+    topic: nuclear-density
+    subtopic: Independence of A
+    concept: Nuclear density is independent of mass number
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [nuclear-density, ncert-line]
+    stem: How does the density of nuclear matter depend on the mass number A?
+    options:
+      - It increases as A
+      - It decreases as A^{-1/3}
+      - It increases as A^{2/3}
+      - It is nearly independent of A
+    answer: 3
+    explanation: "Mass ∝ A and volume ∝ R^3 ∝ A, so density = mass/volume is independent of A. All nuclei have nearly the same density, about 2.3 × 10^{17} kg m^{-3}."
+
+  - id: phy-nuc-017
+    topic: nuclear-density
+    subtopic: Order of magnitude
+    concept: Nuclear density ≈ 2.3 × 10^{17} kg m^{-3}
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [nuclear-density, ncert-line]
+    stem: The density of nuclear matter is of the order of
+    options:
+      - 10^{3} kg m^{-3}
+      - 10^{17} kg m^{-3}
+      - 10^{10} kg m^{-3}
+      - 10^{27} kg m^{-3}
+    answer: 1
+    explanation: "Nuclear density ≈ 2.3 × 10^{17} kg m^{-3}, about 10^{14} times the density of water (10^{3} kg m^{-3}). This enormous value reflects that nearly all the atom's mass sits in a tiny nucleus."
+
+  - id: phy-nuc-018
+    topic: mass-energy
+    subtopic: E = mc^2
+    concept: Energy equivalent of 1 g of mass
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: E = mc^2
+    tags: [mass-energy, ncert-line]
+    stem: The energy equivalent of 1 g of matter is (c = 3 × 10^{8} m s^{-1})
+    options:
+      - 9 × 10^{16} J
+      - 3 × 10^{5} J
+      - 9 × 10^{13} J
+      - 9 × 10^{10} J
+    answer: 2
+    explanation: "E = mc^2 = 10^{-3} kg × (3 × 10^{8})^2 = 9 × 10^{13} J. 9 × 10^{16} J is the answer for 1 kg; forgetting to convert grams to kilograms gives that trap."
+
+  - id: phy-nuc-019
+    topic: mass-energy
+    subtopic: Energy of 1 u
+    concept: 1 u of mass is equivalent to 931.5 MeV
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [amu, mass-energy]
+    stem: The energy equivalent of one atomic mass unit is about
+    options:
+      - 0.511 MeV
+      - 938.3 MeV
+      - 1.6 × 10^{-19} J
+      - 931.5 MeV
+    answer: 3
+    explanation: "E = (1.6605 × 10^{-27} kg)(2.998 × 10^{8} m s^{-1})^2 ≈ 1.49 × 10^{-10} J = 931.5 MeV. 938.3 MeV is the rest energy of a proton and 0.511 MeV that of an electron."
+
+  - id: phy-nuc-020
+    topic: mass-energy
+    subtopic: Einstein's relation
+    concept: Mass is a form of energy (mass-energy equivalence)
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [mass-energy]
+    stem: Which statement about Einstein's mass-energy relation E = mc^2 is correct?
+    options:
+      - It applies only to nuclear reactions and not to chemical reactions
+      - Mass and energy are interconvertible, and in any reaction total energy including rest-mass energy is conserved
+      - Mass is conserved separately in every nuclear reaction
+      - It shows that energy can be created from nothing at very high speeds
+    answer: 1
+    explanation: "Einstein showed that mass is another form of energy, so the conserved quantity is total energy including rest-mass energy. It applies to chemical reactions too, but there the mass changes (~10^{-10} of the mass) are too small to measure easily."
+
+  - id: phy-nuc-021
+    topic: mass-defect-binding-energy
+    subtopic: Mass defect definition
+    concept: Mass defect is the difference between the mass of constituent nucleons and the nuclear mass
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: ΔM = [Zm_p + (A − Z)m_n] − M
+    tags: [mass-defect, ncert-line]
+    stem: The mass defect of a nucleus is
+    options:
+      - the mass of the nucleus minus the mass of its electrons
+      - the difference between the atomic mass and the mass number
+      - the total mass of its separated nucleons minus the mass of the nucleus
+      - the mass of the nucleus minus the total mass of its separated nucleons
+    answer: 2
+    explanation: "ΔM = [Zm_p + (A − Z)m_n] − M. The nucleus is lighter than its free nucleons, so ΔM is positive; reversing the order gives a negative number. The difference between atomic mass and mass number is a different quantity (mass excess)."
+
+  - id: phy-nuc-022
+    topic: mass-defect-binding-energy
+    subtopic: Binding energy definition
+    concept: Binding energy is the energy needed to separate a nucleus into its nucleons
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    formula: E_b = ΔMc^2
+    tags: [binding-energy, ncert-line]
+    stem: The binding energy of a nucleus is the energy
+    options:
+      - required to remove one electron from the atom
+      - released when the nucleus emits a neutron
+      - required to separate the nucleus completely into its constituent protons and neutrons
+      - stored in the Coulomb repulsion between the protons
+    answer: 2
+    explanation: "E_b = ΔMc^2 is the minimum energy needed to break a nucleus into free protons and neutrons, equal to the energy released when those nucleons come together. Ionisation energy relates to electrons, not nucleons."
+
+  - id: phy-nuc-023
+    topic: mass-defect-binding-energy
+    subtopic: Deuteron
+    concept: Binding energy of deuteron from its mass defect
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: E_b = [m_p + m_n − m_d] × 931.5 MeV
+    tags: [deuteron, mass-defect]
+    stem: Given m_p = 1.007276 u, m_n = 1.008665 u and the deuteron mass m_d = 2.013553 u, the binding energy of the deuteron is about (1 u = 931.5 MeV)
+    options:
+      - 1.11 MeV
+      - 4.45 MeV
+      - 0.24 MeV
+      - 2.22 MeV
+    answer: 3
+    explanation: "ΔM = 1.007276 + 1.008665 − 2.013553 = 0.002388 u, so E_b = 0.002388 × 931.5 ≈ 2.22 MeV. 1.11 MeV is the binding energy per nucleon (divide by 2), not the total."
+
+  - id: phy-nuc-024
+    topic: mass-defect-binding-energy
+    subtopic: Helium-4
+    concept: Binding energy of He-4 from atomic masses
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 75
+    ncert: true
+    battle: false
+    formula: E_b = [Zm_H + Nm_n − M] × 931.5 MeV
+    tags: [helium, mass-defect]
+    stem: Using atomic masses m(^{1}H) = 1.007825 u, m_n = 1.008665 u and m(^{4}He) = 4.002603 u, the binding energy of ^{4}He is about (1 u = 931.5 MeV)
+    options:
+      - 28.3 MeV
+      - 7.07 MeV
+      - 3.73 GeV
+      - 14.2 MeV
+    answer: 0
+    explanation: "ΔM = 2(1.007825) + 2(1.008665) − 4.002603 = 0.030377 u; E_b = 0.030377 × 931.5 ≈ 28.3 MeV. Using hydrogen-atom masses makes the electron masses cancel. 7.07 MeV is the value per nucleon."
+
+  - id: phy-nuc-025
+    topic: binding-energy-curve
+    subtopic: Peak of the curve
+    concept: Binding energy per nucleon is maximum near A = 56
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [be-curve, ncert-line]
+    stem: The binding energy per nucleon is maximum, about 8.75 MeV, for nuclei with mass number near
+    options:
+      - "4"
+      - "238"
+      - "56"
+      - "120"
+    answer: 2
+    explanation: "The curve of E_{bn} against A peaks at about 8.75 MeV near A = 56 (iron region). He-4 shows a local peak of only about 7 MeV, and U-238 has about 7.6 MeV."
+
+  - id: phy-nuc-026
+    topic: binding-energy-curve
+    subtopic: Flat middle region
+    concept: E_bn is nearly constant (~8 MeV) for 30 < A < 170
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [be-curve, ncert-line]
+    stem: For nuclei with mass numbers roughly between 30 and 170, the binding energy per nucleon is
+    options:
+      - nearly constant at about 8 MeV
+      - increasing linearly with A
+      - nearly zero
+      - decreasing rapidly as 1/A
+    answer: 0
+    explanation: "Across 30 < A < 170 the curve is almost flat at about 8 MeV per nucleon. It drops for light nuclei (A < 30) and falls slowly for heavy ones (A > 170)."
+
+  - id: phy-nuc-027
+    topic: binding-energy-curve
+    subtopic: Stability
+    concept: Greater binding energy per nucleon means greater stability
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [stability, trap]
+    stem: The stability of a nucleus is best indicated by its
+    options:
+      - total binding energy
+      - mass number
+      - atomic number
+      - binding energy per nucleon
+    answer: 3
+    explanation: "Stability depends on how tightly each nucleon is bound, i.e. E_b/A. Total binding energy grows with A, so U-238 has a much larger total E_b than Fe-56 yet is less stable per nucleon."
+
+  - id: phy-nuc-028
+    topic: nuclear-force
+    subtopic: Range
+    concept: Nuclear force is short-ranged, a few femtometres
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [nuclear-force, ncert-line]
+    stem: The range of the nuclear force is of the order of
+    options:
+      - 10^{-10} m
+      - a few femtometres
+      - 10^{-6} m
+      - infinite, like gravity
+    answer: 1
+    explanation: "The nuclear force falls rapidly to zero beyond a few fm (1 fm = 10^{-15} m). Unlike Coulomb and gravitational forces it is not long-ranged, which is why a nucleon only interacts with its near neighbours."
+
+  - id: phy-nuc-029
+    topic: nuclear-force
+    subtopic: Charge independence
+    concept: Nuclear force is nearly the same for n–n, n–p and p–p pairs
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [nuclear-force, charge-independence]
+    stem: If F_{pp}, F_{nn} and F_{np} are the nuclear forces between proton–proton, neutron–neutron and neutron–proton pairs at the same small separation, then
+    options:
+      - F_{pp} > F_{np} > F_{nn}
+      - F_{nn} > F_{np} > F_{pp}
+      - F_{pp} = F_{nn} = 0 but F_{np} ≠ 0
+      - F_{pp} ≈ F_{nn} ≈ F_{np}
+    answer: 3
+    explanation: "The nuclear force is charge independent: it is approximately the same for all three pairs. The Coulomb force acts only between protons, which is a separate interaction."
+
+  - id: phy-nuc-030
+    topic: nuclear-force
+    subtopic: Strength
+    concept: Nuclear force is much stronger than Coulomb force at nuclear distances
+    category: concept
+    format: direct
+    difficulty: 1
+    time: 25
+    ncert: true
+    battle: true
+    tags: [nuclear-force]
+    stem: Protons stay bound in a nucleus despite their mutual electrostatic repulsion because
+    options:
+      - gravity between nucleons is stronger than electrostatic repulsion
+      - neutrons carry negative charge that cancels the repulsion
+      - the attractive nuclear force is much stronger than Coulomb repulsion at nuclear distances
+      - electrons inside the nucleus neutralise the protons
+    answer: 2
+    explanation: "Within a few fm the nuclear force is much stronger than the Coulomb force and holds nucleons together. Gravity is far weaker still, neutrons are neutral, and there are no electrons in the nucleus."
+
+  - id: phy-nuc-031
+    topic: nuclear-reactions-q-value
+    subtopic: Conservation of A and Z
+    concept: Mass number and charge number are conserved in nuclear reactions
+    category: application
+    format: direct
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: true
+    tags: [nuclear-reaction, balancing]
+    stem: "In the reaction ^{14}_{7}N + ^{4}_{2}He → ^{17}_{8}O + X, the particle X is"
+    options:
+      - a neutron
+      - a deuteron
+      - an alpha particle
+      - a proton
+    answer: 3
+    explanation: "Conserve A: 14 + 4 = 17 + A_X gives A_X = 1. Conserve Z: 7 + 2 = 8 + Z_X gives Z_X = 1. So X is ^{1}_{1}H, a proton (Rutherford's 1919 transmutation). A neutron would need Z = 0."
+
+  - id: phy-nuc-032
+    topic: nuclear-reactions-q-value
+    subtopic: Q-value definition
+    concept: Q = (initial mass − final mass)c^2
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: Q = (Σm_{initial} − Σm_{final})c^2
+    tags: [q-value]
+    stem: A nuclear reaction is exothermic (Q > 0) when
+    options:
+      - the total mass of the products exceeds that of the reactants
+      - the total mass of the reactants exceeds that of the products
+      - the mass numbers on the two sides are different
+      - the atomic numbers on the two sides are equal
+    answer: 1
+    explanation: "Q = (Σm_{reactants} − Σm_{products})c^2. If the products are lighter, the lost mass appears as kinetic energy, so Q > 0. A and Z balance in every reaction, so they cannot decide the sign of Q."
+
+  - id: phy-nuc-033
+    topic: nuclear-fission
+    subtopic: Definition
+    concept: Fission is splitting of a heavy nucleus into two medium nuclei
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [fission, ncert-line]
+    stem: Nuclear fission is the process in which
+    options:
+      - two light nuclei combine to form a heavier nucleus
+      - a heavy nucleus splits into two intermediate-mass nuclei with release of energy
+      - a nucleus emits an electron
+      - an atom loses its outer electrons
+    answer: 1
+    explanation: "In fission a heavy nucleus like U-235 splits into two medium-mass fragments, releasing about 200 MeV. Combining light nuclei is fusion."
+
+  - id: phy-nuc-034
+    topic: nuclear-fission
+    subtopic: Energy per fission
+    concept: About 200 MeV is released per fission of U-235
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [fission, ncert-line]
+    stem: The energy released in the fission of one ^{235}U nucleus is about
+    options:
+      - 2 MeV
+      - 20 MeV
+      - 2000 MeV
+      - 200 MeV
+    answer: 3
+    explanation: "About 200 MeV is released per fission. It comes from the rise in binding energy per nucleon from about 7.6 MeV (uranium) to about 8.5 MeV (fragments): roughly 0.9 MeV × 235 ≈ 200 MeV."
+
+  - id: phy-nuc-035
+    topic: nuclear-fission
+    subtopic: Slow neutron fission
+    concept: U-235 fission is induced by slow (thermal) neutrons
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [fission, thermal-neutrons]
+    stem: ^{235}U undergoes fission most readily when it absorbs a
+    options:
+      - fast proton
+      - slow (thermal) neutron
+      - high-energy alpha particle
+      - gamma photon of low energy
+    answer: 1
+    explanation: "U-235 captures slow (thermal) neutrons very efficiently, forming U-236 in an excited state that splits. Charged particles like protons and alpha particles are repelled by the nucleus, which is why the neutral neutron is ideal."
+
+  - id: phy-nuc-036
+    topic: nuclear-fusion
+    subtopic: Definition
+    concept: Fusion combines light nuclei into a heavier nucleus
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [fusion, ncert-line]
+    stem: The source of the energy radiated by the sun is
+    options:
+      - fission of uranium in its core
+      - chemical burning of hydrogen with oxygen
+      - fusion of hydrogen nuclei into helium
+      - gravitational collapse alone
+    answer: 2
+    explanation: "The sun's energy comes from thermonuclear fusion, mainly the proton–proton cycle that converts four hydrogen nuclei into one helium nucleus. There is no uranium fission or chemical combustion powering it."
+
+  - id: phy-nuc-037
+    topic: nuclear-fusion
+    subtopic: High temperature
+    concept: Fusion needs very high temperature to overcome Coulomb repulsion
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [fusion, coulomb-barrier]
+    stem: Nuclear fusion requires extremely high temperatures because
+    options:
+      - nuclei must be ionised before they can fuse
+      - neutrons must be slowed down first
+      - high temperature increases the nuclear force
+      - nuclei need large kinetic energy to overcome their mutual Coulomb repulsion
+    answer: 3
+    explanation: "Both nuclei are positively charged, so they must approach within the range of the nuclear force (a few fm) against the Coulomb barrier. Only at temperatures of order 10^{7} K do enough nuclei have the energy to do so; temperature does not change the nuclear force itself."
+
+  - id: phy-nuc-038
+    topic: nuclear-fusion
+    subtopic: Proton–proton cycle
+    concept: Net energy released in the p–p cycle is 26.7 MeV
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [pp-cycle, ncert-line]
+    stem: In the proton–proton cycle in the sun, four protons combine to form one ^{4}He nucleus. The total energy released per cycle is about
+    options:
+      - 26.7 MeV
+      - 200 MeV
+      - 17.6 MeV
+      - 2.2 MeV
+    answer: 0
+    explanation: "The net reaction 4 ^{1}H + 2e^{−} → ^{4}He + 2ν + 6γ releases 26.7 MeV. 17.6 MeV is the D–T fusion energy, and 200 MeV is the energy per U-235 fission."
+
+  - id: phy-nuc-039
+    topic: nuclear-composition
+    subtopic: Nucleon count
+    concept: Counting protons, neutrons and nucleons
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [neutron-number]
+    stem: The nucleus ^{56}_{26}Fe contains
+    options:
+      - 26 neutrons and 30 protons
+      - 26 protons and 56 neutrons
+      - 26 protons and 30 neutrons
+      - 30 protons and 56 nucleons
+    answer: 2
+    explanation: "Z = 26 protons and N = 56 − 26 = 30 neutrons, 56 nucleons in all. Swapping protons and neutrons is the usual slip."
+
+  - id: phy-nuc-040
+    topic: nuclear-composition
+    subtopic: Nucleus vs atom
+    concept: Electrons are not constituents of the nucleus
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [composition, misconception]
+    stem: Which statement about the constituents of a nucleus is correct?
+    options:
+      - The nucleus contains protons, neutrons and electrons
+      - The number of neutrons always equals the number of protons
+      - Every nucleus contains at least one neutron
+      - A nucleus consists of protons and neutrons only, together called nucleons
+    answer: 3
+    explanation: "The nucleus contains only protons and neutrons (nucleons). There are no electrons in it; N equals Z only for some light nuclei; and ordinary hydrogen ^{1}H has no neutron at all."
+
+  - id: phy-nuc-041
+    topic: nuclear-composition
+    subtopic: Isotopes of hydrogen
+    concept: Deuterium and tritium are isotopes of hydrogen
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [isotopes, hydrogen]
+    stem: The number of neutrons in a tritium nucleus is
+    options:
+      - "2"
+      - "1"
+      - "3"
+      - "0"
+    answer: 0
+    explanation: "Tritium is ^{3}_{1}H: one proton and 3 − 1 = 2 neutrons. Deuterium ^{2}_{1}H has one neutron and ordinary hydrogen has none."
+
+  - id: phy-nuc-042
+    topic: atomic-mass-unit
+    subtopic: Masses of nucleons
+    concept: Proton and neutron masses in u
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [nucleon-mass, trap]
+    stem: Which is the correct comparison of masses?
+    options:
+      - m_p > m_n > m_H
+      - m_n > m_H > m_p
+      - m_H > m_n > m_p
+      - m_p = m_n = 1 u exactly
+    answer: 1
+    explanation: "m_n = 1.008665 u, m_H (hydrogen atom) = 1.007825 u and m_p = 1.007276 u. The neutron is slightly heavier than a hydrogen atom, which is heavier than a proton by one electron mass (minus a tiny binding energy)."
+
+  - id: phy-nuc-043
+    topic: atomic-mass-unit
+    subtopic: Mass number vs atomic mass
+    concept: Atomic mass in u is close to but not equal to the mass number
+    category: concept
+    format: statement-pair
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [amu, mass-number]
+    stem: |-
+      Statement I: The atomic mass of ^{12}C is exactly 12 u by definition.
+      Statement II: The atomic mass of every nuclide in u is exactly equal to its mass number.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 2
+    explanation: "The unit u is defined so that ^{12}C has mass exactly 12 u. Other nuclides only come close to integers, for example ^{16}O is 15.994915 u and ^{1}H is 1.007825 u, because nucleon masses differ from 1 u and binding energy reduces the mass."
+
+  - id: phy-nuc-044
+    topic: discovery-of-neutron
+    subtopic: Free neutron
+    concept: A free neutron is unstable with mean life about 1000 s
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: true
+    battle: true
+    tags: [neutron, ncert-line]
+    stem: A free neutron, unlike a free proton, is unstable. Its mean life is about
+    options:
+      - 10^{-8} s
+      - 1 s
+      - 1000 s
+      - 10^{9} years
+    answer: 2
+    explanation: "NCERT states a free neutron decays into a proton, an electron and an antineutrino with a mean life of about 1000 s. It is stable inside many nuclei, and the free proton is stable."
+
+  - id: phy-nuc-045
+    topic: discovery-of-neutron
+    subtopic: Neutron properties
+    concept: Neutron is electrically neutral with mass slightly greater than the proton
+    category: concept
+    format: statements
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [neutron]
+    stem: Which statement about the neutron is correct?
+    options:
+      - It is a bound state of a proton and an electron
+      - It carries a small negative charge
+      - Its mass is slightly less than that of a proton
+      - It is electrically neutral and its mass is slightly greater than that of a proton
+    answer: 3
+    explanation: "The neutron is neutral with m_n = 1.00866 u, slightly more than m_p = 1.00727 u. The old proton–electron model of the nucleus was abandoned, partly because electrons cannot be confined in a nucleus."
+
+  - id: phy-nuc-046
+    topic: nuclear-size
+    subtopic: Scaling
+    concept: Nucleus with 8 times the mass number has twice the radius
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: R ∝ A^{1/3}
+    tags: [nuclear-radius, ratio]
+    stem: The radius of a nucleus of mass number 8 is R. The radius of a nucleus of mass number 64 is
+    options:
+      - 8R
+      - 2R
+      - 4R
+      - 64R
+    answer: 1
+    explanation: "R ∝ A^{1/3}, so R' = R(64/8)^{1/3} = R × 8^{1/3} = 2R. Taking the ratio linearly gives the wrong answer 8R."
+
+  - id: phy-nuc-047
+    topic: nuclear-size
+    subtopic: Nucleus vs atom
+    concept: Nucleus is about 10^{4}–10^{5} times smaller than the atom
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [nuclear-radius]
+    stem: The ratio of the radius of an atom to that of its nucleus is roughly
+    options:
+      - 10^{4} to 10^{5}
+      - 10 to 10^{2}
+      - 10^{8} to 10^{9}
+      - "1"
+    answer: 0
+    explanation: "Atoms are about 10^{-10} m across while nuclei are about 10^{-15} to 10^{-14} m, a ratio of 10^{4}–10^{5}. Most of the atom is empty space."
+
+  - id: phy-nuc-048
+    topic: nuclear-size
+    subtopic: Volume and A
+    concept: Nuclear volume is proportional to A
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [nuclear-volume]
+    stem: The volume of a nucleus is directly proportional to
+    options:
+      - A^{1/3}
+      - A^{2/3}
+      - A^{2}
+      - A
+    answer: 3
+    explanation: "V = (4/3)πR^3 = (4/3)πR_0^3 A, so V ∝ A. This is what makes nuclear density the same for all nuclei."
+
+  - id: phy-nuc-049
+    topic: nuclear-density
+    subtopic: Density ratio
+    concept: Two nuclei have equal density whatever their mass numbers
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [nuclear-density, trap]
+    stem: The ratio of the nuclear densities of ^{4}He and ^{238}U is approximately
+    options:
+      - "238 : 4"
+      - "1 : 1"
+      - "4 : 238"
+      - (4/238)^{1/3}
+    answer: 1
+    explanation: "Nuclear density is independent of A, so the ratio is 1 : 1. Ratios involving 4 and 238 compare masses or volumes, not densities."
+
+  - id: phy-nuc-050
+    topic: nuclear-density
+    subtopic: Calculation
+    concept: ρ = 3m/(4πR_0^3) with m ≈ 1 u
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: ρ = 3m_u/(4πR_0^3)
+    tags: [nuclear-density, ncert-line]
+    stem: Taking the mass of a nucleon as 1.66 × 10^{-27} kg and R_0 = 1.2 × 10^{-15} m, the density of nuclear matter is about
+    options:
+      - 2.3 × 10^{14} kg m^{-3}
+      - 5.7 × 10^{16} kg m^{-3}
+      - 2.3 × 10^{17} kg m^{-3}
+      - 9.6 × 10^{17} kg m^{-3}
+    answer: 2
+    explanation: "ρ = Am/[(4/3)πR_0^3A] = 3m/(4πR_0^3) = (3 × 1.66 × 10^{-27})/(4π × 1.728 × 10^{-45}) ≈ 2.3 × 10^{17} kg m^{-3}. Forgetting the factor 4/3 or cubing R_0 wrongly gives the other values."
+
