@@ -7,7 +7,7 @@ internals).
 """
 
 import socket
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from http import HTTPStatus
 from typing import Any, ClassVar, cast
 
@@ -23,6 +23,7 @@ from starlette.requests import Request
 from starlette.responses import Response
 
 from app.core.logging import current_request_id
+from app.core.schemas import FIELD_ERROR_TYPE
 
 log = structlog.stdlib.get_logger(__name__)
 
@@ -102,6 +103,14 @@ class Conflict(AppError):
     http_status = HTTPStatus.CONFLICT
     default_code = "CONFLICT"
     default_message = "The request conflicts with the current state of the resource."
+
+
+class UpdateRequired(AppError):
+    """The app build is too old for this server (``X-App-Build`` below ``min_build``)."""
+
+    http_status = HTTPStatus.UPGRADE_REQUIRED
+    default_code = "UPDATE_REQUIRED"
+    default_message = "Please update the app to keep playing."
 
 
 class ValidationFailed(AppError):
@@ -203,17 +212,63 @@ async def _handle_app_error(_request: Request, exc: Exception) -> Response:
     return _render(error)
 
 
+# Messages for pydantic's own error types, shown to users next to the field.
+_FIELD_MESSAGES = {
+    "missing": "This field is required.",
+    "extra_forbidden": "This field isn't allowed here.",
+    "string_type": "Enter text.",
+    "string_too_short": "This is too short.",
+    "string_too_long": "This is too long.",
+    "string_pattern_mismatch": "This isn't in the right format.",
+    "int_type": "Enter a whole number.",
+    "int_parsing": "Enter a whole number.",
+    "bool_type": "Choose yes or no.",
+    "uuid_type": "This isn't a valid ID.",
+    "uuid_parsing": "This isn't a valid ID.",
+    "literal_error": "Choose one of the options.",
+    "enum": "Choose one of the options.",
+    "greater_than": "This number is too small.",
+    "greater_than_equal": "This number is too small.",
+    "less_than": "This number is too large.",
+    "less_than_equal": "This number is too large.",
+    "too_short": "This needs at least one item.",
+    "too_long": "This has too many items.",
+    "list_type": "Send a list.",
+    "datetime_type": "Enter a date and time.",
+    "datetime_parsing": "Enter a date and time.",
+    "datetime_from_date_parsing": "Enter a date and time.",
+    "timezone_aware": "Enter a date and time.",
+}
+_DEFAULT_FIELD_MESSAGE = "Enter a valid value."
+_LOCATIONS = frozenset({"body", "query", "path", "header", "cookie"})
+
+
+def _field_name(loc: Sequence[str | int]) -> str | None:
+    """Top-level field for an error location: ("body", "avatar", "tone") -> "avatar"."""
+    rest = loc[1:] if loc and loc[0] in _LOCATIONS else loc
+    return next((part for part in rest if isinstance(part, str)), None)
+
+
 async def _handle_validation_error(_request: Request, exc: Exception) -> Response:
     # Only location, message and type: the rejected input itself may contain secrets or PII.
-    errors = [
-        {"loc": list(item.get("loc", ())), "msg": item.get("msg", ""), "type": item.get("type", "")}
-        for item in cast(RequestValidationError, exc).errors()
-    ]
+    errors = []
+    fields: dict[str, str] = {}
+    for item in cast(RequestValidationError, exc).errors():
+        loc, error_type = list(item.get("loc", ())), item.get("type", "")
+        errors.append({"loc": loc, "msg": item.get("msg", ""), "type": error_type})
+        name = _field_name(loc)
+        if name is not None:
+            message = (
+                item.get("msg", "")
+                if error_type == FIELD_ERROR_TYPE
+                else _FIELD_MESSAGES.get(error_type, _DEFAULT_FIELD_MESSAGE)
+            )
+            fields.setdefault(name, message)
     return error_response(
         HTTPStatus.UNPROCESSABLE_ENTITY,
         ValidationFailed.default_code,
         ValidationFailed.default_message,
-        details={"errors": errors},
+        details={"errors": errors, "fields": fields},
     )
 
 

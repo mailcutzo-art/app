@@ -1,5 +1,6 @@
 """Settings parsing and validation."""
 
+import base64
 import os
 from ipaddress import ip_network
 from typing import Any
@@ -193,3 +194,35 @@ def test_secrets_are_hidden_from_repr() -> None:
 
     assert "db-password" not in repr(config)
     assert "PRIVATE KEY" not in repr(config)
+
+
+def test_refresh_grace_key_is_generated_outside_prod() -> None:
+    config = settings()
+
+    assert len(config.refresh_grace_key_bytes) == 32
+    assert settings().refresh_grace_key_bytes != config.refresh_grace_key_bytes
+
+
+def test_production_requires_a_refresh_grace_key() -> None:
+    secrets = prod_secrets()
+    del secrets["refresh_grace_key"]
+
+    with pytest.raises(ValidationError, match="APP_REFRESH_GRACE_KEY must be set explicitly"):
+        settings(env="prod", **PROD_URLS, **secrets)
+
+
+@pytest.mark.parametrize(
+    ("value", "valid"),
+    [
+        (base64.b64encode(bytes(range(32))).decode(), True),
+        (base64.urlsafe_b64encode(bytes(range(32))).decode().rstrip("="), True),
+        (base64.b64encode(bytes(16)).decode(), False),
+        ("not base64 at all!", False),
+    ],
+)
+def test_refresh_grace_key_must_be_32_bytes_of_base64(value: str, valid: bool) -> None:
+    if valid:
+        assert settings(refresh_grace_key=value).refresh_grace_key_bytes == bytes(range(32))
+    else:
+        with pytest.raises(ValidationError, match="APP_REFRESH_GRACE_KEY"):
+            settings(refresh_grace_key=value)

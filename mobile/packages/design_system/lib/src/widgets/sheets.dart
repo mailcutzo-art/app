@@ -9,11 +9,19 @@ import '../tokens/app_motion.dart';
 import 'pressable.dart';
 
 /// Shows a modal bottom sheet styled by the theme (rounded top, drag handle).
-Future<T?> showAppSheet<T>(BuildContext context, {required WidgetBuilder builder}) {
+///
+/// It opens on the root navigator by default, so it covers a floating nav bar
+/// even when called from a screen inside a tab.
+Future<T?> showAppSheet<T>(
+  BuildContext context, {
+  required WidgetBuilder builder,
+  bool useRootNavigator = true,
+}) {
   return showModalBottomSheet<T>(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
+    useRootNavigator: useRootNavigator,
     builder: builder,
   );
 }
@@ -171,6 +179,84 @@ class SelectableRow extends StatelessWidget {
                     : null,
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// On/off row for a setting (e.g. "Timed"), styled like [SelectableRow].
+/// Tapping anywhere on the row flips it.
+class ToggleRow extends StatelessWidget {
+  const ToggleRow({
+    super.key,
+    required this.title,
+    required this.value,
+    required this.onChanged,
+    this.subtitle,
+    this.icon,
+    this.margin = const EdgeInsets.symmetric(horizontal: AppSpacing.gutter, vertical: 4),
+  });
+
+  final String title;
+  final String? subtitle;
+  final bool value;
+  final ValueChanged<bool>? onChanged;
+  final HugeIconData? icon;
+  final EdgeInsetsGeometry margin;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = context.text;
+    final enabled = onChanged != null;
+    return Opacity(
+      opacity: enabled ? 1 : 0.5,
+      child: MergeSemantics(
+        child: Pressable(
+          onPressed: enabled ? () => onChanged!(!value) : null,
+          pressedScale: 0.98,
+          isButton: false,
+          child: Container(
+            margin: margin,
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.md,
+              AppSpacing.sm,
+              AppSpacing.sm,
+              AppSpacing.sm,
+            ),
+            constraints: const BoxConstraints(minHeight: AppSizes.minTouch + AppSpacing.md),
+            decoration: BoxDecoration(
+              color: colors.surface,
+              borderRadius: BorderRadius.circular(AppRadii.lg),
+              border: Border.all(color: colors.outline),
+            ),
+            child: Row(
+              children: [
+                if (icon != null) ...[
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(color: colors.surfaceMuted, shape: BoxShape.circle),
+                    alignment: Alignment.center,
+                    child: HugeIcon(icon!, size: 22, color: colors.ink),
+                  ),
+                  const SizedBox(width: AppSpacing.md),
+                ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(title, style: text.titleMedium.copyWith(fontSize: 16)),
+                      if (subtitle != null) Text(subtitle!, style: text.caption),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Switch(value: value, onChanged: onChanged),
+              ],
+            ),
           ),
         ),
       ),

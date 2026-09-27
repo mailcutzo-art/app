@@ -78,7 +78,9 @@ chapter:
   name: Motion in a Straight Line
   order: 2                  # display order within the subject
   classes: [11]             # NCERT class(es); must match syllabus.yaml
-  topics:                   # 2–12 topics (modules); every topic needs at least 2 questions
+  topics:                   # 2–12 topics (modules); every topic needs at least 2 questions.
+                            # Topic slugs are unique within the subject: the app and
+                            # API name a topic by subject and slug.
     - slug: speed-velocity
       name: Speed and velocity
     - slug: equations-of-motion
@@ -142,6 +144,8 @@ Rules checked by `content/tools/validate.py`:
 - Stems ≤ 700 characters; options ≤ 160; battle questions ≤ 180-character stems and no diagram.
 - Options don't refer to other options; a `diagram` format question has a `diagram`.
 - Chapters of a subject in `syllabus.yaml` match their entry and use its id prefix.
+- Topic slugs are unique within a subject (the app and API name a topic by subject and slug), and
+  passage ids are unique.
 - Each chapter has at least 7 questions with `battle: true` (one Quick Battle). A real bank should
   have 15+ per chapter so players rarely see repeats.
 - Each chapter uses at least 2 categories, and answer positions are spread out (no chapter has

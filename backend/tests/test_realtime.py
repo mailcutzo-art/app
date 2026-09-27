@@ -72,7 +72,10 @@ async def test_no_hello_within_the_window_closes_4408(
         '{"t": "mm.join"}',
         '["hello"]',
         b'{"t": "hello"}',
-        '{"t": "hello", "pad": "' + "x" * protocol.MAX_INBOUND_FRAME_BYTES + '"}',
+        pytest.param(
+            '{"t": "hello", "pad": "' + "x" * protocol.MAX_INBOUND_FRAME_BYTES + '"}',
+            id="oversized-hello",
+        ),
     ],
 )
 async def test_anything_but_a_hello_frame_closes_4400(ws_url: str, frame: str | bytes) -> None:

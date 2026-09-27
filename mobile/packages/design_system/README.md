@@ -12,6 +12,6 @@ Pastel, minimal design system for the quiz app.
 - **Widgets:** buttons, segmented control, chips and badges, cards and tiles, floating nav bar,
   headers, avatars, progress and countdown, number ticker, quiz widgets (question card, answer
   options, versus header, matchmaking pulse), tournament card, leaderboard, podium, dot-matrix chart,
-  sheets, inputs, and empty / error / offline / skeleton states.
+  sheets and toggle rows, inputs, and empty / error / offline / skeleton states.
 
 Run `flutter test` here for unit tests, and in `example/` for golden screenshots.

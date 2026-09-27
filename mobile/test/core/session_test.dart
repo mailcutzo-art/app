@@ -89,4 +89,95 @@ void main() {
     expect(c.read(sessionProvider).value, isA<SignedOut>());
     verify(() => repo.signOut()).called(1);
   });
+
+  test('a suspended account on restore opens the Suspended state', () async {
+    when(() => repo.hasStoredSession()).thenAnswer((_) async => true);
+    when(() => repo.fetchMe()).thenThrow(
+      const ForbiddenFailure(
+        'This account has been suspended.',
+        code: 'ACCOUNT_BANNED',
+        details: {'reason': 'cheating', 'until': '2026-10-04T00:00:00Z', 'appeal': 'a@b.in'},
+      ),
+    );
+    final session = await container().read(sessionProvider.future);
+    expect(
+      session,
+      isA<Suspended>()
+          .having((s) => s.reason, 'reason', 'cheating')
+          .having((s) => s.until, 'until', DateTime.utc(2026, 10, 4))
+          .having((s) => s.appeal, 'appeal', 'a@b.in'),
+    );
+  });
+
+  test('a revoke reason becomes a message the user understands', () async {
+    when(() => repo.hasStoredSession()).thenAnswer((_) async => true);
+    when(() => repo.fetchMe()).thenAnswer((_) async => fakeUser());
+    final c = container();
+    await c.read(sessionProvider.future);
+
+    c.read(sessionExpiredProvider.notifier).fire(const SessionEnd(reason: 'signed_out'));
+    expect(
+      c.read(sessionProvider).value,
+      isA<SignedOut>().having(
+        (s) => s.message,
+        'message',
+        'You were signed out from another device.',
+      ),
+    );
+  });
+
+  test('a ban mid-session switches to Suspended, and leaving it signs out locally', () async {
+    when(() => repo.hasStoredSession()).thenAnswer((_) async => true);
+    when(() => repo.fetchMe()).thenAnswer((_) async => fakeUser());
+    final c = container();
+    await c.read(sessionProvider.future);
+
+    c.read(sessionExpiredProvider.notifier).fire(const SessionEnd(ban: {'reason': 'abuse'}));
+    expect(c.read(sessionProvider).value, isA<Suspended>());
+
+    await c.read(sessionProvider.notifier).leaveSuspended();
+    expect(c.read(sessionProvider).value, isA<SignedOut>());
+    verifyNever(() => repo.signOut());
+  });
+
+  test('signing in to a suspended account opens the Suspended state', () async {
+    when(() => repo.hasStoredSession()).thenAnswer((_) async => false);
+    when(
+      () => repo.devLogin(
+        email: any(named: 'email'),
+        displayName: any(named: 'displayName'),
+      ),
+    ).thenThrow(
+      const ForbiddenFailure(
+        'This account has been suspended.',
+        code: 'ACCOUNT_BANNED',
+        details: {'reason': 'cheating', 'until': '2026-10-04T00:00:00Z'},
+      ),
+    );
+    final c = container();
+    await c.read(sessionProvider.future);
+
+    await c.read(sessionProvider.notifier).devLogin('a@b.c');
+    expect(
+      c.read(sessionProvider).value,
+      isA<Suspended>()
+          .having((s) => s.reason, 'reason', 'cheating')
+          .having((s) => s.until, 'until', DateTime.utc(2026, 10, 4)),
+    );
+  });
+
+  test('the current user outlives sign-out for screens still animating away', () async {
+    when(() => repo.hasStoredSession()).thenAnswer((_) async => true);
+    when(() => repo.fetchMe()).thenAnswer((_) async => fakeUser());
+    when(() => repo.signOut()).thenAnswer((_) async {});
+    final c = container();
+    await c.read(sessionProvider.future);
+    final subscription = c.listen(meProvider, (_, _) {});
+    addTearDown(subscription.close);
+    expect(c.read(meProvider).handle, 'aarav');
+
+    await c.read(sessionProvider.notifier).signOut();
+    expect(c.read(sessionProvider).value, isA<SignedOut>());
+    expect(c.read(meProvider).handle, 'aarav');
+  });
 }

@@ -14,11 +14,12 @@
 | Client | **Flutter 3.47 / Dart 3.13**, Android first. The code is iOS-ready, but iOS builds need a Mac or a macOS CI runner later. |
 | Sign-in | **Google Sign-In only.** A dev-only login (disabled in production) exists for local testing and protocol bots. |
 | Core quiz flow | **Quick Battle:** pick subject → **chapter** (or "All chapters") → Rated/Casual → **Find opponent** → 1v1 live quiz. The "Join Live Class Quiz" card is removed. |
-| No opponent found | After **15 s**, the search widens to other chapters in the same subject, and questions are split between both chapters. After **45 s**, the app offers **Keep searching**, **Invite a friend**, or a clearly labelled **Practice Bot** game (unrated, no coins). |
+| No opponent found | After **15 s**, the search widens to other chapters in the same subject, and questions are split between both chapters. After **45 s** (20 s on a player's first-ever search), the app offers **Keep searching**, **Invite a friend**, or a clearly labelled **Practice Bot** game (unrated, no coins). Everyone gets the bot offer, including rated searchers, and the Battle tab can start a bot game directly. The app shows how many players are searching and the typical wait. |
 | Scheduled events | **Only tournaments are scheduled.** There are no scheduled live quizzes, **no PIN/QR rooms** and no teacher accounts. |
 | Private play | **Play with Friend** (1v1) and **Group Battle** (2–8 players), joined by invite, link or 6-character code. |
 | Content for now | **A small test set only** for NEET + JEE (Physics, Chemistry, Biology, Maths): 2 chapters per subject with 8 questions each, plus one Fun & Learn passage and five Guess-the-Word terms per subject. It exercises every feature; the real bank is imported later. There's no Current Affairs. |
 | Existing bank | None. I build a CSV/JSON importer and an admin panel. |
+| Flows | Every journey is mapped step by step in `docs/user-flows.md`. **No dead ends and no silent outcomes:** every refund, cancellation, forfeit and prize is explained on screen and kept in the Inbox. Battles, tournaments, practice, coins, XP and ranks can all be found again later (History, Wallet, Leaderboards) |
 | Answer tracking and tips | Every question references **subject → chapter → topic** and has a **difficulty** and a **category** (concept, numerical, factual, application). Every answer stores the option picked, whether it was right, the **time taken** and, in multiplayer games, whether it was **fast, slow or even** compared with the opponents. Students see **short plain-language tips** ("Focus on Projectile motion", "Practise more Physics numericals"), not charts. |
 
 ### Assumptions (the user can veto these when approving the plan)
@@ -272,10 +273,21 @@ docs/               protocol.md, matchmaking.md, tournaments.md, economy.md, sec
   - A single `MaterialApp.router`, edge-to-edge, with a native splash screen (`flutter_native_splash`).
   - The nav graph runs the auth gate, then onboarding, then the 5 tabs.
 - **Deep links:** `/j/<code>` (friend and group invites; the web fallback goes to the Play Store with the code in the install referrer), `/t/<id>`, `/u/<handle>`.
+  - **A pending destination survives sign-in and onboarding.** A link or notification opened while signed out is kept by the router and opened once the user reaches Home.
+- **Startup gates:** `GET /v1/config` runs alongside session restore (the last good config is cached).
+  - **Update required** blocks the app when `build < min_build`, on any `426`, or on a `4426` realtime close.
+  - **Maintenance** shows the server's message, with retry and an automatic re-check every 30 s.
+- **Live banner layer:** an overlay above every screen for time-critical events: match found, tournament check-in and "Round N: join", invites, and rematch requests. It also shows "Searching · 0:32" and "Tournament live" pills.
+  - **The connection:** the app keeps one realtime connection whenever it's in the foreground and signed in, on every tab (30 s idle heartbeat), so invites, inbox updates and tournament calls always arrive. Without a connection it polls invites and the unread count on resume and every 20 s.
+  - **App state:** the app reports foreground and background (`client.state`). A search stops after 10 s in the background with no penalty.
+  - **Prompt priority:** live game > tournament round > match found > rematch > invite > check-in.
+  - **Gates wait:** update and maintenance gates never interrupt a live match or round.
+  - **Build header:** every request carries `X-App-Build`, and the server answers old builds with `426`.
+- **Suspended screen:** a ban shows the reason, the end date, the appeal contact and Sign out (from `ACCOUNT_BANNED` details). A restricted account keeps playing, with inline notices.
+- **Onboarding safety exits:** "Signed in as … · Switch account" on step 1, an under-age message with Sign out, and links to the Terms and Privacy policy.
 - **Plumbing:**
   - Automatic token refresh.
   - A drift-backed sync queue, flushed on app start, when connectivity returns, and on a periodic timer while the app is in the foreground.
-  - Force-update when `build < min_build`.
   - A debug settings screen for the base URL and dev login.
 
 ## Phase 3 — Learn, practice and test content
@@ -446,7 +458,7 @@ Every answer in every mode writes one `question_attempts` row:
   - `match.snapshot`, `match.phase{phase,ends_at}`
   - `q.show{q,total,stem,options[{id,text}],shown_at,deadline_at}`
   - `q.progress{answered:[uid]}`, which shows who has answered, never what
-  - `ans.ack{status: accepted|late|dup|invalid|too_early}`
+  - `ans.ack{status: accepted|late|invalid|too_early, dup}` (a repeat gets the first status back with `dup`)
   - `q.reveal{correct_opt, per-player {opt,correct,pts,el_ms}, totals, question_ref}`
   - `opp.conn{state,grace_until}`
   - `match.end{result,reason,scores}`, then `match.settled{rating Δ, coins, xp, missions}`
@@ -573,7 +585,7 @@ Every transition is a Lua compare-and-set on `ver`.
 - **At 45 s, the player can choose:**
   - **Keep searching** for 60 s more, after which the search cancels itself and the hold is released.
   - **Invite a friend**, which opens a friend duel.
-  - **Practice vs Bot:** always unrated and coin-free, it gives 50% XP and doesn't count toward rated missions. **Rated games and tournaments never use bots.**
+  - **Practice vs Bot:** offered to every searcher, and also startable straight from the Battle tab (`mm.join {mode: "bot"}`). It's always unrated and coin-free. It gives 50% XP, capped at 60 XP a day, which never counts toward weekly boards or rated missions. **Rated games and tournaments never use bots.**
 - **Pairing guards:**
   - `pair.lua` atomically checks that both tickets exist and both players are busy with that ticket. It removes them from the queue and sets `busy→m:{mid}`.
   - Blocked pairs are never matched, nor two tickets from the same device hash. The same pair can play at most 3 rated games in 24 hours.
@@ -594,23 +606,33 @@ Every transition is a Lua compare-and-set on `ver`.
   - It runs as a virtual participant in the engine, labelled "Practice Bot" with the Robot01 avatar.
   - Its accuracy is the user's expected score in that chapter, clamped between 0.45 and 0.75.
   - Its answer time is log-normal, with a median of 6 s and never under 1.5 s.
-- **Rematch:** casual only. Both players must accept within 15 s, and at most 3 in a row. Rated players queue again.
+- **Rematch:** casual only (`match.rematch` / `rematch.status`). Both players must accept within 15 s, and at most 3 in a row. Rated players queue again.
+- **If the partner never gets ready:** `mm.requeued` puts the ready player back at the front of the queue, with the message "Your opponent didn't join. Searching again…".
 - **Screens:**
-  1. The search screen: SearchingPulse, elapsed time, the widening status line, and Cancel.
-  2. Match found, then the VS screen with shared avatars and the rival record.
+  1. **The search screen:** SearchingPulse, elapsed time, the widening status line, and Cancel. The user may leave it; a "Searching" pill stays on every screen, and a found match takes over the screen wherever they are.
+  2. Match found, then the VS screen with shared avatars and the head-to-head record.
   3. A 3-2-1 countdown.
-  4. The questions.
-  5. The result: animated rating change and coins, Rematch, and a review with explanations and bookmarking.
+  4. The questions: after each reveal, "You were 1.2 s faster".
+  5. **The result:**
+     - Victory, Defeat or Draw, with the scores and a dot per question (right/wrong, fast/slow);
+     - the rating change, **the new leaderboard rank** ("You're now #42 in Physics · ↑5");
+     - coins, XP and level-up, mission progress, the streak, achievements, and one tip line;
+     - buttons: Rematch (casual), Play again, Review answers, Done.
+  6. **Afterwards,** every match is in Profile → History, with the same review.
 
 **Play with Friend** (private 1v1; always unrated; no coins; half XP)
-- **Code:** 6 characters in Crockford base32 (for example `K7M2QX`), valid for 10 minutes. It's shared as `https://<domain>/j/<code>` or typed into CodeInput.
+- **Code:** 6 characters in Crockford base32 (for example `K7M2QX`), valid for as long as the room exists. It's shared as `https://<domain>/j/<code>` or typed into CodeInput.
+  - **The web page** for `/j/<code>` shows the code in big type, **Open app**, and a Play Store button that carries the code in the install referrer.
+  - **A new install** reads the referrer once, so the invite survives install, sign-in and onboarding.
 - **In-app invite:** friends only, delivered as a high-priority FCM push plus a banner, and it expires after 2 minutes. A busy friend shows a "Busy" chip.
 - **Options:**
   - Subject, then chapter or All.
   - 5, **7** or 10 questions.
   - 10, **15**, 20 or 30 s per question.
 - **Rules:**
-  - The lobby closes if the host is disconnected for 60 s.
+  - **The lobby survives the host leaving the app to share the link.** It closes only on `room.end`, when everyone leaves, or after 15 minutes idle.
+    - Members see "Waiting for Aarav to come back".
+    - The host gets a notification when someone joins.
   - A rematch needs both players to accept within 30 s, up to 10 per session.
   - Blocked users can't join.
   - Code attempts are limited to 10 a minute.
@@ -648,9 +670,9 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 | From | At | Action | To |
 |---|---|---|---|
 | SCHEDULED | `reg_opens_at` | open registration | REG_OPEN |
-| REG_OPEN | T−15 min | push "Check in now" | CHECK_IN |
-| CHECK_IN | T−5 min | close registration (badge shows LOCKED) | LOCKED |
-| LOCKED | T | if fewer than `min_players` checked in (default 8, never below 4): cancel and refund everyone. Otherwise refund anyone not checked in, capture holds, seed by rating, pair round 1 | RUNNING(1) / CANCELLED |
+| REG_OPEN | T−15 min | open check-in: push and inbox "Check in now", and `t.check_in` on `u` | CHECK_IN |
+| CHECK_IN | T−5 min | close registration (badge shows LOCKED); check-in stays open until T−2 min; registered players can't start quick battles or join rooms | LOCKED |
+| LOCKED | T | if fewer than `min_players` checked in (default 8, never below 4): cancel and refund everyone (`t.cancelled`). Otherwise refund anyone not checked in, capture holds, seed by rating, pair round 1 | RUNNING(1) / CANCELLED |
 | RUNNING(r) | last result of round r + 90 s | pair round r+1, or finalize | RUNNING(r+1) / FINALIZING |
 | RUNNING(r) | round deadline (start + 10 min) | force-finish on current score; unstarted pairings count as double no-shows | same |
 | FINALIZING | immediately | tie-breaks, ranks, prizes, notifications | FINISHED |
@@ -659,6 +681,8 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 
 **Admin settings**
 - Title, description, subject or All, and 3–6 rounds.
+  - The number of rounds played is min(configured, players − 1, ⌈log₂ players⌉ + 2), so small fields don't force rematches.
+- **Exam:** `neet`, `jee` or `any`. `any` is only allowed for the shared subjects (Physics, Chemistry), so NEET and JEE players never get questions outside their syllabus.
 - Entry fee (Free / 10 / 15 / 25 / 50) and a prize pool.
 - Capacity (up to 256) and minimum players.
 - Registration open time and start time.
@@ -667,7 +691,15 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 **Player rules**
 - **Joining:** the entry fee is held at registration (atomic, under a row lock), and a full tournament shows "Full".
 - **Withdrawing:** before T, it's a full refund. After the start there's no refund; the player stays in the standings so tie-breaks don't break, but can't win a prize.
-- **Not checking in:** refunded. Three no-shows in 30 days block paid registration for 7 days.
+- **Checking in:** always a deliberate tap between T−15 and T−2 min (from the banner, the card, the detail screen or the notification). **Can't make it** next to it withdraws with a full refund.
+- **Reminders without push:** at registration the app schedules local notifications for T−1 h, T−15 min and T, and offers "Add to calendar".
+- **Clashes:**
+  - Registering for overlapping tournaments returns `SCHEDULE_CONFLICT`.
+  - A quick battle or room whose longest possible length would reach T−2 min returns `BUSY`.
+- **Small fields:**
+  - The card shows "5 of 8 needed" and "Prize now 625 of 2,500 · grows with players".
+  - At T−30 min, registrants of an at-risk tournament are told "3 more players needed".
+- **Not checking in:** refunded, with an inbox note. Three no-shows in 30 days block paid registration for 7 days.
 - **Rounds:**
   - Players must be ready within 90 s of a round starting.
   - If only one player shows, that player gets a forfeit win: 1 point, no rating change.
@@ -677,7 +709,7 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
   - A draw is worth 0.5 points.
 
 **Pairing** (`swiss_pairing.py`, a pure function)
-- Round 1 is a fold pairing by seed.
+- Round 1 pairs the top half against the bottom half by seed (1 v n/2+1, 2 v n/2+2, …), the same shape later rounds aim for inside each score group.
 - **Later rounds:**
   - Use networkx `max_weight_matching(maxcardinality=True)` on a sparse graph where edges connect players whose points differ by at most 1.5, widening if needed.
   - It runs in a thread with a 20 s budget and falls back to a greedy pairing.
@@ -708,10 +740,12 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 - While running: entry fees are refunded through the ledger, no prizes are paid, and ratings from games already played stand.
 
 **UI**
-- Pastel subject-colored TournamentCards with LIVE and REGISTRATION badges.
-- A detail screen (shared element) with Overview, Standings and My games tabs.
-- A round timeline and your next pairing with a countdown.
-- Reminders.
+- Pastel subject-colored TournamentCards with LIVE and REGISTRATION badges, with **My tournaments** pinned at the top of the Arena tab.
+- A detail screen (shared element) with Overview (rules, schedule, prize table for the current player count), Standings and My games tabs.
+- **The live lobby between rounds:** "Round 2 of 5", your record, points and current rank, a pairing countdown, and the top standings. A bye shows "You have a bye this round (+1 point)".
+- **Round start:** a full-screen "Round N: you vs Aman · Join (90 s)" on any screen (`t.pairing`).
+- **Final results:** your final rank ("#3 of 64"), the prize credited automatically, and XP. `t.finished` sends them, and they're kept in the Inbox and Profile → Tournaments.
+- Reminders at 1 h and 15 min before the start.
 
 ## Phase 6 — Ratings, economy, progression, coach, leaderboards, Home
 **Glicko-2**
@@ -728,7 +762,24 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 - **Weekly XP:** a ZSET per ISO week, with a dedupe key per event.
 - **Friends:** built with `ZMSCORE`.
 - **Rebuild:** nightly from Postgres, then an atomic `RENAME` into place.
-- **API:** the top 100 plus the ±10 around you.
+- **API:** the top 100 plus the ±10 around you (`docs/api-play.md`).
+- **"Who is leading where":**
+  - **The hub:** a Leaderboards hub (from the Home trophy, "Leaders this week" and Profile) shows every board with its #1 player, your position and your change since yesterday.
+  - **The boards:**
+    - This week (XP, no bot XP, resets Monday 00:00 IST).
+    - **This week per subject** (battle points from games against people), which answers "who is leading Physics this week?".
+    - Overall rating, and a rating per subject.
+    - Friends.
+    - A tournament Hall of Fame.
+  - **Exam filter:** boards default to the viewer's exam (NEET or JEE), with an All India toggle.
+  - **Fairness:**
+    - Bot XP never counts, and casual XP counts from at most 3 games per pair a day.
+    - Flagged or suspended players are hidden.
+    - Ties go to whoever got there first.
+    - Idle players' rating uncertainty grows nightly, so stale ratings drop off the rating boards.
+  - **Last week's champions:** the top 3 stay visible for the week.
+  - **Not ranked yet:** "Play 7 more rated battles to appear". The weekly board includes anyone with XP this week, so new players show up immediately.
+  - **Big moves:** entering the top 100, 10 or 3 of a board creates an inbox item. The match result screen always shows the rank change.
 
 **Coin ledger**
 - `wallets.balance` has `CHECK >= 0`.
@@ -749,7 +800,8 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 | Achievements, tournament prizes | 10–200; set pool | | |
 
 **XP and levels**
-- **Practice:** +1 per answer, +1 more if correct, capped at 300 a day.
+- **Practice:** +1 per answer given, +1 more if correct, capped at 300 a day. Skips and timeouts
+  earn nothing, so skipping can't farm XP.
 - **Rated games:** 30 / 20 / 10 for a win, draw or loss.
 - **Casual games:** 20 / 15 / 8.
 - **Friend, group and bot games** earn half.
@@ -759,8 +811,9 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 - **Generation:** created on the first request of the IST day with `ON CONFLICT DO NOTHING`, chosen deterministically from `hash(uid, day)`.
 - **The day's three:**
   - Practice 10, 20 or 30 questions (+20 XP).
-  - 1 rated battle (+25 XP).
-  - Review 5 weak questions (+30 XP). If fewer than 5 review items exist, this becomes "10 questions in the weakest chapter".
+  - Play 1 rated battle or tournament game (+25 XP). It's never "win", because few players may be online.
+  - Review 5 weak questions (+30 XP). If fewer than 5 review items exist, this becomes "10 questions in the weakest chapter", or "10 questions in any chapter" for a new player with no data.
+  - One free mission swap a day.
 - **Progress:** driven by events and deduplicated by event_id.
 - **Rewards:** **credited automatically** (there's no claim button to fail). Completing all 3 gives **+100 XP and 25 coins**.
 - **"Start recommended mission"** deep-links to the first one not yet done.
@@ -850,6 +903,20 @@ Students aren't analytics-focused, so instead of graphs the app gives **short in
   - Immediately: sessions are revoked, the profile is anonymised, the player is removed from boards and friends lists, live matches are forfeited, and tournament entries are withdrawn.
   - The account can be restored within 7 days.
   - It's hard-deleted after 30 days. Game and ledger rows are kept under a tombstone ID.
+
+## Tracking (cross-cutting)
+- **For students:** History (battles with reviews, tournaments, practice sessions), Wallet (a coins history with a reason and link for every entry), Leaderboards (with daily change), the rating chart, and the Inbox (every automatic outcome). See `docs/user-flows.md` §15.
+- **For the team:** server-side funnel events (activation, battle, friend/group, tournament, practice/tips, economy, retention and health) in an `analytics_events` table written through the outbox. They carry no personal details and are kept for 180 days. The app adds only a few allowlisted screen events through `POST /v1/events`.
+- **Minors:** India's DPDP Act §9(3) bars behavioural tracking of children. For users under 18, events are stored without a stable user id (a per-session id and aggregates only). Everyone gets an analytics toggle.
+  - **Coach tips for minors** rely on their own learning data for an educational purpose. This needs a legal review before launch.
+
+## Privacy for minors (cross-cutting)
+Most NEET and JEE aspirants are 16 or 17.
+- **Names:** minors get only their first name pre-filled at onboarding, with the note "Shown to other players".
+- **What non-friends see:** only the name, avatar and level. No form, ratings or head-to-head.
+- **Public boards:** minors can opt out (`public_boards`).
+- **Privacy defaults:** requests only from people they've played, challenges and presence friends-only. All of these are in Privacy settings.
+- **The minor flag** comes from the birth year and the current IST year every time it's read, so restrictions lift automatically at 18.
 
 ## Phase 8 — Hardening and release readiness
 - **Security review:**
@@ -986,7 +1053,7 @@ Students aren't analytics-focused, so instead of graphs the app gives **short in
 | 10 | The worker crashes mid-transition | One transaction per step, `SKIP LOCKED`, unique keys, pre-generated match IDs and the outbox, so re-running is safe |
 | 11 | Swiss pairing is impossible without a rematch | Relax step by step: a penalized rematch (never against the last opponent), then an extra bye |
 | 12 | The app crashes right after the refresh token rotates | The same successor is returned within 60 s, so the user isn't falsely logged out |
-| 13 | A chapter runs out of unseen questions, or is too thin | Fall back to the least recently seen questions, then widen to the subject. Chapters with fewer than 15 questions aren't offered for battles. Matchmaking never blocks |
+| 13 | A chapter runs out of unseen questions, or is too thin | Fall back to the least recently seen questions, then widen to the subject. Chapters with fewer than 7 battle questions (one Quick Battle) aren't offered for battles; 15+ is the target for the real bank. Matchmaking never blocks |
 | 14 | The app is killed or backgrounded mid-match | `welcome.active` resumes it from the snapshot. The clock keeps running, and a forfeit only happens after the grace period |
 | 15 | Prize payout hits a banned, withdrawn or deleted player, or IST midnight falls mid-match | Skip ineligible players and shift places. Missions and streaks use the IST day of the server's settlement time |
 

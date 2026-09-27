@@ -51,6 +51,14 @@ jobs:
           flutter analyze
           flutter test
 
+      - name: Realtime client — format, analyze, tests
+        working-directory: mobile/packages/realtime_client
+        run: |
+          dart pub get
+          dart format --output=none --set-exit-if-changed .
+          dart analyze --fatal-infos
+          dart test
+
       - name: App — analyze and test
         working-directory: mobile
         run: |

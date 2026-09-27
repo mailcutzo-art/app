@@ -12,6 +12,7 @@ before every test that uses the ``redis`` or ``client`` fixture.
 
 from collections.abc import AsyncIterator
 
+import httpx
 import pytest
 from alembic import command
 from fastapi import FastAPI
@@ -26,10 +27,21 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
+from app.core.clock import get_clock, utc_now
 from app.core.config import Settings
 from app.core.db import get_sessionmaker
 from app.main_api import create_app
-from tests.helpers import alembic_config, make_settings, serve
+from app.modules.auth.google import GoogleIdTokenVerifier, JwksCache, get_google_verifier
+from app.modules.content.loader import load_content
+from app.modules.content.seed import seed_content
+from tests.helpers import (
+    CONTENT_DIR,
+    FakeClock,
+    alembic_config,
+    google_certs_transport,
+    make_settings,
+    serve,
+)
 
 
 @pytest.fixture(scope="session")
@@ -46,9 +58,14 @@ def settings() -> Settings:
 
 @pytest.fixture(scope="session")
 async def engine(settings: Settings) -> AsyncIterator[AsyncEngine]:
+    """Migrated, and loaded with the repository's question bank (committed; the seed is
+    idempotent, so reruns change nothing)."""
     engine = create_async_engine(settings.database_url.get_secret_value())
     async with engine.begin() as connection:
         await connection.run_sync(lambda sync: command.upgrade(alembic_config(sync), "head"))
+    async with async_sessionmaker(engine)() as db:
+        await seed_content(db, load_content(CONTENT_DIR), now=utc_now())
+        await db.commit()
     yield engine
     await engine.dispose()
 
@@ -90,9 +107,31 @@ async def redis(settings: Settings) -> AsyncIterator[Redis]:
 
 
 @pytest.fixture
-def app(settings: Settings) -> FastAPI:
-    """The REST app. Tests may add routes or overrides before using ``client``."""
-    return create_app(settings)
+def clock() -> FakeClock:
+    """The app's clock: real time until a test advances it."""
+    return FakeClock()
+
+
+@pytest.fixture
+async def google_http() -> AsyncIterator[httpx.AsyncClient]:
+    """An HTTP client on which Google's certs URL serves the local test keys."""
+    async with httpx.AsyncClient(transport=google_certs_transport()) as client:
+        yield client
+
+
+@pytest.fixture
+def app(settings: Settings, clock: FakeClock, google_http: httpx.AsyncClient) -> FastAPI:
+    """The REST app with a controllable clock and Google keys served locally.
+
+    Tests may add routes or overrides before using ``client``.
+    """
+    app = create_app(settings)
+    jwks = JwksCache()
+    app.dependency_overrides[get_clock] = lambda: clock
+    app.dependency_overrides[get_google_verifier] = lambda: GoogleIdTokenVerifier(
+        client_ids=settings.google_client_ids, jwks=jwks, http=google_http
+    )
+    return app
 
 
 @pytest.fixture

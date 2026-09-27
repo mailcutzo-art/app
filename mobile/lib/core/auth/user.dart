@@ -91,6 +91,7 @@ class Me {
     this.birthYear,
     this.isMinor = false,
     this.roles = const [],
+    this.email,
   });
 
   final String id;
@@ -102,6 +103,9 @@ class Me {
   final bool isMinor;
   final bool onboardingCompleted;
   final List<String> roles;
+
+  /// The Google account's email, shown only to the user themself.
+  final String? email;
 
   /// Throws [FormatException] on malformed payloads.
   factory Me.fromJson(Object? json) {
@@ -122,6 +126,7 @@ class Me {
         birthYear: (map['birth_year'] as num?)?.toInt(),
         isMinor: map['is_minor'] == true,
         roles: [...?(map['roles'] as List?)?.whereType<String>()],
+        email: map['email'] is String ? map['email'] as String : null,
       );
     }
     throw const FormatException('Invalid user payload');
@@ -137,5 +142,6 @@ class Me {
     'is_minor': isMinor,
     'onboarding_completed': onboardingCompleted,
     'roles': roles,
+    'email': email,
   };
 }

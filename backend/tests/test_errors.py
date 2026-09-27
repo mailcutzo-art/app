@@ -107,6 +107,12 @@ async def test_validation_error_is_422_without_echoing_input(client: AsyncClient
         ("body", "password"): "extra_forbidden",
     }
     assert all(set(item) == {"loc", "msg", "type"} for item in error["details"]["errors"])
+    # A flat map the app shows next to each field.
+    assert error["details"]["fields"] == {
+        "count": "Enter a whole number.",
+        "user_id": "This isn't a valid ID.",
+        "password": "This field isn't allowed here.",
+    }
     assert "hunter2" not in response.text
 
 
@@ -126,6 +132,7 @@ async def test_malformed_json_is_422(client: AsyncClient) -> None:
 
     assert response.status_code == 422
     assert response.json()["error"]["code"] == "VALIDATION_FAILED"
+    assert response.json()["error"]["details"]["fields"] == {}
 
 
 async def test_app_error_carries_code_message_and_details(client: AsyncClient) -> None:

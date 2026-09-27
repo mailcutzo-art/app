@@ -9,11 +9,11 @@ chapter:
       name: "Vernier callipers"
     - slug: screw-gauge
       name: "Screw gauge"
-    - slug: simple-pendulum
+    - slug: pendulum-damping
       name: "Simple pendulum and energy dissipation"
     - slug: metre-scale-moments
       name: "Mass by principle of moments"
-    - slug: youngs-modulus
+    - slug: searles-apparatus
       name: "Young's modulus of a metallic wire"
     - slug: surface-tension-viscosity
       name: "Surface tension and viscosity experiments"
@@ -403,7 +403,7 @@ questions:
     explanation: "For a length of about 0.2 mm, a 0.1 mm least count gives only 2 counts (50% uncertainty). A screw gauge with LC 0.01 mm gives about 20 counts, so it is the right instrument for thin sheets and wires."
 
   - id: phy-exp-019
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Damping"
     concept: "Amplitude decreases exponentially with time"
     category: concept
@@ -424,7 +424,7 @@ questions:
     explanation: "Air resistance produces damping, and the amplitude falls as A = A_0 e^{−bt/2m}: it drops quickly at first and then more slowly. A straight line would imply a constant loss of amplitude per second, which is not observed."
 
   - id: phy-exp-020
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Damping"
     concept: "ln A vs t is linear"
     category: concept
@@ -445,7 +445,7 @@ questions:
     explanation: "From A = A_0 e^{−bt/2m}, ln A = ln A_0 − (b/2m)t, which is a straight line of slope −b/2m. Its slope measures how quickly energy is dissipated."
 
   - id: phy-exp-021
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Energy loss"
     concept: "Energy is proportional to amplitude squared"
     category: numerical
@@ -466,7 +466,7 @@ questions:
     explanation: "Energy of oscillation ∝ A^2, so the energy becomes (5/10)^2 = 1/4 of its initial value. The loss is 1 − 1/4 = 3/4 of the initial energy. Choosing 1/2 treats energy as proportional to amplitude."
 
   - id: phy-exp-022
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Bob material"
     concept: "Light, large bob is damped faster"
     category: application
@@ -486,7 +486,7 @@ questions:
     explanation: "The drag force is about the same for equal-sized bobs, but the wooden bob has much less mass (and energy), so the damping constant b/2m is larger and its amplitude decays faster. The time period of both remains practically constant."
 
   - id: phy-exp-023
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Effective length"
     concept: "Effective length includes radius of the bob"
     category: concept
@@ -507,7 +507,7 @@ questions:
     explanation: "Effective length = length of thread + length of hook + radius of the bob, i.e. up to the centre of gravity of the spherical bob, which is where the mass may be treated as concentrated."
 
   - id: phy-exp-024
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "L–T^2 graph"
     concept: "Graph of L against T^2 is a straight line"
     category: concept
@@ -528,7 +528,7 @@ questions:
     explanation: "T = 2π√(L/g) gives T^2 = (4π^2/g)L, so T^2 ∝ L. The T–L graph is a parabola and the others are curves."
 
   - id: phy-exp-025
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Small amplitude"
     concept: "Amplitude kept small for SHM"
     category: concept
@@ -550,7 +550,7 @@ questions:
     explanation: "T = 2π√(L/g) is derived with sin θ ≈ θ, valid only for small angles; at large amplitude the period increases. That is exactly why the bob is given a small displacement, so R explains A."
 
   - id: phy-exp-026
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Counting oscillations"
     concept: "Timing many oscillations reduces error"
     category: numerical
@@ -721,7 +721,7 @@ questions:
     explanation: "Equal moments need m_1 d_1 = m_2 d_2, so doubling the mass halves the moment arm."
 
   - id: phy-exp-034
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Formula"
     concept: "Y = MgL/(πr^2 Δl)"
     category: factual
@@ -742,7 +742,7 @@ questions:
     explanation: "Stress = Mg/(πr^2) and strain = Δl/L, so Y = stress/strain = MgL/(πr^2 Δl)."
 
   - id: phy-exp-035
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Numerical"
     concept: "Y from load, length, area and extension"
     category: numerical
@@ -763,7 +763,7 @@ questions:
     explanation: "Y = FL/(AΔl) = (100 × 2)/(10^{−6} × 10^{−3}) = 2 × 10^{11} Pa. Forgetting to convert mm^2 to m^2 gives the much smaller wrong values."
 
   - id: phy-exp-036
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Reference wire"
     concept: "Two identical wires compensate for temperature and support yielding"
     category: concept
@@ -783,7 +783,7 @@ questions:
     explanation: "The spirit level compares the two wires, so any change common to both, such as thermal expansion or sagging of the support, cancels. Only the extension caused by the extra load on the experimental wire is recorded."
 
   - id: phy-exp-037
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Load–extension graph"
     concept: "Graph of extension vs load is straight within elastic limit"
     category: concept
@@ -803,7 +803,7 @@ questions:
     explanation: "Within the elastic limit, Hooke's law holds, so extension ∝ load and the graph is a straight line through the origin. Its slope is used to calculate Y."
 
   - id: phy-exp-038
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Slope of graph"
     concept: "Y from slope of extension–load graph"
     category: numerical
@@ -824,7 +824,7 @@ questions:
     explanation: "Y = MgL/(AΔl) = gL/(A × slope) = (10 × 2.0)/(4.0 × 10^{−7} × 2.5 × 10^{−4}) = 20/(10^{−10}) = 2 × 10^{11} Pa."
 
   - id: phy-exp-039
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Error analysis"
     concept: "Radius contributes twice its fractional error"
     category: numerical
@@ -845,7 +845,7 @@ questions:
     explanation: "ΔY/Y = 0.5 + 0.2 + 2 × 1 + 2 = 4.7%. The radius appears squared, so its error is doubled; forgetting that gives 3.7%."
 
   - id: phy-exp-040
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Measuring the wire"
     concept: "Diameter measured with a screw gauge"
     category: factual
@@ -865,7 +865,7 @@ questions:
     explanation: "The diameter is a fraction of a millimetre, so a screw gauge (LC 0.01 mm) is used at several points. The micrometer attached to the spirit level measures the extension, not the diameter."
 
   - id: phy-exp-041
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Loading and unloading"
     concept: "Readings taken while loading and unloading"
     category: concept
@@ -2454,7 +2454,7 @@ questions:
     explanation: "t = 5.00/50 = 0.100 mm, and the 0.1 mm uncertainty of the stack is shared by 50 sheets: 0.1/50 = 0.002 mm. Measuring many together reduces the error per sheet."
 
   - id: phy-exp-117
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Exponential decay"
     concept: "Constant halving time of amplitude"
     category: numerical
@@ -2475,7 +2475,7 @@ questions:
     explanation: "In exponential decay the amplitude halves in every equal interval, here 60 s. From 4 cm, two more halvings in 120 s give 1 cm. A linear decay would wrongly predict zero."
 
   - id: phy-exp-118
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Energy decay"
     concept: "Energy halves in half the time amplitude takes"
     category: numerical
@@ -2496,7 +2496,7 @@ questions:
     explanation: "A = A_0 e^{−t/τ} gives E ∝ A^2 = E_0 e^{−2t/τ}, which decays twice as fast. So the energy halving time is half the amplitude halving time: 20 s."
 
   - id: phy-exp-119
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Effect of area"
     concept: "Card attached to bob increases damping"
     category: application
@@ -2516,7 +2516,7 @@ questions:
     explanation: "The disc greatly increases the area facing the air, so the damping force and the rate of energy loss increase; the amplitude decays faster."
 
   - id: phy-exp-120
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Observations"
     concept: "Period stays constant while amplitude decays"
     category: concept
@@ -2536,7 +2536,7 @@ questions:
     explanation: "For light damping, the period is essentially the undamped value, so it stays constant; the amplitude falls exponentially, by the same fraction (not the same amount) each oscillation, and the energy lost to air resistance appears as heat."
 
   - id: phy-exp-121
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Measuring amplitude"
     concept: "Amplitude read on a scale placed behind the bob"
     category: factual
@@ -2556,7 +2556,7 @@ questions:
     explanation: "A horizontal scale placed just behind/below the path of the bob shows its extreme positions; half the distance between them (or the displacement from the mean position) is the amplitude."
 
   - id: phy-exp-122
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Energy transformation"
     concept: "Lost energy goes into the air as heat"
     category: concept
@@ -2576,7 +2576,7 @@ questions:
     explanation: "Energy is conserved: work done against air resistance and friction at the support heats the air and support slightly."
 
   - id: phy-exp-123
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Factors affecting damping"
     concept: "Dependence of decay rate on bob and medium"
     category: application
@@ -2601,7 +2601,7 @@ questions:
     explanation: "The decay constant is b/2m: larger mass lowers it, while a more viscous medium or larger surface area raises b. Length is not a simple deciding factor, so IV is not correct."
 
   - id: phy-exp-124
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Vacuum vs air"
     concept: "Damping due to air resistance"
     category: concept
@@ -2623,7 +2623,7 @@ questions:
     explanation: "Removing the air removes the main damping force, so the amplitude decays far more slowly. R explains A."
 
   - id: phy-exp-125
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "g from graph"
     concept: "g from slope of T^2–L graph"
     category: numerical
@@ -2816,7 +2816,7 @@ questions:
     explanation: "For translational equilibrium, the upward reaction equals the total downward weight: (100 + 50 + 80) g = 230 g weight. Forgetting the scale's own mass gives 130 g."
 
   - id: phy-exp-134
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Long thin wire"
     concept: "Extension ∝ L/r^2"
     category: concept
@@ -2837,7 +2837,7 @@ questions:
     explanation: "Δl = FL/(πr^2 Y); a large L and small r make Δl bigger, reducing the percentage error in the smallest measured quantity. Y itself is a property of the material, not the dimensions."
 
   - id: phy-exp-135
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Scaling"
     concept: "Doubling radius quarters the extension"
     category: numerical
@@ -2858,7 +2858,7 @@ questions:
     explanation: "Δl = FL/(πr^2 Y) ∝ 1/r^2, so doubling r makes the extension one-fourth."
 
   - id: phy-exp-136
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Measuring extension"
     concept: "Micrometer restores the spirit level"
     category: factual
@@ -2878,7 +2878,7 @@ questions:
     explanation: "Loading the wire tilts the spirit level; the micrometer screw is turned until the bubble is central again, and the change in its reading is the extension."
 
   - id: phy-exp-137
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Beyond elastic limit"
     concept: "Graph departs from straight line past elastic limit"
     category: concept
@@ -2898,7 +2898,7 @@ questions:
     explanation: "Beyond the elastic limit, Hooke's law fails: extension grows faster than load, and on unloading a permanent set remains, so the loading and unloading readings do not match."
 
   - id: phy-exp-138
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Sources of error"
     concept: "Largest errors from diameter and extension"
     category: concept
@@ -2924,7 +2924,7 @@ questions:
     explanation: "A length of about 2 m measured to 1 mm has only about 0.05% error, so III is wrong. The extension (fraction of a mm) and radius (appearing squared) dominate, and averaging many diameter readings reduces random error."
 
   - id: phy-exp-139
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Extension numerical"
     concept: "Extension from Y"
     category: numerical
@@ -2945,7 +2945,7 @@ questions:
     explanation: "Δl = FL/(AY) = 50 × 2/(10^{−6} × 2 × 10^{11}) = 100/(2 × 10^5) = 5 × 10^{−4} m = 0.5 mm."
 
   - id: phy-exp-140
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Initial load"
     concept: "Dead load keeps the wire taut and kink-free"
     category: concept
@@ -2965,7 +2965,7 @@ questions:
     explanation: "A slack or kinked wire first straightens under load, which would be wrongly recorded as extension. The dead load keeps the wire straight so only elastic extension is measured."
 
   - id: phy-exp-141
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Dominant error"
     concept: "Radius appears squared"
     category: concept
@@ -4599,7 +4599,7 @@ questions:
     explanation: "The true value is observed − 0.02; the student reports observed + 0.02. The difference is 0.04 mm, twice the zero error."
 
   - id: phy-exp-218
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Logarithmic decrement"
     concept: "Ratio of successive amplitudes constant"
     category: concept
@@ -4620,7 +4620,7 @@ questions:
     explanation: "With A = A_0 e^{−bt/2m}, every period multiplies the amplitude by the same factor e^{−bT/2m}, so the ratio of successive amplitudes is constant. The absolute decrease and energy lost get smaller each cycle."
 
   - id: phy-exp-219
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Constant fraction"
     concept: "Amplitude after further oscillations"
     category: numerical
@@ -4641,7 +4641,7 @@ questions:
     explanation: "Each set of 10 oscillations multiplies the amplitude by 0.8. After 20 oscillations: 10 × 0.8 × 0.8 = 6.4 cm. A linear drop would wrongly give 6.0 cm."
 
   - id: phy-exp-220
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Damping mechanism"
     concept: "Damping force ∝ velocity gives exponential decay"
     category: concept
@@ -4664,7 +4664,7 @@ questions:
     explanation: "A drag force −bv leads to A = A_0 e^{−bt/2m}, i.e. a constant fractional decrease per oscillation. R explains A."
 
   - id: phy-exp-221
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Observations"
     concept: "What is observed in a damped pendulum"
     category: concept
@@ -4689,7 +4689,7 @@ questions:
     explanation: "Light damping hardly changes the period, so IV is wrong. Energy falls, and amplitude decays exponentially."
 
   - id: phy-exp-222
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Energy fraction"
     concept: "Fraction of energy lost from amplitude readings"
     category: numerical
@@ -4710,7 +4710,7 @@ questions:
     explanation: "E ∝ A^2, so E_1/E_0 = 0.82^2 ≈ 0.67. The loss is about 33%. 18% is the fractional loss of amplitude, not energy."
 
   - id: phy-exp-223
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Cause of damping"
     concept: "Air resistance and friction at support"
     category: factual
@@ -4730,7 +4730,7 @@ questions:
     explanation: "Gravity and tension are conservative for the oscillation; energy is lost to air drag and friction at the support."
 
   - id: phy-exp-224
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Bob mass and period"
     concept: "Heavier bob loses a smaller fraction; period unaffected"
     category: concept
@@ -4752,7 +4752,7 @@ questions:
     explanation: "The drag force depends on size and speed, so for the same drag a heavier bob loses a smaller fraction of its larger energy. The time period of a simple pendulum does not depend on the mass of the bob, so Statement II is wrong."
 
   - id: phy-exp-225
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Graph shapes"
     concept: "Matching pendulum plots with shapes"
     category: application
@@ -4949,7 +4949,7 @@ questions:
     explanation: "A sharp edge defines the fulcrum well, so Statement I is correct. A scale may be non-uniform, so its centre of gravity must be found by balancing; Statement II is incorrect."
 
   - id: phy-exp-234
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Comparing wires"
     concept: "Extension ∝ L/d^2"
     category: numerical
@@ -4970,7 +4970,7 @@ questions:
     explanation: "Δl ∝ L/d^2, so the ratio is (2/1) × (2/1)^2 = 8 : 1."
 
   - id: phy-exp-235
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Material property"
     concept: "Y independent of dimensions"
     category: concept
@@ -4992,7 +4992,7 @@ questions:
     explanation: "Thicker wires extend less for the same load, but stress/strain is the same; Y depends only on the material (and temperature). R explains A."
 
   - id: phy-exp-236
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Precautions"
     concept: "Searle's apparatus precautions"
     category: concept
@@ -5017,7 +5017,7 @@ questions:
     explanation: "Kinks give spurious extension as they straighten, so III is wrong. Gentle loading, waiting for the wire to settle and avoiding backlash are correct."
 
   - id: phy-exp-237
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Instruments used"
     concept: "Matching quantities with instruments in Searle's experiment"
     category: factual
@@ -5040,7 +5040,7 @@ questions:
     explanation: "The long wire is measured with a metre scale, its diameter with a screw gauge, the extension with the spirit-level micrometer, and the load is given by standard slotted weights."
 
   - id: phy-exp-238
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Elastic limit readings"
     concept: "Rejecting readings beyond the elastic limit"
     category: application
@@ -5060,7 +5060,7 @@ questions:
     explanation: "The extension grows by 0.20 mm per kg up to 3 kg, then jumps by 0.35 mm. The last point is off the straight line, indicating the proportional limit has been crossed; Y is found from the linear region."
 
   - id: phy-exp-239
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Waiting time"
     concept: "Wire needs time to settle after loading"
     category: factual
@@ -5080,7 +5080,7 @@ questions:
     explanation: "A wire does not reach its full extension instantly after loading; waiting lets it settle so the reading is steady."
 
   - id: phy-exp-240
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Error in extension"
     concept: "Percentage error from micrometer LC"
     category: numerical
@@ -5101,7 +5101,7 @@ questions:
     explanation: "(0.01/0.50) × 100 = 2%. Small extensions give large percentage errors, which is why a long wire and a sensitive micrometer are used."
 
   - id: phy-exp-241
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Load–extension slope"
     concept: "Slope of M against Δl graph"
     category: concept
@@ -6768,7 +6768,7 @@ questions:
     explanation: "Pitch = LC × N = 0.01 × 100 = 1 mm."
 
   - id: phy-exp-317
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Rate of decay"
     concept: "Rate of amplitude decrease ∝ amplitude"
     category: concept
@@ -6789,7 +6789,7 @@ questions:
     explanation: "For A = A_0 e^{−bt/2m}, dA/dt = −(b/2m)A, so the curve is steepest at the start (large amplitude) and flattens as A decreases."
 
   - id: phy-exp-318
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Energy time constant"
     concept: "Energy decays twice as fast as amplitude"
     category: numerical
@@ -6810,7 +6810,7 @@ questions:
     explanation: "A ∝ e^{−t/100} gives E ∝ A^2 ∝ e^{−t/50}, so the energy falls to 1/e in 50 s."
 
   - id: phy-exp-319
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Procedure"
     concept: "Correct steps in the damping experiment"
     category: concept
@@ -6835,7 +6835,7 @@ questions:
     explanation: "A 60° amplitude makes the motion non-simple-harmonic and the period amplitude-dependent, so IV is wrong."
 
   - id: phy-exp-320
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Energy and amplitude"
     concept: "Energy ∝ amplitude squared"
     category: concept
@@ -6858,7 +6858,7 @@ questions:
     explanation: "Since A decays exponentially and E ∝ A^2, E also decays exponentially, so A is true. R is false: energy is proportional to the square of the amplitude."
 
   - id: phy-exp-321
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Correct statement"
     concept: "Damped pendulum energy and frequency"
     category: concept
@@ -6878,7 +6878,7 @@ questions:
     explanation: "Light damping reduces the amplitude and energy but barely changes the frequency."
 
   - id: phy-exp-322
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Half-life from ln A graph"
     concept: "Halving time = ln 2 divided by magnitude of slope"
     category: numerical
@@ -6899,7 +6899,7 @@ questions:
     explanation: "ln A = ln A_0 − 0.01t. For A = A_0/2, 0.01t = ln 2 = 0.693, so t ≈ 69 s."
 
   - id: phy-exp-323
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Medium"
     concept: "Pendulum in oil damps faster"
     category: concept
@@ -6919,7 +6919,7 @@ questions:
     explanation: "Oil is far more viscous than air, so the damping force and energy loss per oscillation are much greater."
 
   - id: phy-exp-324
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Shape of decay"
     concept: "Amplitude falls faster initially"
     category: concept
@@ -7114,7 +7114,7 @@ questions:
     explanation: "τ = mgd = 0.050 × 9.8 × 0.20 = 0.098 N m. Using grams and centimetres directly gives the absurd 1000 N m."
 
   - id: phy-exp-333
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Y numerical"
     concept: "Y with radius given"
     category: numerical
@@ -7135,7 +7135,7 @@ questions:
     explanation: "A = π(0.5 × 10^{−3})^2 ≈ 7.85 × 10^{−7} m^2. Y = FL/(AΔl) = 80 × 2.0/(7.85 × 10^{−7} × 10^{−3}) ≈ 2.0 × 10^{11} Pa. Using the diameter instead of the radius gives the answer four times too small."
 
   - id: phy-exp-334
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Graph interpretation"
     concept: "Statements about load–extension graph"
     category: concept
@@ -7160,7 +7160,7 @@ questions:
     explanation: "Beyond the elastic limit, the extension increases faster than in proportion to the load, so IV is wrong."
 
   - id: phy-exp-335
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Length dependence"
     concept: "Y does not depend on the wire's length"
     category: concept
@@ -7182,7 +7182,7 @@ questions:
     explanation: "Δl ∝ L, so the strain Δl/L and hence Y are unchanged; A is false. R is true."
 
   - id: phy-exp-336
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Strain"
     concept: "Longitudinal strain from extension"
     category: numerical
@@ -7203,7 +7203,7 @@ questions:
     explanation: "Strain = Δl/L = 0.8 × 10^{−3}/2.0 = 4 × 10^{−4}."
 
   - id: phy-exp-337
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Reference wire"
     concept: "Role of the reference wire"
     category: concept
@@ -7223,7 +7223,7 @@ questions:
     explanation: "The reference wire is of the same material and length and carries only a fixed dead load, so common changes cancel in the spirit-level comparison."
 
   - id: phy-exp-338
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Temperature error"
     concept: "Thermal expansion without a reference wire"
     category: numerical
@@ -7244,7 +7244,7 @@ questions:
     explanation: "ΔL = αLΔT = 1.2 × 10^{−5} × 2 × 5 = 1.2 × 10^{−4} m = 0.12 mm, a large fraction of a typical elastic extension of ~0.5 mm. The reference wire cancels this."
 
   - id: phy-exp-339
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Changing parameters"
     concept: "Matching changes with effect on extension"
     category: application
@@ -7268,7 +7268,7 @@ questions:
     explanation: "Δl ∝ L/(d^2 Y): doubling L doubles Δl; doubling d gives 1/4; halving d gives 4 times; doubling Y halves Δl."
 
   - id: phy-exp-340
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Misconceptions"
     concept: "Loading to breaking; steel vs copper"
     category: concept
@@ -8945,7 +8945,7 @@ questions:
     explanation: "A screw gauge measures only between its two studs from outside; internal diameters need the inside jaws of a Vernier callipers or a travelling microscope."
 
   - id: phy-exp-417
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Constant ratio"
     concept: "Energy lost per oscillation from amplitude ratio"
     category: numerical
@@ -8966,7 +8966,7 @@ questions:
     explanation: "E ∝ A^2, so after one oscillation E = 0.9^2 = 0.81 of its previous value; 19% is lost."
 
   - id: phy-exp-418
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Reducing damping"
     concept: "Factors that reduce damping"
     category: concept
@@ -8991,7 +8991,7 @@ questions:
     explanation: "Larger mass lowers b/2m, and a compact bob and thin thread reduce air drag. A larger bob of the same mass has more drag, so IV makes decay faster."
 
   - id: phy-exp-419
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Timing many oscillations"
     concept: "Timing and damping are separate facts"
     category: concept
@@ -9013,7 +9013,7 @@ questions:
     explanation: "Timing many oscillations reduces the relative error due to reaction time and stopwatch least count; A is true. R is also true, but it is not the reason for timing many oscillations."
 
   - id: phy-exp-420
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Energy after two halvings"
     concept: "E falls as A^2"
     category: numerical
@@ -9034,7 +9034,7 @@ questions:
     explanation: "After 2 minutes, A = A_0/4, so E = E_0/16."
 
   - id: phy-exp-421
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Predicting amplitude"
     concept: "Exponential data predicts next amplitude"
     category: numerical
@@ -9055,7 +9055,7 @@ questions:
     explanation: "Successive readings fall by a constant factor of 0.7 (7.0/10, 4.9/7.0, 3.4/4.9 ≈ 0.7), showing exponential decay. Next: 3.4 × 0.7 ≈ 2.4 cm. Assuming a constant drop of about 2.2 cm gives a wrong answer."
 
   - id: phy-exp-422
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Damping constant"
     concept: "ln A–t slope gives damping constant"
     category: concept
@@ -9076,7 +9076,7 @@ questions:
     explanation: "ln A = ln A_0 − (b/2m)t, so the straight line ln A against t has slope −b/2m."
 
   - id: phy-exp-423
-    topic: simple-pendulum
+    topic: pendulum-damping
     subtopic: "Medium and heat"
     concept: "Viscous medium and energy conversion"
     category: concept
@@ -9274,7 +9274,7 @@ questions:
     explanation: "m = 50 × d_2/d_1: 50 × 20/40 = 25 g; 50 × 40/20 = 100 g; 50 g; 50 × 30/20 = 75 g."
 
   - id: phy-exp-432
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Y from graph data"
     concept: "Y from load and extension values"
     category: numerical
@@ -9295,7 +9295,7 @@ questions:
     explanation: "Y = FL/(AΔl) = 40 × 1.0/(0.5 × 10^{−6} × 0.4 × 10^{−3}) = 40/(2 × 10^{−10}) = 2 × 10^{11} Pa."
 
   - id: phy-exp-433
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Procedure"
     concept: "Order of steps in Searle's experiment"
     category: concept
@@ -9320,7 +9320,7 @@ questions:
     explanation: "Measure the wire first (Q), take the initial level reading with the dead load (P), take readings while loading and unloading (R) and finally analyse the graph (S)."
 
   - id: phy-exp-434
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Measured quantities"
     concept: "What must be measured for Y"
     category: concept
@@ -9346,7 +9346,7 @@ questions:
     explanation: "Y = MgL/(πr^2 Δl) needs L, r, M and Δl. Poisson's ratio is not involved."
 
   - id: phy-exp-435
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Graph advantage"
     concept: "Graph averages readings"
     category: concept
@@ -9368,7 +9368,7 @@ questions:
     explanation: "A graph uses all readings, averages out random errors and shows any departure from Hooke's law, so A is true. R is also true but does not explain why a graph is better."
 
   - id: phy-exp-436
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Loading and unloading"
     concept: "Readings should agree within elastic limit"
     category: concept
@@ -9388,7 +9388,7 @@ questions:
     explanation: "Within the elastic limit the wire returns along the same path, so loading and unloading readings should agree closely; their mean is used."
 
   - id: phy-exp-437
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Stress"
     concept: "Stress from load and area"
     category: numerical
@@ -9409,7 +9409,7 @@ questions:
     explanation: "Stress = F/A = 100/10^{−6} = 10^{8} N m^{−2}."
 
   - id: phy-exp-438
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Hysteresis-like lag"
     concept: "Unloading readings slightly larger"
     category: application
@@ -9429,7 +9429,7 @@ questions:
     explanation: "A wire takes time to recover fully, so unloading readings lag slightly. Since it returns to the original length, it is still elastic, and averaging the two sets reduces the effect."
 
   - id: phy-exp-439
-    topic: youngs-modulus
+    topic: searles-apparatus
     subtopic: "Spirit level"
     concept: "Micrometer restores the level by the extension"
     category: concept

@@ -10,10 +10,12 @@ dependencies = [
     "fastapi>=0.141",
     "google-auth>=2.40",
     "httpx>=0.28",
+    "networkx>=3.6",
     "orjson>=3.10",
     "pydantic>=2.11",
     "pydantic-settings>=2.7",
     "pyjwt[crypto]>=2.10",
+    "pyyaml>=6.0",
     "redis>=6",
     "sqlalchemy[asyncio]>=2.0.40",
     "structlog>=25.1",
@@ -24,10 +26,13 @@ dependencies = [
 [dependency-groups]
 dev = [
     "asgi-lifespan>=2.1",
+    "hypothesis>=6.168",
     "mypy>=1.15",
     "pytest>=8.3",
     "pytest-asyncio>=1.0",
     "ruff>=0.12",
+    "types-networkx>=3.6",
+    "types-pyyaml>=6.0",
 ]
 
 [build-system]
@@ -63,15 +68,21 @@ select = [
     "PTH",   # pathlib
     "PT",    # pytest style
     "ASYNC", # async pitfalls
+    "PLE",   # pylint errors, incl. invisible and bidi characters in source
     "FAST",  # FastAPI
     "RUF",   # ruff-specific
 ]
 # Error classes are named after the condition they signal (NotFound, RateLimited, ...).
 ignore = ["N818"]
+# User-facing messages use typographic en dashes ("Use 3–20 letters").
+allowed-confusables = ["–"]
 
 [tool.ruff.lint.per-file-ignores]
 # Tests assert, use fixed fake credentials and exercise error paths on purpose.
 "tests/**" = ["S101", "S105", "S106", "BLE001"]
+# Command-line tools report to the terminal.
+"scripts/**" = ["T201"]
+"app/modules/content/seed.py" = ["T201"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["app"]

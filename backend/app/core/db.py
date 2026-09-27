@@ -1,13 +1,14 @@
 """Async SQLAlchemy: engine and session factories, the declarative base and column helpers."""
 
 import uuid
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Iterable
 from datetime import datetime
 from typing import Annotated, Any
 
 from fastapi import Depends
 from sqlalchemy import DateTime, MetaData, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -56,6 +57,21 @@ class TimestampMixin:
 
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
+
+
+def one_of(column: str, values: Iterable[str]) -> str:
+    """SQL for a CHECK constraint that limits a text column to ``values``.
+
+    NULL passes, as with any CHECK; declare the column NOT NULL where a value is required.
+    """
+    quoted = ", ".join("'" + value.replace("'", "''") + "'" for value in values)
+    return f"{column} IN ({quoted})"
+
+
+def violated_constraint(error: IntegrityError) -> str | None:
+    """Name of the constraint an integrity error violated, as reported by asyncpg."""
+    name = getattr(error.orig.__cause__, "constraint_name", None) if error.orig else None
+    return name if isinstance(name, str) else None
 
 
 def create_engine(settings: Settings, *, application_name: str) -> AsyncEngine:

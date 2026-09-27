@@ -15,6 +15,7 @@ class AppEnv {
     required this.flavor,
     required this.apiBaseUrl,
     required this.googleServerClientId,
+    this.legalBaseUrl = '',
   });
 
   factory AppEnv.fromDefines() {
@@ -24,6 +25,9 @@ class AppEnv {
       // 10.0.2.2 is the host machine from the Android emulator.
       apiBaseUrl: String.fromEnvironment('API_BASE_URL', defaultValue: 'http://10.0.2.2:8000'),
       googleServerClientId: String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID'),
+      // Read from --dart-define; the analyzer only sees the empty default.
+      // ignore: avoid_redundant_argument_values
+      legalBaseUrl: String.fromEnvironment('LEGAL_BASE_URL'),
     );
   }
 
@@ -33,10 +37,17 @@ class AppEnv {
   /// OAuth *web* client id; Google puts it in the ID token's audience.
   final String googleServerClientId;
 
+  /// Where the Terms (`/terms`) and Privacy policy (`/privacy`) live. Empty
+  /// until they're published, and then the links stay hidden.
+  final String legalBaseUrl;
+
   bool get isDev => flavor == Flavor.dev;
 
   /// Dev-only password-less login for local testing. Never in release builds.
   bool get devLoginAvailable => isDev && !kReleaseMode;
+
+  /// Dev-only sample data for Learn and practice. Never in release builds.
+  bool get demoDataAvailable => isDev && !kReleaseMode;
 
   bool get googleSignInConfigured => googleServerClientId.isNotEmpty;
 
@@ -44,6 +55,7 @@ class AppEnv {
     flavor: flavor,
     apiBaseUrl: apiBaseUrl ?? this.apiBaseUrl,
     googleServerClientId: googleServerClientId,
+    legalBaseUrl: legalBaseUrl,
   );
 }
 

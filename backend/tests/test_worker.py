@@ -48,9 +48,14 @@ async def test_stop_waits_for_the_running_job(settings: Settings) -> None:
     assert finished == [True]
 
 
-async def test_heartbeat_is_scheduled_every_30_seconds(caplog: pytest.LogCaptureFixture) -> None:
+async def test_jobs_are_scheduled(caplog: pytest.LogCaptureFixture) -> None:
     caplog.set_level(logging.INFO)
 
-    assert [(job.name, job.interval_s) for job in JOBS] == [("heartbeat", 30.0)]
+    assert [(job.name, job.interval_s) for job in JOBS] == [
+        ("heartbeat", 30.0),
+        ("practice_housekeeping", 600.0),
+        ("attempt_partitions", 3600.0),
+        ("question_stats", 600.0),
+    ]
     await heartbeat(None)
     assert log_events(caplog, "worker.heartbeat")

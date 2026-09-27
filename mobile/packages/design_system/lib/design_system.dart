@@ -14,6 +14,7 @@ export 'src/tokens/app_typography.dart';
 export 'src/widgets/app_button.dart';
 export 'src/widgets/app_icon_button.dart';
 export 'src/widgets/avatar.dart';
+export 'src/widgets/battle_widgets.dart';
 export 'src/widgets/cards.dart';
 export 'src/widgets/chips.dart';
 export 'src/widgets/competition_widgets.dart';

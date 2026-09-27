@@ -1,0 +1,45 @@
+{
+  "_readme": "Word lists for name moderation. 'words' are matched as whole tokens after normalization (NFKC, lowercase, no zero-width characters or diacritics, confusables and leetspeak mapped, repeated letters collapsed). 'handle_substrings' are matched anywhere inside a handle, so they must never occur inside ordinary words or names (e.g. no 'cunt' because of Scunthorpe, no 'shit' because of Kshitij). Keep entries lowercase.",
+  "words": {
+    "english": [
+      "arse", "arsehole", "ass", "asses", "asshole", "assholes", "bastard", "bastards", "bitch",
+      "bitches", "bitchy", "blowjob", "bollocks", "boner", "boob", "boobs", "btch", "bullshit",
+      "butthole", "clit", "cock", "cocks", "cocksucker", "cunt", "cunts", "dick", "dickhead",
+      "dicks", "dildo", "dumbass", "fag", "faggot", "fags", "fck", "fuck", "fucked", "fucker",
+      "fuckers", "fuckface", "fucking", "fucks", "fuckboy", "fuk", "fuq", "handjob", "hentai",
+      "horny", "jackass", "jerkoff", "jizz", "kike", "milf", "motherfucker", "nigga", "niggas",
+      "nigger", "niggers", "nude", "nudes", "orgasm", "penis", "phuck", "piss", "porn", "porno",
+      "prick", "pussy", "rape", "raped", "rapist", "retard", "retarded", "scrotum", "sex",
+      "sexy", "shit", "shits", "shitty", "shithead", "sht", "slut", "sluts", "tits", "titty",
+      "twat", "vagina", "wank", "wanker", "whore", "whores", "xxx"
+    ],
+    "hinglish": [
+      "bakchod", "benchod", "bhadva", "bhadwa", "bhadwe", "bhanchod", "behenchod", "bhenchod",
+      "bhosada", "bhosadi", "bhosadike", "bhosda", "bhosdi", "bhosdike", "bkl", "bsdk", "chinal",
+      "chod", "chodu", "chootiya", "chudai", "chutia", "chutiya", "chutiyapa", "chutiye", "dalla",
+      "gaand", "gaandu", "gandu", "harami", "haramkhor", "haramzada", "haramzade", "jhaant",
+      "jhaatu", "jhant", "jhatu", "kamina", "kamine", "kaminey", "kutta", "kutte", "kutti",
+      "kuttiya", "lavda", "lawda", "lodu", "madarchod", "madarchoot", "maderchod", "mkc", "raand",
+      "randi", "randwa", "tatti"
+    ],
+    "hindi": [
+      "कमीना", "कमीने", "कुतिया", "कुत्ता", "कुत्ते", "गांड", "गांडू", "गाण्डू", "चुतिया", "चुदाई",
+      "चूतिया", "चोद", "झाट", "झाटू", "टट्टी", "बहनचोद", "भड़वा", "भोसड़ी", "भोसड़ीके", "मादरचोद",
+      "रंडी", "लंड", "लवड़ा", "लौड़ा", "हरामखोर", "हरामजादा", "हरामी"
+    ]
+  },
+  "handle_substrings": [
+    "behenchod", "bhenchod", "bhosadike", "bhosdike", "bitch", "chootiya", "chutiya", "chutiye",
+    "faggot", "fuck", "lavda", "lawda", "madarchod", "nigga", "nigger", "whore"
+  ],
+  "leetspeak": {
+    "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t", "8": "b", "9": "g",
+    "@": "a", "$": "s", "!": "i", "|": "l", "€": "e", "+": "t"
+  },
+  "confusables": {
+    "а": "a", "в": "b", "е": "e", "з": "3", "к": "k", "м": "m", "н": "h", "о": "o", "р": "p",
+    "с": "c", "т": "t", "у": "y", "х": "x", "і": "i", "ј": "j", "ѕ": "s", "ԁ": "d", "ɡ": "g",
+    "α": "a", "β": "b", "ε": "e", "ι": "i", "κ": "k", "ν": "v", "ο": "o", "ρ": "p", "τ": "t",
+    "υ": "u", "χ": "x"
+  }
+}

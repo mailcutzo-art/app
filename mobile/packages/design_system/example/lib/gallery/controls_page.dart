@@ -14,6 +14,8 @@ class _ControlsPageState extends State<ControlsPage> {
   String _mode = 'rated';
   final _filters = <String>{'Open'};
   bool _loading = false;
+  bool _timed = true;
+  bool _unseenOnly = false;
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +143,27 @@ class _ControlsPageState extends State<ControlsPage> {
             ],
             selected: _mode,
             onChanged: (v) => setState(() => _mode = v),
+          ),
+        ),
+        DemoBlock(
+          title: 'Toggle rows',
+          child: Column(
+            children: [
+              ToggleRow(
+                title: 'Timed',
+                subtitle: '30 s per question',
+                value: _timed,
+                margin: const EdgeInsets.symmetric(vertical: 4),
+                onChanged: (v) => setState(() => _timed = v),
+              ),
+              ToggleRow(
+                title: 'Unseen only',
+                icon: AppIcons.view,
+                value: _unseenOnly,
+                margin: const EdgeInsets.symmetric(vertical: 4),
+                onChanged: (v) => setState(() => _unseenOnly = v),
+              ),
+            ],
           ),
         ),
         DemoBlock(

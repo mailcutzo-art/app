@@ -160,4 +160,23 @@ void main() {
     await tester.tap(find.byType(AppButton));
     expect(taps, 0);
   });
+
+  testWidgets('CoinAmount shows a balance, or a change with its sign', (tester) async {
+    Future<void> pump(CoinAmount amount) => tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.light(),
+        home: Scaffold(body: amount),
+      ),
+    );
+    await pump(const CoinAmount(amount: 1250));
+    expect(find.text('1,250'), findsOneWidget);
+    await pump(const CoinAmount(amount: 10, signed: true));
+    expect(find.text('+10'), findsOneWidget);
+    await pump(const CoinAmount(amount: -5, signed: true));
+    expect(find.text('−5'), findsOneWidget);
+    await pump(const CoinAmount(amount: -5));
+    expect(find.text('-5'), findsOneWidget);
+    await pump(const CoinAmount(amount: 0, signed: true));
+    expect(find.text('0'), findsOneWidget);
+  });
 }
