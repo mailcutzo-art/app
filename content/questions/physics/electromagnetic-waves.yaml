@@ -2010,3 +2010,631 @@ questions:
       - A is false but R is true
     answer: 0
     explanation: The spectrum is continuous; bands are named by how the radiation is produced and detected, and the ranges overlap (e.g. X-rays and gamma rays). So R explains A.
+  - id: phy-emw-101
+    topic: displacement-current
+    subtopic: Displacement current in a capacitor
+    concept: i_d = (ε_0A/d) dV/dt for a parallel plate capacitor
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    formula: i_d = (ε_0A/d) dV/dt
+    tags: [capacitor, displacement-current]
+    stem: A parallel plate capacitor has plate area 0.1 m^2 and plate separation 1 mm. The voltage across it rises at 10^6 V s^{-1}. The displacement current between the plates is about
+    options:
+      - 8.85 mA
+      - 88.5 μA
+      - 8.85 μA
+      - 0.885 mA
+    answer: 3
+    explanation: C = ε_0A/d = 8.85 × 10^{-12} × 0.1/10^{-3} = 8.85 × 10^{-10} F, so i_d = C dV/dt = 8.85 × 10^{-10} × 10^6 ≈ 8.85 × 10^{-4} A = 0.885 mA.
+  - id: phy-emw-102
+    topic: displacement-current
+    subtopic: Nature of displacement current
+    concept: Displacement current is not a flow of charges
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [displacement-current, trap]
+    stem: |-
+      Assertion (A): A displacement current exists in the gap between the plates of a capacitor while it is being charged.
+      Reason (R): The displacement current is due to free electrons moving across the gap between the plates.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 2
+    explanation: While charging, the electric field in the gap changes, giving i_d = ε_0 dΦ_E/dt, so A is true. No charges cross the gap; the displacement current is due to the changing electric flux, so R is false.
+  - id: phy-emw-103
+    topic: displacement-current
+    subtopic: Steady state of a capacitor
+    concept: Displacement current vanishes once a DC-charged capacitor is fully charged
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: false
+    battle: false
+    tags: [capacitor, displacement-current]
+    stem: |-
+      Statement I: A displacement current exists between the plates of a capacitor only while it is charging or discharging.
+      Statement II: Once a capacitor connected to a DC battery is fully charged, both the conduction current in the leads and the displacement current in the gap become zero.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: i_d needs a changing field. When the capacitor is fully charged, the field in the gap is constant (i_d = 0) and no charge flows in the leads (i_c = 0). Both statements are correct.
+  - id: phy-emw-104
+    topic: displacement-current
+    subtopic: Displacement current from charge
+    concept: i_d = dq/dt on the plates
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: i_d = dq/dt
+    tags: [capacitor, displacement-current]
+    stem: The charge on a capacitor plate varies as q = 2 cos(500t) μC, with t in second. The maximum displacement current between the plates is
+    options:
+      - 0.5 mA
+      - 2 mA
+      - 1 mA
+      - 4 μA
+    answer: 2
+    explanation: i_d = ε_0 dΦ_E/dt = dq/dt = −2 × 10^{-6} × 500 sin(500t) A, so its maximum is 10^{-3} A = 1 mA.
+  - id: phy-emw-105
+    topic: displacement-current
+    subtopic: Displacement current density
+    concept: j_d = ε_0 dE/dt
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: j_d = ε_0 dE/dt
+    tags: [displacement-current, current-density]
+    stem: In a region the electric field increases at 2 × 10^{12} V m^{-1} s^{-1}. The displacement current density there is about
+    options:
+      - 1.77 A m^{-2}
+      - 17.7 A m^{-2}
+      - 8.85 A m^{-2}
+      - 177 A m^{-2}
+    answer: 1
+    explanation: j_d = i_d/A = ε_0 dE/dt = 8.85 × 10^{-12} × 2 × 10^{12} = 17.7 A m^{-2}.
+  - id: phy-emw-106
+    topic: displacement-current
+    subtopic: Continuity of current
+    concept: i_d in the gap equals i_c in the leads at every instant, even with AC
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [capacitor, displacement-current, ac]
+    stem: A capacitor is connected to an AC source. Which statement is INCORRECT?
+    options:
+      - The conduction current in the leads and the displacement current in the gap are equal at every instant
+      - The displacement current in the gap is always smaller than the conduction current in the leads
+      - The magnetic field just outside the gap and just outside the leads, at the same distance from the axis, is the same
+      - The sum of conduction and displacement current is the same through any surface bounded by a given loop
+    answer: 1
+    explanation: Because i_d = ε_0 dΦ_E/dt = dq/dt = i_c at every instant, the displacement current equals (is not smaller than) the conduction current. The other statements follow from this continuity.
+  - id: phy-emw-107
+    topic: displacement-current
+    subtopic: Displacement current in an RC circuit
+    concept: i_d = (V/R)e^{−t/RC} while charging
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: i = (V/R)e^{−t/RC}
+    tags: [capacitor, rc-circuit, multi-concept]
+    stem: A 1 μF capacitor is charged through a 1 MΩ resistor by a 10 V battery. The displacement current between the plates at t = 1 s after the switch is closed is about
+    options:
+      - 10 μA
+      - 6.3 μA
+      - zero
+      - 3.7 μA
+    answer: 3
+    explanation: The displacement current equals the charging current i = (V/R)e^{−t/RC}. With RC = 1 s, i = 10 μA × e^{−1} ≈ 3.7 μA. 6.3 μA is 10(1 − e^{−1}), the form of the charge growth.
+  - id: phy-emw-108
+    topic: displacement-current
+    subtopic: Magnetic field between capacitor plates
+    concept: At r = R, B = μ_0 i/(2πR)
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    formula: B = μ_0 i/2πR
+    tags: [capacitor, ampere-maxwell]
+    stem: A capacitor with circular plates of radius 5 cm is charged by a current of 0.5 A. The magnetic field at the edge of the plates (r = 5 cm), midway between them, is
+    options:
+      - 2 × 10^{-6} T
+      - 1 × 10^{-6} T
+      - 4 × 10^{-6} T
+      - 2 × 10^{-7} T
+    answer: 0
+    explanation: A loop of radius R encloses the full displacement current i. So B·2πR = μ_0 i, giving B = 2 × 10^{-7} × 0.5/0.05 = 2 × 10^{-6} T.
+  - id: phy-emw-109
+    topic: displacement-current
+    subtopic: Magnetic field between capacitor plates
+    concept: B(R/2) and B(2R) are equal for a charging circular capacitor
+    category: application
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    tags: [capacitor, ampere-maxwell, trap]
+    stem: A capacitor with circular plates of radius R is being charged. The ratio of the magnetic field at distance R/2 from the axis to that at distance 2R from the axis (both in the plane midway between the plates) is
+    options:
+      - "1 : 4"
+      - "4 : 1"
+      - "1 : 1"
+      - "1 : 2"
+    answer: 2
+    explanation: "Inside, B ∝ r, so B(R/2) = B_R/2. Outside, B ∝ 1/r, so B(2R) = B_R/2. The ratio is 1 : 1."
+  - id: phy-emw-110
+    topic: displacement-current
+    subtopic: NCERT capacitor problem
+    concept: dV/dt = I/C for a capacitor charged at constant current
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 100
+    ncert: true
+    battle: false
+    formula: C = ε_0A/d, dV/dt = I/C
+    tags: [capacitor, multi-concept]
+    stem: A capacitor has circular plates of radius 12 cm separated by 5.0 cm and is charged by a constant current of 0.15 A. The rate of change of potential difference between the plates is about
+    options:
+      - 1.87 × 10^{10} V s^{-1}
+      - 1.87 × 10^9 V s^{-1}
+      - 5.4 × 10^{-11} V s^{-1}
+      - 8.0 × 10^{-12} V s^{-1}
+    answer: 0
+    explanation: C = ε_0πr^2/d = 8.85 × 10^{-12} × π × 0.0144/0.05 ≈ 8.0 × 10^{-12} F. Then dV/dt = I/C = 0.15/8.0 × 10^{-12} ≈ 1.87 × 10^{10} V s^{-1}. 8.0 × 10^{-12} is C itself.
+  - id: phy-emw-111
+    topic: displacement-current
+    subtopic: Kirchhoff's rule at a capacitor plate
+    concept: Including displacement current keeps Kirchhoff's junction rule valid at each plate
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [capacitor, kirchhoff, ncert-line]
+    stem: A capacitor is charged by a constant current of 0.15 A. At each plate, Kirchhoff's first (junction) rule
+    options:
+      - fails, because charge piles up on the plate
+      - holds only for the conduction current
+      - holds only at the positive plate
+      - holds if the displacement current of 0.15 A in the gap is counted as current
+    answer: 3
+    explanation: Conduction current 0.15 A enters the plate and a displacement current of 0.15 A leaves it through the gap, so the junction rule holds when displacement current is included.
+  - id: phy-emw-112
+    topic: displacement-current
+    subtopic: Capacitor on AC
+    concept: I_rms = V_rms ωC
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    formula: I_rms = V_rms ωC
+    tags: [capacitor, ac, multi-concept]
+    stem: A 100 pF parallel plate capacitor is connected to a 230 V AC supply of angular frequency 300 rad s^{-1}. The rms displacement current between its plates is
+    options:
+      - 69 μA
+      - 6.9 μA
+      - 0.69 μA
+      - 9.8 μA
+    answer: 1
+    explanation: I_rms = V_rms ωC = 230 × 300 × 10^{-10} = 6.9 × 10^{-6} A. The displacement current equals the conduction current, so it is also 6.9 μA rms (9.8 μA is the peak).
+  - id: phy-emw-113
+    topic: displacement-current
+    subtopic: Capacitor on AC
+    concept: Peak B inside the gap = μ_0 r I_0/(2πR^2)
+    category: numerical
+    format: direct
+    difficulty: 5
+    time: 150
+    ncert: true
+    battle: false
+    formula: B_0 = μ_0 r I_0/(2πR^2)
+    tags: [capacitor, ac, ampere-maxwell, multi-concept]
+    stem: A capacitor with circular plates of radius 6 cm carries an rms current of 6.9 μA. The amplitude of the magnetic field at a point 3 cm from the axis, between the plates, is about
+    options:
+      - 1.6 × 10^{-11} T
+      - 1.15 × 10^{-11} T
+      - 3.3 × 10^{-11} T
+      - 1.6 × 10^{-9} T
+    answer: 0
+    explanation: Peak current I_0 = √2 × 6.9 μA ≈ 9.76 μA. B_0 = (μ_0/2π) I_0 r/R^2 = 2 × 10^{-7} × 9.76 × 10^{-6} × 0.03/0.0036 ≈ 1.6 × 10^{-11} T. Using the rms current gives 1.15 × 10^{-11} T, which is the rms field.
+  - id: phy-emw-114
+    topic: displacement-current
+    subtopic: Dimensions of displacement current
+    concept: ε_0 dΦ_E/dt has the dimensions of charge per unit time
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    tags: [dimensions, displacement-current]
+    stem: The quantity ε_0 dΦ_E/dt has the same dimensions as
+    options:
+      - charge × time
+      - electric field × time
+      - charge / time
+      - potential / time
+    answer: 2
+    explanation: Φ_E = Q/ε_0 by Gauss's law, so ε_0 dΦ_E/dt has dimensions of dQ/dt, i.e. charge per time (current).
+  - id: phy-emw-115
+    topic: displacement-current
+    subtopic: Time variation
+    concept: Displacement current decays exponentially while an RC circuit charges
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [graph, rc-circuit, displacement-current]
+    stem: A capacitor is charged through a resistor by a DC battery starting at t = 0. Which describes the graph of displacement current in the gap against time?
+    options:
+      - Rises from zero and saturates at V/R
+      - Constant at V/R throughout
+      - Rises linearly with time
+      - Starts at V/R and decays exponentially to zero
+    answer: 3
+    explanation: i_d equals the charging current (V/R)e^{−t/RC}, maximum at t = 0 and falling exponentially to zero. The rising-saturating curve describes the charge or voltage, not the current.
+  - id: phy-emw-116
+    topic: maxwell-equations
+    subtopic: Time-dependent equations
+    concept: Faraday and Ampere–Maxwell laws contain time derivatives of flux
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [maxwell-equations]
+    stem: |-
+      Which of Maxwell's equations contain a time derivative of a flux?
+      I. Gauss's law for electricity
+      II. Gauss's law for magnetism
+      III. Faraday's law
+      IV. Ampere–Maxwell law
+    options:
+      - I and II only
+      - III and IV only
+      - II and III only
+      - I and IV only
+    answer: 1
+    explanation: Faraday's law has −dΦ_B/dt and the Ampere–Maxwell law has μ_0ε_0 dΦ_E/dt. The two Gauss's laws relate flux to enclosed charge at an instant.
+  - id: phy-emw-117
+    topic: maxwell-equations
+    subtopic: Fields in empty space
+    concept: In a charge-free, current-free region, a changing E is the only source of B
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: true
+    tags: [maxwell-equations, free-space]
+    stem: In a region of empty space with no charges or conduction currents, the Ampere–Maxwell law reduces to
+    options:
+      - ∮B·dl = 0
+      - ∮B·dl = μ_0 i_c
+      - ∮B·dl = −dΦ_E/dt
+      - ∮B·dl = μ_0ε_0 dΦ_E/dt
+    answer: 3
+    explanation: With i_c = 0, only the displacement current term survives, ∮B·dl = μ_0ε_0 dΦ_E/dt. There is no minus sign; that belongs to Faraday's law.
+  - id: phy-emw-118
+    topic: maxwell-equations
+    subtopic: Gauss's law for magnetism
+    concept: Net magnetic flux through any closed surface is zero, even around one pole of a magnet
+    category: application
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: false
+    battle: true
+    tags: [gauss-law-magnetism, trap]
+    stem: A closed surface surrounds only the north-pole end of a long bar magnet. The net magnetic flux through the surface is
+    options:
+      - positive, as field lines leave the north pole
+      - negative
+      - zero
+      - equal to μ_0 times the pole strength
+    answer: 2
+    explanation: By Gauss's law for magnetism ∮B·dA = 0 for every closed surface. Field lines leaving through the outside return inside the magnet, so the net flux is zero.
+  - id: phy-emw-119
+    topic: maxwell-equations
+    subtopic: Gauss's law for magnetism
+    concept: ∮B·dA = 0 holds for time-varying fields too
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [gauss-law-magnetism, trap]
+    stem: |-
+      Assertion (A): Gauss's law for magnetism, ∮B·dA = 0, holds only for static magnetic fields.
+      Reason (R): Isolated magnetic monopoles have not been observed.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 3
+    explanation: ∮B·dA = 0 is one of Maxwell's equations and holds for time-varying fields as well, so A is false. R is true; the absence of monopoles is why the flux is zero.
+  - id: phy-emw-120
+    topic: maxwell-equations
+    subtopic: Speed from constants
+    concept: c = 1/√(μ_0ε_0) ≈ 3 × 10^8 m s^{-1}
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: true
+    formula: c = 1/√(μ_0ε_0)
+    tags: [speed-of-light]
+    stem: Using μ_0 = 4π × 10^{-7} T m A^{-1} and ε_0 = 8.85 × 10^{-12} C^2 N^{-1} m^{-2}, the value of 1/√(μ_0ε_0) is about
+    options:
+      - 3 × 10^6 m s^{-1}
+      - 9 × 10^{16} m s^{-1}
+      - 1.1 × 10^{-17} m s^{-1}
+      - 3 × 10^8 m s^{-1}
+    answer: 3
+    explanation: μ_0ε_0 = 4π × 10^{-7} × 8.85 × 10^{-12} ≈ 1.11 × 10^{-17} s^2 m^{-2}, so 1/√(μ_0ε_0) ≈ 3 × 10^8 m s^{-1}, the speed of light. 9 × 10^{16} is c^2.
+  - id: phy-emw-121
+    topic: maxwell-equations
+    subtopic: Speed in a medium
+    concept: v = 1/√(με); doubling both μ and ε halves v
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 40
+    ncert: false
+    battle: true
+    formula: v = 1/√(με)
+    tags: [speed-in-medium, proportionality]
+    stem: If both the permeability and the permittivity of a medium were doubled, the speed of electromagnetic waves in it would
+    options:
+      - be halved
+      - become one-fourth
+      - be doubled
+      - remain the same
+    answer: 0
+    explanation: v = 1/√(με). Doubling both makes με four times larger, so v becomes 1/√4 = ½ of its value.
+  - id: phy-emw-122
+    topic: maxwell-equations
+    subtopic: SI units
+    concept: Units of ε_0, μ_0, displacement current and electric flux
+    category: factual
+    format: match
+    difficulty: 3
+    time: 60
+    ncert: false
+    battle: false
+    tags: [units, match]
+    stem: |-
+      Match List I (quantity) with List II (SI unit).
+      List I:
+      P. ε_0
+      Q. μ_0
+      R. Displacement current
+      S. Electric flux
+      List II:
+      1. N m^2 C^{-1}
+      2. T m A^{-1}
+      3. C^2 N^{-1} m^{-2}
+      4. A
+    options:
+      - P-2, Q-3, R-4, S-1
+      - P-3, Q-2, R-1, S-4
+      - P-3, Q-2, R-4, S-1
+      - P-1, Q-2, R-4, S-3
+    answer: 2
+    explanation: ε_0 is in C^2 N^{-1} m^{-2} (P-3), μ_0 in T m A^{-1} (Q-2), displacement current in ampere (R-4) and electric flux in N m^2 C^{-1} (S-1).
+  - id: phy-emw-123
+    topic: maxwell-equations
+    subtopic: Faraday's law
+    concept: ∮E·dl equals the magnitude of rate of change of magnetic flux
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    formula: ∮E·dl = −dΦ_B/dt
+    tags: [faraday, maxwell-equations]
+    stem: The magnetic flux through a loop changes at a steady rate of 0.2 Wb s^{-1}. The magnitude of ∮E·dl around the loop is
+    options:
+      - 0.1 V
+      - 0.2 V
+      - 0.4 V
+      - zero, as there are no charges
+    answer: 1
+    explanation: By Faraday's law, |∮E·dl| = |dΦ_B/dt| = 0.2 V. The induced E field exists even without any charges or wire.
+  - id: phy-emw-124
+    topic: maxwell-equations
+    subtopic: Gauss's law for electricity
+    concept: Electric field lines begin and end on charges
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: false
+    tags: [maxwell-equations, gauss-law]
+    stem: Which statement about Maxwell's equations is INCORRECT?
+    options:
+      - Gauss's law for electricity implies that electrostatic field lines start and end on charges
+      - Gauss's law for magnetism implies that magnetic field lines have no starting or ending points
+      - Faraday's law implies that a changing magnetic flux produces an electric field
+      - The Ampere–Maxwell law implies that only conduction currents produce magnetic fields
+    answer: 3
+    explanation: The Ampere–Maxwell law says that both conduction currents and changing electric flux (displacement current) produce magnetic fields. The other three statements are correct.
+  - id: phy-emw-125
+    topic: sources-of-em-waves
+    subtopic: LC oscillator as a source
+    concept: λ = 2πc√(LC) for waves from an LC oscillator
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 90
+    ncert: false
+    battle: false
+    formula: ν = 1/(2π√(LC)), λ = c/ν
+    tags: [lc-oscillator, multi-concept]
+    stem: An LC oscillator with L = 1 μH and C = 100 pF radiates electromagnetic waves. Their wavelength is about
+    options:
+      - 3 m
+      - 18.8 m
+      - 1.9 m
+      - 188 m
+    answer: 1
+    explanation: √(LC) = √(10^{-6} × 10^{-10}) = 10^{-8} s, so ν = 1/(2π × 10^{-8}) ≈ 1.6 × 10^7 Hz and λ = c/ν = 2πc√(LC) = 2π × 3 × 10^8 × 10^{-8} ≈ 18.8 m. Forgetting 2π gives 3 m.
+  - id: phy-emw-126
+    topic: sources-of-em-waves
+    subtopic: History
+    concept: Marconi transmitted EM waves over many kilometres
+    category: factual
+    format: direct
+    difficulty: 2
+    time: 25
+    ncert: true
+    battle: true
+    tags: [history, ncert-line]
+    stem: Following Hertz's work, who succeeded in transmitting electromagnetic waves over distances of many kilometres?
+    options:
+      - Maxwell
+      - Faraday
+      - Marconi
+      - Ampere
+    answer: 2
+    explanation: NCERT notes that Marconi in Italy followed Hertz's work and transmitted electromagnetic waves over many kilometres, laying the foundation of radio communication.
+  - id: phy-emw-127
+    topic: sources-of-em-waves
+    subtopic: Energy of radiation
+    concept: A radiating charge loses energy to the wave
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    tags: [sources, energy]
+    stem: |-
+      Assertion (A): An oscillating charge in an antenna must be supplied energy continuously to keep oscillating with constant amplitude.
+      Reason (R): The electromagnetic waves radiated by the accelerated charge carry energy away.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Radiated waves carry energy away from the oscillating charge; without a supply of energy its amplitude would decay. So R explains A.
+  - id: phy-emw-128
+    topic: sources-of-em-waves
+    subtopic: Which charges radiate
+    concept: Only accelerated charges radiate
+    category: concept
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [sources, trap]
+    stem: Which of the following does NOT emit electromagnetic radiation (classically)?
+    options:
+      - An electron oscillating in an antenna
+      - An electron moving in a straight line at constant speed
+      - An electron decelerating as it hits a metal target
+      - An electron moving in a circle at constant speed
+    answer: 1
+    explanation: Radiation needs acceleration. An electron in uniform circular motion is accelerated (centripetal), but one moving in a straight line at constant speed is not.
+  - id: phy-emw-129
+    topic: sources-of-em-waves
+    subtopic: Antenna frequency
+    concept: λ = c/ν for waves from an antenna at 1 MHz
+    category: numerical
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: false
+    battle: true
+    formula: λ = c/ν
+    tags: [antenna, wavelength]
+    stem: Charges in a transmitting antenna oscillate at 1 MHz. The wavelength of the radiated waves is
+    options:
+      - "3 m"
+      - "30 m"
+      - "3000 m"
+      - "300 m"
+    answer: 3
+    explanation: The wave frequency equals the oscillation frequency, so λ = c/ν = 3 × 10^8/10^6 = 300 m.
+  - id: phy-emw-130
+    topic: sources-of-em-waves
+    subtopic: Oscillating charge
+    concept: The radiation has the source frequency and travels outward at c
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [sources, ncert-line]
+    stem: |-
+      Statement I: The frequency of the electromagnetic wave produced by an oscillating charge equals the frequency of oscillation of the charge.
+      Statement II: The oscillating electric and magnetic fields produced by the charge travel outward from it in vacuum at speed c.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: An oscillating charge sets up oscillating E and B fields at its own frequency, and these regenerate each other and travel outward at c. Both statements are correct.
+  - id: phy-emw-131
+    topic: sources-of-em-waves
+    subtopic: Source of light
+    concept: Visible light comes from electron transitions in atoms and molecules
+    category: factual
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [sources, visible]
+    stem: Ordinary visible light from a lamp mainly originates from
+    options:
+      - nuclear transitions
+      - oscillating currents in the lamp's wires
+      - electronic transitions in atoms and molecules
+      - rotation of molecules
+    answer: 2
+    explanation: Light frequencies (~10^{14} Hz) are far above circuit frequencies; they arise when electrons in atoms and molecules change energy levels. Nuclear transitions give gamma rays.
