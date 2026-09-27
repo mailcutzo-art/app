@@ -316,7 +316,7 @@ def main(argv: list[str] | None = None) -> int:
         where = str(path.relative_to(ROOT))
         try:
             data = ChapterFile.model_validate(_load(path))
-        except ValidationError as e:
+        except (ValidationError, yaml.YAMLError) as e:  # report a broken file, keep checking
             problems.append(f"{where}: {e}")
             continue
         subject, chapter = data.subject, data.chapter
@@ -383,7 +383,7 @@ def main(argv: list[str] | None = None) -> int:
         where = str(path.relative_to(ROOT))
         try:
             passages = PassageFile.model_validate(_load(path))
-        except ValidationError as e:
+        except (ValidationError, yaml.YAMLError) as e:  # report a broken file, keep checking
             problems.append(f"{where}: {e}")
             continue
         if passages.subject not in subjects:
@@ -403,7 +403,7 @@ def main(argv: list[str] | None = None) -> int:
         where = str(path.relative_to(ROOT))
         try:
             words = WordFile.model_validate(_load(path))
-        except ValidationError as e:
+        except (ValidationError, yaml.YAMLError) as e:  # report a broken file, keep checking
             problems.append(f"{where}: {e}")
             continue
         if words.subject not in subjects:
