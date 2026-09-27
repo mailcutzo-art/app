@@ -1,0 +1,26 @@
+name: content
+
+on:
+  push:
+    paths:
+      - "content/**"
+      - ".github/workflows/content.yml"
+  pull_request:
+    paths:
+      - "content/**"
+      - ".github/workflows/content.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate question bank
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Validate
+        run: uv run --python 3.11 --with pyyaml --with pydantic python content/tools/validate.py

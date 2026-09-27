@@ -1,0 +1,99 @@
+[project]
+name = "quiz-backend"
+dynamic = ["version"]
+description = "Quiz battle backend: REST api, realtime gateway and background worker."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.16",
+    "asyncpg>=0.30",
+    "fastapi>=0.141",
+    "google-auth>=2.40",
+    "httpx>=0.28",
+    "orjson>=3.10",
+    "pydantic>=2.11",
+    "pydantic-settings>=2.7",
+    "pyjwt[crypto]>=2.10",
+    "redis>=6",
+    "sqlalchemy[asyncio]>=2.0.40",
+    "structlog>=25.1",
+    "uuid-utils>=0.11",
+    "uvicorn[standard]>=0.34",
+]
+
+[dependency-groups]
+dev = [
+    "asgi-lifespan>=2.1",
+    "mypy>=1.15",
+    "pytest>=8.3",
+    "pytest-asyncio>=1.0",
+    "ruff>=0.12",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "app/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".dev"]
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # pyflakes
+    "I",     # isort
+    "B",     # flake8-bugbear
+    "UP",    # pyupgrade
+    "S",     # flake8-bandit (security)
+    "N",     # pep8-naming
+    "C4",    # flake8-comprehensions
+    "SIM",   # flake8-simplify
+    "RET",   # flake8-return
+    "BLE",   # blind except
+    "T20",   # print statements
+    "PTH",   # pathlib
+    "PT",    # pytest style
+    "ASYNC", # async pitfalls
+    "FAST",  # FastAPI
+    "RUF",   # ruff-specific
+]
+# Error classes are named after the condition they signal (NotFound, RateLimited, ...).
+ignore = ["N818"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests assert, use fixed fake credentials and exercise error paths on purpose.
+"tests/**" = ["S101", "S105", "S106", "BLE001"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+# The migrations directory is also called "alembic"; the import means the library.
+known-third-party = ["alembic"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+plugins = ["pydantic.mypy"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --strict-config"
+asyncio_mode = "auto"
+# One event loop for the whole run, so session-scoped async fixtures (engine) can be shared.
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+filterwarnings = ["error"]

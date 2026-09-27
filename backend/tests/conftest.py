@@ -1,0 +1,105 @@
+"""Shared fixtures: a real Postgres and Redis, isolated per test.
+
+Start them with ``scripts/dev_services.sh start``. Defaults target the ``quiz_test`` database and
+Redis DB 15; ``APP_DATABASE_URL`` / ``APP_REDIS_URL`` override them (CI), but the database name
+must end in ``_test`` because every test runs migrations against it and flushes Redis.
+
+Isolation: each test runs inside one outer transaction that is rolled back afterwards. App
+sessions join it with ``join_transaction_mode="create_savepoint"``, so code that calls
+``commit()`` works normally but only releases a SAVEPOINT. The Redis test database is flushed
+before every test that uses the ``redis`` or ``client`` fixture.
+"""
+
+from collections.abc import AsyncIterator
+
+import pytest
+from alembic import command
+from fastapi import FastAPI
+from httpx import AsyncClient
+from redis.asyncio import Redis
+from sqlalchemy.engine import make_url
+from sqlalchemy.ext.asyncio import (
+    AsyncConnection,
+    AsyncEngine,
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
+
+from app.core.config import Settings
+from app.core.db import get_sessionmaker
+from app.main_api import create_app
+from tests.helpers import alembic_config, make_settings, serve
+
+
+@pytest.fixture(scope="session")
+def settings() -> Settings:
+    settings = make_settings()
+    database = make_url(settings.database_url.get_secret_value()).database or ""
+    if not database.endswith("_test"):
+        pytest.exit(
+            f"Refusing to run tests against database {database!r}: its name must end in '_test'.",
+            returncode=2,
+        )
+    return settings
+
+
+@pytest.fixture(scope="session")
+async def engine(settings: Settings) -> AsyncIterator[AsyncEngine]:
+    engine = create_async_engine(settings.database_url.get_secret_value())
+    async with engine.begin() as connection:
+        await connection.run_sync(lambda sync: command.upgrade(alembic_config(sync), "head"))
+    yield engine
+    await engine.dispose()
+
+
+@pytest.fixture
+async def db_connection(engine: AsyncEngine) -> AsyncIterator[AsyncConnection]:
+    """A connection inside a transaction that is rolled back when the test ends."""
+    async with engine.connect() as connection:
+        transaction = await connection.begin()
+        try:
+            yield connection
+        finally:
+            await transaction.rollback()
+
+
+@pytest.fixture
+def session_factory(db_connection: AsyncConnection) -> async_sessionmaker[AsyncSession]:
+    """Sessions bound to the test transaction; their ``commit()`` releases a SAVEPOINT."""
+    return async_sessionmaker(
+        bind=db_connection, expire_on_commit=False, join_transaction_mode="create_savepoint"
+    )
+
+
+@pytest.fixture
+async def db_session(
+    session_factory: async_sessionmaker[AsyncSession],
+) -> AsyncIterator[AsyncSession]:
+    async with session_factory() as session:
+        yield session
+
+
+@pytest.fixture
+async def redis(settings: Settings) -> AsyncIterator[Redis]:
+    """A client on the (flushed) test Redis database."""
+    client = Redis.from_url(settings.redis_url.get_secret_value(), decode_responses=True)
+    await client.flushdb()
+    yield client
+    await client.aclose()
+
+
+@pytest.fixture
+def app(settings: Settings) -> FastAPI:
+    """The REST app. Tests may add routes or overrides before using ``client``."""
+    return create_app(settings)
+
+
+@pytest.fixture
+async def client(
+    app: FastAPI, session_factory: async_sessionmaker[AsyncSession], redis: Redis
+) -> AsyncIterator[AsyncClient]:
+    """A client for ``app`` whose DB sessions join the test transaction (Redis is flushed)."""
+    app.dependency_overrides[get_sessionmaker] = lambda: session_factory
+    async with serve(app) as http_client:
+        yield http_client

@@ -1,0 +1,197 @@
+"""Application settings, read from ``APP_*`` environment variables and an optional ``.env`` file."""
+
+import secrets
+from enum import StrEnum
+from functools import lru_cache
+from typing import Annotated, Any, Self
+
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
+from fastapi import Depends
+from pydantic import Field, IPvAnyNetwork, SecretStr, field_validator, model_validator
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
+from starlette.requests import HTTPConnection
+
+DEV_DATABASE_URL = "postgresql+asyncpg://quiz:quiz@127.0.0.1:54329/quiz_dev"
+DEV_REDIS_URL = "redis://127.0.0.1:63790/0"
+
+_ASYNCPG_SCHEME = "postgresql+asyncpg://"
+_POSTGRES_ALIASES = ("postgresql://", "postgres://")
+_REDIS_SCHEMES = ("redis://", "rediss://", "unix://")
+
+
+class Environment(StrEnum):
+    DEV = "dev"
+    TEST = "test"
+    PROD = "prod"
+
+
+class Settings(BaseSettings):
+    """Process configuration shared by the ``api``, ``rt`` and ``worker`` processes.
+
+    List settings accept a comma-separated string (``APP_CORS_ORIGINS=https://a,https://b``);
+    ``feature_flags`` takes a JSON object (``APP_FEATURE_FLAGS='{"tournaments": true}'``).
+    Empty values count as unset.
+    """
+
+    model_config = SettingsConfigDict(
+        env_prefix="APP_",
+        env_file=".env",
+        env_file_encoding="utf-8",
+        env_ignore_empty=True,
+        extra="ignore",
+    )
+
+    env: Environment = Environment.DEV
+    log_level: str = "INFO"
+
+    database_url: SecretStr = SecretStr(DEV_DATABASE_URL)
+    database_pool_size: int = Field(default=10, ge=1)
+    database_max_overflow: int = Field(default=10, ge=0)
+    redis_url: SecretStr = SecretStr(DEV_REDIS_URL)
+
+    # Ed25519 key pair (PEM) used to sign access tokens, and the key id put in the JWT header.
+    # dev/test generate an ephemeral pair when none is configured; prod requires all three.
+    jwt_private_key: SecretStr | None = None
+    jwt_public_key: str | None = None
+    jwt_key_id: str | None = None
+
+    google_client_ids: Annotated[list[str], NoDecode] = []
+    dev_login_enabled: bool = False
+    cors_origins: Annotated[list[str], NoDecode] = []
+    # Reverse proxies whose X-Forwarded-For header is trusted (IPs or CIDRs). Empty: trust none.
+    trusted_proxies: Annotated[list[IPvAnyNetwork], NoDecode] = []
+
+    min_build: int = Field(default=1, ge=0)
+    maintenance: bool = False
+    feature_flags: dict[str, bool] = {}
+
+    @field_validator("google_client_ids", "cors_origins", "trusted_proxies", mode="before")
+    @classmethod
+    def _split_comma_separated(cls, value: Any) -> Any:
+        if isinstance(value, str):
+            return [item.strip() for item in value.split(",") if item.strip()]
+        return value
+
+    @field_validator("log_level")
+    @classmethod
+    def _normalize_log_level(cls, value: str) -> str:
+        level = value.upper()
+        if level not in {"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"}:
+            raise ValueError("must be one of DEBUG, INFO, WARNING, ERROR, CRITICAL")
+        return level
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def _normalize_database_url(cls, value: Any) -> Any:
+        if not isinstance(value, str):
+            return value
+        for alias in _POSTGRES_ALIASES:
+            if value.startswith(alias):
+                return _ASYNCPG_SCHEME + value.removeprefix(alias)
+        if not value.startswith(_ASYNCPG_SCHEME):
+            raise ValueError(f"must be a {_ASYNCPG_SCHEME} URL")
+        return value
+
+    @field_validator("redis_url")
+    @classmethod
+    def _check_redis_url(cls, value: SecretStr) -> SecretStr:
+        if not value.get_secret_value().startswith(_REDIS_SCHEMES):
+            raise ValueError("must be a redis://, rediss:// or unix:// URL")
+        return value
+
+    @model_validator(mode="after")
+    def _check_environment(self) -> Self:
+        if self.env is Environment.PROD:
+            self._check_production()
+        self._resolve_signing_key()
+        return self
+
+    @property
+    def is_prod(self) -> bool:
+        return self.env is Environment.PROD
+
+    def _check_production(self) -> None:
+        problems: list[str] = []
+        if self.dev_login_enabled:
+            problems.append("APP_DEV_LOGIN_ENABLED must be false in prod")
+        if self.jwt_private_key is None or self.jwt_public_key is None or not self.jwt_key_id:
+            problems.append(
+                "APP_JWT_PRIVATE_KEY, APP_JWT_PUBLIC_KEY and APP_JWT_KEY_ID are required"
+            )
+        for name in ("database_url", "redis_url"):
+            if name not in self.model_fields_set:
+                problems.append(f"APP_{name.upper()} must be set explicitly")
+        if problems:
+            raise ValueError("invalid production settings: " + "; ".join(problems))
+
+    def _resolve_signing_key(self) -> None:
+        configured = (self.jwt_private_key, self.jwt_public_key, self.jwt_key_id)
+        if all(item is None for item in configured):
+            # Only reachable outside prod (prod requires the keys): use an ephemeral key pair.
+            private_pem, public_pem = _generate_ed25519_pem()
+            self.jwt_private_key = SecretStr(private_pem)
+            self.jwt_public_key = public_pem
+            self.jwt_key_id = f"dev-{secrets.token_hex(4)}"
+            return
+        if self.jwt_private_key is None or self.jwt_public_key is None or not self.jwt_key_id:
+            raise ValueError(
+                "APP_JWT_PRIVATE_KEY, APP_JWT_PUBLIC_KEY and APP_JWT_KEY_ID must be set together"
+            )
+        private_pem = _unescape_pem(self.jwt_private_key.get_secret_value())
+        public_pem = _unescape_pem(self.jwt_public_key)
+        _check_ed25519_pair(private_pem, public_pem)
+        self.jwt_private_key = SecretStr(private_pem)
+        self.jwt_public_key = public_pem
+
+
+def _unescape_pem(pem: str) -> str:
+    """Allow PEMs written on one line with literal ``\\n`` separators (common in env files)."""
+    return pem.replace("\\n", "\n").strip() + "\n"
+
+
+def _generate_ed25519_pem() -> tuple[str, str]:
+    key = Ed25519PrivateKey.generate()
+    private_pem = key.private_bytes(
+        serialization.Encoding.PEM,
+        serialization.PrivateFormat.PKCS8,
+        serialization.NoEncryption(),
+    )
+    public_pem = key.public_key().public_bytes(
+        serialization.Encoding.PEM, serialization.PublicFormat.SubjectPublicKeyInfo
+    )
+    return private_pem.decode(), public_pem.decode()
+
+
+def _check_ed25519_pair(private_pem: str, public_pem: str) -> None:
+    # Messages deliberately never echo key material.
+    try:
+        private_key = serialization.load_pem_private_key(private_pem.encode(), password=None)
+    except (ValueError, TypeError) as exc:
+        raise ValueError("APP_JWT_PRIVATE_KEY is not a valid unencrypted PEM private key") from exc
+    try:
+        public_key = serialization.load_pem_public_key(public_pem.encode())
+    except (ValueError, TypeError) as exc:
+        raise ValueError("APP_JWT_PUBLIC_KEY is not a valid PEM public key") from exc
+    if not isinstance(private_key, Ed25519PrivateKey) or not isinstance(
+        public_key, Ed25519PublicKey
+    ):
+        raise ValueError("JWT signing keys must be Ed25519 (EdDSA)")
+    raw = serialization.Encoding.Raw, serialization.PublicFormat.Raw
+    if private_key.public_key().public_bytes(*raw) != public_key.public_bytes(*raw):
+        raise ValueError("APP_JWT_PUBLIC_KEY does not match APP_JWT_PRIVATE_KEY")
+
+
+@lru_cache
+def get_settings() -> Settings:
+    """Settings from the environment, loaded once per process."""
+    return Settings()
+
+
+async def get_app_settings(conn: HTTPConnection) -> Settings:
+    """FastAPI dependency: the settings the running app was created with."""
+    settings: Settings = conn.app.state.settings
+    return settings
+
+
+SettingsDep = Annotated[Settings, Depends(get_app_settings)]
