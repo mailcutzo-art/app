@@ -6768,3 +6768,455 @@ questions:
       - 0.826 V
     answer: 1
     explanation: E contains −(0.059/6) log(1/[H^+]^{14}) = −(0.059 × 14/6) pH ≈ −0.138 pH, so each unit rise in pH lowers E by about 0.138 V.
+  - id: che-elec-335
+    topic: gibbs-energy-emf
+    subtopic: Relations
+    concept: Identifying an incorrect thermodynamic relation
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [equilibrium-constant, trap]
+    stem: Which relation is incorrect for a cell reaction?
+    options:
+      - ΔG° = −nFE°
+      - E° = (RT/nF) ln K
+      - K = e^{nFE°/RT}
+      - ΔG° = +RT ln K
+    answer: 3
+    explanation: ΔG° = −RT ln K; a large K (spontaneous reaction) must give a negative ΔG°. The other three are equivalent forms of ΔG° = −nFE° = −RT ln K.
+  - id: che-elec-336
+    topic: gibbs-energy-emf
+    subtopic: Graphical form
+    concept: log K vs E° is linear with slope n/0.059
+    category: concept
+    format: graph
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [graph, equilibrium-constant]
+    stem: For a series of two-electron cell reactions at 298 K, log K is plotted (y-axis) against E°_cell (x-axis). The graph is
+    options:
+      - a straight line through the origin with slope about 33.9 V^{−1}
+      - a straight line through the origin with slope about 16.9 V^{−1}
+      - a straight line with intercept 1 and slope 0.059 V^{−1}
+      - an exponential curve
+    answer: 0
+    explanation: log K = nE°/0.059 = (2/0.059)E° ≈ 33.9E°, a straight line through the origin. The slope 16.9 V^{−1} corresponds to n = 1.
+  - id: che-elec-337
+    topic: gibbs-energy-emf
+    subtopic: ΔG° from E°
+    concept: ΔG° for copper reducing silver ions
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    formula: ΔG° = −nFE°
+    tags: [gibbs-energy]
+    stem: For Cu(s) + 2Ag^+(aq) → Cu^{2+}(aq) + 2Ag(s), E° = 0.46 V. ΔG° is about (F = 96500 C mol^{−1})
+    options:
+      - −44.4 kJ mol^{−1}
+      - −88.8 kJ mol^{−1}
+      - −177.6 kJ mol^{−1}
+      - +88.8 kJ mol^{−1}
+    answer: 1
+    explanation: ΔG° = −2 × 96500 × 0.46 ≈ −88 780 J ≈ −88.8 kJ mol^{−1}. Using n = 1 gives −44.4 kJ.
+  - id: che-elec-338
+    topic: gibbs-energy-emf
+    subtopic: Extent of reaction
+    concept: Large E° implies reaction goes nearly to completion
+    category: concept
+    format: assertion-reason
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [equilibrium-constant]
+    stem: |-
+      Assertion (A): The reaction Zn + Cu^{2+} → Zn^{2+} + Cu goes practically to completion.
+      Reason (R): Its equilibrium constant, 10^{nE°/0.059}, is very large because E° is large (1.10 V).
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: K ≈ 2 × 10^{37}, so at equilibrium almost no Cu^{2+} remains. R explains A.
+  - id: che-elec-339
+    topic: gibbs-energy-emf
+    subtopic: Daniell cell thermodynamics
+    concept: Thermodynamic statements for the Daniell cell
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 80
+    ncert: true
+    battle: false
+    tags: [daniell-cell, gibbs-energy, multi-concept]
+    stem: |-
+      For the Daniell cell at 298 K (E° = 1.10 V), which statements are correct?
+      I. ΔG° ≈ −212 kJ mol^{−1}
+      II. K ≈ 10^{37}
+      III. When E_cell becomes zero, the reaction quotient equals K
+      IV. At equilibrium ΔG equals ΔG°
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: ΔG° = −2F(1.10) ≈ −212 kJ, log K ≈ 37.3, and E = 0 when Q = K. At equilibrium ΔG = 0, not ΔG°, so IV is wrong.
+  - id: che-elec-340
+    topic: gibbs-energy-emf
+    subtopic: E° and K
+    concept: Doubling E° squares K, not doubles it
+    category: concept
+    format: statement-pair
+    difficulty: 4
+    time: 60
+    ncert: false
+    battle: false
+    tags: [equilibrium-constant, trap]
+    stem: |-
+      Statement I: If reaction A has twice the E° of reaction B (same n), then K_A = 2K_B.
+      Statement II: log K is directly proportional to E° for a given n.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 3
+    explanation: log K = nE°/0.059, so doubling E° doubles log K, giving K_A = K_B^2, not 2K_B.
+  - id: che-elec-341
+    topic: gibbs-energy-emf
+    subtopic: Meaning of n
+    concept: n is the number of moles of electrons transferred in the balanced reaction
+    category: factual
+    format: direct
+    difficulty: 1
+    time: 20
+    ncert: true
+    battle: true
+    tags: [gibbs-energy]
+    stem: In the relation ΔG° = −nFE°, n stands for
+    options:
+      - the number of moles of reactants
+      - the number of moles of electrons transferred in the balanced cell reaction
+      - the number of ions in the salt bridge
+      - the charge on the anode
+    answer: 1
+    explanation: n is the number of moles of electrons exchanged per mole of the reaction as written, e.g. 2 for Zn + Cu^{2+} → Zn^{2+} + Cu.
+  - id: che-elec-342
+    topic: gibbs-energy-emf
+    subtopic: E° from ΔG°
+    concept: Positive ΔG° gives negative E°
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [gibbs-energy]
+    stem: A two-electron cell reaction has ΔG° = +38.6 kJ mol^{−1}. E°_cell is (F = 96500 C mol^{−1})
+    options:
+      - +0.40 V
+      - −0.20 V
+      - +0.20 V
+      - −0.40 V
+    answer: 1
+    explanation: E° = −ΔG°/(nF) = −38 600/(2 × 96500) = −0.20 V.
+  - id: che-elec-343
+    topic: gibbs-energy-emf
+    subtopic: Energy from cells
+    concept: Largest |ΔG°| per electron comes from the largest E°
+    category: application
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [gibbs-energy, battery-design]
+    stem: "An engineer wants the most electrical work per mole of electrons. Which couple pair should be chosen? (E°: Mg^{2+}/Mg −2.36, Zn^{2+}/Zn −0.76, Cu^{2+}/Cu 0.34, Ag^+/Ag 0.80 V)"
+    options:
+      - Zn and Cu
+      - Cu and Ag
+      - Mg and Ag
+      - Zn and Ag
+    answer: 2
+    explanation: Work per mole of electrons is F × E°_cell, which is largest for Mg–Ag (E° = 3.16 V).
+  - id: che-elec-344
+    topic: gibbs-energy-emf
+    subtopic: ΔG° and K relation
+    concept: ΔG° from K = 10^10
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: ΔG° = −2.303RT log K
+    tags: [equilibrium-constant]
+    stem: A cell reaction has K = 1 × 10^{10} at 298 K. ΔG° is about (R = 8.314 J K^{−1} mol^{−1})
+    options:
+      - −5.7 kJ mol^{−1}
+      - −57.1 kJ mol^{−1}
+      - +57.1 kJ mol^{−1}
+      - −24.8 kJ mol^{−1}
+    answer: 1
+    explanation: ΔG° = −2.303 × 8.314 × 298 × 10 ≈ −57 060 J ≈ −57.1 kJ mol^{−1}. Omitting 2.303 gives −24.8 kJ.
+  - id: che-elec-345
+    topic: gibbs-energy-emf
+    subtopic: E° and K
+    concept: 0.059 V increase in E° multiplies K tenfold for n = 1
+    category: concept
+    format: direct
+    difficulty: 3
+    time: 35
+    ncert: false
+    battle: true
+    tags: [equilibrium-constant]
+    stem: For a one-electron cell reaction at 298 K, increasing E° by 0.059 V changes K by a factor of
+    options:
+      - "2"
+      - "10"
+      - "0.059"
+      - "100"
+    answer: 1
+    explanation: log K = E°/0.059 for n = 1, so an extra 0.059 V raises log K by 1, multiplying K by 10.
+  - id: che-elec-346
+    topic: conductance
+    subtopic: Measurement
+    concept: Wheatstone bridge arrangement for conductivity measurement
+    category: concept
+    format: diagram
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    diagram: "A Wheatstone bridge drawn as a diamond with four arms. Top-left arm: resistor R_1. Top-right arm: resistor R_2. Bottom-left arm: variable resistor R_3. Bottom-right arm: a conductivity cell labelled 'R_x' containing the solution between two electrodes. An AC source labelled 'oscillator' is connected across the left and right corners; a device labelled 'D' is connected across the top and bottom corners."
+    tags: [measurement, wheatstone-bridge]
+    stem: In the bridge shown, the device D and the condition at balance are
+    options:
+      - a moving-coil galvanometer; R_x = R_1R_3/R_2
+      - a headphone or AC detector; R_x = R_2R_3/R_1
+      - a voltmeter; R_x = R_1 + R_2
+      - an ammeter; R_x = R_3
+    answer: 1
+    explanation: With an AC source, a headphone or electronic AC detector is used; at balance (no sound or signal) R_1/R_2 = R_3/R_x, so R_x = R_2R_3/R_1.
+  - id: che-elec-347
+    topic: conductance
+    subtopic: Conductivity from cell dimensions
+    concept: κ from electrode geometry and resistance
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    formula: κ = l/(RA)
+    tags: [cell-constant, conductivity]
+    stem: Electrodes of area 1.2 cm^2 are 1.5 cm apart in a solution whose resistance is 250 Ω. The conductivity of the solution is
+    options:
+      - 0.005 S cm^{−1}
+      - 0.0032 S cm^{−1}
+      - 312.5 S cm^{−1}
+      - 0.05 S cm^{−1}
+    answer: 0
+    explanation: G* = l/A = 1.5/1.2 = 1.25 cm^{−1}; κ = G*/R = 1.25/250 = 0.005 S cm^{−1}. Inverting l/A gives 0.0032 S cm^{−1}.
+  - id: che-elec-348
+    topic: conductance
+    subtopic: Factors affecting conductivity
+    concept: Ionic factors controlling conductance
+    category: concept
+    format: multi-statement
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    tags: [factors]
+    stem: |-
+      The conductivity of an electrolytic solution depends on which of these?
+      I. The number of ions per unit volume
+      II. The charge carried by the ions
+      III. The speed (mobility) of the ions
+      IV. The cell constant of the measuring cell
+    options:
+      - I and II only
+      - I, II and III only
+      - II, III and IV only
+      - I, II, III and IV
+    answer: 1
+    explanation: κ is a property of the solution, determined by how many ions there are, their charges and how fast they move. The cell constant affects the measured resistance, not κ.
+  - id: che-elec-349
+    topic: conductance
+    subtopic: Comparing solutions
+    concept: Order of conductivity of 0.1 M solutions
+    category: application
+    format: ordering
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [ordering, strong-electrolyte, weak-electrolyte]
+    stem: Arrange 0.1 M aqueous solutions of CH_3COOH, NaCl, KCl and HCl in increasing order of conductivity.
+    options:
+      - CH_3COOH < NaCl < KCl < HCl
+      - NaCl < KCl < CH_3COOH < HCl
+      - CH_3COOH < KCl < NaCl < HCl
+      - HCl < KCl < NaCl < CH_3COOH
+    answer: 0
+    explanation: Weakly ionised acetic acid conducts least; K^+ is more mobile than Na^+, and HCl conducts best because of the very mobile H^+ ion.
+  - id: che-elec-350
+    topic: conductance
+    subtopic: Non-electrolytes
+    concept: Sugar solution does not conduct because it does not ionise
+    category: concept
+    format: assertion-reason
+    difficulty: 2
+    time: 35
+    ncert: true
+    battle: false
+    tags: [non-electrolyte]
+    stem: |-
+      Assertion (A): An aqueous solution of cane sugar does not conduct electricity appreciably.
+      Reason (R): Sugar does not dissociate into ions in water.
+    options:
+      - Both A and R are true and R is the correct explanation of A
+      - Both A and R are true but R is not the correct explanation of A
+      - A is true but R is false
+      - A is false but R is true
+    answer: 0
+    explanation: Electrolytic conduction needs mobile ions; sugar molecules stay neutral in solution, so the solution conducts about as poorly as water. R explains A.
+  - id: che-elec-351
+    topic: conductance
+    subtopic: Strong vs weak electrolytes
+    concept: HCl conducts far better than acetic acid at equal concentration
+    category: concept
+    format: statements
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [strong-electrolyte, weak-electrolyte]
+    stem: Which statement correctly compares 0.1 M HCl and 0.1 M CH_3COOH?
+    options:
+      - Both have the same conductivity because both are monobasic acids
+      - CH_3COOH conducts better because its anion is larger
+      - HCl conducts much better because it is almost fully ionised and H^+ is highly mobile
+      - HCl conducts better only because Cl^− is more mobile than CH_3COO^−
+    answer: 2
+    explanation: At 0.1 M acetic acid is only about 1% ionised, so it has far fewer ions. HCl is fully ionised, and most of its conductance comes from H^+.
+  - id: che-elec-352
+    topic: conductance
+    subtopic: Water purity
+    concept: Lowest conductivity indicates purest water
+    category: application
+    format: case
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [water, application]
+    stem: Four water samples show conductivities of 5 × 10^{−2}, 5 × 10^{−3}, 5 × 10^{−4} and 5 × 10^{−5} S m^{−1}. The purest sample has conductivity
+    options:
+      - 5 × 10^{−2} S m^{−1}
+      - 5 × 10^{−3} S m^{−1}
+      - 5 × 10^{−4} S m^{−1}
+      - 5 × 10^{−5} S m^{−1}
+    answer: 3
+    explanation: Dissolved salts add ions and raise conductivity; the sample closest to pure water (≈ 3.5 × 10^{−5} S m^{−1}) is purest.
+  - id: che-elec-353
+    topic: conductance
+    subtopic: Types of conductors
+    concept: Chemical change accompanies only electrolytic conduction
+    category: concept
+    format: statement-pair
+    difficulty: 2
+    time: 40
+    ncert: true
+    battle: false
+    tags: [electronic-conduction, electrolytic-conduction]
+    stem: |-
+      Statement I: Metallic conductors undergo no chemical change when current passes through them.
+      Statement II: Passage of current through an electrolyte is accompanied by chemical changes at the electrodes.
+    options:
+      - Both Statement I and Statement II are correct
+      - Both Statement I and Statement II are incorrect
+      - Statement I is correct but Statement II is incorrect
+      - Statement I is incorrect but Statement II is correct
+    answer: 0
+    explanation: Electrons simply drift through a metal, whereas ionic conduction involves oxidation and reduction where ions meet the electrodes.
+  - id: che-elec-354
+    topic: conductance
+    subtopic: Resistivity
+    concept: Resistivity from resistance and electrode geometry
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 45
+    ncert: false
+    battle: false
+    formula: ρ = RA/l
+    tags: [resistivity]
+    stem: A solution between electrodes of area 4 cm^2 placed 2 cm apart has a resistance of 1000 Ω. Its resistivity is
+    options:
+      - 500 Ω cm
+      - 2000 Ω cm
+      - 8000 Ω cm
+      - 5 × 10^{−4} Ω cm
+    answer: 1
+    explanation: ρ = RA/l = 1000 × 4/2 = 2000 Ω cm; its conductivity is 1/2000 = 5 × 10^{−4} S cm^{−1}.
+  - id: che-elec-355
+    topic: conductance
+    subtopic: Effect of temperature
+    concept: Resistance vs temperature for metals and electrolytes
+    category: concept
+    format: graph
+    difficulty: 3
+    time: 45
+    ncert: true
+    battle: false
+    tags: [graph, temperature, confused-pair]
+    stem: Resistance is plotted against temperature for a copper wire and for a KCl solution. Which description is correct?
+    options:
+      - Both curves rise with temperature
+      - Both curves fall with temperature
+      - The copper curve rises while the KCl solution curve falls
+      - The copper curve falls while the KCl solution curve rises
+    answer: 2
+    explanation: Metallic resistance increases with temperature (more lattice vibration), while electrolytic resistance decreases as ions move faster in a less viscous solvent.
+  - id: che-elec-356
+    topic: conductance
+    subtopic: Definitions
+    concept: Matching defining expressions with quantities
+    category: factual
+    format: match
+    difficulty: 2
+    time: 45
+    ncert: true
+    battle: false
+    tags: [match, definitions]
+    stem: |-
+      Match the expression (List I) with the quantity it defines (List II).
+      List I
+      P. RA/l
+      Q. 1/ρ
+      R. l/A
+      S. κ/c
+      List II
+      1. Cell constant
+      2. Molar conductivity
+      3. Resistivity
+      4. Conductivity
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-1, S-2
+      - P-3, Q-4, R-2, S-1
+      - P-1, Q-4, R-3, S-2
+    answer: 0
+    explanation: ρ = RA/l, κ = 1/ρ, G* = l/A and Λ_m = κ/c.
