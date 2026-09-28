@@ -29,6 +29,49 @@ class DemoPlayer {
     rating: '1548',
   );
 
+  /// Friends who play rooms in the demo. Their ids match the demo Social tab's friends, so
+  /// invites sent from the lobby reach them.
+  static const rahul = DemoPlayer(
+    uid: 'u-rahul',
+    name: 'Rahul',
+    handle: 'rahul_07',
+    tone: 'sky',
+    symbol: 'atom',
+    level: 7,
+  );
+  static const kabir = DemoPlayer(
+    uid: 'u-kabir',
+    name: 'Kabir',
+    handle: 'kabir_k',
+    tone: 'peach',
+    symbol: 'flask',
+    level: 5,
+  );
+  static const meera = DemoPlayer(
+    uid: 'u-meera',
+    name: 'Meera',
+    handle: 'meera_bio',
+    tone: 'mint',
+    symbol: 'dna',
+    level: 9,
+  );
+  static const ishaan = DemoPlayer(
+    uid: 'u-ishaan',
+    name: 'Ishaan',
+    handle: 'ishaan',
+    tone: 'lemon',
+    symbol: 'pi',
+    level: 11,
+  );
+  static const neha = DemoPlayer(
+    uid: 'demo-neha',
+    name: 'Neha',
+    handle: 'neha_p',
+    tone: 'lavender',
+    symbol: 'leaf',
+    level: 5,
+  );
+
   /// The Practice Bot.
   static const bot = DemoPlayer(
     uid: 'demo-bot',

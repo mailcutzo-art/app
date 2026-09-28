@@ -67,6 +67,7 @@ async def client_config(
         maintenance_message=runtime.maintenance_message,
         maintenance_until=runtime.maintenance_until,
         maintenance_at=runtime.maintenance_at,
-        features=settings.feature_flags,
+        # Flags from settings win, so ops can switch a feature off for every app.
+        features={"push": settings.push_enabled, **settings.feature_flags},
         server_time=clock(),
     )

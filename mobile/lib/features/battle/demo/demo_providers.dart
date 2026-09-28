@@ -1,8 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:realtime_client/realtime_client.dart' show RoomSettings;
 
 import '../../../core/auth/session.dart';
 import '../../../core/network/app_failure.dart';
 import '../../learn/data/learn_repository.dart' show demoLearnRepositoryProvider;
+import '../../rooms/data/room_models.dart';
+import '../../rooms/data/rooms_repository.dart';
 import '../data/battle_repository.dart';
 import '../data/fake_battle_repository.dart';
 import '../data/match_models.dart';
@@ -17,7 +20,9 @@ final demoRealtimeServerProvider = Provider<DemoRealtimeServer>((ref) {
     SignedIn(:final user) => user,
     _ => null,
   };
-  final server = DemoRealtimeServer(me: DemoPlayer.fromMe(user));
+  // A friend's invite comes in a little while after starting, so the banner can be tried.
+  final server = DemoRealtimeServer(me: DemoPlayer.fromMe(user))
+    ..inviteAfterWelcome = const Duration(seconds: 90);
   ref.onDispose(server.dispose);
   return server;
 });
@@ -38,6 +43,61 @@ final demoMatchRepositoryProvider = Provider<MatchRepository>(
     bookmarks: () => ref.read(demoLearnRepositoryProvider).bookmarks,
   ),
 );
+
+/// Rooms and invites in the demo, answered by the demo server.
+final demoRoomsRepositoryProvider = Provider<RoomsRepository>(
+  (ref) => DemoRoomsRepository(ref.watch(demoRealtimeServerProvider)),
+);
+
+/// The rooms and invites endpoints, answered by the demo server, with the real API's failures.
+class DemoRoomsRepository implements RoomsRepository {
+  DemoRoomsRepository(this._server, {this.latency = const Duration(milliseconds: 300)});
+
+  final DemoRealtimeServer _server;
+  Duration latency;
+
+  Future<T> _call<T>(T Function() answer) async {
+    if (latency > Duration.zero) await Future<void>.delayed(latency);
+    try {
+      return answer();
+    } on DemoRoomError catch (error) {
+      throw switch (error.status) {
+        404 || 410 => NotFoundFailure(error.message, code: error.code),
+        403 => ForbiddenFailure(error.message, code: error.code, details: error.details),
+        409 => ConflictFailure(error.message, code: error.code, details: error.details),
+        _ => const UnexpectedFailure(),
+      };
+    }
+  }
+
+  @override
+  Future<CreatedRoom> create({
+    required RoomKind kind,
+    required RoomSettings settings,
+    required String idempotencyKey,
+  }) => _call(() => CreatedRoom.fromJson(_server.createRoomJson(kind.wire, settings.toJson())));
+
+  @override
+  Future<RoomPreview> preview(String code) =>
+      _call(() => RoomPreview.fromJson(_server.previewJson(code)));
+
+  @override
+  Future<SentInvite> invite({required String toUserId, required String roomId}) =>
+      _call(() => SentInvite.fromJson(_server.inviteJson(toUserId, roomId)));
+
+  @override
+  Future<InviteList> invites() => _call(() => InviteList.fromJson(_server.invitesJson()));
+
+  @override
+  Future<AcceptedInvite> accept(String inviteId) =>
+      _call(() => AcceptedInvite.fromJson(_server.acceptInviteJson(inviteId)));
+
+  @override
+  Future<void> decline(String inviteId) => _call(() => _server.declineInvite(inviteId));
+
+  @override
+  Future<void> cancel(String inviteId) => _call(() => _server.cancelInvite(inviteId));
+}
 
 /// `GET /v1/matches/{id}` and its review, answered by the demo server.
 class DemoMatchRepository implements MatchRepository {

@@ -234,9 +234,10 @@ final class RealtimeConnection {
   ///
   /// The reply is the `ack` whose `ref` is the request's id, or the first event [isReply] accepts
   /// (a natural reply). Some types get a matching [isReply] by default: `mm.join` (`mm.queued`, or
-  /// `mm.found` for a bot game), `ans.submit` (`ans.ack`), `sub` (`t.standings`) and
-  /// `match.rematch` (`rematch.status`). The future fails with a [RealtimeError]: the server's
-  /// `error` for this id, or [RealtimeErrorCode.timeout] after [timeout], or
+  /// `mm.found` for a bot game), `ans.submit` (`ans.ack`), `sub` (`t.standings`),
+  /// `match.rematch` (`rematch.status`) and `room.join` (the room's `room.state`). The future
+  /// fails with a [RealtimeError]: the server's `error` for this id, or
+  /// [RealtimeErrorCode.timeout] after [timeout], or
   /// [RealtimeErrorCode.disconnected] if the socket drops after sending. While the connection is
   /// still opening, the request waits (within [timeout]) and is sent right after `welcome`.
   Future<Ack> request(
@@ -752,6 +753,13 @@ final class RealtimeConnection {
           event,
           _,
         ) => event is RematchStatusEvent && event.matchId == data['match_id'],
+        // Joining answers with the room's `room.state` (by id, or by code when joining by code).
+        'room.join' =>
+          (event, _) =>
+              event is RoomStateEvent &&
+              (event.roomId == data['room_id'] ||
+                  (data['code'] is String &&
+                      event.code?.toUpperCase() == (data['code']! as String).toUpperCase())),
         _ => null,
       };
 

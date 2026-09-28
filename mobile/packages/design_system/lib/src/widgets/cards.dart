@@ -136,11 +136,14 @@ class PastelTile extends StatelessWidget {
 
 @immutable
 class HeroStat {
-  const HeroStat({required this.label, required this.value, this.icon});
+  const HeroStat({required this.label, required this.value, this.icon, this.onTap});
 
   final String label;
   final String value;
   final HugeIconData? icon;
+
+  /// Opens the stat's detail (e.g. the wallet behind Coins).
+  final VoidCallback? onTap;
 }
 
 @immutable
@@ -264,7 +267,7 @@ class _HeroStatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = context.text;
-    return Column(
+    final view = Column(
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -279,6 +282,13 @@ class _HeroStatView extends StatelessWidget {
         const SizedBox(height: 2),
         Text(stat.label, style: text.caption.copyWith(color: color)),
       ],
+    );
+    if (stat.onTap == null) return view;
+    return Pressable(
+      onPressed: stat.onTap,
+      pressedScale: 0.94,
+      semanticLabel: '${stat.label}: ${stat.value}',
+      child: view,
     );
   }
 }

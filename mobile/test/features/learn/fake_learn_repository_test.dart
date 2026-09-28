@@ -3,6 +3,7 @@ import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
 import 'package:quiz_app/features/learn/data/learn_models.dart';
+import 'package:quiz_app/features/learn/data/question_models.dart';
 import 'package:quiz_app/features/practice/data/practice_models.dart';
 
 /// The demo data behaves like the contract, so the flow can be tried and
@@ -194,5 +195,157 @@ void main() {
     await expectLater(learn.catalog(Goal.neet), throwsA(isA<ServerFailure>()));
     learn.failures.clear();
     expect((await learn.catalog(Goal.neet)).subjects, isNotEmpty);
+  });
+
+  group('Self Challenge', () {
+    test('answers after the limit and its minute of grace are time_up', () async {
+      final now = DateTime.utc(2026, 9, 28, 10);
+      learn = FakeLearnRepository.seeded(now: () => now);
+      final session = await learn.createSession(
+        const SessionSettings(
+          mode: PracticeMode.challenge,
+          subject: 'physics',
+          timeLimitS: 300,
+          marking: Marking.neet,
+        ),
+        idempotencyKey: 'k',
+      );
+      expect(session.title, 'Physics · Self Challenge');
+      expect(session.instantFeedback, isFalse);
+      expect(session.timeLimitMs, 300000);
+      final [q1, q2, q3, ..._] = session.questions;
+      AnswerUpload at(PracticeQuestion q, Duration after) => AnswerUpload.create(
+        ref: q.ref,
+        position: q.position,
+        selectedOption: q.options.firstWhere((o) => o.id != q.answer).id,
+        timeMs: 1000,
+        answeredAt: now.add(after),
+      );
+
+      final response = await learn.uploadAnswers(session.sessionId, [
+        at(q1, const Duration(minutes: 4)),
+        at(q2, const Duration(minutes: 5, seconds: 30)),
+        at(q3, const Duration(minutes: 6, seconds: 1)),
+      ]);
+
+      expect(response.results.map((r) => r.status), [
+        AnswerStatus.accepted,
+        AnswerStatus.accepted,
+        AnswerStatus.rejected,
+      ]);
+      expect(response.results.last.reason, 'time_up');
+      final summary = await learn.finishSession(session.sessionId);
+      expect(summary.score, -2, reason: 'two wrong answers at −1');
+      expect(summary.maxScore, session.questions.length * 4);
+    });
+
+    test('needs a subject and a time limit', () async {
+      await expectLater(
+        learn.createSession(
+          const SessionSettings(mode: PracticeMode.challenge, subject: 'physics'),
+          idempotencyKey: 'k',
+        ),
+        throwsA(isA<ValidationFailure>()),
+      );
+    });
+  });
+
+  group('Fun & Learn', () {
+    test('passages list by subject, and are done once every question is answered', () async {
+      final all = await learn.passages();
+      expect(all.map((p) => p.subject), ['physics', 'biology']);
+      final biology = (await learn.passages(subject: 'biology')).single;
+      expect(biology.questionCount, 2);
+      expect(biology.done, isFalse);
+
+      final session = await learn.createSession(
+        SessionSettings(mode: PracticeMode.passage, passageId: biology.id),
+        idempotencyKey: 'k',
+      );
+      expect(session.passage?.title, biology.title);
+      expect(session.passage?.body, contains('cristae'));
+      expect(session.title, 'Fun & Learn · ${biology.title}');
+      expect(session.short, isFalse);
+      expect(session.questions.map((q) => q.ref), ['fl-bio-mito-1', 'fl-bio-mito-2']);
+      expect(session.questions.first.topic, isNull);
+
+      await learn.uploadAnswers(session.sessionId, [
+        for (final q in session.questions) answer(q, correct: false),
+      ]);
+      expect((await learn.passages(subject: 'biology')).single.done, isTrue);
+      expect(
+        (await learn.reviewsSummary()).due,
+        0,
+        reason: 'passage questions mean little without their passage',
+      );
+      final summary = await learn.finishSession(session.sessionId);
+      expect(summary.topics.single.name, 'Cell: The Unit of Life');
+    });
+
+    test('an unknown passage is refused', () async {
+      await expectLater(
+        learn.createSession(
+          const SessionSettings(mode: PracticeMode.passage, passageId: 'nope'),
+          idempotencyKey: 'k',
+        ),
+        throwsA(isA<ValidationFailure>()),
+      );
+    });
+  });
+
+  group('search, questions, bookmarks and reports', () {
+    test('search matches word prefixes in stems and chapter names', () async {
+      final kine = await learn.search('kine');
+      expect(kine.map((q) => q.ref), containsAll(['phy-kin-001', 'phy-kin-005']));
+      expect(kine.every((q) => q.chapter?.slug == 'kinematics'), isTrue);
+
+      expect((await learn.search('POWER  cell')).single.ref, 'bio-cell-001');
+      expect(await learn.search('kine', subject: 'biology'), isEmpty);
+      expect(await learn.search('zzzz'), isEmpty);
+      await expectLater(learn.search(' k '), throwsA(isA<ValidationFailure>()));
+      expect(learn.searchCalls.first, ('kine', null));
+    });
+
+    test('a question has its options in authored order and its bookmark', () async {
+      await learn.setBookmark('phy-kin-005', bookmarked: true);
+      final question = await learn.question('phy-kin-005');
+      expect(question.options.map((o) => o.text), ['10 m', '25 m', '50 m', '100 m']);
+      expect(question.answer, 1);
+      expect(question.bookmarked, isTrue);
+      await expectLater(
+        learn.question('nope'),
+        throwsA(isA<NotFoundFailure>().having((f) => f.code, 'code', 'QUESTION_NOT_FOUND')),
+      );
+    });
+
+    test('bookmarks list newest first, by subject, a page at a time', () async {
+      for (final ref in ['phy-kin-001', 'bio-cell-001', 'phy-kin-003', 'phy-lom-002']) {
+        await learn.setBookmark(ref, bookmarked: true);
+      }
+      await learn.setBookmark('phy-kin-001', bookmarked: true); // idempotent: keeps its place
+
+      final first = await learn.listBookmarks(limit: 3);
+      expect(first.items.map((b) => b.ref), ['phy-lom-002', 'phy-kin-003', 'bio-cell-001']);
+      expect(first.nextCursor, isNotNull);
+      final second = await learn.listBookmarks(limit: 3, cursor: first.nextCursor);
+      expect(second.items.map((b) => b.ref), ['phy-kin-001']);
+      expect(second.nextCursor, isNull);
+
+      final biology = await learn.listBookmarks(subject: 'biology');
+      expect(biology.items.single.question.subject, 'biology');
+
+      await learn.setBookmark('phy-lom-002', bookmarked: false);
+      expect((await learn.listBookmarks()).items, hasLength(3));
+    });
+
+    test('reports are idempotent per question and limited per day', () async {
+      await learn.reportQuestion('phy-kin-001', ReportReason.typo, note: 'units');
+      await learn.reportQuestion('phy-kin-001', ReportReason.unclear);
+      expect(learn.reportCalls.single, ('phy-kin-001', ReportReason.typo, 'units'));
+      await expectLater(
+        learn.reportQuestion('nope', ReportReason.other),
+        throwsA(isA<NotFoundFailure>()),
+      );
+    });
   });
 }

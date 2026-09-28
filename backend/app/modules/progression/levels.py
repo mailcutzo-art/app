@@ -34,7 +34,7 @@ _CASUAL_XP = (20, 15, 8)
 _HALF_CASUAL_XP = (10, 7, 4)  # casual halved, rounded down
 _GAME_XP: Mapping[GameKind, tuple[int, int, int]] = {
     GameKind.QUICK_RATED: _RATED_XP,
-    GameKind.TOURNAMENT: _RATED_XP,
+    GameKind.TOURNAMENT: (10, 10, 10),  # per round played, whatever the result
     GameKind.QUICK_CASUAL: _CASUAL_XP,
     GameKind.FRIEND: _HALF_CASUAL_XP,
     GameKind.BOT: _HALF_CASUAL_XP,
@@ -72,8 +72,8 @@ def progress(xp: int) -> tuple[int, int, int]:
 
 
 def game_xp(kind: GameKind, outcome: GameOutcome) -> int:
-    """Rated and tournament 30/20/10 for a win/draw/loss, casual 20/15/8, friend and bot half
-    of casual (10/7/4), group 20 for 1st place and 10 otherwise.
+    """Rated 30/20/10 for a win/draw/loss, casual 20/15/8, friend and bot half of casual
+    (10/7/4), group 20 for 1st place and 10 otherwise, and 10 per tournament round played.
     """
     return _GAME_XP[kind][_OUTCOME_INDEX[outcome]]
 

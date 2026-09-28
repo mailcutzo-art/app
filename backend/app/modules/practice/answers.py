@@ -10,15 +10,18 @@ For each batch the server:
    per position in ``practice_answers``; anything already there is a duplicate;
 3. for the answers actually recorded: works out correctness itself, updates the user's state
    for the question (seen, review box), writes ``question_attempts`` rows with the question's
-   subject, chapter, topic, category and difficulty, adds them to the running totals and awards
-   practice XP.
+   subject, chapter, topic, category and difficulty, adds them to the running totals, awards
+   practice XP and counts them towards missions, the streak and achievements.
 
 Clients only report what was picked and when; the server decides whether it was right.
 """
 
 import uuid
+from collections import Counter
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, timedelta
+from typing import Protocol
 
 from sqlalchemy import ColumnElement, and_, case, func, select
 from sqlalchemy.dialects.postgresql import insert
@@ -42,6 +45,8 @@ from app.modules.practice.schemas import AnswerIn, AnswerResultOut, AnswersOut
 from app.modules.practice.sessions import challenge_deadline, owned_session, per_question_ms
 from app.modules.practice.speed import typical_speed
 from app.modules.practice.totals import AnswerFacts, add_to_totals
+from app.modules.progression import streaks
+from app.modules.progression.service import EventKind, record_event
 from app.modules.progression.xp import award_practice_xp
 
 # Untimed practice times are the app's own measurement, capped at 10 minutes.
@@ -61,6 +66,17 @@ ATTEMPT_MODES = {
     PracticeMode.CHALLENGE: AttemptMode.CHALLENGE,
     PracticeMode.PASSAGE: AttemptMode.FUN_LEARN,
 }
+
+
+class SeenAnswer(Protocol):
+    """An answer as ``update_user_questions`` needs it (practice and live games alike)."""
+
+    question: Question
+    outcome: Outcome
+    first_try: bool
+
+    @property
+    def answered_at(self) -> datetime: ...
 
 
 @dataclass(slots=True)
@@ -164,24 +180,55 @@ async def ingest_answers(
     await _fill_duplicate_outcomes(db, session, answers, results)
     xp = None
     if recorded:
-        await _update_user_questions(db, user_id, recorded)
+        await update_user_questions(db, user_id, recorded)
         facts = await _write_attempts(db, user_id, session, recorded)
         await add_to_totals(db, user_id, facts)
+        # Positions are recorded once, so the batch's first position names it for good.
+        batch = f"practice:{session.id}:{min(r.answer.position for r in recorded)}"
+        # Only answers given count; skips and timeouts would let anyone farm XP and missions.
+        given = [r for r in recorded if r.outcome in {Outcome.CORRECT, Outcome.WRONG}]
         xp = await award_practice_xp(
             db,
             user_id,
             session_id=session.id,
-            # Positions are recorded once, so the batch's first position names it for good.
-            source_key=f"practice:{session.id}:{min(r.answer.position for r in recorded)}",
-            # Only answers given earn XP; skips and timeouts would let anyone farm it.
-            correct=[
-                r.outcome == Outcome.CORRECT
-                for r in recorded
-                if r.outcome in {Outcome.CORRECT, Outcome.WRONG}
-            ],
+            source_key=batch,
+            correct=[r.outcome == Outcome.CORRECT for r in given],
             now=now,
         )
+        await _record_progress(db, user_id, session, given, batch=batch, now=now)
     return AnswersOut(results=[results[index] for index in range(len(answers))], xp=xp)
+
+
+async def _record_progress(
+    db: AsyncSession,
+    user_id: uuid.UUID,
+    session: PracticeSession,
+    given: list[_Recorded],
+    *,
+    batch: str,
+    now: datetime,
+) -> None:
+    """Missions and achievements count the answers given; the streak reads the daily totals
+    just updated, so it is settled here too."""
+    await record_event(
+        db, user_id, kind=EventKind.PRACTICE_ANSWER, count=len(given), event_id=batch, now=now
+    )
+    if session.mode == PracticeMode.REVIEW.value:
+        await record_event(
+            db, user_id, kind=EventKind.REVIEW_ANSWER, count=len(given), event_id=batch, now=now
+        )
+    chapters = Counter(r.question.chapter_id for r in given if r.question.chapter_id is not None)
+    for chapter_id, count in sorted(chapters.items()):
+        await record_event(
+            db,
+            user_id,
+            kind=EventKind.CHAPTER_ANSWER,
+            count=count,
+            event_id=f"{batch}:{chapter_id}",
+            now=now,
+            meta={"chapter_id": chapter_id},
+        )
+    await streaks.evaluate(db, user_id, now=now)
 
 
 async def _record_first_answers(
@@ -330,10 +377,12 @@ def _review_update(
     return new_box, new_due
 
 
-async def _update_user_questions(
-    db: AsyncSession, user_id: uuid.UUID, recorded: list[_Recorded]
+async def update_user_questions(
+    db: AsyncSession, user_id: uuid.UUID, recorded: Sequence[SeenAnswer]
 ) -> None:
     """Seen counts and review boxes; marks each answer that was the user's first try.
+
+    Each question may appear once. Live games record their answers through this too.
 
     Only chapter questions enter review: a passage question means little without its passage.
     """

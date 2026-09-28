@@ -169,6 +169,41 @@ void main() {
       });
     });
 
+    test('room.join completes with the room state, by id or by code', () {
+      fakeAsync((async) {
+        final h = Harness(async)..open();
+        final byCode = Outcome(h.connection.request('room.join', {'code': 'k7m2qx'}));
+        final byId = Outcome(h.connection.request('room.join', {'room_id': 'R2'}));
+        h.flush();
+
+        Map<String, Object?> state(String roomId, String code) => frame(
+          'room.state',
+          {
+            'room_id': roomId,
+            'kind': 'friend',
+            'code': code,
+            'host': 'u2',
+            'status': 'lobby',
+            'members': <Object?>[],
+          },
+          'r:$roomId',
+          1,
+        );
+
+        h.push(state('R9', 'ZZZZZZ'));
+        expect(byCode.isPending, isTrue, reason: 'another room');
+        expect(byId.isPending, isTrue);
+
+        h.push(state('R1', 'K7M2QX'));
+        expect((byCode.value.reply as RoomStateEvent).roomId, 'R1');
+        expect(byId.isPending, isTrue);
+
+        h.push(state('R2', 'ABCDEF'));
+        expect((byId.value.reply as RoomStateEvent).roomId, 'R2');
+        h.dispose();
+      });
+    });
+
     test('a custom reply matcher', () {
       fakeAsync((async) {
         final h = Harness(async)..open();

@@ -36,6 +36,7 @@ from app.modules.auth.refresh import (
     new_refresh_token,
 )
 from app.modules.auth.schemas import DeviceIn
+from app.modules.notifications.service import forget_push_tokens
 from app.modules.users.authz import account_banned
 from app.modules.users.models import User, UserStatus
 from app.modules.users.validation import (
@@ -82,7 +83,8 @@ async def sign_in(
     user, is_new_user = await _find_or_create_user(db, account)
     if user.ban_in_force(now):
         raise account_banned(user.ban_reason, user.banned_until, appeal=settings.appeal_contact)
-    if user.status in CLOSED_STATUSES:
+    # Within 7 days of a delete, signing in gives a restricted session: restore or sign out.
+    if user.status in CLOSED_STATUSES and not user.restorable(now):
         raise Forbidden("This account has been closed.", code="ACCOUNT_CLOSED")
 
     replaced = await _end_active_sessions(
@@ -104,8 +106,8 @@ async def sign_in(
     user.last_seen_at = now
     tokens, _ = await _issue_tokens(db, settings, user, session, now)
     await db.commit()
-    await mark_sessions_revoked(redis, replaced, RevokeReason.REPLACED)
-    await mark_sessions_revoked(redis, over_limit, RevokeReason.SESSION_LIMIT)
+    await mark_sessions_revoked(redis, replaced, RevokeReason.REPLACED, user_id=user.id)
+    await mark_sessions_revoked(redis, over_limit, RevokeReason.SESSION_LIMIT, user_id=user.id)
     log.info("auth.signed_in", user_id=str(user.id), provider=account.provider, new=is_new_user)
     return SignInResult(user=user, tokens=tokens, is_new_user=is_new_user)
 
@@ -127,7 +129,16 @@ async def rotate_refresh_token(
     if current is None:
         raise _invalid_refresh_token()
     session = await db.get(DeviceSession, current.session_id, with_for_update=True)
-    if session is None or session.revoked_at is not None:
+    if session is None:
+        raise _invalid_refresh_token()
+    if session.revoked_at is not None:
+        if session.revoke_reason == RevokeReason.BANNED:
+            # Say why, so the app shows the Suspended screen rather than Sign-in.
+            banned = await db.get_one(User, session.user_id)
+            if banned.ban_in_force(now):
+                raise account_banned(
+                    banned.ban_reason, banned.banned_until, appeal=settings.appeal_contact
+                )
         raise _invalid_refresh_token()
 
     if current.used_at is not None:
@@ -147,7 +158,7 @@ async def rotate_refresh_token(
     user = await db.get_one(User, session.user_id)
     if user.ban_in_force(now):
         raise account_banned(user.ban_reason, user.banned_until, appeal=settings.appeal_contact)
-    if user.status in CLOSED_STATUSES:
+    if user.status in CLOSED_STATUSES and not user.restorable(now):
         raise Unauthorized("This account has been closed.", code="ACCOUNT_CLOSED")
 
     tokens, successor = await _issue_tokens(
@@ -191,8 +202,9 @@ async def end_session(
     )
     if ended is None:
         return False
+    await forget_push_tokens(db, [ended])
     await db.commit()
-    await mark_sessions_revoked(redis, [session_id], reason)
+    await mark_sessions_revoked(redis, [session_id], reason, user_id=user_id)
     return True
 
 
@@ -201,7 +213,7 @@ async def end_other_sessions(
 ) -> None:
     ended = await _end_active_sessions(db, user_id, now, RevokeReason.SIGNED_OUT, keep=keep)
     await db.commit()
-    await mark_sessions_revoked(redis, ended, RevokeReason.SIGNED_OUT)
+    await mark_sessions_revoked(redis, ended, RevokeReason.SIGNED_OUT, user_id=user_id)
 
 
 async def active_sessions(db: AsyncSession, user_id: uuid.UUID) -> list[DeviceSession]:
@@ -275,7 +287,9 @@ async def _end_active_sessions(
     result = await db.scalars(
         statement.values(revoked_at=now, revoke_reason=reason).returning(DeviceSession.id)
     )
-    return list(result)
+    ended = list(result)
+    await forget_push_tokens(db, ended)
+    return ended
 
 
 async def _enforce_session_limit(
@@ -297,7 +311,9 @@ async def _enforce_session_limit(
         .values(revoked_at=now, revoke_reason=RevokeReason.SESSION_LIMIT)
         .returning(DeviceSession.id)
     )
-    return list(result)
+    ended = list(result)
+    await forget_push_tokens(db, ended)
+    return ended
 
 
 async def _issue_tokens(
@@ -341,8 +357,11 @@ async def _end_session_for_reuse(
 ) -> None:
     session.revoked_at = now
     session.revoke_reason = RevokeReason.REFRESH_REUSE
+    await forget_push_tokens(db, [session.id])
     await db.commit()
-    await mark_sessions_revoked(redis, [session.id], RevokeReason.REFRESH_REUSE)
+    await mark_sessions_revoked(
+        redis, [session.id], RevokeReason.REFRESH_REUSE, user_id=session.user_id
+    )
     log.warning(
         "auth.refresh_reuse_detected", user_id=str(session.user_id), session_id=str(session.id)
     )

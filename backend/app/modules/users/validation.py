@@ -5,7 +5,7 @@ Messages are shown to users next to the field, so they are written for people.
 
 import re
 import unicodedata
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import StrEnum
 
 from app.core.clock import IST
@@ -18,6 +18,7 @@ HANDLE_PATTERN = re.compile(r"[a-z0-9_]{3,20}")
 MIN_AGE = 10
 MAX_AGE = 100
 ADULT_AGE = 18
+HANDLE_CHANGE_INTERVAL = timedelta(days=30)
 FALLBACK_DISPLAY_NAME = "Player"
 
 AVATAR_TONES = frozenset({"lime", "sky", "mint", "lemon", "lavender", "peach", "rose"})
@@ -138,6 +139,13 @@ def handle_problem(handle: str) -> HandleProblem | None:
     if is_reserved_handle(handle) or is_profane_handle(handle):
         return HandleProblem.RESERVED
     return None
+
+
+def next_handle_change(changed_at: datetime | None, *, now: datetime) -> datetime | None:
+    """When the handle may change again after a change at ``changed_at`` (``None``: now)."""
+    if changed_at is None or changed_at + HANDLE_CHANGE_INTERVAL <= now:
+        return None
+    return changed_at + HANDLE_CHANGE_INTERVAL
 
 
 def current_year(now: datetime) -> int:

@@ -905,13 +905,150 @@ List<List<String>> _readRanking(JsonObject json) {
 
 /// A rematch on offer in a room lobby (`room.state.rematch`).
 final class RoomRematch {
-  const RoomRematch({required this.offeredBy, this.until});
+  const RoomRematch({required this.offeredBy, this.until, this.accepted = const []});
 
   /// The uid of the member who offered it.
   final String offeredBy;
 
   /// When the offer lapses (server ms).
   final int? until;
+
+  /// The members who said yes so far, the one who offered included.
+  final List<String> accepted;
+}
+
+/// The settings of a room (`room.state.settings`, `POST /v1/rooms` and `room.settings`).
+///
+/// Friend duels use [subject], [chapters], [questions] and [seconds]. Group battles add
+/// [difficulty], [lateJoin], [leaderboard] and [join]. Every field is optional on the wire so a
+/// partial `room.settings` change can be sent; the server fills in the defaults. Unknown keys stay
+/// in [raw].
+final class RoomSettings {
+  const RoomSettings({
+    this.subject,
+    this.chapters = const [],
+    this.questions,
+    this.seconds,
+    this.difficulty,
+    this.lateJoin,
+    this.leaderboard,
+    this.join,
+    this.raw = const {},
+  });
+
+  /// Reads settings leniently: a missing or mistyped field is left unset. A single `chapter`
+  /// string is read as one chapter.
+  factory RoomSettings.fromJson(Map<String, Object?> json) {
+    final chapters = json['chapters'];
+    final chapter = json['chapter'];
+    return RoomSettings(
+      subject: json['subject'] is String ? json['subject']! as String : null,
+      chapters: chapters is List
+          ? List.unmodifiable(chapters.whereType<String>())
+          : (chapter is String ? List.unmodifiable([chapter]) : const []),
+      questions: asInt(json['questions']),
+      seconds: asInt(json['seconds']),
+      difficulty: json['difficulty'] is String ? json['difficulty']! as String : null,
+      lateJoin: json['late_join'] is String ? json['late_join']! as String : null,
+      leaderboard: json['leaderboard'] is bool ? json['leaderboard']! as bool : null,
+      join: json['join'] is String ? json['join']! as String : null,
+      raw: Map.unmodifiable(json),
+    );
+  }
+
+  /// The subject slug, for example `physics`.
+  final String? subject;
+
+  /// Chapter slugs; empty means all chapters of [subject].
+  final List<String> chapters;
+
+  /// Questions per game: 5, 7 or 10 for a duel; 5, 10, 15 or 20 for a group.
+  final int? questions;
+
+  /// Seconds per question: 10, 15, 20 or 30.
+  final int? seconds;
+
+  /// Group only: `mixed`, `easy`, `medium` or `hard`.
+  final String? difficulty;
+
+  /// Group only: `off`, or `halfway` (players may join until half the questions are done).
+  final String? lateJoin;
+
+  /// Group only: whether the mini leaderboard shows between questions.
+  final bool? leaderboard;
+
+  /// Group only: who can join, `friends` or `code` (anyone with the code).
+  final String? join;
+
+  /// Every field as sent.
+  final Map<String, Object?> raw;
+
+  /// The wire form, without unset fields.
+  Map<String, Object?> toJson() => {
+    'subject': ?subject,
+    'chapters': chapters,
+    'questions': ?questions,
+    'seconds': ?seconds,
+    'difficulty': ?difficulty,
+    'late_join': ?lateJoin,
+    'leaderboard': ?leaderboard,
+    'join': ?join,
+  };
+
+  RoomSettings copyWith({
+    String? subject,
+    List<String>? chapters,
+    int? questions,
+    int? seconds,
+    String? difficulty,
+    String? lateJoin,
+    bool? leaderboard,
+    String? join,
+  }) => RoomSettings(
+    subject: subject ?? this.subject,
+    chapters: chapters ?? this.chapters,
+    questions: questions ?? this.questions,
+    seconds: seconds ?? this.seconds,
+    difficulty: difficulty ?? this.difficulty,
+    lateJoin: lateJoin ?? this.lateJoin,
+    leaderboard: leaderboard ?? this.leaderboard,
+    join: join ?? this.join,
+  );
+
+  @override
+  bool operator ==(Object other) =>
+      other is RoomSettings &&
+      other.subject == subject &&
+      _sameList(other.chapters, chapters) &&
+      other.questions == questions &&
+      other.seconds == seconds &&
+      other.difficulty == difficulty &&
+      other.lateJoin == lateJoin &&
+      other.leaderboard == leaderboard &&
+      other.join == join;
+
+  @override
+  int get hashCode => Object.hash(
+    subject,
+    Object.hashAll(chapters),
+    questions,
+    seconds,
+    difficulty,
+    lateJoin,
+    leaderboard,
+    join,
+  );
+
+  @override
+  String toString() => 'RoomSettings(${toJson()})';
+}
+
+bool _sameList(List<String> a, List<String> b) {
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] != b[i]) return false;
+  }
+  return true;
 }
 
 /// Where tapping an inbox item goes (`notify.action`).

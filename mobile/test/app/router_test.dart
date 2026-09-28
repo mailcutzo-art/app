@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:quiz_app/app/app.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/auth/session.dart';
+import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/config/app_config.dart';
+import 'package:quiz_app/features/arena/tournament_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../support/fakes.dart';
@@ -101,6 +103,38 @@ void main() {
         pending: '/t/abc',
       );
       expect(decision, (redirect: Routes.suspended, pending: null));
+    });
+  });
+
+  group('accounts awaiting deletion', () {
+    final pending = AsyncData<Session>(
+      PendingDeletion(Me.fromJson({...fakeUser().toJson(), 'status': 'pending_deletion'})),
+    );
+
+    test('only Restore (and debug) is reachable', () {
+      expect(_redirect(pending, Routes.home), Routes.restore);
+      expect(_redirect(pending, Routes.profile), Routes.restore);
+      expect(_redirect(pending, Routes.signIn), Routes.restore);
+      expect(_redirect(pending, Routes.restore), isNull);
+      expect(_redirect(pending, Routes.debug), isNull);
+    });
+
+    test('a link opened meanwhile opens after the restore', () {
+      final waiting = decideRoute(gate: _open, session: pending, location: '/j/K7M2QX');
+      expect(waiting, (redirect: Routes.restore, pending: '/j/K7M2QX'));
+
+      final restored = decideRoute(
+        gate: _open,
+        session: AsyncData<Session>(SignedIn(fakeUser())),
+        location: Routes.restore,
+        pending: waiting.pending,
+      );
+      expect(restored, (redirect: '/j/K7M2QX', pending: null));
+    });
+
+    test('once restored, the Restore screen is left for Home', () {
+      final ready = AsyncData<Session>(SignedIn(fakeUser()));
+      expect(_redirect(ready, Routes.restore), Routes.home);
     });
   });
 
@@ -263,21 +297,58 @@ void main() {
 
     String location(GoRouter router) => router.routerDelegate.currentConfiguration.uri.toString();
 
-    testWidgets('/j/<code> opens the Battle tab with the room code', (tester) async {
+    testWidgets('/j/<code> opens joining that room', (tester) async {
       final router = await pumpApp(tester);
       router.go('/j/K7M2QX');
       await tester.pumpAndSettle();
-      expect(location(router), '/battle?join=K7M2QX');
+      expect(location(router), '/battle/join?code=K7M2QX');
     });
 
-    testWidgets('/t/<id> and /u/<handle> open Arena and Social', (tester) async {
+    testWidgets('the Battle tab\'s friend and join links open the room screens', (tester) async {
+      final router = await pumpApp(tester);
+      router.go(Routes.battleWithFriend('u-rahul'));
+      await tester.pumpAndSettle();
+      expect(location(router), '/battle/room/new?kind=friend&friend=u-rahul');
+
+      router.go('/battle?join=K7M2QX');
+      await tester.pumpAndSettle();
+      expect(location(router), '/battle/join?code=K7M2QX');
+    });
+
+    test('room routes', () {
+      expect(Routes.room('R1'), '/battle/room/R1');
+      expect(Routes.room('R1', invite: 'u2', pick: true), '/battle/room/R1?invite=u2&pick=1');
+      expect(Routes.isRoom('/battle/room/R1'), isTrue);
+      expect(Routes.isRoom('/battle/room/R1', 'R1'), isTrue);
+      expect(Routes.isRoom('/battle/room/R1', 'R2'), isFalse);
+      expect(Routes.isRoom('/battle/room/new'), isFalse);
+      expect(Routes.joinRoom(), '/battle/join');
+      expect(
+        Routes.roomSetup('group', subject: 'physics'),
+        '/battle/room/new?kind=group&subject=physics',
+      );
+    });
+
+    testWidgets('/t/<id> opens the tournament and /u/<handle> the player\'s profile', (
+      tester,
+    ) async {
       final router = await pumpApp(tester);
       router.go('/t/0192abc');
       await tester.pumpAndSettle();
-      expect(location(router), '/arena?t=0192abc');
+      expect(location(router), '/arena/0192abc');
+      expect(find.byType(TournamentScreen), findsOneWidget);
+      // The Wallet's and "Go there" links land on the same screen.
+      router.go('/arena?t=0192abd');
+      await tester.pumpAndSettle();
+      expect(location(router), '/arena/0192abd');
+      router.go(Routes.browseLive);
+      await tester.pumpAndSettle();
+      expect(location(router), '/arena?filter=live%2Cupcoming');
       router.go('/u/rahul_07');
       await tester.pumpAndSettle();
-      expect(location(router), '/social?u=rahul_07');
+      expect(location(router), '/u/rahul_07');
+      expect(find.text('@rahul_07'), findsWidgets);
+      expect(find.text('Rahul'), findsOneWidget);
     });
 
     testWidgets('an unknown link falls back to Home', (tester) async {
@@ -329,5 +400,9 @@ void main() {
   test('route helpers build the documented paths', () {
     expect(Routes.subject('physics'), '/learn/physics');
     expect(Routes.practiceSession('s-1'), '/practice/s-1');
+    expect(Routes.board('rating:physics'), '/leaderboards/rating%3Aphysics');
+    expect(Routes.tournament('t 1'), '/arena/t%201');
+    expect(Routes.tournamentResults('t1'), '/arena/t1/results');
+    expect(Routes.arenaWith(['open']), '/arena?filter=open');
   });
 }

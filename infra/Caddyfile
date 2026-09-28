@@ -36,6 +36,14 @@
 		reverse_proxy rt:8000
 	}
 
+	# Room links (https://<domain>/j/K7M2QX): a small public page served by api (no sign-in)
+	# with the code, "Open app" and the Play Store listing carrying the code in the install
+	# referrer. The Android app claims /j/* as an App Link, so installed apps open directly.
+	@join path /j/*
+	handle @join {
+		reverse_proxy api:8000
+	}
+
 	handle {
 		reverse_proxy api:8000
 	}

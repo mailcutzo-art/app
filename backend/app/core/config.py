@@ -29,6 +29,7 @@ _ASYNCPG_SCHEME = "postgresql+asyncpg://"
 _POSTGRES_ALIASES = ("postgresql://", "postgres://")
 _REDIS_SCHEMES = ("redis://", "rediss://", "unix://")
 _GRACE_KEY_BYTES = 32
+_MIN_ADMIN_SECRET = 32
 
 
 class Environment(StrEnum):
@@ -94,10 +95,115 @@ class Settings(BaseSettings):
     appeal_contact: str = "support@example.com"
     feature_flags: dict[str, bool] = {}
 
+    # Push notifications through Firebase Cloud Messaging: the path of a service-account JSON
+    # key with the "Firebase Cloud Messaging API Admin" role. Unset: push is off (the inbox
+    # still works). The project id defaults to the key file's ``project_id``.
+    fcm_service_account_file: str | None = None
+    fcm_project_id: str | None = None
+
     # Question bank loaded by ``python -m app.modules.content.seed`` (relative to the working dir).
     content_dir: str = "../content"
 
-    @field_validator("google_client_ids", "cors_origins", "trusted_proxies", mode="before")
+    # The admin panel (SQLAdmin at ``/admin``), served by the api process only when enabled.
+    admin_enabled: bool = False
+    # Signs the admin session cookie (at least 32 characters). Required in prod when the panel
+    # is enabled; dev/test generate one per process (sessions then end on restart).
+    admin_session_secret: SecretStr | None = None
+    admin_session_max_age_s: int = Field(default=8 * 3600, ge=60)
+    # Google OAuth *web* client for the panel's sign-in (authorization-code flow). The
+    # callback, ``<public url>/admin/auth/callback``, must be registered with Google.
+    admin_google_client_id: str | None = None
+    admin_google_client_secret: SecretStr | None = None
+    # The callback URL sent to Google; derived from the request when unset (set it behind a
+    # proxy that rewrites the scheme or host).
+    admin_oauth_redirect_url: str | None = None
+    # When set, only these client IPs or CIDRs may reach the panel (comma-separated).
+    admin_ip_allowlist: Annotated[list[IPvAnyNetwork], NoDecode] = []
+
+    # Realtime (docs/protocol.md, docs/realtime-engine.md). Every live timing is a setting so
+    # tests can run games in seconds; the defaults are the product rules.
+    # This rt node's id in leases and ``rt:conn``; generated per process when unset.
+    rt_node_id: str | None = None
+    rt_ticket_ttl_s: int = Field(default=30, ge=1)
+    # Heartbeat interval announced to clients (whole seconds) and the silence that ends a
+    # connection, by state: idle, queued (or in a room) and in a match.
+    rt_hb_idle_s: int = Field(default=30, ge=1)
+    rt_hb_queue_s: int = Field(default=10, ge=1)
+    rt_hb_match_s: int = Field(default=5, ge=1)
+    rt_stale_idle_s: float = Field(default=70.0, gt=0)
+    rt_stale_queue_s: float = Field(default=25.0, gt=0)
+    rt_stale_match_s: float = Field(default=12.0, gt=0)
+    # Owner leases, the failover scanner and the per-match timers.
+    rt_lease_ms: int = Field(default=4000, ge=100)
+    rt_lease_renew_s: float = Field(default=1.0, gt=0)
+    rt_scan_interval_s: float = Field(default=0.25, gt=0)
+    rt_overdue_ms: int = Field(default=1000, ge=0)
+    # Quick Battle and Practice Bot games.
+    match_questions: int = Field(default=7, ge=1, le=20)
+    match_limit_ms: int = Field(default=15_000, gt=1000)
+    match_reveal_ms: int = Field(default=3000, ge=0)
+    match_countdown_ms: int = Field(default=3000, ge=0)
+    match_ready_ms: int = Field(default=10_000, ge=100)
+    match_show_lead_ms: int = Field(default=400, ge=0)
+    match_answer_grace_ms: int = Field(default=250, ge=0)
+    match_grace_ms: int = Field(default=30_000, ge=100)
+    match_drain_grace_ms: int = Field(default=60_000, ge=0)
+    match_void_window_ms: int = Field(default=5000, ge=0)
+    match_rematch_window_ms: int = Field(default=15_000, ge=100)
+    match_rematch_max: int = Field(default=3, ge=0)
+    casual_fee: int = Field(default=5, ge=0)
+    # Scales the Practice Bot's answer times (tests shorten games; the model's median is 6 s).
+    match_bot_time_scale: float = Field(default=1.0, gt=0)
+    # Matchmaking: offers, automatic cancels, queue ticks and abort cooldowns.
+    mm_timeout_s: float = Field(default=45.0, gt=0)
+    mm_first_timeout_s: float = Field(default=20.0, gt=0)
+    mm_keep_s: float = Field(default=60.0, gt=0)
+    mm_max_wait_s: float = Field(default=105.0, gt=0)
+    mm_offline_s: float = Field(default=10.0, gt=0)
+    mm_background_s: float = Field(default=10.0, gt=0)
+    mm_tick_s: float = Field(default=0.5, gt=0)
+    mm_cooldown_s: int = Field(default=300, ge=1)
+    mm_abort_limit: int = Field(default=3, ge=1)
+    mm_rated_pair_limit: int = Field(default=3, ge=1)
+    # Tournaments (docs/plan.md, Phase 5): 10 questions a game, 90 s to get ready, 45 s grace,
+    # a round deadline 10 minutes after its start, the next pairing 90 s after the last
+    # result, standings published at most every 2 s, and 20 s for the Swiss matching.
+    tournament_questions: int = Field(default=10, ge=1, le=20)
+    tournament_ready_ms: int = Field(default=90_000, ge=100)
+    tournament_grace_ms: int = Field(default=45_000, ge=100)
+    tournament_round_s: float = Field(default=600.0, gt=0)
+    tournament_pause_s: float = Field(default=90.0, ge=0)
+    tournament_standings_interval_ms: int = Field(default=2000, ge=100)
+    tournament_pairing_budget_s: float = Field(default=20.0, gt=0)
+    # Recurring templates are expanded this many days ahead.
+    tournament_days_ahead: int = Field(default=7, ge=1, le=60)
+    # Rooms: Play with Friend and Group Battle (docs/protocol.md section 8). An idle lobby
+    # closes after room_idle_ms; a group host away longer than room_handover_ms hands over; a
+    # friend lobby closes when its host is away room_host_left_ms with a friend waiting; a friend
+    # duel starts room_autostart_ms after both are ready; rematches (friend) and "Play again"
+    # (group) stay open room_rematch_ms / room_again_ms. room_time_scale scales the seconds per
+    # question the host picks (tests shorten games).
+    room_idle_ms: int = Field(default=900_000, ge=100)
+    room_handover_ms: int = Field(default=20_000, ge=100)
+    room_host_left_ms: int = Field(default=60_000, ge=100)
+    room_autostart_ms: int = Field(default=3000, ge=0)
+    room_rematch_ms: int = Field(default=30_000, ge=100)
+    room_rematch_max: int = Field(default=10, ge=0)
+    room_again_ms: int = Field(default=180_000, ge=100)
+    room_friend_grace_ms: int = Field(default=60_000, ge=100)
+    room_group_short_ms: int = Field(default=30_000, ge=100)
+    room_group_reveal_ms: int = Field(default=4000, ge=0)
+    room_time_scale: float = Field(default=1.0, gt=0)
+    invite_ttl_s: int = Field(default=120, ge=1)
+    # Room links (``<public_url>/j/<code>``) and the Play Store listing the join page points to.
+    public_url: str = "https://quiz.example.com"
+    android_package: str = "com.mailcutzo.quiz_app"
+    # Settlement retries (worker) pick up matches waiting longer than this.
+    settle_retry_after_s: float = Field(default=10.0, ge=0)
+
+    @field_validator(
+        "google_client_ids", "cors_origins", "trusted_proxies", "admin_ip_allowlist", mode="before"
+    )
     @classmethod
     def _split_comma_separated(cls, value: Any) -> Any:
         if isinstance(value, str):
@@ -131,6 +237,13 @@ class Settings(BaseSettings):
             raise ValueError("must be a redis://, rediss:// or unix:// URL")
         return value
 
+    @field_validator("admin_session_secret")
+    @classmethod
+    def _check_admin_session_secret(cls, value: SecretStr | None) -> SecretStr | None:
+        if value is not None and len(value.get_secret_value()) < _MIN_ADMIN_SECRET:
+            raise ValueError(f"must be at least {_MIN_ADMIN_SECRET} characters")
+        return value
+
     @field_validator("refresh_grace_key")
     @classmethod
     def _check_refresh_grace_key(cls, value: SecretStr | None) -> SecretStr | None:
@@ -146,11 +259,17 @@ class Settings(BaseSettings):
         if self.refresh_grace_key is None:
             key = secrets.token_bytes(_GRACE_KEY_BYTES)
             self.refresh_grace_key = SecretStr(base64.b64encode(key).decode())
+        if self.admin_session_secret is None:
+            self.admin_session_secret = SecretStr(secrets.token_urlsafe(_MIN_ADMIN_SECRET))
         return self
 
     @property
     def is_prod(self) -> bool:
         return self.env is Environment.PROD
+
+    @property
+    def push_enabled(self) -> bool:
+        return bool(self.fcm_service_account_file)
 
     @property
     def jwt_keys(self) -> JwtKeys:
@@ -178,6 +297,14 @@ class Settings(BaseSettings):
         for name in ("database_url", "redis_url", "refresh_grace_key"):
             if name not in self.model_fields_set:
                 problems.append(f"APP_{name.upper()} must be set explicitly")
+        if self.admin_enabled:
+            if self.admin_session_secret is None:
+                problems.append("APP_ADMIN_SESSION_SECRET is required when the admin is enabled")
+            if not self.admin_google_client_id or self.admin_google_client_secret is None:
+                problems.append(
+                    "APP_ADMIN_GOOGLE_CLIENT_ID and APP_ADMIN_GOOGLE_CLIENT_SECRET are required "
+                    "when the admin is enabled"
+                )
         if problems:
             raise ValueError("invalid production settings: " + "; ".join(problems))
 

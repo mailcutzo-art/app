@@ -12,7 +12,11 @@ import '../../../core/auth/user.dart';
 import '../../../core/realtime/live_match.dart';
 import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/live_text.dart';
+import '../../arena/tournament_live.dart' show tournamentRouteFor;
+import '../../rooms/room_text.dart';
+import '../../rooms/rooms_controller.dart' show roomViewProvider, roomsOf;
 import '../data/battle_repository.dart';
+import 'group_widgets.dart';
 import 'match_widgets.dart';
 import 'result_view.dart';
 import 'screen_guard.dart';
@@ -62,13 +66,24 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
 
   LiveMatch? get _match => liveMatchOf(ref, widget.matchId);
 
-  /// Done: back to the Battle tab, and stop following this match.
+  /// Done: back to the Battle tab (a tournament game goes back to its tournament, a room's game
+  /// to the room's lobby), and stop
+  /// following this match.
   void _done() {
     final live = ref.read(liveControllerProvider);
+    final view = ref.read(matchViewProvider(widget.matchId));
     // Ratings and coins changed: the Battle tab reads them again.
     ref.invalidate(battleSetupProvider);
-    context.go(Routes.battle);
+    context.go((view == null ? null : tournamentRouteFor(ref, view)) ?? _doneRoute());
     WidgetsBinding.instance.addPostFrameCallback((_) => live?.closeMatch(widget.matchId));
+  }
+
+  String _doneRoute() {
+    final view = ref.read(matchViewProvider(widget.matchId));
+    final room = ref.read(roomViewProvider);
+    if (view == null || !view.isRoomGame || room == null) return Routes.battle;
+    final ours = room.state.matchId == widget.matchId || view.roomId == room.roomId;
+    return ours ? Routes.room(room.roomId) : Routes.battle;
   }
 
   Future<void> _requestLeave() async {
@@ -79,20 +94,34 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     }
     if (_asking) return;
     _asking = true;
-    final leave = await showAppSheet<bool>(
+    final room = ref.read(roomViewProvider);
+    // The host of a group can end the game for everyone, on the current scores.
+    final canEnd =
+        view.isGroup && room != null && room.isHost && room.state.matchId == view.matchId;
+    final choice = await showAppSheet<String>(
       context,
       builder: (context) => SheetScaffold(
         title: 'Leave the battle?',
-        subtitle: 'You\'ll lose this game.',
+        subtitle: view.isGroup
+            ? 'You score nothing for the questions you miss.'
+            : 'You\'ll lose this game.',
         footer: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppButton(label: 'Keep playing', onPressed: () => Navigator.pop(context, false)),
+            AppButton(label: 'Keep playing', onPressed: () => Navigator.pop(context, 'stay')),
+            if (canEnd) ...[
+              const SizedBox(height: AppSpacing.sm),
+              AppButton(
+                label: 'End the game for everyone',
+                variant: AppButtonVariant.secondary,
+                onPressed: () => Navigator.pop(context, 'end'),
+              ),
+            ],
             const SizedBox(height: AppSpacing.sm),
             AppButton(
               label: 'Leave',
               variant: AppButtonVariant.danger,
-              onPressed: () => Navigator.pop(context, true),
+              onPressed: () => Navigator.pop(context, 'leave'),
             ),
           ],
         ),
@@ -100,7 +129,16 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
       ),
     );
     _asking = false;
-    if (!mounted || !(leave ?? false)) return;
+    if (!mounted) return;
+    if (choice == 'end') {
+      try {
+        await roomsOf(ref)?.end();
+      } on RealtimeError catch (error) {
+        if (mounted) showAppToast(context, 'Couldn\'t end the game: ${error.message}');
+      }
+      return;
+    }
+    if (choice != 'leave') return;
     final match = _match;
     if (match == null) {
       _done();
@@ -247,6 +285,8 @@ class _VersusViewState extends ConsumerState<_VersusView> {
     final mode = switch (view.mode) {
       'bot' => 'Practice game · not rated',
       'casual' => 'Casual · winner takes 10 coins',
+      'friend' => 'Friend battle · unrated',
+      'group' => 'Group battle · unrated',
       _ => 'Rated',
     };
     return Column(
@@ -259,44 +299,49 @@ class _VersusViewState extends ConsumerState<_VersusView> {
               const SizedBox(height: AppSpacing.xl),
               Center(
                 child: OverlineBadge(
-                  label: view.isBot ? 'Practice Bot' : 'Match found',
+                  label: view.isBot
+                      ? 'Practice Bot'
+                      : (view.isRoomGame ? 'Get ready' : 'Match found'),
                   icon: view.isBot ? AppIcons.robot : AppIcons.battle,
                   solid: true,
                 ),
               ),
               const SizedBox(height: AppSpacing.xl),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: _PlayerCardView(
-                      avatar: me.avatar.toData(),
-                      name: 'You',
-                      level: view.myCard?.level,
-                      rating: myRating,
+              if (view.isGroup)
+                GroupLineup(view: view)
+              else
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: _PlayerCardView(
+                        avatar: me.avatar.toData(),
+                        name: 'You',
+                        level: view.myCard?.level,
+                        rating: myRating,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 28),
-                    child: Container(
-                      width: 48,
-                      height: 48,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(color: colors.inverse, shape: BoxShape.circle),
-                      child: Text('VS', style: text.labelLarge.copyWith(color: colors.onInverse)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 28),
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(color: colors.inverse, shape: BoxShape.circle),
+                        child: Text('VS', style: text.labelLarge.copyWith(color: colors.onInverse)),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: _PlayerCardView(
-                      avatar: avatarOf(opponent),
-                      name: view.opponentName,
-                      level: view.isBot ? null : opponent?.level,
-                      rating: view.isBot ? null : view.opponentRating?.display,
-                      caption: view.isBot ? 'Practice Bot' : null,
+                    Expanded(
+                      child: _PlayerCardView(
+                        avatar: avatarOf(opponent),
+                        name: view.opponentName,
+                        level: view.isBot ? null : opponent?.level,
+                        rating: view.isBot ? null : view.opponentRating?.display,
+                        caption: view.isBot ? 'Practice Bot' : null,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
               const SizedBox(height: AppSpacing.xl),
               if (record != null)
                 Text(record, style: text.titleMedium, textAlign: TextAlign.center),
@@ -330,7 +375,11 @@ class _VersusViewState extends ConsumerState<_VersusView> {
                     ),
                     const SizedBox(width: AppSpacing.sm),
                     Text(
-                      view.readySent ? 'Waiting for ${view.opponentName}…' : 'Getting ready…',
+                      view.readySent
+                          ? (view.isGroup
+                                ? 'Waiting for everyone…'
+                                : 'Waiting for ${view.opponentName}…')
+                          : 'Getting ready…',
                       style: text.labelMedium.copyWith(color: colors.inkMuted),
                     ),
                   ],
@@ -391,6 +440,7 @@ class _CountdownView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final endsAt = ref.watch(matchViewProvider(matchId).select((v) => v?.state.endsAt));
     final name = ref.watch(matchViewProvider(matchId).select((v) => v?.opponentName));
+    final group = ref.watch(matchViewProvider(matchId).select((v) => v?.isGroup ?? false));
     final text = context.text;
     return Column(
       children: [
@@ -404,7 +454,10 @@ class _CountdownView extends ConsumerWidget {
                 const SizedBox(height: AppSpacing.lg),
                 if (endsAt != null) CountdownDigits(endsAt: endsAt),
                 const SizedBox(height: AppSpacing.lg),
-                if (name != null) Text('You vs $name', style: text.bodyMedium),
+                if (group)
+                  Text('Group battle', style: text.bodyMedium)
+                else if (name != null)
+                  Text('You vs $name', style: text.bodyMedium),
               ],
             ),
           ),
@@ -441,7 +494,7 @@ class _QuestionView extends ConsumerWidget {
             limitMs: question.limitMs,
           )
         : const SizedBox.square(dimension: AppSizes.iconButton);
-    final reconnecting = opponent?.presence == Presence.reconnecting;
+    final reconnecting = !view.isGroup && opponent?.presence == Presence.reconnecting;
     final answered = state.answered;
     return Column(
       children: [
@@ -456,22 +509,24 @@ class _QuestionView extends ConsumerWidget {
           child: EmoteLayer(
             matchId: matchId,
             me: view.me,
-            child: VersusHeader(
-              me: VersusPlayer(
-                name: 'You',
-                avatar: me.avatar.toData(),
-                score: view.myTotals.points,
-                answered: open && answered.contains(view.me),
-              ),
-              opponent: VersusPlayer(
-                name: view.opponentName,
-                avatar: avatarOf(view.opponentCard),
-                score: view.opponentTotals.points,
-                answered: open && opponentUid != null && answered.contains(opponentUid),
-              ),
-              questionNumber: state.q,
-              total: state.total,
-            ),
+            child: view.isGroup
+                ? GroupHeader(view: view)
+                : VersusHeader(
+                    me: VersusPlayer(
+                      name: 'You',
+                      avatar: me.avatar.toData(),
+                      score: view.myTotals.points,
+                      answered: open && answered.contains(view.me),
+                    ),
+                    opponent: VersusPlayer(
+                      name: view.opponentName,
+                      avatar: avatarOf(view.opponentCard),
+                      score: view.opponentTotals.points,
+                      answered: open && opponentUid != null && answered.contains(opponentUid),
+                    ),
+                    questionNumber: state.q,
+                    total: state.total,
+                  ),
           ),
         ),
         AnimatedSwitcher(
@@ -480,7 +535,18 @@ class _QuestionView extends ConsumerWidget {
             sizeFactor: animation,
             child: FadeTransition(opacity: animation, child: child),
           ),
-          child: reconnecting
+          child: view.isSpectator
+              ? const Padding(
+                  key: ValueKey('spectator'),
+                  padding: EdgeInsets.fromLTRB(
+                    AppSpacing.gutter,
+                    AppSpacing.md,
+                    AppSpacing.gutter,
+                    0,
+                  ),
+                  child: SpectatorBanner(),
+                )
+              : reconnecting
               ? Padding(
                   key: const ValueKey('reconnecting'),
                   padding: const EdgeInsets.fromLTRB(
@@ -558,7 +624,8 @@ class _QuestionBody extends ConsumerWidget {
         reveal?.players[me]?.opt ?? (myAnswer?.status == AnswerStatus.late ? null : myAnswer?.opt);
     final timesUp =
         myAnswer?.status == AnswerStatus.late || (view.closedQ == question.q && myAnswer == null);
-    final locked = reveal != null || myAnswer != null || timesUp || view.leaving;
+    final locked =
+        reveal != null || myAnswer != null || timesUp || view.leaving || view.isSpectator;
 
     AnswerOptionState stateOf(String optionId) {
       if (reveal != null) {
@@ -570,7 +637,9 @@ class _QuestionBody extends ConsumerWidget {
       return locked ? AnswerOptionState.dimmed : AnswerOptionState.idle;
     }
 
-    final opponentPick = opponentUid == null ? null : reveal?.players[opponentUid]?.opt;
+    final opponentPick = opponentUid == null || view.isGroup
+        ? null
+        : reveal?.players[opponentUid]?.opt;
     return ListView(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.gutter,
@@ -620,7 +689,45 @@ class _StatusLine extends StatelessWidget {
     final opponentUid = view.opponentCard?.uid;
     final name = view.opponentName;
     final Widget child;
-    if (reveal != null) {
+    if (reveal != null && view.isGroup) {
+      final mine = reveal.players[view.me];
+      final pts = mine?.pts ?? 0;
+      final place = state.placeOf(view.me);
+      final change = state.standings.where((s) => s.uid == view.me).firstOrNull?.change ?? 0;
+      child = Column(
+        key: ValueKey('reveal-${reveal.q}'),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (!view.isSpectator) ...[
+            Center(
+              child: InfoChip(
+                icon: pts > 0 ? AppIcons.checkCircle : AppIcons.close,
+                label: LiveText.points(pts),
+                background: pts > 0 ? colors.successContainer : colors.surfaceMuted,
+                foreground: pts > 0 ? colors.onSuccessContainer : colors.ink,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            Text(
+              'You\'re ${RoomText.ordinal(place)}'
+              '${change > 0 ? ' · up $change' : (change < 0 ? ' · down ${-change}' : '')}',
+              style: text.titleMedium,
+              textAlign: TextAlign.center,
+            ),
+          ],
+          if (state.standings.isNotEmpty) ...[
+            const SizedBox(height: AppSpacing.md),
+            MiniLeaderboard(view: view),
+          ],
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            state.q >= state.total ? 'That was the last one' : 'Next question coming up',
+            style: text.caption,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      );
+    } else if (reveal != null) {
       final mine = reveal.players[view.me];
       final pts = mine?.pts ?? 0;
       final speed = LiveText.speedLine(
@@ -659,6 +766,21 @@ class _StatusLine extends StatelessWidget {
         background: colors.warningContainer,
         foreground: colors.onWarningContainer,
       );
+    } else if (view.isGroup) {
+      final count = state.answered.length;
+      final label = view.isSpectator
+          ? '$count of ${state.players.length} answered'
+          : (state.myAnswer != null
+                ? 'Locked in · $count of ${state.players.length} answered'
+                : (count == 0 ? null : '$count of ${state.players.length} answered'));
+      child = label == null
+          ? const SizedBox(key: ValueKey('none'), height: 32)
+          : InfoChip(
+              key: ValueKey(label),
+              icon: AppIcons.check,
+              label: label,
+              background: colors.surfaceMuted,
+            );
     } else {
       final iAnswered = state.myAnswer != null;
       final theyAnswered = opponentUid != null && state.answered.contains(opponentUid);

@@ -203,6 +203,29 @@ final class MatchState {
 
   Iterable<MatchPlayer> opponentsOf(String me) => players.values.where((p) => p.uid != me);
 
+  /// Whether [me] only watches: a group battle joined after the halfway point lists the players
+  /// without the late joiner.
+  bool isSpectator(String me) => players.isNotEmpty && !players.containsKey(me);
+
+  /// [uid]'s place (1 for the leader): from the last standings when there are some, otherwise
+  /// from the running totals (points, then correct answers). Players level on both share a place.
+  int placeOf(String uid) {
+    for (final standing in standings) {
+      if (standing.uid == uid) return standing.place;
+    }
+    final mine = totalsOf(uid);
+    var ahead = 0;
+    for (final other in players.keys) {
+      if (other == uid) continue;
+      final theirs = totalsOf(other);
+      if (theirs.points > mine.points ||
+          (theirs.points == mine.points && theirs.correct > mine.correct)) {
+        ahead++;
+      }
+    }
+    return ahead + 1;
+  }
+
   @override
   String toString() =>
       'MatchState(${matchId ?? '-'}, ${phase.name}, q$q/$total, mine: ${mine.values.toList()})';

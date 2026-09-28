@@ -9,6 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../core/auth/session.dart';
 import '../core/config/app_config.dart';
 import '../features/arena/arena_screen.dart';
+import '../features/arena/data/tournament_models.dart' show Tournament;
+import '../features/arena/tournament_results_screen.dart';
+import '../features/arena/tournament_screen.dart';
 import '../features/auth/sign_in_screen.dart';
 import '../features/battle/battle_screen.dart';
 import '../features/battle/match/match_screen.dart';
@@ -16,16 +19,42 @@ import '../features/battle/match/review_screen.dart';
 import '../features/battle/search_screen.dart';
 import '../features/debug/debug_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/inbox/inbox_screen.dart';
+import '../features/leaderboards/board_screen.dart';
+import '../features/leaderboards/leaderboards_screen.dart';
+import '../features/learn/bookmarks_screen.dart';
+import '../features/learn/challenge_screen.dart';
 import '../features/learn/learn_screen.dart';
+import '../features/learn/passages_screen.dart';
+import '../features/learn/question_screen.dart';
+import '../features/learn/question_search_screen.dart';
 import '../features/learn/subject_screen.dart';
+import '../features/missions/achievements_screen.dart';
+import '../features/missions/missions_screen.dart';
+import '../features/missions/streak_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/practice/practice_screen.dart';
 import '../features/profile/profile_screen.dart';
+import '../features/rooms/data/room_models.dart' show RoomKind;
+import '../features/rooms/join_room_screen.dart';
+import '../features/rooms/lobby_screen.dart';
+import '../features/rooms/room_setup_screen.dart';
+import '../features/settings/delete_account_screen.dart';
+import '../features/settings/devices_screen.dart';
+import '../features/settings/edit_profile_screen.dart';
+import '../features/settings/feedback_screen.dart';
+import '../features/settings/notification_settings_screen.dart';
+import '../features/settings/privacy_settings_screen.dart';
+import '../features/settings/restore_account_screen.dart';
+import '../features/settings/settings_screen.dart';
+import '../features/social/blocked_users_screen.dart';
+import '../features/social/public_profile_screen.dart';
 import '../features/social/social_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/system/maintenance_screen.dart';
 import '../features/system/suspended_screen.dart';
 import '../features/system/update_required_screen.dart';
+import '../features/wallet/wallet_screen.dart';
 import 'shell.dart';
 
 abstract final class Routes {
@@ -44,10 +73,53 @@ abstract final class Routes {
   static const debug = '/debug';
   static const practice = '/practice';
 
+  /// The deleted account's Restore-or-Sign-out screen (a gate).
+  static const restore = '/restore';
+
+  /// Full screen above the tabs: the inbox behind the bell, the wallet, and settings.
+  static const inbox = '/inbox';
+  static const wallet = '/wallet';
+  static const settings = '/settings';
+  static const settingsProfile = '$settings/profile';
+  static const settingsPrivacy = '$settings/privacy';
+  static const settingsNotifications = '$settings/notifications';
+  static const settingsDevices = '$settings/devices';
+  static const settingsFeedback = '$settings/feedback';
+  static const settingsDelete = '$settings/delete-account';
+
   static const tabs = [home, learn, battle, arena, social];
+
+  /// The leaderboards hub, full screen above the tabs.
+  static const leaderboards = '/leaderboards';
+
+  /// One board: `/leaderboards/:board`. Board ids contain `:`, so they are encoded.
+  static String board(String id) => '$leaderboards/${Uri.encodeComponent(id)}';
+
+  /// Today's missions, the streak calendar and achievements, full screen above the tabs.
+  static const missions = '/missions';
+  static const streak = '/streak';
+  static const achievements = '/achievements';
 
   /// A subject's chapters, inside the Learn tab: `/learn/:subject`.
   static String subject(String slug) => '$learn/$slug';
+
+  /// Question search, inside the Learn tab.
+  static const learnSearch = '$learn/search';
+
+  /// The saved questions, inside the Learn tab.
+  static const bookmarks = '$learn/bookmarks';
+
+  /// Fun & Learn passages, inside the Learn tab.
+  static const passages = '$learn/passages';
+
+  /// One question with its answer, inside the Learn tab: `/learn/question/:ref`.
+  static String question(String ref) => '$learn/question/${Uri.encodeComponent(ref)}';
+
+  /// Self Challenge set-up, inside the Learn tab, optionally for a subject.
+  static String selfChallenge({String? subject}) => Uri(
+    path: '$learn/challenge',
+    queryParameters: subject == null ? null : {'subject': subject},
+  ).toString();
 
   /// A practice session, full screen above the tabs: `/practice/:sessionId`.
   static String practiceSession(String sessionId) => '$practice/$sessionId';
@@ -78,9 +150,67 @@ abstract final class Routes {
     return id == matchId;
   }
 
+  /// The Battle tab set up to challenge a friend: `/battle?friend=<user id>`. It opens the Play
+  /// with Friend setup with that friend picked, to invite once the room exists.
+  static String battleWithFriend(String userId) =>
+      Uri(path: battle, queryParameters: {'friend': userId}).toString();
+
+  /// Setting up a room, full screen above the tabs: [kind] is `friend` or `group`. [friend] is
+  /// invited as soon as the room exists; [subject] and [chapter] are preselected.
+  static String roomSetup(String kind, {String? friend, String? subject, String? chapter}) {
+    final query = {'kind': kind, 'friend': ?friend, 'subject': ?subject, 'chapter': ?chapter};
+    return Uri(path: '$battle/room/new', queryParameters: query).toString();
+  }
+
+  /// A room's lobby, full screen above the tabs: `/battle/room/:roomId`. [invite] is a friend to
+  /// invite on arrival; [pick] opens the invite list at once.
+  static String room(String roomId, {String? invite, bool pick = false}) {
+    final query = {'invite': ?invite, if (pick) 'pick': '1'};
+    return Uri(
+      path: '$battle/room/${Uri.encodeComponent(roomId)}',
+      queryParameters: query.isEmpty ? null : query,
+    ).toString();
+  }
+
+  /// Whether [path] is a room's lobby, optionally a given room's.
+  static bool isRoom(String path, [String? roomId]) {
+    const prefix = '$battle/room/';
+    if (!path.startsWith(prefix) || path == '${prefix}new') return false;
+    return roomId == null || Uri.decodeComponent(path.substring(prefix.length)) == roomId;
+  }
+
+  /// Joining a room by code, full screen above the tabs, with the code filled in when known.
+  static const battleJoin = '$battle/join';
+
+  static String joinRoom([String? code]) => Uri(
+    path: battleJoin,
+    queryParameters: code == null || code.isEmpty ? null : {'code': code},
+  ).toString();
+
+  /// A player's public profile, full screen above the tabs. The same path is the shared link.
+  static String userProfile(String handle) => '/u/${Uri.encodeComponent(handle)}';
+
+  /// The players the user has blocked, opened from Settings → Privacy.
+  static const blockedUsers = '/blocked';
+
+  /// The Arena on one or more filters (`open`, `upcoming`, `live`, `finished`), e.g.
+  /// `/arena?filter=live,upcoming`.
+  static String arenaWith(Iterable<String> filters) =>
+      Uri(path: arena, queryParameters: {'filter': filters.join(',')}).toString();
+
+  /// "Browse live contests": the Arena on Live and Upcoming.
+  static final browseLive = arenaWith(const ['live', 'upcoming']);
+
+  /// A tournament, full screen above the tabs: `/arena/:id`. `/t/<id>` and `/arena?t=<id>` lead
+  /// here too.
+  static String tournament(String id) => '$arena/${Uri.encodeComponent(id)}';
+
+  /// A finished tournament's final results.
+  static String tournamentResults(String id) => '${tournament(id)}/results';
+
   /// Screens that only exist to get the user somewhere else. Being on one never
   /// counts as a destination to come back to.
-  static const gates = {splash, signIn, onboarding, update, maintenance, suspended};
+  static const gates = {splash, signIn, onboarding, update, maintenance, suspended, restore};
 }
 
 /// Where the router should send the user, and the destination to resume once
@@ -122,6 +252,10 @@ RouteDecision decideRoute({
       // Nothing else is reachable, and nothing is worth remembering.
       const allowed = {Routes.suspended, Routes.debug};
       return (redirect: allowed.contains(path) ? null : Routes.suspended, pending: null);
+    case PendingDeletion():
+      // A restricted session: Restore or Sign out. A link opened meanwhile waits for the restore.
+      const allowed = {Routes.restore, Routes.debug};
+      return (redirect: allowed.contains(path) ? null : Routes.restore, pending: remember);
     case SignedOut():
       const open = {Routes.signIn, Routes.debug};
       return (redirect: open.contains(path) ? null : Routes.signIn, pending: remember);
@@ -202,20 +336,33 @@ final pendingDestinationProvider = Provider<PendingDestination>((ref) {
   return PendingDestination(prefs: prefs);
 });
 
-/// Links shared outside the app. Each maps onto the tab that handles it; the
-/// tab reads the query parameter when its feature is available.
+/// Links shared outside the app. Each maps onto the screen that handles it. (`/u/<handle>`,
+/// a player's profile, is a screen of its own.)
 abstract final class DeepLinks {
-  /// `/j/K7M2QX`: join a friend or group room by code.
-  static String? join(GoRouterState state) =>
-      '${Routes.battle}?join=${Uri.encodeQueryComponent(state.pathParameters['code'] ?? '')}';
+  /// `/j/K7M2QX`: join a friend or group room by code. Opened while signed out, it waits as the
+  /// pending destination through sign-in and onboarding.
+  static String? join(GoRouterState state) => Routes.joinRoom(state.pathParameters['code']);
+
+  /// The Battle tab's own links: `?friend=<id>` (Social → Challenge) sets up a friend duel with
+  /// that friend to invite, and `?join=<code>` joins a room.
+  static String? battle(GoRouterState state) {
+    final query = state.uri.queryParameters;
+    final friend = query['friend'];
+    if (friend != null && friend.isNotEmpty) return Routes.roomSetup('friend', friend: friend);
+    final code = query['join'];
+    if (code != null && code.isNotEmpty) return Routes.joinRoom(code);
+    return null;
+  }
 
   /// `/t/<id>`: a tournament.
   static String? tournament(GoRouterState state) =>
-      '${Routes.arena}?t=${Uri.encodeQueryComponent(state.pathParameters['id'] ?? '')}';
+      Routes.tournament(state.pathParameters['id'] ?? '');
 
-  /// `/u/<handle>`: a player's profile.
-  static String? user(GoRouterState state) =>
-      '${Routes.social}?u=${Uri.encodeQueryComponent(state.pathParameters['handle'] ?? '')}';
+  /// `/arena?t=<id>` (the Wallet's and "Go there" links): the tournament itself.
+  static String? arenaTournament(GoRouterState state) => switch (state.uri.queryParameters['t']) {
+    final id? when id.isNotEmpty => Routes.tournament(id),
+    _ => null,
+  };
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -249,14 +396,67 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.update, builder: (_, _) => const UpdateRequiredScreen()),
       GoRoute(path: Routes.maintenance, builder: (_, _) => const MaintenanceScreen()),
       GoRoute(path: Routes.suspended, builder: (_, _) => const SuspendedScreen()),
+      GoRoute(path: Routes.restore, builder: (_, _) => const RestoreAccountScreen()),
       GoRoute(path: Routes.profile, builder: (_, _) => const ProfileScreen()),
+      GoRoute(path: Routes.inbox, builder: (_, _) => const InboxScreen()),
+      GoRoute(path: Routes.wallet, builder: (_, _) => const WalletScreen()),
+      GoRoute(
+        path: Routes.settings,
+        builder: (_, _) => const SettingsScreen(),
+        routes: [
+          GoRoute(path: 'profile', builder: (_, _) => const EditProfileScreen()),
+          GoRoute(path: 'privacy', builder: (_, _) => const PrivacySettingsScreen()),
+          GoRoute(path: 'notifications', builder: (_, _) => const NotificationSettingsScreen()),
+          GoRoute(path: 'devices', builder: (_, _) => const DevicesScreen()),
+          GoRoute(path: 'feedback', builder: (_, _) => const FeedbackScreen()),
+          GoRoute(path: 'delete-account', builder: (_, _) => const DeleteAccountScreen()),
+        ],
+      ),
       GoRoute(path: Routes.debug, builder: (_, _) => const DebugScreen()),
+      GoRoute(
+        path: Routes.leaderboards,
+        builder: (_, _) => const LeaderboardsScreen(),
+        routes: [
+          GoRoute(
+            path: ':board',
+            builder: (_, state) => BoardScreen(board: state.pathParameters['board']!),
+          ),
+        ],
+      ),
+      GoRoute(path: Routes.missions, builder: (_, _) => const MissionsScreen()),
+      GoRoute(path: Routes.streak, builder: (_, _) => const StreakScreen()),
+      GoRoute(path: Routes.achievements, builder: (_, _) => const AchievementsScreen()),
       GoRoute(
         path: '${Routes.practice}/:sessionId',
         builder: (_, state) => PracticeScreen(sessionId: state.pathParameters['sessionId']!),
       ),
       // Battles run full screen above the tabs; the search keeps going when its screen closes.
       GoRoute(path: Routes.battleSearch, builder: (_, _) => const SearchScreen()),
+      // Rooms: set up, join by code, and the lobby; all full screen above the tabs.
+      GoRoute(
+        path: '${Routes.battle}/room/new',
+        builder: (_, state) {
+          final query = state.uri.queryParameters;
+          return RoomSetupScreen(
+            kind: RoomKind.parse(query['kind']) ?? RoomKind.friend,
+            friendId: query['friend'],
+            subject: query['subject'],
+            chapter: query['chapter'],
+          );
+        },
+      ),
+      GoRoute(
+        path: '${Routes.battle}/room/:roomId',
+        builder: (_, state) => LobbyScreen(
+          roomId: state.pathParameters['roomId']!,
+          invite: state.uri.queryParameters['invite'],
+          pick: state.uri.queryParameters['pick'] == '1',
+        ),
+      ),
+      GoRoute(
+        path: Routes.battleJoin,
+        builder: (_, state) => JoinRoomScreen(code: state.uri.queryParameters['code']),
+      ),
       GoRoute(
         path: '/battle/match/:matchId',
         builder: (_, state) => MatchScreen(matchId: state.pathParameters['matchId']!),
@@ -269,7 +469,33 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/j/:code', redirect: (_, state) => DeepLinks.join(state)),
       GoRoute(path: '/t/:id', redirect: (_, state) => DeepLinks.tournament(state)),
-      GoRoute(path: '/u/:handle', redirect: (_, state) => DeepLinks.user(state)),
+      // A tournament, full screen above the tabs (the card's shared element flies into it).
+      GoRoute(
+        path: '${Routes.arena}/:id',
+        builder: (_, state) => TournamentScreen(
+          id: state.pathParameters['id']!,
+          initial: switch (state.extra) {
+            final Tournament t => t,
+            _ => null,
+          },
+          // An inbox item about a round (`?round=3`) opens My games.
+          tab:
+              state.uri.queryParameters['tab'] ??
+              (state.uri.queryParameters.containsKey('round') ? 'games' : null),
+        ),
+        routes: [
+          GoRoute(
+            path: 'results',
+            builder: (_, state) => TournamentResultsScreen(id: state.pathParameters['id']!),
+          ),
+        ],
+      ),
+      // A player's profile; `/u/<handle>` is also the link shared outside the app.
+      GoRoute(
+        path: '/u/:handle',
+        builder: (_, state) => PublicProfileScreen(handle: state.pathParameters['handle']!),
+      ),
+      GoRoute(path: Routes.blockedUsers, builder: (_, _) => const BlockedUsersScreen()),
       StatefulShellRoute(
         builder: (context, state, shell) => AppShell(shell: shell),
         navigatorContainerBuilder: (context, shell, children) =>
@@ -284,7 +510,21 @@ final routerProvider = Provider<GoRouter>((ref) {
                 path: Routes.learn,
                 builder: (_, _) => const LearnScreen(),
                 routes: [
-                  // Pushed on the Learn tab's own navigator, so the nav bar stays.
+                  // Pushed on the Learn tab's own navigator, so the nav bar stays. The
+                  // fixed paths come before `:subject` so they win.
+                  GoRoute(path: 'search', builder: (_, _) => const QuestionSearchScreen()),
+                  GoRoute(path: 'bookmarks', builder: (_, _) => const BookmarksScreen()),
+                  GoRoute(path: 'passages', builder: (_, _) => const PassagesScreen()),
+                  GoRoute(
+                    path: 'challenge',
+                    builder: (_, state) =>
+                        ChallengeScreen(subject: state.uri.queryParameters['subject']),
+                  ),
+                  GoRoute(
+                    path: 'question/:ref',
+                    builder: (_, state) =>
+                        QuestionScreen(questionRef: state.pathParameters['ref']!),
+                  ),
                   GoRoute(
                     path: ':subject',
                     builder: (_, state) => SubjectScreen(slug: state.pathParameters['subject']!),
@@ -294,10 +534,22 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.battle, builder: (_, _) => const BattleScreen())],
+            routes: [
+              GoRoute(
+                path: Routes.battle,
+                redirect: (_, state) => DeepLinks.battle(state),
+                builder: (_, _) => const BattleScreen(),
+              ),
+            ],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.arena, builder: (_, _) => const ArenaScreen())],
+            routes: [
+              GoRoute(
+                path: Routes.arena,
+                redirect: (_, state) => DeepLinks.arenaTournament(state),
+                builder: (_, _) => const ArenaScreen(),
+              ),
+            ],
           ),
           StatefulShellBranch(
             routes: [GoRoute(path: Routes.social, builder: (_, _) => const SocialScreen())],

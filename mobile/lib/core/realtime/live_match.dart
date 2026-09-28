@@ -19,7 +19,16 @@ class MatchIntro {
     this.bot = false,
     this.mode,
     this.request,
+    this.roomId,
   });
+
+  /// A game started in a room (`room.started`): [kind] is `friend` or `group`.
+  const MatchIntro.room({required this.matchId, required String this.roomId, required String kind})
+    : opponent = null,
+      sources = const [],
+      bot = false,
+      mode = kind,
+      request = null;
 
   factory MatchIntro.fromFound(MmFoundEvent event, {SearchRequest? request}) {
     final bot = event.bot || event.opponent.isBot;
@@ -43,6 +52,9 @@ class MatchIntro {
 
   /// How the game was asked for, so "Play again" can ask again.
   final SearchRequest? request;
+
+  /// The room the game was started in, for Play with Friend and Group Battle.
+  final String? roomId;
 }
 
 /// Where the rewards of a finished game stand.
@@ -163,16 +175,35 @@ class MatchView {
       summary?.kind == 'bot' ||
       (opponentCard?.isBot ?? false);
 
-  /// `rated`, `casual` or `bot`.
+  /// `rated`, `casual`, `bot`, `friend` or `group`.
   String? get mode {
     if (isBot) return 'bot';
     final kind = state.kind ?? summary?.kind;
     return switch (kind) {
       'quick_rated' || 'tournament' => 'rated',
       'quick_casual' => 'casual',
+      'friend' || 'group' => kind,
       _ => intro?.mode,
     };
   }
+
+  /// A Group Battle (2–8 players): standings, a podium, and no single opponent.
+  bool get isGroup => mode == 'group';
+
+  /// A Play with Friend duel: unrated and free.
+  bool get isFriend => mode == 'friend';
+
+  /// A game played in a room (friend or group), whose "Play again" is the room's rematch.
+  bool get isRoomGame => isGroup || isFriend;
+
+  /// The room the game belongs to, when this device saw it start.
+  String? get roomId => intro?.roomId;
+
+  /// Whether this player only watches (joined a group battle after halfway).
+  bool get isSpectator => state.isSpectator(me);
+
+  /// Players other than me, in the server's order.
+  List<MatchPlayer> get others => state.opponentsOf(me).toList();
 
   bool get isCasual => mode == 'casual';
 

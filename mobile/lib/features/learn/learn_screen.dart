@@ -47,6 +47,8 @@ class LearnScreen extends ConsumerWidget {
         ),
         const LargeTitle(title: 'Learn', subtitle: 'Practise by subject, chapter and topic.'),
         const SizedBox(height: AppSpacing.lg),
+        const Gutter(child: _SearchEntry()),
+        const SizedBox(height: AppSpacing.md),
         Gutter(
           child: AppSegmentedControl<Goal>(
             segments: const [
@@ -196,7 +198,22 @@ class _Subjects extends ConsumerWidget {
   }
 }
 
-enum _Tool { review, bookmarks }
+/// The pill search field; tapping it opens question search.
+class _SearchEntry extends StatelessWidget {
+  const _SearchEntry();
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+    button: true,
+    label: 'Search questions',
+    excludeSemantics: true,
+    child: GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push(Routes.learnSearch),
+      child: const IgnorePointer(child: AppSearchField(hint: 'Search questions or chapters')),
+    ),
+  );
+}
 
 class _PracticeTools extends ConsumerStatefulWidget {
   const _PracticeTools({required this.reviewsDue});
@@ -209,36 +226,37 @@ class _PracticeTools extends ConsumerStatefulWidget {
 }
 
 class _PracticeToolsState extends ConsumerState<_PracticeTools> {
-  _Tool? _starting;
+  bool _startingReview = false;
 
-  Future<void> _start(_Tool tool) async {
-    if (_starting != null) return;
-    setState(() => _starting = tool);
-    final settings = SessionSettings(
-      mode: tool == _Tool.review ? PracticeMode.review : PracticeMode.bookmarks,
-      count: 20,
-    );
+  Future<void> _review() async {
+    if (_startingReview) return;
+    setState(() => _startingReview = true);
     try {
       final session = await ref
           .read(practiceStarterProvider)
-          .start(settings, idempotencyKey: randomHexId());
+          .start(
+            const SessionSettings(mode: PracticeMode.review, count: 20),
+            idempotencyKey: randomHexId(),
+          );
       if (mounted) unawaited(context.push(Routes.practiceSession(session.sessionId)));
     } on AppFailure catch (failure) {
       if (!mounted) return;
-      final empty = switch (tool) {
-        _Tool.review => 'Nothing to review yet. Questions you miss show up here.',
-        _Tool.bookmarks => 'No bookmarks yet. Tap the bookmark on any question to save it.',
-      };
-      showAppToast(context, practiceStartError(failure, noQuestions: empty), icon: AppIcons.info);
+      showAppToast(
+        context,
+        practiceStartError(
+          failure,
+          noQuestions: 'Nothing to review yet. Questions you miss show up here.',
+        ),
+        icon: AppIcons.info,
+      );
     } finally {
-      if (mounted) setState(() => _starting = null);
+      if (mounted) setState(() => _startingReview = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final due = widget.reviewsDue;
-    const soon = OverlineBadge(label: 'Soon');
     return TwoColumnGrid(
       children: [
         ToolTile(
@@ -250,30 +268,29 @@ class _PracticeToolsState extends ConsumerState<_PracticeTools> {
             0 => 'Nothing due',
             _ => '$due due',
           },
-          busy: _starting == _Tool.review,
-          onTap: () => _start(_Tool.review),
+          busy: _startingReview,
+          onTap: _review,
         ),
         ToolTile(
           icon: AppIcons.bookmark,
           tone: PastelTone.sky,
           title: 'Bookmarks',
           subtitle: 'Saved questions',
-          busy: _starting == _Tool.bookmarks,
-          onTap: () => _start(_Tool.bookmarks),
+          onTap: () => context.push(Routes.bookmarks),
         ),
-        const ToolTile(
+        ToolTile(
           icon: AppIcons.timer,
           tone: PastelTone.lavender,
           title: 'Self Challenge',
           subtitle: 'Timed test',
-          badge: soon,
+          onTap: () => context.push(Routes.selfChallenge()),
         ),
-        const ToolTile(
+        ToolTile(
           icon: AppIcons.learn,
           tone: PastelTone.mint,
           title: 'Fun & Learn',
           subtitle: 'Read and answer',
-          badge: soon,
+          onTap: () => context.push(Routes.passages),
         ),
       ],
     );
