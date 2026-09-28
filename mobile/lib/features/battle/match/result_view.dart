@@ -13,6 +13,10 @@ import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/live_text.dart';
 import '../../learn/data/learn_models.dart' as learn;
 import '../../learn/widgets/learn_widgets.dart' show CoachTipCard;
+import '../../rooms/lobby_screen.dart' show RoomRematchPanel;
+import '../../rooms/room_text.dart';
+import '../../rooms/rooms_controller.dart';
+import 'group_widgets.dart';
 import 'match_widgets.dart';
 
 /// The result dots: one per question, from the reveals this device saw.
@@ -117,7 +121,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
           ],
         ),
         const SizedBox(height: AppSpacing.lg),
-        _OutcomeCard(view: view),
+        if (view.isGroup) GroupStandingsView(view: view) else _OutcomeCard(view: view),
         const SizedBox(height: AppSpacing.lg),
         _SettlementStatus(view: view),
         if (settlement != null) ...[
@@ -126,14 +130,20 @@ class _ResultViewState extends ConsumerState<ResultView> {
         ],
         if (tip != null) ...[const SizedBox(height: AppSpacing.lg), CoachTipCard(tip: tip)],
         if (view.isCasual) ...[const SizedBox(height: AppSpacing.lg), _RematchPanel(view: view)],
+        if (view.isRoomGame) ...[
+          const SizedBox(height: AppSpacing.lg),
+          _RoomAfterGame(matchId: view.matchId),
+        ],
         const SizedBox(height: AppSpacing.xxl),
-        AppButton(
-          label: 'Play again',
-          leadingIcon: AppIcons.refresh,
-          loading: _starting,
-          onPressed: _starting ? null : () => _playAgain(view),
-        ),
-        const SizedBox(height: AppSpacing.sm),
+        if (!view.isRoomGame) ...[
+          AppButton(
+            label: 'Play again',
+            leadingIcon: AppIcons.refresh,
+            loading: _starting,
+            onPressed: _starting ? null : () => _playAgain(view),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+        ],
         AppButton(
           label: 'Review answers',
           variant: AppButtonVariant.secondary,
@@ -141,9 +151,51 @@ class _ResultViewState extends ConsumerState<ResultView> {
           onPressed: () => context.push(Routes.battleReview(view.matchId)),
         ),
         const SizedBox(height: AppSpacing.sm),
-        AppButton(label: 'Done', variant: AppButtonVariant.ghost, onPressed: widget.onDone),
+        AppButton(
+          label: view.isRoomGame && ref.watch(roomViewProvider) != null ? 'Back to lobby' : 'Done',
+          variant: AppButtonVariant.ghost,
+          onPressed: widget.onDone,
+        ),
       ],
     );
+  }
+}
+
+/// After a friend duel or a group battle: the room's rematch (both within 30 s for a duel;
+/// "Play again" keeps a group's room for 3 minutes).
+class _RoomAfterGame extends ConsumerStatefulWidget {
+  const _RoomAfterGame({required this.matchId});
+
+  final String matchId;
+
+  @override
+  ConsumerState<_RoomAfterGame> createState() => _RoomAfterGameState();
+}
+
+class _RoomAfterGameState extends ConsumerState<_RoomAfterGame> {
+  bool _busy = false;
+
+  Future<void> _rematch(bool accept) async {
+    setState(() => _busy = true);
+    try {
+      await roomsOf(ref)?.rematch(accept: accept);
+    } on RealtimeError catch (error) {
+      if (mounted) showAppToast(context, RoomText.error(error), icon: AppIcons.alert);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final room = ref.watch(roomViewProvider);
+    if (room == null || room.state.status != RoomStatus.finished) {
+      return const SizedBox.shrink();
+    }
+    if (room.state.matchId != null && room.state.matchId != widget.matchId) {
+      return const SizedBox.shrink();
+    }
+    return RoomRematchPanel(view: room, busy: _busy, onRematch: _rematch);
   }
 }
 
@@ -175,6 +227,7 @@ class _OutcomeCard extends ConsumerWidget {
       'bot' => 'Practice Bot',
       'casual' => 'Casual',
       'rated' => 'Rated',
+      'friend' => 'Friend battle · unrated',
       _ => null,
     };
     final caption = [?reason, if (reason == null) ?subject, if (reason == null) ?kind].join(' · ');

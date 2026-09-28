@@ -16,6 +16,8 @@ import '../../core/realtime/live_providers.dart';
 import '../../core/realtime/live_text.dart';
 import '../../core/realtime/search_state.dart';
 import '../learn/widgets/learn_widgets.dart' show failureMessage, subjectTone;
+import '../rooms/data/room_models.dart' show RoomKind;
+import '../rooms/rooms_controller.dart' show roomViewProvider;
 import 'battle_selection.dart';
 import 'chapter_picker.dart';
 import 'data/battle_models.dart';
@@ -49,6 +51,7 @@ String activeRoute(BattleActive active) {
     'queue' => Routes.battleSearch,
     'tournament' when id != null => '${Routes.arena}?t=${Uri.encodeQueryComponent(id)}',
     'tournament' => Routes.arena,
+    'room' when id != null => Routes.room(id),
     _ => Routes.battle,
   };
 }
@@ -77,7 +80,6 @@ class BattleScreen extends ConsumerWidget {
     final goal = me.goal ?? Goal.neet;
     final online = ref.watch(isOnlineProvider);
     final query = GoRouterState.of(context).uri.queryParameters;
-    final joinCode = query['join'];
 
     // A section that failed loads again by itself when the connection is back.
     ref.listen(isOnlineProvider, (wasOnline, online) {
@@ -106,10 +108,6 @@ class BattleScreen extends ConsumerWidget {
             child: AppAvatar(data: me.avatar.toData(), ring: true),
           ),
         ),
-        if (joinCode != null && joinCode.isNotEmpty) ...[
-          const SizedBox(height: AppSpacing.lg),
-          Gutter(child: _JoinCodeNotice(code: joinCode)),
-        ],
         const SizedBox(height: AppSpacing.xl),
         Gutter(
           child: _QuickBattleSection(
@@ -120,57 +118,6 @@ class BattleScreen extends ConsumerWidget {
         const SectionHeader(title: 'More ways to play'),
         const Gutter(child: _MoreWays()),
       ],
-    );
-  }
-}
-
-class _JoinCodeNotice extends StatelessWidget {
-  const _JoinCodeNotice({required this.code});
-
-  final String code;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    final pair = colors.lavender;
-    return SurfaceCard(
-      color: pair.container,
-      bordered: false,
-      padding: const EdgeInsets.all(AppSpacing.lg),
-      child: Row(
-        children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: colors.isDark ? colors.surface : Colors.white,
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: HugeIcon(AppIcons.userAdd, size: 22, color: pair.onContainer),
-          ),
-          const SizedBox(width: AppSpacing.md),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Friend battles are coming soon', style: context.text.titleMedium),
-                Text(
-                  'Room $code will open here once they arrive. Try a quick battle meanwhile.',
-                  style: context.text.bodySmall.copyWith(color: pair.onContainer),
-                ),
-              ],
-            ),
-          ),
-          AppIconButton(
-            icon: AppIcons.close,
-            semanticLabel: 'Dismiss',
-            size: AppSizes.iconButtonSmall,
-            variant: AppIconButtonVariant.ghost,
-            onPressed: () => context.go(Routes.battle),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -686,35 +633,55 @@ class _InlineError extends StatelessWidget {
   }
 }
 
-class _MoreWays extends StatelessWidget {
+/// Play with Friend, Group Battle, and joining a room by code.
+class _MoreWays extends ConsumerWidget {
   const _MoreWays();
 
   @override
-  Widget build(BuildContext context) {
-    void soon() => showAppToast(context, 'Coming soon', icon: AppIcons.info);
-    const badge = OverlineBadge(label: 'Soon');
-    return Row(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final room = ref.watch(roomViewProvider);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(
-          child: PastelTile(
-            tone: PastelTone.lavender,
-            icon: AppIcons.userAdd,
-            title: 'Play a friend',
-            subtitle: 'Private 1v1',
-            badge: badge,
-            onTap: soon,
+        if (room != null && room.state.isKnown) ...[
+          ListRowCard(
+            title: 'Back to your room',
+            subtitle: '${room.kind.label} · code ${room.state.code ?? ''}',
+            leading: const HugeIcon(AppIcons.userAdd, size: 22),
+            trailing: const HugeIcon(AppIcons.chevronRight, size: 20),
+            onTap: () => context.push(room.route),
           ),
+          const SizedBox(height: AppSpacing.md),
+        ],
+        Row(
+          children: [
+            Expanded(
+              child: PastelTile(
+                tone: PastelTone.lavender,
+                icon: AppIcons.userAdd,
+                title: 'Play a friend',
+                subtitle: 'Private 1v1',
+                onTap: () => context.push(Routes.roomSetup(RoomKind.friend.wire)),
+              ),
+            ),
+            const SizedBox(width: AppSpacing.md),
+            Expanded(
+              child: PastelTile(
+                tone: PastelTone.peach,
+                icon: AppIcons.social,
+                title: 'Group battle',
+                subtitle: '2–8 players',
+                onTap: () => context.push(Routes.roomSetup(RoomKind.group.wire)),
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: AppSpacing.md),
-        Expanded(
-          child: PastelTile(
-            tone: PastelTone.peach,
-            icon: AppIcons.social,
-            title: 'Group battle',
-            subtitle: '2–8 players',
-            badge: badge,
-            onTap: soon,
-          ),
+        const SizedBox(height: AppSpacing.md),
+        AppButton(
+          label: 'Join with code',
+          variant: AppButtonVariant.secondary,
+          leadingIcon: AppIcons.grid,
+          onPressed: () => context.push(Routes.joinRoom()),
         ),
       ],
     );

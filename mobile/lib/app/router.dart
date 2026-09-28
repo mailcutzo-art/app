@@ -32,6 +32,10 @@ import '../features/missions/streak_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/practice/practice_screen.dart';
 import '../features/profile/profile_screen.dart';
+import '../features/rooms/data/room_models.dart' show RoomKind;
+import '../features/rooms/join_room_screen.dart';
+import '../features/rooms/lobby_screen.dart';
+import '../features/rooms/room_setup_screen.dart';
 import '../features/settings/delete_account_screen.dart';
 import '../features/settings/devices_screen.dart';
 import '../features/settings/edit_profile_screen.dart';
@@ -314,13 +318,23 @@ final pendingDestinationProvider = Provider<PendingDestination>((ref) {
   return PendingDestination(prefs: prefs);
 });
 
-/// Links shared outside the app. Each maps onto the tab that handles it; the
-/// tab reads the query parameter when its feature is available. (`/u/<handle>`,
+/// Links shared outside the app. Each maps onto the screen that handles it. (`/u/<handle>`,
 /// a player's profile, is a screen of its own.)
 abstract final class DeepLinks {
-  /// `/j/K7M2QX`: join a friend or group room by code.
-  static String? join(GoRouterState state) =>
-      '${Routes.battle}?join=${Uri.encodeQueryComponent(state.pathParameters['code'] ?? '')}';
+  /// `/j/K7M2QX`: join a friend or group room by code. Opened while signed out, it waits as the
+  /// pending destination through sign-in and onboarding.
+  static String? join(GoRouterState state) => Routes.joinRoom(state.pathParameters['code']);
+
+  /// The Battle tab's own links: `?friend=<id>` (Social → Challenge) sets up a friend duel with
+  /// that friend to invite, and `?join=<code>` joins a room.
+  static String? battle(GoRouterState state) {
+    final query = state.uri.queryParameters;
+    final friend = query['friend'];
+    if (friend != null && friend.isNotEmpty) return Routes.roomSetup('friend', friend: friend);
+    final code = query['join'];
+    if (code != null && code.isNotEmpty) return Routes.joinRoom(code);
+    return null;
+  }
 
   /// `/t/<id>`: a tournament.
   static String? tournament(GoRouterState state) =>
@@ -394,6 +408,31 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       // Battles run full screen above the tabs; the search keeps going when its screen closes.
       GoRoute(path: Routes.battleSearch, builder: (_, _) => const SearchScreen()),
+      // Rooms: set up, join by code, and the lobby; all full screen above the tabs.
+      GoRoute(
+        path: '${Routes.battle}/room/new',
+        builder: (_, state) {
+          final query = state.uri.queryParameters;
+          return RoomSetupScreen(
+            kind: RoomKind.parse(query['kind']) ?? RoomKind.friend,
+            friendId: query['friend'],
+            subject: query['subject'],
+            chapter: query['chapter'],
+          );
+        },
+      ),
+      GoRoute(
+        path: '${Routes.battle}/room/:roomId',
+        builder: (_, state) => LobbyScreen(
+          roomId: state.pathParameters['roomId']!,
+          invite: state.uri.queryParameters['invite'],
+          pick: state.uri.queryParameters['pick'] == '1',
+        ),
+      ),
+      GoRoute(
+        path: Routes.battleJoin,
+        builder: (_, state) => JoinRoomScreen(code: state.uri.queryParameters['code']),
+      ),
       GoRoute(
         path: '/battle/match/:matchId',
         builder: (_, state) => MatchScreen(matchId: state.pathParameters['matchId']!),
@@ -450,7 +489,13 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.battle, builder: (_, _) => const BattleScreen())],
+            routes: [
+              GoRoute(
+                path: Routes.battle,
+                redirect: (_, state) => DeepLinks.battle(state),
+                builder: (_, _) => const BattleScreen(),
+              ),
+            ],
           ),
           StatefulShellBranch(
             routes: [GoRoute(path: Routes.arena, builder: (_, _) => const ArenaScreen())],
