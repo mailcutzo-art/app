@@ -1,4 +1,4 @@
-package com.mailcutzo.quiz_app
+package com.autometa.quiz
 
 import android.view.WindowManager
 import io.flutter.embedding.android.FlutterActivity

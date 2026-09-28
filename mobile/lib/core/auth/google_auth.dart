@@ -33,14 +33,19 @@ class GoogleAuth {
       await google.signOut(); // always show the account picker
       final account = await google.authenticate();
       final token = account.authentication.idToken;
-      if (token == null) throw const UnexpectedFailure();
+      if (token == null) {
+        throw const ValidationFailure('Google sign-in succeeded but returned no ID token.');
+      }
       return token;
     } on GoogleSignInException catch (e) {
       if (e.code == GoogleSignInExceptionCode.canceled ||
           e.code == GoogleSignInExceptionCode.interrupted) {
         throw const SignInCancelled();
       }
-      throw const UnexpectedFailure();
+      final detail = e.description ?? e.code.name;
+      throw ValidationFailure('Google sign-in error: $detail');
+    } catch (e) {
+      throw ValidationFailure('Google sign-in error: $e');
     }
   }
 

@@ -24,7 +24,10 @@ class AppEnv {
       flavor: flavor == 'prod' ? Flavor.prod : Flavor.dev,
       // 10.0.2.2 is the host machine from the Android emulator.
       apiBaseUrl: String.fromEnvironment('API_BASE_URL', defaultValue: 'http://10.0.2.2:8000'),
-      googleServerClientId: String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID'),
+      googleServerClientId: String.fromEnvironment(
+        'GOOGLE_SERVER_CLIENT_ID',
+        defaultValue: '229263281230-8n5u3f3dgrpelo98ibsb4mnhiaf8poi1.apps.googleusercontent.com',
+      ),
       // Read from --dart-define; the analyzer only sees the empty default.
       // ignore: avoid_redundant_argument_values
       legalBaseUrl: String.fromEnvironment('LEGAL_BASE_URL'),
