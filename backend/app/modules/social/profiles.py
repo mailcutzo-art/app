@@ -12,6 +12,7 @@ from collections.abc import Awaitable, Callable
 from datetime import datetime
 from typing import Any
 
+from redis.asyncio import Redis
 from sqlalchemy import Text, and_, cast, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -50,6 +51,16 @@ SECTION_DEFAULTS: dict[str, Callable[[], Any]] = {
 }
 
 _SECTIONS: dict[str, ProfileSection] = {}
+
+# (db, redis, target, ratings) -> the ratings with leaderboard positions filled in.
+RatingPositions = Callable[[AsyncSession, Redis, uuid.UUID, list[Any]], Awaitable[list[Any]]]
+_rating_positions: RatingPositions | None = None
+
+
+def register_rating_positions(provider: RatingPositions) -> None:
+    """Fill ``ratings[].position`` from the leaderboards."""
+    global _rating_positions
+    _rating_positions = provider
 
 
 def register_profile_section(name: str, provider: ProfileSection) -> None:
@@ -133,7 +144,12 @@ def profile_not_found() -> NotFound:
 
 
 async def public_profile(
-    db: AsyncSession, viewer_id: uuid.UUID, raw_handle: str, *, now: datetime
+    db: AsyncSession,
+    viewer_id: uuid.UUID,
+    raw_handle: str,
+    *,
+    now: datetime,
+    redis: Redis | None = None,
 ) -> ProfileOut:
     handle = normalize_handle(raw_handle.removeprefix("@"))
     target = await db.scalar(select(User).where(User.handle == handle))
@@ -154,13 +170,16 @@ async def public_profile(
         and await challenge_allowed(db, viewer_id, target, await privacy_of(db, target, now=now))
     )
     card = (await cards_for(db, [target]))[target.id]
+    sections = await _sections(db, viewer_id, target.id, limited=limited or is_self)
+    if redis is not None and _rating_positions is not None and sections.get("ratings"):
+        sections["ratings"] = await _rating_positions(db, redis, target.id, sections["ratings"])
     return ProfileOut(
         **card.model_dump(),
         relationship=relationship,
         can_challenge=can_challenge,
         limited=limited,
         friend_request=await _pending_between(db, viewer_id, target.id),
-        **await _sections(db, viewer_id, target.id, limited=limited or is_self),
+        **sections,
     )
 
 

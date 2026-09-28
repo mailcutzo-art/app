@@ -159,7 +159,8 @@ async def test_battle_setup(
     assert before["last"] is None
     assert before["first_search"] is True
     assert before["online"]["physics"] == {"searching": 0, "p50_wait_s": None}
-    assert before["leaders"] is None
+    # Nobody has played Physics this week yet.
+    assert before["leaders"]["physics"] == {"leader": None, "me": {"position": None}}
     during_physics = next(s for s in during["subjects"] if s["slug"] == "physics")
     assert during_physics["rating"] == {"display": "1523", "value": 1523, "provisional": False}
     assert during["active"]["kind"] == "queue"

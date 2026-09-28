@@ -60,6 +60,17 @@ def register_ban_hook(hook: BanHook) -> None:
         _BAN_HOOKS.append(hook)
 
 
+# (db, user_id, action kind, now): runs in the transaction of every moderation action.
+ActionHook = Callable[[AsyncSession, uuid.UUID, ModerationKind, datetime], Awaitable[None]]
+_ACTION_HOOKS: list[ActionHook] = []
+
+
+def register_action_hook(hook: ActionHook) -> None:
+    """Run ``hook`` for every moderation action (the shadow pool hides players from boards)."""
+    if hook not in _ACTION_HOOKS:
+        _ACTION_HOOKS.append(hook)
+
+
 # --- Reports --------------------------------------------------------------------------------
 
 
@@ -151,6 +162,8 @@ async def apply_moderation(
     elif kind == ModerationKind.RESTRICT_SOCIAL and user.status == UserStatus.ACTIVE:
         user.status = UserStatus.RESTRICTED.value
     await db.flush()
+    for hook in _ACTION_HOOKS:
+        await hook(db, user_id, kind, now)
     if kind not in BANS and kind != ModerationKind.SHADOW_POOL:
         await _tell(db, user_id, record, kind, reason, until)
     db.add(

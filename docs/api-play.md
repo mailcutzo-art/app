@@ -75,14 +75,23 @@ never blanks the screen.
   }},
   "leaders": {"status": "ok", "data": {"board": "weekly_xp", "top": [/* 3 rows */], "me": {/* row, or null */}}},
   "tournament": {"status": "ok", "data": {/* tournament card, or null */}},
-  "welcome": {"coins": 100}
+  "welcome": {"coins": 100},
+  "maintenance_banner": null
 }
 ```
 
 - **Section status.** A failed section is `{"status": "error", "error": {"code", "message"}}`.
 - **`welcome`** appears once, on the first Home after onboarding. It is `null` afterwards.
 - **`live`** is anything that needs the user's attention now: a search, a match, a room, or a
-  tournament that is checking in or running.
+  tournament that is checking in or running: `{"kind", "id", "title", "state", "until",
+  "action": {"route", "params"}}`, or `null`.
+- **`continue`** is the latest unfinished practice session, `{"kind": "practice", "session_id",
+  "title", "answered", "count"}`, else the coach's next suggestion after the top tip,
+  `{"kind": "suggestion", "key", "message", "action", "params"}`, else `null`.
+- **`leaders`**, like every "me" position, is on the player's own exam board (All India
+  without one).
+- **`maintenance_banner`** is `{"message", "at", "until"}` from 2 h before planned maintenance
+  (`maintenance_at`), else `null`.
 
 ## Battle setup
 
@@ -195,6 +204,15 @@ everyone.
 Monday gives everyone a fresh start.
 
 **Rules**
+- **Storage.** Boards are Redis sorted sets, one per exam view (`all`, `neet`, `jee`): a player
+  is written to All India and to their own exam, so a filtered board is a plain read.
+  `lb:{view}:xp:{week}`, `lb:{view}:wk:{subject}:{week}` (the week is its IST Monday; `:last`
+  reads the previous week's key) and `lb:{view}:r:{scope}`. Every write recomputes the player's
+  entry from Postgres (XP awards, settled matches, bans, privacy changes, via the outbox), and a
+  nightly job rebuilds every board and renames it into place. A score is
+  `value · 2^32 + (2^32 − 1 − unix seconds when reached)`, so ties go to whoever got there first.
+- **Positions elsewhere** (Home, stats, profiles, the Battle tab, `match.settled.rank`) are on
+  the player's own exam board.
 - **Exam filter.** Boards default to the viewer's own exam (NEET or JEE), with an "All India"
   toggle. NEET views never show Maths, and JEE views never show Biology.
 - **Ties** go to whoever reached the value first.

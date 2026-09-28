@@ -20,6 +20,7 @@ from app.modules.content.models import (
 )
 from app.modules.economy.models import CoinHold, LedgerEntry, Wallet
 from app.modules.feedback.models import Feedback
+from app.modules.leaderboards.models import LeaderboardBadge
 from app.modules.matches.models import (
     HeadToHead,
     Match,
@@ -87,6 +88,7 @@ __all__ = [
     "Friendship",
     "GoalSubject",
     "HeadToHead",
+    "LeaderboardBadge",
     "LedgerEntry",
     "Match",
     "MatchAnswer",

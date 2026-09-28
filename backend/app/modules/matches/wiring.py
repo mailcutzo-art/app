@@ -18,8 +18,9 @@ other modules expose:
 - **Inbox:** abort strikes (the cooldown) are explained; refunds are told by the escrow.
 
 Blocking someone has nothing else to cancel in live play yet: a block only matters for
-pairing, which asks ``are_blocked`` at every tick. Leaderboard leaders for the Battle tab are
-the leaderboards module's (``integrations.leaders`` stays empty, so ``leaders`` is null).
+pairing, which asks ``are_blocked`` at every tick.
+- **Leaderboards:** leaders for the Battle tab, ``match.settled.rank``, board updates after
+  settlement and positions on profiles (``app.modules.leaderboards.hooks``).
 """
 
 import uuid
@@ -33,6 +34,7 @@ from app.core.clock import utc_now
 from app.modules.analytics.service import track
 from app.modules.economy.jobs import register_liveness
 from app.modules.economy.models import RefKind
+from app.modules.leaderboards import hooks as leaderboards
 from app.modules.matches import escrow, profiles, rewards, withdraw
 from app.modules.matches.ports import Integrations, integrations
 from app.modules.matches.shares import match_share_source
@@ -112,6 +114,7 @@ def connect(target: Integrations) -> Integrations:
     target.hooks.register("rated_coins", rewards.rated_coins_hook)
     target.hooks.register("notices", rewards.notices_hook)
     target.hooks.register("analytics", rewards.analytics_hook)
+    leaderboards.connect(target)
     return target
 
 
@@ -131,3 +134,4 @@ def install() -> None:
     register_ban_hook(withdraw.withdraw_on_ban)
     on_account_deleted(withdraw.withdraw_on_delete)
     register_share_source("match_result", match_share_source)
+    leaderboards.install()

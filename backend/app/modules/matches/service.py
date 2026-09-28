@@ -132,13 +132,13 @@ async def battle_setup(
         stored = orjson.loads(last_raw)
         if stored.get("subject") in slugs and stored.get("mode") in {"rated", "casual"}:
             last = SelectionOut(**stored)
-    leaders = await integrations.leaders(db, user_id, slugs)
+    leaders = await integrations.leaders(db, redis, user_id, slugs)
     return BattleSetupOut(
         subjects=subjects,
         coins=await integrations.wallet(db, user_id),
         casual_fee=settings.casual_fee,
         cooldown_until=_ms_datetime(until) if until and until > now_ms else None,
-        active=await _active(redis, str(user_id)),
+        active=await active_for(redis, str(user_id)),
         last=last,
         online=online,
         first_search=await first_search(db, redis, str(user_id)),
@@ -146,7 +146,8 @@ async def battle_setup(
     )
 
 
-async def _active(redis: Redis, uid: str) -> ActiveOut | None:
+async def active_for(redis: Redis, uid: str) -> ActiveOut | None:
+    """What the player is busy with (a search, a match, a room or a tournament), if anything."""
     busy = await rstr.get(redis, keys.busy(uid))
     if busy is None:
         return None

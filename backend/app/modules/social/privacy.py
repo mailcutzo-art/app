@@ -100,6 +100,17 @@ async def privacy_many(
     }
 
 
+# (db, user_id): runs in the saving transaction (the leaderboards re-check the player).
+PrivacyHook = Callable[[AsyncSession, uuid.UUID], Awaitable[None]]
+_PRIVACY_HOOKS: list[PrivacyHook] = []
+
+
+def register_privacy_hook(hook: PrivacyHook) -> None:
+    """Run ``hook`` whenever a player saves their privacy settings."""
+    if hook not in _PRIVACY_HOOKS:
+        _PRIVACY_HOOKS.append(hook)
+
+
 MINOR_REQUESTS_MESSAGE = "Players under 18 can only get requests from people they've played."
 
 
@@ -116,6 +127,8 @@ async def save_privacy(db: AsyncSession, user: User, privacy: Privacy, *, now: d
     row.presence = privacy.presence.value
     row.public_boards = privacy.public_boards
     await db.flush()
+    for hook in _PRIVACY_HOOKS:
+        await hook(db, user.id)
 
 
 async def public_boards_allowed(db: AsyncSession, user_id: uuid.UUID, *, now: datetime) -> bool:

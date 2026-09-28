@@ -19,6 +19,7 @@ from app.core.resources import Resources, open_resources
 from app.modules.analytics.jobs import analytics_retention_job
 from app.modules.content.jobs import question_stats_job
 from app.modules.economy.jobs import hold_reaper_job
+from app.modules.leaderboards.jobs import leaderboards_job
 from app.modules.matches import wiring as matches_wiring
 from app.modules.matches.jobs import reconcile_matches_job, settle_pending_job
 from app.modules.moderation.jobs import moderation_expiry_job
@@ -74,6 +75,9 @@ JOBS: tuple[PeriodicJob, ...] = (
     PeriodicJob("settle_pending", 5.0, settle_pending_job),
     # Live matches Redis no longer knows, past their longest duration: voided and refunded.
     PeriodicJob("reconcile_matches", 60.0, reconcile_matches_job),
+    # Leaderboards (IST): snapshots for change_1d after midnight, the Monday rollover (recaps
+    # and champions' badges) and the nightly rebuild from Postgres after 03:00.
+    PeriodicJob("leaderboards", 300.0, leaderboards_job),
 )
 
 

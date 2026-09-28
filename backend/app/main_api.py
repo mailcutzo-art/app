@@ -15,6 +15,8 @@ from app.modules.coach import router as coach
 from app.modules.content import router as content
 from app.modules.economy import router as economy
 from app.modules.feedback import router as feedback
+from app.modules.home import router as home
+from app.modules.leaderboards import router as leaderboards
 from app.modules.matches import router as matches
 from app.modules.matches import wiring as matches_wiring
 from app.modules.moderation import router as moderation
@@ -80,6 +82,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         social.router,
         moderation.router,
         matches.router,
+        leaderboards.router,
+        home.router,
     ):
         app.include_router(router, prefix="/v1", dependencies=[ClientGates])
     if settings.admin_enabled:

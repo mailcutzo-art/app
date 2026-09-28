@@ -237,6 +237,7 @@ async def _settle(
         questions=len(final["questions"]),
         finished_at=match.finished_at,
         now=now,
+        redis=deps.redis,
     )
     # Progress rows are locked before the escrow locks wallets (the order everywhere).
     pieces = await deps.integrations.progress_hooks.run(ctx)
