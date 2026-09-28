@@ -316,6 +316,53 @@ Server → client (channel `r:<room_id>`, with `seq`):
   - The host gets a notification when someone joins.
   - During a game, the usual grace rules apply instead.
 - **Code guesses.** Wrong codes are rate-limited per user (5 a minute, 30 an hour).
+
+**Details settled in the implementation**
+- **Replies.** Every `room.*` request is answered with `ack {"ref", "room_id"}` or an `error`.
+  `room.join` errors: `NOT_FOUND` (no such code; wrong codes count toward the guess limit),
+  `RATE_LIMITED`, `NOT_ALLOWED` with `details.reason` (`kicked`, `locked`, `full`, `blocked`,
+  `friends_only`, `started`), and `BUSY` with `details.active`. The host is a member from
+  `POST /v1/rooms` on; their `room.join` (by `room_id`) only subscribes.
+- **`room.state`** also carries `capacity` (2 or 8) and `match_id` (the current or last game),
+  and each member `joined_at`. `role` is `host`, `player` or `spectator`. `settings` is
+  `{"subject", "chapters": [slug] | null (All), "questions", "seconds", "difficulty": "mixed" |
+  "easy" | "medium" | "hard", "late_join", "leaderboard", "join": "friends" | "anyone"}` for both
+  kinds (a friend duel has at most one chapter, and fixed values for the group-only fields).
+- **Starting.** `room.start` needs at least 2 connected players (spectators don't count); every
+  connected member plays. A friend duel also starts by itself 3 s after both players are ready
+  and connected. `room.started` is followed on `m:` by the usual `match.snapshot`, and players
+  send `match.ready`; a group battle starts once every connected player is ready, or at the
+  ready deadline with whoever is (at least 2).
+- **Between games** the room's `status` is `finished`. A friend duel offers a rematch for 30 s
+  (`rematch {"offered_by", "until"}`; `room.rematch {accept: true}` from both starts the next
+  game at once, `accept: false` goes back to the lobby; at most 10 rematches per room), then
+  returns to `lobby`. A group room keeps **Play again** open for 3 minutes (`rematch.until`;
+  `room.rematch` marks the member ready, and the host starts); after that it closes (`idle`).
+  Settings can be changed in `lobby` and `finished`.
+- **The host.** A group host who leaves, or is disconnected for 20 s, hands over to the
+  earliest-joined connected player. A friend duel has no handover: its lobby closes
+  (`host_left`) when the host leaves, or has been disconnected for 60 s while their friend waits.
+  A backgrounded host (`away`) with a live socket never loses the room.
+- **During a game.** `room.leave` (or `match.forfeit`) in a friend duel forfeits; in a group
+  battle the player shows as `left` (`opp.conn {state: "left"}`), scores 0 from then on, and can
+  come back with `room.join`. A dropped group player gets `opp.conn {state: "reconnecting",
+  grace_until: null}` and never forfeits; with fewer than 2 players connected for 30 s the game
+  ends on the current scores (`disconnected`, or `left` if someone left). A late joiner (group,
+  late join on, up to question `total / 2`) gets `player.joined {"player": card, "joined_q"}` sent
+  to everyone and plays from `joined_q`; later joiners become spectators, who follow `m:` but
+  can't answer. `room.end` during a group game ends it with `ended_by_host`; during a friend duel
+  it counts as the host forfeiting. Either way the room then closes (`host_ended`).
+- **Kicks** are at most 5 a minute per host; `room.kicked` goes to the kicked player alone (on
+  `u`'s socket with `ch: "r:<id>"`, no `seq`).
+- **The host hears about joins** through an `invite` inbox item ("Riya joined your room", pushed
+  even in quiet hours, since it's their own room) besides `room.state`.
+- **Busy slots.** A member's busy slot is the room (`BUSY` kind `room`, title "Play with Friend"
+  or "Group Battle"); during a game it is the match, and it goes back to the room when the game
+  ends. `welcome.active` lists the room (`{"kind": "room", "id", "ch": "r:<id>", "state"}`), and
+  both the match and its room during a room game.
+- **From matchmaking.** `mm.respond {choice: "invite"}` ends the search and creates a friend
+  lobby in the same subject and chapter; the `ack` carries `{"room_id", "code", "link",
+  "expires_at"}` and `room.state` follows.
 - **Invites** are created over REST (`docs/api-play.md`) and delivered live on `u`:
   - `invite.received {"invite_id", "from": card, "kind", "room_id", "subject", "expires_at"}`
     shows a banner with Accept/Decline on any screen.
