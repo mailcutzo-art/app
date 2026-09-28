@@ -5,6 +5,28 @@ import '../tokens/app_motion.dart';
 
 enum HapticKind { none, selection, light, medium }
 
+/// The player's touch feedback preferences, read by every [Pressable] below it: haptic ticks and
+/// the platform's click sound. Without one, haptics are on and clicks off.
+class TouchFeedback extends InheritedWidget {
+  const TouchFeedback({
+    super.key,
+    required this.haptics,
+    required this.sounds,
+    required super.child,
+  });
+
+  final bool haptics;
+  final bool sounds;
+
+  /// The nearest preferences, without depending on them (read on tap, not in build).
+  static TouchFeedback? maybeOf(BuildContext context) =>
+      context.getInheritedWidgetOfExactType<TouchFeedback>();
+
+  @override
+  bool updateShouldNotify(TouchFeedback oldWidget) =>
+      haptics != oldWidget.haptics || sounds != oldWidget.sounds;
+}
+
 /// Tap target with the design system's press feedback: a quick scale-down,
 /// an optional haptic tick, button semantics and keyboard activation.
 class Pressable extends StatefulWidget {
@@ -43,7 +65,10 @@ class _PressableState extends State<Pressable> {
   }
 
   void _handleTap() {
-    switch (widget.haptic) {
+    final feedback = TouchFeedback.maybeOf(context);
+    if (feedback?.sounds ?? false) SystemSound.play(SystemSoundType.click);
+    final haptic = (feedback?.haptics ?? true) ? widget.haptic : HapticKind.none;
+    switch (haptic) {
       case HapticKind.none:
         break;
       case HapticKind.selection:

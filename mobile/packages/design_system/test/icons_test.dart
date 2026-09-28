@@ -22,6 +22,15 @@ void main() {
       'timer': AppIcons.timer,
       'check': AppIcons.check,
       'robot': AppIcons.robot,
+      'wallet': AppIcons.wallet,
+      'inbox': AppIcons.inbox,
+      'device': AppIcons.device,
+      'sound': AppIcons.sound,
+      'vibrate': AppIcons.vibrate,
+      'palette': AppIcons.palette,
+      'analytics': AppIcons.analytics,
+      'feedback': AppIcons.feedback,
+      'document': AppIcons.document,
     };
 
     for (final MapEntry(key: name, value: data) in icons.entries) {

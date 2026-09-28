@@ -76,6 +76,15 @@ abstract final class AppIcons {
   static const HugeIconData moon = HugeIconsStrokeRounded.strokeRoundedMoon02;
   static const HugeIconData grid = HugeIconsStrokeRounded.strokeRoundedGridView;
   static const HugeIconData user = HugeIconsStrokeRounded.strokeRoundedUserCircle;
+  static const HugeIconData wallet = HugeIconsStrokeRounded.strokeRoundedWallet01;
+  static const HugeIconData inbox = HugeIconsStrokeRounded.strokeRoundedInbox;
+  static const HugeIconData device = HugeIconsStrokeRounded.strokeRoundedSmartPhone01;
+  static const HugeIconData sound = HugeIconsStrokeRounded.strokeRoundedVolumeHigh;
+  static const HugeIconData vibrate = HugeIconsStrokeRounded.strokeRoundedVibrate;
+  static const HugeIconData palette = HugeIconsStrokeRounded.strokeRoundedPaintBoard;
+  static const HugeIconData analytics = HugeIconsStrokeRounded.strokeRoundedAnalytics01;
+  static const HugeIconData feedback = HugeIconsStrokeRounded.strokeRoundedMessageEdit01;
+  static const HugeIconData document = HugeIconsStrokeRounded.strokeRoundedFile01;
   static const HugeIconData globe = HugeIconsStrokeRounded.strokeRoundedGlobe02;
   static const HugeIconData rocket = HugeIconsStrokeRounded.strokeRoundedRocket01;
   static const HugeIconData quiz = HugeIconsStrokeRounded.strokeRoundedQuiz01;

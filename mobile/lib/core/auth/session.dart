@@ -33,6 +33,16 @@ final class SignedIn extends Session {
   bool get needsOnboarding => !user.onboardingCompleted;
 }
 
+/// The account was deleted less than 7 days ago. The session is restricted: only the Restore
+/// screen (Restore my account, or Sign out) is reachable, and nothing else talks to the server.
+final class PendingDeletion extends Session {
+  const PendingDeletion(this.user);
+
+  final Me user;
+
+  DateTime? get restoreUntil => user.restoreUntil;
+}
+
 /// The account is suspended. Only the Suspended screen (with Sign out) is
 /// reachable.
 final class Suspended extends Session {
@@ -53,6 +63,10 @@ final class Suspended extends Session {
   /// Where to appeal (an email address or a web page).
   final String? appeal;
 }
+
+/// A signed-in session for [me]: restricted while the account awaits deletion.
+Session sessionFor(Me me, {bool offline = false}) =>
+    me.isPendingDeletion ? PendingDeletion(me) : SignedIn(me, offline: offline);
 
 /// What to tell a user whose session ended without them asking.
 String signedOutMessage(String? reason) => switch (reason) {
@@ -84,7 +98,7 @@ class SessionController extends AsyncNotifier<Session> {
     try {
       final me = await _repo.fetchMe();
       await _saveSnapshot(me);
-      return SignedIn(me);
+      return sessionFor(me);
     } on UnauthorizedFailure {
       await ref.read(tokenStoreProvider).clear();
       await _clearSnapshot();
@@ -97,7 +111,7 @@ class SessionController extends AsyncNotifier<Session> {
     } on AppFailure catch (failure) {
       // Offline or server trouble: keep the user in with their cached profile.
       final cached = await _readSnapshot();
-      if (cached != null && failure.isRetryable) return SignedIn(cached, offline: true);
+      if (cached != null && failure.isRetryable) return sessionFor(cached, offline: true);
       rethrow;
     }
   }
@@ -114,21 +128,25 @@ class SessionController extends AsyncNotifier<Session> {
   Future<void> refreshUser() async {
     final me = await _repo.fetchMe();
     await _saveSnapshot(me);
-    state = AsyncData(SignedIn(me));
+    state = AsyncData(sessionFor(me));
   }
 
   /// Applies a profile the server already returned.
   Future<void> updateUser(Me me) async {
     await _saveSnapshot(me);
-    state = AsyncData(SignedIn(me));
+    state = AsyncData(sessionFor(me));
   }
 
   /// Leaves the Suspended screen. The server session is already over.
-  Future<void> leaveSuspended() async {
+  Future<void> leaveSuspended() => endLocally();
+
+  /// Ends the session on this phone only, when the server has already ended it (a suspension,
+  /// or the account was just deleted). [message] is shown on the sign-in screen.
+  Future<void> endLocally({String? message}) async {
     await ref.read(tokenStoreProvider).clear();
     await ref.read(googleAuthProvider).signOut();
     await _clearSnapshot();
-    state = const AsyncData(SignedOut());
+    state = AsyncData(SignedOut(message: message));
   }
 
   Future<void> signOut() async {
@@ -150,7 +168,7 @@ class SessionController extends AsyncNotifier<Session> {
       return;
     }
     await _saveSnapshot(me);
-    state = AsyncData(SignedIn(me));
+    state = AsyncData(sessionFor(me));
   }
 
   Future<void> _saveSnapshot(Me me) =>

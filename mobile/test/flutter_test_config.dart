@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 /// Loads the app font so widget tests lay text out as on a phone. The
 /// default test font draws every glyph as a wide square, which overflows
@@ -15,5 +16,13 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
     jakarta.addFont(file.readAsBytes().then(ByteData.sublistView));
   }
   await jakarta.load();
+  // About and the version row read the app's package info.
+  PackageInfo.setMockInitialValues(
+    appName: 'Quiz Arena',
+    packageName: 'app.quiz',
+    version: '1.0.0',
+    buildNumber: '1',
+    buildSignature: '',
+  );
   await testMain();
 }

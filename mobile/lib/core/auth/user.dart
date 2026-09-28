@@ -17,6 +17,21 @@ enum Goal {
   };
 }
 
+/// `GET /v1/me` `status`. A deleted account is hidden (not erased) for 7 days; signing in then
+/// gives a restricted session that can only read `/v1/me`, restore, or sign out.
+enum AccountStatus {
+  active('active'),
+  pendingDeletion('pending_deletion');
+
+  const AccountStatus(this.wire);
+
+  final String wire;
+
+  /// Anything else (or nothing) is an active account.
+  static AccountStatus parse(Object? value) =>
+      values.where((s) => s.wire == value).firstOrNull ?? active;
+}
+
 /// Preset avatar: a pastel tone plus a symbol from a fixed catalog (no photo
 /// uploads in v1).
 @immutable
@@ -92,6 +107,8 @@ class Me {
     this.isMinor = false,
     this.roles = const [],
     this.email,
+    this.status = AccountStatus.active,
+    this.restoreUntil,
   });
 
   final String id;
@@ -106,6 +123,14 @@ class Me {
 
   /// The Google account's email, shown only to the user themself.
   final String? email;
+
+  final AccountStatus status;
+
+  /// While [status] is [AccountStatus.pendingDeletion]: the last moment `POST /v1/me/restore`
+  /// brings the account back.
+  final DateTime? restoreUntil;
+
+  bool get isPendingDeletion => status == AccountStatus.pendingDeletion;
 
   /// Throws [FormatException] on malformed payloads.
   factory Me.fromJson(Object? json) {
@@ -127,6 +152,10 @@ class Me {
         isMinor: map['is_minor'] == true,
         roles: [...?(map['roles'] as List?)?.whereType<String>()],
         email: map['email'] is String ? map['email'] as String : null,
+        status: AccountStatus.parse(map['status']),
+        restoreUntil: map['restore_until'] is String
+            ? DateTime.tryParse(map['restore_until'] as String)
+            : null,
       );
     }
     throw const FormatException('Invalid user payload');
@@ -143,5 +172,22 @@ class Me {
     'onboarding_completed': onboardingCompleted,
     'roles': roles,
     'email': email,
+    'status': status.wire,
+    'restore_until': restoreUntil?.toUtc().toIso8601String(),
   };
+
+  Me copyWith({String? handle, String? displayName, Avatar? avatar, Goal? goal}) => Me(
+    id: id,
+    displayName: displayName ?? this.displayName,
+    avatar: avatar ?? this.avatar,
+    onboardingCompleted: onboardingCompleted,
+    handle: handle ?? this.handle,
+    goal: goal ?? this.goal,
+    birthYear: birthYear,
+    isMinor: isMinor,
+    roles: roles,
+    email: email,
+    status: status,
+    restoreUntil: restoreUntil,
+  );
 }

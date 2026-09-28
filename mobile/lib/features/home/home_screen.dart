@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/router.dart';
 import '../../app/shell.dart';
 import '../../core/auth/session.dart';
+import '../inbox/inbox_bell.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -31,23 +34,7 @@ class HomeScreen extends ConsumerWidget {
             if (me.handle != null) '@${me.handle}',
           ].join(' · '),
           onAvatarTap: () => context.push(Routes.profile),
-          actions: [
-            AppIconButton(
-              icon: AppIcons.notification,
-              semanticLabel: 'Notifications',
-              motion: IconMotions.bell,
-              onPressed: () => showAppSheet<void>(
-                context,
-                builder: (_) => const SheetScaffold(
-                  title: 'Inbox',
-                  subtitle:
-                      'Invites, tournament updates, rewards and refunds will all be kept here. '
-                      'Coming soon.',
-                  child: SizedBox.shrink(),
-                ),
-              ),
-            ),
-          ],
+          actions: const [InboxBell()],
         ),
         const SizedBox(height: AppSpacing.xl),
         Gutter(
@@ -55,10 +42,15 @@ class HomeScreen extends ConsumerWidget {
             label: 'Rating',
             value: const Text('—'),
             caption: 'Play rated battles to earn your rating',
-            stats: const [
-              HeroStat(label: 'Global rank', value: '—'),
-              HeroStat(label: 'Coins', value: '—', icon: AppIcons.coins),
-              HeroStat(label: 'Streak', value: '0 days', icon: AppIcons.fire),
+            stats: [
+              const HeroStat(label: 'Global rank', value: '—'),
+              HeroStat(
+                label: 'Coins',
+                value: '—',
+                icon: AppIcons.coins,
+                onTap: () => unawaited(context.push(Routes.wallet)),
+              ),
+              const HeroStat(label: 'Streak', value: '0 days', icon: AppIcons.fire),
             ],
             actions: [
               HeroAction(

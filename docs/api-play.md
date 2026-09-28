@@ -241,6 +241,30 @@ Monday gives everyone a fresh start.
 | `GET /v1/users/{handle}` | The public profile: card, level, `ratings: [{"scope", "rating", "position"}]`, form (last 5 results), `h2h` with you, `relationship` (`none`, `friend`, `requested` or `blocked`), `can_challenge`. `404` when blocked in either direction |
 | `GET /v1/me/stats` | Ratings per scope with position; W/D/L per mode; accuracy; questions answered; best and current streak; `rating_history: [{"at", "value"}]` for `?range=30d\|90d\|all` |
 
+`GET /v1/me/stats?range=30d` in full (the Profile reads this shape):
+
+```json
+{
+  "level": {"level": 4, "into_level": 120, "for_next": 250},
+  "ratings": [{"scope": "overall", "name": "Overall", "rating": {"display": "1523", "value": 1523, "provisional": false}, "position": 214},
+              {"scope": "physics", "name": "Physics", "rating": {"display": "1548?", "value": 1548, "provisional": true}, "position": null}],
+  "record": {"rated": {"wins": 12, "draws": 2, "losses": 9}, "casual": {"wins": 3, "draws": 0, "losses": 2}, "bot": {…}, "friend": {…}, "group": {…}, "tournament": {…}},
+  "accuracy": 0.68,
+  "questions_answered": 1240,
+  "streak": {"current": 4, "best": 11},
+  "rating_history": [{"at": "2026-09-01T00:00:00Z", "value": 1500}]
+}
+```
+
+- `level` is the same object as Home's `hero.level`; the Profile header draws the XP bar from it.
+- `position` is null while unranked (provisional). `name` is optional; the app derives it from
+  `scope`.
+- `accuracy` is a fraction from 0 to 1, or null before any answer.
+- `rating_history` is the overall rating over `range`, oldest first. Only it depends on `range`.
+
+`GET /v1/me/opponents?days=30` returns `{"items": [{"user": {…user card…}, "h2h": {"wins", "draws",
+"losses"}, "relationship", "last_played_at"}]}`.
+
 ## Wallet and XP
 
 | Endpoint | Returns |
@@ -275,6 +299,7 @@ Missions are written so they can always be done:
 | `PUT /v1/me/push-token` | Body `{"token", "platform"}` → `204`. `DELETE` removes it (it is also removed on sign-out) |
 | `GET /v1/me/settings/notifications` | `{"kinds": {"invites": true, "tournaments": true, "friends": true, "missions": true, "streaks": true}, "quiet_hours": {"start": "22:30", "end": "07:00"}}`. `quiet_hours` is `null` when off |
 | `PUT /v1/me/settings/notifications` | Same body as the `GET`. `"quiet_hours": null` turns them off; leaving the field out keeps them |
+| `GET /v1/me/settings/app` and `PUT` | `{"analytics": true}`: the analytics toggle (see "Client analytics events") |
 
 **Kinds:**
 - **Invites and friends:** `invite`, `friend_request`, `friend_accepted`.
@@ -311,9 +336,22 @@ adjustable in settings.
 
 | Endpoint | Does |
 |---|---|
-| `POST /v1/me/delete` | Body `{"confirm": "DELETE"}` plus a fresh sign-in proof (Google ID token or dev login). Returns `202`, and ends every session |
-| `POST /v1/me/restore` | Allowed within 7 days of a delete |
-| `POST /v1/feedback` | Body `{"kind": "problem" \| "idea" \| "coins" \| "ban_appeal", "message", "request_id"?}` → `202`. The app attaches the last error's request id |
+| `PATCH /v1/me` | Any of `display_name`, `avatar`, `goal` and `handle`. The handle can change once every 30 days: sooner is `409 HANDLE_CHANGE_TOO_SOON` with `details.next_change_at`; a taken one is `409 HANDLE_TAKEN`. Returns the profile |
+| `POST /v1/me/delete` | Body `{"confirm": "DELETE", "proof": {…}}` with a fresh sign-in proof (below). Returns `202`, and ends every session |
+| `POST /v1/me/restore` | Allowed within 7 days of a delete. Returns the restored profile (`GET /v1/me`'s shape, `status: "active"`) |
+| `POST /v1/feedback` | Body `{"kind": "problem" \| "idea" \| "coins" \| "ban_appeal", "message", "request_id"?}` with an `Idempotency-Key` → `202`. The app attaches the last error's request id (`error.request_id`, or the `X-Request-ID` header) |
+
+**The delete proof.** The app signs in again right before deleting and sends what it got:
+
+```json
+{"confirm": "DELETE", "proof": {"provider": "google", "id_token": "<a Google ID token minted just now>"}}
+{"confirm": "DELETE", "proof": {"provider": "dev"}}
+```
+
+- `google`: the token is verified like `POST /v1/auth/google` and must belong to this account.
+- `dev`: accepted only where dev login is (development environments), for the signed-in account.
+- A missing, stale or mismatched proof is `403 REAUTH_REQUIRED`; anything but `"DELETE"` in
+  `confirm` is `422`.
 
 **Deletion in detail**
 - **For 7 days** the account is **hidden, not erased**: profile, friendships, ranks and history
@@ -321,7 +359,8 @@ adjustable in settings.
   and refunded.
 - **Signing in during those 7 days** gives a restricted session that can only call `GET /v1/me`
   (`status: "pending_deletion"`, with `restore_until`), `POST /v1/me/restore` and logout. The app
-  shows Restore or Sign out.
+  shows Restore or Sign out. The sign-in response's `user` carries the same `status` and
+  `restore_until`; every other profile has `status: "active"`.
 - **On day 30** the account is erased for good, including its Google link. The same Google account
   can then sign up again as a new player.
 
