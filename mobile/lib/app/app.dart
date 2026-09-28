@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/realtime/realtime_host.dart';
+import '../features/arena/tournament_reminders.dart' show reminderTapsProvider;
 import '../features/practice/data/answer_queue.dart';
 import '../features/settings/settings_providers.dart';
 import 'live/live_layer.dart';
@@ -13,8 +14,11 @@ class QuizApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Sends practice answers left over from an earlier run once signed in.
-    ref.watch(answerSyncProvider);
+    // Sends practice answers left over from an earlier run once signed in, and opens the
+    // tournament of a tapped reminder.
+    ref
+      ..watch(answerSyncProvider)
+      ..watch(reminderTapsProvider);
     final touch = ref.watch(touchPrefsProvider);
     return MaterialApp.router(
       title: 'Quiz Arena',

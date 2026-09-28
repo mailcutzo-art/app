@@ -95,6 +95,12 @@ class DemoRealtimeServer implements WebSocketConnector {
   /// When set, `hello` without `takeover` is answered `LIVE_ELSEWHERE` for this match.
   String? liveElsewhereMatchId;
 
+  /// How long a tournament game waits for the player to get ready.
+  Duration tournamentReadyWait = const Duration(seconds: 90);
+
+  /// Features built on top of the battle server (the Arena's tournaments).
+  final List<DemoServerExtension> extensions = [];
+
   // ------------------------------------------------------------------------------------------
   // State
 
@@ -225,6 +231,57 @@ class DemoRealtimeServer implements WebSocketConnector {
   void _sendU(String type, Map<String, Object?> data) =>
       _send(_frame(type, data, ch: 'u', ts: now));
 
+  // ------------------------------------------------------------------------------------------
+  // For extensions
+
+  /// Sends an event on the user's channel `u`.
+  void sendUser(String type, Map<String, Object?> data) => _sendU(type, data);
+
+  /// Sends an event on [channel] (no `seq`: for channels that aren't resumed, like `t:`).
+  void sendOn(String channel, String type, Map<String, Object?> data) =>
+      _send(_frame(type, data, ch: channel, ts: now));
+
+  /// Confirms request [ref].
+  void ack(String? ref) => _ack(ref);
+
+  /// Refuses request [ref].
+  void refuse(String? ref, String code, String message) => _error(ref, code, message);
+
+  /// Runs [callback] after [delay] unless the server is disposed first.
+  Timer after(Duration delay, void Function() callback) => _after(delay, callback);
+
+  /// Starts a tournament game against [opponent]: [questions] questions, rated, and 90 s to get
+  /// ready ([tournamentReadyWait]). [onEnd] gets the result from the player's side (`win`,
+  /// `draw` or `loss`) once it's settled.
+  DemoMatch startTournamentMatch({
+    required String tournamentId,
+    required DemoPlayer opponent,
+    required String subject,
+    int questions = 10,
+    void Function(DemoMatch match, String result)? onEnd,
+  }) {
+    final id = 'demo-m${++_matchCount}';
+    final match = DemoMatch._(
+      this,
+      id: id,
+      mode: 'rated',
+      subject: subject,
+      chapter: null,
+      opponent: opponent,
+      questions: _pick(subject, null, widened: true, count: questions),
+      opponentNeverReady: false,
+      requeue: null,
+      tournamentId: tournamentId,
+      onEnd: onEnd,
+    );
+    _matches[id] = match;
+    _lastFoundId = id;
+    _lastFoundAt = now;
+    _after(latency * 2 + const Duration(milliseconds: 40), match._sendSnapshot);
+    match._startReadyWait();
+    return match;
+  }
+
   void _socketClosed(_DemoSocket socket) {
     if (!identical(socket, _socket)) return;
     _socket = null;
@@ -275,6 +332,7 @@ class DemoRealtimeServer implements WebSocketConnector {
       case 'sync':
         _sync(ref, data);
       default:
+        if (type is String && extensions.any((e) => e.handle(type, ref, data))) return;
         _error(ref, 'BAD_REQUEST', 'Unknown message type');
     }
   }
@@ -328,6 +386,7 @@ class DemoRealtimeServer implements WebSocketConnector {
             if (_ticket case final ticket?) {'kind': 'queue', 'id': ticket.id, 'state': 'queued'},
             for (final match in _matches.values)
               if (!match.isOver) {'kind': 'match', 'ch': match.channel, 'state': match.phase},
+            for (final extension in extensions) ...extension.active,
           ],
         },
         ch: 'u',
@@ -595,13 +654,13 @@ class DemoRealtimeServer implements WebSocketConnector {
   }
 
   /// Seven questions: the chapter's first, then the rest of the subject, then anything.
-  List<_DemoQuestion> _pick(String subject, String? chapter, {required bool widened}) {
+  List<_DemoQuestion> _pick(String subject, String? chapter, {required bool widened, int? count}) {
     final ordered = <FakeQuestion>[
       ..._questions.where((q) => q.subject == subject && q.chapter.slug == chapter),
       ..._questions.where((q) => q.subject == subject && q.chapter.slug != chapter),
       ..._questions.where((q) => q.subject != subject),
     ];
-    final picked = [for (var i = 0; i < questionCount; i++) ordered[i % ordered.length]];
+    final picked = [for (var i = 0; i < (count ?? questionCount); i++) ordered[i % ordered.length]];
     return [for (final question in picked) _DemoQuestion(question, _random)];
   }
 
@@ -784,6 +843,8 @@ class DemoMatch {
     required this._questions,
     required this.opponentNeverReady,
     required this._requeue,
+    this.tournamentId,
+    this._onEnd,
   }) : bot = opponent.isBot,
        createdAt = _server.now;
 
@@ -797,11 +858,19 @@ class DemoMatch {
   final bool bot;
   final bool opponentNeverReady;
   final _Ticket? _requeue;
+
+  /// Set for a tournament round's game.
+  final String? tournamentId;
+  final void Function(DemoMatch match, String result)? _onEnd;
   final int createdAt;
 
   String get channel => 'm:$id';
 
-  String get kind => bot ? 'bot' : (mode == 'casual' ? 'quick_casual' : 'quick_rated');
+  String get kind => tournamentId != null
+      ? 'tournament'
+      : bot
+      ? 'bot'
+      : (mode == 'casual' ? 'quick_casual' : 'quick_rated');
 
   int seq = 0;
   final List<Map<String, Object?>> _log = [];
@@ -955,6 +1024,13 @@ class DemoMatch {
         _opponentReady = true;
         _maybeStart();
       });
+    }
+    if (tournamentId != null) {
+      // A tournament player who never gets ready gives the opponent a forfeit win.
+      _after(_server.tournamentReadyWait, () {
+        if (phase == 'ready_wait') _finish('no_show', forcedResult: _meReady ? 'win' : 'loss');
+      });
+      return;
     }
     _after(_server.readyWait, () {
       if (phase != 'ready_wait') return;
@@ -1218,6 +1294,7 @@ class DemoMatch {
       _settlement = _settle(result);
       settled = true;
       if (!_server.withholdSettlement) _private('match.settled', {'match_id': id, ..._settlement!});
+      _onEnd?.call(this, result);
     });
   }
 
@@ -1243,9 +1320,11 @@ class DemoMatch {
         rank = {'board': 'rating:$subject', 'games_to_rank': subjectRating.gamesToRank};
       }
     }
-    final coins = bot ? 0 : (win ? 10 : (draw && mode == 'casual' ? 5 : 0));
+    // Tournament games pay out in the tournament's prizes, not per game.
+    final coins = bot || tournamentId != null ? 0 : (win ? 10 : (draw && mode == 'casual' ? 5 : 0));
     world.coins += coins;
-    final xp = (win ? 30 : (draw ? 20 : 10)) ~/ (bot ? 2 : 1);
+    // Tournament games give 10 XP for each round played.
+    final xp = tournamentId != null ? 10 : (win ? 30 : (draw ? 20 : 10)) ~/ (bot ? 2 : 1);
     final levelUp = world.addXp(xp);
     world.gamesToday++;
     if (win) world.wins++;
@@ -1360,6 +1439,15 @@ class DemoMatch {
         },
     ],
   };
+}
+
+/// A feature that adds message types to the demo server (the Arena's `sub` and `unsub`).
+abstract interface class DemoServerExtension {
+  /// Handles a message of [type]; false when it isn't one of this extension's.
+  bool handle(String type, String? ref, Map<String, Object?> data);
+
+  /// What to add to `welcome.active` (a running tournament).
+  List<Map<String, Object?>> get active;
 }
 
 /// The app's end of a demo connection.

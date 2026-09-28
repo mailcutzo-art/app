@@ -11,6 +11,7 @@ import '../../../core/auth/session.dart';
 import '../../../core/realtime/live_match.dart';
 import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/live_text.dart';
+import '../../arena/tournament_live.dart' show isTournamentGame;
 import '../../learn/data/learn_models.dart' as learn;
 import '../../learn/widgets/learn_widgets.dart' show CoachTipCard;
 import 'match_widgets.dart';
@@ -127,12 +128,20 @@ class _ResultViewState extends ConsumerState<ResultView> {
         if (tip != null) ...[const SizedBox(height: AppSpacing.lg), CoachTipCard(tip: tip)],
         if (view.isCasual) ...[const SizedBox(height: AppSpacing.lg), _RematchPanel(view: view)],
         const SizedBox(height: AppSpacing.xxl),
-        AppButton(
-          label: 'Play again',
-          leadingIcon: AppIcons.refresh,
-          loading: _starting,
-          onPressed: _starting ? null : () => _playAgain(view),
-        ),
+        // A tournament game leads back to the lobby, where the next round is called.
+        if (isTournamentGame(view))
+          AppButton(
+            label: 'Back to tournament',
+            leadingIcon: AppIcons.arena,
+            onPressed: widget.onDone,
+          )
+        else
+          AppButton(
+            label: 'Play again',
+            leadingIcon: AppIcons.refresh,
+            loading: _starting,
+            onPressed: _starting ? null : () => _playAgain(view),
+          ),
         const SizedBox(height: AppSpacing.sm),
         AppButton(
           label: 'Review answers',

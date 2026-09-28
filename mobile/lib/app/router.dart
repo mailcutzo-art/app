@@ -9,6 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../core/auth/session.dart';
 import '../core/config/app_config.dart';
 import '../features/arena/arena_screen.dart';
+import '../features/arena/data/tournament_models.dart' show Tournament;
+import '../features/arena/tournament_results_screen.dart';
+import '../features/arena/tournament_screen.dart';
 import '../features/auth/sign_in_screen.dart';
 import '../features/battle/battle_screen.dart';
 import '../features/battle/match/match_screen.dart';
@@ -153,6 +156,21 @@ abstract final class Routes {
   /// The players the user has blocked, opened from Settings → Privacy.
   static const blockedUsers = '/blocked';
 
+  /// The Arena on one or more filters (`open`, `upcoming`, `live`, `finished`), e.g.
+  /// `/arena?filter=live,upcoming`.
+  static String arenaWith(Iterable<String> filters) =>
+      Uri(path: arena, queryParameters: {'filter': filters.join(',')}).toString();
+
+  /// "Browse live contests": the Arena on Live and Upcoming.
+  static final browseLive = arenaWith(const ['live', 'upcoming']);
+
+  /// A tournament, full screen above the tabs: `/arena/:id`. `/t/<id>` and `/arena?t=<id>` lead
+  /// here too.
+  static String tournament(String id) => '$arena/${Uri.encodeComponent(id)}';
+
+  /// A finished tournament's final results.
+  static String tournamentResults(String id) => '${tournament(id)}/results';
+
   /// Screens that only exist to get the user somewhere else. Being on one never
   /// counts as a destination to come back to.
   static const gates = {splash, signIn, onboarding, update, maintenance, suspended, restore};
@@ -291,7 +309,13 @@ abstract final class DeepLinks {
 
   /// `/t/<id>`: a tournament.
   static String? tournament(GoRouterState state) =>
-      '${Routes.arena}?t=${Uri.encodeQueryComponent(state.pathParameters['id'] ?? '')}';
+      Routes.tournament(state.pathParameters['id'] ?? '');
+
+  /// `/arena?t=<id>` (the Wallet's and "Go there" links): the tournament itself.
+  static String? arenaTournament(GoRouterState state) => switch (state.uri.queryParameters['t']) {
+    final id? when id.isNotEmpty => Routes.tournament(id),
+    _ => null,
+  };
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -373,6 +397,27 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/j/:code', redirect: (_, state) => DeepLinks.join(state)),
       GoRoute(path: '/t/:id', redirect: (_, state) => DeepLinks.tournament(state)),
+      // A tournament, full screen above the tabs (the card's shared element flies into it).
+      GoRoute(
+        path: '${Routes.arena}/:id',
+        builder: (_, state) => TournamentScreen(
+          id: state.pathParameters['id']!,
+          initial: switch (state.extra) {
+            final Tournament t => t,
+            _ => null,
+          },
+          // An inbox item about a round (`?round=3`) opens My games.
+          tab:
+              state.uri.queryParameters['tab'] ??
+              (state.uri.queryParameters.containsKey('round') ? 'games' : null),
+        ),
+        routes: [
+          GoRoute(
+            path: 'results',
+            builder: (_, state) => TournamentResultsScreen(id: state.pathParameters['id']!),
+          ),
+        ],
+      ),
       // A player's profile; `/u/<handle>` is also the link shared outside the app.
       GoRoute(
         path: '/u/:handle',
@@ -420,7 +465,13 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [GoRoute(path: Routes.battle, builder: (_, _) => const BattleScreen())],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.arena, builder: (_, _) => const ArenaScreen())],
+            routes: [
+              GoRoute(
+                path: Routes.arena,
+                redirect: (_, state) => DeepLinks.arenaTournament(state),
+                builder: (_, _) => const ArenaScreen(),
+              ),
+            ],
           ),
           StatefulShellBranch(
             routes: [GoRoute(path: Routes.social, builder: (_, _) => const SocialScreen())],

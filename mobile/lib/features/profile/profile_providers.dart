@@ -71,7 +71,7 @@ class PracticeHistoryNotifier extends PagedNotifier<PracticeHistoryItem> {
 }
 
 /// Which history the Profile shows.
-enum HistoryTab { battles, practice }
+enum HistoryTab { battles, tournaments, practice }
 
 final historyTabProvider = NotifierProvider.autoDispose<HistoryTabSetting, HistoryTab>(
   HistoryTabSetting.new,

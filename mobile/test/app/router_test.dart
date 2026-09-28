@@ -6,6 +6,7 @@ import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/auth/session.dart';
 import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/config/app_config.dart';
+import 'package:quiz_app/features/arena/tournament_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../support/fakes.dart';
@@ -303,11 +304,21 @@ void main() {
       expect(location(router), '/battle?join=K7M2QX');
     });
 
-    testWidgets('/t/<id> opens Arena and /u/<handle> the player\'s profile', (tester) async {
+    testWidgets('/t/<id> opens the tournament and /u/<handle> the player\'s profile', (
+      tester,
+    ) async {
       final router = await pumpApp(tester);
       router.go('/t/0192abc');
       await tester.pumpAndSettle();
-      expect(location(router), '/arena?t=0192abc');
+      expect(location(router), '/arena/0192abc');
+      expect(find.byType(TournamentScreen), findsOneWidget);
+      // The Wallet's and "Go there" links land on the same screen.
+      router.go('/arena?t=0192abd');
+      await tester.pumpAndSettle();
+      expect(location(router), '/arena/0192abd');
+      router.go(Routes.browseLive);
+      await tester.pumpAndSettle();
+      expect(location(router), '/arena?filter=live%2Cupcoming');
       router.go('/u/rahul_07');
       await tester.pumpAndSettle();
       expect(location(router), '/u/rahul_07');
@@ -365,5 +376,8 @@ void main() {
     expect(Routes.subject('physics'), '/learn/physics');
     expect(Routes.practiceSession('s-1'), '/practice/s-1');
     expect(Routes.board('rating:physics'), '/leaderboards/rating%3Aphysics');
+    expect(Routes.tournament('t 1'), '/arena/t%201');
+    expect(Routes.tournamentResults('t1'), '/arena/t1/results');
+    expect(Routes.arenaWith(['open']), '/arena?filter=open');
   });
 }
