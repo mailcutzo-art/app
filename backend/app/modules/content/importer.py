@@ -37,7 +37,7 @@ from pydantic import (
     ValidationInfo,
     field_validator,
 )
-from sqlalchemy import select, text
+from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.modules.content.editing import (
@@ -563,50 +563,66 @@ def _check_duplicates(
         seen_ids.setdefault(external_id, result.row)
 
 
-_NEAR_DUPLICATES = text(
+_NEAR_DUPLICATE = text(
     """
-    SELECT r.idx, m.external_id, m.sim
-    FROM unnest(CAST(:idx AS int[]), CAST(:subject AS int[]), CAST(:body AS text[]),
-                CAST(:search AS text[])) AS r(idx, subject_id, body, search)
-    CROSS JOIN LATERAL (
-        SELECT q.external_id,
-               similarity(q.stem || ' ' || array_to_string(q.options, ' '), r.body) AS sim
-        FROM questions AS q
-        -- Candidates come from the trigram index on search_text (pg_trgm's default 0.3
-        -- threshold); it also holds tags and names, so the exact check is on stem and options.
-        WHERE q.search_text % r.search
-          AND q.subject_id = r.subject_id
-          AND q.status <> 'retired'
-        ORDER BY sim DESC, q.external_id
-        LIMIT 1
-    ) AS m
-    WHERE m.sim > :threshold
+    SELECT q.external_id,
+           similarity(q.stem || ' ' || array_to_string(q.options, ' '), :body) AS sim
+    FROM questions AS q
+    WHERE q.search_text % :search
+      AND q.subject_id = :subject
+      AND q.status <> 'retired'
+    ORDER BY sim DESC, q.external_id
+    LIMIT 1
     """
 )
+# Candidates come from the trigram index on search_text with this pg_trgm threshold; the exact
+# check is then on stem and options. search_text also holds tags, topic and chapter names, so
+# the bar is well below NEAR_DUPLICATE_SIMILARITY to keep every real match.
+_CANDIDATE_THRESHOLD = "0.5"
+# The planner can't estimate the % operator and scans the whole subject (about a second per
+# row for 15,000 questions); forcing the index makes it about 20 times faster.
+_QUERY_SETTINGS = {
+    "pg_trgm.similarity_threshold": _CANDIDATE_THRESHOLD,
+    "enable_seqscan": "off",
+}
 
 
 async def _check_near_duplicates(db: AsyncSession, candidates: Sequence[_Candidate]) -> None:
     if not candidates:
         return
-    rows = await db.execute(
-        _NEAR_DUPLICATES,
-        {
-            "idx": list(range(len(candidates))),
-            "subject": [c.subject.id for c in candidates],
-            "body": [f"{c.data.stem} {' '.join(c.data.options)}" for c in candidates],
-            "search": [
-                search_text(c.data.stem, c.data.options, (), topic_name=None, chapter=None)
-                for c in candidates
-            ],
-            "threshold": NEAR_DUPLICATE_SIMILARITY,
-        },
-    )
-    for index, external_id, similarity in rows.all():
-        result = candidates[index].result
-        result.status = RowStatus.NEAR_DUPLICATE
-        result.match = external_id
-        result.similarity = round(float(similarity), 3)
-        result.messages.append(f"very similar to {external_id} ({similarity:.0%})")
+    previous = {
+        name: await db.scalar(select(func.current_setting(name, True))) for name in _QUERY_SETTINGS
+    }
+    for name, value in _QUERY_SETTINGS.items():
+        await db.execute(select(func.set_config(name, value, True)))
+    try:
+        for candidate in candidates:
+            await _check_near_duplicate(db, candidate)
+    finally:
+        for name, old in previous.items():
+            default = "0.3" if name == "pg_trgm.similarity_threshold" else "on"
+            await db.execute(select(func.set_config(name, old or default, True)))
+
+
+async def _check_near_duplicate(db: AsyncSession, candidate: _Candidate) -> None:
+    data = candidate.data
+    match = (
+        await db.execute(
+            _NEAR_DUPLICATE,
+            {
+                "body": f"{data.stem} {' '.join(data.options)}",
+                "search": search_text(data.stem, data.options, (), topic_name=None, chapter=None),
+                "subject": candidate.subject.id,
+            },
+        )
+    ).first()
+    if match is None or match.sim <= NEAR_DUPLICATE_SIMILARITY:
+        return
+    result = candidate.result
+    result.status = RowStatus.NEAR_DUPLICATE
+    result.match = match.external_id
+    result.similarity = round(float(match.sim), 3)
+    result.messages.append(f"very similar to {match.external_id} ({match.sim:.0%})")
 
 
 def _status(publish: bool) -> ContentStatus:
