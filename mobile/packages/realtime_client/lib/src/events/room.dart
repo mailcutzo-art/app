@@ -14,6 +14,8 @@ final class RoomStateEvent extends ServerEvent {
     required this.settings,
     required this.members,
     required this.rematch,
+    required this.matchId,
+    required this.capacity,
   });
 
   factory RoomStateEvent.fromEnvelope(Envelope envelope) {
@@ -27,14 +29,17 @@ final class RoomStateEvent extends ServerEvent {
       host: d.string('host'),
       status: d.string('status'),
       locked: d.optBool('locked') ?? false,
-      settings: d.optObject('settings')?.map ?? const {},
+      settings: RoomSettings.fromJson(d.optObject('settings')?.map ?? const {}),
       members: d.objects('members', _readMember),
       rematch: rematch == null
           ? null
           : RoomRematch(
               offeredBy: rematch.string('offered_by'),
               until: rematch.optTimestamp('until'),
+              accepted: rematch.optStrings('accepted') ?? const [],
             ),
+      matchId: d.optString('match_id'),
+      capacity: d.optInt('capacity'),
     );
   }
 
@@ -51,12 +56,20 @@ final class RoomStateEvent extends ServerEvent {
   final String status;
   final bool locked;
 
-  /// Subject, chapter, question count, seconds per question, … as sent.
-  final Map<String, Object?> settings;
+  /// Subject, chapters, question count, seconds per question, and for groups the difficulty,
+  /// late join, leaderboard and who can join.
+  final RoomSettings settings;
   final List<RoomMember> members;
 
   /// A rematch on offer after a game, or `null`.
   final RoomRematch? rematch;
+
+  /// The game being played while [status] is `playing`, so a member who (re)joins mid-game can
+  /// follow it on `m:<match_id>`.
+  final String? matchId;
+
+  /// How many members the room takes: 2 for a friend duel, up to 8 for a group.
+  final int? capacity;
 }
 
 /// `room.started {match_id, ch}`: the room's match begins on [matchChannel].

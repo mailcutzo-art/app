@@ -653,7 +653,18 @@ void main() {
           'host': 'u1',
           'status': 'lobby',
           'locked': false,
-          'settings': {'subject': 'physics', 'count': 10},
+          'settings': {
+            'subject': 'physics',
+            'chapters': ['kinematics'],
+            'questions': 10,
+            'seconds': 15,
+            'difficulty': 'mixed',
+            'late_join': 'halfway',
+            'leaderboard': true,
+            'join': 'code',
+            'count': 10,
+          },
+          'capacity': 8,
           'members': [
             {...card('u1'), 'ready': true, 'connected': true, 'away': true, 'role': 'host'},
             {...card('u2'), 'ready': false, 'connected': false, 'role': 'member'},
@@ -663,7 +674,17 @@ void main() {
         4,
       ) as RoomStateEvent;
       expect(state.code, 'K7M2QX');
-      expect(state.settings['count'], 10);
+      expect(state.settings.subject, 'physics');
+      expect(state.settings.chapters, ['kinematics']);
+      expect(state.settings.questions, 10);
+      expect(state.settings.seconds, 15);
+      expect(state.settings.difficulty, 'mixed');
+      expect(state.settings.lateJoin, 'halfway');
+      expect(state.settings.leaderboard, isTrue);
+      expect(state.settings.join, 'code');
+      expect(state.settings.raw['count'], 10);
+      expect(state.capacity, 8);
+      expect(state.matchId, isNull);
       expect(
         [for (final m in state.members) (m.uid, m.ready, m.connected, m.away, m.role)],
         [('u1', true, true, true, 'host'), ('u2', false, false, false, 'member')],
@@ -678,13 +699,21 @@ void main() {
           'host': 'u1',
           'status': 'finished',
           'members': <Object?>[],
-          'rematch': {'offered_by': 'u2', 'until': 1790000030000},
+          'match_id': 'M5',
+          'rematch': {
+            'offered_by': 'u2',
+            'until': 1790000030000,
+            'accepted': ['u2'],
+          },
         },
         'r:R1',
         9,
       ) as RoomStateEvent;
       expect(afterGame.rematch!.offeredBy, 'u2');
       expect(afterGame.rematch!.until, 1790000030000);
+      expect(afterGame.rematch!.accepted, ['u2']);
+      expect(afterGame.matchId, 'M5');
+      expect(afterGame.settings, const RoomSettings());
 
       expect(
         event('room.started', {'match_id': 'M5'}),
@@ -698,6 +727,48 @@ void main() {
         event('room.closed', {'room_id': 'R1', 'reason': 'host_ended'}),
         isA<RoomClosedEvent>().having((e) => e.reason, 'reason', 'host_ended'),
       );
+    });
+  });
+
+  group('room settings', () {
+    test('read leniently and write back without unset fields', () {
+      final settings = RoomSettings.fromJson(const {
+        'subject': 'physics',
+        'chapter': 'kinematics',
+        'questions': 7.0,
+        'seconds': 'fast',
+        'leaderboard': 'yes',
+      });
+      expect(settings.chapters, ['kinematics']);
+      expect(settings.questions, 7);
+      expect(settings.seconds, isNull);
+      expect(settings.leaderboard, isNull);
+      expect(settings.toJson(), {
+        'subject': 'physics',
+        'chapters': ['kinematics'],
+        'questions': 7,
+      });
+      final group = settings.copyWith(
+        chapters: const [],
+        seconds: 20,
+        difficulty: 'hard',
+        lateJoin: 'off',
+        leaderboard: false,
+        join: 'friends',
+      );
+      expect(group.toJson(), {
+        'subject': 'physics',
+        'chapters': <String>[],
+        'questions': 7,
+        'seconds': 20,
+        'difficulty': 'hard',
+        'late_join': 'off',
+        'leaderboard': false,
+        'join': 'friends',
+      });
+      expect(RoomSettings.fromJson(group.toJson()), group);
+      expect(RoomSettings.fromJson(group.toJson()).hashCode, group.hashCode);
+      expect(group == settings, isFalse);
     });
   });
 

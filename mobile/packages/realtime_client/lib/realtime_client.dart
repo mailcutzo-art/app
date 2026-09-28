@@ -15,6 +15,7 @@ export 'src/events.dart';
 export 'src/match_state.dart'
     show EmoteState, MatchPlayer, MatchState, MyAnswer, Rematch, reduceMatch, selectAnswer;
 export 'src/realtime_clock.dart' show RealtimeClock, SystemRealtimeClock;
+export 'src/room_state.dart' show RoomState, RoomStatus, reduceRoom;
 export 'src/server_clock.dart' show ClockSample, ServerClock;
 export 'src/socket.dart' show RealtimeSocket, WebSocketConnector;
 export 'src/web_socket_channel_connector.dart' show WebSocketChannelConnector;
