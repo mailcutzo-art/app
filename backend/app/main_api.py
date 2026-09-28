@@ -56,4 +56,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         coach.router,
     ):
         app.include_router(router, prefix="/v1", dependencies=[ClientGates])
+    if settings.admin_enabled:
+        # Imported only when enabled: the panel pulls in SQLAdmin, Jinja and WTForms.
+        from app.modules.admin.setup import mount_admin
+
+        mount_admin(app, settings)
     return app

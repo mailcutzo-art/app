@@ -1,0 +1,55 @@
+{% extends "sqladmin/layout.html" %}
+{% block content %}
+<div class="col-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Report on {{ question.external_id }}</h3>
+    </div>
+    <div class="card-body">
+      {% if error %}
+      <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endif %}
+      <dl class="row">
+        <dt class="col-3">Reported</dt><dd class="col-9">{{ report.created_at }} · {{ report.reason }}</dd>
+        <dt class="col-3">Note</dt><dd class="col-9">{{ report.note or "—" }}</dd>
+        <dt class="col-3">Status</dt><dd class="col-9">{{ report.status }}{% if report.resolution %} ({{ report.resolution }}){% endif %}</dd>
+        <dt class="col-3">Open reports on this question</dt><dd class="col-9">{{ open_reports | length }}</dd>
+      </dl>
+      <h4>Question as reported ({{ question.status }})</h4>
+      <p style="white-space: pre-line">{{ question.stem }}</p>
+      <ol style="list-style: none; padding: 0">
+        {% for option in question.options %}
+        <li>{{ letters[loop.index0] }}. {{ option }}{% if loop.index0 == question.answer %} <strong>✓ correct</strong>{% endif %}</li>
+        {% endfor %}
+      </ol>
+      <p class="text-secondary">{{ question.explanation }}</p>
+      {% if live and live.id != question.id %}
+      <div class="alert alert-info">This question has a newer version:
+        <a href="{{ url_for('admin:details', identity='question', pk=live.id) }}">{{ live.external_id }} ({{ live.status }})</a>.</div>
+      {% endif %}
+      {% if live %}
+      <p><a href="{{ url_for('admin:edit', identity='question', pk=live.id) }}">Edit the question</a>
+        (a published question gets a new version) before closing the report as fixed.</p>
+      {% endif %}
+      {% if report.status == 'open' %}
+      <form method="POST">
+        <fieldset class="form-fieldset">
+          <label class="form-label">Outcome</label>
+          {% for resolution in resolutions %}
+          <label class="form-check">
+            <input class="form-check-input" type="radio" name="resolution" value="{{ resolution.value }}" required>
+            <span class="form-check-label">{{ resolution.value | capitalize }}</span>
+          </label>
+          {% endfor %}
+          <label class="form-label mt-2" for="note">Note (internal, not shown to players)</label>
+          <textarea class="form-control" id="note" name="note" rows="3" maxlength="1000"></textarea>
+        </fieldset>
+        <p class="text-secondary small">Closes every open report on this question; each reporter gets the outcome in their inbox. Retired takes the question out of practice and battles.</p>
+        <button class="btn btn-primary" type="submit">Close {{ open_reports | length }} report(s)</button>
+        <a class="btn" href="{{ url_for('admin:list', identity=model_view.identity) }}">Back</a>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -29,6 +29,7 @@ _ASYNCPG_SCHEME = "postgresql+asyncpg://"
 _POSTGRES_ALIASES = ("postgresql://", "postgres://")
 _REDIS_SCHEMES = ("redis://", "rediss://", "unix://")
 _GRACE_KEY_BYTES = 32
+_MIN_ADMIN_SECRET = 32
 
 
 class Environment(StrEnum):
@@ -97,7 +98,25 @@ class Settings(BaseSettings):
     # Question bank loaded by ``python -m app.modules.content.seed`` (relative to the working dir).
     content_dir: str = "../content"
 
-    @field_validator("google_client_ids", "cors_origins", "trusted_proxies", mode="before")
+    # The admin panel (SQLAdmin at ``/admin``), served by the api process only when enabled.
+    admin_enabled: bool = False
+    # Signs the admin session cookie (at least 32 characters). Required in prod when the panel
+    # is enabled; dev/test generate one per process (sessions then end on restart).
+    admin_session_secret: SecretStr | None = None
+    admin_session_max_age_s: int = Field(default=8 * 3600, ge=60)
+    # Google OAuth *web* client for the panel's sign-in (authorization-code flow). The
+    # callback, ``<public url>/admin/auth/callback``, must be registered with Google.
+    admin_google_client_id: str | None = None
+    admin_google_client_secret: SecretStr | None = None
+    # The callback URL sent to Google; derived from the request when unset (set it behind a
+    # proxy that rewrites the scheme or host).
+    admin_oauth_redirect_url: str | None = None
+    # When set, only these client IPs or CIDRs may reach the panel (comma-separated).
+    admin_ip_allowlist: Annotated[list[IPvAnyNetwork], NoDecode] = []
+
+    @field_validator(
+        "google_client_ids", "cors_origins", "trusted_proxies", "admin_ip_allowlist", mode="before"
+    )
     @classmethod
     def _split_comma_separated(cls, value: Any) -> Any:
         if isinstance(value, str):
@@ -131,6 +150,13 @@ class Settings(BaseSettings):
             raise ValueError("must be a redis://, rediss:// or unix:// URL")
         return value
 
+    @field_validator("admin_session_secret")
+    @classmethod
+    def _check_admin_session_secret(cls, value: SecretStr | None) -> SecretStr | None:
+        if value is not None and len(value.get_secret_value()) < _MIN_ADMIN_SECRET:
+            raise ValueError(f"must be at least {_MIN_ADMIN_SECRET} characters")
+        return value
+
     @field_validator("refresh_grace_key")
     @classmethod
     def _check_refresh_grace_key(cls, value: SecretStr | None) -> SecretStr | None:
@@ -146,6 +172,8 @@ class Settings(BaseSettings):
         if self.refresh_grace_key is None:
             key = secrets.token_bytes(_GRACE_KEY_BYTES)
             self.refresh_grace_key = SecretStr(base64.b64encode(key).decode())
+        if self.admin_session_secret is None:
+            self.admin_session_secret = SecretStr(secrets.token_urlsafe(_MIN_ADMIN_SECRET))
         return self
 
     @property
@@ -178,6 +206,14 @@ class Settings(BaseSettings):
         for name in ("database_url", "redis_url", "refresh_grace_key"):
             if name not in self.model_fields_set:
                 problems.append(f"APP_{name.upper()} must be set explicitly")
+        if self.admin_enabled:
+            if self.admin_session_secret is None:
+                problems.append("APP_ADMIN_SESSION_SECRET is required when the admin is enabled")
+            if not self.admin_google_client_id or self.admin_google_client_secret is None:
+                problems.append(
+                    "APP_ADMIN_GOOGLE_CLIENT_ID and APP_ADMIN_GOOGLE_CLIENT_SECRET are required "
+                    "when the admin is enabled"
+                )
         if problems:
             raise ValueError("invalid production settings: " + "; ".join(problems))
 

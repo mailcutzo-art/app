@@ -217,6 +217,49 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
 A Redis lease keeps each run to one worker replica, and daily jobs mark the day done only after
 they succeed (`app/core/jobs.py`).
 
+## Admin panel and question import
+
+SQLAdmin at `/admin`, mounted by the api process when `APP_ADMIN_ENABLED=true` (settings in
+`.env.example`). To open it locally:
+
+```bash
+APP_ADMIN_ENABLED=true APP_DEV_LOGIN_ENABLED=true uv run uvicorn app.main_api:create_app --factory --reload
+# sign in to the app once (or POST /v1/auth/dev-login {"email": ...}), then:
+uv run python scripts/create_admin.py you@example.com
+# open http://127.0.0.1:8000/admin and use "Dev login" with that email
+```
+
+- **Sign-in**: Google's authorization-code flow with its own web client
+  (`APP_ADMIN_GOOGLE_CLIENT_ID`/`_SECRET`, callback `/admin/auth/callback`); the Google account
+  must be linked to a user with the admin role and an active account. Dev login by email exists
+  only with `APP_DEV_LOGIN_ENABLED`. The session is a signed cookie (`APP_ADMIN_SESSION_SECRET`,
+  path `/admin`, `SameSite=Lax`, `Secure` in prod) holding the admin's id and token version;
+  every request re-checks the user, so a ban, a lost role or a `token_version` bump ends it.
+- **Guard**: `APP_ADMIN_IP_ALLOWLIST` (optional, honours `APP_TRUSTED_PROXIES`); writes must come
+  from the panel's own origin (`Origin`/`Referer`, `Sec-Fetch-Site`), which with the Lax cookie
+  stops cross-site forms; pages can't be framed and aren't cached. Maintenance and forced
+  updates don't apply to the panel.
+- **Audit**: every create, update and delete writes an `audit_log` row (before and after JSON,
+  admin id, IP) in the same transaction; sign-ins and imports are logged too. The audit log view
+  is read-only.
+- **Views**: users (status, roles and bans: a ban or role change bumps `token_version`, so the
+  player's tokens stop working at once; admins can't demote or ban themselves), questions
+  (search, filter by subject, chapter, status and source; editing a published question adds a
+  superseding version and retires the old row, only retiring and `battle_pool` change in place;
+  options are edited as A–D with one correct letter), passages, Guess the Word terms, subjects,
+  exams, chapters and topics (read-only), the question report queue, `app_config` (runtime
+  switches are validated like `/v1/config` reads them) and the audit log.
+- **Report queue** (Content → Question reports, open ones by default): Review a report and close
+  it as `fixed`, `rejected` or `retired` (which retires the question) with an internal note.
+  Every open report on the question closes with it, and `app.modules.content.hooks.on_report_resolved`
+  runs once per reporter inside the same transaction; the inbox registers its `question_report`
+  notification there (see the module docstring; `report_outcome_notice(event)` builds the text).
+- **Import**: `scripts/import_questions.py` and Content → Import questions take CSV or JSON in the
+  format of `../docs/content-format.md` ("Importing questions"): a dry run reports every row
+  (`ok`, `error`, `duplicate`, `near_duplicate`), imports are idempotent (normalized stem and
+  option set) and audited, near duplicates are found with pg_trgm similarity above 0.9 within the
+  subject, and new questions get the next per-subject `seq` and status `review` (or `published`).
+
 ## Forced updates and maintenance
 
 `min_build`, `maintenance`, `maintenance_message`, `maintenance_until` and `maintenance_at` are
@@ -274,13 +317,16 @@ app/
   modules/users/                             profile, onboarding, handle rules, authz cache
   modules/moderation/                        profanity and reserved names (+ data/ word lists)
   modules/realtime/                          /v1/ws gateway skeleton and protocol constants
-  modules/content/                           question bank, seed, catalog, search, reports
+  modules/content/                           question bank, seed, catalog, search, reports,
+                                             importer, edits (versions), report review, hooks
+  modules/admin/                             SQLAdmin panel: sign-in, guard, views, templates
   modules/practice/                          sessions, answers, running totals, reviews, jobs
   modules/progression/                       XP events and totals
   modules/coach/                             tip inputs, tips cache, dismissals
 alembic/                                     async env.py and revisions
 scripts/dev_services.sh                      local Postgres and Redis
 scripts/create_admin.py                      grant the admin role
+scripts/import_questions.py                  import questions from CSV or JSON
 tests/                                       pytest suite (real Postgres and Redis)
 ```
 
