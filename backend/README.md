@@ -50,7 +50,9 @@ Settings come from `APP_*` environment variables, then an optional `backend/.env
 documented in [`.env.example`](.env.example). Defaults match the local services, so dev needs no
 configuration. `APP_ENV=prod` refuses to start unless the database and Redis URLs, the Ed25519
 JWT key pair and `APP_REFRESH_GRACE_KEY` are set explicitly and `APP_DEV_LOGIN_ENABLED` is false.
-Dev and test generate ephemeral keys per process. Google sign-in needs `APP_GOOGLE_CLIENT_IDS`
+Dev and test generate ephemeral keys per process. Push notifications need
+`APP_FCM_SERVICE_ACCOUNT_FILE` (a Firebase service-account key); without it push is off. Google
+sign-in needs `APP_GOOGLE_CLIENT_IDS`
 (the OAuth web client id); local testing can use dev login instead
 (`APP_DEV_LOGIN_ENABLED=true`).
 
@@ -83,7 +85,9 @@ sessions, answer records, per-user progress and XP (see `../docs/data-model.md`)
 ban details. `question_attempts` is partitioned by month: the SQL function
 `ensure_attempt_partitions(months_ahead)` creates the current and following months (moving any
 rows that already landed in the DEFAULT partition), and the worker calls it daily. Partitions are
-not models, so autogenerate and the drift test skip them (`app.models.include_name`).
+not models, so autogenerate and the drift test skip them (`app.models.include_name`). 0004 adds the
+platform tables: `outbox`, `wallets`, `coin_ledger` (append-only through the same trigger),
+`coin_holds`, `notifications`, `push_tokens`, `user_settings`, `analytics_events` and `feedback`.
 
 ## Tests and checks
 
@@ -206,6 +210,46 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
   are `null`, `GET /v1/me/tips` lists none and answers get no speed label. The seams are
   `progression.xp.xp_rules`, `practice.speed.speed_vs_typical` and `coach.service.tips_engine`.
 
+## Platform: outbox, coins, inbox, analytics
+
+| Endpoint | |
+|---|---|
+| `GET /v1/me/wallet` | `{balance, held, recent}` (the last 5 transactions) |
+| `GET /v1/me/wallet/transactions?cursor=` | the coins history, newest first: `{id, delta, balance_after, reason, title, ref: {kind, id}, created_at}` |
+| `GET /v1/me/notifications?cursor=`, `GET /v1/me/notifications/unread-count` | the inbox (90 days) and the bell's badge |
+| `POST /v1/me/notifications/read` | `{ids}` or `{all: true}` → 204 |
+| `PUT`/`DELETE /v1/me/push-token` | this device's FCM token (also removed when its session ends) |
+| `GET`/`PUT /v1/me/settings/notifications` | push per category and quiet hours (default 22:30–07:00 IST) |
+| `GET`/`PUT /v1/me/settings/app` | `{analytics}`: the analytics toggle |
+| `POST /v1/events` | up to 20 allowlisted screen events → 202 `{accepted}`; 30 a minute |
+| `POST /v1/feedback` | `{kind: problem\|idea\|coins\|ban_appeal, message, request_id?}` → 202; 5 an hour |
+
+- **Outbox** (`app.modules.outbox`). `enqueue(db, topic, payload, key=...)` writes a message in the
+  caller's transaction (a repeated key is ignored); modules `register(topic, handler)` and are
+  listed in `HANDLER_MODULES`. The worker claims due rows with `FOR UPDATE SKIP LOCKED`, runs
+  each handler in a SAVEPOINT of the same transaction, and retries failures with backoff (5 s
+  doubling to 1 h), dead-lettering after 8 attempts (`outbox.dead_letter` is logged). Delivery
+  is at least once, so handlers are idempotent.
+- **Coins** (`app.modules.economy.service`). `credit`, `debit`, `transfer`, `hold`,
+  `capture_hold`, `release_hold` and `settle_pot` lock wallets `FOR UPDATE` in user order,
+  replay an already-posted idempotency key without changing anything, and raise 409
+  `INSUFFICIENT_COINS`. A hold posts its `-amount` entry at once; releasing it posts a refund.
+  `wallets.balance` has `CHECK >= 0`; the `purchased` bucket is reserved and never spent. The
+  welcome bonus (100, key `welcome:{uid}`) is credited when onboarding completes, and
+  `pop_welcome` hands it to Home once. The reaper refunds holds open for 30 minutes unless the
+  module owning the reference says it is live (`economy.jobs.register_liveness`).
+- **Inbox and push** (`app.modules.notifications`). `notify(db, user_id, kind=..., title=...,
+  body=..., key=...)` stores the item and enqueues `notify.live` (a `notify` event on Redis
+  `ev:u:{uid}`, docs/protocol.md §9a) and `notify.push`. Push uses FCM HTTP v1 when
+  `APP_FCM_SERVICE_ACCOUNT_FILE` is set (otherwise it is skipped and `/v1/config` reports
+  `features.push: false`); it follows the category settings and quiet hours, except
+  `time_critical` notices, drops tokens FCM reports as unregistered, and skips pushes over an
+  hour late.
+- **Analytics** (`app.modules.analytics`). `track(db, name, user_id, props, now=...)` records
+  server-side funnel events directly in the caller's transaction (no outbox: nothing external
+  to deliver). Players who turned analytics off are not recorded; minors are stored without a
+  user id, with a session key that is an HMAC under a daily salt deleted after two days.
+
 ## Worker jobs
 
 | Job | Every | Does |
@@ -213,6 +257,10 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
 | `practice_housekeeping` | 10 min | finishes sessions that expired unfinished, deletes sessions older than 90 days, forgets answer ids after 14 days |
 | `attempt_partitions` | daily | `ensure_attempt_partitions(3)` |
 | `question_stats` | nightly (after 02:00 IST) | rebuilds `question_stats`: attempts, share correct, and the median time of correct answers over 90 days (`typical_ms`, from 20 answers) |
+| `outbox_dispatch` | 1 s | delivers due outbox messages (replicas share the work) |
+| `outbox_cleanup` | daily | deletes delivered messages after 7 days, dead ones after 30 |
+| `hold_reaper` | 1 min | refunds coin holds stuck for 30 minutes whose reference isn't live |
+| `notifications_retention`, `analytics_retention` | daily | inbox 90 days; analytics 180 days and old session salts |
 
 A Redis lease keeps each run to one worker replica, and daily jobs mark the day done only after
 they succeed (`app/core/jobs.py`).
@@ -278,6 +326,11 @@ app/
   modules/practice/                          sessions, answers, running totals, reviews, jobs
   modules/progression/                       XP events and totals
   modules/coach/                             tip inputs, tips cache, dismissals
+  modules/outbox/                            transactional outbox, handler registry, dispatcher
+  modules/economy/                           wallets, coin ledger, holds, welcome bonus, reaper
+  modules/notifications/                     inbox, notify(), live and FCM delivery, push tokens
+  modules/analytics/                         client events, track(), retention
+  modules/feedback/                          Help & feedback messages
 alembic/                                     async env.py and revisions
 scripts/dev_services.sh                      local Postgres and Redis
 scripts/create_admin.py                      grant the admin role

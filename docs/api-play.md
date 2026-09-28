@@ -273,8 +273,8 @@ Missions are written so they can always be done:
 | `GET /v1/me/notifications/unread-count` | `{"count": 3}`. Live updates come as `notify` events on `u` |
 | `POST /v1/me/notifications/read` | Body `{"ids": [...]}` or `{"all": true}` → `204` |
 | `PUT /v1/me/push-token` | Body `{"token", "platform"}` → `204`. `DELETE` removes it (it is also removed on sign-out) |
-| `GET /v1/me/settings/notifications` | `{"kinds": {"invites": true, "tournaments": true, "friends": true, "missions": true, "streaks": true}}` |
-| `PUT /v1/me/settings/notifications` | Same body as the `GET` |
+| `GET /v1/me/settings/notifications` | `{"kinds": {"invites": true, "tournaments": true, "friends": true, "missions": true, "streaks": true}, "quiet_hours": {"start": "22:30", "end": "07:00"}}`. `quiet_hours` is `null` when off |
+| `PUT /v1/me/settings/notifications` | Same body as the `GET`. `"quiet_hours": null` turns them off; leaving the field out keeps them |
 
 **Kinds:**
 - **Invites and friends:** `invite`, `friend_request`, `friend_accepted`.
@@ -337,11 +337,13 @@ adjustable in settings.
 
 ## Client analytics events
 
-`POST /v1/events` with `{"events": [{"name", "props", "at"}]}` → `202`.
+`POST /v1/events` with `{"events": [{"name", "props", "at"}]}` → `202` with `{"accepted": n}`.
 - A request holds at most 20 events. Names come from an allowlist (screen-level events such as
   `leaderboard_viewed`, `review_opened`, `notification_opened`).
 - `props` holds small scalars only, never personal data.
 - **Minors.** India's DPDP Act bars behavioural tracking of children. For users under 18, events are
   stored **without** a stable user id (only a per-session id and counts). Settings has an analytics
-  toggle for everyone.
+  toggle for everyone: `GET`/`PUT /v1/me/settings/app` with `{"analytics": true}`. Off, nothing
+  is recorded for that player, by the app or the server.
+- Unknown names and times more than 7 days old or in the future are dropped, not rejected.
 - Everything else in `docs/user-flows.md` §15 is recorded by the server.
