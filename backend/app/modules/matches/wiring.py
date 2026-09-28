@@ -17,8 +17,9 @@ other modules expose:
   closed by the ban's and the deletion's own control messages (``users.control``).
 - **Inbox:** abort strikes (the cooldown) are explained; refunds are told by the escrow.
 
-Blocking someone has nothing else to cancel in live play yet: a block only matters for
-pairing, which asks ``are_blocked`` at every tick. Leaderboard leaders for the Battle tab are
+A block matters for pairing (``are_blocked`` at every tick) and for rooms: it cancels pending
+invites between the two, and joins refuse blocked players (``app.modules.rooms.wiring``, installed
+from here). Leaderboard leaders for the Battle tab are
 the leaderboards module's (``integrations.leaders`` stays empty, so ``leaders`` is null).
 """
 
@@ -131,3 +132,7 @@ def install() -> None:
     register_ban_hook(withdraw.withdraw_on_ban)
     on_account_deleted(withdraw.withdraw_on_delete)
     register_share_source("match_result", match_share_source)
+    # Imported here: rooms build on this module's engine.
+    from app.modules.rooms import wiring as rooms_wiring
+
+    rooms_wiring.install()

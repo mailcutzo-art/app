@@ -110,3 +110,34 @@ def user_control(uid: str) -> str:
 
 def match_events(mid: str) -> str:
     return f"ev:m:{mid}"
+
+
+def match_spectators(mid: str) -> str:
+    """Room members watching a group battle they can no longer join."""
+    return f"{match(mid)}:s"
+
+
+# Rooms (Play with Friend, Group Battle): one hash tag per room, like matches.
+
+ROOM_TIMERS = "rooms:timers"  # zset: room id -> when its timer next needs to run (ms)
+
+
+def room(rid: str) -> str:
+    return f"room:{{{rid}}}"
+
+
+def room_members(rid: str) -> str:
+    return f"{room(rid)}:m"
+
+
+def room_log(rid: str) -> str:
+    return f"{room(rid)}:log"
+
+
+def room_code(code: str) -> str:
+    """A live room code -> its room id."""
+    return f"room:code:{code}"
+
+
+def room_events(rid: str) -> str:
+    return f"ev:r:{rid}"

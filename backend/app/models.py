@@ -53,6 +53,7 @@ from app.modules.progression.models import (
     XpEvent,
 )
 from app.modules.ratings.models import Rating, RatingHistory
+from app.modules.rooms.models import Room, RoomInvite, RoomKick, RoomMember
 from app.modules.social.models import ActivityEvent, Block, FriendRequest, Friendship
 from app.modules.system.models import AppConfig, AuditLog
 from app.modules.users.models import User, UserSettings
@@ -108,6 +109,10 @@ __all__ = [
     "Rating",
     "RatingHistory",
     "RefreshToken",
+    "Room",
+    "RoomInvite",
+    "RoomKick",
+    "RoomMember",
     "StreakDay",
     "Subject",
     "Topic",

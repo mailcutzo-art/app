@@ -117,6 +117,8 @@ local function schedule(m, pdue)
   local due = pdue
   local g = earliest_grace(m)
   if g > 0 and (due == 0 or g < due) then due = g end
+  local short = num(m.h.short_until)
+  if short > 0 and (due == 0 or short < due) then due = short end
   m.due = due
   redis.call('HSET', m.base, 'pdue', pdue, 'due', due)
   if due > 0 then
@@ -124,6 +126,43 @@ local function schedule(m, pdue)
   else
     redis.call('ZREM', TIMERS, m.id)
   end
+end
+
+-- Group battles never forfeit anyone: a missing player scores 0, and the game ends once fewer
+-- than 2 players have been connected for short_ms.
+local function is_group(m)
+  return m.h.rules == 'group'
+end
+
+local function present(m)
+  local n = 0
+  for _, uid in ipairs(m.humans) do
+    local p = m.p[uid]
+    if p.connected and not p.left then n = n + 1 end
+  end
+  return n
+end
+
+-- Starts or clears the "fewer than 2 connected" deadline of a group battle.
+local function track_short(m, now)
+  if not is_group(m) then return end
+  local short = num(m.h.short_until)
+  if present(m) < 2 then
+    if short == 0 then short = now + num(m.h.short_ms) end
+  else
+    short = 0
+  end
+  m.h.short_until = short
+  redis.call('HSET', m.base, 'short_until', short)
+end
+
+local function start_countdown(m, now)
+  local ends = now + num(m.h.countdown_ms)
+  set_phase(m, 'countdown')
+  redis.call('HSET', m.base, 'ends_at', ends, 'started_ms', now)
+  emit(m, 'match.phase', {phase = 'countdown', q = 0, ends_at = ends}, now)
+  -- Question 1 is sent show_lead_ms early, so it goes live as the countdown ends.
+  schedule(m, math.max(now, ends - num(m.h.show_lead_ms)))
 end
 
 local function open_question(m, i, now)
@@ -230,6 +269,33 @@ local function totals_of(m)
   return totals
 end
 
+local places
+
+-- The mini leaderboard of a group battle: place (1, 1, 3...) and the change since the last
+-- question, positive when the player moved up.
+local function standings_of(m)
+  local tot, uids = {}, {}
+  for _, uid in ipairs(m.players) do
+    local p = m.p[uid]
+    tot[uid] = {points = p.score, correct = p.correct, correct_ms = p.correct_ms}
+    table.insert(uids, uid)
+  end
+  local before = cjson.decode(m.h.places or '{}')
+  local now_places, out, placed = {}, {}, 0
+  for _, group in ipairs(places(uids, tot)) do
+    local place = placed + 1
+    for _, uid in ipairs(group) do
+      now_places[uid] = place
+      local change = 0
+      if before[uid] then change = before[uid] - place end
+      table.insert(out, {uid = uid, points = tot[uid].points, place = place, change = change})
+    end
+    placed = placed + #group
+  end
+  redis.call('HSET', m.base, 'places', cjson.encode(now_places))
+  return out
+end
+
 local function reveal(m, now)
   local i = m.q
   local key = qkey(m, i)
@@ -260,6 +326,7 @@ local function reveal(m, now)
     results[uid] = {speed = speed or cjson.null, peer = peer or cjson.null}
   end
   local d = {q = i, correct = q.correct, players = players, totals = totals_of(m), ref = q.ref}
+  if m.h.standings == '1' then d.standings = standings_of(m) end
   local reveal_ms = num(m.h.reveal_ms)
   m.revealed = i
   redis.call('HSET', key, 'res', cjson.encode(results))
@@ -281,7 +348,7 @@ local function level(a, b)
 end
 
 -- Places as tie groups (scoring.rank_group), uids sorted within a place.
-local function places(uids, tot)
+places = function(uids, tot)
   table.sort(uids, function(x, y)
     if level(tot[x], tot[y]) then return x < y end
     return stronger(tot[x], tot[y])
@@ -354,14 +421,33 @@ local function finish(m, status, reason, losers, extra, now)
     started_ms = num(m.h.started_ms),
     finished_ms = now,
     questions = list(questions),
+    room = m.h.room or '',
   }
+  local joined = {}
+  for _, uid in ipairs(m.humans) do
+    local q = m.p[uid].joined_q or 0
+    if q > 0 then joined[uid] = q end
+  end
+  if next(joined) ~= nil then final.joined = joined end
   for k, v in pairs(extra) do final[k] = v end
   local ttl = redis.call('TTL', m.base)
   if ttl < 3600 then ttl = 3600 end
   redis.call('SET', m.base .. ':final', encode(final), 'NX', 'EX', ttl)
   redis.call('ZADD', SETTLE, now, m.id)
+  -- Players of a room game go back to its lobby (their busy slot is the room again); the
+  -- room's own timer moves it on at once.
+  local room = m.h.room or ''
+  local room_base = 'room:{' .. room .. '}'
+  local in_room = room ~= '' and redis.call('HGET', room_base, 'status') == 'playing'
   for _, uid in ipairs(m.humans) do
-    if redis.call('GET', 'busy:' .. uid) == 'm:' .. m.id then redis.call('DEL', 'busy:' .. uid) end
+    if redis.call('GET', 'busy:' .. uid) == 'm:' .. m.id then
+      if in_room and redis.call('HEXISTS', room_base .. ':m', uid) == 1 then
+        redis.call('SET', 'busy:' .. uid, 'r:' .. room, 'EX', num(m.h.room_ttl))
+      else
+        redis.call('DEL', 'busy:' .. uid)
+      end
+    end
   end
+  if room ~= '' then redis.call('ZADD', 'rooms:timers', now, room) end
   emit(m, 'match.end', end_payload, now)
 end

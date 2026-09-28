@@ -73,19 +73,23 @@ class RtNode:
         # Imported here: the matchmaker and rematches use the node's other parts.
         from app.modules.realtime.matchmaking.service import Matchmaker
         from app.modules.realtime.rematch import Rematches
+        from app.modules.realtime.rooms import RoomHub
 
         self.matchmaker = Matchmaker(self)
         self.rematches = Rematches(self)
+        self.rooms = RoomHub(self)
 
     async def start(self) -> None:
         await self.hub.start()
         await self.engine.start()
         self.matchmaker.start()
+        self.rooms.start()
         log.info("rt.node_started", node_id=self.node_id)
 
     async def stop(self) -> None:
         self.draining = True
         self.rematches.stop()
+        await self.rooms.stop()
         await self.matchmaker.stop()
         await self.engine.stop(release=True)
         self._stopped = True
@@ -136,6 +140,9 @@ class RtNode:
         for mid in list(conn.matches):
             await self.hub.unsubscribe(keys.match_events(mid), conn.on_match_event)
         conn.matches.clear()
+        for rid in list(conn.rooms):
+            await self.hub.unsubscribe(keys.room_events(rid), conn.on_room_event)
+        conn.rooms.clear()
         released = bool(
             await _RELEASE_CONNECTION(
                 self.redis, keys=[keys.connection(conn.uid)], args=[self.connection_value(conn)]
@@ -185,6 +192,8 @@ class RtNode:
             state = "match"
         elif busy and busy.startswith("q:"):
             state = "queue"
+        elif busy and busy.startswith("r:"):
+            state = "room"
         if announce:
             conn.set_state(state)
         else:
@@ -199,24 +208,29 @@ class RtNode:
             return []
         kind, _, ident = busy.partition(":")
         if kind == "m":
-            phase = await rstr.hget(self.redis, keys.match(ident), "phase")
+            phase, room = await rstr.hmget(self.redis, keys.match(ident), ["phase", "room"])
             if phase is None or phase in scripts.TERMINAL_PHASES:
                 return []
-            return [{"kind": "match", "id": ident, "ch": f"m:{ident}", "state": phase}]
+            active = [{"kind": "match", "id": ident, "ch": f"m:{ident}", "state": phase}]
+            if room:
+                active.append(await self._room_active(room))
+            return active
         if kind == "q":
             return [{"kind": "queue", "id": ident, "title": "Quick Battle"}]
+        if kind == "r":
+            return [await self._room_active(ident)]
         return []
+
+    async def _room_active(self, rid: str) -> dict[str, Any]:
+        status = await rstr.hget(self.redis, keys.room(rid), "status")
+        state = "lobby" if status in {None, "starting"} else status
+        return {"kind": "room", "id": rid, "ch": f"r:{rid}", "state": state}
 
     async def busy_details(self, busy: str) -> dict[str, Any]:
         """``details.active`` of a BUSY error."""
-        kind, _, ident = busy.partition(":")
-        if kind == "m":
-            return {"kind": "match", "id": ident, "title": "Quick Battle"}
-        if kind == "q":
-            return {"kind": "queue", "id": ident, "title": "Quick Battle search"}
-        if kind == "r":
-            return {"kind": "room", "id": ident, "title": "Room"}
-        return {"kind": "tournament", "id": ident, "title": "Tournament"}
+        from app.modules.rooms.busy import active_of
+
+        return (await active_of(self.redis, busy)).model_dump(mode="json")
 
     # Match channels
 
@@ -224,14 +238,21 @@ class RtNode:
         players = await rstr.hget(self.redis, keys.match(mid), "players")
         return players is not None and uid in orjson.loads(players)
 
+    async def can_view(self, mid: str, uid: str) -> bool:
+        """A player, or a room member watching a group battle."""
+        return await self.is_player(mid, uid) or bool(
+            await self.redis.sismember(keys.match_spectators(mid), uid)
+        )
+
     async def follow_match(self, conn: Connection, mid: str, *, last_seq: int | None) -> bool:
         """Start (or restart) forwarding ``m:<mid>`` to ``conn``: a replay from ``last_seq``
         when the log still reaches back that far, else a snapshot; then live events."""
-        if conn.closed or not await self.is_player(mid, conn.uid):
+        if conn.closed or not await self.can_view(mid, conn.uid):
             return False
         follow = conn.matches.get(mid)
         if follow is None:
-            follow = conn.matches[mid] = MatchFollow()
+            kind = await rstr.hget(self.redis, keys.match(mid), "kind")
+            follow = conn.matches[mid] = MatchFollow(shuffle=kind == "group")
             await self.hub.subscribe(keys.match_events(mid), conn.on_match_event)
             # The latency allowance measured so far on this socket applies to its answers.
             await scripts.set_latency(self.redis, mid, conn.uid, conn.lat_ms)

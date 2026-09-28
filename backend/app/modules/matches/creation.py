@@ -26,6 +26,7 @@ from app.modules.ratings.models import Rating
 from app.modules.ratings.service import load_ratings, rating_out, to_glicko
 from app.modules.realtime.bots.model import bot_accuracy
 from app.modules.realtime.matchmaking import rules
+from app.modules.realtime.matchmaking.rules import DifficultyBand
 
 MODES: Mapping[MatchKind, str] = {
     MatchKind.QUICK_RATED: "rated",
@@ -52,6 +53,25 @@ class Contender:
 
 
 @dataclass(frozen=True, slots=True)
+class GameRules:
+    """What a room's host picked, overriding the Quick Battle defaults (``None``: default).
+
+    ``sources`` are (chapter slug or None for the whole subject, count); ``difficulty`` pins
+    every question to one band instead of the rating mix; ``extra`` goes into the live match
+    hash (``room``, ``rules``, ``short_ms``, ``standings``, ``room_ttl``) and ``config`` into
+    the ``matches`` row."""
+
+    total: int
+    limit_ms: int
+    reveal_ms: int
+    grace_ms: int
+    sources: list[tuple[str | None, int]]
+    difficulty: DifficultyBand | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+    config: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True, slots=True)
 class PreparedMatch:
     match_id: uuid.UUID
     kind: MatchKind
@@ -62,19 +82,26 @@ class PreparedMatch:
     ttl_s: int
 
 
-def max_duration_ms(settings: Settings, total: int) -> int:
+def max_duration_ms(
+    settings: Settings,
+    total: int,
+    *,
+    limit_ms: int | None = None,
+    reveal_ms: int | None = None,
+    grace_ms: int | None = None,
+) -> int:
     """The longest a match can run: ready, countdown, every question, and a last grace."""
     per_question = (
         settings.match_show_lead_ms
-        + settings.match_limit_ms
+        + (settings.match_limit_ms if limit_ms is None else limit_ms)
         + settings.match_answer_grace_ms
-        + settings.match_reveal_ms
+        + (settings.match_reveal_ms if reveal_ms is None else reveal_ms)
     )
     return (
         settings.match_ready_ms
         + settings.match_countdown_ms
         + total * per_question
-        + settings.match_grace_ms
+        + (settings.match_grace_ms if grace_ms is None else grace_ms)
         + settings.match_drain_grace_ms
         + settings.match_void_window_ms
     )
@@ -130,15 +157,25 @@ async def prepare_match(
     with_bot: bool = False,
     rematch_of: uuid.UUID | None = None,
     rematch_chain: int = 0,
+    rules_in: GameRules | None = None,
 ) -> PreparedMatch:
-    """Pick the questions, write the match rows (not committed) and build the live state."""
+    """Pick the questions, write the match rows (not committed) and build the live state.
+    ``rules_in`` carries a room's settings (question count, time, chapters, difficulty)."""
     subject = await db.scalar(select(Subject).where(Subject.slug == subject_slug))
     if subject is None:
         raise MatchUnavailable(f"unknown subject {subject_slug}")
     humans = [c.user_id for c in contenders]
-    chapters = await _chapters(db, subject, {c.chapter for c in contenders if c.chapter})
-    total = settings.match_questions
-    if len(contenders) == 2:
+    wanted_slugs = {c.chapter for c in contenders if c.chapter}
+    if rules_in is not None:
+        wanted_slugs = {slug for slug, _ in rules_in.sources if slug}
+    chapters = await _chapters(db, subject, wanted_slugs)
+    total = settings.match_questions if rules_in is None else rules_in.total
+    limit_ms = settings.match_limit_ms if rules_in is None else rules_in.limit_ms
+    reveal_ms = settings.match_reveal_ms if rules_in is None else rules_in.reveal_ms
+    grace_ms = settings.match_grace_ms if rules_in is None else rules_in.grace_ms
+    if rules_in is not None:
+        wanted = [(slug if slug in chapters else None, n) for slug, n in rules_in.sources]
+    elif len(contenders) == 2:
         a, b = (
             rules.Ticket(
                 user_id=str(c.user_id),
@@ -167,6 +204,7 @@ async def prepare_match(
         user_ids=humans,
         goals={players[uid].goal for uid in humans if uid in players},
         avg_rating=avg_rating,
+        difficulty=rules_in.difficulty if rules_in is not None else None,
     )
     if not picked:
         raise MatchUnavailable(f"no battle questions in {subject_slug}")
@@ -211,7 +249,7 @@ async def prepare_match(
                 ],
                 "correct": options.correct,
                 "ref": question_ref(item.question.id),
-                "limit_ms": settings.match_limit_ms,
+                "limit_ms": limit_ms,
                 "chapter": item.chapter.name,
             }
         )
@@ -219,7 +257,9 @@ async def prepare_match(
     cards: dict[str, dict[str, Any]] = {str(uid): _card(players, uid) for uid in humans}
     if with_bot:
         cards[bot] = bot_card(match_id)
-    longest = max_duration_ms(settings, len(picked))
+    longest = max_duration_ms(
+        settings, len(picked), limit_ms=limit_ms, reveal_ms=reveal_ms, grace_ms=grace_ms
+    )
     db.add(
         Match(
             id=match_id,
@@ -230,9 +270,9 @@ async def prepare_match(
             config={
                 "mode": MODES.get(kind, kind.value),
                 "total": len(picked),
-                "limit_ms": settings.match_limit_ms,
-                "reveal_ms": settings.match_reveal_ms,
-                "grace_ms": settings.match_grace_ms,
+                "limit_ms": limit_ms,
+                "reveal_ms": reveal_ms,
+                "grace_ms": grace_ms,
                 "max_duration_ms": longest,
                 "cards": cards,
                 "requested": [{"chapter": c.chapter, "joined_ms": c.joined_ms} for c in contenders],
@@ -241,6 +281,7 @@ async def prepare_match(
                 "bot_accuracy": accuracy if with_bot else None,
                 "rematch_of": str(rematch_of) if rematch_of else None,
                 "rematch_chain": rematch_chain,
+                **(rules_in.config if rules_in is not None else {}),
             },
         )
     )
@@ -285,12 +326,13 @@ async def prepare_match(
             "cards": cards,
             "meta": {"rematch_chain": rematch_chain},
             "ready_ms": settings.match_ready_ms,
-            "reveal_ms": settings.match_reveal_ms,
+            "reveal_ms": reveal_ms,
             "countdown_ms": settings.match_countdown_ms,
             "show_lead_ms": settings.match_show_lead_ms,
             "answer_grace_ms": settings.match_answer_grace_ms,
-            "grace_ms": settings.match_grace_ms,
+            "grace_ms": grace_ms,
             "void_window_ms": settings.match_void_window_ms,
+            "extra": rules_in.extra if rules_in is not None else {},
         },
         questions=live_questions,
         found=found,

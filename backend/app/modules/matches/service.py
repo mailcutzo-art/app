@@ -147,23 +147,11 @@ async def battle_setup(
 
 
 async def _active(redis: Redis, uid: str) -> ActiveOut | None:
+    # Imported here: rooms build on this module.
+    from app.modules.rooms.busy import active_of
+
     busy = await rstr.get(redis, keys.busy(uid))
-    if busy is None:
-        return None
-    kind, _, ident = busy.partition(":")
-    if kind == "m":
-        return ActiveOut(
-            kind="match", id=ident, title="Quick Battle", action={"route": f"/battle/match/{ident}"}
-        )
-    if kind == "q":
-        return ActiveOut(
-            kind="queue", id=ident, title="Quick Battle", action={"route": "/battle/search"}
-        )
-    if kind == "r":
-        return ActiveOut(kind="room", id=ident, title="Room", action={"route": f"/rooms/{ident}"})
-    return ActiveOut(
-        kind="tournament", id=ident, title="Tournament", action={"route": f"/arena/{ident}"}
-    )
+    return None if busy is None else await active_of(redis, busy)
 
 
 # History and results

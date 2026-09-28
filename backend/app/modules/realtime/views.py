@@ -1,9 +1,12 @@
 """Match state as one player sees it: snapshots, and viewer-specific details of shared events.
 
 Shared events are identical for every player and carry a ``seq``. The gateway adds what depends
-on the viewer while forwarding them, without changing the ``seq``: ``result`` in ``match.end``.
+on the viewer while forwarding them, without changing the ``seq``: ``result`` in ``match.end``,
+and in group battles each player's own option order (a permutation seeded by match, player and
+question, so a resend or a snapshot shows the same order).
 """
 
+import random
 from typing import Any
 
 import orjson
@@ -23,9 +26,20 @@ def viewer_result(end: dict[str, Any], viewer: str) -> str:
     return "loss"
 
 
-def for_viewer(envelope: dict[str, Any], viewer: str) -> dict[str, Any]:
+def shuffled(show: dict[str, Any], mid: str, viewer: str) -> dict[str, Any]:
+    """A ``q.show`` payload with the options in this viewer's own order."""
+    options = list(show.get("options") or [])
+    random.Random(f"{mid}:{viewer}:{show.get('q')}").shuffle(options)  # noqa: S311 - display
+    return {**show, "options": options}
+
+
+def for_viewer(envelope: dict[str, Any], viewer: str, *, shuffle: bool = False) -> dict[str, Any]:
     """The shared event with the viewer's details added (the envelope is copied if changed)."""
-    if envelope.get("t") != "match.end":
+    event_type = envelope.get("t")
+    if event_type == "q.show" and shuffle:
+        mid = str(envelope.get("ch", "")).removeprefix("m:")
+        return {**envelope, "d": shuffled(dict(envelope.get("d") or {}), mid, viewer)}
+    if event_type != "match.end":
         return envelope
     data = dict(envelope.get("d") or {})
     data["result"] = viewer_result(data, viewer)
@@ -58,6 +72,9 @@ async def snapshot(redis: Redis, mid: str, viewer: str, *, ts: int) -> dict[str,
     if end is not None:
         end["result"] = viewer_result(end, viewer)
     show = state.get("show")
+    question = orjson.loads(show) if show and phase in {"q_open", "q_reveal"} else None
+    if question is not None and h["kind"] == "group":
+        question = shuffled(question, mid, viewer)
     ends_at = int(h.get("ends_at") or 0)
     data = {
         "match_id": mid,
@@ -68,7 +85,7 @@ async def snapshot(redis: Redis, mid: str, viewer: str, *, ts: int) -> dict[str,
         "total": int(h["total"]),
         "limit_ms": state["limit_ms"] or None,
         "players": players,
-        "question": orjson.loads(show) if show and phase in {"q_open", "q_reveal"} else None,
+        "question": question,
         "reveal": orjson.loads(h["last_reveal"]) if h.get("last_reveal") else None,
         "mine": state["mine"],
         "end": end,

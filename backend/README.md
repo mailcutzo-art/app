@@ -282,6 +282,15 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
   notice in the inbox. Social gets "played with" and the profile's `ratings`, `form` and `h2h`
   (`matches.profiles`). A ban or an account deletion enqueues `matches.withdraw`, which cancels
   the player's search (refunding the entry) or forfeits their live match.
+- **Rooms and invites** (`app.modules.rooms`, REST in `router.py`, live in
+  `app.modules.realtime.rooms`): Play with Friend and Group Battle lobbies keyed by 6-character
+  Crockford codes, live in Redis (`rooms/lua/*.lua`) with the record in Postgres (`rooms`,
+  `room_members`, `room_kicks`, `room_invites`). Games run on the engine as `friend` / `group`
+  matches with the room's settings; XP comes from the usual settlement hooks. Invites expire
+  through the outbox (`rooms.invite_expire`), blocks cancel them, and bans or deletions take the
+  player out of their room. Tournaments plug into room and invite checks with
+  `app.modules.rooms.busy.register_busy_check(async (db, redis, user_id, until) -> ActiveOut |
+  None)`. `GET /j/<code>` is the public page behind room links.
 
 ## Worker jobs
 

@@ -493,6 +493,20 @@ class Matchmaker:
                 details={"match_id": (matched or "m:")[2:]},
             )
             return
+        if choice == "invite" and subject is not None:
+            # "Invite a friend": a friend lobby in the same subject (and chapter) at once; the
+            # reply carries it so the app opens the lobby and its invite list.
+            from app.modules.realtime.rooms import Refused
+
+            try:
+                room = await self.node.rooms.create_friend_room(
+                    conn, subject, None if chapter in {None, tickets.ALL_CHAPTERS} else chapter
+                )
+            except Refused as exc:
+                conn.error(ref, exc.code, exc.message, details=exc.details)
+                return
+            conn.reply(ref, "ack", room)
+            return
         conn.ack(ref)
         if choice == "bot" and subject is not None:
             await self.start_bot(

@@ -23,6 +23,7 @@ from app.modules.notifications import wiring as notification_wiring
 from app.modules.practice import router as practice
 from app.modules.progression import router as progression
 from app.modules.realtime import router as realtime
+from app.modules.rooms import router as rooms
 from app.modules.social import router as social
 from app.modules.system import router as system
 from app.modules.system.runtime import APP_BUILD_HEADER, ClientGates, RuntimeConfigCache
@@ -65,6 +66,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(realtime.router, prefix="/v1")
     # A game in progress can always show its result.
     app.include_router(matches.matches_router, prefix="/v1")
+    # Room links (/j/<code>) open a public page: no sign-in, no gates.
+    app.include_router(rooms.pages_router)
     # Everything else answers 426 UPDATE_REQUIRED to old builds and 503 during maintenance.
     for router in (
         auth.sessions_router,
@@ -80,6 +83,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         social.router,
         moderation.router,
         matches.router,
+        rooms.router,
     ):
         app.include_router(router, prefix="/v1", dependencies=[ClientGates])
     if settings.admin_enabled:

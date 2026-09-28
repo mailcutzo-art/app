@@ -165,6 +165,27 @@ class Settings(BaseSettings):
     mm_cooldown_s: int = Field(default=300, ge=1)
     mm_abort_limit: int = Field(default=3, ge=1)
     mm_rated_pair_limit: int = Field(default=3, ge=1)
+    # Rooms: Play with Friend and Group Battle (docs/protocol.md section 8). An idle lobby
+    # closes after room_idle_ms; a group host away longer than room_handover_ms hands over; a
+    # friend lobby closes when its host is away room_host_left_ms with a friend waiting; a friend
+    # duel starts room_autostart_ms after both are ready; rematches (friend) and "Play again"
+    # (group) stay open room_rematch_ms / room_again_ms. room_time_scale scales the seconds per
+    # question the host picks (tests shorten games).
+    room_idle_ms: int = Field(default=900_000, ge=100)
+    room_handover_ms: int = Field(default=20_000, ge=100)
+    room_host_left_ms: int = Field(default=60_000, ge=100)
+    room_autostart_ms: int = Field(default=3000, ge=0)
+    room_rematch_ms: int = Field(default=30_000, ge=100)
+    room_rematch_max: int = Field(default=10, ge=0)
+    room_again_ms: int = Field(default=180_000, ge=100)
+    room_friend_grace_ms: int = Field(default=60_000, ge=100)
+    room_group_short_ms: int = Field(default=30_000, ge=100)
+    room_group_reveal_ms: int = Field(default=4000, ge=0)
+    room_time_scale: float = Field(default=1.0, gt=0)
+    invite_ttl_s: int = Field(default=120, ge=1)
+    # Room links (``<public_url>/j/<code>``) and the Play Store listing the join page points to.
+    public_url: str = "https://quiz.example.com"
+    android_package: str = "com.mailcutzo.quiz_app"
     # Settlement retries (worker) pick up matches waiting longer than this.
     settle_retry_after_s: float = Field(default=10.0, ge=0)
 
