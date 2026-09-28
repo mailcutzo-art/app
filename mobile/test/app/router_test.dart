@@ -270,14 +270,16 @@ void main() {
       expect(location(router), '/battle?join=K7M2QX');
     });
 
-    testWidgets('/t/<id> and /u/<handle> open Arena and Social', (tester) async {
+    testWidgets('/t/<id> opens Arena and /u/<handle> the player\'s profile', (tester) async {
       final router = await pumpApp(tester);
       router.go('/t/0192abc');
       await tester.pumpAndSettle();
       expect(location(router), '/arena?t=0192abc');
       router.go('/u/rahul_07');
       await tester.pumpAndSettle();
-      expect(location(router), '/social?u=rahul_07');
+      expect(location(router), '/u/rahul_07');
+      expect(find.text('@rahul_07'), findsWidgets);
+      expect(find.text('Rahul'), findsOneWidget);
     });
 
     testWidgets('an unknown link falls back to Home', (tester) async {
