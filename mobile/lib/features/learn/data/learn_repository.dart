@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart' show CancelToken;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,10 +9,12 @@ import '../../../app/env.dart';
 import '../../../core/auth/user.dart';
 import '../../../core/network/api_client.dart';
 import '../../../core/network/app_failure.dart';
+import '../../../core/network/json.dart';
 import '../../../core/storage/prefs.dart';
 import '../../practice/data/practice_models.dart';
 import 'fake_learn_repository.dart';
 import 'learn_models.dart';
+import 'question_models.dart';
 
 /// The Learn and practice REST contract (`docs/api-learn.md`).
 abstract interface class LearnRepository {
@@ -46,6 +49,30 @@ abstract interface class LearnRepository {
 
   /// `GET /v1/me/reviews/summary`.
   Future<ReviewsSummary> reviewsSummary();
+
+  /// `GET /v1/me/bookmarks?subject=&cursor=&limit=`, newest first.
+  Future<BookmarkPage> listBookmarks({String? subject, String? cursor, int limit = 20});
+
+  /// `GET /v1/search?q=&subject=&limit=`: questions of the user's exam whose
+  /// text matches [query] (2+ characters, 30 searches a minute). A cancelled
+  /// [cancelToken] makes it fail with [CancelledFailure].
+  Future<List<QuestionSummary>> search(
+    String query, {
+    String? subject,
+    int limit = 20,
+    CancelToken? cancelToken,
+  });
+
+  /// `GET /v1/questions/{ref}`: one question with its answer and explanation.
+  /// [NotFoundFailure] (`QUESTION_NOT_FOUND`) once it has been retired.
+  Future<QuestionDetail> question(String ref);
+
+  /// `POST /v1/questions/{ref}/reports` (`202`). Reporting again while the
+  /// first report is open changes nothing; 20 a day ([RateLimitedFailure]).
+  Future<void> reportQuestion(String ref, ReportReason reason, {String? note});
+
+  /// `GET /v1/passages?subject=`: Fun & Learn passages of the user's exam.
+  Future<List<PassageItem>> passages({String? subject});
 }
 
 /// Talks to the API through [ApiClient]. The catalog (the same for every
@@ -147,6 +174,51 @@ class ApiLearnRepository implements LearnRepository {
   Future<ReviewsSummary> reviewsSummary() async {
     final data = await _api.get('/v1/me/reviews/summary');
     return _parse(() => ReviewsSummary.fromJson(data));
+  }
+
+  @override
+  Future<BookmarkPage> listBookmarks({String? subject, String? cursor, int limit = 20}) async {
+    final data = await _api.get(
+      '/v1/me/bookmarks',
+      query: {'subject': ?subject, 'cursor': ?cursor, 'limit': limit},
+    );
+    return _parse(() => BookmarkPage.fromJson(data));
+  }
+
+  @override
+  Future<List<QuestionSummary>> search(
+    String query, {
+    String? subject,
+    int limit = 20,
+    CancelToken? cancelToken,
+  }) async {
+    final data = await _api.get(
+      '/v1/search',
+      query: {'q': query, 'subject': ?subject, 'limit': limit},
+      cancelToken: cancelToken,
+    );
+    return _parse(() => JsonReader(data, 'search').list('items', QuestionSummary.fromJson));
+  }
+
+  @override
+  Future<QuestionDetail> question(String ref) async {
+    final data = await _api.get('/v1/questions/${_segment(ref)}');
+    return _parse(() => QuestionDetail.fromJson(data));
+  }
+
+  @override
+  Future<void> reportQuestion(String ref, ReportReason reason, {String? note}) {
+    final text = note?.trim() ?? '';
+    return _api.post(
+      '/v1/questions/${_segment(ref)}/reports',
+      body: {'reason': reason.wire, if (text.isNotEmpty) 'note': text},
+    );
+  }
+
+  @override
+  Future<List<PassageItem>> passages({String? subject}) async {
+    final data = await _api.get('/v1/passages', query: {'subject': ?subject});
+    return _parse(() => JsonReader(data, 'passages').list('items', PassageItem.fromJson));
   }
 
   /// Ids are opaque (tip keys contain `:`), so every path segment is encoded.

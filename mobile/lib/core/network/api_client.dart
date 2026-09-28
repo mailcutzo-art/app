@@ -37,8 +37,21 @@ class ApiClient {
 
   Dio get dio => _dio;
 
-  Future<Object?> get(String path, {Map<String, Object?>? query, bool auth = true}) =>
-      _send(() => _dio.get<Object?>(path, queryParameters: query, options: _opts(auth)));
+  /// [cancelToken] abandons the request (it then fails with
+  /// [CancelledFailure]), e.g. a search the user has typed past.
+  Future<Object?> get(
+    String path, {
+    Map<String, Object?>? query,
+    bool auth = true,
+    CancelToken? cancelToken,
+  }) => _send(
+    () => _dio.get<Object?>(
+      path,
+      queryParameters: query,
+      options: _opts(auth),
+      cancelToken: cancelToken,
+    ),
+  );
 
   Future<Object?> post(String path, {Object? body, bool auth = true, String? idempotencyKey}) =>
       _send(
