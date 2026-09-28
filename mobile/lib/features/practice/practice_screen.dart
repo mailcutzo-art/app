@@ -7,11 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/router.dart';
+import '../../core/auth/session.dart';
 import '../../core/network/app_failure.dart';
 import '../../core/network/connectivity.dart';
 import '../learn/learn_providers.dart';
 import '../learn/report_sheet.dart';
 import '../learn/widgets/learn_widgets.dart';
+import 'ask_ai.dart';
 import 'challenge_clock.dart';
 import 'data/practice_models.dart';
 import 'practice_controller.dart';
@@ -814,7 +816,7 @@ class _BottomBar extends StatelessWidget {
   }
 }
 
-class _FeedbackPanel extends StatelessWidget {
+class _FeedbackPanel extends ConsumerWidget {
   const _FeedbackPanel({
     super.key,
     required this.state,
@@ -826,8 +828,15 @@ class _FeedbackPanel extends StatelessWidget {
   final VoidCallback onNext;
   final Future<void> Function() onFinish;
 
+  Future<void> _askAi(BuildContext context, WidgetRef ref) async {
+    final goal = ref.read(meProvider).goal;
+    final target = await askAiAbout(ref, state.question, goal: goal);
+    final message = askAiMessage(target);
+    if (message != null && context.mounted) showAppToast(context, message, icon: AppIcons.info);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.colors;
     final text = context.text;
     final question = state.question;
@@ -893,11 +902,22 @@ class _FeedbackPanel extends StatelessWidget {
             ),
           ],
           const SizedBox(height: AppSpacing.lg),
-          AppButton(
-            label: state.isLast ? 'Finish' : 'Next',
-            trailingIcon: state.isLast ? AppIcons.check : AppIcons.chevronRight,
-            loading: state.finishing,
-            onPressed: state.isLast ? onFinish : onNext,
+          Row(
+            children: [
+              // A skipped question gets a way to learn it: an AI tutor with the question ready.
+              if (answer.outcome == AnswerOutcome.skipped) ...[
+                AskAiButton(onPressed: () => _askAi(context, ref)),
+                const SizedBox(width: AppSpacing.md),
+              ],
+              Expanded(
+                child: AppButton(
+                  label: state.isLast ? 'Finish' : 'Next',
+                  trailingIcon: state.isLast ? AppIcons.check : AppIcons.chevronRight,
+                  loading: state.finishing,
+                  onPressed: state.isLast ? onFinish : onNext,
+                ),
+              ),
+            ],
           ),
         ],
       ),

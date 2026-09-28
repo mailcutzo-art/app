@@ -40,6 +40,9 @@ abstract final class AppIcons {
   static const HugeIconData more = HugeIconsStrokeRounded.strokeRoundedMoreHorizontal;
   static const HugeIconData refresh = HugeIconsStrokeRounded.strokeRoundedRefresh;
   static const HugeIconData info = HugeIconsStrokeRounded.strokeRoundedInformationCircle;
+
+  /// The ChatGPT mark, for "ask an AI tutor" buttons.
+  static const HugeIconData chatGpt = HugeIconsStrokeRounded.strokeRoundedChatGpt;
   static const HugeIconData alert = HugeIconsStrokeRounded.strokeRoundedAlert02;
   static const HugeIconData offline = HugeIconsStrokeRounded.strokeRoundedWifiDisconnected01;
   static const HugeIconData timer = HugeIconsStrokeRounded.strokeRoundedTimer02;
