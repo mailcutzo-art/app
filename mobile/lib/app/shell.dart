@@ -25,8 +25,12 @@ class AppShell extends StatelessWidget {
       bottomNavigationBar: FloatingNavBar(
         items: appTabs,
         selectedIndex: shell.currentIndex,
-        // Tapping the current tab again returns it to its first page.
-        onSelected: (index) => shell.goBranch(index, initialLocation: index == shell.currentIndex),
+        // Learn returns to its subject list whenever the tab is revisited. Other tabs keep
+        // their place when switching between tabs; tapping the current tab resets it.
+        onSelected: (index) {
+          FocusManager.instance.primaryFocus?.unfocus();
+          shell.goBranch(index, initialLocation: index == shell.currentIndex || index == 1);
+        },
       ),
     );
   }

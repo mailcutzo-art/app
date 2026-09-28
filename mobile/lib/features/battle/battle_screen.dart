@@ -17,7 +17,7 @@ import '../../core/realtime/live_text.dart';
 import '../../core/realtime/search_state.dart';
 import '../learn/widgets/learn_widgets.dart' show failureMessage, subjectTone;
 import '../rooms/data/room_models.dart' show RoomKind;
-import '../rooms/rooms_controller.dart' show roomViewProvider;
+import '../rooms/rooms_controller.dart' show roomViewProvider, roomsControllerProvider;
 import 'battle_selection.dart';
 import 'chapter_picker.dart';
 import 'data/battle_models.dart';
@@ -44,7 +44,12 @@ String? leaderLine(String subjectName, SubjectLeaders? leaders) {
 /// Where "Go there" leads for something the user is already in.
 String activeRoute(BattleActive active) {
   final route = active.route;
-  if (route != null) return route;
+  if (route != null) {
+    if (route.startsWith('/rooms/')) {
+      return Routes.room(route.substring('/rooms/'.length));
+    }
+    return route;
+  }
   final id = active.id;
   return switch (active.kind) {
     'match' when id != null => Routes.battleMatch(id),
@@ -303,24 +308,20 @@ class _QuickBattleCardState extends ConsumerState<_QuickBattleCard> {
             ],
           ),
           const SizedBox(height: AppSpacing.md),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            clipBehavior: Clip.none,
-            child: Row(
-              children: [
-                for (final (i, s) in setup.subjects.indexed) ...[
-                  if (i > 0) const SizedBox(width: AppSpacing.sm),
-                  AppChip(
-                    label: s.name,
-                    dotColor: colors.pastel(subjectTone(s.tone)).onContainer,
-                    selected: s.slug == subject.slug,
-                    onSelected: busy
-                        ? null
-                        : (_) => _pick(selection.copyWith(subject: s.slug, chapter: null)),
-                  ),
-                ],
-              ],
-            ),
+          Wrap(
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.sm,
+            children: [
+              for (final s in setup.subjects)
+                AppChip(
+                  label: s.name,
+                  dotColor: colors.pastel(subjectTone(s.tone)).onContainer,
+                  selected: s.slug == subject.slug,
+                  onSelected: busy
+                      ? null
+                      : (_) => _pick(selection.copyWith(subject: s.slug, chapter: null)),
+                ),
+            ],
           ),
           const SizedBox(height: AppSpacing.lg),
           _ChapterField(
@@ -359,6 +360,18 @@ class _QuickBattleCardState extends ConsumerState<_QuickBattleCard> {
               trailingIcon: AppIcons.chevronRight,
               onPressed: () => context.go(activeRoute(active)),
             ),
+            if (active.kind == 'room') ...[
+              const SizedBox(height: AppSpacing.sm),
+              AppButton(
+                label: 'Leave room',
+                variant: AppButtonVariant.ghost,
+                leadingIcon: AppIcons.logout,
+                onPressed: () async {
+                  await ref.read(roomsControllerProvider)?.leave();
+                  ref.invalidate(battleSetupProvider(widget.goal));
+                },
+              ),
+            ],
           ] else if (searching)
             AppButton(
               label: 'Back to your search',
@@ -643,7 +656,7 @@ class _MoreWays extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (room != null && room.state.isKnown) ...[
+        if (room != null && room.state.isKnown && !room.state.status.isGone) ...[
           ListRowCard(
             title: 'Back to your room',
             subtitle: '${room.kind.label} · code ${room.state.code ?? ''}',

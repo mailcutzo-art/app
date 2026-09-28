@@ -104,7 +104,10 @@ class _RoomSetupScreenState extends ConsumerState<RoomSetupScreen> {
     final group = widget.kind == RoomKind.group;
 
     return Scaffold(
-      appBar: AppTopBar(title: group ? 'Group battle' : 'Play with a friend'),
+      appBar: AppTopBar(
+        title: group ? 'Group battle' : 'Play with a friend',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.battle),
+      ),
       body: switch (setup) {
         AsyncValue(:final value?) when value.subjects.isEmpty => Center(
           child: EmptyState(

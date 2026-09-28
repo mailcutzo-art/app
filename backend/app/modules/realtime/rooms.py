@@ -345,7 +345,14 @@ class RoomHub:
         await self.node.follow_match(conn, mid, last_seq=None)
 
     async def _leave(self, conn: "Connection", ref: str | None, d: dict[str, Any]) -> str:
-        rid = await self._member(conn, d)
+        rid = _room_id(d)
+        if not rid:
+            raise Refused(ErrorCode.BAD_REQUEST, "room_id is missing.")
+        if not await self.redis.hexists(keys.room_members(rid), conn.uid):
+            if await rstr.get(self.redis, keys.busy(conn.uid)) == f"r:{rid}":
+                await self.redis.delete(keys.busy(conn.uid))
+            await self.unfollow(conn, rid)
+            raise _refused("not_member")
         mid = await rstr.hget(self.redis, keys.room(rid), "match")
         async with self.node.sessionmaker() as db:
             _, step = await service.leave_room(db, self.redis, rid, conn.user_id, now=utc_now())

@@ -69,7 +69,14 @@ class QuestionCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.lg),
-          QuizText(text, style: context.text.titleLarge.copyWith(fontSize: 21, height: 29 / 21)),
+          QuizText(
+            text,
+            style: context.text.titleLarge.copyWith(
+              fontSize: 18,
+              height: 25 / 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           if (figure != null) ...[const SizedBox(height: AppSpacing.lg), figure!],
         ],
       ),

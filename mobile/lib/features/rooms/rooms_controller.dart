@@ -218,6 +218,7 @@ class RoomsController implements LiveEventHook {
     final current = room.value;
     if (current != null &&
         current.state.isKnown &&
+        !current.state.status.isGone &&
         (current.roomId == roomId || (code != null && current.state.code == code))) {
       return current;
     }
@@ -230,7 +231,12 @@ class RoomsController implements LiveEventHook {
           // An `ack` first: the room's state follows on its channel.
           : await _joinReply!.future.timeout(const Duration(seconds: 10));
       final known = room.value;
-      if (known != null && known.roomId == reply.roomId && known.state.isKnown) return known;
+      if (known != null &&
+          known.roomId == reply.roomId &&
+          known.state.isKnown &&
+          !known.state.status.isGone) {
+        return known;
+      }
       final view = RoomView(
         state: reduceRoom(RoomState.initial(reply.roomId), reply),
         me: me,
@@ -263,7 +269,7 @@ class RoomsController implements LiveEventHook {
 
   /// Host, lobby only.
   Future<void> updateSettings(RoomSettings settings) =>
-      _send('room.settings', {'settings': settings.toJson()});
+      _send('room.settings', {'settings': settings.toServerJson()});
 
   /// Host; needs at least two connected players.
   Future<void> start() => _send('room.start', const {});
@@ -706,6 +712,7 @@ class RoomsController implements LiveEventHook {
     final show =
         view != null &&
         view.state.isKnown &&
+        !view.state.status.isGone &&
         !Routes.isRoom(path, view.roomId) &&
         !Routes.isBattleMatch(path) &&
         !path.startsWith('${Routes.battle}/room/');

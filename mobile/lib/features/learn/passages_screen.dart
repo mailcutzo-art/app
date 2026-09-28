@@ -106,7 +106,10 @@ class _PassagesScreenState extends ConsumerState<PassagesScreen> {
       _ => const [RowsSkeleton()],
     };
     return Scaffold(
-      appBar: const AppTopBar(title: 'Fun & Learn'),
+      appBar: AppTopBar(
+        title: 'Fun & Learn',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
+      ),
       body: RefreshIndicator(
         color: context.colors.ink,
         backgroundColor: context.colors.surface,

@@ -120,18 +120,23 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
   }
 
   void _back() {
-    // The room goes on; the pill brings the user back.
-    if (context.canPop()) {
-      context.pop();
+    final view = ref.read(roomViewProvider);
+    final mine = view != null && view.roomId == widget.roomId ? view : null;
+    if (mine != null && mine.state.isKnown) {
+      unawaited(_leave(mine, allowBackground: true));
     } else {
-      context.go(Routes.battle);
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        context.go(Routes.battle);
+      }
     }
   }
 
-  Future<void> _leave(RoomView view) async {
+  Future<void> _leave(RoomView view, {bool allowBackground = false}) async {
     final host = view.isHost;
     final others = view.others.isNotEmpty;
-    final confirmed = await showAppSheet<bool>(
+    final choice = await showAppSheet<String>(
       context,
       builder: (context) => SheetScaffold(
         title: 'Leave the room?',
@@ -141,21 +146,41 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
         footer: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppButton(label: 'Stay', onPressed: () => Navigator.pop(context, false)),
-            const SizedBox(height: AppSpacing.sm),
             AppButton(
               label: 'Leave',
               variant: AppButtonVariant.danger,
-              onPressed: () => Navigator.pop(context, true),
+              onPressed: () => Navigator.pop(context, 'leave'),
+            ),
+            if (allowBackground) ...[
+              const SizedBox(height: AppSpacing.sm),
+              AppButton(
+                label: 'Keep in background',
+                variant: AppButtonVariant.secondary,
+                onPressed: () => Navigator.pop(context, 'background'),
+              ),
+            ],
+            const SizedBox(height: AppSpacing.sm),
+            AppButton(
+              label: 'Stay',
+              variant: AppButtonVariant.ghost,
+              onPressed: () => Navigator.pop(context, 'stay'),
             ),
           ],
         ),
         child: const SizedBox.shrink(),
       ),
     );
-    if (!(confirmed ?? false) || !mounted) return;
-    await ref.read(roomsControllerProvider)?.leave();
-    if (mounted) context.go(Routes.battle);
+    if (!mounted || choice == null || choice == 'stay') return;
+    if (choice == 'leave') {
+      await ref.read(roomsControllerProvider)?.leave();
+    }
+    if (mounted) {
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        context.go(Routes.battle);
+      }
+    }
   }
 
   Future<void> _end() async {

@@ -50,7 +50,7 @@ async def active_of(redis: Redis, busy: str) -> ActiveOut:
             kind="room",
             id=ident,
             title=ROOM_TITLES.get(room_kind or "", "Room"),
-            action={"route": f"/rooms/{ident}"},
+            action={"route": f"/battle/room/{ident}"},
         )
     return ActiveOut(
         kind="tournament", id=ident, title="Tournament", action={"route": f"/arena/{ident}"}
@@ -67,7 +67,21 @@ async def busy_elsewhere(
 ) -> ActiveOut | None:
     """Where the player is busy (their slot, unless it is ``allow``, then every registered
     check up to ``until``), or None if they are free."""
-    busy = await rstr.get(redis, keys.busy(str(user_id)))
+    uid = str(user_id)
+    busy = await rstr.get(redis, keys.busy(uid))
     if busy is not None and busy != allow:
-        return await active_of(redis, busy)
+        kind, _, ident = busy.partition(":")
+        if kind == "r":
+            status = await rstr.hget(redis, keys.room(ident), "status")
+            is_member = await redis.hexists(keys.room_members(ident), uid)
+            if status is None or status == "closed" or not is_member:
+                await redis.delete(keys.busy(uid))
+                busy = None
+        elif kind == "m":
+            phase = await rstr.hget(redis, keys.match(ident), "phase")
+            if phase is None or phase in {"finished", "settled", "aborted", "voided"}:
+                await redis.delete(keys.busy(uid))
+                busy = None
+        if busy is not None and busy != allow:
+            return await active_of(redis, busy)
     return await check_busy(db, redis, user_id, int(until.timestamp() * 1000))

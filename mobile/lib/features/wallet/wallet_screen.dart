@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app/router.dart';
 import '../../core/network/paging.dart';
 import '../../core/utils/time_text.dart';
 import '../common/paged_list.dart';
@@ -36,7 +37,10 @@ class WalletScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final history = ref.watch(walletHistoryProvider);
     return Scaffold(
-      appBar: const AppTopBar(title: 'Wallet'),
+      appBar: AppTopBar(
+        title: 'Wallet',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.home),
+      ),
       body: LoadMoreListener(
         onNearEnd: () => unawaited(ref.read(walletHistoryProvider.notifier).autoLoadMore()),
         child: RefreshIndicator(

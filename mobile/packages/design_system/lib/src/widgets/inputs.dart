@@ -19,6 +19,7 @@ class AppSearchField extends StatefulWidget {
     this.autofocus = false,
     this.trailing,
     this.focusNode,
+    this.onTapOutside,
   });
 
   final TextEditingController? controller;
@@ -30,6 +31,7 @@ class AppSearchField extends StatefulWidget {
   final ValueChanged<String>? onSubmitted;
   final bool autofocus;
   final Widget? trailing;
+  final ValueChanged<PointerDownEvent>? onTapOutside;
 
   @override
   State<AppSearchField> createState() => _AppSearchFieldState();
@@ -68,6 +70,7 @@ class _AppSearchFieldState extends State<AppSearchField> {
               controller: _controller,
               focusNode: widget.focusNode,
               autofocus: widget.autofocus,
+              onTapOutside: widget.onTapOutside,
               onChanged: (value) {
                 setState(() {});
                 widget.onChanged?.call(value);

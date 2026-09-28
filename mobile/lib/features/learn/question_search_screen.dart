@@ -24,7 +24,10 @@ class QuestionSearchScreen extends ConsumerWidget {
     final controller = ref.read(questionSearchProvider.notifier);
     final catalog = ref.watch(catalogProvider(ref.watch(learnGoalProvider))).value;
     return Scaffold(
-      appBar: const AppTopBar(title: 'Search questions'),
+      appBar: AppTopBar(
+        title: 'Search questions',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
+      ),
       body: Column(
         children: [
           Gutter(

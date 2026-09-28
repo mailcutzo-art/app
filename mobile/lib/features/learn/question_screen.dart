@@ -1,7 +1,9 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../app/router.dart';
 import '../../core/network/app_failure.dart';
 import '../practice/data/practice_models.dart';
 import 'bookmark_states.dart';
@@ -59,6 +61,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
     return Scaffold(
       appBar: AppTopBar(
         title: 'Question',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
         actions: [
           if (bookmarked != null)
             AppIconButton(

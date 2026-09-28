@@ -53,7 +53,7 @@ class ApiRoomsRepository implements RoomsRepository {
   }) async {
     final data = await _api.post(
       '/v1/rooms',
-      body: {'kind': kind.wire, 'settings': settings.toJson()},
+      body: {'kind': kind.wire, 'settings': settings.toServerJson()},
       idempotencyKey: idempotencyKey,
     );
     return parseResponse(() => CreatedRoom.fromJson(data));

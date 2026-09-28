@@ -170,12 +170,32 @@ class _ResultViewState extends ConsumerState<ResultView> {
           leadingIcon: AppIcons.checklist,
           onPressed: () => context.push(Routes.battleReview(view.matchId)),
         ),
-        const SizedBox(height: AppSpacing.sm),
-        AppButton(
-          label: view.isRoomGame && ref.watch(roomViewProvider) != null ? 'Back to lobby' : 'Done',
-          variant: AppButtonVariant.ghost,
-          onPressed: widget.onDone,
-        ),
+        if (view.isRoomGame && ref.watch(roomViewProvider) != null) ...[
+          const SizedBox(height: AppSpacing.sm),
+          AppButton(
+            label: 'Back to lobby',
+            variant: AppButtonVariant.secondary,
+            leadingIcon: AppIcons.social,
+            onPressed: widget.onDone,
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          AppButton(
+            label: 'Leave room',
+            variant: AppButtonVariant.ghost,
+            leadingIcon: AppIcons.logout,
+            onPressed: () async {
+              await roomsOf(ref)?.leave();
+              if (context.mounted) context.go(Routes.battle);
+            },
+          ),
+        ] else ...[
+          const SizedBox(height: AppSpacing.sm),
+          AppButton(
+            label: 'Done',
+            variant: AppButtonVariant.ghost,
+            onPressed: widget.onDone,
+          ),
+        ],
       ],
     );
   }

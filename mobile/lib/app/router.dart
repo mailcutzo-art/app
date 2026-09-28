@@ -55,6 +55,7 @@ import '../features/system/maintenance_screen.dart';
 import '../features/system/suspended_screen.dart';
 import '../features/system/update_required_screen.dart';
 import '../features/wallet/wallet_screen.dart';
+import 'keyboard_focus_observer.dart';
 import 'shell.dart';
 
 abstract final class Routes {
@@ -375,6 +376,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
   final router = GoRouter(
     initialLocation: Routes.home,
+    observers: [KeyboardFocusObserver()],
     refreshListenable: refresh,
     redirect: (context, state) {
       final pending = ref.read(pendingDestinationProvider);
@@ -415,6 +417,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.debug, builder: (_, _) => const DebugScreen()),
       GoRoute(
         path: Routes.leaderboards,
+        redirect: (_, state) {
+          final board = state.uri.queryParameters['board'];
+          if (board != null && board.isNotEmpty) return Routes.board(board);
+          return null;
+        },
         builder: (_, _) => const LeaderboardsScreen(),
         routes: [
           GoRoute(
@@ -452,6 +459,22 @@ final routerProvider = Provider<GoRouter>((ref) {
           invite: state.uri.queryParameters['invite'],
           pick: state.uri.queryParameters['pick'] == '1',
         ),
+      ),
+      GoRoute(
+        path: '/rooms/invite',
+        redirect: (_, state) {
+          final roomId = state.uri.queryParameters['room_id'];
+          if (roomId != null && roomId.isNotEmpty) return Routes.room(roomId);
+          return Routes.battle;
+        },
+      ),
+      GoRoute(
+        path: '/rooms/:roomId',
+        redirect: (_, state) => Routes.room(state.pathParameters['roomId']!),
+      ),
+      GoRoute(
+        path: '/room/:roomId',
+        redirect: (_, state) => Routes.room(state.pathParameters['roomId']!),
       ),
       GoRoute(
         path: Routes.battleJoin,
@@ -502,9 +525,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             FadeIndexedStack(index: shell.currentIndex, children: children),
         branches: [
           StatefulShellBranch(
+            observers: [KeyboardFocusObserver()],
             routes: [GoRoute(path: Routes.home, builder: (_, _) => const HomeScreen())],
           ),
           StatefulShellBranch(
+            observers: [KeyboardFocusObserver()],
             routes: [
               GoRoute(
                 path: Routes.learn,
@@ -534,6 +559,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
           StatefulShellBranch(
+            observers: [KeyboardFocusObserver()],
             routes: [
               GoRoute(
                 path: Routes.battle,
@@ -543,6 +569,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
           StatefulShellBranch(
+            observers: [KeyboardFocusObserver()],
             routes: [
               GoRoute(
                 path: Routes.arena,
@@ -552,6 +579,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
           StatefulShellBranch(
+            observers: [KeyboardFocusObserver()],
             routes: [GoRoute(path: Routes.social, builder: (_, _) => const SocialScreen())],
           ),
         ],

@@ -145,7 +145,16 @@ class SocialSectionHeader extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Flexible(child: Text(title, style: text.titleLarge)),
+                    Flexible(
+                      child: Text(
+                        title,
+                        style: text.titleLarge.copyWith(
+                          fontSize: 18,
+                          height: 24 / 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                     if (badge != null && badge > 0) ...[
                       const SizedBox(width: AppSpacing.sm),
                       Semantics(

@@ -6,6 +6,7 @@ import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
 import 'package:quiz_app/core/notifications/local_reminders.dart';
+import 'package:quiz_app/core/utils/time_text.dart';
 import 'package:quiz_app/features/arena/arena_providers.dart';
 import 'package:quiz_app/features/arena/data/fake_tournament_repository.dart';
 import 'package:quiz_app/features/arena/data/tournament_models.dart';
@@ -109,7 +110,8 @@ void main() {
   ) async {
     await pump(tester, Routes.tournament(SeededTournaments.checkIn));
     expect(find.text('CHECK-IN OPEN'), findsOneWidget);
-    expect(find.textContaining('Check in by 10:08'), findsOneWidget);
+    final closes = arena.find(SeededTournaments.checkIn)!.card.checkInClosesAt!;
+    expect(find.textContaining('Check in by ${clockTime(closes)}'), findsOneWidget);
 
     await tester.tap(find.text('Can\'t make it'));
     await tester.pumpAndSettle();

@@ -143,7 +143,7 @@ async def create_invite(
         body=f"{title} · {subject.title()}. The invite lasts 2 minutes.",
         icon="battle",
         action={
-            "route": "/rooms/invite",
+            "route": f"/battle/room/{rid}",
             "params": {"invite_id": str(invite.id), "room_id": rid},
         },
         key=f"invite:{invite.id}",

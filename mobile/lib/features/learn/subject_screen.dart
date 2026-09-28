@@ -72,7 +72,9 @@ class SubjectScreen extends ConsumerWidget {
     };
 
     return Scaffold(
-      appBar: const AppTopBar(),
+      appBar: AppTopBar(
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
+      ),
       body: RefreshIndicator(
         color: context.colors.ink,
         backgroundColor: context.colors.surface,

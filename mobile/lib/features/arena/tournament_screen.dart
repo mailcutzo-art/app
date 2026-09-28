@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../app/router.dart';
 import '../../core/auth/session.dart';
 import '../../core/network/app_failure.dart';
 import '../../core/network/paging.dart';
@@ -81,7 +83,10 @@ class _TournamentScreenState extends ConsumerState<TournamentScreen> {
     });
     final card = detail.value?.tournament ?? widget.initial;
     return Scaffold(
-      appBar: AppTopBar(title: card?.title ?? 'Tournament'),
+      appBar: AppTopBar(
+        title: card?.title ?? 'Tournament',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.arena),
+      ),
       bottomNavigationBar: switch (detail.value) {
         final value? when _tab == TournamentTab.standings => StickyMeRow(detail: value),
         _ => null,

@@ -573,7 +573,7 @@ async def notify_host_joined(
         title=f"{name} joined your room",
         body="Come back to the lobby to start the game.",
         icon="battle",
-        action={"route": f"/rooms/{state['room_id']}", "params": {}},
+        action={"route": f"/battle/room/{state['room_id']}", "params": {}},
         key=f"room_joined:{state['room_id']}:{joiner['uid']}",
         time_critical=True,  # the host's own room, waiting for them
     )

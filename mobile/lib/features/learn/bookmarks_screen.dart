@@ -180,7 +180,10 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
     };
 
     return Scaffold(
-      appBar: const AppTopBar(title: 'Bookmarks'),
+      appBar: AppTopBar(
+        title: 'Bookmarks',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
+      ),
       body: RefreshIndicator(
         color: context.colors.ink,
         backgroundColor: context.colors.surface,
