@@ -17,6 +17,7 @@ from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.resources import Resources, open_resources
 from app.modules.content.jobs import question_stats_job
+from app.modules.matches.jobs import reconcile_matches_job, settle_pending_job
 from app.modules.practice.jobs import attempt_partitions_job, practice_housekeeping_job
 
 SHUTDOWN_GRACE_S = 10.0
@@ -43,6 +44,10 @@ JOBS: tuple[PeriodicJob, ...] = (
     PeriodicJob("attempt_partitions", 3600.0, attempt_partitions_job),
     # Once a night (after 02:00 IST): per-question attempts, share correct and typical time.
     PeriodicJob("question_stats", 600.0, question_stats_job),
+    # Matches the rt nodes didn't settle (a crash, Postgres down): retried every 5 s.
+    PeriodicJob("settle_pending", 5.0, settle_pending_job),
+    # Live matches Redis no longer knows, past their longest duration: voided and refunded.
+    PeriodicJob("reconcile_matches", 60.0, reconcile_matches_job),
 )
 
 

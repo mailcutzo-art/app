@@ -56,6 +56,8 @@ async def test_jobs_are_scheduled(caplog: pytest.LogCaptureFixture) -> None:
         ("practice_housekeeping", 600.0),
         ("attempt_partitions", 3600.0),
         ("question_stats", 600.0),
+        ("settle_pending", 5.0),
+        ("reconcile_matches", 60.0),
     ]
     await heartbeat(None)
     assert log_events(caplog, "worker.heartbeat")

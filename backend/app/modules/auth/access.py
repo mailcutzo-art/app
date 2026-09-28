@@ -10,6 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.tokens import ACCESS_TOKEN_TTL, VERIFY_LEEWAY
 from app.modules.auth.models import DeviceSession, RevokeReason
+from app.modules.realtime.control import revoke_sessions
 from app.modules.users.models import User
 
 # A revoked session's access tokens stay cryptographically valid until they expire; the marker
@@ -28,14 +29,17 @@ def activity_gate_key(session_id: uuid.UUID) -> str:
 
 
 async def mark_sessions_revoked(
-    redis: Redis, session_ids: Iterable[uuid.UUID], reason: RevokeReason
+    redis: Redis, session_ids: Iterable[uuid.UUID], reason: RevokeReason, *, user_id: uuid.UUID
 ) -> None:
-    """Reject the sessions' remaining access tokens; the marker holds why they ended."""
+    """Reject the sessions' remaining access tokens (the marker holds why they ended) and
+    close their realtime sockets (4403)."""
+    ended = list(session_ids)
     ttl = int(REVOKED_MARKER_TTL.total_seconds())
     async with redis.pipeline(transaction=False) as pipe:
-        for session_id in session_ids:
+        for session_id in ended:
             pipe.set(revoked_session_key(session_id), reason.value, ex=ttl)
         await pipe.execute()
+    await revoke_sessions(redis, user_id, ended, reason.value)
 
 
 def revoke_reason(marker: str) -> str | None:

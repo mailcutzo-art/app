@@ -94,9 +94,7 @@ async def run_rt(
     """Serve an rt app on a free port."""
     app = create_rt_app(settings, sessionmaker=sessions, plugins=plugins)
     server = uvicorn.Server(
-        uvicorn.Config(
-            app, host="127.0.0.1", port=0, log_config=None, timeout_graceful_shutdown=5
-        )
+        uvicorn.Config(app, host="127.0.0.1", port=0, log_config=None, timeout_graceful_shutdown=5)
     )
     task = asyncio.create_task(server.serve())
     while not server.started:
@@ -141,9 +139,13 @@ class Bot:
             self.closed = (rcvd[0] or 0, rcvd[1] or "")
             self._new.set()
 
-    async def send(self, event_type: str, data: dict[str, Any], *, message_id: str | None = None) -> str:
+    async def send(
+        self, event_type: str, data: dict[str, Any], *, message_id: str | None = None
+    ) -> str:
         message_id = message_id or f"c{next(self._ids)}"
-        await self.ws.send(orjson.dumps({"v": 1, "t": event_type, "id": message_id, "d": data}).decode())
+        await self.ws.send(
+            orjson.dumps({"v": 1, "t": event_type, "id": message_id, "d": data}).decode()
+        )
         return message_id
 
     async def expect(
@@ -151,10 +153,10 @@ class Bot:
         event_type: str,
         where: Callable[[dict[str, Any]], bool] | None = None,
         *,
-        timeout: float = 5.0,
+        wait_s: float = 5.0,
     ) -> dict[str, Any]:
         """The next frame of this type (after those already returned) matching ``where``."""
-        async with asyncio.timeout(timeout):
+        async with asyncio.timeout(wait_s):
             while True:
                 while self._cursor < len(self.frames):
                     frame = self.frames[self._cursor]
@@ -172,13 +174,15 @@ class Bot:
     def seen(self, event_type: str) -> list[dict[str, Any]]:
         return [frame for frame in self.frames if frame["t"] == event_type]
 
-    async def request(self, event_type: str, data: dict[str, Any], *, timeout: float = 5.0) -> dict[str, Any]:
+    async def request(
+        self, event_type: str, data: dict[str, Any], *, wait_s: float = 5.0
+    ) -> dict[str, Any]:
         """Send and return the ack or error that answers it."""
         ref = await self.send(event_type, data)
-        return await self.expect_reply(ref, timeout=timeout)
+        return await self.expect_reply(ref, wait_s=wait_s)
 
-    async def expect_reply(self, ref: str, *, timeout: float = 5.0) -> dict[str, Any]:
-        async with asyncio.timeout(timeout):
+    async def expect_reply(self, ref: str, *, wait_s: float = 5.0) -> dict[str, Any]:
+        async with asyncio.timeout(wait_s):
             while True:
                 for frame in self.frames:
                     if frame["t"] in {"ack", "error", "ans.ack"} and frame["d"].get("ref") == ref:
@@ -188,8 +192,8 @@ class Bot:
                 self._new.clear()
                 await self._new.wait()
 
-    async def wait_closed(self, timeout: float = 5.0) -> tuple[int, str]:
-        async with asyncio.timeout(timeout):
+    async def wait_closed(self, wait_s: float = 5.0) -> tuple[int, str]:
+        async with asyncio.timeout(wait_s):
             while self.closed is None:
                 self._new.clear()
                 await self._new.wait()

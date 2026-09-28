@@ -51,10 +51,10 @@ async def test_probes(settings: Settings) -> None:
     assert ready.status_code == 200
 
 
-async def test_hello_is_refused_until_ticket_auth_exists(ws_url: str) -> None:
+async def test_an_unknown_ticket_closes_4401(ws_url: str) -> None:
     hello = '{"v": 1, "t": "hello", "id": "1", "d": {"ticket": "t", "proto": 1}}'
 
-    assert await close_after(ws_url, hello) == (4401, "not implemented")
+    assert await close_after(ws_url, hello) == (4401, "bad ticket")
 
 
 async def test_no_hello_within_the_window_closes_4408(

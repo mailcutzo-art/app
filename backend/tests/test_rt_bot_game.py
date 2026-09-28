@@ -77,9 +77,7 @@ async def test_a_bot_game_is_unrated_and_coin_free(
         seats = (
             await db.scalars(select(MatchParticipant).where(MatchParticipant.match_id == match.id))
         ).all()
-        answers = await db.scalar(
-            select(func.count()).where(MatchAnswer.match_id == match.id)
-        )
+        answers = await db.scalar(select(func.count()).where(MatchAnswer.match_id == match.id))
         attempts = (
             await db.scalars(select(QuestionAttempt).where(QuestionAttempt.session_id == match.id))
         ).all()
