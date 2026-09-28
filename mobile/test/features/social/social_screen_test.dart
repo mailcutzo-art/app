@@ -174,11 +174,11 @@ void main() {
     });
   });
 
-  testWidgets('Challenge opens the Battle tab for that friend', (tester) async {
+  testWidgets('Challenge sets up a friend duel with that friend to invite', (tester) async {
     await open(tester);
     await tester.tap(find.widgetWithText(AppButton, 'Challenge').first);
     await tester.pumpAndSettle();
-    expect(location(tester), Routes.battleWithFriend('u-rahul'));
+    expect(location(tester), Routes.roomSetup('friend', friend: 'u-rahul'));
   });
 
   testWidgets('tapping a friend opens their profile', (tester) async {

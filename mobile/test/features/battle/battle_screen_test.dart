@@ -241,18 +241,35 @@ void main() {
     expect(_button(tester, 'Practice vs Bot').onPressed, isNull);
   });
 
-  testWidgets('a friend\'s room link says friend battles are coming soon', (tester) async {
+  testWidgets('a friend\'s room link opens joining that room', (tester) async {
     usePhoneViewport(tester);
     reduceMotion(tester);
     final container = await _pump(tester, location: '/j/K7M2QX');
-    expect(find.text('Friend battles are coming soon'), findsOneWidget);
-    expect(find.textContaining('K7M2QX'), findsOneWidget);
-    await tester.tap(
-      find.byWidgetPredicate((w) => w is AppIconButton && w.semanticLabel == 'Dismiss'),
-    );
-    await advance(tester, const Duration(milliseconds: 300));
-    expect(location(container), Routes.battle);
-    expect(find.text('Friend battles are coming soon'), findsNothing);
+    expect(location(container), Routes.joinRoom('K7M2QX'));
+    expect(find.text('Join a room'), findsOneWidget);
+  });
+
+  testWidgets('Play a friend, Group battle and Join with code open their screens', (tester) async {
+    usePhoneViewport(tester, height: 1400);
+    reduceMotion(tester);
+    final container = await _pump(tester);
+    expect(find.text('Soon'), findsNothing);
+
+    await tester.tap(find.text('Play a friend'));
+    await advance(tester, const Duration(milliseconds: 600));
+    expect(location(container), Routes.roomSetup('friend'));
+    container.read(routerProvider).go(Routes.battle);
+    await advance(tester, const Duration(milliseconds: 600));
+
+    await tester.tap(find.text('Group battle'));
+    await advance(tester, const Duration(milliseconds: 600));
+    expect(location(container), Routes.roomSetup('group'));
+    container.read(routerProvider).go(Routes.battle);
+    await advance(tester, const Duration(milliseconds: 600));
+
+    await tester.tap(find.text('Join with code'));
+    await advance(tester, const Duration(milliseconds: 600));
+    expect(location(container), Routes.joinRoom());
   });
 
   testWidgets('a refused join says why on the card', (tester) async {

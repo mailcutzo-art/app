@@ -297,11 +297,36 @@ void main() {
 
     String location(GoRouter router) => router.routerDelegate.currentConfiguration.uri.toString();
 
-    testWidgets('/j/<code> opens the Battle tab with the room code', (tester) async {
+    testWidgets('/j/<code> opens joining that room', (tester) async {
       final router = await pumpApp(tester);
       router.go('/j/K7M2QX');
       await tester.pumpAndSettle();
-      expect(location(router), '/battle?join=K7M2QX');
+      expect(location(router), '/battle/join?code=K7M2QX');
+    });
+
+    testWidgets('the Battle tab\'s friend and join links open the room screens', (tester) async {
+      final router = await pumpApp(tester);
+      router.go(Routes.battleWithFriend('u-rahul'));
+      await tester.pumpAndSettle();
+      expect(location(router), '/battle/room/new?kind=friend&friend=u-rahul');
+
+      router.go('/battle?join=K7M2QX');
+      await tester.pumpAndSettle();
+      expect(location(router), '/battle/join?code=K7M2QX');
+    });
+
+    test('room routes', () {
+      expect(Routes.room('R1'), '/battle/room/R1');
+      expect(Routes.room('R1', invite: 'u2', pick: true), '/battle/room/R1?invite=u2&pick=1');
+      expect(Routes.isRoom('/battle/room/R1'), isTrue);
+      expect(Routes.isRoom('/battle/room/R1', 'R1'), isTrue);
+      expect(Routes.isRoom('/battle/room/R1', 'R2'), isFalse);
+      expect(Routes.isRoom('/battle/room/new'), isFalse);
+      expect(Routes.joinRoom(), '/battle/join');
+      expect(
+        Routes.roomSetup('group', subject: 'physics'),
+        '/battle/room/new?kind=group&subject=physics',
+      );
     });
 
     testWidgets('/t/<id> opens the tournament and /u/<handle> the player\'s profile', (

@@ -308,7 +308,34 @@ Server → client (channel `r:<room_id>`, with `seq`):
 
 - **Settings.** Friend duels are always unrated and free. Settings are subject, chapter or All,
   question count and seconds per question. Group battles add difficulty, late join, the
-  leaderboard between questions, and who can join.
+  leaderboard between questions, and who can join. The `settings` object (in `POST /v1/rooms`,
+  `room.settings` and `room.state`) is:
+
+  ```json
+  {"subject": "physics", "chapters": ["kinematics"], "questions": 7, "seconds": 15,
+   "difficulty": "mixed", "late_join": "halfway", "leaderboard": true, "join": "code"}
+  ```
+
+  - `chapters: []` means All chapters; a duel has at most one. The app also reads a single
+    `chapter` string.
+  - `questions`: 5, 7 or 10 for a duel (default 7); 5, 10, 15 or 20 for a group (default 10).
+    `seconds`: 10, 15, 20 or 30 (default 15).
+  - Group only: `difficulty` is `mixed` (default), `easy`, `medium` or `hard`; `late_join` is
+    `off` or `halfway` (default); `leaderboard` defaults to `true`; `join` is `friends` or
+    `code` (anyone with the code, the default).
+  - `room.settings` may send only the fields that change.
+- **More in `room.state`.** `match_id` is the game in progress while `status` is `playing` (and
+  the last one while `finished`), so a member who rejoins or joins late follows it on
+  `m:<match_id>`. `capacity` is 2 for a duel and 8 for a group. `rematch.accepted` lists the uids
+  who said yes so far.
+- **Joining.** `room.join` is answered with the room's `room.state` (no separate `ack`); a room
+  the user is already in answers the same way.
+- **Room rematch.** After a game `status` is `finished`. `room.rematch {accept: true}` offers or
+  accepts playing again with the same settings; `rematch` is `{offered_by, until, accepted}`
+  (30 s for a duel, 3 minutes for a group). When every connected member has accepted, the
+  server starts the next game (`room.started`); `accept: false` turns it down (`rematch: null`).
+- **Late join and spectating.** A group member who joins after the halfway point gets a
+  `match.snapshot` whose `players` don't include them: the app shows the game as a spectator.
 - **Codes.** Codes use Crockford base32 and work for as long as the room exists.
 - **Lobby lifetime.** A host who switches apps to share the link keeps the room:
   - A lobby closes only on `room.end`, when everyone leaves, or after 15 minutes without activity.

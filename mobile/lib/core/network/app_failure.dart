@@ -138,6 +138,8 @@ AppFailure _fromResponse(Response<dynamic>? response) {
     case 403:
       return ForbiddenFailure(text, code: code, details: _detailsMap(details));
     case 404:
+    // Gone for good, e.g. an invite that expired (`INVITE_EXPIRED`).
+    case 410:
       return NotFoundFailure(text, code: code);
     case 409:
       return ConflictFailure(text, code: code, details: _detailsMap(details));

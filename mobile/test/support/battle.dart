@@ -6,6 +6,7 @@ import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
 import 'package:quiz_app/features/battle/demo/demo_providers.dart';
 import 'package:quiz_app/features/battle/demo/demo_server.dart';
 import 'package:quiz_app/features/battle/demo/demo_world.dart';
+import 'package:quiz_app/features/social/data/social_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'fakes.dart';
@@ -84,6 +85,7 @@ Future<ProviderContainer> pumpDemo(
   SharedPreferences? prefs,
   String location = Routes.battle,
   FakeScreenGuard? screenGuard,
+  SocialRepository? social,
 }) async {
   final container = await pumpApp(
     tester,
@@ -91,6 +93,8 @@ Future<ProviderContainer> pumpDemo(
     realtime: server,
     battle: FakeBattleRepository(setup: server.world.setup),
     matches: DemoMatchRepository(server, latency: Duration.zero),
+    rooms: DemoRoomsRepository(server, latency: Duration.zero),
+    social: social,
     screenGuard: screenGuard,
     location: location,
     settle: false,

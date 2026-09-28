@@ -142,6 +142,18 @@ minute per user. See `docs/protocol.md` §1.
 Invite changes also arrive live on the `u` channel (`invite.received` and `invite.updated`,
 `docs/protocol.md` §8) and in the Inbox.
 
+- **Settings** in `POST /v1/rooms` are the object described in `docs/protocol.md` §8
+  (`subject`, `chapters`, `questions`, `seconds`, and for groups `difficulty`, `late_join`,
+  `leaderboard`, `join`); missing fields take the defaults. `link` is
+  `https://<domain>/j/<code>`.
+- **Preview.** `subject` and `chapters` are display names; `members` is the current count.
+- **Errors the app reads.** `POST /v1/rooms` answers `409 BUSY` (with `details.active`) when the
+  user is already in a room, match, queue or starting tournament. `POST /v1/invites` answers
+  `409 BUSY` with `details.reason` (`in_battle`, `in_tournament`, `in_room`) and `403
+  NOT_ALLOWED`. `accept` answers `410 INVITE_EXPIRED` for a lapsed or withdrawn invite.
+- **Links.** `/j/<code>` opens the app's join screen with the code filled in; `/battle?friend=<id>`
+  opens the duel set-up with that friend to invite once the room exists.
+
 ## Leaderboards: who is leading where
 
 ### `GET /v1/leaderboards?goal=neet`

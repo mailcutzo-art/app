@@ -37,7 +37,8 @@ abstract interface class LiveEventHook {
   void attach(LiveController controller);
 }
 
-/// The hooks registered by later phases: the inbox badge (`notify`) and the Arena (`t.*`).
+/// The hooks registered by later phases: the inbox badge (`notify`) and the Arena (`t.*`). Rooms
+/// and invites attach themselves with [LiveController.addHook] (their controller lives on this one).
 final liveEventHooksProvider = Provider<List<LiveEventHook>>(
   (ref) => [InboxLiveHook(ref), TournamentLiveHook(ref)],
 );
@@ -59,6 +60,16 @@ abstract final class LiveAlertIds {
   static String ended(String matchId) => '${prefix}ended-$matchId';
 
   static String rematch(String matchId) => '${prefix}rematch-$matchId';
+
+  /// An invite to a friend's room, with Accept and Decline.
+  static String invite(String inviteId) => '${prefix}invite-$inviteId';
+
+  /// Something about the room the user is in: a new host, a kick, a closed lobby, a declined
+  /// invite.
+  static const room = '${prefix}room';
+
+  /// "Your game is starting", for a room game that starts while the user is elsewhere.
+  static String roomStarting(String matchId) => '${prefix}room-start-$matchId';
 }
 
 /// Remembers the game in progress (its id only, never question content), so a restarted app
@@ -91,7 +102,12 @@ class ActiveMatchMemory {
 ///   everything else to [LiveEventHook]s.
 /// - Reopens games listed in `welcome.active`.
 class LiveController {
-  LiveController(this._ref, this.connection, {required this.me, this._hooks = const []}) {
+  LiveController(
+    this._ref,
+    this.connection, {
+    required this.me,
+    List<LiveEventHook> hooks = const [],
+  }) : _hooks = [...hooks] {
     _events = connection.events.listen(_onEvent);
     _states = connection.states.listen(_onState);
     _router = _ref.read(routerProvider);
@@ -244,6 +260,36 @@ class LiveController {
     await match.rematch(accept: accept);
   }
 
+  /// A room's game started (`room.started`): follow it on its channel, where a snapshot comes
+  /// first. Finished games not on screen give way to it. Where to show it is the caller's call.
+  LiveMatch startRoomMatch(String matchId, {required String roomId, required String kind}) {
+    for (final old in _matches.values.where((m) => m.isOver && m.matchId != matchId).toList()) {
+      if (!Routes.isBattleMatch(_path, old.matchId)) closeMatch(old.matchId);
+    }
+    final known = _matches[matchId];
+    final match = known != null && !known.isDisposed
+        ? known
+        : _createMatch(
+            matchId,
+            intro: MatchIntro.room(matchId: matchId, roomId: roomId, kind: kind),
+          );
+    memory.remember(matchId);
+    _syncLiveGame();
+    return match;
+  }
+
+  /// Plugs [hook] in. If the connection is already open, it gets the current `welcome` at once.
+  void addHook(LiveEventHook hook) {
+    if (_disposed || _hooks.contains(hook)) return;
+    _hooks.add(hook);
+    if (connection.state case Open(:final welcome)) hook.onWelcome(welcome);
+  }
+
+  void removeHook(LiveEventHook hook) => _hooks.remove(hook);
+
+  /// Whether a game is being played on this device right now.
+  bool get playing => _matches.values.any((m) => !m.isOver);
+
   /// The live match [matchId], if this device knows it.
   LiveMatch? match(String matchId) => _matches[matchId];
 
@@ -300,6 +346,7 @@ class LiveController {
     return switch (active?.kind) {
       ActiveKind.match when id != null => Routes.battleMatch(id),
       ActiveKind.queue => Routes.battleSearch,
+      ActiveKind.room when id != null => Routes.room(id.replaceFirst('r:', '')),
       ActiveKind.room => Routes.battle,
       ActiveKind.tournament when id != null => '${Routes.arena}?t=${Uri.encodeQueryComponent(id)}',
       ActiveKind.tournament => Routes.arena,
@@ -337,7 +384,7 @@ class LiveController {
           return;
         }
         if (event is AckEvent || event is ErrorEvent || event is UnknownEvent) return;
-        for (final hook in _hooks) {
+        for (final hook in List.of(_hooks)) {
           hook.onEvent(event);
         }
     }
@@ -572,7 +619,7 @@ class LiveController {
       );
     }
 
-    for (final hook in _hooks) {
+    for (final hook in List.of(_hooks)) {
       hook.onWelcome(welcome);
     }
     _syncPill();

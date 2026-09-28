@@ -50,7 +50,10 @@ void main() {
 
     await tester.tap(find.text('Challenge'));
     await tester.pumpAndSettle();
-    expect(path(tester), Routes.battle);
+    expect(path(tester), '${Routes.battle}/room/new');
+    // The set-up reads the friends list, which is slow here.
+    await tester.pump(const Duration(milliseconds: 350));
+    await tester.pumpAndSettle();
   });
 
   testWidgets('a minor who isn\'t a friend shows only name, avatar and level', (tester) async {

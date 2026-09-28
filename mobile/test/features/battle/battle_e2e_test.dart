@@ -138,10 +138,8 @@ void main() {
     expect(find.text('No one found yet'), findsNothing);
     await pumpUntil(tester, find.text('No one found yet'), timeout: const Duration(seconds: 3));
     await advance(tester, const Duration(milliseconds: 500));
-    final invite = tester.widget<AppButton>(
-      find.widgetWithText(AppButton, 'Invite a friend · Coming soon'),
-    );
-    expect(invite.onPressed, isNull, reason: 'friend battles come later');
+    final invite = tester.widget<AppButton>(find.widgetWithText(AppButton, 'Invite a friend'));
+    expect(invite.onPressed, isNotNull);
 
     await tester.tap(find.text('Play a Practice Bot'));
     await pumpUntil(tester, find.text('PRACTICE BOT'));
