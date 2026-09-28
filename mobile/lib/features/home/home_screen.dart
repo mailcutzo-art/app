@@ -34,7 +34,15 @@ class HomeScreen extends ConsumerWidget {
             if (me.handle != null) '@${me.handle}',
           ].join(' · '),
           onAvatarTap: () => context.push(Routes.profile),
-          actions: const [InboxBell()],
+          actions: [
+            AppIconButton(
+              icon: AppIcons.arena,
+              semanticLabel: 'Leaderboards',
+              motion: IconMotions.trophy,
+              onPressed: () => context.push(Routes.leaderboards),
+            ),
+            const InboxBell(),
+          ],
         ),
         const SizedBox(height: AppSpacing.xl),
         Gutter(

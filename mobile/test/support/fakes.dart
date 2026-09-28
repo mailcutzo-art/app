@@ -23,8 +23,12 @@ import 'package:quiz_app/features/battle/demo/demo_server.dart';
 import 'package:quiz_app/features/battle/match/screen_guard.dart';
 import 'package:quiz_app/features/inbox/data/fake_inbox_repository.dart';
 import 'package:quiz_app/features/inbox/data/inbox_repository.dart';
+import 'package:quiz_app/features/leaderboards/data/fake_leaderboard_repository.dart';
+import 'package:quiz_app/features/leaderboards/data/leaderboard_repository.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
 import 'package:quiz_app/features/learn/data/learn_repository.dart';
+import 'package:quiz_app/features/missions/data/fake_missions_repository.dart';
+import 'package:quiz_app/features/missions/data/missions_repository.dart';
 import 'package:quiz_app/features/onboarding/onboarding_repository.dart';
 import 'package:quiz_app/features/practice/practice_controller.dart';
 import 'package:quiz_app/features/profile/data/fake_profile_repository.dart';
@@ -132,6 +136,8 @@ List<Override> testOverrides({
   SettingsRepository? settings,
   AccountRepository? account,
   SocialRepository? social,
+  LeaderboardRepository? leaderboards,
+  MissionsRepository? missions,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -159,6 +165,10 @@ List<Override> testOverrides({
   settingsRepositoryProvider.overrideWithValue(settings ?? FakeSettingsRepository()),
   accountRepositoryProvider.overrideWithValue(account ?? FakeAccountRepository(fakeUser())),
   socialRepositoryProvider.overrideWithValue(social ?? FakeSocialRepository.seeded()),
+  leaderboardRepositoryProvider.overrideWithValue(
+    leaderboards ?? FakeLeaderboardRepository.seeded(me: fakeUser()),
+  ),
+  missionsRepositoryProvider.overrideWithValue(missions ?? FakeMissionsRepository.seeded()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -190,6 +200,8 @@ Future<ProviderContainer> pumpApp(
   SettingsRepository? settings,
   AccountRepository? account,
   SocialRepository? social,
+  LeaderboardRepository? leaderboards,
+  MissionsRepository? missions,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -211,6 +223,8 @@ Future<ProviderContainer> pumpApp(
           settings: settings,
           account: account,
           social: social,
+          leaderboards: leaderboards,
+          missions: missions,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,

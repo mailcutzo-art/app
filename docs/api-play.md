@@ -166,8 +166,18 @@ everyone.
 {"board": "rating:physics", "title": "Physics", "period": null,
  "items": [/* rows, 50 per page, top 100 in all */], "next_cursor": "…",
  "me": {/* your row, or null */}, "around_me": [/* up to 10 rows above and 10 below you */],
- "not_ranked": {"games_to_rank": 7}}
+ "not_ranked": {"games_to_rank": 7},
+ "players": 412, "ends_at": "2026-09-28T18:30:00Z"}
 ```
+
+- `players` is how many players the board holds under the `goal` filter. The app uses it for "Be
+  one of the first on this board" (under 10) and for percentiles (50 or more). Without it, the app
+  counts the rows once the last page is in.
+- `ends_at` is set on weekly boards (as on the hub cards) for "Ends in 2 d 4 h".
+- `not_ranked` is `null` when `me` is set. On `weekly:{subject}` boards `games_to_rank` is 1
+  until the first game in the subject.
+- `change_1d` is positive when the player moved **up** (places gained) and negative when they
+  moved down; `null` when there is no snapshot from yesterday.
 
 **Boards**
 
@@ -279,11 +289,32 @@ prize: #3 in Physics Sunday Cup", "Daily missions bonus".
 
 | Endpoint | Returns or does |
 |---|---|
-| `GET /v1/me/missions` | The same shape as Home's `missions`. Rewards are credited automatically |
-| `POST /v1/me/missions/{id}/swap` | One free swap a day, for a different mission |
-| `POST /v1/me/streak/freezes` | Buy a streak freeze (50 coins, hold at most 2). Needs an Idempotency-Key |
-| `GET /v1/me/streak?days=30` | A calendar of active days, and the freezes used |
-| `GET /v1/me/achievements` | Earned achievements and progress on the others |
+| `GET /v1/me/missions` | The same shape as Home's `missions`, plus `"swaps_left": 1` (free swaps left today). Rewards are credited automatically |
+| `POST /v1/me/missions/{id}/swap` | One free swap a day, for a different mission. Returns the whole updated `GET /v1/me/missions` body. Errors: `409 SWAP_USED` (today's swap is gone) and `409 MISSION_DONE` |
+| `POST /v1/me/streak/freezes` | Buy a streak freeze (50 coins, hold at most 2). Needs an Idempotency-Key. Returns `{"freezes": 2, "coins": 195}` (freezes held and the balance after paying). Errors: `409 INSUFFICIENT_COINS` and `409 LIMIT_REACHED` (already holding 2) |
+| `GET /v1/me/streak?days=30` | A calendar of active days, and the freezes used (below) |
+| `GET /v1/me/achievements` | Earned achievements and progress on the others (below) |
+
+```json
+// GET /v1/me/streak?days=30: the calendar is oldest first and ends today (IST days)
+{"days": 4, "best": 12, "freezes": 1, "today_done": false,
+ "max_freezes": 2, "freeze_price": 50, "coins": 245,
+ "calendar": [{"day": "2026-08-29", "state": "active"}, {"day": "2026-09-26", "state": "frozen"}, {"day": "2026-09-27", "state": "missed"}]}
+
+// GET /v1/me/achievements
+{"items": [{"id": "streak-7", "title": "On fire", "description": "Keep a 7-day streak.", "icon": "fire",
+            "earned_at": "2026-09-24T10:00:00Z", "progress": 7, "target": 7, "coins": 30},
+           {"id": "wins-10", "title": "Ten wins", "description": "Win 10 rated battles.", "icon": "medal",
+            "earned_at": null, "progress": 3, "target": 10, "coins": 50}]}
+```
+
+- `state` is `active` (the day counted), `frozen` (a freeze saved it) or `missed`. Today is
+  `missed` until it counts.
+- `max_freezes`, `freeze_price` and `coins` are optional (the app assumes 2 and 50). With `coins`,
+  the app says "Not enough coins" before asking to buy.
+- `icon` names one of: `fire`, `medal`, `crown`, `star`, `battle`, `arena`, `quiz`, `target`,
+  `flash`, `shield`, `brain`, `rocket`, `learn`, `sparkles`, `coins`, `social`, `calendar`. Unknown
+  names show a generic award.
 
 Missions are written so they can always be done:
 - "Play 1 rated battle or tournament game", never "win".

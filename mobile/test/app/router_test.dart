@@ -364,5 +364,6 @@ void main() {
   test('route helpers build the documented paths', () {
     expect(Routes.subject('physics'), '/learn/physics');
     expect(Routes.practiceSession('s-1'), '/practice/s-1');
+    expect(Routes.board('rating:physics'), '/leaderboards/rating%3Aphysics');
   });
 }
