@@ -177,6 +177,7 @@ async def _serve(node: RtNode, conn: Connection, hello: dict[str, Any]) -> None:
     try:
         await node.register(conn)
         active = await node.active(conn.uid)
+        await node.refresh_state(conn, announce=False)  # welcome.hb_s says it
         conn.reply(
             None,
             "welcome",
@@ -188,7 +189,6 @@ async def _serve(node: RtNode, conn: Connection, hello: dict[str, Any]) -> None:
                 "active": active,
             },
         )
-        await node.refresh_state(conn)
         heartbeat = asyncio.create_task(conn.heartbeat())
         await _resume(node, conn, hello["d"].get("resume"), active)
         restart = await _read(node, conn)

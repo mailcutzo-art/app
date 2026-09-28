@@ -34,7 +34,7 @@ from app.modules.content.catalog import MIN_BATTLE_QUESTIONS
 from app.modules.content.models import Chapter, Question, Subject
 from app.modules.matches.creation import Contender, MatchUnavailable, prepare_match
 from app.modules.matches.models import Match, MatchKind, MatchParticipant
-from app.modules.matches.ports import InsufficientCoins
+from app.modules.matches.ports import InsufficientCoins, never_blocked
 from app.modules.matches.questions import battle_pool
 from app.modules.ratings.service import load_ratings, to_glicko
 from app.modules.realtime import keys, protocol, rstr
@@ -608,11 +608,17 @@ class Matchmaker:
                 and await self._rated_games(a.uid, b.uid, now) >= self.settings.mm_rated_pair_limit
             ):
                 continue
-            async with self.node.sessionmaker() as db:
-                if await self.node.integrations.are_blocked(db, uuid.UUID(a.uid), uuid.UUID(b.uid)):
-                    continue
+            if await self._blocked(a.uid, b.uid):
+                continue
             allowed.append(b)
         return allowed
+
+    async def _blocked(self, a: str, b: str) -> bool:
+        check = self.node.integrations.are_blocked
+        if check is never_blocked:  # nothing registered: skip the database
+            return False
+        async with self.node.sessionmaker() as db:
+            return await check(db, uuid.UUID(a), uuid.UUID(b))
 
     async def _rated_games(self, a: str, b: str, now: int) -> int:
         lo, hi = sorted((a, b))

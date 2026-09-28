@@ -183,15 +183,20 @@ async def test_clock_sync(rt: RtServer, api: AsyncClient) -> None:
     await bot.close()
 
 
+@pytest.mark.parametrize("rt_settings", [fast_settings(rt_hb_idle_s=2, rt_hb_queue_s=1)])
 async def test_the_server_pings_and_announces_the_interval(rt: RtServer, api: AsyncClient) -> None:
     bot = await connect_bot(rt.url, api, await sign_in(api, "asha@example.com"))
 
     ping = await bot.expect("ping", wait_s=3)
     await search(bot)
     hb = await bot.expect("hb")
+    await bot.request("mm.cancel", {})
+    idle = await bot.expect("hb")
 
+    assert bot.seen("welcome")[0]["d"]["hb_s"] == 2  # idle
     assert ping["d"]["n"] >= 1
-    assert hb["d"] == {"s": 1}
+    assert hb["d"] == {"s": 1}  # queued
+    assert idle["d"] == {"s": 2}
     await bot.close()
 
 

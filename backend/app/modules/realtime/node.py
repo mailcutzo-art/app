@@ -22,7 +22,7 @@ from app.modules.matches.ports import Integrations
 from app.modules.matches.settlement import SessionFactory, SettleDeps, settle_match
 from app.modules.realtime import keys, protocol, rstr, views
 from app.modules.realtime.clock import SharedClock
-from app.modules.realtime.connection import Connection, MatchFollow
+from app.modules.realtime.connection import Connection, MatchFollow, State
 from app.modules.realtime.engine import scripts
 from app.modules.realtime.engine.owner import MatchEngine
 from app.modules.realtime.hub import Hub
@@ -155,15 +155,19 @@ class RtNode:
     async def busy(self, uid: str) -> str | None:
         return await rstr.get(self.redis, keys.busy(uid))
 
-    async def refresh_state(self, conn: Connection) -> None:
-        """Idle, queued or in a match: sets the heartbeat interval (announced with ``hb``)."""
+    async def refresh_state(self, conn: Connection, *, announce: bool = True) -> None:
+        """Idle, queued or in a match: sets the heartbeat interval (announced with ``hb``,
+        except before the welcome, which carries it)."""
         busy = await self.busy(conn.uid)
+        state: State = "idle"
         if busy and busy.startswith("m:"):
-            conn.set_state("match")
+            state = "match"
         elif busy and busy.startswith("q:"):
-            conn.set_state("queue")
+            state = "queue"
+        if announce:
+            conn.set_state(state)
         else:
-            conn.set_state("idle")
+            conn.state = state
 
     async def active(self, uid: str) -> list[dict[str, Any]]:
         """``welcome.active``: what the user is in right now."""
