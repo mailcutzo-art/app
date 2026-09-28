@@ -21,8 +21,12 @@ import 'package:quiz_app/features/battle/data/battle_repository.dart';
 import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
 import 'package:quiz_app/features/battle/demo/demo_server.dart';
 import 'package:quiz_app/features/battle/match/screen_guard.dart';
+import 'package:quiz_app/features/leaderboards/data/fake_leaderboard_repository.dart';
+import 'package:quiz_app/features/leaderboards/data/leaderboard_repository.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
 import 'package:quiz_app/features/learn/data/learn_repository.dart';
+import 'package:quiz_app/features/missions/data/fake_missions_repository.dart';
+import 'package:quiz_app/features/missions/data/missions_repository.dart';
 import 'package:quiz_app/features/onboarding/onboarding_repository.dart';
 import 'package:quiz_app/features/practice/practice_controller.dart';
 import 'package:realtime_client/realtime_client.dart';
@@ -116,6 +120,8 @@ List<Override> testOverrides({
   MatchRepository? matches,
   ScreenGuard? screenGuard,
   SessionController Function()? sessionController,
+  LeaderboardRepository? leaderboards,
+  MissionsRepository? missions,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -137,6 +143,10 @@ List<Override> testOverrides({
   battleRepositoryProvider.overrideWithValue(battle ?? FakeBattleRepository()),
   matchRepositoryProvider.overrideWithValue(matches ?? FakeMatchRepository()),
   screenGuardProvider.overrideWithValue(screenGuard ?? FakeScreenGuard()),
+  leaderboardRepositoryProvider.overrideWithValue(
+    leaderboards ?? FakeLeaderboardRepository.seeded(me: fakeUser()),
+  ),
+  missionsRepositoryProvider.overrideWithValue(missions ?? FakeMissionsRepository.seeded()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -162,6 +172,8 @@ Future<ProviderContainer> pumpApp(
   MatchRepository? matches,
   ScreenGuard? screenGuard,
   SessionController Function()? sessionController,
+  LeaderboardRepository? leaderboards,
+  MissionsRepository? missions,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -177,6 +189,8 @@ Future<ProviderContainer> pumpApp(
           matches: matches,
           screenGuard: screenGuard,
           sessionController: sessionController,
+          leaderboards: leaderboards,
+          missions: missions,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,

@@ -33,6 +33,12 @@ class HomeScreen extends ConsumerWidget {
           onAvatarTap: () => context.push(Routes.profile),
           actions: [
             AppIconButton(
+              icon: AppIcons.arena,
+              semanticLabel: 'Leaderboards',
+              motion: IconMotions.trophy,
+              onPressed: () => context.push(Routes.leaderboards),
+            ),
+            AppIconButton(
               icon: AppIcons.notification,
               semanticLabel: 'Notifications',
               motion: IconMotions.bell,

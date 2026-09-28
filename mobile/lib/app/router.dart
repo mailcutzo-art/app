@@ -16,8 +16,13 @@ import '../features/battle/match/review_screen.dart';
 import '../features/battle/search_screen.dart';
 import '../features/debug/debug_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/leaderboards/board_screen.dart';
+import '../features/leaderboards/leaderboards_screen.dart';
 import '../features/learn/learn_screen.dart';
 import '../features/learn/subject_screen.dart';
+import '../features/missions/achievements_screen.dart';
+import '../features/missions/missions_screen.dart';
+import '../features/missions/streak_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/practice/practice_screen.dart';
 import '../features/profile/profile_screen.dart';
@@ -45,6 +50,17 @@ abstract final class Routes {
   static const practice = '/practice';
 
   static const tabs = [home, learn, battle, arena, social];
+
+  /// The leaderboards hub, full screen above the tabs.
+  static const leaderboards = '/leaderboards';
+
+  /// One board: `/leaderboards/:board`. Board ids contain `:`, so they are encoded.
+  static String board(String id) => '$leaderboards/${Uri.encodeComponent(id)}';
+
+  /// Today's missions, the streak calendar and achievements, full screen above the tabs.
+  static const missions = '/missions';
+  static const streak = '/streak';
+  static const achievements = '/achievements';
 
   /// A subject's chapters, inside the Learn tab: `/learn/:subject`.
   static String subject(String slug) => '$learn/$slug';
@@ -251,6 +267,19 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.suspended, builder: (_, _) => const SuspendedScreen()),
       GoRoute(path: Routes.profile, builder: (_, _) => const ProfileScreen()),
       GoRoute(path: Routes.debug, builder: (_, _) => const DebugScreen()),
+      GoRoute(
+        path: Routes.leaderboards,
+        builder: (_, _) => const LeaderboardsScreen(),
+        routes: [
+          GoRoute(
+            path: ':board',
+            builder: (_, state) => BoardScreen(board: state.pathParameters['board']!),
+          ),
+        ],
+      ),
+      GoRoute(path: Routes.missions, builder: (_, _) => const MissionsScreen()),
+      GoRoute(path: Routes.streak, builder: (_, _) => const StreakScreen()),
+      GoRoute(path: Routes.achievements, builder: (_, _) => const AchievementsScreen()),
       GoRoute(
         path: '${Routes.practice}/:sessionId',
         builder: (_, state) => PracticeScreen(sessionId: state.pathParameters['sessionId']!),
