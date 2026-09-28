@@ -410,10 +410,7 @@ Every answer in every mode writes one `question_attempts` row:
   - Boxes come due after 1, 3, 7, 14 and 30 days. A correct answer moves the question up a box and a wrong one sends it back to box 1. A correct answer from box 5 graduates it.
   - The screen shows the count due today.
 - **Fun & Learn:** read a passage, answer its questions, then read the explanations.
-- **Guess the Word:**
-  - A clue, letter slots and shuffled tiles.
-  - Hints cost 5 coins each: reveal a letter, or remove the decoy letters.
-  - Skipping is allowed, and there's a streak score.
+- **Guess the Word:** dropped at the product owner's request.
 - **Search:**
   - pg_trgm with GIN, plus `simple` full-text search over stems and chapter names.
   - At least 2 characters, debounced and cancellable.
@@ -794,7 +791,7 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
 | Welcome bonus | 100 | Casual battle entry | 5 |
 | All 3 daily missions | 25 | Tournament entry | Free/10/15/25/50 |
 | Rated win / draw / loss | 10 / 4 / 1 (cap 150 a day) | Streak freeze (hold at most 2) | 50 |
-| Casual win | 10 (the pot) | Guess the Word hint | 5 |
+| Casual win | 10 (the pot) | — | |
 | Level-up | 20 | Cosmetics (v1.1) | 100–1000 |
 | Streak day 7 / 30 | 30 / 100 | | |
 | Achievements, tournament prizes | 10–200; set pool | | |

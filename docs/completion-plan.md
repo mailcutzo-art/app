@@ -23,7 +23,7 @@ This file lists every gap and the order it is closed in. Specs stay where they a
 | Rooms | friend duels and group battles, codes, invites; `/rooms*`, `/invites*`, `/me/invites` | Friend and group lobbies, invite banners, code entry |
 | Tournaments | tables, worker lifecycle, pairing and settlement, prizes, templates; `/tournaments*`, `/me/tournaments` | Arena tab, tournament detail, check-in and round prompts |
 | Home | `GET /v1/home` with per-section status | Real Home sections |
-| Learn tools | Guess the Word endpoints (hints cost coins) | Self Challenge, Fun & Learn, Guess the Word, question search, bookmarks list |
+| Learn tools | — | Self Challenge, Fun & Learn, question search, bookmarks list |
 | Admin, content | SQLAdmin panel with audit log and report queue; CSV/JSON importer with dry run and near-duplicate check | — |
 
 ## Order
@@ -37,7 +37,7 @@ Each wave ends with ruff, mypy and pytest green on the backend and `flutter anal
    leaderboards, missions and profile.
 3. **Realtime engine and Quick Battle / Practice Bot**, end to end with protocol bots.
 4. **Rooms** (friend duel, group battle, invites) and **tournaments**. Mobile: lobbies and Arena.
-5. **Home, Guess the Word, admin panel and importer**, then a final sweep for leftover
+5. **Home, admin panel and importer** (Guess the Word was dropped at the product owner's request), then a final sweep for leftover
    placeholders.
 
 ## Out of scope in this repository

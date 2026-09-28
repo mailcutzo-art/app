@@ -344,4 +344,4 @@ XP limit reached · resets at midnight" instead of a puzzling small number.
 | `GET /v1/passages?subject=physics` | `{"items": [{"id", "title", "subject", "chapter", "difficulty", "question_count", "done"}]}` |
 | `POST /v1/practice/sessions` with `{"mode": "passage", "passage_id": "…"}` | A session whose body also has `"passage": {"id", "title", "body"}` |
 
-Guess the Word arrives with the coin economy (its hints cost coins) and gets its own endpoints then.
+Guess the Word was dropped from the product; the word list stays in the content only.
