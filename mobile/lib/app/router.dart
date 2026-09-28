@@ -16,7 +16,12 @@ import '../features/battle/match/review_screen.dart';
 import '../features/battle/search_screen.dart';
 import '../features/debug/debug_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/learn/bookmarks_screen.dart';
+import '../features/learn/challenge_screen.dart';
 import '../features/learn/learn_screen.dart';
+import '../features/learn/passages_screen.dart';
+import '../features/learn/question_screen.dart';
+import '../features/learn/question_search_screen.dart';
 import '../features/learn/subject_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/practice/practice_screen.dart';
@@ -48,6 +53,24 @@ abstract final class Routes {
 
   /// A subject's chapters, inside the Learn tab: `/learn/:subject`.
   static String subject(String slug) => '$learn/$slug';
+
+  /// Question search, inside the Learn tab.
+  static const learnSearch = '$learn/search';
+
+  /// The saved questions, inside the Learn tab.
+  static const bookmarks = '$learn/bookmarks';
+
+  /// Fun & Learn passages, inside the Learn tab.
+  static const passages = '$learn/passages';
+
+  /// One question with its answer, inside the Learn tab: `/learn/question/:ref`.
+  static String question(String ref) => '$learn/question/${Uri.encodeComponent(ref)}';
+
+  /// Self Challenge set-up, inside the Learn tab, optionally for a subject.
+  static String selfChallenge({String? subject}) => Uri(
+    path: '$learn/challenge',
+    queryParameters: subject == null ? null : {'subject': subject},
+  ).toString();
 
   /// A practice session, full screen above the tabs: `/practice/:sessionId`.
   static String practiceSession(String sessionId) => '$practice/$sessionId';
@@ -284,7 +307,21 @@ final routerProvider = Provider<GoRouter>((ref) {
                 path: Routes.learn,
                 builder: (_, _) => const LearnScreen(),
                 routes: [
-                  // Pushed on the Learn tab's own navigator, so the nav bar stays.
+                  // Pushed on the Learn tab's own navigator, so the nav bar stays. The
+                  // fixed paths come before `:subject` so they win.
+                  GoRoute(path: 'search', builder: (_, _) => const QuestionSearchScreen()),
+                  GoRoute(path: 'bookmarks', builder: (_, _) => const BookmarksScreen()),
+                  GoRoute(path: 'passages', builder: (_, _) => const PassagesScreen()),
+                  GoRoute(
+                    path: 'challenge',
+                    builder: (_, state) =>
+                        ChallengeScreen(subject: state.uri.queryParameters['subject']),
+                  ),
+                  GoRoute(
+                    path: 'question/:ref',
+                    builder: (_, state) =>
+                        QuestionScreen(questionRef: state.pathParameters['ref']!),
+                  ),
                   GoRoute(
                     path: ':subject',
                     builder: (_, state) => SubjectScreen(slug: state.pathParameters['subject']!),

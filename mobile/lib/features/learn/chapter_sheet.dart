@@ -95,7 +95,7 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (_error != null) ...[
-            _InlineError(message: _error!),
+            InlineError(message: _error!),
             const SizedBox(height: AppSpacing.md),
           ],
           AppButton(
@@ -110,7 +110,7 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const _Label('Topic'),
+            const OverlineLabel('Topic'),
             SelectableRow(
               title: 'Whole chapter',
               subtitle: plural(chapter.questionCount, 'question'),
@@ -125,7 +125,7 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
                 selected: _topic == topic.slug,
                 onTap: () => _change(() => _topic = topic.slug),
               ),
-            const _Label('Questions'),
+            const OverlineLabel('Questions'),
             Gutter(
               child: AppSegmentedControl<int>(
                 segments: [for (final n in _counts) AppSegment(value: n, label: '$n')],
@@ -133,13 +133,13 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
                 onChanged: (n) => _change(() => _count = n),
               ),
             ),
-            const _Label('Difficulty'),
+            const OverlineLabel('Difficulty'),
             Gutter(
               child: Wrap(
                 spacing: AppSpacing.sm,
                 children: [
                   for (final difficulty in Difficulty.values)
-                    _TallTapTarget(
+                    TallTapTarget(
                       onTap: () => _change(() => _difficulty = difficulty),
                       child: AppChip(
                         label: difficulty.label,
@@ -157,76 +157,6 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
               icon: AppIcons.timer,
               value: _timed,
               onChanged: (on) => _change(() => _timed = on),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Label extends StatelessWidget {
-  const _Label(this.text);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.fromLTRB(
-      AppSpacing.gutter,
-      AppSpacing.lg,
-      AppSpacing.gutter,
-      AppSpacing.sm,
-    ),
-    child: Text(text.toUpperCase(), style: context.text.overline),
-  );
-}
-
-/// Gives a 40 dp chip a 48 dp tall tap target without changing its look.
-class _TallTapTarget extends StatelessWidget {
-  const _TallTapTarget({required this.onTap, required this.child});
-
-  final VoidCallback onTap;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) => GestureDetector(
-    behavior: HitTestBehavior.opaque,
-    excludeFromSemantics: true,
-    onTap: onTap,
-    child: ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: AppSizes.minTouch),
-      child: Center(widthFactor: 1, child: child),
-    ),
-  );
-}
-
-class _InlineError extends StatelessWidget {
-  const _InlineError({required this.message});
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    return Semantics(
-      liveRegion: true,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(AppSpacing.md),
-        decoration: BoxDecoration(
-          color: colors.errorContainer,
-          borderRadius: BorderRadius.circular(AppRadii.md),
-        ),
-        child: Row(
-          children: [
-            HugeIcon(AppIcons.alert, size: 20, color: colors.onErrorContainer),
-            const SizedBox(width: AppSpacing.sm),
-            Expanded(
-              child: Text(
-                message,
-                style: context.text.labelMedium.copyWith(color: colors.onErrorContainer),
-              ),
             ),
           ],
         ),

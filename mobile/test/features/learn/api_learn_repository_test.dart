@@ -7,6 +7,7 @@ import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
 import 'package:quiz_app/features/learn/data/learn_models.dart';
 import 'package:quiz_app/features/learn/data/learn_repository.dart';
+import 'package:quiz_app/features/learn/data/question_models.dart';
 import 'package:quiz_app/features/practice/data/practice_models.dart';
 import 'package:quiz_app/features/practice/start_practice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -257,6 +258,202 @@ void main() {
       final (repo, adapter) = build((_) => jsonBody({'due': 5, 'total': 23}));
       expect(await repo.reviewsSummary(), const ReviewsSummary(due: 5, total: 23));
       expect(adapter.requests.single.path, '/v1/me/reviews/summary');
+    });
+
+    test('the bookmarks list GETs a page by subject and cursor', () async {
+      final (repo, adapter) = build((_) => jsonBody(bookmarksJson()));
+
+      final page = await repo.listBookmarks(subject: 'physics', cursor: 'c1');
+
+      final request = adapter.requests.single;
+      expect('${request.method} ${request.path}', 'GET /v1/me/bookmarks');
+      expect(request.queryParameters, {'subject': 'physics', 'cursor': 'c1', 'limit': 20});
+      expect(page.nextCursor, 'c2');
+      expect(page.items.map((b) => b.ref), ['q_01929f', 'q_2']);
+      final first = page.items.first;
+      expect(first.question.subject, 'physics');
+      expect(first.question.chapter?.name, 'Motion in a Straight Line');
+      expect(first.question.topic?.slug, 'equations-of-motion');
+      expect(first.bookmarkedAt, DateTime.utc(2026, 9, 27, 15));
+      expect(page.items.last.question.topic, isNull);
+    });
+
+    test('the first page leaves out the cursor; the last page has none', () async {
+      final (repo, adapter) = build((_) => jsonBody(bookmarksJson(nextCursor: null)));
+      final page = await repo.listBookmarks();
+      expect(adapter.requests.single.queryParameters, {'limit': 20});
+      expect(page.nextCursor, isNull);
+    });
+  });
+
+  group('search, questions, reports and passages', () {
+    test('search GETs /v1/search with the query and subject', () async {
+      final (repo, adapter) = build(
+        (_) => jsonBody({
+          'items': [questionSummaryJson()],
+        }),
+      );
+
+      final results = await repo.search('kine', subject: 'physics');
+
+      final request = adapter.requests.single;
+      expect(request.path, '/v1/search');
+      expect(request.queryParameters, {'q': 'kine', 'subject': 'physics', 'limit': 20});
+      expect(results.single.ref, 'q_01929f');
+      expect(results.single.stem, startsWith('A car starts'));
+    });
+
+    test('a cancelled search fails with CancelledFailure', () async {
+      final hold = Completer<ResponseBody>();
+      final (repo, _) = build((_) => hold.future);
+      final token = CancelToken();
+
+      final search = repo.search('kine', cancelToken: token);
+      token.cancel();
+
+      await expectLater(search, throwsA(isA<CancelledFailure>()));
+      hold.complete(jsonBody({'items': <Object?>[]}));
+    });
+
+    test('too many searches is a rate limit', () async {
+      final (repo, _) = build((_) => jsonBody(_error('RATE_LIMITED', 'Slow down.'), status: 429));
+      await expectLater(repo.search('kine'), throwsA(isA<RateLimitedFailure>()));
+    });
+
+    test('a question comes with its answer, explanation and bookmark', () async {
+      final (repo, adapter) = build((_) => jsonBody(questionDetailJson()));
+
+      final question = await repo.question('q_01929f');
+
+      expect(adapter.requests.single.path, '/v1/questions/q_01929f');
+      expect(question.options.map((o) => o.id), [0, 1, 2, 3]);
+      expect(question.answer, 1);
+      expect(question.explanation, contains('25 m'));
+      expect(question.bookmarked, isTrue);
+      expect(question.difficulty, 2);
+      expect(question.topic?.name, 'Equations of motion');
+    });
+
+    test('a retired question is not found; a bad answer key is unreadable', () async {
+      final (repo, _) = build(
+        (options) => options.path.endsWith('gone')
+            ? jsonBody(_error('QUESTION_NOT_FOUND', 'Gone.'), status: 404)
+            : jsonBody({...questionDetailJson(), 'answer': 7}),
+      );
+      await expectLater(
+        repo.question('gone'),
+        throwsA(isA<NotFoundFailure>().having((f) => f.code, 'code', 'QUESTION_NOT_FOUND')),
+      );
+      await expectLater(repo.question('q_1'), throwsA(isA<UnexpectedFailure>()));
+    });
+
+    test('reporting POSTs the reason and a trimmed note (left out when empty)', () async {
+      final (repo, adapter) = build((_) => ResponseBody.fromString('', 202));
+
+      await repo.reportQuestion('q/1', ReportReason.wrongAnswer, note: '  Should be B  ');
+      await repo.reportQuestion('q/1', ReportReason.typo, note: '   ');
+
+      expect(adapter.requests.map((r) => '${r.method} ${r.path}'), [
+        'POST /v1/questions/q%2F1/reports',
+        'POST /v1/questions/q%2F1/reports',
+      ]);
+      expect(adapter.requests.first.data, {'reason': 'wrong_answer', 'note': 'Should be B'});
+      expect(adapter.requests.last.data, {'reason': 'typo'});
+    });
+
+    test('the daily report limit is a rate limit', () async {
+      final (repo, _) = build(
+        (_) => jsonBody(_error('RATE_LIMITED', 'Most reports sent.'), status: 429),
+      );
+      await expectLater(
+        repo.reportQuestion('q_1', ReportReason.other),
+        throwsA(isA<RateLimitedFailure>()),
+      );
+    });
+
+    test('passages GET by subject', () async {
+      final (repo, adapter) = build((_) => jsonBody(passagesJson()));
+
+      final all = await repo.passages();
+      await repo.passages(subject: 'physics');
+
+      expect(adapter.requests.first.queryParameters, isEmpty);
+      expect(adapter.requests.last.queryParameters, {'subject': 'physics'});
+      expect(all.map((p) => p.title), [
+        'Galileo and the falling balls',
+        'The cell\'s power stations',
+      ]);
+      expect(all.first.questionCount, 3);
+      expect(all.first.chapter?.slug, 'kinematics');
+      expect(all.first.done, isFalse);
+      expect(all.last.chapter, isNull);
+      expect(all.last.done, isTrue);
+    });
+
+    test('a passage session carries the passage', () async {
+      final (repo, adapter) = build(
+        (_) => jsonBody({
+          ...sessionJson(),
+          'mode': 'passage',
+          'passage': {
+            'id': 'p-1',
+            'title': 'Galileo and the falling balls',
+            'body': 'For nearly two thousand years…',
+          },
+        }, status: 201),
+      );
+
+      final session = await repo.createSession(
+        const SessionSettings(mode: PracticeMode.passage, passageId: 'p-1'),
+        idempotencyKey: 'k',
+      );
+
+      expect((adapter.requests.single.data as Map)['passage_id'], 'p-1');
+      expect(session.mode, PracticeMode.passage);
+      expect(session.passage?.title, 'Galileo and the falling balls');
+    });
+
+    test('a challenge session sends its time limit and marking', () async {
+      final (repo, adapter) = build(
+        (_) => jsonBody({
+          ...sessionJson(),
+          'mode': 'challenge',
+          'feedback': 'end',
+          'time_limit_ms': 600000,
+          'marking': 'neet',
+        }, status: 201),
+      );
+
+      final session = await repo.createSession(
+        const SessionSettings(
+          mode: PracticeMode.challenge,
+          subject: 'physics',
+          chapters: ['kinematics', 'laws-of-motion'],
+          count: 20,
+          timeLimitS: 600,
+          marking: Marking.neet,
+          unseenOnly: true,
+        ),
+        idempotencyKey: 'k',
+      );
+
+      expect(adapter.requests.single.data, {
+        'mode': 'challenge',
+        'subject': 'physics',
+        'chapters': ['kinematics', 'laws-of-motion'],
+        'topic': null,
+        'category': null,
+        'count': 20,
+        'difficulty': 'mixed',
+        'timed': false,
+        'per_question_s': null,
+        'time_limit_s': 600,
+        'marking': 'neet',
+        'unseen_only': true,
+      });
+      expect(session.instantFeedback, isFalse);
+      expect(session.timeLimitMs, 600000);
+      expect(session.marking, Marking.neet);
     });
   });
 }

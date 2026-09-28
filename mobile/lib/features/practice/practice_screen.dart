@@ -10,17 +10,25 @@ import '../../app/router.dart';
 import '../../core/network/app_failure.dart';
 import '../../core/network/connectivity.dart';
 import '../learn/learn_providers.dart';
+import '../learn/report_sheet.dart';
 import '../learn/widgets/learn_widgets.dart';
+import 'challenge_clock.dart';
 import 'data/practice_models.dart';
 import 'practice_controller.dart';
+import 'practice_review.dart';
 import 'practice_summary.dart';
 
 /// A practice session (`/practice/:sessionId`), full screen above the tabs.
 ///
 /// Each question is timed with a stopwatch from the moment it shows; the
-/// stopwatch pauses while the app is in the background or the leave sheet
-/// is open. Answers go to the upload queue at once, so moving on never waits
-/// for the network.
+/// stopwatch pauses while the app is in the background, a sheet is open or
+/// the passage is being read. Answers go to the upload queue at once, so
+/// moving on never waits for the network.
+///
+/// * Self Challenge counts down one total time from the server's deadline
+///   (it keeps running in the background) and ends the session when it runs
+///   out. Answers are shown at the end, in the review.
+/// * Fun & Learn shows the passage first, and keeps it a tap away.
 class PracticeScreen extends ConsumerStatefulWidget {
   const PracticeScreen({super.key, required this.sessionId});
 
@@ -38,10 +46,24 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   final _left = ValueNotifier<Duration?>(null);
   Timer? _ticker;
 
+  /// Self Challenge: the total time left, counted down from the deadline.
+  final _challengeLeft = ValueNotifier<Duration?>(null);
+  ChallengeClock? _challenge;
+  Timer? _challengeTicker;
+
   /// The question the clock is timing.
   String? _timing;
   bool _hidden = false;
   bool _sheetOpen = false;
+
+  /// Fun & Learn: the passage is on screen before the questions.
+  bool _reading = false;
+  bool _readingDecided = false;
+
+  /// The finished session's answers are on screen instead of its summary.
+  bool _reviewing = false;
+
+  bool get _paused => _hidden || _sheetOpen || _reading;
 
   late final _provider = practiceControllerProvider(widget.sessionId);
 
@@ -62,6 +84,8 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       onShow: () {
         _hidden = false;
         _resumeClock();
+        // The challenge went on while the app was away.
+        _tickChallenge();
       },
     );
     ref.listenManual(_provider, (_, next) => _follow(next.value), fireImmediately: true);
@@ -71,12 +95,24 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   void dispose() {
     _lifecycle.dispose();
     _ticker?.cancel();
+    _challengeTicker?.cancel();
     _left.dispose();
+    _challengeLeft.dispose();
     super.dispose();
   }
 
   /// Starts timing a question when it appears and stops once it's answered.
   void _follow(PracticeState? s) {
+    if (s != null && !_readingDecided) {
+      _readingDecided = true;
+      // A passage is read first, unless the questions were already started.
+      _reading = s.session.passage != null && s.answers.isEmpty && !s.done;
+    }
+    if (s != null && !s.done && _challenge == null) _startChallenge(s.session);
+    if (s != null && s.done) {
+      _challengeTicker?.cancel();
+      _challengeTicker = null;
+    }
     if (s == null || s.done || s.answer != null) {
       _pauseClock();
       return;
@@ -89,7 +125,30 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     final limit = s.session.perQuestionMs;
     _left.value = limit == null ? null : Duration(milliseconds: limit);
     if (limit != null) _startTicker(limit);
-    if (_hidden || _sheetOpen) _pauseClock();
+    if (_paused) _pauseClock();
+  }
+
+  void _startChallenge(PracticeSession session) {
+    final clock = _challenge = ChallengeClock.of(session);
+    if (clock == null) return;
+    _challengeTicker = Timer.periodic(const Duration(seconds: 1), (_) => _tickChallenge());
+    // Not from inside the provider listener: this may end the session.
+    scheduleMicrotask(_tickChallenge);
+  }
+
+  /// Updates the countdown and ends the challenge when time is up. The
+  /// deadline is the server's, so this reads the wall clock, not the
+  /// stopwatch.
+  void _tickChallenge() {
+    final clock = _challenge;
+    if (!mounted || clock == null || _challengeTicker == null) return;
+    final left = clock.remaining(ref.read(practiceNowProvider)());
+    _challengeLeft.value = left;
+    if (left > Duration.zero) return;
+    _challengeTicker?.cancel();
+    _challengeTicker = null;
+    _pauseClock();
+    unawaited(_controller.finish(timeMs: _elapsedMs, timeUp: true));
   }
 
   void _pauseClock() {
@@ -99,7 +158,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   }
 
   void _resumeClock() {
-    if (_hidden || _sheetOpen) return;
+    if (_paused) return;
     final s = _state;
     if (s == null || s.done || s.answer != null || _timing != s.question.ref) return;
     _clock.start();
@@ -151,40 +210,101 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     showAppToast(context, message, icon: AppIcons.alert);
   }
 
+  /// Opens a sheet with the question clock paused.
+  Future<T> _withSheet<T>(Future<T> Function() open) async {
+    _sheetOpen = true;
+    _pauseClock();
+    try {
+      return await open();
+    } finally {
+      if (mounted) {
+        _sheetOpen = false;
+        _resumeClock();
+      }
+    }
+  }
+
+  Future<void> _report(PracticeQuestion question) =>
+      _withSheet(() => showReportSheet(context, questionRef: question.ref));
+
+  Future<void> _showPassage(Passage passage) => _withSheet(
+    () => showAppSheet<void>(
+      context,
+      builder: (context) => SheetScaffold(
+        title: passage.title,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.gutter,
+            0,
+            AppSpacing.gutter,
+            AppSpacing.xl,
+          ),
+          child: PassageText(passage.body),
+        ),
+      ),
+    ),
+  );
+
+  void _startQuestions() {
+    setState(() => _reading = false);
+    _resumeClock();
+  }
+
   Future<void> _requestClose() async {
     final s = _state;
     if (s == null || s.done) {
-      _leave();
+      if (_reviewing) {
+        setState(() => _reviewing = false);
+      } else {
+        _leave();
+      }
       return;
     }
-    _sheetOpen = true;
-    _pauseClock();
-    final leave = await showAppSheet<bool>(
-      context,
-      builder: (context) => SheetScaffold(
-        title: 'Leave practice?',
-        subtitle: 'Your answers so far are saved.',
-        footer: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AppButton(label: 'Keep practising', onPressed: () => Navigator.pop(context, false)),
-            const SizedBox(height: AppSpacing.sm),
-            AppButton(
-              label: 'Leave',
-              variant: AppButtonVariant.secondary,
-              onPressed: () => Navigator.pop(context, true),
-            ),
-          ],
+    final challenge = _challenge != null;
+    final choice = await _withSheet(
+      () => showAppSheet<_LeaveChoice>(
+        context,
+        builder: (context) => SheetScaffold(
+          title: challenge ? 'Leave the challenge?' : 'Leave practice?',
+          subtitle: challenge
+              ? 'The timer keeps running. Your answers so far are saved.'
+              : 'Your answers so far are saved.',
+          footer: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AppButton(
+                label: challenge ? 'Keep going' : 'Keep practising',
+                onPressed: () => Navigator.pop(context, _LeaveChoice.stay),
+              ),
+              if (challenge) ...[
+                const SizedBox(height: AppSpacing.sm),
+                AppButton(
+                  label: 'Submit now',
+                  variant: AppButtonVariant.secondary,
+                  onPressed: () => Navigator.pop(context, _LeaveChoice.submit),
+                ),
+              ],
+              const SizedBox(height: AppSpacing.sm),
+              AppButton(
+                label: 'Leave',
+                variant: challenge ? AppButtonVariant.ghost : AppButtonVariant.secondary,
+                onPressed: () => Navigator.pop(context, _LeaveChoice.leave),
+              ),
+            ],
+          ),
+          child: const SizedBox.shrink(),
         ),
-        child: const SizedBox.shrink(),
       ),
     );
     if (!mounted) return;
-    _sheetOpen = false;
-    if (leave ?? false) {
-      _leave();
-    } else {
-      _resumeClock();
+    switch (choice) {
+      case _LeaveChoice.leave:
+        _leave();
+      case _LeaveChoice.submit:
+        // Ends the challenge where it is; unanswered questions stay so.
+        await _controller.finish(timeMs: _elapsedMs, timeUp: true);
+      case _LeaveChoice.stay || null:
+        break;
     }
   }
 
@@ -202,9 +322,30 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   Widget build(BuildContext context) {
     final async = ref.watch(_provider);
     final (phase, body) = switch (async) {
+      AsyncValue(value: final s?) when s.done && _reviewing => (
+        'review',
+        PracticeReviewView(
+          state: s,
+          onBack: () => setState(() => _reviewing = false),
+          onReport: _report,
+        ),
+      ),
       AsyncValue(value: final s?) when s.done => (
         'summary',
-        PracticeSummaryView(state: s, onDone: _leave),
+        PracticeSummaryView(
+          state: s,
+          onDone: _leave,
+          onReview: () => setState(() => _reviewing = true),
+        ),
+      ),
+      AsyncValue(value: final s?) when _reading && s.session.passage != null => (
+        'passage',
+        _PassageView(
+          passage: s.session.passage!,
+          questions: s.total,
+          onStart: _startQuestions,
+          onClose: _requestClose,
+        ),
       ),
       AsyncValue(value: final s?) => ('question', _questionView(context, s)),
       AsyncValue(:final error?) => (
@@ -245,7 +386,18 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     final reduced = AppMotion.reduced(context);
     return Column(
       children: [
-        _TopBar(state: s, left: _left, onClose: _requestClose, onBookmark: _toggleBookmark),
+        _TopBar(
+          state: s,
+          left: _left,
+          challengeLeft: _challenge == null ? null : _challengeLeft,
+          onClose: _requestClose,
+          onBookmark: _toggleBookmark,
+          onReport: () => _report(question),
+          onPassage: switch (s.session.passage) {
+            final passage? => () => _showPassage(passage),
+            null => null,
+          },
+        ),
         OfflineBanner(visible: !online, message: 'You\'re offline — answers will sync later'),
         Expanded(
           child: AnimatedSwitcher(
@@ -275,18 +427,30 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   }
 }
 
+enum _LeaveChoice { stay, submit, leave }
+
 class _TopBar extends StatelessWidget {
   const _TopBar({
     required this.state,
     required this.left,
+    required this.challengeLeft,
     required this.onClose,
     required this.onBookmark,
+    required this.onReport,
+    required this.onPassage,
   });
 
   final PracticeState state;
   final ValueListenable<Duration?> left;
+
+  /// Self Challenge only.
+  final ValueListenable<Duration?>? challengeLeft;
   final VoidCallback onClose;
   final VoidCallback onBookmark;
+  final VoidCallback onReport;
+
+  /// Fun & Learn only: shows the passage again.
+  final VoidCallback? onPassage;
 
   @override
   Widget build(BuildContext context) {
@@ -326,6 +490,27 @@ class _TopBar extends StatelessWidget {
                 ),
                 const SizedBox(width: AppSpacing.sm),
               ],
+              if (challengeLeft case final challengeLeft?) ...[
+                ValueListenableBuilder<Duration?>(
+                  valueListenable: challengeLeft,
+                  builder: (context, left, _) => ChallengeTimerChip(left: left),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+              ],
+              if (onPassage != null) ...[
+                AppIconButton(
+                  icon: AppIcons.learn,
+                  semanticLabel: 'Read the passage',
+                  onPressed: onPassage,
+                ),
+                const SizedBox(width: AppSpacing.sm),
+              ],
+              AppIconButton(
+                icon: AppIcons.alert,
+                semanticLabel: 'Report question',
+                onPressed: onReport,
+              ),
+              const SizedBox(width: AppSpacing.sm),
               AppIconButton(
                 icon: AppIcons.bookmark,
                 semanticLabel: bookmarked ? 'Remove bookmark' : 'Bookmark question',
@@ -343,6 +528,136 @@ class _TopBar extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// The total time left in a Self Challenge ("9:41"); warning colours in
+/// the last minute.
+class ChallengeTimerChip extends StatelessWidget {
+  const ChallengeTimerChip({super.key, required this.left});
+
+  /// Null before the first tick.
+  final Duration? left;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final left = this.left;
+    final low = left != null && left <= ChallengeClock.lowAfter;
+    return Semantics(
+      label: left == null ? 'Timer' : countdownSemantics(left),
+      excludeSemantics: true,
+      child: InfoChip(
+        icon: AppIcons.timer,
+        label: left == null ? '–:––' : formatCountdown(left),
+        background: low ? colors.warningContainer : colors.surfaceMuted,
+        foreground: low ? colors.onWarningContainer : colors.ink,
+      ),
+    );
+  }
+}
+
+/// Fun & Learn: the passage, then a button to its questions.
+class _PassageView extends StatelessWidget {
+  const _PassageView({
+    required this.passage,
+    required this.questions,
+    required this.onStart,
+    required this.onClose,
+  });
+
+  final Passage passage;
+  final int questions;
+  final VoidCallback onStart;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = context.text;
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.gutter,
+            AppSpacing.md,
+            AppSpacing.gutter,
+            0,
+          ),
+          child: Row(
+            children: [
+              AppIconButton(
+                icon: AppIcons.close,
+                semanticLabel: 'Leave practice',
+                onPressed: onClose,
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.gutter,
+              AppSpacing.lg,
+              AppSpacing.gutter,
+              AppSpacing.lg,
+            ),
+            children: [
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: OverlineBadge(
+                  label: 'Fun & Learn',
+                  tone: PastelTone.mint,
+                  icon: AppIcons.learn,
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              Text(passage.title, style: text.headlineMedium),
+              const SizedBox(height: AppSpacing.lg),
+              PassageText(passage.body),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.gutter,
+            AppSpacing.sm,
+            AppSpacing.gutter,
+            AppSpacing.lg,
+          ),
+          child: AppButton(
+            label: questions == 1 ? 'Answer the question' : 'Answer $questions questions',
+            trailingIcon: AppIcons.chevronRight,
+            onPressed: onStart,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// A passage in quiz markup, one paragraph per blank-line-separated block.
+class PassageText extends StatelessWidget {
+  const PassageText(this.body, {super.key});
+
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    final paragraphs = body
+        .split(RegExp(r'\n\s*\n'))
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty)
+        .toList();
+    final style = context.text.bodyLarge.copyWith(height: 1.55);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final (i, paragraph) in paragraphs.indexed) ...[
+          if (i > 0) const SizedBox(height: AppSpacing.md),
+          QuizText(paragraph, style: style),
+        ],
+      ],
     );
   }
 }

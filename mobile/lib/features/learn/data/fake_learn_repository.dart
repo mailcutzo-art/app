@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dio/dio.dart' show CancelToken;
 import 'package:flutter/foundation.dart';
 
 import '../../../core/auth/user.dart';
@@ -7,6 +8,7 @@ import '../../../core/network/app_failure.dart';
 import '../../practice/data/practice_models.dart';
 import 'learn_models.dart';
 import 'learn_repository.dart';
+import 'question_models.dart';
 
 /// Calls of [FakeLearnRepository] that tests can make fail.
 enum FakeLearnOp {
@@ -20,6 +22,11 @@ enum FakeLearnOp {
   dismissTip,
   bookmark,
   reviews,
+  bookmarksList,
+  search,
+  question,
+  report,
+  passages,
 }
 
 /// In-memory stand-in for the Learn API, seeded with sample questions from
@@ -29,10 +36,12 @@ enum FakeLearnOp {
 /// with their authored ids, session creation is idempotent per key, answers
 /// are de-duplicated by `client_answer_id` and only the first per position
 /// counts, wrong answers go to review, and progress, labels and tips are
-/// worked out from the answers.
+/// worked out from the answers. Self Challenge answers after the time limit
+/// (plus the server's minute of grace) come back `time_up`.
 class FakeLearnRepository implements LearnRepository {
   FakeLearnRepository({
     required this._subjects,
+    this._passages = const [],
     this.latency = Duration.zero,
     this.tipsUnlockAt = 5,
     int seed = 7,
@@ -41,10 +50,25 @@ class FakeLearnRepository implements LearnRepository {
        _now = now ?? DateTime.now;
 
   /// The sample content: Physics (NEET and JEE) and Biology (NEET).
-  factory FakeLearnRepository.seeded({Duration latency = Duration.zero}) =>
-      FakeLearnRepository(subjects: sampleSubjects, latency: latency);
+  /// Fun & Learn has a passage in each subject.
+  factory FakeLearnRepository.seeded({
+    Duration latency = Duration.zero,
+    DateTime Function()? now,
+  }) => FakeLearnRepository(
+    subjects: sampleSubjects,
+    passages: samplePassages,
+    latency: latency,
+    now: now,
+  );
+
+  /// The limit the server puts on question reports per day.
+  static const maxReportsPerDay = 20;
+
+  /// Extra time the server allows after a challenge's limit, for slow networks.
+  static const challengeGrace = Duration(seconds: 60);
 
   final List<FakeSubject> _subjects;
+  final List<FakePassage> _passages;
   final Random _random;
   final DateTime Function() _now;
 
@@ -76,11 +100,23 @@ class FakeLearnRepository implements LearnRepository {
   /// Every `setBookmark` call.
   final List<(String, bool)> bookmarkCalls = [];
 
+  /// Every `search` call: the query and the subject filter.
+  final List<(String, String?)> searchCalls = [];
+
+  /// Every accepted `reportQuestion` call: the ref, reason and note.
+  final List<(String, ReportReason, String?)> reportCalls = [];
+
+  /// Every `bookmarks` call: the subject filter and cursor.
+  final List<(String?, String?)> bookmarkListCalls = [];
+
   final _sessions = <String, _FakeSession>{};
   final _sessionByKey = <String, String>{};
   final _answerIds = <String>{};
   final _attempts = <String, List<_Attempt>>{};
-  final _bookmarks = <String>{};
+
+  /// Bookmarked refs and when, oldest first.
+  final _bookmarks = <String, DateTime>{};
+  final _reported = <String>{};
   final _reviewDue = <String>{};
   final _dismissedTips = <String>{};
   var _xpTotal = 1200;
@@ -92,7 +128,7 @@ class FakeLearnRepository implements LearnRepository {
   /// with `session_expired`.
   void expireSession(String sessionId) => _find(sessionId).expired = true;
 
-  Set<String> get bookmarks => Set.unmodifiable(_bookmarks);
+  Set<String> get bookmarks => Set.unmodifiable(_bookmarks.keys);
 
   // ---------------------------------------------------------------- catalog
 
@@ -181,24 +217,44 @@ class FakeLearnRepository implements LearnRepository {
   }) async {
     createCalls.add((settings, idempotencyKey));
     await _call(FakeLearnOp.createSession);
-    if (_sessionByKey[idempotencyKey] case final id?) return _sessions[id]!.toSession(_bookmarks);
+    if (_sessionByKey[idempotencyKey] case final id?) {
+      return _sessions[id]!.toSession(_bookmarks.keys.toSet());
+    }
 
-    final pool = _pool(settings);
+    final passage = settings.mode == PracticeMode.passage
+        ? _passages.where((p) => p.id == settings.passageId).firstOrNull ??
+              (throw const ValidationFailure(
+                'This passage isn\'t available.',
+                fields: {'passage_id': 'This passage isn\'t available.'},
+              ))
+        : null;
+    if (settings.mode == PracticeMode.challenge &&
+        (settings.subject == null || settings.timeLimitS == null)) {
+      throw const ValidationFailure('Choose a subject and a time limit.');
+    }
+    final pool = passage?.questions ?? _pool(settings);
     if (pool.isEmpty) {
       throw const ConflictFailure('No questions match these settings.', code: 'NO_QUESTIONS');
     }
-    // Unseen questions first, then those seen longest ago.
-    final ordered = [...pool]..sort((a, b) => (_lastSeen(a) ?? -1).compareTo(_lastSeen(b) ?? -1));
-    final picked = ordered.take(settings.count).toList();
+    // A passage's questions come as authored; others unseen first, then
+    // those seen longest ago.
+    final picked = passage != null
+        ? pool
+        : ([...pool]..sort((a, b) => (_lastSeen(a) ?? -1).compareTo(_lastSeen(b) ?? -1)))
+              .take(settings.count)
+              .toList();
     final now = _now().toUtc();
     final id = 'demo-${++_sessionCounter}-${_random.nextInt(1 << 30).toRadixString(16)}';
     final session = _FakeSession(
       id: id,
       number: _sessionCounter,
       settings: settings,
-      title: _title(settings),
+      title: passage != null ? 'Fun & Learn · ${passage.title}' : _title(settings),
       createdAt: now,
-      short: picked.length < settings.count,
+      short: passage == null && picked.length < settings.count,
+      passage: passage == null
+          ? null
+          : Passage(id: passage.id, title: passage.title, body: passage.body),
       questions: [
         for (final (i, q) in picked.indexed)
           (
@@ -216,20 +272,22 @@ class FakeLearnRepository implements LearnRepository {
               difficulty: q.difficulty,
               category: q.category,
               chapter: NamedRef(slug: q.chapter.slug, name: q.chapter.name),
-              topic: NamedRef(slug: q.topic, name: q.chapter.topicName(q.topic)),
+              topic: q.topic.isEmpty
+                  ? null
+                  : NamedRef(slug: q.topic, name: q.chapter.topicName(q.topic)),
             ),
           ),
       ],
     );
     _sessions[id] = session;
     _sessionByKey[idempotencyKey] = id;
-    return session.toSession(_bookmarks);
+    return session.toSession(_bookmarks.keys.toSet());
   }
 
   @override
   Future<PracticeSession> session(String sessionId) async {
     await _call(FakeLearnOp.session);
-    return _find(sessionId).toSession(_bookmarks);
+    return _find(sessionId).toSession(_bookmarks.keys.toSet());
   }
 
   @override
@@ -254,6 +312,9 @@ class FakeLearnRepository implements LearnRepository {
         rejection = 'position_mismatch';
       } else if (session.finished || session.expired) {
         rejection = 'session_expired';
+      } else if (session.deadline case final deadline?
+          when answer.answeredAt.isAfter(deadline.add(challengeGrace))) {
+        rejection = 'time_up';
       } else {
         rejection = null;
       }
@@ -295,7 +356,8 @@ class FakeLearnRepository implements LearnRepository {
           .add(_Attempt(correct: outcome == AnswerOutcome.correct, at: _attemptClock++));
       if (outcome == AnswerOutcome.correct) {
         if (session.settings.mode == PracticeMode.review) _reviewDue.remove(question.ref);
-      } else if (outcome != AnswerOutcome.skipped) {
+      } else if (outcome != AnswerOutcome.skipped && question.topic.isNotEmpty) {
+        // Passage questions mean little without their passage: no review.
         _reviewDue.add(question.ref);
       }
       final xp = outcome == AnswerOutcome.correct ? 2 : 1;
@@ -325,11 +387,12 @@ class FakeLearnRepository implements LearnRepository {
     final wrong = counted.where((a) => a.outcome == AnswerOutcome.wrong).length;
     final skipped = counted.where((a) => a.outcome == AnswerOutcome.skipped).length;
     final topics = <String, (String, int, int)>{};
-    for (final (question, practice) in session.questions) {
+    for (final (_, practice) in session.questions) {
       final answer = session.answers[practice.position];
-      if (answer == null || answer.outcome == AnswerOutcome.skipped) continue;
-      final (name, answered, right) = topics[question.topic] ?? (practice.topic!.name, 0, 0);
-      topics[question.topic] = (
+      final topic = practice.topic ?? practice.chapter;
+      if (answer == null || answer.outcome == AnswerOutcome.skipped || topic == null) continue;
+      final (name, answered, right) = topics[topic.slug] ?? (topic.name, 0, 0);
+      topics[topic.slug] = (
         name,
         answered + 1,
         right + (answer.outcome == AnswerOutcome.correct ? 1 : 0),
@@ -378,7 +441,116 @@ class FakeLearnRepository implements LearnRepository {
   Future<void> setBookmark(String ref, {required bool bookmarked}) async {
     bookmarkCalls.add((ref, bookmarked));
     await _call(FakeLearnOp.bookmark);
-    bookmarked ? _bookmarks.add(ref) : _bookmarks.remove(ref);
+    if (bookmarked) {
+      _bookmarks.putIfAbsent(ref, () => _now().toUtc());
+    } else {
+      _bookmarks.remove(ref);
+    }
+  }
+
+  @override
+  Future<BookmarkPage> listBookmarks({String? subject, String? cursor, int limit = 20}) async {
+    bookmarkListCalls.add((subject, cursor));
+    await _call(FakeLearnOp.bookmarksList);
+    // Newest first.
+    final all = [
+      for (final MapEntry(key: ref, value: at) in _bookmarks.entries.toList().reversed)
+        if (_question(ref) case final q? when subject == null || q.subject == subject)
+          Bookmark(question: _summary(q), bookmarkedAt: at),
+    ];
+    final start = cursor == null ? 0 : int.tryParse(cursor) ?? 0;
+    final end = min(start + limit, all.length);
+    return BookmarkPage(
+      items: start >= all.length ? const [] : all.sublist(start, end),
+      nextCursor: end < all.length ? '$end' : null,
+    );
+  }
+
+  // ------------------------------------------------ search, questions, reports
+
+  @override
+  Future<List<QuestionSummary>> search(
+    String query, {
+    String? subject,
+    int limit = 20,
+    CancelToken? cancelToken,
+  }) async {
+    searchCalls.add((query, subject));
+    await _call(FakeLearnOp.search);
+    if (cancelToken?.isCancelled ?? false) throw const CancelledFailure();
+    final text = query.trim().split(RegExp(r'\s+')).join(' ').toLowerCase();
+    if (text.length < 2) {
+      throw const ValidationFailure(
+        'Type at least 2 characters.',
+        fields: {'q': 'Type at least 2 characters.'},
+      );
+    }
+    final words = text.split(' ');
+    bool matches(FakeQuestion q) {
+      final haystack = [
+        q.stem,
+        q.chapter.name,
+        q.chapter.slug,
+        if (q.topic.isNotEmpty) q.chapter.topicName(q.topic),
+      ].join(' ').toLowerCase();
+      final tokens = haystack.split(RegExp('[^a-z0-9]+'));
+      return haystack.contains(text) ||
+          words.every((word) => tokens.any((token) => token.startsWith(word)));
+    }
+
+    return [
+      for (final q in _allQuestions)
+        if ((subject == null || q.subject == subject) && matches(q)) _summary(q),
+    ].take(limit).toList();
+  }
+
+  @override
+  Future<QuestionDetail> question(String ref) async {
+    await _call(FakeLearnOp.question);
+    final q = _question(ref) ?? (throw _questionNotFound);
+    return QuestionDetail(
+      ref: q.ref,
+      stem: q.stem,
+      options: [for (final (i, text) in q.options.indexed) PracticeOption(id: i, text: text)],
+      answer: q.answer,
+      explanation: q.explanation,
+      difficulty: q.difficulty,
+      category: q.category,
+      chapter: NamedRef(slug: q.chapter.slug, name: q.chapter.name),
+      topic: q.topic.isEmpty ? null : NamedRef(slug: q.topic, name: q.chapter.topicName(q.topic)),
+      bookmarked: _bookmarks.containsKey(q.ref),
+    );
+  }
+
+  @override
+  Future<void> reportQuestion(String ref, ReportReason reason, {String? note}) async {
+    await _call(FakeLearnOp.report);
+    if (_question(ref) == null) throw _questionNotFound;
+    // A second report of the same question is accepted without a new one.
+    if (_reported.contains(ref)) return;
+    if (reportCalls.length >= maxReportsPerDay) {
+      throw const RateLimitedFailure(retryAfter: Duration(hours: 1));
+    }
+    _reported.add(ref);
+    reportCalls.add((ref, reason, note));
+  }
+
+  @override
+  Future<List<PassageItem>> passages({String? subject}) async {
+    await _call(FakeLearnOp.passages);
+    return [
+      for (final p in _passages)
+        if (subject == null || p.subject == subject)
+          PassageItem(
+            id: p.id,
+            title: p.title,
+            subject: p.subject,
+            chapter: NamedRef(slug: p.chapter.slug, name: p.chapter.name),
+            difficulty: p.difficulty,
+            questionCount: p.questions.length,
+            done: p.questions.every((q) => _attempts.containsKey(q.ref)),
+          ),
+    ];
   }
 
   @override
@@ -394,6 +566,26 @@ class FakeLearnRepository implements LearnRepository {
     if (latency > Duration.zero) await Future<void>.delayed(latency);
     if (failures[op] case final failure?) throw failure;
   }
+
+  static const _questionNotFound = NotFoundFailure(
+    'This question doesn\'t exist.',
+    code: 'QUESTION_NOT_FOUND',
+  );
+
+  Iterable<FakeQuestion> get _allQuestions => [
+    for (final subject in _subjects) ...subject.questions,
+    for (final passage in _passages) ...passage.questions,
+  ];
+
+  FakeQuestion? _question(String ref) => _allQuestions.where((q) => q.ref == ref).firstOrNull;
+
+  static QuestionSummary _summary(FakeQuestion q) => QuestionSummary(
+    ref: q.ref,
+    stem: q.stem,
+    subject: q.subject,
+    chapter: NamedRef(slug: q.chapter.slug, name: q.chapter.name),
+    topic: q.topic.isEmpty ? null : NamedRef(slug: q.topic, name: q.chapter.topicName(q.topic)),
+  );
 
   _FakeSession _find(String id) =>
       _sessions[id] ??
@@ -413,7 +605,7 @@ class FakeLearnRepository implements LearnRepository {
       PracticeMode.topic => pool.where((q) => q.topic == s.topic),
       PracticeMode.category => pool.where((q) => q.category == s.category),
       PracticeMode.review => pool.where((q) => _reviewDue.contains(q.ref)),
-      PracticeMode.bookmarks => pool.where((q) => _bookmarks.contains(q.ref)),
+      PracticeMode.bookmarks => pool.where((q) => _bookmarks.containsKey(q.ref)),
       PracticeMode.passage => const <FakeQuestion>[],
     };
     pool = switch (s.difficulty) {
@@ -434,6 +626,7 @@ class FakeLearnRepository implements LearnRepository {
     return switch (s.mode) {
       PracticeMode.review => 'Review',
       PracticeMode.bookmarks => 'Bookmarks',
+      PracticeMode.challenge => [?subject?.name, 'Self Challenge'].join(' · '),
       PracticeMode.topic when subject != null =>
         '${subject.name} · ${subject.topicName(s.topic ?? '')}',
       PracticeMode.category when subject != null =>
@@ -557,6 +750,7 @@ class _FakeSession {
     required this.createdAt,
     required this.short,
     required this.questions,
+    this.passage,
   });
 
   final String id;
@@ -566,6 +760,7 @@ class _FakeSession {
   final DateTime createdAt;
   final bool short;
   final List<(FakeQuestion, PracticeQuestion)> questions;
+  final Passage? passage;
   final answers = <int, SessionAnswer>{};
   var finished = false;
   var expired = false;
@@ -575,6 +770,11 @@ class _FakeSession {
       settings.timed ? (settings.perQuestionS ?? SessionSettings.defaultPerQuestionS) * 1000 : null;
 
   String? get subjectSlug => settings.subject ?? questions.firstOrNull?.$1.subject;
+
+  /// When a challenge's time runs out (the server allows a little more).
+  DateTime? get deadline => settings.mode == PracticeMode.challenge && settings.timeLimitS != null
+      ? createdAt.add(Duration(seconds: settings.timeLimitS!))
+      : null;
 
   PracticeSession toSession(Set<String> bookmarks) => PracticeSession(
     sessionId: id,
@@ -607,6 +807,7 @@ class _FakeSession {
     ],
     answers: List.unmodifiable(answers.values),
     finished: finished,
+    passage: passage,
   );
 }
 
@@ -905,6 +1106,151 @@ final sampleSubjects = [
               'secretion.',
         ),
       ]),
+    ],
+  ),
+];
+
+/// A Fun & Learn passage of the sample content, with its questions as
+/// authored (they have no topic).
+@immutable
+class FakePassage {
+  const FakePassage({
+    required this.id,
+    required this.title,
+    required this.chapter,
+    required this.difficulty,
+    required this.body,
+    required this.questions,
+  });
+
+  final String id;
+  final String title;
+  final FakeChapterRef chapter;
+  final int difficulty;
+
+  /// In quiz markup; paragraphs are separated by blank lines.
+  final String body;
+  final List<FakeQuestion> questions;
+
+  String get subject => chapter.subject;
+}
+
+/// One passage each for Physics and Biology.
+const samplePassages = [
+  FakePassage(
+    id: '0192a0e4-5f1c-7b2a-9d11-5c8e2f4a7b01',
+    title: 'Galileo and the falling balls',
+    chapter: _kinematics,
+    difficulty: 2,
+    body:
+        'For nearly two thousand years people believed that heavy things fall faster than light '
+        'ones. Galileo questioned this. By rolling balls down gentle slopes he slowed the motion '
+        'enough to time it, and found that the distance covered grows with the *square* of the '
+        'time: in twice the time, a ball goes four times as far.\n\n'
+        'That is exactly what uniform acceleration predicts. Starting from rest, s = ½at^2. Near '
+        'the Earth\'s surface, and ignoring air resistance, every body falls with the same '
+        'acceleration g ≈ 9.8 m s^{-2}, whatever its mass.\n\n'
+        'Air resistance is why a feather drifts while a coin drops. On the Moon, where there is '
+        'no air, astronaut David Scott dropped a hammer and a feather together in 1971, and they '
+        'landed at the same moment.',
+    questions: [
+      FakeQuestion(
+        ref: 'fl-phy-fall-1',
+        chapter: _kinematics,
+        topic: '',
+        category: 'concept',
+        difficulty: 1,
+        stem:
+            'According to the passage, how does the distance a ball rolls from rest depend on '
+            'time?',
+        options: [
+          'It grows in proportion to the time',
+          'It grows with the square of the time',
+          'It stays the same',
+          'It grows with the square root of the time',
+        ],
+        answer: 1,
+        explanation:
+            'For uniform acceleration from rest, s = ½at^2, so doubling the time makes the '
+            'distance four times as large.',
+      ),
+      FakeQuestion(
+        ref: 'fl-phy-fall-2',
+        chapter: _kinematics,
+        topic: '',
+        category: 'numerical',
+        difficulty: 2,
+        stem:
+            'A stone is dropped from rest. Taking g = 10 m s^{-2} and ignoring air resistance, '
+            'how far does it fall in the first 2 s?',
+        options: ['10 m', '40 m', '20 m', '5 m'],
+        answer: 2,
+        explanation: 's = ½gt^2 = ½ × 10 × 2^2 = 20 m.',
+      ),
+      FakeQuestion(
+        ref: 'fl-phy-fall-3',
+        chapter: _kinematics,
+        topic: '',
+        category: 'concept',
+        difficulty: 2,
+        stem: 'Why did the hammer and the feather land together on the Moon?',
+        options: [
+          'The Moon\'s gravity is weaker',
+          'There is no air resistance there',
+          'The hammer was hollow',
+          'The feather was dropped first',
+        ],
+        answer: 1,
+        explanation:
+            'Without air, the only force is gravity, which gives every body the same '
+            'acceleration regardless of its mass.',
+      ),
+    ],
+  ),
+  FakePassage(
+    id: '0192a0e4-5f1c-7b2a-9d11-5c8e2f4a7b02',
+    title: 'The cell\'s power stations',
+    chapter: _cell,
+    difficulty: 1,
+    body:
+        'Mitochondria are double-membraned organelles. The inner membrane folds into *cristae*, '
+        'which pack a large surface into a small space; the enzymes of the electron transport '
+        'chain sit on it and make most of the cell\'s ATP.\n\n'
+        'Mitochondria also carry their own circular DNA and 70S ribosomes, much like bacteria. '
+        'This is one of the main clues behind the endosymbiotic theory: long ago, a free-living '
+        'bacterium was taken up by a larger cell and the two came to depend on each other.',
+    questions: [
+      FakeQuestion(
+        ref: 'fl-bio-mito-1',
+        chapter: _cell,
+        topic: '',
+        category: 'factual',
+        difficulty: 1,
+        stem: 'What are the folds of the inner mitochondrial membrane called?',
+        options: ['Thylakoids', 'Cisternae', 'Cristae', 'Grana'],
+        answer: 2,
+        explanation:
+            'The folds are cristae. Thylakoids and grana are in chloroplasts, and cisternae are '
+            'the flattened sacs of the Golgi apparatus.',
+      ),
+      FakeQuestion(
+        ref: 'fl-bio-mito-2',
+        chapter: _cell,
+        topic: '',
+        category: 'concept',
+        difficulty: 2,
+        stem: 'Which feature of mitochondria supports the endosymbiotic theory?',
+        options: [
+          'They are found in every animal cell',
+          'They have their own circular DNA and 70S ribosomes',
+          'They make ATP',
+          'They are surrounded by the cell wall',
+        ],
+        answer: 1,
+        explanation:
+            'Circular DNA and 70S ribosomes are features of bacteria, which suggests that '
+            'mitochondria descend from bacteria taken up by an ancestral cell.',
+      ),
     ],
   ),
 ];
