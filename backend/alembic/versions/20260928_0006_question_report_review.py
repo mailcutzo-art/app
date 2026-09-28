@@ -1,7 +1,7 @@
 """Question report review: the outcome an admin records when closing a report.
 
 Revision ID: 0006
-Revises: 0003
+Revises: 0007
 Create Date: 2026-09-28 10:00:00+00:00
 
 Open reports have no outcome; closed ones (``resolved`` or ``dismissed``) record how they were
@@ -15,7 +15,7 @@ import sqlalchemy as sa
 from alembic import op
 
 revision: str = "0006"
-down_revision: str | None = "0003"
+down_revision: str | None = "0007"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 

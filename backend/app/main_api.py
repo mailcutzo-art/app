@@ -16,6 +16,7 @@ from app.modules.content import router as content
 from app.modules.economy import router as economy
 from app.modules.feedback import router as feedback
 from app.modules.notifications import router as notifications
+from app.modules.notifications import wiring as notification_wiring
 from app.modules.practice import router as practice
 from app.modules.progression import router as progression
 from app.modules.system import router as system
@@ -42,6 +43,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 expose_headers=[REQUEST_ID_HEADER, REPLAYED_HEADER, "Retry-After"],
             )
         )
+    notification_wiring.install()
     app = create_base_app(settings, component="api", title="Quiz API", middleware=middleware)
     app.state.google_jwks = JwksCache()
     app.state.runtime_config = RuntimeConfigCache()

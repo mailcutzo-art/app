@@ -20,6 +20,7 @@ from app.modules.content.models import (
     WordPuzzle,
 )
 from app.modules.content.refs import question_ref
+from app.modules.notifications.models import Notification
 from app.modules.system.models import AppConfig
 from tests.admin_helpers import (
     ORIGIN,
@@ -444,6 +445,11 @@ async def test_the_queue_lists_open_reports_and_closes_them_together(
     assert all(entry.before["status"] == "open" for entry in entries)
     queue_after = await client.get("/admin/question-report/list")
     assert queue_after.text.count(">Review</a>") == 1
+    # The inbox wiring tells each reporter the outcome.
+    kinds = await db_session.scalars(
+        select(Notification.kind).where(Notification.user_id.in_([r.user_id for r in reports]))
+    )
+    assert sorted(kinds) == ["question_report", "question_report"]
 
 
 async def test_retiring_a_reported_question(
