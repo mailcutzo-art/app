@@ -35,6 +35,8 @@ import '../features/settings/notification_settings_screen.dart';
 import '../features/settings/privacy_settings_screen.dart';
 import '../features/settings/restore_account_screen.dart';
 import '../features/settings/settings_screen.dart';
+import '../features/social/blocked_users_screen.dart';
+import '../features/social/public_profile_screen.dart';
 import '../features/social/social_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/system/maintenance_screen.dart';
@@ -124,6 +126,16 @@ abstract final class Routes {
     final id = Uri.decodeComponent(rest.split('/').first);
     return id == matchId;
   }
+
+  /// The Battle tab set up to challenge a friend: `/battle?friend=<user id>`.
+  static String battleWithFriend(String userId) =>
+      Uri(path: battle, queryParameters: {'friend': userId}).toString();
+
+  /// A player's public profile, full screen above the tabs. The same path is the shared link.
+  static String userProfile(String handle) => '/u/${Uri.encodeComponent(handle)}';
+
+  /// The players the user has blocked, opened from Settings → Privacy.
+  static const blockedUsers = '/blocked';
 
   /// Screens that only exist to get the user somewhere else. Being on one never
   /// counts as a destination to come back to.
@@ -254,7 +266,8 @@ final pendingDestinationProvider = Provider<PendingDestination>((ref) {
 });
 
 /// Links shared outside the app. Each maps onto the tab that handles it; the
-/// tab reads the query parameter when its feature is available.
+/// tab reads the query parameter when its feature is available. (`/u/<handle>`,
+/// a player's profile, is a screen of its own.)
 abstract final class DeepLinks {
   /// `/j/K7M2QX`: join a friend or group room by code.
   static String? join(GoRouterState state) =>
@@ -263,10 +276,6 @@ abstract final class DeepLinks {
   /// `/t/<id>`: a tournament.
   static String? tournament(GoRouterState state) =>
       '${Routes.arena}?t=${Uri.encodeQueryComponent(state.pathParameters['id'] ?? '')}';
-
-  /// `/u/<handle>`: a player's profile.
-  static String? user(GoRouterState state) =>
-      '${Routes.social}?u=${Uri.encodeQueryComponent(state.pathParameters['handle'] ?? '')}';
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -335,7 +344,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/j/:code', redirect: (_, state) => DeepLinks.join(state)),
       GoRoute(path: '/t/:id', redirect: (_, state) => DeepLinks.tournament(state)),
-      GoRoute(path: '/u/:handle', redirect: (_, state) => DeepLinks.user(state)),
+      // A player's profile; `/u/<handle>` is also the link shared outside the app.
+      GoRoute(
+        path: '/u/:handle',
+        builder: (_, state) => PublicProfileScreen(handle: state.pathParameters['handle']!),
+      ),
+      GoRoute(path: Routes.blockedUsers, builder: (_, _) => const BlockedUsersScreen()),
       StatefulShellRoute(
         builder: (context, state, shell) => AppShell(shell: shell),
         navigatorContainerBuilder: (context, shell, children) =>

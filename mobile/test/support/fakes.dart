@@ -31,6 +31,8 @@ import 'package:quiz_app/features/profile/data/fake_profile_repository.dart';
 import 'package:quiz_app/features/profile/data/profile_repository.dart';
 import 'package:quiz_app/features/settings/data/fake_settings_repository.dart';
 import 'package:quiz_app/features/settings/data/settings_repository.dart';
+import 'package:quiz_app/features/social/data/fake_social_repository.dart';
+import 'package:quiz_app/features/social/data/social_repository.dart';
 import 'package:quiz_app/features/wallet/data/wallet_repository.dart';
 import 'package:realtime_client/realtime_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -110,7 +112,8 @@ class FakeConfigController extends ConfigController {
 /// sample data, [online] to a device that stays online, and [config] and
 /// [build] to an open app on a current build. The realtime connection talks
 /// to [realtime] (a quiet [TestRealtimeServer] by default) on the test's fake
-/// time, and battles read [battle] and [matches].
+/// time, battles read [battle] and [matches], and the Social tab reads
+/// [social] (the sample world by default).
 List<Override> testOverrides({
   required Session session,
   required SharedPreferences prefs,
@@ -128,6 +131,7 @@ List<Override> testOverrides({
   ProfileRepository? profile,
   SettingsRepository? settings,
   AccountRepository? account,
+  SocialRepository? social,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -154,6 +158,7 @@ List<Override> testOverrides({
   profileRepositoryProvider.overrideWithValue(profile ?? FakeProfileRepository()),
   settingsRepositoryProvider.overrideWithValue(settings ?? FakeSettingsRepository()),
   accountRepositoryProvider.overrideWithValue(account ?? FakeAccountRepository(fakeUser())),
+  socialRepositoryProvider.overrideWithValue(social ?? FakeSocialRepository.seeded()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -184,6 +189,7 @@ Future<ProviderContainer> pumpApp(
   ProfileRepository? profile,
   SettingsRepository? settings,
   AccountRepository? account,
+  SocialRepository? social,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -204,6 +210,7 @@ Future<ProviderContainer> pumpApp(
           profile: profile,
           settings: settings,
           account: account,
+          social: social,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,
