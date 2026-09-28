@@ -31,6 +31,7 @@ from app.modules.progression.models import (
     ProgressEventDedupe,
     UserAchievement,
 )
+from app.modules.social.activity import record_activity
 
 TOPIC = "progression.achievement"
 
@@ -156,6 +157,13 @@ async def _reward(db: AsyncSession, user_id: uuid.UUID, achievement: Achievement
         body=f"{achievement.description}{reward}",
         icon=achievement.icon,
         action={"route": "/profile", "params": {"section": "achievements"}},
+        key=f"achievement:{achievement.id}",
+    )
+    await record_activity(
+        db,
+        user_id,
+        "achievement",
+        {"achievement": achievement.id, "title": achievement.title},
         key=f"achievement:{achievement.id}",
     )
     return Earned(achievement.id, achievement.title, achievement.coins)

@@ -9,8 +9,10 @@ retries anything left behind. One Postgres transaction:
    times, through the same functions as practice), seen questions, review boxes and running
    totals;
 3. applies Glicko-2 to rated games (both players' pre-game values), and the head-to-head record;
-4. captures, releases or pays out casual entries through the ``EscrowPort``;
-5. runs the settlement hooks (XP, coins, missions, ...) and stores each player's
+4. runs the progress hooks (XP, missions, streak, achievements), which lock progress rows
+   before any wallet;
+5. captures, releases or pays out casual entries through the ``EscrowPort``;
+6. runs the settlement hooks (coin rewards, notices, analytics) and stores each player's
    ``match.settled`` payload.
 
 After the commit each player gets ``match.settled`` (on ``ev:u:{uid}``, channel ``m:<mid>``, no
@@ -21,7 +23,7 @@ the match's Redis keys are left to expire.
 import uuid
 from collections.abc import Callable, Mapping, Sequence
 from contextlib import AbstractAsyncContextManager
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import UTC, datetime
 from typing import Any
 
@@ -47,7 +49,13 @@ from app.modules.matches.models import (
     MatchStatus,
     ParticipantResult,
 )
-from app.modules.matches.ports import Integrations, SettledPlayer, SettlementContext
+from app.modules.matches.ports import (
+    LIST_KEYS,
+    Integrations,
+    SettledPlayer,
+    SettlementContext,
+    no_notices,
+)
 from app.modules.practice.answers import update_user_questions
 from app.modules.practice.models import Outcome, QuestionAttempt
 from app.modules.practice.totals import OPPONENTS, AnswerFacts, add_to_totals
@@ -94,6 +102,11 @@ class _Seen:
 class _Outcome:
     payloads: dict[uuid.UUID, dict[str, Any]]
     requeue: list[uuid.UUID]  # ready players of an aborted quick match, holds kept
+
+
+def _merge(target: dict[str, Any], piece: Mapping[str, Any]) -> None:
+    for key, value in piece.items():
+        target[key] = [*target.get(key, []), *value] if key in LIST_KEYS else value
 
 
 def _at(ms: int) -> datetime:
@@ -197,6 +210,36 @@ async def _settle(
     if kind in H2H_KINDS and status == "finished" and len(humans) == 2:
         await _record_h2h(db, humans, results, now)
 
+    players = [
+        SettledPlayer(
+            user_id=user_id,
+            result=results[str(user_id)][0],
+            score=int(final["totals"].get(str(user_id), {}).get("points", 0)),
+            correct=int(final["totals"].get(str(user_id), {}).get("correct", 0)),
+            answered=answered.get(user_id, 0),
+            place=results[str(user_id)][1],
+            forfeited=str(user_id) in losers,
+            rating_delta=(ratings[user_id][subject.slug].delta if user_id in ratings else None),
+        )
+        for user_id in humans
+    ]
+    ctx = SettlementContext(
+        db=db,
+        match_id=match.id,
+        kind=kind.value,
+        status=match.status,
+        reason=final["reason"],
+        subject=subject.slug,
+        players=players,
+        has_bot=bool(final.get("bot")),
+        opponents={u: [o for o in humans if o != u] for u in humans},
+        coins={},
+        questions=len(final["questions"]),
+        finished_at=match.finished_at,
+        now=now,
+    )
+    # Progress rows are locked before the escrow locks wallets (the order everywhere).
+    pieces = await deps.integrations.progress_hooks.run(ctx)
     requeue: list[uuid.UUID] = []
     if status == "aborted" and kind in {MatchKind.QUICK_RATED, MatchKind.QUICK_CASUAL}:
         tickets_by_user = config.get("tickets", {})
@@ -234,34 +277,9 @@ async def _settle(
             }
         )
     await db.execute(insert(MatchParticipant).values(seats).on_conflict_do_nothing())
-
-    players = [
-        SettledPlayer(
-            user_id=user_id,
-            result=results[str(user_id)][0],
-            score=int(final["totals"].get(str(user_id), {}).get("points", 0)),
-            correct=int(final["totals"].get(str(user_id), {}).get("correct", 0)),
-            answered=answered.get(user_id, 0),
-            place=results[str(user_id)][1],
-            forfeited=str(user_id) in losers,
-            rating_delta=(ratings[user_id][subject.slug].delta if user_id in ratings else None),
-        )
-        for user_id in humans
-    ]
-    ctx = SettlementContext(
-        db=db,
-        match_id=match.id,
-        kind=kind.value,
-        status=match.status,
-        reason=final["reason"],
-        subject=subject.slug,
-        players=players,
-        has_bot=bool(final.get("bot")),
-        opponents={u: [o for o in humans if o != u] for u in humans},
-        coins=coins,
-        now=now,
-    )
-    pieces = await deps.integrations.hooks.run(ctx)
+    ctx = replace(ctx, coins=coins)
+    for user_id, piece in (await deps.integrations.hooks.run(ctx)).items():
+        _merge(pieces.setdefault(user_id, {}), piece)
 
     payloads: dict[uuid.UUID, dict[str, Any]] = {}
     resets_at = int(next_ist_midnight(now).timestamp() * 1000)
@@ -511,6 +529,7 @@ async def _move_coins(
                 amount=pot,
                 key=f"m:{mid}:{uid}:pot",
                 reason="casual_win",
+                match_id=mid,
             )
             coins[uuid.UUID(uid)] = pot
     return coins
@@ -551,5 +570,22 @@ async def _after_settlement(
         background = await deps.redis.exists(keys.background(uid))
         if not connected or background:
             culprits.add(uid)
-    for uid in sorted(culprits - requeued):
-        await tickets.record_abort(deps.redis, deps.settings, uid, mid)
+    strikes = {
+        uid: await tickets.record_abort(deps.redis, deps.settings, uid, mid)
+        for uid in sorted(culprits - requeued)
+    }
+    if strikes and deps.integrations.notices is not no_notices:
+        # The inbox says the cancelled match counts toward the cooldown (best effort: the
+        # strikes themselves are already counted).
+        try:
+            async with deps.sessionmaker() as db:
+                for uid, until in strikes.items():
+                    await deps.integrations.notices(
+                        db,
+                        uuid.UUID(uid),
+                        "abort_strike",
+                        {"match_id": mid, "cooldown_until": until},
+                    )
+                await db.commit()
+        except Exception:
+            log.exception("settlement.abort_notices_failed", match_id=mid)

@@ -4,8 +4,8 @@ The formulas (XP per answer and game, the cap rule, the level curve) live in
 ``app.modules.progression.levels``; ``xp_rules()`` is the one place that connects them.
 
 Daily caps (IST days): practice 300, group battles 200 and Practice Bot games 60; other games
-are uncapped. Reaching a level credits ``LEVEL_UP_COINS`` coins per level gained and puts a
-``level_up`` notice in the inbox.
+are uncapped. Reaching a level credits ``LEVEL_UP_COINS`` coins per level gained, puts a
+``level_up`` notice in the inbox and tells the player's friends (the activity feed).
 """
 
 import uuid
@@ -28,6 +28,7 @@ from app.modules.practice.schemas import XpOut
 from app.modules.progression import achievements, levels
 from app.modules.progression.levels import GameKind, GameOutcome
 from app.modules.progression.models import Metric, UserProgress, XpEvent, XpSource
+from app.modules.social.activity import record_activity
 
 PRACTICE_DAILY_CAP = 300
 GAME_DAILY_CAPS: Mapping[GameKind, int] = {GameKind.GROUP: 200, GameKind.BOT: 60}
@@ -144,6 +145,7 @@ async def _grow(
         key=f"level_up:{after}",
     )
     await track(db, "level_up", user_id, {"level": after}, now=now)
+    await record_activity(db, user_id, "level_up", {"level": after}, key=f"level_up:{after}")
     await achievements.signal(db, user_id, Metric.LEVEL, amount=after, event_id=f"level:{after}")
     return True
 

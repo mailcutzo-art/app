@@ -29,6 +29,7 @@ from app.modules.notifications.service import notify
 from app.modules.practice.models import UserDailyStats
 from app.modules.progression import achievements
 from app.modules.progression.models import Metric, StreakDay, StreakState, UserStreak
+from app.modules.social.activity import record_activity
 
 MIN_ANSWERS = 10
 MIN_BATTLES = 1
@@ -163,6 +164,14 @@ async def _extend(db: AsyncSession, streak: UserStreak, day: date, *, now: datet
             title=f"{streak.current}-day streak",
             key=f"streak:{streak.user_id}:{started}:{streak.current}",
             ref=Ref(RefKind.STREAK, started),
+        )
+        # The milestones worth a bonus are worth telling friends about too.
+        await record_activity(
+            db,
+            streak.user_id,
+            "streak",
+            {"days": streak.current},
+            key=f"streak:{started}:{streak.current}",
         )
     await track(db, "streak_extended", streak.user_id, {"days": streak.current}, now=now)
     await achievements.signal(

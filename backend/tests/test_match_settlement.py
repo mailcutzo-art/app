@@ -214,11 +214,14 @@ async def test_hooks_add_to_the_settlement_payload_inside_the_transaction(
     assert {p.user_id: p.result for p in ctx.players} == {asha: "win", ravi: "loss"}
     assert ctx.opponents[asha] == [ravi]
     assert stored is not None
-    assert stored["missions"][0]["done"] is True
+    # List pieces add up (progression's missions first); scalar pieces of later hooks win.
+    assert stored["missions"][-1]["id"] == "m1"
+    assert stored["missions"][-1]["done"] is True
     assert stored["streak"] == {"days": 3, "extended": True}
     assert stored["xp"]["delta"] == 30
     assert stored["rating"]["scope"] == "physics"
-    assert plugins.hooks.names == ["xp", "missions"]
+    assert plugins.progress_hooks.names == ["progression"]
+    assert plugins.hooks.names == ["missions"]
 
 
 async def test_a_failed_settlement_changes_nothing_and_the_worker_retries_it(

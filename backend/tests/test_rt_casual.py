@@ -45,7 +45,14 @@ class Wallets(NoopEscrow):
         return refunded
 
     async def payout(
-        self, db: AsyncSession, *, user_id: uuid.UUID, amount: int, key: str, reason: str
+        self,
+        db: AsyncSession,
+        *,
+        user_id: uuid.UUID,
+        amount: int,
+        key: str,
+        reason: str,
+        match_id: uuid.UUID | None = None,
     ) -> None:
         if key not in self.payouts:
             self.balances[user_id] = self.balance(user_id) + amount

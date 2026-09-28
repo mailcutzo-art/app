@@ -1,19 +1,25 @@
 """What the realtime engine needs from features built elsewhere, as small pluggable interfaces.
 
 - ``EscrowPort``: the casual 5-coin entry (hold at ``mm.join``, capture or release at
-  settlement, the winner's payout). The coin ledger module registers the real one.
-- ``SettlementHooks``: side effects of a settled match (coins, XP, missions, streaks,
-  achievements, leaderboards, notifications). Every hook runs inside the settlement transaction
-  and returns pieces of each player's ``match.settled`` payload.
-- ``BlockCheck``: whether two players blocked each other (never paired). The social module
-  registers it.
+  settlement, the winner's payout).
+- ``SettlementHooks``: side effects of a settled match (XP, missions, streaks, achievements,
+  coin rewards, notices, analytics). Every hook runs inside the settlement transaction and
+  returns pieces of each player's ``match.settled`` payload. ``progress_hooks`` run before the
+  casual escrow touches any wallet, ``hooks`` after it (the lock order: progress rows before
+  wallets).
+- ``BlockCheck``: whether two players blocked each other (never paired).
+- ``ShadowCheck``: whether a player is in the moderation shadow pool (paired only with others
+  in it).
 - ``WalletReader``: a player's coin balance, for the Battle tab and ``match.settled.coins``.
 - ``LeadersReader`` and ``RelationshipReader``: leaderboard leaders for the Battle tab and the
   relationship shown with recent opponents.
+- ``PresenceWriter``, ``Tracker`` and ``NoticeWriter``: social presence, analytics funnel
+  events and inbox notices for things that happen outside a settlement.
 
-``integrations`` holds the ones in use. Defaults keep everything working before the other
-modules exist: holds always succeed and are refunded in full, nobody is blocked, balances are
-unknown (``None``), and match XP is awarded by ``app.modules.matches.xp``.
+``integrations`` holds the ones in use; ``app.modules.matches.wiring.install`` connects the real
+modules at process start. The defaults keep the engine working on its own (tests): holds always
+succeed and are refunded in full, nobody is blocked, balances are unknown (``None``), nothing is
+tracked, and match XP, missions and streaks come from ``app.modules.matches.rewards``.
 """
 
 import uuid
@@ -23,6 +29,7 @@ from datetime import datetime
 from typing import Any, Protocol
 
 import structlog
+from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession
 
 log = structlog.stdlib.get_logger(__name__)
@@ -54,9 +61,16 @@ class EscrowPort(Protocol):
         ...
 
     async def payout(
-        self, db: AsyncSession, *, user_id: uuid.UUID, amount: int, key: str, reason: str
+        self,
+        db: AsyncSession,
+        *,
+        user_id: uuid.UUID,
+        amount: int,
+        key: str,
+        reason: str,
+        match_id: uuid.UUID | None = None,
     ) -> None:
-        """Credit ``amount`` coins (the casual pot)."""
+        """Credit ``amount`` coins (the casual pot of ``match_id``)."""
         ...
 
 
@@ -78,7 +92,14 @@ class NoopEscrow:
         return self._close(hold_id, "captured")
 
     async def payout(
-        self, db: AsyncSession, *, user_id: uuid.UUID, amount: int, key: str, reason: str
+        self,
+        db: AsyncSession,
+        *,
+        user_id: uuid.UUID,
+        amount: int,
+        key: str,
+        reason: str,
+        match_id: uuid.UUID | None = None,
     ) -> None:
         self.payouts.setdefault(key, (user_id, amount))
 
@@ -122,7 +143,9 @@ class SettlementContext:
     players: Sequence[SettledPlayer]
     has_bot: bool
     opponents: Mapping[uuid.UUID, Sequence[uuid.UUID]]  # human opponents of each player
-    coins: Mapping[uuid.UUID, int]  # coins moved by the casual escrow in this settlement
+    coins: Mapping[uuid.UUID, int]  # coins moved by the casual escrow (empty for progress hooks)
+    questions: int  # questions asked
+    finished_at: datetime
     now: datetime
 
 
@@ -137,9 +160,17 @@ LeadersReader = Callable[
 RelationshipReader = Callable[
     [AsyncSession, uuid.UUID, Sequence[uuid.UUID]], Awaitable[Mapping[uuid.UUID, str]]
 ]
+ShadowCheck = Callable[[AsyncSession, uuid.UUID], Awaitable[bool]]
+# (redis, user, "online" | "in_battle" | None to clear, ttl_s)
+PresenceWriter = Callable[[Redis, uuid.UUID, str | None, int], Awaitable[None]]
+# (db, event name, user, props): an analytics funnel event in the caller's transaction.
+Tracker = Callable[[AsyncSession, str, uuid.UUID | None, Mapping[str, Any]], Awaitable[None]]
+# (db, user, what happened, details): an inbox notice in the caller's transaction. ``what`` is
+# ``abort_strike`` ({"match_id", "cooldown_until": ms | None}).
+NoticeWriter = Callable[[AsyncSession, uuid.UUID, str, Mapping[str, Any]], Awaitable[None]]
 
 # Payload keys whose values are lists: pieces from several hooks are concatenated.
-_LIST_KEYS = frozenset({"missions", "achievements"})
+LIST_KEYS = frozenset({"missions", "achievements"})
 
 
 class SettlementHooks:
@@ -166,7 +197,7 @@ class SettlementHooks:
             for user_id, piece in pieces.items():
                 target = merged.setdefault(user_id, {})
                 for key, value in piece.items():
-                    if key in _LIST_KEYS:
+                    if key in LIST_KEYS:
                         target[key] = [*target.get(key, []), *value]
                     else:
                         target[key] = value
@@ -176,6 +207,26 @@ class SettlementHooks:
 
 async def never_blocked(_db: AsyncSession, _a: uuid.UUID, _b: uuid.UUID) -> bool:
     return False
+
+
+async def never_shadowed(_db: AsyncSession, _user_id: uuid.UUID) -> bool:
+    return False
+
+
+async def no_presence(_redis: Redis, _user_id: uuid.UUID, _state: str | None, _ttl_s: int) -> None:
+    return None
+
+
+async def no_tracking(
+    _db: AsyncSession, _name: str, _user_id: uuid.UUID | None, _props: Mapping[str, Any]
+) -> None:
+    return None
+
+
+async def no_notices(
+    _db: AsyncSession, _user_id: uuid.UUID, _what: str, _details: Mapping[str, Any]
+) -> None:
+    return None
 
 
 async def unknown_balance(_db: AsyncSession, _user_id: uuid.UUID) -> int | None:
@@ -197,19 +248,25 @@ async def no_relationships(
 @dataclass(slots=True)
 class Integrations:
     escrow: EscrowPort = field(default_factory=NoopEscrow)
+    progress_hooks: SettlementHooks = field(default_factory=SettlementHooks)
     hooks: SettlementHooks = field(default_factory=SettlementHooks)
     are_blocked: BlockCheck = never_blocked
+    shadow_pool: ShadowCheck = never_shadowed
     wallet: WalletReader = unknown_balance
     leaders: LeadersReader = no_leaders
     relationships: RelationshipReader = no_relationships
+    presence: PresenceWriter = no_presence
+    track: Tracker = no_tracking
+    notices: NoticeWriter = no_notices
 
 
 def default_integrations() -> Integrations:
-    """The defaults, with match XP registered as the first settlement hook."""
-    from app.modules.matches.xp import match_xp_hook  # imported here: xp imports this module
+    """The defaults, with XP, missions and streaks as the progress hook."""
+    # Imported here: rewards imports this module.
+    from app.modules.matches.rewards import progression_hook
 
     integrations = Integrations()
-    integrations.hooks.register("xp", match_xp_hook)
+    integrations.progress_hooks.register("progression", progression_hook)
     return integrations
 
 
