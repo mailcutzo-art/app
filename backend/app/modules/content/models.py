@@ -290,7 +290,7 @@ class QuestionStats(Base):
 
 
 class WordPuzzle(TimestampMixin, Base):
-    """A Guess the Word term (served with the coin economy in a later phase)."""
+    """A Guess the Word term."""
 
     __tablename__ = "word_puzzles"
     __table_args__ = (

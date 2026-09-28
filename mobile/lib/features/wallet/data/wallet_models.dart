@@ -33,7 +33,9 @@ class TxRef {
   final String? id;
 
   /// Where tapping the transaction goes, or null when its source has no screen.
+  /// A casual entry fee's id is `mm:<ticket>` (a matchmaking ticket, no match page).
   String? get location => switch ((kind, id)) {
+    (TxKind.match, final id?) when id.startsWith('mm:') => null,
     (TxKind.match, final id?) => Routes.battleReview(id),
     (TxKind.tournament, final id?) => Uri(
       path: Routes.arena,

@@ -27,6 +27,9 @@ class SessionEnd {
 
 /// Called when the session is over: the refresh token was rejected, the
 /// session was revoked, or the account was suspended.
+/// The server's code for a closed (deleted or deleting) account.
+const accountClosed = 'ACCOUNT_CLOSED';
+
 typedef SessionExpiredCallback = void Function(SessionEnd end);
 
 /// Thin wrapper over Dio that returns decoded JSON or throws [AppFailure].
@@ -140,6 +143,12 @@ class AuthInterceptor extends QueuedInterceptor {
       return handler.next(err);
     }
     if (status != 401 || options.extra[skipAuth] == true || options.extra['retried'] == true) {
+      return handler.next(err);
+    }
+    // The account awaits deletion: a new token won't help. The session layer re-reads the
+    // account and shows the restore screen (or signs out when it can no longer be restored).
+    if (failureFromDio(err).code == accountClosed) {
+      onSessionExpired(const SessionEnd(reason: accountClosed));
       return handler.next(err);
     }
     final sentWith = options.headers['Authorization'];

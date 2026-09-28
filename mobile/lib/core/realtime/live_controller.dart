@@ -23,7 +23,7 @@ import 'live_match.dart';
 import 'live_text.dart';
 import 'search_state.dart';
 
-/// Later phases (friend rooms, invites, tournaments, the inbox) plug into the live connection
+/// Features (friend rooms, invites, tournaments, the inbox) plug into the live connection
 /// here, without touching the battle router.
 abstract interface class LiveEventHook {
   /// An event the battle router doesn't handle: `invite.*`, `room.*`, `t.*`, `notify`, …
@@ -37,7 +37,7 @@ abstract interface class LiveEventHook {
   void attach(LiveController controller);
 }
 
-/// The hooks registered by later phases: the inbox badge (`notify`) and the Arena (`t.*`). Rooms
+/// The hooks registered by features: the inbox badge (`notify`) and the Arena (`t.*`). Rooms
 /// and invites attach themselves with [LiveController.addHook] (their controller lives on this one).
 final liveEventHooksProvider = Provider<List<LiveEventHook>>(
   (ref) => [InboxLiveHook(ref), TournamentLiveHook(ref)],

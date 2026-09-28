@@ -12,7 +12,7 @@ from app.core.db import Base, UUIDv7Pk
 
 
 class AppConfig(Base):
-    """Runtime-tunable configuration values (read by ``/v1/config`` in a later phase)."""
+    """Runtime-tunable configuration values (read by ``/v1/config``)."""
 
     __tablename__ = "app_config"
 

@@ -68,11 +68,17 @@ final class Suspended extends Session {
 Session sessionFor(Me me, {bool offline = false}) =>
     me.isPendingDeletion ? PendingDeletion(me) : SignedIn(me, offline: offline);
 
+/// Shown when signing in to an account deleted more than 7 days ago.
+const closedAccountMessage =
+    'This account was deleted and can no longer be restored. '
+    'You can sign in again with a new account after 30 days.';
+
 /// What to tell a user whose session ended without them asking.
 String signedOutMessage(String? reason) => switch (reason) {
   'signed_out' => 'You were signed out from another device.',
   'session_limit' => 'You signed in on too many devices, so this one was signed out.',
   'refresh_reuse' => 'For your safety, please sign in again.',
+  accountClosed => closedAccountMessage,
   _ => 'Your session has ended. Please sign in again.',
 };
 
@@ -87,6 +93,12 @@ class SessionController extends AsyncNotifier<Session> {
   Future<Session> build() async {
     ref.listen(sessionExpiredProvider, (_, _) {
       final end = ref.read(sessionExpiredProvider.notifier).last;
+      if (end.reason == accountClosed && end.ban == null && state.value is SignedIn) {
+        if (_recheckingClosed) return;
+        // Tokens are still good for restore: re-read the account to show the restore screen.
+        unawaited(_recheckClosed());
+        return;
+      }
       _clearSnapshot();
       final ban = end.ban;
       state = AsyncData(
@@ -113,6 +125,19 @@ class SessionController extends AsyncNotifier<Session> {
       final cached = await _readSnapshot();
       if (cached != null && failure.isRetryable) return sessionFor(cached, offline: true);
       rethrow;
+    }
+  }
+
+  bool _recheckingClosed = false;
+
+  Future<void> _recheckClosed() async {
+    _recheckingClosed = true;
+    try {
+      await refreshUser();
+    } on AppFailure catch (failure) {
+      if (failure is UnauthorizedFailure) await endLocally(message: closedAccountMessage);
+    } finally {
+      _recheckingClosed = false;
     }
   }
 
@@ -163,6 +188,9 @@ class SessionController extends AsyncNotifier<Session> {
     } on ForbiddenFailure catch (failure) {
       // A suspended account gets the Suspended screen (reason, end date,
       // appeal), not a one-line error on the sign-in screen.
+      if (failure.code == accountClosed) {
+        throw ForbiddenFailure(closedAccountMessage, code: failure.code);
+      }
       if (failure.code != 'ACCOUNT_BANNED') rethrow;
       state = AsyncData(Suspended.fromDetails(failure.details));
       return;

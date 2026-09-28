@@ -74,20 +74,28 @@ class NotificationSettingsScreen extends ConsumerWidget {
           ),
         const SettingsNote('Everything is still kept in your inbox, whatever is switched off.'),
         const SettingsHeader('Quiet hours'),
-        SettingsLink(
-          title: 'Starts',
-          icon: AppIcons.moon,
-          tone: PastelTone.lavender,
-          value: value.quietStart.wire,
-          onTap: () => unawaited(_pickTime(context, ref, value, start: true)),
+        ToggleRow(
+          title: 'Quiet hours',
+          subtitle: 'Hold pushes overnight',
+          value: value.quietOn,
+          onChanged: (on) => unawaited(_save(context, ref, value.withQuietHours(on: on))),
         ),
-        SettingsLink(
-          title: 'Ends',
-          icon: AppIcons.sun,
-          tone: PastelTone.lemon,
-          value: value.quietEnd.wire,
-          onTap: () => unawaited(_pickTime(context, ref, value, start: false)),
-        ),
+        if (value.quietOn) ...[
+          SettingsLink(
+            title: 'Starts',
+            icon: AppIcons.moon,
+            tone: PastelTone.lavender,
+            value: value.quietStart.wire,
+            onTap: () => unawaited(_pickTime(context, ref, value, start: true)),
+          ),
+          SettingsLink(
+            title: 'Ends',
+            icon: AppIcons.sun,
+            tone: PastelTone.lemon,
+            value: value.quietEnd.wire,
+            onTap: () => unawaited(_pickTime(context, ref, value, start: false)),
+          ),
+        ],
         const SettingsNote(
           'India time. During quiet hours notifications go to your inbox without a sound, '
           'except your own match or tournament round.',

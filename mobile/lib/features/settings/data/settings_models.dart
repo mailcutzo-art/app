@@ -57,6 +57,7 @@ class NotificationSettings {
     this.kinds = const {},
     this.quietStart = defaultQuietStart,
     this.quietEnd = defaultQuietEnd,
+    this.quietOn = true,
   });
 
   factory NotificationSettings.fromJson(Object? json) {
@@ -75,6 +76,7 @@ class NotificationSettings {
         final end? => DayTime.parse(end),
         null => defaultQuietEnd,
       },
+      quietOn: quiet != null,
     );
   }
 
@@ -85,21 +87,30 @@ class NotificationSettings {
   final DayTime quietStart;
   final DayTime quietEnd;
 
+  /// False when the server sent `quiet_hours: null`; saved back as null.
+  final bool quietOn;
+
   /// Kinds the server didn't mention are on.
   bool isOn(NotificationKind kind) => kinds[kind] ?? true;
 
-  NotificationSettings withKind(NotificationKind kind, {required bool on}) =>
-      NotificationSettings(kinds: {...kinds, kind: on}, quietStart: quietStart, quietEnd: quietEnd);
-
-  NotificationSettings withQuietHours({DayTime? start, DayTime? end}) => NotificationSettings(
-    kinds: kinds,
-    quietStart: start ?? quietStart,
-    quietEnd: end ?? quietEnd,
+  NotificationSettings withKind(NotificationKind kind, {required bool on}) => NotificationSettings(
+    kinds: {...kinds, kind: on},
+    quietStart: quietStart,
+    quietEnd: quietEnd,
+    quietOn: quietOn,
   );
+
+  NotificationSettings withQuietHours({DayTime? start, DayTime? end, bool? on}) =>
+      NotificationSettings(
+        kinds: kinds,
+        quietStart: start ?? quietStart,
+        quietEnd: end ?? quietEnd,
+        quietOn: on ?? quietOn,
+      );
 
   Map<String, Object?> toJson() => {
     'kinds': {for (final kind in NotificationKind.values) kind.wire: isOn(kind)},
-    'quiet_hours': {'start': quietStart.wire, 'end': quietEnd.wire},
+    'quiet_hours': quietOn ? {'start': quietStart.wire, 'end': quietEnd.wire} : null,
   };
 }
 
