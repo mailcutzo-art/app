@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../app/live/live_hub.dart';
 import '../../app/router.dart';
 import '../../features/battle/data/battle_repository.dart';
+import '../../features/inbox/inbox_providers.dart' show InboxLiveHook;
 import '../auth/token_store.dart';
 import '../config/app_config.dart' show liveGameProvider;
 import '../network/api_client.dart';
@@ -31,8 +32,8 @@ abstract interface class LiveEventHook {
   void onWelcome(WelcomeEvent welcome);
 }
 
-/// The hooks registered by later phases. None yet.
-final liveEventHooksProvider = Provider<List<LiveEventHook>>((ref) => const []);
+/// The hooks registered by later phases: the inbox badge (`notify`).
+final liveEventHooksProvider = Provider<List<LiveEventHook>>((ref) => [InboxLiveHook(ref)]);
 
 /// Ids of the alerts this controller puts on the live layer.
 abstract final class LiveAlertIds {

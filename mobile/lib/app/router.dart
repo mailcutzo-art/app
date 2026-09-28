@@ -16,16 +16,26 @@ import '../features/battle/match/review_screen.dart';
 import '../features/battle/search_screen.dart';
 import '../features/debug/debug_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/inbox/inbox_screen.dart';
 import '../features/learn/learn_screen.dart';
 import '../features/learn/subject_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/practice/practice_screen.dart';
 import '../features/profile/profile_screen.dart';
+import '../features/settings/delete_account_screen.dart';
+import '../features/settings/devices_screen.dart';
+import '../features/settings/edit_profile_screen.dart';
+import '../features/settings/feedback_screen.dart';
+import '../features/settings/notification_settings_screen.dart';
+import '../features/settings/privacy_settings_screen.dart';
+import '../features/settings/restore_account_screen.dart';
+import '../features/settings/settings_screen.dart';
 import '../features/social/social_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/system/maintenance_screen.dart';
 import '../features/system/suspended_screen.dart';
 import '../features/system/update_required_screen.dart';
+import '../features/wallet/wallet_screen.dart';
 import 'shell.dart';
 
 abstract final class Routes {
@@ -43,6 +53,20 @@ abstract final class Routes {
   static const profile = '/profile';
   static const debug = '/debug';
   static const practice = '/practice';
+
+  /// The deleted account's Restore-or-Sign-out screen (a gate).
+  static const restore = '/restore';
+
+  /// Full screen above the tabs: the inbox behind the bell, the wallet, and settings.
+  static const inbox = '/inbox';
+  static const wallet = '/wallet';
+  static const settings = '/settings';
+  static const settingsProfile = '$settings/profile';
+  static const settingsPrivacy = '$settings/privacy';
+  static const settingsNotifications = '$settings/notifications';
+  static const settingsDevices = '$settings/devices';
+  static const settingsFeedback = '$settings/feedback';
+  static const settingsDelete = '$settings/delete-account';
 
   static const tabs = [home, learn, battle, arena, social];
 
@@ -80,7 +104,7 @@ abstract final class Routes {
 
   /// Screens that only exist to get the user somewhere else. Being on one never
   /// counts as a destination to come back to.
-  static const gates = {splash, signIn, onboarding, update, maintenance, suspended};
+  static const gates = {splash, signIn, onboarding, update, maintenance, suspended, restore};
 }
 
 /// Where the router should send the user, and the destination to resume once
@@ -122,6 +146,10 @@ RouteDecision decideRoute({
       // Nothing else is reachable, and nothing is worth remembering.
       const allowed = {Routes.suspended, Routes.debug};
       return (redirect: allowed.contains(path) ? null : Routes.suspended, pending: null);
+    case PendingDeletion():
+      // A restricted session: Restore or Sign out. A link opened meanwhile waits for the restore.
+      const allowed = {Routes.restore, Routes.debug};
+      return (redirect: allowed.contains(path) ? null : Routes.restore, pending: remember);
     case SignedOut():
       const open = {Routes.signIn, Routes.debug};
       return (redirect: open.contains(path) ? null : Routes.signIn, pending: remember);
@@ -249,7 +277,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.update, builder: (_, _) => const UpdateRequiredScreen()),
       GoRoute(path: Routes.maintenance, builder: (_, _) => const MaintenanceScreen()),
       GoRoute(path: Routes.suspended, builder: (_, _) => const SuspendedScreen()),
+      GoRoute(path: Routes.restore, builder: (_, _) => const RestoreAccountScreen()),
       GoRoute(path: Routes.profile, builder: (_, _) => const ProfileScreen()),
+      GoRoute(path: Routes.inbox, builder: (_, _) => const InboxScreen()),
+      GoRoute(path: Routes.wallet, builder: (_, _) => const WalletScreen()),
+      GoRoute(
+        path: Routes.settings,
+        builder: (_, _) => const SettingsScreen(),
+        routes: [
+          GoRoute(path: 'profile', builder: (_, _) => const EditProfileScreen()),
+          GoRoute(path: 'privacy', builder: (_, _) => const PrivacySettingsScreen()),
+          GoRoute(path: 'notifications', builder: (_, _) => const NotificationSettingsScreen()),
+          GoRoute(path: 'devices', builder: (_, _) => const DevicesScreen()),
+          GoRoute(path: 'feedback', builder: (_, _) => const FeedbackScreen()),
+          GoRoute(path: 'delete-account', builder: (_, _) => const DeleteAccountScreen()),
+        ],
+      ),
       GoRoute(path: Routes.debug, builder: (_, _) => const DebugScreen()),
       GoRoute(
         path: '${Routes.practice}/:sessionId',

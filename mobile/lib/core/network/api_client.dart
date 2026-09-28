@@ -37,6 +37,10 @@ class ApiClient {
 
   Dio get dio => _dio;
 
+  /// The server's request id for the most recent call that failed with a response, attached to
+  /// problem reports (`POST /v1/feedback`).
+  String? lastErrorRequestId;
+
   Future<Object?> get(String path, {Map<String, Object?>? query, bool auth = true}) =>
       _send(() => _dio.get<Object?>(path, queryParameters: query, options: _opts(auth)));
 
@@ -65,6 +69,7 @@ class ApiClient {
       final response = await request();
       return response.data;
     } on DioException catch (e) {
+      lastErrorRequestId = requestIdOf(e.response) ?? lastErrorRequestId;
       throw failureFromDio(e);
     }
   }

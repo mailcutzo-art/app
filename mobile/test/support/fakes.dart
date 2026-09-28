@@ -21,10 +21,17 @@ import 'package:quiz_app/features/battle/data/battle_repository.dart';
 import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
 import 'package:quiz_app/features/battle/demo/demo_server.dart';
 import 'package:quiz_app/features/battle/match/screen_guard.dart';
+import 'package:quiz_app/features/inbox/data/fake_inbox_repository.dart';
+import 'package:quiz_app/features/inbox/data/inbox_repository.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
 import 'package:quiz_app/features/learn/data/learn_repository.dart';
 import 'package:quiz_app/features/onboarding/onboarding_repository.dart';
 import 'package:quiz_app/features/practice/practice_controller.dart';
+import 'package:quiz_app/features/profile/data/fake_profile_repository.dart';
+import 'package:quiz_app/features/profile/data/profile_repository.dart';
+import 'package:quiz_app/features/settings/data/fake_settings_repository.dart';
+import 'package:quiz_app/features/settings/data/settings_repository.dart';
+import 'package:quiz_app/features/wallet/data/wallet_repository.dart';
 import 'package:realtime_client/realtime_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -116,6 +123,11 @@ List<Override> testOverrides({
   MatchRepository? matches,
   ScreenGuard? screenGuard,
   SessionController Function()? sessionController,
+  InboxRepository? inbox,
+  WalletRepository? wallet,
+  ProfileRepository? profile,
+  SettingsRepository? settings,
+  AccountRepository? account,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -137,6 +149,11 @@ List<Override> testOverrides({
   battleRepositoryProvider.overrideWithValue(battle ?? FakeBattleRepository()),
   matchRepositoryProvider.overrideWithValue(matches ?? FakeMatchRepository()),
   screenGuardProvider.overrideWithValue(screenGuard ?? FakeScreenGuard()),
+  inboxRepositoryProvider.overrideWithValue(inbox ?? FakeInboxRepository()),
+  walletRepositoryProvider.overrideWithValue(wallet ?? FakeWalletRepository()),
+  profileRepositoryProvider.overrideWithValue(profile ?? FakeProfileRepository()),
+  settingsRepositoryProvider.overrideWithValue(settings ?? FakeSettingsRepository()),
+  accountRepositoryProvider.overrideWithValue(account ?? FakeAccountRepository(fakeUser())),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -162,6 +179,11 @@ Future<ProviderContainer> pumpApp(
   MatchRepository? matches,
   ScreenGuard? screenGuard,
   SessionController Function()? sessionController,
+  InboxRepository? inbox,
+  WalletRepository? wallet,
+  ProfileRepository? profile,
+  SettingsRepository? settings,
+  AccountRepository? account,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -177,6 +199,11 @@ Future<ProviderContainer> pumpApp(
           matches: matches,
           screenGuard: screenGuard,
           sessionController: sessionController,
+          inbox: inbox,
+          wallet: wallet,
+          profile: profile,
+          settings: settings,
+          account: account,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,

@@ -3,12 +3,16 @@ import 'package:dio/dio.dart';
 /// Every error the UI can see. Messages are written for people; raw server or
 /// exception text never reaches the screen.
 sealed class AppFailure implements Exception {
-  const AppFailure(this.message, {this.code});
+  const AppFailure(this.message, {this.code, this.details = const {}});
 
   final String message;
 
   /// Machine-readable code from the server envelope, when there is one.
   final String? code;
+
+  /// Extra facts from the server envelope, e.g. a ban's `reason`, `until` and `appeal`, or
+  /// `next_change_at` for `HANDLE_CHANGE_TOO_SOON`.
+  final Map<String, Object?> details;
 
   bool get isRetryable => false;
 
@@ -35,10 +39,7 @@ final class UnauthorizedFailure extends AppFailure {
 }
 
 final class ForbiddenFailure extends AppFailure {
-  const ForbiddenFailure(super.message, {super.code, this.details = const {}});
-
-  /// Extra facts from the server, e.g. a ban's `reason`, `until` and `appeal`.
-  final Map<String, Object?> details;
+  const ForbiddenFailure(super.message, {super.code, super.details});
 }
 
 final class NotFoundFailure extends AppFailure {
@@ -46,18 +47,18 @@ final class NotFoundFailure extends AppFailure {
 }
 
 final class ConflictFailure extends AppFailure {
-  const ConflictFailure(super.message, {super.code});
+  const ConflictFailure(super.message, {super.code, super.details});
 }
 
 final class ValidationFailure extends AppFailure {
-  const ValidationFailure(super.message, {super.code, this.fields = const {}});
+  const ValidationFailure(super.message, {super.code, super.details, this.fields = const {}});
 
   /// Field name → problem, for inline form errors.
   final Map<String, String> fields;
 }
 
 final class RateLimitedFailure extends AppFailure {
-  const RateLimitedFailure({this.retryAfter, super.code})
+  const RateLimitedFailure({this.retryAfter, super.code, super.details})
     : super('Too many attempts. Please wait a moment.');
 
   final Duration? retryAfter;
@@ -126,7 +127,12 @@ AppFailure _fromResponse(Response<dynamic>? response) {
   switch (status) {
     case 400:
     case 422:
-      return ValidationFailure(text, code: code, fields: _fieldErrors(details));
+      return ValidationFailure(
+        text,
+        code: code,
+        details: _detailsMap(details),
+        fields: _fieldErrors(details),
+      );
     case 401:
       return UnauthorizedFailure(code: code);
     case 403:
@@ -134,13 +140,14 @@ AppFailure _fromResponse(Response<dynamic>? response) {
     case 404:
       return NotFoundFailure(text, code: code);
     case 409:
-      return ConflictFailure(text, code: code);
+      return ConflictFailure(text, code: code, details: _detailsMap(details));
     case 426:
       return const UpgradeRequiredFailure();
     case 429:
       final seconds = int.tryParse(response?.headers.value('retry-after') ?? '');
       return RateLimitedFailure(
         code: code,
+        details: _detailsMap(details),
         retryAfter: seconds == null ? null : Duration(seconds: seconds),
       );
     case 503:
@@ -177,3 +184,12 @@ Map<String, Object?> _detailsMap(Object? details) => switch (details) {
   },
   _ => const {},
 };
+
+/// The request id of a failed call, from the envelope (`error.request_id`) or the
+/// `X-Request-ID` header, so a problem report can point at the server's logs.
+String? requestIdOf(Response<dynamic>? response) {
+  final data = response?.data;
+  if (data case {'error': {'request_id': final String id}} when id.isNotEmpty) return id;
+  final header = response?.headers.value('x-request-id');
+  return header == null || header.isEmpty ? null : header;
+}
