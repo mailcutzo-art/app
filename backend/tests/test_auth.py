@@ -94,6 +94,9 @@ async def test_google_sign_in_creates_the_user_and_a_session(
         "onboarding_completed": False,
         "roles": ["user"],
         "created_at": user["created_at"],
+        "status": "active",
+        "restore_until": None,
+        "next_handle_change_at": None,
     }
     me = await client.get("/v1/me", headers=bearer(body["access_token"]))
     assert me.status_code == 200

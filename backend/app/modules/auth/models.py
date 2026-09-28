@@ -32,6 +32,8 @@ class RevokeReason(StrEnum):
     LOGOUT = "logout"
     SIGNED_OUT = "signed_out"  # ended from another device's session list
     REFRESH_REUSE = "refresh_reuse"  # a used refresh token came back after the grace period
+    ACCOUNT_DELETED = "account_deleted"  # the player deleted their account
+    BANNED = "banned"  # a moderator banned the account (requests answer ACCOUNT_BANNED)
 
 
 class AuthIdentity(Base):

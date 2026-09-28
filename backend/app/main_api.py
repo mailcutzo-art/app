@@ -15,10 +15,12 @@ from app.modules.coach import router as coach
 from app.modules.content import router as content
 from app.modules.economy import router as economy
 from app.modules.feedback import router as feedback
+from app.modules.moderation import router as moderation
 from app.modules.notifications import router as notifications
 from app.modules.notifications import wiring as notification_wiring
 from app.modules.practice import router as practice
 from app.modules.progression import router as progression
+from app.modules.social import router as social
 from app.modules.system import router as system
 from app.modules.system.runtime import APP_BUILD_HEADER, ClientGates, RuntimeConfigCache
 from app.modules.users import router as users
@@ -66,6 +68,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         notifications.router,
         analytics.router,
         feedback.router,
+        social.router,
+        moderation.router,
     ):
         app.include_router(router, prefix="/v1", dependencies=[ClientGates])
     if settings.admin_enabled:

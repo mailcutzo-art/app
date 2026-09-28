@@ -220,13 +220,14 @@ async def test_profile_edits(client: AsyncClient, asha: dict[str, str]) -> None:
 
 async def test_profile_edits_are_validated(client: AsyncClient, asha: dict[str, str]) -> None:
     response = await client.patch(
-        "/v1/me", json={"display_name": "x", "handle": "new_handle"}, headers=asha
+        "/v1/me", json={"display_name": "x", "handle": "no", "email": "a@b.co"}, headers=asha
     )
 
     assert response.status_code == 422
     assert response.json()["error"]["details"]["fields"] == {
         "display_name": "Use 2–30 characters.",
-        "handle": "This field isn't allowed here.",
+        "handle": "Use 3–20 letters, numbers or _",
+        "email": "This field isn't allowed here.",
     }
 
 

@@ -250,6 +250,17 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
   to deliver). Players who turned analytics off are not recorded; minors are stored without a
   user id, with a session key that is an HMAC under a daily salt deleted after two days.
 
+- **Social and account** (`app.modules.social`, `app.modules.moderation`,
+  `app.modules.users.deletion`). Other features plug in rather than being imported:
+  `register_have_played(fn)` ("played with" for minors' friend requests; default never),
+  `register_profile_section("ratings" | "form" | "h2h", fn)` (public profile sections; default
+  empty), `register_block_hook(fn)` (e.g. cancel invites), `register_ban_hook(fn)` and
+  `on_account_deleted` / `on_account_restored` / `on_account_erased(fn)`. They call
+  `are_blocked(db, a, b)`, `blocked_ids(db, uid)`, `can_challenge(db, viewer, target)`,
+  `set_presence(redis, uid, state, ttl_s)`, `record_activity(db, uid, kind, payload, key=)`,
+  `in_shadow_pool(db, uid, now=)` and `apply_moderation(db, redis, uid, action, reason=, until=,
+  by=, now=)`.
+
 ## Worker jobs
 
 | Job | Every | Does |
@@ -261,6 +272,9 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
 | `outbox_cleanup` | daily | deletes delivered messages after 7 days, dead ones after 30 |
 | `hold_reaper` | 1 min | refunds coin holds stuck for 30 minutes whose reference isn't live |
 | `notifications_retention`, `analytics_retention` | daily | inbox 90 days; analytics 180 days and old session salts |
+| `moderation_expiry` | 1 min | ends social restrictions and temporary bans whose time is up |
+| `account_erasure` | hourly | erases accounts 30 days after deletion: tombstones the user row, drops identities, sessions, settings, inbox, social rows and feedback |
+| `activity_retention` | daily | the friends' activity feed keeps 30 days |
 
 A Redis lease keeps each run to one worker replica, and daily jobs mark the day done only after
 they succeed (`app/core/jobs.py`).

@@ -62,6 +62,9 @@ async def test_jobs_are_scheduled(caplog: pytest.LogCaptureFixture) -> None:
         ("notifications_retention", 3600.0),
         ("analytics_retention", 3600.0),
         ("streaks", 300.0),
+        ("moderation_expiry", 60.0),
+        ("account_erasure", 3600.0),
+        ("activity_retention", 3600.0),
     ]
     await heartbeat(None)
     assert log_events(caplog, "worker.heartbeat")

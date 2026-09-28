@@ -66,25 +66,24 @@ class AuthContext:
     user_id: uuid.UUID
     session_id: uuid.UUID
     roles: frozenset[str]
+    # A session of an account deleted less than 7 days ago; only ``CurrentAuthClosing``
+    # endpoints (``GET /v1/me``, restore, logout) accept it.
+    pending_deletion: bool = False
 
     def has_role(self, role: Role) -> bool:
         rank = max((_ROLE_RANKS.get(held, -1) for held in self.roles), default=-1)
         return rank >= _ROLE_RANKS[role]
 
 
-async def get_auth_context(
+async def _authenticate(
     conn: HTTPConnection,
     settings: SettingsDep,
     redis: RedisDep,
     db: SessionDep,
     clock: ClockDep,
+    *,
+    allow_pending_deletion: bool,
 ) -> AuthContext:
-    """FastAPI dependency: authenticate the ``Authorization: Bearer`` access token.
-
-    Besides the signature and expiry it checks, in one Redis round trip, that the session was
-    not revoked (logout, ban, reuse detection) and that the user's status and token version
-    still allow the token. Activity is recorded at most every ``ACTIVITY_INTERVAL_S`` seconds.
-    """
     scheme, _, token = conn.headers.get("authorization", "").partition(" ")
     if scheme.lower() != "bearer" or not token.strip():
         raise Unauthorized()
@@ -108,7 +107,10 @@ async def get_auth_context(
         raise Unauthorized("Your session is not valid.", code="INVALID_ACCESS_TOKEN")
     if authz.banned(now):
         raise account_banned(authz.ban_reason, authz.banned_until, appeal=settings.appeal_contact)
-    if authz.status in {UserStatus.PENDING_DELETION, UserStatus.DELETED}:
+    pending_deletion = authz.restorable(now)
+    if authz.status in {UserStatus.PENDING_DELETION, UserStatus.DELETED} and not (
+        pending_deletion and allow_pending_deletion
+    ):
         raise Unauthorized("This account has been closed.", code="ACCOUNT_CLOSED")
     if authz.token_version != claims.token_version:
         raise Unauthorized("Your session is not valid.", code="INVALID_ACCESS_TOKEN")
@@ -116,10 +118,46 @@ async def get_auth_context(
     if first_in_interval:
         await record_activity(db, user_id=claims.user_id, session_id=claims.session_id, now=now)
     structlog.contextvars.bind_contextvars(user_id=str(claims.user_id))
-    return AuthContext(user_id=claims.user_id, session_id=claims.session_id, roles=authz.roles)
+    return AuthContext(
+        user_id=claims.user_id,
+        session_id=claims.session_id,
+        roles=authz.roles,
+        pending_deletion=pending_deletion,
+    )
+
+
+async def get_auth_context(
+    conn: HTTPConnection,
+    settings: SettingsDep,
+    redis: RedisDep,
+    db: SessionDep,
+    clock: ClockDep,
+) -> AuthContext:
+    """FastAPI dependency: authenticate the ``Authorization: Bearer`` access token.
+
+    Besides the signature and expiry it checks, in one Redis round trip, that the session was
+    not revoked (logout, ban, reuse detection) and that the user's status and token version
+    still allow the token. Activity is recorded at most every ``ACTIVITY_INTERVAL_S`` seconds.
+    A deleted account's restricted session gets 401 ``ACCOUNT_CLOSED`` here.
+    """
+    return await _authenticate(conn, settings, redis, db, clock, allow_pending_deletion=False)
+
+
+async def get_closing_auth_context(
+    conn: HTTPConnection,
+    settings: SettingsDep,
+    redis: RedisDep,
+    db: SessionDep,
+    clock: ClockDep,
+) -> AuthContext:
+    """Like ``get_auth_context``, but also accepts the restricted session of an account deleted
+    less than 7 days ago (``auth.pending_deletion``). Only ``GET /v1/me``, ``POST
+    /v1/me/restore`` and logout use it (docs/api-play.md, "Deletion in detail")."""
+    return await _authenticate(conn, settings, redis, db, clock, allow_pending_deletion=True)
 
 
 CurrentAuth = Annotated[AuthContext, Depends(get_auth_context)]
+CurrentAuthClosing = Annotated[AuthContext, Depends(get_closing_auth_context)]
 
 
 async def get_current_user_id(auth: CurrentAuth) -> uuid.UUID:

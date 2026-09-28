@@ -5,7 +5,7 @@ from datetime import datetime, time
 from enum import StrEnum
 from typing import Any
 
-from sqlalchemy import CheckConstraint, ForeignKey, Text, false, func, text, true
+from sqlalchemy import CheckConstraint, ForeignKey, Index, Text, false, func, text, true
 from sqlalchemy.dialects.postgresql import ARRAY, CITEXT
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -50,6 +50,13 @@ class User(TimestampMixin, Base):
         CheckConstraint(
             "ban_reason IN ('cheating', 'abuse', 'offensive_name', 'other')", name="ban_reason"
         ),
+        # Handle search by prefix (``handle::text LIKE 'abc%'``); handles are stored lowercase.
+        Index("ix_users_handle_prefix", "handle", postgresql_ops={"handle": "text_pattern_ops"}),
+        Index(
+            "ix_users_pending_deletion",
+            "deletion_requested_at",
+            postgresql_where=text("status = 'pending_deletion'"),
+        ),
     )
 
     id: Mapped[UUIDv7Pk]
@@ -73,14 +80,34 @@ class User(TimestampMixin, Base):
     # no longer counts, even before anyone resets the status (see ``ban_in_force``).
     ban_reason: Mapped[str | None]
     banned_until: Mapped[datetime | None]
+    # The last handle change after onboarding (a handle can change once every 30 days).
+    handle_changed_at: Mapped[datetime | None]
+    # While status is "pending_deletion": when the player asked, and the end of the restore
+    # window. Erasure happens 30 days after the request (see ``app.modules.users.deletion``).
+    deletion_requested_at: Mapped[datetime | None]
+    restore_until: Mapped[datetime | None]
 
     def ban_in_force(self, now: datetime) -> bool:
         return ban_in_force(self.status, self.banned_until, now)
+
+    def restorable(self, now: datetime) -> bool:
+        return restorable(self.status, self.restore_until, now)
 
 
 def ban_in_force(status: str, banned_until: datetime | None, now: datetime) -> bool:
     """Whether a ban applies now: status "banned", and permanent or not yet over."""
     return status == UserStatus.BANNED and (banned_until is None or banned_until > now)
+
+
+def restorable(status: str, restore_until: datetime | None, now: datetime) -> bool:
+    """Whether a deleted account is still inside its restore window (7 days)."""
+    return (
+        status == UserStatus.PENDING_DELETION and restore_until is not None and restore_until > now
+    )
+
+
+# Accounts nobody else may see: not in search, friends lists, requests, activity or profiles.
+HIDDEN_STATUSES = frozenset({UserStatus.PENDING_DELETION.value, UserStatus.DELETED.value})
 
 
 class UserSettings(Base):
@@ -93,6 +120,11 @@ class UserSettings(Base):
     __tablename__ = "user_settings"
     __table_args__ = (
         CheckConstraint("(quiet_start IS NULL) = (quiet_end IS NULL)", name="quiet_hours"),
+        CheckConstraint(
+            "friend_requests IN ('everyone', 'played_with', 'nobody')", name="friend_requests"
+        ),
+        CheckConstraint("challenges IN ('friends', 'everyone', 'nobody')", name="challenges"),
+        CheckConstraint("presence IN ('friends', 'nobody')", name="presence"),
     )
 
     user_id: Mapped[uuid.UUID] = mapped_column(
@@ -106,4 +138,10 @@ class UserSettings(Base):
     # Push is held back between these IST wall-clock times (both NULL: no quiet hours).
     quiet_start: Mapped[time | None] = mapped_column(server_default=text("'22:30'"))
     quiet_end: Mapped[time | None] = mapped_column(server_default=text("'07:00'"))
+    # Privacy (docs/api-play.md, "Social"). NULL means the default, which depends on whether
+    # the player is a minor today; see ``app.modules.social.privacy``.
+    friend_requests: Mapped[str | None]
+    challenges: Mapped[str | None]
+    presence: Mapped[str | None]
+    public_boards: Mapped[bool | None]
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())

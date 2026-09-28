@@ -238,7 +238,7 @@ Monday gives everyone a fresh start.
 
 | Endpoint | Returns |
 |---|---|
-| `GET /v1/users/{handle}` | The public profile: card, level, `ratings: [{"scope", "rating", "position"}]`, form (last 5 results), `h2h` with you, `relationship` (`none`, `friend`, `requested` or `blocked`), `can_challenge`. `404` when blocked in either direction |
+| `GET /v1/users/{handle}` | The public profile: card, level, `ratings: [{"scope", "rating", "position"}]`, form (last 5 results), `h2h` with you, `relationship` (`none`, `friend`, `requested` or `blocked`), `can_challenge`, `friend_request` (`{"id", "direction": "incoming" \| "outgoing"}` while one is pending, else `null`) and `limited`. A minor seen by a non-friend is `limited`: only the card, with `ratings` and `form` empty and `h2h` null. `404 USER_NOT_FOUND` when blocked in either direction, or for a deleted account |
 | `GET /v1/me/stats` | Ratings per scope with position; W/D/L per mode; accuracy; questions answered; best and current streak; `rating_history: [{"at", "value"}]` for `?range=30d\|90d\|all` |
 
 `GET /v1/me/stats?range=30d` in full (the Profile reads this shape):
@@ -359,26 +359,26 @@ adjustable in settings.
 
 | Endpoint | Does |
 |---|---|
-| `GET /v1/me/friends?cursor=` | Cards with `presence`: `online`, `in_battle`, `in_tournament` or `offline` |
-| `GET /v1/users/search?q=` | Needs at least 3 characters; matches handles by prefix. Cards with `relationship`. Rate-limited |
-| `POST /v1/friend-requests` | Body `{"user_id"}`. Errors: `NOT_ALLOWED` (their privacy settings: minors only accept people they've played), and `LIMIT_REACHED` (20 a day, 100 pending) |
-| `GET /v1/me/friend-requests` | `{"incoming": [...], "outgoing": [...]}` |
-| `POST /v1/friend-requests/{id}/accept` and `/decline` | Accept or decline. `DELETE` cancels your own request |
-| `DELETE /v1/me/friends/{user_id}` | Remove a friend |
+| `GET /v1/me/friends?cursor=&limit=` | By name. Cards plus `presence` (`online`, `in_battle`, `in_tournament` or `offline`; `offline` unless the friend's `presence` setting is `friends`), `friends_since` and `can_challenge` |
+| `GET /v1/users/search?q=` | At least 3 handle characters (a leading `@` is ignored); matches handles by prefix, exact match first, up to 20. Cards with `relationship`. Blocked (either way), deleted and suspended players never appear. Rate-limited |
+| `POST /v1/friend-requests` | Body `{"user_id"}` → `201` `{"id", "user": card, "direction", "status", "created_at"}`. Asking again returns the pending request; asking someone who already asked you accepts theirs (`status: "accepted"`). Errors: `403 NOT_ALLOWED` with `details.reason` `nobody` or `played_with` (their privacy settings: minors only accept people they've played) or `restricted` (your account); `409 LIMIT_REACHED` with `details {"limit": "daily" \| "pending" \| "friends" \| "their_friends", "max"}` (20 a day by IST day, 100 pending, 500 friends); `409 ALREADY_FRIENDS`; `404 USER_NOT_FOUND` |
+| `GET /v1/me/friend-requests` | `{"incoming": [...], "outgoing": [...]}`: pending requests, newest first, each `{"id", "user": card, "direction", "status", "created_at"}` |
+| `POST /v1/friend-requests/{id}/accept` and `/decline` | Accept or decline a request sent to you (the request comes back). `DELETE /v1/friend-requests/{id}` cancels your own request (`204`). Someone else's request is `404 FRIEND_REQUEST_NOT_FOUND`; one already answered is `409 REQUEST_CLOSED` |
+| `DELETE /v1/me/friends/{user_id}` | Remove a friend (`204`) |
 | `GET /v1/me/rivals` | Opponents played 3+ times in 60 days, each with an `h2h` record |
-| `GET /v1/me/activity?cursor=` | Friends' notable events from the last 7 days |
-| `POST /v1/blocks` and `DELETE /v1/blocks/{user_id}` | Block or unblock. `GET /v1/me/blocks` lists blocks |
-| `POST /v1/reports` | Body `{"user_id", "match_id"?, "reason": "cheating" \| "offensive_name" \| "harassment" \| "other", "note"?}` → `202` |
+| `GET /v1/me/activity?cursor=` | Friends' notable events from the last 7 days: `{"id", "user": card, "kind": "achievement" \| "podium" \| "level_up" \| "streak" \| "friend", "payload", "created_at"}`. A `friend` item's payload has the new friend's card as `friend` (never a minor you aren't friends with) |
+| `POST /v1/blocks` and `DELETE /v1/blocks/{user_id}` | Body `{"user_id"}` → `204`. Blocking ends the friendship and pending requests, and hides the two from each other everywhere (search, profiles, lists, pairing, invites). Unblocking doesn't bring the friendship back. `GET /v1/me/blocks?cursor=` lists `{"user": card, "created_at"}` |
+| `POST /v1/reports` | Body `{"user_id", "match_id"?, "reason": "cheating" \| "offensive_name" \| "harassment" \| "other", "note"?}` (note up to 500 characters) → `202`. The same report within a day is kept once. 10 an hour |
 | `GET /v1/me/opponents?days=30` | Recent opponents (people, not bots), each with an `h2h` record, `relationship` and **Add friend**, so a good game can turn into a friendship |
-| `GET /v1/me/settings/privacy` and `PUT` | `{"friend_requests": "everyone" \| "played_with" \| "nobody", "challenges": "friends" \| "everyone" \| "nobody", "presence": "friends" \| "nobody", "public_boards": true}`. Minors default to `played_with`, `friends` and `friends`. Explains any `NOT_ALLOWED` |
+| `GET /v1/me/settings/privacy` and `PUT` | `{"friend_requests": "everyone" \| "played_with" \| "nobody", "challenges": "friends" \| "everyone" \| "nobody", "presence": "friends" \| "nobody", "public_boards": true}`; the `GET` and the `PUT` answer add `is_minor`. Adults default to `everyone`, `everyone`, `friends`; minors to `played_with`, `friends` and `friends` (worked out from the birth year on every read, so they lift at 18). `PUT` sends all four; an under-18 choosing `"friend_requests": "everyone"` gets `422` with a field message. Explains any `NOT_ALLOWED` |
 
 ## Account
 
 | Endpoint | Does |
 |---|---|
-| `PATCH /v1/me` | Any of `display_name`, `avatar`, `goal` and `handle`. The handle can change once every 30 days: sooner is `409 HANDLE_CHANGE_TOO_SOON` with `details.next_change_at`; a taken one is `409 HANDLE_TAKEN`. Returns the profile |
-| `POST /v1/me/delete` | Body `{"confirm": "DELETE", "proof": {…}}` with a fresh sign-in proof (below). Returns `202`, and ends every session |
-| `POST /v1/me/restore` | Allowed within 7 days of a delete. Returns the restored profile (`GET /v1/me`'s shape, `status: "active"`) |
+| `PATCH /v1/me` | Any of `display_name`, `avatar`, `goal` and `handle` → the profile (as `GET /v1/me`). The handle follows the onboarding rules and can change once every 30 days (the one picked at onboarding doesn't count): `409 HANDLE_CHANGE_TOO_SOON` with `details.next_change_at`, `409 HANDLE_TAKEN`. `GET /v1/me` has `next_handle_change_at` (`null`: now) |
+| `POST /v1/me/delete` | Body `{"confirm": "DELETE", "proof": {"provider": "google", "id_token": "…"}}`, or `{"provider": "dev"}` where dev login is enabled. The ID token must be fresh (issued in the last 10 minutes), unused, and for the Google account linked to this profile; otherwise `403 REAUTH_REQUIRED` with `details.reason` (`ID_TOKEN_EXPIRED`, `TOKEN_REPLAYED`, `INVALID_ID_TOKEN`, `WRONG_ACCOUNT` or `PROOF_NOT_ACCEPTED`). Returns `202` `{"status": "pending_deletion", "restore_until"}` and ends every session, this one included (`SESSION_REVOKED`, reason `account_deleted`) |
+| `POST /v1/me/restore` | Allowed within 7 days of a delete, from the restricted session. Returns the profile (as `GET /v1/me`, `status: "active"`); `409 RESTORE_EXPIRED` afterwards |
 | `POST /v1/feedback` | Body `{"kind": "problem" \| "idea" \| "coins" \| "ban_appeal", "message", "request_id"?}` with an `Idempotency-Key` → `202`. The app attaches the last error's request id (`error.request_id`, or the `X-Request-ID` header) |
 
 **The delete proof.** The app signs in again right before deleting and sends what it got:
@@ -399,20 +399,29 @@ adjustable in settings.
   and refunded.
 - **Signing in during those 7 days** gives a restricted session that can only call `GET /v1/me`
   (`status: "pending_deletion"`, with `restore_until`), `POST /v1/me/restore` and logout. The app
-  shows Restore or Sign out. The sign-in response's `user` carries the same `status` and
-  `restore_until`; every other profile has `status: "active"`.
-- **On day 30** the account is erased for good, including its Google link. The same Google account
-  can then sign up again as a new player.
+  shows Restore or Sign out. Anything else answers `401 ACCOUNT_CLOSED`. The sign-in response's
+  `user` carries the same `status` and `restore_until`.
+- **From day 7 to day 30** signing in answers `403 ACCOUNT_CLOSED`.
+- **On day 30** the account is erased for good, including its Google link: the name, handle,
+  email, birth year, sessions, settings, inbox, friends, requests, blocks, activity and feedback
+  go. Coin ledger, match and practice rows stay under the anonymous tombstone id. The same Google
+  account can then sign up again as a new player.
 
 **Bans and restrictions**
 - `ACCOUNT_BANNED` (403) carries `details {"reason": "cheating" | "abuse" | "offensive_name" |
   "other", "until": <ISO or null>, "appeal": "<contact>"}`. The app shows a Suspended screen with
   the reason, the end date, the appeal contact and Sign out.
-- A `restricted` account keeps playing. Blocked actions show an inline notice, and the change is an
-  `account` inbox item.
+- A `restricted` account (`GET /v1/me` `status: "restricted"`) keeps playing but can't send
+  friend requests (`403 NOT_ALLOWED`, reason `restricted`) or challenges. Blocked actions show an
+  inline notice, and the change is an `account` inbox item.
+- The moderation ladder: warn, reset name (to "Player" and a `player_…` handle the player can
+  change at once), restrict social, shadow pool (silent: matchmaking pairs them among themselves),
+  temporary ban, permanent ban. Warnings, resets and restrictions are `account` inbox items. A ban
+  ends every session (`GET` answers `ACCOUNT_BANNED`, and so does a refresh) and closes the live
+  socket.
 - `SESSION_REVOKED` (401) carries `details.reason` (`logout`, `signed_out`, `replaced`,
-  `session_limit` or `refresh_reuse`), so the app can say "Signed out from another device" rather
-  than a vague "session ended".
+  `session_limit`, `refresh_reuse` or `account_deleted`), so the app can say "Signed out from
+  another device" rather than a vague "session ended".
 
 ## Client analytics events
 

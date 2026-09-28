@@ -16,7 +16,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.clock import iso_utc
 from app.core.errors import Forbidden
-from app.modules.users.models import User, ban_in_force
+from app.modules.users.models import User, ban_in_force, restorable
 
 AUTHZ_TTL_S = 60
 
@@ -28,9 +28,13 @@ class Authz:
     roles: frozenset[str]
     ban_reason: str | None = None
     banned_until: datetime | None = None
+    restore_until: datetime | None = None
 
     def banned(self, now: datetime) -> bool:
         return ban_in_force(self.status, self.banned_until, now)
+
+    def restorable(self, now: datetime) -> bool:
+        return restorable(self.status, self.restore_until, now)
 
 
 def authz_key(user_id: uuid.UUID) -> str:
@@ -43,16 +47,20 @@ def parse_authz(raw: str | None) -> Authz | None:
         return None
     try:
         data = orjson.loads(raw)
-        until = data["banned_until"]
         return Authz(
             data["status"],
             int(data["ver"]),
             frozenset(data["roles"]),
             data["ban_reason"],
-            datetime.fromisoformat(until) if until is not None else None,
+            _moment(data["banned_until"]),
+            _moment(data["restore_until"]),
         )
     except (orjson.JSONDecodeError, KeyError, TypeError, ValueError):
         return None
+
+
+def _moment(raw: str | None) -> datetime | None:
+    return datetime.fromisoformat(raw) if raw is not None else None
 
 
 async def load_authz(db: AsyncSession, redis: Redis, user_id: uuid.UUID) -> Authz | None:
@@ -60,14 +68,24 @@ async def load_authz(db: AsyncSession, redis: Redis, user_id: uuid.UUID) -> Auth
     row = (
         await db.execute(
             select(
-                User.status, User.token_version, User.roles, User.ban_reason, User.banned_until
+                User.status,
+                User.token_version,
+                User.roles,
+                User.ban_reason,
+                User.banned_until,
+                User.restore_until,
             ).where(User.id == user_id)
         )
     ).one_or_none()
     if row is None:
         return None
     authz = Authz(
-        row.status, row.token_version, frozenset(row.roles), row.ban_reason, row.banned_until
+        row.status,
+        row.token_version,
+        frozenset(row.roles),
+        row.ban_reason,
+        row.banned_until,
+        row.restore_until,
     )
     payload = {
         "status": authz.status,
@@ -75,6 +93,7 @@ async def load_authz(db: AsyncSession, redis: Redis, user_id: uuid.UUID) -> Auth
         "roles": sorted(authz.roles),
         "ban_reason": authz.ban_reason,
         "banned_until": authz.banned_until.isoformat() if authz.banned_until else None,
+        "restore_until": authz.restore_until.isoformat() if authz.restore_until else None,
     }
     await redis.set(authz_key(user_id), orjson.dumps(payload), ex=AUTHZ_TTL_S)
     return authz
