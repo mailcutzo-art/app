@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app/live/live_hub.dart';
 import '../../app/router.dart';
+import '../../features/arena/tournament_live.dart' show TournamentLiveHook;
 import '../../features/battle/data/battle_repository.dart';
 import '../../features/inbox/inbox_providers.dart' show InboxLiveHook;
 import '../auth/token_store.dart';
@@ -30,10 +31,16 @@ abstract interface class LiveEventHook {
 
   /// After every `welcome`, with everything the user is in (`welcome.active`).
   void onWelcome(WelcomeEvent welcome);
+
+  /// The controller the hook serves, once it exists (a hook can't read `liveControllerProvider`
+  /// itself: that provider depends on the hooks).
+  void attach(LiveController controller);
 }
 
-/// The hooks registered by later phases: the inbox badge (`notify`).
-final liveEventHooksProvider = Provider<List<LiveEventHook>>((ref) => [InboxLiveHook(ref)]);
+/// The hooks registered by later phases: the inbox badge (`notify`) and the Arena (`t.*`).
+final liveEventHooksProvider = Provider<List<LiveEventHook>>(
+  (ref) => [InboxLiveHook(ref), TournamentLiveHook(ref)],
+);
 
 /// Ids of the alerts this controller puts on the live layer.
 abstract final class LiveAlertIds {
@@ -96,6 +103,9 @@ class LiveController {
       prefs = null;
     }
     memory = ActiveMatchMemory(prefs, me);
+    for (final hook in _hooks) {
+      hook.attach(this);
+    }
   }
 
   final Ref _ref;

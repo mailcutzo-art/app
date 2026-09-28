@@ -15,8 +15,11 @@ import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/config/app_config.dart';
 import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/core/network/connectivity.dart';
+import 'package:quiz_app/core/notifications/local_reminders.dart';
 import 'package:quiz_app/core/realtime/realtime_providers.dart';
 import 'package:quiz_app/core/storage/prefs.dart';
+import 'package:quiz_app/features/arena/data/fake_tournament_repository.dart';
+import 'package:quiz_app/features/arena/data/tournament_repository.dart';
 import 'package:quiz_app/features/battle/data/battle_repository.dart';
 import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
 import 'package:quiz_app/features/battle/demo/demo_server.dart';
@@ -24,6 +27,7 @@ import 'package:quiz_app/features/battle/match/screen_guard.dart';
 import 'package:quiz_app/features/inbox/data/fake_inbox_repository.dart';
 import 'package:quiz_app/features/inbox/data/inbox_repository.dart';
 import 'package:quiz_app/features/leaderboards/data/fake_leaderboard_repository.dart';
+import 'package:quiz_app/features/leaderboards/data/leaderboard_models.dart' show PlayerCard;
 import 'package:quiz_app/features/leaderboards/data/leaderboard_repository.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
 import 'package:quiz_app/features/learn/data/learn_repository.dart';
@@ -38,7 +42,7 @@ import 'package:quiz_app/features/settings/data/settings_repository.dart';
 import 'package:quiz_app/features/social/data/fake_social_repository.dart';
 import 'package:quiz_app/features/social/data/social_repository.dart';
 import 'package:quiz_app/features/wallet/data/wallet_repository.dart';
-import 'package:realtime_client/realtime_client.dart';
+import 'package:realtime_client/realtime_client.dart' hide PlayerCard;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'rt_server.dart';
@@ -138,6 +142,9 @@ List<Override> testOverrides({
   SocialRepository? social,
   LeaderboardRepository? leaderboards,
   MissionsRepository? missions,
+  TournamentRepository? arena,
+  ReminderScheduler? reminders,
+  CalendarExporter? calendar,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -169,6 +176,14 @@ List<Override> testOverrides({
     leaderboards ?? FakeLeaderboardRepository.seeded(me: fakeUser()),
   ),
   missionsRepositoryProvider.overrideWithValue(missions ?? FakeMissionsRepository.seeded()),
+  tournamentRepositoryProvider.overrideWithValue(
+    arena ??
+        FakeTournamentRepository(
+          me: const PlayerCard(id: 'u1', displayName: 'Aarav'),
+        ),
+  ),
+  reminderSchedulerProvider.overrideWithValue(reminders ?? MemoryReminderScheduler()),
+  calendarExporterProvider.overrideWithValue(calendar ?? MemoryCalendarExporter()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -202,6 +217,9 @@ Future<ProviderContainer> pumpApp(
   SocialRepository? social,
   LeaderboardRepository? leaderboards,
   MissionsRepository? missions,
+  TournamentRepository? arena,
+  ReminderScheduler? reminders,
+  CalendarExporter? calendar,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -225,6 +243,9 @@ Future<ProviderContainer> pumpApp(
           social: social,
           leaderboards: leaderboards,
           missions: missions,
+          arena: arena,
+          reminders: reminders,
+          calendar: calendar,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,

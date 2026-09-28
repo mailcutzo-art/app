@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../icons/app_icons.dart';
 import '../icons/huge_icon.dart';
+import '../icons/icon_shapes.dart';
 import '../theme/app_theme.dart';
 import '../tokens/app_colors.dart';
 import '../tokens/app_dimens.dart';
@@ -32,6 +33,10 @@ class TournamentCard extends StatelessWidget {
     this.onCta,
     this.onTap,
     this.primaryCta = true,
+    this.statusIcon = AppIcons.clock,
+    this.prizeLabel,
+    this.footnote,
+    this.ctaLoading = false,
   });
 
   final String title;
@@ -53,12 +58,22 @@ class TournamentCard extends StatelessWidget {
   final VoidCallback? onTap;
   final bool primaryCta;
 
+  /// The icon of the status badge (a lock once registration closes, say).
+  final HugeIconData statusIcon;
+
+  /// Replaces the prize chip's number, e.g. "625 of 2,500".
+  final String? prizeLabel;
+
+  /// A line under the capacity bar, e.g. "5 of 8 needed · the prize grows with players".
+  final String? footnote;
+  final bool ctaLoading;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final text = context.text;
     final pair = colors.pastel(tone);
-    final fill = capacity == 0 ? 0.0 : joined / capacity;
+    final fill = capacity == 0 ? 0.0 : (joined / capacity).clamp(0.0, 1.0);
 
     final card = Container(
       padding: const EdgeInsets.all(AppSpacing.xl),
@@ -80,7 +95,7 @@ class TournamentCard extends StatelessWidget {
             children: [
               if (live) const LiveBadge(),
               if (statusLabel != null)
-                OverlineBadge(label: statusLabel!, icon: AppIcons.clock, solid: true),
+                OverlineBadge(label: statusLabel!, icon: statusIcon, solid: true),
               if (subjectLabel != null) OverlineBadge(label: subjectLabel!, tone: tone),
             ],
           ),
@@ -106,7 +121,7 @@ class TournamentCard extends StatelessWidget {
                 iconColor: colors.coin,
                 label: entryFee == null ? 'Free entry' : '${formatCount(entryFee!)} entry',
               ),
-              InfoChip(icon: AppIcons.award, label: formatCount(prizePool)),
+              InfoChip(icon: AppIcons.award, label: prizeLabel ?? formatCount(prizePool)),
               if (scheduleLabel != null) InfoChip(icon: AppIcons.calendar, label: scheduleLabel!),
             ],
           ),
@@ -140,12 +155,17 @@ class TournamentCard extends StatelessWidget {
               AppButton(
                 label: ctaLabel,
                 onPressed: onCta,
+                loading: ctaLoading,
                 variant: primaryCta ? AppButtonVariant.ink : AppButtonVariant.secondary,
                 size: AppButtonSize.medium,
                 expand: false,
               ),
             ],
           ),
+          if (footnote != null) ...[
+            const SizedBox(height: AppSpacing.md),
+            Text(footnote!, style: text.caption.copyWith(color: pair.onContainer)),
+          ],
         ],
       ),
     );
@@ -222,6 +242,8 @@ class LeaderboardRow extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              // Hugs its lines, so a row pinned outside a list (a sticky "you") stays one row tall.
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   highlight ? '$name (you)' : name,

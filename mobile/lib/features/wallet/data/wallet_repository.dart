@@ -119,6 +119,13 @@ class FakeWalletRepository implements WalletRepository {
   /// Cursors asked for by `transactions`, in order.
   final List<String?> transactionCalls = [];
 
+  /// Adds a line to the history (newest first) and moves the balance by its delta (the demo's
+  /// tournament entries and prizes).
+  void post(WalletTx tx) {
+    balance += tx.delta;
+    _transactions.insert(0, tx);
+  }
+
   @override
   Future<WalletSummary> wallet() async {
     await _wait(FakeWalletOp.wallet);

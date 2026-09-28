@@ -134,4 +134,7 @@ class InboxLiveHook implements LiveEventHook {
   @override
   void onWelcome(WelcomeEvent welcome) =>
       unawaited(_ref.read(unreadCountProvider.notifier).refresh());
+
+  @override
+  void attach(LiveController controller) {}
 }

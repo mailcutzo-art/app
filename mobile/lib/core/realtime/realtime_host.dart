@@ -61,7 +61,11 @@ class _RealtimeHostState extends ConsumerState<RealtimeHost> {
     for (final alert in state.alerts) {
       if (alert.id.startsWith(LiveAlertIds.prefix)) hub.dismiss(alert.id);
     }
-    if (state.status?.route == Routes.battleSearch) hub.setStatus(null);
+    final route = state.status?.route;
+    // The "Searching" and "Tournament live" pills.
+    if (route == Routes.battleSearch || (route?.startsWith('${Routes.arena}/') ?? false)) {
+      hub.setStatus(null);
+    }
   }
 
   @override

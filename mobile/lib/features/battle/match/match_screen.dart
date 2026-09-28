@@ -12,6 +12,7 @@ import '../../../core/auth/user.dart';
 import '../../../core/realtime/live_match.dart';
 import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/live_text.dart';
+import '../../arena/tournament_live.dart' show tournamentRouteFor;
 import '../data/battle_repository.dart';
 import 'match_widgets.dart';
 import 'result_view.dart';
@@ -62,12 +63,14 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
 
   LiveMatch? get _match => liveMatchOf(ref, widget.matchId);
 
-  /// Done: back to the Battle tab, and stop following this match.
+  /// Done: back to the Battle tab (a tournament game goes back to its tournament), and stop
+  /// following this match.
   void _done() {
     final live = ref.read(liveControllerProvider);
+    final view = ref.read(matchViewProvider(widget.matchId));
     // Ratings and coins changed: the Battle tab reads them again.
     ref.invalidate(battleSetupProvider);
-    context.go(Routes.battle);
+    context.go((view == null ? null : tournamentRouteFor(ref, view)) ?? Routes.battle);
     WidgetsBinding.instance.addPostFrameCallback((_) => live?.closeMatch(widget.matchId));
   }
 

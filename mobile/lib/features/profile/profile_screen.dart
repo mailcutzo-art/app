@@ -8,6 +8,8 @@ import 'package:go_router/go_router.dart';
 import '../../app/router.dart';
 import '../../core/auth/session.dart';
 import '../../core/network/paging.dart';
+import '../arena/arena_providers.dart' show myTournamentsProvider;
+import '../arena/widgets/arena_widgets.dart' show TournamentHistoryRow;
 import '../common/paged_list.dart';
 import '../learn/widgets/learn_widgets.dart' show CardSkeleton, RowsSkeleton, failureMessage;
 import '../share/share_sheet.dart';
@@ -32,6 +34,7 @@ class ProfileScreen extends ConsumerWidget {
       ..invalidate(walletProvider);
     final history = switch (ref.read(historyTabProvider)) {
       HistoryTab.battles => ref.read(matchHistoryProvider.notifier).refresh(),
+      HistoryTab.tournaments => ref.read(myTournamentsProvider.notifier).refresh(),
       HistoryTab.practice => ref.read(practiceHistoryProvider.notifier).refresh(),
     };
     await Future.wait([
@@ -292,8 +295,9 @@ class _History extends ConsumerWidget {
       children: [
         AppSegmentedControl<HistoryTab>(
           segments: const [
-            AppSegment(value: HistoryTab.battles, label: 'Battles', icon: AppIcons.battle),
-            AppSegment(value: HistoryTab.practice, label: 'Practice', icon: AppIcons.learn),
+            AppSegment(value: HistoryTab.battles, label: 'Battles'),
+            AppSegment(value: HistoryTab.tournaments, label: 'Tournaments'),
+            AppSegment(value: HistoryTab.practice, label: 'Practice'),
           ],
           selected: tab,
           onChanged: ref.read(historyTabProvider.notifier).select,
@@ -301,6 +305,7 @@ class _History extends ConsumerWidget {
         const SizedBox(height: AppSpacing.md),
         switch (tab) {
           HistoryTab.battles => const _MatchHistory(),
+          HistoryTab.tournaments => const _TournamentHistory(),
           HistoryTab.practice => const _PracticeHistory(),
         },
       ],
@@ -330,6 +335,23 @@ class _MatchHistory extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Profile → Tournaments: every tournament entered, with the final rank and prize.
+class _TournamentHistory extends ConsumerWidget {
+  const _TournamentHistory();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) => _PagedSection(
+    value: ref.watch(myTournamentsProvider),
+    emptyIcon: AppIcons.arena,
+    emptyTitle: 'No tournaments yet',
+    emptyMessage: 'Tournaments you enter show up here, with your final rank and prize.',
+    errorTitle: 'Couldn\'t load your tournaments',
+    onRetry: () => ref.invalidate(myTournamentsProvider),
+    onLoadMore: () => unawaited(ref.read(myTournamentsProvider.notifier).loadMore()),
+    row: (item) => TournamentHistoryRow(item: item),
+  );
 }
 
 class _PracticeHistory extends ConsumerWidget {

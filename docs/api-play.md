@@ -244,6 +244,62 @@ Monday gives everyone a fresh start.
 - **Exam.** A tournament's `goal` is `neet`, `jee` or `any`. `any` is only allowed for subjects
   both exams share (Physics, Chemistry).
 
+**Payload shapes the app reads.** The table above names the fields; these are the full shapes the
+mobile app parses (unknown fields are ignored, and fields marked optional may be absent):
+
+```json
+// card (GET /v1/tournaments items, and the top level of the detail); status is
+// scheduled | reg_open | check_in | locked | running | finalizing | finished | cancelled
+{"id": "…", "title": "Physics Sunday Cup", "goal": "neet", "subject": "physics" /* null = all */,
+ "tone": "sky", "status": "reg_open", "reg_opens_at": "…", "checkin_opens_at": "…",
+ "starts_at": "2026-10-04T12:30:00Z", "ends_at_estimate": "…", "rounds": 5, "entry_fee": 25,
+ "prize_pool": 2500, "effective_pool": 390, "players": 5, "min_players": 8, "capacity": 64,
+ "me": {"registered": true, "checked_in": false, "withdrawn": false} /* null if never registered */}
+
+// GET /v1/tournaments/{id}: the card plus
+{"description": "…",
+ "rules": {"questions": 10, "seconds_per_question": 15, "rated": true, "ready_s": 90,
+           "draw_points": 0.5, "bye_points": 1},
+ "schedule": [{"round": 1, "starts_at": "…", "status": "upcoming | pairing | live | done"}],
+ "prizes": [{"from": 1, "to": 1, "coins": 195}, {"from": 6, "to": 10, "coins": 18}],
+ "current_round": 2 /* null before the start */,
+ "me": {"registered", "checked_in", "withdrawn",
+        "record": {"wins": 1, "draws": 0, "losses": 0}, "points": 1, "rank": 4,
+        "next_pairing": {"round": 2, "opponent": {…user card…} | null, "bye": false,
+                         "match_id": "…" | null, "ready_by": "…" | null} | null,
+        "final": {"rank": 3, "players": 24, "points": 3.5, "prize": 120, "xp": 50} | null} | null}
+
+// POST /v1/tournaments/{id}/register and POST /v1/tournaments/{id}/check-in answer the updated card.
+// DELETE /v1/tournaments/{id}/register answers:
+{"tournament": {…card…}, "refunded": 25 /* 0 after the start */}
+
+// GET /v1/tournaments/{id}/standings?cursor=
+{"items": [{"position": 1, "user": {…user card…}, "points": 3, "w": 3, "d": 0, "l": 0,
+            "bh_c1": 5, "bh": 6, "sb": 4, "withdrawn": false}],
+ "next_cursor": "…" | null, "me": {…row…} | null, "round": 3}
+
+// GET /v1/tournaments/{id}/me
+{"rounds": [{"round": 1, "opponent": {…user card…} | null, "bye": false,
+             "result": "win | draw | loss" | null /* null while playing */, "points": 1,
+             "match_id": "…" | null, "no_show": false}],
+ "current": {…next_pairing shape…} | null, "record": {…}, "points": 1, "rank": 4}
+
+// GET /v1/me/tournaments?cursor= items: the card, plus once it's over
+{…card…, "final_rank": 3, "prize": 120, "xp": 50, "points": 3.5}
+```
+
+- **Errors.** `TOURNAMENT_FULL`, `REGISTRATION_CLOSED`, `INSUFFICIENT_COINS` (`details.needed`),
+  `SCHEDULE_CONFLICT` (`details.id`, `details.title` of the other tournament), `CHECK_IN_CLOSED`
+  and `NOT_REGISTERED` are `409`; `NOT_ALLOWED` is `403` with `details.reason`. The app reads the
+  code, not the status, so either works.
+- **`welcome.active`** lists a running tournament the player is in as
+  `{"kind": "tournament", "id", "title"}`; the app shows the "Tournament live" pill from it.
+- **`t.standings` rows** carry `rank`, `uid`, `name`, `points` and, when sent, `avatar`, `w`,
+  `d`, `l` and `bh_c1`.
+- **Links.** `/arena/<id>` (optionally `?tab=standings|games`, and `?round=` opens My games) is a
+  tournament; `/arena/<id>/results` its final results; `/arena?t=<id>` and `/t/<id>` lead to the
+  tournament; `/arena?filter=live,upcoming` is "Browse live contests".
+
 ## Profiles and stats
 
 | Endpoint | Returns |

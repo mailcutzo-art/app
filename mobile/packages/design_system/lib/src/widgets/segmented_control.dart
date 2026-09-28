@@ -133,7 +133,7 @@ class _SegmentLabel<T> extends StatelessWidget {
               ),
               const SizedBox(width: AppSpacing.sm),
             ],
-            Text(segment.label),
+            Flexible(child: Text(segment.label, maxLines: 1, overflow: TextOverflow.ellipsis)),
           ],
         ),
       ),
