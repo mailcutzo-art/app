@@ -9,6 +9,7 @@ import asyncio
 import contextlib
 import itertools
 import time
+import uuid
 from collections.abc import AsyncIterator, Callable
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
@@ -18,6 +19,7 @@ import orjson
 import uvicorn
 from fastapi import FastAPI
 from httpx import AsyncClient
+from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from websockets.asyncio.client import ClientConnection, connect
 from websockets.exceptions import ConnectionClosed
@@ -25,6 +27,7 @@ from websockets.exceptions import ConnectionClosed
 from app.core.config import Settings
 from app.main_rt import create_app as create_rt_app
 from app.modules.matches.ports import Integrations
+from app.modules.realtime import keys
 from app.modules.realtime.node import RtNode
 from tests.helpers import bearer, dev_login, make_settings
 
@@ -106,7 +109,13 @@ async def run_rt(
         yield RtServer(f"ws://127.0.0.1:{port}/v1/ws", app, server)
     finally:
         server.should_exit = True
-        await task
+        try:
+            async with asyncio.timeout(15):
+                await task
+        except TimeoutError:
+            for stuck in asyncio.all_tasks():
+                stuck.print_stack()
+            raise
 
 
 class Bot:
@@ -253,3 +262,77 @@ async def connect_bot(
     if welcome:
         await bot.expect("welcome")
     return bot
+
+
+async def pair(
+    rt: RtServer,
+    api: AsyncClient,
+    mode: str = "rated",
+    *,
+    chapters: tuple[Any, Any] = ("kinematics", "kinematics"),
+) -> tuple[Bot, Bot, str]:
+    """Two players who searched and were matched; both have the match snapshot."""
+    first = await connect_bot(rt.url, api, await sign_in(api, "asha@example.com"), name="asha")
+    second = await connect_bot(rt.url, api, await sign_in(api, "ravi@example.com"), name="ravi")
+    for bot, chapter in zip((first, second), chapters, strict=True):
+        await bot.send(
+            "mm.join",
+            {"mode": mode, "subject": "physics", "chapter": chapter, "idem": uuid.uuid4().hex},
+        )
+        await bot.expect("mm.queued")
+    found = await first.expect("mm.found")
+    await second.expect("mm.found")
+    mid = found["d"]["match_id"]
+    for bot in (first, second):
+        await bot.expect("match.snapshot", lambda f: f["ch"] == f"m:{mid}")
+    return first, second, mid
+
+
+async def correct_option(redis: Redis, mid: str, q: int) -> str:
+    value = await redis.hget(keys.match_question(mid, q), "correct")
+    assert value is not None
+    return str(value)
+
+
+async def wrong_option(redis: Redis, mid: str, show: dict[str, Any]) -> str:
+    right = await correct_option(redis, mid, show["d"]["q"])
+    return next(o["id"] for o in show["d"]["options"] if o["id"] != right)
+
+
+async def ready_both(first: Bot, second: Bot, mid: str) -> None:
+    for bot in (first, second):
+        assert (await bot.request("match.ready", {"match_id": mid}))["t"] == "ack"
+    for bot in (first, second):
+        await bot.expect("match.phase", lambda f: f["d"]["phase"] == "countdown")
+
+
+async def search(
+    bot: Bot, mode: str = "rated", chapter: str | None = "kinematics", *, subject: str = "physics"
+) -> dict[str, Any]:
+    """``mm.join`` and wait for ``mm.queued``."""
+    await bot.send(
+        "mm.join",
+        {"mode": mode, "subject": subject, "chapter": chapter, "idem": uuid.uuid4().hex},
+    )
+    return await bot.expect("mm.queued")
+
+
+async def ticket_key(redis: Redis, user_id: str) -> str:
+    busy = await redis.get(keys.busy(user_id))
+    assert busy is not None
+    assert busy.startswith("q:"), busy
+    return keys.ticket(busy[2:])
+
+
+async def backdate(redis: Redis, user_id: str, seconds: float, *field_names: str) -> None:
+    """Pretend a queued ticket's clock fields (joined_ms by default) are ``seconds`` older."""
+    key = await ticket_key(redis, user_id)
+    for name in field_names or ("joined_ms",):
+        value = int(await redis.hget(key, name) or 0)
+        await redis.hset(key, name, value - round(seconds * 1000))
+
+
+async def no_frame(bot: Bot, event_type: str, wait_s: float = 0.4) -> None:
+    """Nothing of this type arrives within ``wait_s``."""
+    await asyncio.sleep(wait_s)
+    assert not bot.seen(event_type), bot.seen(event_type)

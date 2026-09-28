@@ -2,7 +2,6 @@
 
 import asyncio
 import uuid
-from typing import Any
 
 import pytest
 from httpx import AsyncClient
@@ -13,50 +12,17 @@ from app.modules.matches.models import HeadToHead, Match, MatchParticipant
 from app.modules.practice.models import QuestionAttempt
 from app.modules.ratings import glicko2
 from app.modules.ratings.models import Rating, RatingHistory
-from app.modules.realtime import keys
-from tests.rt_helpers import Bot, LockedSessions, RtServer, connect_bot, sign_in, until_shown
-
-
-async def pair(
-    rt: RtServer,
-    api: AsyncClient,
-    mode: str = "rated",
-    *,
-    chapters: tuple[Any, Any] = ("kinematics", "kinematics"),
-) -> tuple[Bot, Bot, str]:
-    """Two players who searched and were matched; both have the match snapshot."""
-    first = await connect_bot(rt.url, api, await sign_in(api, "asha@example.com"), name="asha")
-    second = await connect_bot(rt.url, api, await sign_in(api, "ravi@example.com"), name="ravi")
-    for bot, chapter in zip((first, second), chapters, strict=True):
-        await bot.send(
-            "mm.join",
-            {"mode": mode, "subject": "physics", "chapter": chapter, "idem": uuid.uuid4().hex},
-        )
-        await bot.expect("mm.queued")
-    found = await first.expect("mm.found")
-    await second.expect("mm.found")
-    mid = found["d"]["match_id"]
-    for bot in (first, second):
-        await bot.expect("match.snapshot", lambda f: f["ch"] == f"m:{mid}")
-    return first, second, mid
-
-
-async def correct_option(redis: Redis, mid: str, q: int) -> str:
-    value = await redis.hget(keys.match_question(mid, q), "correct")
-    assert value is not None
-    return str(value)
-
-
-async def wrong_option(redis: Redis, mid: str, show: dict[str, Any]) -> str:
-    right = await correct_option(redis, mid, show["d"]["q"])
-    return next(o["id"] for o in show["d"]["options"] if o["id"] != right)
-
-
-async def ready_both(first: Bot, second: Bot, mid: str) -> None:
-    for bot in (first, second):
-        assert (await bot.request("match.ready", {"match_id": mid}))["t"] == "ack"
-    for bot in (first, second):
-        await bot.expect("match.phase", lambda f: f["d"]["phase"] == "countdown")
+from tests.rt_helpers import (
+    LockedSessions,
+    RtServer,
+    connect_bot,
+    correct_option,
+    pair,
+    ready_both,
+    sign_in,
+    until_shown,
+    wrong_option,
+)
 
 
 async def test_a_rated_game_rates_both_players_with_glicko2(
