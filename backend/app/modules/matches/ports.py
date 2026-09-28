@@ -15,6 +15,7 @@
   relationship shown with recent opponents.
 - ``PresenceWriter``, ``Tracker`` and ``NoticeWriter``: social presence, analytics funnel
   events and inbox notices for things that happen outside a settlement.
+- ``StandingsReader``: a tournament's ``t.standings`` snapshot, sent on ``sub``.
 
 ``integrations`` holds the ones in use; ``app.modules.matches.wiring.install`` connects the real
 modules at process start. The defaults keep the engine working on its own (tests): holds always
@@ -168,6 +169,8 @@ Tracker = Callable[[AsyncSession, str, uuid.UUID | None, Mapping[str, Any]], Awa
 # (db, user, what happened, details): an inbox notice in the caller's transaction. ``what`` is
 # ``abort_strike`` ({"match_id", "cooldown_until": ms | None}).
 NoticeWriter = Callable[[AsyncSession, uuid.UUID, str, Mapping[str, Any]], Awaitable[None]]
+# (db, tournament id) -> the current ``t.standings`` payload, or None for an unknown tournament.
+StandingsReader = Callable[[AsyncSession, uuid.UUID], Awaitable[dict[str, Any] | None]]
 
 # Payload keys whose values are lists: pieces from several hooks are concatenated.
 LIST_KEYS = frozenset({"missions", "achievements"})
@@ -179,9 +182,13 @@ class SettlementHooks:
     def __init__(self) -> None:
         self._hooks: dict[str, SettlementHook] = {}
 
-    def register(self, name: str, hook: SettlementHook) -> None:
-        """Add ``hook``, or replace the one registered under ``name``."""
-        self._hooks[name] = hook
+    def register(self, name: str, hook: SettlementHook, *, first: bool = False) -> None:
+        """Add ``hook``, or replace the one registered under ``name``. ``first`` runs it before
+        the others (a hook that locks rows the others lock after)."""
+        if first:
+            self._hooks = {name: hook, **{k: v for k, v in self._hooks.items() if k != name}}
+        else:
+            self._hooks[name] = hook
 
     def unregister(self, name: str) -> None:
         self._hooks.pop(name, None)
@@ -229,6 +236,10 @@ async def no_notices(
     return None
 
 
+async def no_standings(_db: AsyncSession, _tournament_id: uuid.UUID) -> dict[str, Any] | None:
+    return None
+
+
 async def unknown_balance(_db: AsyncSession, _user_id: uuid.UUID) -> int | None:
     return None
 
@@ -258,6 +269,7 @@ class Integrations:
     presence: PresenceWriter = no_presence
     track: Tracker = no_tracking
     notices: NoticeWriter = no_notices
+    standings: StandingsReader = no_standings
 
 
 def default_integrations() -> Integrations:

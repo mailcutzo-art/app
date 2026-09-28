@@ -110,3 +110,7 @@ def user_control(uid: str) -> str:
 
 def match_events(mid: str) -> str:
     return f"ev:m:{mid}"
+
+
+def tournament_events(tid: str) -> str:
+    return f"ev:t:{tid}"

@@ -6,7 +6,7 @@ if not m then return {'missing', 0, 0} end
 local uid = ARGV[1]
 local p = m.p[uid]
 if not p or uid == m.bot then return {'not_player', m.ver, m.due} end
-if m.phase ~= 'ready_wait' or p.ready then return {'ok', m.ver, m.due} end
+if m.phase ~= 'ready_wait' or p.ready or p.left then return {'ok', m.ver, m.due} end
 p.ready = true
 save_player(m, uid)
 bump(m)

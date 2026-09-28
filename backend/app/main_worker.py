@@ -27,6 +27,7 @@ from app.modules.outbox.jobs import outbox_cleanup_job, outbox_dispatch_job
 from app.modules.practice.jobs import attempt_partitions_job, practice_housekeeping_job
 from app.modules.progression.jobs import streaks_job
 from app.modules.social.jobs import activity_retention_job
+from app.modules.tournaments.jobs import tournament_templates_job, tournament_tick_job
 from app.modules.users.jobs import account_erasure_job
 
 SHUTDOWN_GRACE_S = 10.0
@@ -74,6 +75,10 @@ JOBS: tuple[PeriodicJob, ...] = (
     PeriodicJob("settle_pending", 5.0, settle_pending_job),
     # Live matches Redis no longer knows, past their longest duration: voided and refunded.
     PeriodicJob("reconcile_matches", 60.0, reconcile_matches_job),
+    # Tournament lifecycle steps that are due (replicas share them via SKIP LOCKED).
+    PeriodicJob("tournament_tick", 1.0, tournament_tick_job),
+    # Recurring tournaments: instances 7 days ahead (idempotent).
+    PeriodicJob("tournament_templates", 600.0, tournament_templates_job),
 )
 
 

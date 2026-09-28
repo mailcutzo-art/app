@@ -55,6 +55,14 @@ from app.modules.progression.models import (
 from app.modules.ratings.models import Rating, RatingHistory
 from app.modules.social.models import ActivityEvent, Block, FriendRequest, Friendship
 from app.modules.system.models import AppConfig, AuditLog
+from app.modules.tournaments.models import (
+    Tournament,
+    TournamentEntry,
+    TournamentPairing,
+    TournamentPrize,
+    TournamentRound,
+    TournamentTemplate,
+)
 from app.modules.users.models import User, UserSettings
 
 # Monthly partitions of question_attempts are created at runtime by ensure_attempt_partitions();
@@ -111,6 +119,12 @@ __all__ = [
     "StreakDay",
     "Subject",
     "Topic",
+    "Tournament",
+    "TournamentEntry",
+    "TournamentPairing",
+    "TournamentPrize",
+    "TournamentRound",
+    "TournamentTemplate",
     "User",
     "UserAchievement",
     "UserCategoryStats",

@@ -62,7 +62,9 @@ class PreparedMatch:
     ttl_s: int
 
 
-def max_duration_ms(settings: Settings, total: int) -> int:
+def max_duration_ms(
+    settings: Settings, total: int, *, ready_ms: int | None = None, grace_ms: int | None = None
+) -> int:
     """The longest a match can run: ready, countdown, every question, and a last grace."""
     per_question = (
         settings.match_show_lead_ms
@@ -71,10 +73,10 @@ def max_duration_ms(settings: Settings, total: int) -> int:
         + settings.match_reveal_ms
     )
     return (
-        settings.match_ready_ms
+        (settings.match_ready_ms if ready_ms is None else ready_ms)
         + settings.match_countdown_ms
         + total * per_question
-        + settings.match_grace_ms
+        + (settings.match_grace_ms if grace_ms is None else grace_ms)
         + settings.match_drain_grace_ms
         + settings.match_void_window_ms
     )
@@ -130,14 +132,23 @@ async def prepare_match(
     with_bot: bool = False,
     rematch_of: uuid.UUID | None = None,
     rematch_chain: int = 0,
+    questions: int | None = None,
+    ready_ms: int | None = None,
+    grace_ms: int | None = None,
+    extra: Mapping[str, Any] | None = None,
 ) -> PreparedMatch:
-    """Pick the questions, write the match rows (not committed) and build the live state."""
+    """Pick the questions, write the match rows (not committed) and build the live state.
+
+    Tournament games pass their own ``questions`` count, ``ready_ms`` and ``grace_ms``, and
+    ``extra`` (``tournament_id``, ``round``) is kept in the match's ``config``."""
+    ready_ms = settings.match_ready_ms if ready_ms is None else ready_ms
+    grace_ms = settings.match_grace_ms if grace_ms is None else grace_ms
     subject = await db.scalar(select(Subject).where(Subject.slug == subject_slug))
     if subject is None:
         raise MatchUnavailable(f"unknown subject {subject_slug}")
     humans = [c.user_id for c in contenders]
     chapters = await _chapters(db, subject, {c.chapter for c in contenders if c.chapter})
-    total = settings.match_questions
+    total = settings.match_questions if questions is None else questions
     if len(contenders) == 2:
         a, b = (
             rules.Ticket(
@@ -219,7 +230,7 @@ async def prepare_match(
     cards: dict[str, dict[str, Any]] = {str(uid): _card(players, uid) for uid in humans}
     if with_bot:
         cards[bot] = bot_card(match_id)
-    longest = max_duration_ms(settings, len(picked))
+    longest = max_duration_ms(settings, len(picked), ready_ms=ready_ms, grace_ms=grace_ms)
     db.add(
         Match(
             id=match_id,
@@ -232,8 +243,9 @@ async def prepare_match(
                 "total": len(picked),
                 "limit_ms": settings.match_limit_ms,
                 "reveal_ms": settings.match_reveal_ms,
-                "grace_ms": settings.match_grace_ms,
+                "grace_ms": grace_ms,
                 "max_duration_ms": longest,
+                **dict(extra or {}),
                 "cards": cards,
                 "requested": [{"chapter": c.chapter, "joined_ms": c.joined_ms} for c in contenders],
                 "tickets": {str(c.user_id): dict(c.ticket) for c in contenders if c.ticket},
@@ -284,12 +296,12 @@ async def prepare_match(
             "bot_acc": accuracy,
             "cards": cards,
             "meta": {"rematch_chain": rematch_chain},
-            "ready_ms": settings.match_ready_ms,
+            "ready_ms": ready_ms,
             "reveal_ms": settings.match_reveal_ms,
             "countdown_ms": settings.match_countdown_ms,
             "show_lead_ms": settings.match_show_lead_ms,
             "answer_grace_ms": settings.match_answer_grace_ms,
-            "grace_ms": settings.match_grace_ms,
+            "grace_ms": grace_ms,
             "void_window_ms": settings.match_void_window_ms,
         },
         questions=live_questions,

@@ -77,6 +77,7 @@ class Connection:
         self.state: State = "idle"
         self.foreground = True
         self.matches: dict[str, MatchFollow] = {}
+        self.tournaments: set[str] = set()  # ``t:<id>`` channels this socket subscribed to
         self.closed = False
         self._closing: tuple[int, str] | None = None
         self.close_code: int | None = None
@@ -280,11 +281,20 @@ class Connection:
         envelope = orjson.loads(message)
         self.send(envelope)
         event_type = envelope.get("t")
-        if event_type == "mm.found":
+        if event_type in {"mm.found", "t.pairing"}:
             mid = str(envelope["d"]["match_id"])
             self.node.spawn(self.node.follow_match(self, mid, last_seq=None))
         if event_type in {"mm.found", "mm.cancelled", "mm.requeued", "mm.queued"}:
             self.node.spawn(self.node.refresh_state(self))
+
+    def on_tournament_event(self, channel: str, message: str) -> None:
+        """Hub listener for ``ev:t:<id>``: standings and round updates. ``t.standings`` gets
+        this viewer's own row as ``me``."""
+        envelope = orjson.loads(message)
+        if envelope.get("t") == "t.standings":
+            rows = envelope["d"].get("rows", [])
+            envelope["d"]["me"] = next((row for row in rows if row.get("uid") == self.uid), None)
+        self.send(envelope)
 
     def on_control(self, _channel: str, message: str) -> None:
         """Hub listener for ``ctl:u:<uid>``: another device, a revoked session or a ban."""

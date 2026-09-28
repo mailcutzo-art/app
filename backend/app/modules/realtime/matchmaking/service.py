@@ -32,7 +32,13 @@ from app.core.ids import new_id
 from app.core.ratelimit import consume
 from app.modules.content.catalog import MIN_BATTLE_QUESTIONS
 from app.modules.content.models import Chapter, Question, Subject
-from app.modules.matches.creation import Contender, MatchUnavailable, prepare_match
+from app.modules.matches.busy import check_busy
+from app.modules.matches.creation import (
+    Contender,
+    MatchUnavailable,
+    max_duration_ms,
+    prepare_match,
+)
 from app.modules.matches.models import Match, MatchKind, MatchParticipant
 from app.modules.matches.ports import (
     InsufficientCoins,
@@ -216,6 +222,22 @@ class Matchmaker:
                 ErrorCode.BUSY,
                 "You're already in a game.",
                 details={"active": await self.node.busy_details(busy)},
+            )
+            return
+        # A tournament that needs the player before this game could possibly end has priority.
+        longest = max_duration_ms(self.settings, self.settings.match_questions)
+        if mode != "bot":
+            longest += round(self.settings.mm_max_wait_s * 1000)
+        async with self.node.sessionmaker() as db:
+            taken = await check_busy(
+                db, self.redis, conn.user_id, self.node.clock.now_ms() + longest
+            )
+        if taken is not None:
+            conn.error(
+                ref,
+                ErrorCode.BUSY,
+                "Your tournament starts soon.",
+                details={"active": taken.model_dump(mode="json")},
             )
             return
         if mode != "bot":

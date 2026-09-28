@@ -283,6 +283,18 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
   (`matches.profiles`). A ban or an account deletion enqueues `matches.withdraw`, which cancels
   the player's search (refunding the entry) or forfeits their live match.
 
+- **Tournaments** (`app.modules.tournaments`, docs/plan.md Phase 5). The worker moves each
+  tournament through scheduled → reg_open → check_in → locked → running → finalizing →
+  finished (or cancelled) in `lifecycle.py`; side effects are outbox rows (inbox, pushes, `u`
+  and `t:<id>` events). Round games are engine matches of kind `tournament` (10 questions,
+  90 s to get ready, 45 s grace; `end.lua` ends them at the round deadline); the settlement
+  hook (`results.py`, first progress hook) records each board and recomputes the standings.
+  Fees are ledger holds (captured at the start, released on withdrawal, no-show or
+  cancellation), prizes ledger credits. `matches.busy.register_busy_check` keeps registered
+  and checked-in players out of quick battles that would clash. Admin: Arena → Tournaments
+  (create, edit before registration, **Cancel and refund**) and Recurring tournaments. Seed
+  starter templates with `uv run python -m app.modules.tournaments.seed`.
+
 ## Worker jobs
 
 | Job | Every | Does |
@@ -297,6 +309,8 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
 | `moderation_expiry` | 1 min | ends social restrictions and temporary bans whose time is up |
 | `account_erasure` | hourly | erases accounts 30 days after deletion: tombstones the user row, drops identities, sessions, settings, inbox, social rows and feedback |
 | `activity_retention` | daily | the friends' activity feed keeps 30 days |
+| `tournament_tick` | 1 s | runs due tournament lifecycle steps (`FOR UPDATE SKIP LOCKED`, one transaction per step) |
+| `tournament_templates` | 10 min | creates recurring tournaments 7 days ahead (`UQ(template_id, starts_at)`) |
 
 A Redis lease keeps each run to one worker replica, and daily jobs mark the day done only after
 they succeed (`app/core/jobs.py`).

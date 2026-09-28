@@ -40,6 +40,7 @@ from app.core.ids import new_id
 from app.modules.content.models import Question, Subject
 from app.modules.matches.models import (
     RATED_KINDS,
+    EndReason,
     HeadToHead,
     Match,
     MatchAnswer,
@@ -201,13 +202,15 @@ async def _settle(
     answered = await _record_answers(db, match, final, kind)
 
     ratings: dict[uuid.UUID, dict[str, RatingChange]] = {}
-    if kind in RATED_KINDS and status == "finished" and len(humans) == 2 and not final.get("bot"):
+    # A tournament forfeit win (the other player never showed) changes no rating.
+    played = status == "finished" and final["reason"] != EndReason.NO_SHOW
+    if kind in RATED_KINDS and played and len(humans) == 2 and not final.get("bot"):
         a, b = humans
         score_a = {"win": 1.0, "draw": 0.5, "loss": 0.0}[results[str(a)][0]]
         ratings = await apply_game(
             db, match_id=match.id, a=a, b=b, score_a=score_a, subject=subject.slug, now=now
         )
-    if kind in H2H_KINDS and status == "finished" and len(humans) == 2:
+    if kind in H2H_KINDS and played and len(humans) == 2:
         await _record_h2h(db, humans, results, now)
 
     players = [
@@ -540,7 +543,7 @@ async def _after_settlement(
 ) -> None:
     """Once per match: requeue the ready players of an aborted quick match and count abort
     strikes against the players who caused it."""
-    if final["status"] != "aborted" or final.get("kind") == MatchKind.BOT:
+    if final["status"] != "aborted" or final.get("kind") in {MatchKind.BOT, MatchKind.TOURNAMENT}:
         return
     if not await deps.redis.set(keys.match_post(mid), 1, nx=True, ex=86_400):
         return

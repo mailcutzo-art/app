@@ -13,6 +13,7 @@ from app.modules.admin.auth import AdminAuth, AdminGuard
 from app.modules.admin.context import AdminContext, DeferredSessionmaker
 from app.modules.admin.pages import ImportQuestionsPage
 from app.modules.admin.views import VIEWS
+from app.modules.tournaments.admin import VIEWS as TOURNAMENT_VIEWS
 
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 BASE_URL = "/admin"
@@ -43,7 +44,7 @@ def mount_admin(app: FastAPI, settings: Settings) -> Admin:
 
     admin.admin.add_route("/auth/google", google_start, methods=["GET"], name="auth_google")
     admin.admin.add_route("/auth/callback", google_callback, methods=["GET"], name="auth_callback")
-    for view in VIEWS:
+    for view in (*VIEWS, *TOURNAMENT_VIEWS):
         admin.add_view(view)
     admin.add_view(ImportQuestionsPage)
     return admin

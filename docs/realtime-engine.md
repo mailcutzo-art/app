@@ -63,12 +63,15 @@ the returned `due_ms`.
 | `conn.lua` | A player connected or dropped. Sets `grace_until`, emits `opp.conn`, and pulls `due_ms` earlier if a grace deadline now comes first |
 | `forfeit.lua` | Voluntary forfeit → `finished` with `reason = forfeit` |
 | `emote.lua` | Emote rate limits (1 per 3 s, 10 per match), then emit |
+| `end.lua` | A tournament round's deadline: finish on the current score, or no-shows before question 1 |
 
 **`advance.lua` by phase**
 - `ready_wait` past its deadline:
   - quick games → `aborted`, and the refund is recorded in `final`;
-  - tournament games → no-show rules: a forfeit win for the player who showed up, or a double
-    no-show.
+  - tournament games → no-show rules: a forfeit win for the player who showed up (`finished`,
+    reason `no_show`, no rating change), or a double no-show (`aborted`, reason `no_show`).
+    A tournament player past their grace, or leaving, before question 1 is not ready; once
+    the others are ready that decides the game at once.
 - `countdown` → `q_open(1)`. It sets `shown_at = now + 400`, `deadline_at = shown_at + limit`,
   records `open_players` (the humans connected now), emits `q.show`, and sets
   `due = deadline_at + 250`.

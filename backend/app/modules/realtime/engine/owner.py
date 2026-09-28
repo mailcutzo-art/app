@@ -138,6 +138,13 @@ class MatchEngine:
         self._arm(mid)
         self._spawn(self._ensure_bot(mid))
 
+    async def adopt(self, mid: str, *, ver: int, due: int) -> None:
+        """Own a match nobody owns yet (tournament games are created by the worker), so its
+        timers run here from the first player activity instead of waiting for the scanner."""
+        if mid in self._owned or due <= 0 or self._stopped:
+            return
+        await self._take(mid, ver, due)
+
     async def _take(self, mid: str, ver: int, due: int) -> bool:
         lease = keys.match_lease(mid)
         acquired = await self.redis.set(lease, self.node_id, nx=True, px=self.settings.rt_lease_ms)

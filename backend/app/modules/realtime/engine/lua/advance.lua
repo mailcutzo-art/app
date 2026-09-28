@@ -22,6 +22,22 @@ for _, uid in ipairs(m.humans) do
     if first == 0 or p.grace_until < first then first = p.grace_until end
   end
 end
+if #expired > 0 and m.kind == 'tournament' and m.q == 0 then
+  bump(m)
+  if m.phase == 'ready_wait' then
+    -- Gone past their grace before everyone was ready: no longer ready. The ready deadline
+    -- decides who showed.
+    for _, uid in ipairs(expired) do
+      m.p[uid].ready = false
+      m.p[uid].grace_until = 0
+      save_player(m, uid)
+    end
+    schedule(m, m.pdue)
+    return {m.phase, m.ver, m.due}
+  end
+  no_show(m, expired, now)
+  return {m.phase, m.ver, 0}
+end
 if #expired > 0 then
   if #m.humans >= 2 then
     local window = num(m.h.void_window_ms)
@@ -61,6 +77,10 @@ if m.phase == 'ready_wait' then
   local not_ready, ready = {}, {}
   for _, uid in ipairs(m.humans) do
     if m.p[uid].ready then table.insert(ready, uid) else table.insert(not_ready, uid) end
+  end
+  if m.kind == 'tournament' then
+    no_show(m, not_ready, now)
+    return {m.phase, m.ver, 0}
   end
   finish(m, 'aborted', 'aborted', {}, {not_ready = list(not_ready), ready = list(ready)}, now)
   return {m.phase, m.ver, 0}

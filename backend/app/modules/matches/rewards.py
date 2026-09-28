@@ -47,8 +47,9 @@ LATE_SETTLEMENT = timedelta(seconds=20)
 
 
 def rewarded(ctx: SettlementContext) -> list[SettledPlayer]:
-    """The players a finished match rewards (not a forfeit), in user order (the lock order)."""
-    if ctx.status != "settled":
+    """The players a finished match rewards (not a forfeit), in user order (the lock order).
+    A tournament game the opponent never showed up for wasn't played, so it earns nothing."""
+    if ctx.status != "settled" or ctx.reason == "no_show":
         return []
     return sorted(
         (p for p in ctx.players if not p.forfeited and p.result in GAME_RESULTS),
@@ -133,17 +134,18 @@ def _match_action(match_id: uuid.UUID) -> dict[str, Any]:
 async def notices_hook(ctx: SettlementContext) -> Pieces:
     for player in ctx.players:
         if ctx.status == "settled" and player.forfeited:
-            away = ctx.reason == "disconnected"
+            if ctx.reason == "no_show":
+                body = "You didn't join your tournament game in time, so it counted as a loss."
+            elif ctx.reason == "disconnected":
+                body = "You were away too long, so the match counted as a loss."
+            else:
+                body = "You left the match, so it counted as a loss."
             await notify(
                 ctx.db,
                 player.user_id,
                 kind="match_forfeit",
                 title="Match lost",
-                body=(
-                    "You were away too long, so the match counted as a loss."
-                    if away
-                    else "You left the match, so it counted as a loss."
-                ),
+                body=body,
                 icon="battle",
                 action=_match_action(ctx.match_id),
                 key=f"match_forfeit:{ctx.match_id}",
