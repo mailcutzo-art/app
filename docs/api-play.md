@@ -285,6 +285,12 @@ Monday gives everyone a fresh start.
 Example titles: "Casual battle entry", "Casual battle won", "Refund: match cancelled", "Tournament
 prize: #3 in Physics Sunday Cup", "Daily missions bonus".
 
+A Casual entry is taken when the search starts, before any match exists, so the entry (and its
+refund if the search ends without a match) carries `ref: {"kind": "match", "id": "mm:<ticket>"}`;
+the pot, rated rewards and refunds of a match carry the match id. Rated games pay 10 / 4 / 1
+coins for a win, draw or loss, at most 150 a day (IST); `match.settled.coins.capped` says when
+the cap cut a reward.
+
 ## Missions, streaks and achievements
 
 | Endpoint | Returns or does |

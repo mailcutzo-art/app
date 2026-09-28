@@ -16,6 +16,7 @@ from app.modules.content import router as content
 from app.modules.economy import router as economy
 from app.modules.feedback import router as feedback
 from app.modules.matches import router as matches
+from app.modules.matches import wiring as matches_wiring
 from app.modules.moderation import router as moderation
 from app.modules.notifications import router as notifications
 from app.modules.notifications import wiring as notification_wiring
@@ -48,6 +49,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             )
         )
     notification_wiring.install()
+    matches_wiring.install()
     app = create_base_app(settings, component="api", title="Quiz API", middleware=middleware)
     app.state.google_jwks = JwksCache()
     app.state.runtime_config = RuntimeConfigCache()

@@ -14,6 +14,7 @@ from fastapi import FastAPI
 from app.core.config import Settings, get_settings
 from app.core.factory import create_base_app
 from app.core.resources import Resources
+from app.modules.matches import wiring as matches_wiring
 from app.modules.matches.ports import Integrations, integrations
 from app.modules.matches.settlement import SessionFactory
 from app.modules.realtime import gateway
@@ -29,6 +30,7 @@ def create_app(
 ) -> FastAPI:
     """``sessionmaker`` and ``plugins`` replace the defaults (tests)."""
     settings = settings or get_settings()
+    matches_wiring.install()
 
     @asynccontextmanager
     async def engine(app: FastAPI, resources: Resources) -> AsyncIterator[None]:

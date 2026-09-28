@@ -214,11 +214,10 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
   moves up; box 5 graduates) and the running totals (`user_topic_stats`, `user_chapter_stats`,
   `user_category_stats`, `user_daily_stats`) in the same transaction, then awards practice XP
   (`xp_events`, unique per batch; daily cap 300 by IST day).
-- **Pending pieces.** The XP formulas, the speed label against a question's typical time and
-  the coach's tip rules come from separately written modules (`progression.levels`,
-  `realtime.engine.scoring`, `coach.tips`) that are not wired in yet: until then `xp` and `tip`
-  are `null`, `GET /v1/me/tips` lists none and answers get no speed label. The seams are
-  `progression.xp.xp_rules`, `practice.speed.speed_vs_typical` and `coach.service.tips_engine`.
+- **Shared rules.** The XP formulas, the speed label against a question's typical time and the
+  coach's tip rules are separate pure modules (`progression.levels`, `realtime.engine.scoring`,
+  `coach.tips`), reached through `progression.xp.xp_rules`, `practice.speed.speed_vs_typical`
+  and `coach.service.tips_engine`; live games use the same ones.
 
 ## Platform: outbox, coins, inbox, analytics
 
@@ -270,6 +269,19 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
   `set_presence(redis, uid, state, ttl_s)`, `record_activity(db, uid, kind, payload, key=)`,
   `in_shadow_pool(db, uid, now=)` and `apply_moderation(db, redis, uid, action, reason=, until=,
   by=, now=)`.
+
+- **Live games wired in** (`app.modules.matches.wiring.install()`, run at start by the api, rt
+  and worker processes). The engine's ports (`matches.ports.integrations`) get the real modules:
+  the casual 5-coin entry is a ledger hold (`matches.escrow`: captured and paid out as the
+  10-coin pot, or released with a `refund` notice on a draw, abort, void or ended search; the
+  hold reaper leaves it alone while the search or match carrying it is live); settlement awards
+  XP, missions, streak and achievements before any wallet lock, then rated coins (10 / 4 / 1,
+  at most 150 a day), `match_forfeit` / `match_settled` notices and analytics
+  (`matches.rewards`); matchmaking skips blocked pairs and keeps the shadow pool to itself; the
+  gateway keeps social presence (`online`, `in_battle`); abort strikes put a `match_aborted`
+  notice in the inbox. Social gets "played with" and the profile's `ratings`, `form` and `h2h`
+  (`matches.profiles`). A ban or an account deletion enqueues `matches.withdraw`, which cancels
+  the player's search (refunding the entry) or forfeits their live match.
 
 ## Worker jobs
 
@@ -339,7 +351,8 @@ read from `app_config` rows of those names (falling back to the `APP_*` settings
 without a redeploy; each api process re-reads them every 5 seconds. `GET /v1/config` reports
 them. Requests whose `X-App-Build` header is below `min_build` get 426 `UPDATE_REQUIRED`, and while
 maintenance is on 503 `MAINTENANCE` (with the message and `Retry-After`), except `/v1/config`,
-`/v1/auth/*` and the probes (and, later, live matches).
+`/v1/auth/*`, the probes, `POST /v1/rt/tickets` and `/v1/matches/*` (a game in progress can
+always finish and show its result).
 
 ## API conventions (`app/core`)
 

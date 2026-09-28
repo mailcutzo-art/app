@@ -152,7 +152,7 @@ async def test_battle_setup(
         "question_count": 8,
         "label": None,
     }
-    assert before["coins"] is None
+    assert before["coins"] == 0  # the wallet balance (no welcome bonus yet)
     assert before["casual_fee"] == 5
     assert before["cooldown_until"] is None
     assert before["active"] is None

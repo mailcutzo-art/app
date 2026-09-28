@@ -45,6 +45,7 @@ ERROR_MAX_CHARS = 500
 HANDLER_MODULES: tuple[str, ...] = (
     "app.modules.notifications.delivery",
     "app.modules.progression.achievements",
+    "app.modules.matches.withdraw",
 )
 
 

@@ -241,9 +241,15 @@ Details the sections above leave open:
   casual hold).
 - **Busy slots are freed as the match ends** (in `finish`), not at settlement, so "Play again"
   never waits for Postgres.
-- **What other features plug in** (`modules/matches/ports.py`): the `EscrowPort` (casual holds,
-  captures, refunds and the pot), `SettlementHooks` (each returns pieces of `match.settled` and
-  runs inside the settlement transaction; match XP is the default one), a block check for
-  matchmaking, and readers for the wallet balance, leaderboard leaders and relationships.
+- **What other features plug in** (`modules/matches/ports.py`, connected in one place by
+  `modules/matches/wiring.py` at the start of every process): the `EscrowPort` (casual holds on
+  the coin ledger, captures, refunds and the pot), settlement hooks (each returns pieces of
+  `match.settled` and runs inside the settlement transaction: `progress_hooks` for XP,
+  missions, streak and achievements run before the escrow locks any wallet, then `hooks` for
+  rated coin rewards, inbox notices and analytics), the block and shadow-pool checks for
+  matchmaking, social presence, analytics and inbox writers, and readers for the wallet
+  balance, leaderboard leaders and relationships. A ban or an account deletion withdraws the
+  player through the outbox (`matches.withdraw`): the search is cancelled and refunded, or the
+  live match forfeited.
 - **Timings are settings.** `APP_RT_*`, `APP_MATCH_*` and `APP_MM_*` (see `backend/.env.example`);
   the protocol tests play whole games in about two seconds with them.

@@ -19,6 +19,7 @@ from app.core.resources import Resources, open_resources
 from app.modules.analytics.jobs import analytics_retention_job
 from app.modules.content.jobs import question_stats_job
 from app.modules.economy.jobs import hold_reaper_job
+from app.modules.matches import wiring as matches_wiring
 from app.modules.matches.jobs import reconcile_matches_job, settle_pending_job
 from app.modules.moderation.jobs import moderation_expiry_job
 from app.modules.notifications.jobs import notifications_retention_job
@@ -95,6 +96,7 @@ async def run_periodic(job: PeriodicJob, resources: Resources, stop: asyncio.Eve
 
 
 async def run_worker(settings: Settings, jobs: Sequence[PeriodicJob], stop: asyncio.Event) -> None:
+    matches_wiring.install()  # settlement retries, the reconciler and withdrawals use it
     async with open_resources(settings, component="worker") as resources:
         tasks = [
             asyncio.create_task(run_periodic(job, resources, stop), name=f"job:{job.name}")
