@@ -248,7 +248,11 @@ async def test_progress_is_built_from_real_numbers(
 
     async def ratings(_db: AsyncSession, viewer: uuid.UUID, target: uuid.UUID) -> list[Any]:
         assert viewer == target == asha.id
-        return [{"scope": "neet", "rating": 1523.6, "position": 12}, {"bad": True}]
+        return [
+            {"scope": "neet", "rating": 1523.6, "position": 12},
+            {"scope": "physics", "rating": {"value": 1490, "display": "1490?"}},
+            {"bad": True},
+        ]
 
     monkeypatch.setitem(profiles_module._SECTIONS, "ratings", ratings)
 
@@ -266,7 +270,7 @@ async def test_progress_is_built_from_real_numbers(
         "answered": 50,
         "correct": 36,
         "accuracy": 72,
-        "ratings": [{"scope": "neet", "rating": 1524}],
+        "ratings": [{"scope": "neet", "rating": 1524}, {"scope": "physics", "rating": 1490}],
     }
 
 

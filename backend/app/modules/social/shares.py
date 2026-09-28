@@ -22,7 +22,7 @@ from collections.abc import Awaitable, Callable
 from datetime import datetime
 from typing import Annotated, Any, Literal
 
-from pydantic import Field, ValidationError
+from pydantic import BaseModel, Field, ValidationError
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -160,11 +160,13 @@ def _ratings(section: Any) -> list[dict[str, Any]]:
         return []
     ratings = []
     for item in section:
-        if isinstance(item, ApiModel):
+        if isinstance(item, BaseModel):
             item = item.model_dump(mode="json")
         if not isinstance(item, dict):
             continue
         scope, rating = item.get("scope"), item.get("rating")
+        if isinstance(rating, dict):  # {"value", "display", "provisional"}
+            rating = rating.get("value")
         if isinstance(scope, str) and isinstance(rating, int | float):
             ratings.append({"scope": scope, "rating": round(rating)})
     return ratings
