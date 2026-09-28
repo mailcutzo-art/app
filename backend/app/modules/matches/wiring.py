@@ -112,6 +112,11 @@ def connect(target: Integrations) -> Integrations:
     target.hooks.register("rated_coins", rewards.rated_coins_hook)
     target.hooks.register("notices", rewards.notices_hook)
     target.hooks.register("analytics", rewards.analytics_hook)
+    # Imported here: tournaments build on the matches module.
+    from app.core.config import get_settings
+    from app.modules.tournaments import wiring as tournaments_wiring
+
+    tournaments_wiring.connect(target, get_settings())
     return target
 
 
@@ -131,3 +136,7 @@ def install() -> None:
     register_ban_hook(withdraw.withdraw_on_ban)
     on_account_deleted(withdraw.withdraw_on_delete)
     register_share_source("match_result", match_share_source)
+    # Imported here: tournaments build on the matches module.
+    from app.modules.tournaments import wiring as tournaments_wiring
+
+    tournaments_wiring.install()

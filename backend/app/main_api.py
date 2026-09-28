@@ -26,6 +26,7 @@ from app.modules.realtime import router as realtime
 from app.modules.social import router as social
 from app.modules.system import router as system
 from app.modules.system.runtime import APP_BUILD_HEADER, ClientGates, RuntimeConfigCache
+from app.modules.tournaments import router as tournaments
 from app.modules.users import router as users
 
 
@@ -80,6 +81,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         social.router,
         moderation.router,
         matches.router,
+        tournaments.router,
     ):
         app.include_router(router, prefix="/v1", dependencies=[ClientGates])
     if settings.admin_enabled:

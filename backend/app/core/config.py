@@ -165,6 +165,18 @@ class Settings(BaseSettings):
     mm_cooldown_s: int = Field(default=300, ge=1)
     mm_abort_limit: int = Field(default=3, ge=1)
     mm_rated_pair_limit: int = Field(default=3, ge=1)
+    # Tournaments (docs/plan.md, Phase 5): 10 questions a game, 90 s to get ready, 45 s grace,
+    # a round deadline 10 minutes after its start, the next pairing 90 s after the last
+    # result, standings published at most every 2 s, and 20 s for the Swiss matching.
+    tournament_questions: int = Field(default=10, ge=1, le=20)
+    tournament_ready_ms: int = Field(default=90_000, ge=100)
+    tournament_grace_ms: int = Field(default=45_000, ge=100)
+    tournament_round_s: float = Field(default=600.0, gt=0)
+    tournament_pause_s: float = Field(default=90.0, ge=0)
+    tournament_standings_interval_ms: int = Field(default=2000, ge=100)
+    tournament_pairing_budget_s: float = Field(default=20.0, gt=0)
+    # Recurring templates are expanded this many days ahead.
+    tournament_days_ahead: int = Field(default=7, ge=1, le=60)
     # Settlement retries (worker) pick up matches waiting longer than this.
     settle_retry_after_s: float = Field(default=10.0, ge=0)
 

@@ -8,6 +8,7 @@ hands the match leases back so other nodes adopt the matches at once.
 
 import asyncio
 import secrets
+import uuid
 from collections.abc import Coroutine
 from typing import Any
 
@@ -18,6 +19,7 @@ from redis.exceptions import RedisError
 
 from app.core.config import Settings
 from app.core.redis import LuaScript
+from app.modules.matches.busy import check_busy
 from app.modules.matches.ports import Integrations
 from app.modules.matches.settlement import SessionFactory, SettleDeps, settle_match
 from app.modules.realtime import keys, protocol, rstr, views
@@ -136,6 +138,9 @@ class RtNode:
         for mid in list(conn.matches):
             await self.hub.unsubscribe(keys.match_events(mid), conn.on_match_event)
         conn.matches.clear()
+        for tid in list(conn.tournaments):
+            await self.hub.unsubscribe(keys.tournament_events(tid), conn.on_tournament_event)
+        conn.tournaments.clear()
         released = bool(
             await _RELEASE_CONNECTION(
                 self.redis, keys=[keys.connection(conn.uid)], args=[self.connection_value(conn)]
@@ -196,7 +201,8 @@ class RtNode:
         """``welcome.active``: what the user is in right now."""
         busy = await self.busy(uid)
         if busy is None:
-            return []
+            tournament = await self.active_tournament(uid)
+            return [tournament] if tournament is not None else []
         kind, _, ident = busy.partition(":")
         if kind == "m":
             phase = await rstr.hget(self.redis, keys.match(ident), "phase")
@@ -206,6 +212,14 @@ class RtNode:
         if kind == "q":
             return [{"kind": "queue", "id": ident, "title": "Quick Battle"}]
         return []
+
+    async def active_tournament(self, uid: str) -> dict[str, Any] | None:
+        """A tournament that starts within 2 minutes or is running, from the busy registry."""
+        async with self.sessionmaker() as db:
+            found = await check_busy(db, self.redis, uuid.UUID(uid), self.clock.now_ms())
+        if found is None:
+            return None
+        return {"kind": found.kind, "id": found.id, "title": found.title, "ch": f"t:{found.id}"}
 
     async def busy_details(self, busy: str) -> dict[str, Any]:
         """``details.active`` of a BUSY error."""
@@ -217,6 +231,34 @@ class RtNode:
         if kind == "r":
             return {"kind": "room", "id": ident, "title": "Room"}
         return {"kind": "tournament", "id": ident, "title": "Tournament"}
+
+    # Tournament channels
+
+    async def follow_tournament(self, conn: Connection, tournament_id: uuid.UUID) -> bool:
+        """``sub t:<id>``: the current ``t.standings`` now, then updates as they come."""
+        async with self.sessionmaker() as db:
+            snapshot = await self.integrations.standings(db, tournament_id)
+        if snapshot is None or conn.closed:
+            return False
+        tid = str(tournament_id)
+        if tid not in conn.tournaments:
+            conn.tournaments.add(tid)
+            await self.hub.subscribe(keys.tournament_events(tid), conn.on_tournament_event)
+        rows = snapshot.get("rows", [])
+        me = next((row for row in rows if row.get("uid") == conn.uid), None)
+        conn.send(
+            protocol.frame(
+                "t.standings", {**snapshot, "me": me}, ch=f"t:{tid}", ts=self.clock.now_ms()
+            )
+        )
+        return True
+
+    async def unfollow_tournament(self, conn: Connection, tournament_id: str) -> None:
+        if tournament_id in conn.tournaments:
+            conn.tournaments.discard(tournament_id)
+            await self.hub.unsubscribe(
+                keys.tournament_events(tournament_id), conn.on_tournament_event
+            )
 
     # Match channels
 

@@ -23,6 +23,8 @@ from app.core.schemas import ApiModel, Lax
 from app.modules.content.catalog import build_catalog
 from app.modules.content.models import Chapter, Subject
 from app.modules.content.views import bookmarked_ids, load_views
+from app.modules.matches.busy import check_busy
+from app.modules.matches.creation import max_duration_ms
 from app.modules.matches.models import (
     HeadToHead,
     Match,
@@ -138,7 +140,15 @@ async def battle_setup(
         coins=await integrations.wallet(db, user_id),
         casual_fee=settings.casual_fee,
         cooldown_until=_ms_datetime(until) if until and until > now_ms else None,
-        active=await _active(redis, str(user_id)),
+        active=await _active(redis, str(user_id))
+        or await check_busy(
+            db,
+            redis,
+            user_id,
+            now_ms
+            + max_duration_ms(settings, settings.match_questions)
+            + round(settings.mm_max_wait_s * 1000),
+        ),
         last=last,
         online=online,
         first_search=await first_search(db, redis, str(user_id)),

@@ -350,6 +350,7 @@ async def _ready(node: RtNode, conn: Connection, ref: str | None, d: dict[str, A
     if mid not in conn.matches:
         await node.follow_match(conn, mid, last_seq=None)
     step = await scripts.ready(node.redis, mid, conn.uid)
+    await node.engine.adopt(mid, ver=step.ver, due=step.due)
     node.engine.report(mid, ver=step.ver, due=step.due)
     conn.ack(ref, ch=protocol.match_channel(mid))
 
@@ -415,6 +416,36 @@ async def _rematch(node: RtNode, conn: Connection, ref: str | None, d: dict[str,
         await node.rematches.respond(conn, ref, mid, accept=d.get("accept") is not False)
 
 
+def _tournament_channel(d: dict[str, Any]) -> uuid.UUID | None:
+    channel = d.get("ch")
+    if not isinstance(channel, str) or not channel.startswith("t:"):
+        return None
+    try:
+        return uuid.UUID(channel[2:])
+    except ValueError:
+        return None
+
+
+async def _sub(node: RtNode, conn: Connection, ref: str | None, d: dict[str, Any]) -> None:
+    tournament_id = _tournament_channel(d)
+    if tournament_id is None:
+        conn.error(ref, ErrorCode.BAD_REQUEST, "sub needs ch: t:<tournament id>.")
+        return
+    if not await node.follow_tournament(conn, tournament_id):
+        conn.error(ref, ErrorCode.NOT_FOUND, "This tournament isn't available.")
+        return
+    conn.ack(ref, ch=f"t:{tournament_id}")
+
+
+async def _unsub(node: RtNode, conn: Connection, ref: str | None, d: dict[str, Any]) -> None:
+    tournament_id = _tournament_channel(d)
+    if tournament_id is None:
+        conn.error(ref, ErrorCode.BAD_REQUEST, "unsub needs ch: t:<tournament id>.")
+        return
+    await node.unfollow_tournament(conn, str(tournament_id))
+    conn.ack(ref, ch=f"t:{tournament_id}")
+
+
 async def _mm_join(node: RtNode, conn: Connection, ref: str | None, d: dict[str, Any]) -> None:
     await node.matchmaker.join(conn, ref, d)
 
@@ -432,6 +463,8 @@ HANDLERS: dict[str, Handler] = {
     "pong": _pong,
     "client.state": _client_state,
     "sync": _sync,
+    "sub": _sub,
+    "unsub": _unsub,
     "mm.join": _mm_join,
     "mm.cancel": _mm_cancel,
     "mm.respond": _mm_respond,

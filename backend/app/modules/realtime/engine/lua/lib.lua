@@ -365,3 +365,15 @@ local function finish(m, status, reason, losers, extra, now)
   end
   emit(m, 'match.end', end_payload, now)
 end
+
+-- Tournament games before question 1 (docs/plan.md, "Rounds"): the players in ``absent`` never
+-- showed. One absent player gives the other a forfeit win (no rating change); if nobody showed
+-- it is a double no-show, which scores nothing.
+local function no_show(m, absent, now)
+  if #absent >= #m.humans then
+    finish(m, 'aborted', 'no_show', {}, {not_ready = list(absent), no_show = list(absent)}, now)
+  else
+    finish(m, 'finished', 'no_show', absent, {not_ready = list(absent), no_show = list(absent)},
+      now)
+  end
+end
