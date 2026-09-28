@@ -18,9 +18,13 @@ class AppSearchField extends StatefulWidget {
     this.onSubmitted,
     this.autofocus = false,
     this.trailing,
+    this.focusNode,
   });
 
   final TextEditingController? controller;
+
+  /// Lets a screen move the cursor into the field (e.g. from a "Find friends" button).
+  final FocusNode? focusNode;
   final String hint;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
@@ -62,6 +66,7 @@ class _AppSearchFieldState extends State<AppSearchField> {
           Expanded(
             child: TextField(
               controller: _controller,
+              focusNode: widget.focusNode,
               autofocus: widget.autofocus,
               onChanged: (value) {
                 setState(() {});
