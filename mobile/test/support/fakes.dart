@@ -24,6 +24,7 @@ import 'package:quiz_app/features/battle/data/battle_repository.dart';
 import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
 import 'package:quiz_app/features/battle/demo/demo_server.dart';
 import 'package:quiz_app/features/battle/match/screen_guard.dart';
+import 'package:quiz_app/features/home/data/home_repository.dart';
 import 'package:quiz_app/features/inbox/data/fake_inbox_repository.dart';
 import 'package:quiz_app/features/inbox/data/inbox_repository.dart';
 import 'package:quiz_app/features/leaderboards/data/fake_leaderboard_repository.dart';
@@ -148,6 +149,7 @@ List<Override> testOverrides({
   ReminderScheduler? reminders,
   CalendarExporter? calendar,
   RoomsRepository? rooms,
+  HomeRepository? home,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -188,6 +190,7 @@ List<Override> testOverrides({
   reminderSchedulerProvider.overrideWithValue(reminders ?? MemoryReminderScheduler()),
   calendarExporterProvider.overrideWithValue(calendar ?? MemoryCalendarExporter()),
   roomsRepositoryProvider.overrideWithValue(rooms ?? FakeRoomsRepository()),
+  homeRepositoryProvider.overrideWithValue(home ?? FakeHomeRepository.seeded()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -225,6 +228,7 @@ Future<ProviderContainer> pumpApp(
   ReminderScheduler? reminders,
   CalendarExporter? calendar,
   RoomsRepository? rooms,
+  HomeRepository? home,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -252,6 +256,7 @@ Future<ProviderContainer> pumpApp(
           reminders: reminders,
           calendar: calendar,
           rooms: rooms,
+          home: home,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,
