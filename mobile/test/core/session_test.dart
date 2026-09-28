@@ -7,6 +7,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:quiz_app/app/env.dart';
 import 'package:quiz_app/core/auth/auth_repository.dart';
 import 'package:quiz_app/core/auth/session.dart';
+import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
 
@@ -179,5 +180,68 @@ void main() {
     await c.read(sessionProvider.notifier).signOut();
     expect(c.read(sessionProvider).value, isA<SignedOut>());
     expect(c.read(meProvider).handle, 'aarav');
+  });
+
+  group('an account awaiting deletion', () {
+    Me pending() => Me.fromJson({
+      ...fakeUser().toJson(),
+      'status': 'pending_deletion',
+      'restore_until': '2026-10-05T10:00:00Z',
+    });
+
+    test('/v1/me with status pending_deletion restores a restricted session', () async {
+      when(() => repo.hasStoredSession()).thenAnswer((_) async => true);
+      when(() => repo.fetchMe()).thenAnswer((_) async => pending());
+      final session = await container().read(sessionProvider.future);
+      expect(
+        session,
+        isA<PendingDeletion>().having(
+          (s) => s.restoreUntil,
+          'restoreUntil',
+          DateTime.utc(2026, 10, 5, 10),
+        ),
+      );
+    });
+
+    test('signing in during the 7 days opens it too, and a restore signs in fully', () async {
+      when(() => repo.hasStoredSession()).thenAnswer((_) async => false);
+      when(
+        () => repo.devLogin(
+          email: any(named: 'email'),
+          displayName: any(named: 'displayName'),
+        ),
+      ).thenAnswer((_) async => pending());
+      final c = container();
+      await c.read(sessionProvider.future);
+
+      await c.read(sessionProvider.notifier).devLogin('a@b.c');
+      expect(c.read(sessionProvider).value, isA<PendingDeletion>());
+      expect(c.read(currentUserIdProvider), isNull, reason: 'nothing runs for a restricted user');
+
+      when(() => repo.fetchMe()).thenAnswer((_) async => fakeUser());
+      await c.read(sessionProvider.notifier).refreshUser();
+      expect(c.read(sessionProvider).value, isA<SignedIn>());
+    });
+
+    test('the status survives the offline snapshot', () {
+      final restored = Me.fromJson(pending().toJson());
+      expect(restored.isPendingDeletion, isTrue);
+      expect(restored.restoreUntil, DateTime.utc(2026, 10, 5, 10));
+      expect(Me.fromJson(fakeUser().toJson()).status, AccountStatus.active);
+    });
+  });
+
+  test('ending the session locally (after a delete) skips the server and says why', () async {
+    when(() => repo.hasStoredSession()).thenAnswer((_) async => true);
+    when(() => repo.fetchMe()).thenAnswer((_) async => fakeUser());
+    final c = container();
+    await c.read(sessionProvider.future);
+
+    await c.read(sessionProvider.notifier).endLocally(message: 'Deleted.');
+    expect(
+      c.read(sessionProvider).value,
+      isA<SignedOut>().having((s) => s.message, 'message', 'Deleted.'),
+    );
+    verifyNever(() => repo.signOut());
   });
 }

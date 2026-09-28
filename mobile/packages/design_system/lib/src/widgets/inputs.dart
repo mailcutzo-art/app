@@ -18,9 +18,13 @@ class AppSearchField extends StatefulWidget {
     this.onSubmitted,
     this.autofocus = false,
     this.trailing,
+    this.focusNode,
   });
 
   final TextEditingController? controller;
+
+  /// Lets a screen move the cursor into the field (e.g. from a "Find friends" button).
+  final FocusNode? focusNode;
   final String hint;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
@@ -62,6 +66,7 @@ class _AppSearchFieldState extends State<AppSearchField> {
           Expanded(
             child: TextField(
               controller: _controller,
+              focusNode: widget.focusNode,
               autofocus: widget.autofocus,
               onChanged: (value) {
                 setState(() {});
@@ -177,9 +182,13 @@ class CodeInput extends StatefulWidget {
     this.onChanged,
     this.error,
     this.autofocus = true,
+    this.controller,
   });
 
   final int length;
+
+  /// Holds the text; pass one to fill the code in from outside (a paste button, a link).
+  final TextEditingController? controller;
   final ValueChanged<String>? onCompleted;
   final ValueChanged<String>? onChanged;
   final String? error;
@@ -190,18 +199,35 @@ class CodeInput extends StatefulWidget {
 }
 
 class _CodeInputState extends State<CodeInput> {
-  final _controller = TextEditingController();
+  TextEditingController? _own;
   final _focus = FocusNode();
+
+  TextEditingController get _controller => widget.controller ?? (_own ??= TextEditingController());
 
   @override
   void initState() {
     super.initState();
-    _focus.addListener(() => setState(() {}));
+    _focus.addListener(_refresh);
+    _controller.addListener(_refresh);
+  }
+
+  @override
+  void didUpdateWidget(covariant CodeInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      (oldWidget.controller ?? _own)?.removeListener(_refresh);
+      _controller.addListener(_refresh);
+    }
+  }
+
+  void _refresh() {
+    if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller.removeListener(_refresh);
+    _own?.dispose();
     _focus.dispose();
     super.dispose();
   }

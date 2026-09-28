@@ -192,7 +192,7 @@ void main() {
     expect(find.text('You\'ve waited 0:20. What would you like to do?'), findsOneWidget);
     expect(find.text('Play a Practice Bot'), findsOneWidget);
     expect(find.text('Unrated, no coins · starts right away'), findsOneWidget);
-    expect(_button(tester, 'Invite a friend · Coming soon').onPressed, isNull);
+    expect(_button(tester, 'Invite a friend').onPressed, isNotNull);
     expect(find.text('Cancel search'), findsOneWidget);
     expect(find.text('Play the bot'), findsNothing, reason: 'no banner on the search screen');
 
@@ -286,7 +286,7 @@ void main() {
     await advance(tester, const Duration(milliseconds: 600));
     expect(find.text('Keep searching'), findsOneWidget);
     expect(find.text('Play a Practice Bot'), findsNothing);
-    expect(find.text('Invite a friend · Coming soon'), findsNothing);
+    expect(find.text('Invite a friend'), findsNothing);
   });
 
   testWidgets('Cancel search from the options stops and leaves', (tester) async {

@@ -1,7 +1,7 @@
 """Common FastAPI setup shared by the ``api`` and ``rt`` processes."""
 
-from collections.abc import AsyncIterator, Sequence
-from contextlib import asynccontextmanager
+from collections.abc import AsyncIterator, Callable, Sequence
+from contextlib import AbstractAsyncContextManager, asynccontextmanager, nullcontext
 
 import structlog
 from fastapi import FastAPI
@@ -12,7 +12,7 @@ from app.core.config import Settings
 from app.core.errors import register_exception_handlers
 from app.core.logging import configure_logging
 from app.core.middleware import RequestContextMiddleware
-from app.core.resources import open_resources
+from app.core.resources import Resources, open_resources
 
 log = structlog.stdlib.get_logger(__name__)
 
@@ -23,11 +23,13 @@ def create_base_app(
     component: str,
     title: str,
     middleware: Sequence[Middleware] = (),
+    services: Callable[[FastAPI, Resources], AbstractAsyncContextManager[None]] | None = None,
 ) -> FastAPI:
     """An app with logging, the error envelope, request context and DB/Redis lifecycle.
 
     ``middleware`` is installed inside the request-context middleware, which stays outermost so
-    every response carries a request id and gets an access-log line.
+    every response carries a request id and gets an access-log line. ``services`` runs the
+    process's own long-lived parts (the realtime engine) while the resources are open.
     """
     configure_logging(settings)
 
@@ -35,8 +37,9 @@ def create_base_app(
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         async with open_resources(settings, component=component) as resources:
             app.state.resources = resources
-            log.info("app.started", component=component, env=settings.env.value)
-            yield
+            async with services(app, resources) if services else nullcontext():
+                log.info("app.started", component=component, env=settings.env.value)
+                yield
         log.info("app.stopped", component=component)
 
     docs_enabled = not settings.is_prod

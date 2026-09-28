@@ -90,7 +90,7 @@ async def test_client_config_reflects_settings() -> None:
         "maintenance_message": "Back at 6 pm.",
         "maintenance_until": "2026-09-27T12:30:00Z",
         "maintenance_at": None,
-        "features": {"arena": True},
+        "features": {"push": False, "arena": True},
         "server_time": "2026-09-27T16:00:00.250000Z",
     }
 

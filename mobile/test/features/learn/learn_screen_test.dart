@@ -85,7 +85,9 @@ void main() {
     expect(find.textContaining('Focus on Friction', findRichText: true), findsOneWidget);
     expect(find.text('Practise 10'), findsOneWidget);
     expect(find.text('3 due'), findsOneWidget);
-    expect(find.text('SOON'), findsNWidgets(2), reason: 'Self Challenge and Fun & Learn');
+    expect(find.text('SOON'), findsNothing, reason: 'every practice tool works');
+    expect(find.text('Self Challenge'), findsOneWidget);
+    expect(find.text('Fun & Learn'), findsOneWidget);
   });
 
   testWidgets('a progress error keeps the subjects on screen and retries on its own card', (
@@ -160,6 +162,27 @@ void main() {
 
     expect(find.textContaining('Nothing to review yet'), findsOneWidget);
     expect(learn.createCalls.single.$1.mode.name, 'review');
+  });
+
+  testWidgets('the search pill and every tool open their screens', (tester) async {
+    usePhoneViewport(tester, height: 1400);
+    await pumpApp(tester, prefs: await testPrefs(), learn: learn, location: Routes.learn);
+
+    Future<void> openAndBack(Finder entry, String title) async {
+      await tester.tap(entry);
+      await tester.pumpAndSettle();
+      expect(find.text(title), findsOneWidget);
+      await tester.tap(
+        find.byWidgetPredicate((w) => w is AppIconButton && w.semanticLabel == 'Back'),
+      );
+      await tester.pumpAndSettle();
+    }
+
+    await openAndBack(find.bySemanticsLabel('Search questions'), 'Find any question');
+    await openAndBack(find.text('Bookmarks'), 'No bookmarks yet');
+    await openAndBack(find.text('Self Challenge'), 'Start · 20 questions in 10 min');
+    await openAndBack(find.text('Fun & Learn'), 'Galileo and the falling balls');
+    expect(learn.createCalls, isEmpty, reason: 'nothing starts without a choice');
   });
 
   testWidgets('the coach tip\'s button starts the practice it suggests', (tester) async {

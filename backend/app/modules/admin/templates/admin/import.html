@@ -1,0 +1,68 @@
+{% extends "sqladmin/layout.html" %}
+{% block content %}
+<div class="col-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Import questions from CSV or JSON</h3>
+    </div>
+    <div class="card-body">
+      {% if error %}
+      <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endif %}
+      <p class="text-secondary">The format is described in docs/content-format.md ("Importing questions").
+        CSV columns: <code>{{ csv_required | join(", ") }}</code>, optional <code>{{ csv_optional | join(", ") }}</code>.
+        At most {{ max_rows }} questions and {{ max_mb }} MB per file. Importing the same file again adds nothing.</p>
+      <form method="POST" enctype="multipart/form-data">
+        <fieldset class="form-fieldset">
+          <input class="form-control mb-3" type="file" name="file" accept=".csv,.json,text/csv,application/json" required>
+          <label class="form-check">
+            <input class="form-check-input" type="checkbox" name="dry_run" {% if options.dry_run %}checked{% endif %}>
+            <span class="form-check-label">Dry run: check every row, write nothing</span>
+          </label>
+          <label class="form-label mt-2">New questions are</label>
+          <select class="form-select mb-2" name="status">
+            <option value="review" {% if not options.publish %}selected{% endif %}>in review (not shown to players)</option>
+            <option value="published" {% if options.publish %}selected{% endif %}>published</option>
+          </select>
+          <label class="form-check">
+            <input class="form-check-input" type="checkbox" name="skip_invalid" {% if options.skip_invalid %}checked{% endif %}>
+            <span class="form-check-label">Import the valid rows even if others have problems</span>
+          </label>
+          <label class="form-check">
+            <input class="form-check-input" type="checkbox" name="allow_near_duplicates" {% if options.allow_near_duplicates %}checked{% endif %}>
+            <span class="form-check-label">Import near duplicates too</span>
+          </label>
+        </fieldset>
+        <button class="btn btn-primary" type="submit">Check and import</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% if report %}
+<div class="col-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">{{ filename }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="alert {% if report.imported %}alert-success{% elif report.blocked %}alert-warning{% else %}alert-info{% endif %}" role="status" id="import-summary">{{ report.summary() }}</div>
+      {% if report.rows %}
+      <table class="table table-vcenter card-table">
+        <thead><tr><th>Row</th><th>Outcome</th><th>Id</th><th>Details</th></tr></thead>
+        <tbody>
+          {% for row in report.rows %}
+          <tr>
+            <td>{{ row.row }}</td>
+            <td><span class="badge {% if row.status.value == 'ok' %}bg-green-lt{% elif row.status.value == 'error' %}bg-red-lt{% else %}bg-yellow-lt{% endif %}">{{ row.status.value }}</span>{% if row.imported %} imported{% endif %}</td>
+            <td>{{ row.external_id or "" }}</td>
+            <td>{{ row.messages | join("; ") }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -642,6 +642,43 @@ void main() {
       expect(group.state.standings.single.uid, me);
     });
 
+    test('a late joiner who only watches is not among the players', () {
+      const players = {
+        'u2': MatchPlayer(card: PlayerCard(uid: 'u2')),
+        'u3': MatchPlayer(card: PlayerCard(uid: 'u3')),
+      };
+      expect(const MatchState(players: players).isSpectator(me), isTrue);
+      expect(const MatchState(players: players).isSpectator('u2'), isFalse);
+      expect(const MatchState().isSpectator(me), isFalse, reason: 'nothing known yet');
+    });
+
+    test('places come from the standings, or from the totals', () {
+      const players = {
+        me: MatchPlayer(card: PlayerCard(uid: me)),
+        'u2': MatchPlayer(card: PlayerCard(uid: 'u2')),
+        'u3': MatchPlayer(card: PlayerCard(uid: 'u3')),
+      };
+      const byTotals = MatchState(
+        players: players,
+        totals: {
+          me: PlayerTotals(points: 250, correct: 2),
+          'u2': PlayerTotals(points: 250, correct: 3),
+          'u3': PlayerTotals(points: 120, correct: 1),
+        },
+      );
+      expect([byTotals.placeOf(me), byTotals.placeOf('u2'), byTotals.placeOf('u3')], [2, 1, 3]);
+
+      const byStandings = MatchState(
+        players: players,
+        standings: [
+          GroupStanding(uid: 'u3', points: 300, place: 1),
+          GroupStanding(uid: me, points: 250, place: 2),
+        ],
+      );
+      expect(byStandings.placeOf(me), 2);
+      expect(byStandings.placeOf('u2'), 1, reason: 'not in the standings: from the totals');
+    });
+
     test('the state is immutable', () {
       final state = p.frame(s.show(1));
 

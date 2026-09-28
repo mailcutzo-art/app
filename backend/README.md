@@ -5,7 +5,7 @@ Python (FastAPI) backend for the quiz battle app. One codebase runs as three pro
 | Process  | Entry point                   | Role                                                   |
 |----------|-------------------------------|--------------------------------------------------------|
 | `api`    | `app.main_api:create_app`     | REST API under `/v1`, plus `/healthz` and `/readyz`    |
-| `rt`     | `app.main_rt:create_app`      | WebSocket gateway at `/v1/ws` (quiz engine later)      |
+| `rt`     | `app.main_rt:create_app`      | WebSocket gateway at `/v1/ws` and the live quiz engine  |
 | `worker` | `python -m app.main_worker`   | Periodic jobs: tournament ticks, outbox, reconcilers   |
 
 PostgreSQL 16 holds settled data; Redis 7 holds live state, queues and rate limits. The server is
@@ -50,7 +50,9 @@ Settings come from `APP_*` environment variables, then an optional `backend/.env
 documented in [`.env.example`](.env.example). Defaults match the local services, so dev needs no
 configuration. `APP_ENV=prod` refuses to start unless the database and Redis URLs, the Ed25519
 JWT key pair and `APP_REFRESH_GRACE_KEY` are set explicitly and `APP_DEV_LOGIN_ENABLED` is false.
-Dev and test generate ephemeral keys per process. Google sign-in needs `APP_GOOGLE_CLIENT_IDS`
+Dev and test generate ephemeral keys per process. Push notifications need
+`APP_FCM_SERVICE_ACCOUNT_FILE` (a Firebase service-account key); without it push is off. Google
+sign-in needs `APP_GOOGLE_CLIENT_IDS`
 (the OAuth web client id); local testing can use dev login instead
 (`APP_DEV_LOGIN_ENABLED=true`).
 
@@ -58,13 +60,23 @@ Dev and test generate ephemeral keys per process. Google sign-in needs `APP_GOOG
 
 ```bash
 uv run uvicorn app.main_api:create_app --factory --port 8000 --no-proxy-headers
-uv run uvicorn app.main_rt:create_app --factory --port 8001 --no-proxy-headers --ws-max-size 65536
+uv run uvicorn app.main_rt:create_app --factory --port 8001 --no-proxy-headers --ws-max-size 65536 \
+  --timeout-graceful-shutdown 8
 uv run python -m app.main_worker
 ```
 
 Client IPs honour `X-Forwarded-For` only from `APP_TRUSTED_PROXIES`; `--no-proxy-headers` keeps
 uvicorn from rewriting them first. The worker stops on SIGTERM/SIGINT after in-flight jobs
 finish (10 s grace).
+
+**Realtime.** Any number of identical `rt` replicas can run behind one load balancer; they share
+Redis. On SIGTERM a replica closes its sockets with 1012 (players get extra grace and reconnect
+elsewhere) and hands its match leases back, so another replica adopts the matches at once. The
+worker settles anything an `rt` node left behind (`settle_pending`, every 5 s) and voids matches
+Redis lost (`reconcile_matches`). A client needs a ticket from the api
+(`POST /v1/rt/tickets`) and then `hello` on `ws://localhost:8001/v1/ws`; `docs/protocol.md` has
+the messages. Every live timing is an `APP_RT_*`, `APP_MATCH_*` or `APP_MM_*` setting
+(`.env.example`), so a local game can be made short.
 
 ## Migrations
 
@@ -83,7 +95,9 @@ sessions, answer records, per-user progress and XP (see `../docs/data-model.md`)
 ban details. `question_attempts` is partitioned by month: the SQL function
 `ensure_attempt_partitions(months_ahead)` creates the current and following months (moving any
 rows that already landed in the DEFAULT partition), and the worker calls it daily. Partitions are
-not models, so autogenerate and the drift test skip them (`app.models.include_name`).
+not models, so autogenerate and the drift test skip them (`app.models.include_name`). 0004 adds the
+platform tables: `outbox`, `wallets`, `coin_ledger` (append-only through the same trigger),
+`coin_holds`, `notifications`, `push_tokens`, `user_settings`, `analytics_events` and `feedback`.
 
 ## Tests and checks
 
@@ -200,11 +214,95 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
   moves up; box 5 graduates) and the running totals (`user_topic_stats`, `user_chapter_stats`,
   `user_category_stats`, `user_daily_stats`) in the same transaction, then awards practice XP
   (`xp_events`, unique per batch; daily cap 300 by IST day).
-- **Pending pieces.** The XP formulas, the speed label against a question's typical time and
-  the coach's tip rules come from separately written modules (`progression.levels`,
-  `realtime.engine.scoring`, `coach.tips`) that are not wired in yet: until then `xp` and `tip`
-  are `null`, `GET /v1/me/tips` lists none and answers get no speed label. The seams are
-  `progression.xp.xp_rules`, `practice.speed.speed_vs_typical` and `coach.service.tips_engine`.
+- **Shared rules.** The XP formulas, the speed label against a question's typical time and the
+  coach's tip rules are separate pure modules (`progression.levels`, `realtime.engine.scoring`,
+  `coach.tips`), reached through `progression.xp.xp_rules`, `practice.speed.speed_vs_typical`
+  and `coach.service.tips_engine`; live games use the same ones.
+
+## Platform: outbox, coins, inbox, analytics
+
+| Endpoint | |
+|---|---|
+| `GET /v1/me/wallet` | `{balance, held, recent}` (the last 5 transactions) |
+| `GET /v1/me/wallet/transactions?cursor=` | the coins history, newest first: `{id, delta, balance_after, reason, title, ref: {kind, id}, created_at}` |
+| `GET /v1/me/notifications?cursor=`, `GET /v1/me/notifications/unread-count` | the inbox (90 days) and the bell's badge |
+| `POST /v1/me/notifications/read` | `{ids}` or `{all: true}` → 204 |
+| `PUT`/`DELETE /v1/me/push-token` | this device's FCM token (also removed when its session ends) |
+| `GET`/`PUT /v1/me/settings/notifications` | push per category and quiet hours (default 22:30–07:00 IST) |
+| `GET`/`PUT /v1/me/settings/app` | `{analytics}`: the analytics toggle |
+| `POST /v1/events` | up to 20 allowlisted screen events → 202 `{accepted}`; 30 a minute |
+| `POST /v1/feedback` | `{kind: problem\|idea\|coins\|ban_appeal, message, request_id?}` → 202; 5 an hour |
+
+- **Outbox** (`app.modules.outbox`). `enqueue(db, topic, payload, key=...)` writes a message in the
+  caller's transaction (a repeated key is ignored); modules `register(topic, handler)` and are
+  listed in `HANDLER_MODULES`. The worker claims due rows with `FOR UPDATE SKIP LOCKED`, runs
+  each handler in a SAVEPOINT of the same transaction, and retries failures with backoff (5 s
+  doubling to 1 h), dead-lettering after 8 attempts (`outbox.dead_letter` is logged). Delivery
+  is at least once, so handlers are idempotent.
+- **Coins** (`app.modules.economy.service`). `credit`, `debit`, `transfer`, `hold`,
+  `capture_hold`, `release_hold` and `settle_pot` lock wallets `FOR UPDATE` in user order,
+  replay an already-posted idempotency key without changing anything, and raise 409
+  `INSUFFICIENT_COINS`. A hold posts its `-amount` entry at once; releasing it posts a refund.
+  `wallets.balance` has `CHECK >= 0`; the `purchased` bucket is reserved and never spent. The
+  welcome bonus (100, key `welcome:{uid}`) is credited when onboarding completes, and
+  `pop_welcome` hands it to Home once. The reaper refunds holds open for 30 minutes unless the
+  module owning the reference says it is live (`economy.jobs.register_liveness`).
+- **Inbox and push** (`app.modules.notifications`). `notify(db, user_id, kind=..., title=...,
+  body=..., key=...)` stores the item and enqueues `notify.live` (a `notify` event on Redis
+  `ev:u:{uid}`, docs/protocol.md §9a) and `notify.push`. Push uses FCM HTTP v1 when
+  `APP_FCM_SERVICE_ACCOUNT_FILE` is set (otherwise it is skipped and `/v1/config` reports
+  `features.push: false`); it follows the category settings and quiet hours, except
+  `time_critical` notices, drops tokens FCM reports as unregistered, and skips pushes over an
+  hour late.
+- **Analytics** (`app.modules.analytics`). `track(db, name, user_id, props, now=...)` records
+  server-side funnel events directly in the caller's transaction (no outbox: nothing external
+  to deliver). Players who turned analytics off are not recorded; minors are stored without a
+  user id, with a session key that is an HMAC under a daily salt deleted after two days.
+
+- **Social and account** (`app.modules.social`, `app.modules.moderation`,
+  `app.modules.users.deletion`). Other features plug in rather than being imported:
+  `register_have_played(fn)` ("played with" for minors' friend requests; default never),
+  `register_profile_section("ratings" | "form" | "h2h", fn)` (public profile sections; default
+  empty), `register_block_hook(fn)` (e.g. cancel invites), `register_ban_hook(fn)` and
+  `on_account_deleted` / `on_account_restored` / `on_account_erased(fn)`. They call
+  `are_blocked(db, a, b)`, `blocked_ids(db, uid)`, `can_challenge(db, viewer, target)`,
+  `set_presence(redis, uid, state, ttl_s)`, `record_activity(db, uid, kind, payload, key=)`,
+  `in_shadow_pool(db, uid, now=)` and `apply_moderation(db, redis, uid, action, reason=, until=,
+  by=, now=)`.
+
+- **Live games wired in** (`app.modules.matches.wiring.install()`, run at start by the api, rt
+  and worker processes). The engine's ports (`matches.ports.integrations`) get the real modules:
+  the casual 5-coin entry is a ledger hold (`matches.escrow`: captured and paid out as the
+  10-coin pot, or released with a `refund` notice on a draw, abort, void or ended search; the
+  hold reaper leaves it alone while the search or match carrying it is live); settlement awards
+  XP, missions, streak and achievements before any wallet lock, then rated coins (10 / 4 / 1,
+  at most 150 a day), `match_forfeit` / `match_settled` notices and analytics
+  (`matches.rewards`); matchmaking skips blocked pairs and keeps the shadow pool to itself; the
+  gateway keeps social presence (`online`, `in_battle`); abort strikes put a `match_aborted`
+  notice in the inbox. Social gets "played with" and the profile's `ratings`, `form` and `h2h`
+  (`matches.profiles`). A ban or an account deletion enqueues `matches.withdraw`, which cancels
+  the player's search (refunding the entry) or forfeits their live match.
+- **Rooms and invites** (`app.modules.rooms`, REST in `router.py`, live in
+  `app.modules.realtime.rooms`): Play with Friend and Group Battle lobbies keyed by 6-character
+  Crockford codes, live in Redis (`rooms/lua/*.lua`) with the record in Postgres (`rooms`,
+  `room_members`, `room_kicks`, `room_invites`). Games run on the engine as `friend` / `group`
+  matches with the room's settings; XP comes from the usual settlement hooks. Invites expire
+  through the outbox (`rooms.invite_expire`), blocks cancel them, and bans or deletions take the
+  player out of their room. Tournaments plug into room and invite checks with
+  `app.modules.rooms.busy.register_busy_check(async (db, redis, user_id, until) -> ActiveOut |
+  None)`. `GET /j/<code>` is the public page behind room links.
+
+- **Tournaments** (`app.modules.tournaments`, docs/plan.md Phase 5). The worker moves each
+  tournament through scheduled → reg_open → check_in → locked → running → finalizing →
+  finished (or cancelled) in `lifecycle.py`; side effects are outbox rows (inbox, pushes, `u`
+  and `t:<id>` events). Round games are engine matches of kind `tournament` (10 questions,
+  90 s to get ready, 45 s grace; `end.lua` ends them at the round deadline); the settlement
+  hook (`results.py`, first progress hook) records each board and recomputes the standings.
+  Fees are ledger holds (captured at the start, released on withdrawal, no-show or
+  cancellation), prizes ledger credits. `matches.busy.register_busy_check` keeps registered
+  and checked-in players out of quick battles that would clash. Admin: Arena → Tournaments
+  (create, edit before registration, **Cancel and refund**) and Recurring tournaments. Seed
+  starter templates with `uv run python -m app.modules.tournaments.seed`.
 
 ## Worker jobs
 
@@ -213,9 +311,61 @@ Specified in `../docs/api-learn.md`; all need a signed-in player.
 | `practice_housekeeping` | 10 min | finishes sessions that expired unfinished, deletes sessions older than 90 days, forgets answer ids after 14 days |
 | `attempt_partitions` | daily | `ensure_attempt_partitions(3)` |
 | `question_stats` | nightly (after 02:00 IST) | rebuilds `question_stats`: attempts, share correct, and the median time of correct answers over 90 days (`typical_ms`, from 20 answers) |
+| `outbox_dispatch` | 1 s | delivers due outbox messages (replicas share the work) |
+| `outbox_cleanup` | daily | deletes delivered messages after 7 days, dead ones after 30 |
+| `hold_reaper` | 1 min | refunds coin holds stuck for 30 minutes whose reference isn't live |
+| `notifications_retention`, `analytics_retention` | daily | inbox 90 days; analytics 180 days and old session salts |
+| `moderation_expiry` | 1 min | ends social restrictions and temporary bans whose time is up |
+| `account_erasure` | hourly | erases accounts 30 days after deletion: tombstones the user row, drops identities, sessions, settings, inbox, social rows and feedback |
+| `activity_retention` | daily | the friends' activity feed keeps 30 days |
+| `tournament_tick` | 1 s | runs due tournament lifecycle steps (`FOR UPDATE SKIP LOCKED`, one transaction per step) |
+| `tournament_templates` | 10 min | creates recurring tournaments 7 days ahead (`UQ(template_id, starts_at)`) |
 
 A Redis lease keeps each run to one worker replica, and daily jobs mark the day done only after
 they succeed (`app/core/jobs.py`).
+
+## Admin panel and question import
+
+SQLAdmin at `/admin`, mounted by the api process when `APP_ADMIN_ENABLED=true` (settings in
+`.env.example`). To open it locally:
+
+```bash
+APP_ADMIN_ENABLED=true APP_DEV_LOGIN_ENABLED=true uv run uvicorn app.main_api:create_app --factory --reload
+# sign in to the app once (or POST /v1/auth/dev-login {"email": ...}), then:
+uv run python scripts/create_admin.py you@example.com
+# open http://127.0.0.1:8000/admin and use "Dev login" with that email
+```
+
+- **Sign-in**: Google's authorization-code flow with its own web client
+  (`APP_ADMIN_GOOGLE_CLIENT_ID`/`_SECRET`, callback `/admin/auth/callback`); the Google account
+  must be linked to a user with the admin role and an active account. Dev login by email exists
+  only with `APP_DEV_LOGIN_ENABLED`. The session is a signed cookie (`APP_ADMIN_SESSION_SECRET`,
+  path `/admin`, `SameSite=Lax`, `Secure` in prod) holding the admin's id and token version;
+  every request re-checks the user, so a ban, a lost role or a `token_version` bump ends it.
+- **Guard**: `APP_ADMIN_IP_ALLOWLIST` (optional, honours `APP_TRUSTED_PROXIES`); writes must come
+  from the panel's own origin (`Origin`/`Referer`, `Sec-Fetch-Site`), which with the Lax cookie
+  stops cross-site forms; pages can't be framed and aren't cached. Maintenance and forced
+  updates don't apply to the panel.
+- **Audit**: every create, update and delete writes an `audit_log` row (before and after JSON,
+  admin id, IP) in the same transaction; sign-ins and imports are logged too. The audit log view
+  is read-only.
+- **Views**: users (status, roles and bans: a ban or role change bumps `token_version`, so the
+  player's tokens stop working at once; admins can't demote or ban themselves), questions
+  (search, filter by subject, chapter, status and source; editing a published question adds a
+  superseding version and retires the old row, only retiring and `battle_pool` change in place;
+  options are edited as A–D with one correct letter), passages, Guess the Word terms, subjects,
+  exams, chapters and topics (read-only), the question report queue, `app_config` (runtime
+  switches are validated like `/v1/config` reads them) and the audit log.
+- **Report queue** (Content → Question reports, open ones by default): Review a report and close
+  it as `fixed`, `rejected` or `retired` (which retires the question) with an internal note.
+  Every open report on the question closes with it, and `app.modules.content.hooks.on_report_resolved`
+  runs once per reporter inside the same transaction; the inbox registers its `question_report`
+  notification there (see the module docstring; `report_outcome_notice(event)` builds the text).
+- **Import**: `scripts/import_questions.py` and Content → Import questions take CSV or JSON in the
+  format of `../docs/content-format.md` ("Importing questions"): a dry run reports every row
+  (`ok`, `error`, `duplicate`, `near_duplicate`), imports are idempotent (normalized stem and
+  option set) and audited, near duplicates are found with pg_trgm similarity above 0.9 within the
+  subject, and new questions get the next per-subject `seq` and status `review` (or `published`).
 
 ## Forced updates and maintenance
 
@@ -224,7 +374,8 @@ read from `app_config` rows of those names (falling back to the `APP_*` settings
 without a redeploy; each api process re-reads them every 5 seconds. `GET /v1/config` reports
 them. Requests whose `X-App-Build` header is below `min_build` get 426 `UPDATE_REQUIRED`, and while
 maintenance is on 503 `MAINTENANCE` (with the message and `Retry-After`), except `/v1/config`,
-`/v1/auth/*` and the probes (and, later, live matches).
+`/v1/auth/*`, the probes, `POST /v1/rt/tickets` and `/v1/matches/*` (a game in progress can
+always finish and show its result).
 
 ## API conventions (`app/core`)
 
@@ -274,13 +425,21 @@ app/
   modules/users/                             profile, onboarding, handle rules, authz cache
   modules/moderation/                        profanity and reserved names (+ data/ word lists)
   modules/realtime/                          /v1/ws gateway skeleton and protocol constants
-  modules/content/                           question bank, seed, catalog, search, reports
+  modules/content/                           question bank, seed, catalog, search, reports,
+                                             importer, edits (versions), report review, hooks
+  modules/admin/                             SQLAdmin panel: sign-in, guard, views, templates
   modules/practice/                          sessions, answers, running totals, reviews, jobs
   modules/progression/                       XP events and totals
   modules/coach/                             tip inputs, tips cache, dismissals
+  modules/outbox/                            transactional outbox, handler registry, dispatcher
+  modules/economy/                           wallets, coin ledger, holds, welcome bonus, reaper
+  modules/notifications/                     inbox, notify(), live and FCM delivery, push tokens
+  modules/analytics/                         client events, track(), retention
+  modules/feedback/                          Help & feedback messages
 alembic/                                     async env.py and revisions
 scripts/dev_services.sh                      local Postgres and Redis
 scripts/create_admin.py                      grant the admin role
+scripts/import_questions.py                  import questions from CSV or JSON
 tests/                                       pytest suite (real Postgres and Redis)
 ```
 

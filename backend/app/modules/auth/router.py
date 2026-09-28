@@ -16,7 +16,7 @@ from app.core.db import SessionDep
 from app.core.errors import NotFound
 from app.core.ratelimit import rate_limit
 from app.core.redis import RedisDep
-from app.core.security import CurrentAuth
+from app.core.security import CurrentAuth, CurrentAuthClosing
 from app.modules.auth import service
 from app.modules.auth.google import GoogleVerifierDep, claim_single_use
 from app.modules.auth.models import Provider, RevokeReason
@@ -88,8 +88,11 @@ async def refresh(
 
 
 @router.post("/logout", status_code=204)
-async def logout(auth: CurrentAuth, db: SessionDep, redis: RedisDep, clock: ClockDep) -> None:
-    """End this device's session; its tokens stop working immediately."""
+async def logout(
+    auth: CurrentAuthClosing, db: SessionDep, redis: RedisDep, clock: ClockDep
+) -> None:
+    """End this device's session; its tokens stop working immediately. A deleted account's
+    restricted session may sign out too."""
     await service.end_session(
         db,
         redis,

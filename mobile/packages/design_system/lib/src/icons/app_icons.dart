@@ -40,6 +40,9 @@ abstract final class AppIcons {
   static const HugeIconData more = HugeIconsStrokeRounded.strokeRoundedMoreHorizontal;
   static const HugeIconData refresh = HugeIconsStrokeRounded.strokeRoundedRefresh;
   static const HugeIconData info = HugeIconsStrokeRounded.strokeRoundedInformationCircle;
+
+  /// The ChatGPT mark, for "ask an AI tutor" buttons.
+  static const HugeIconData chatGpt = HugeIconsStrokeRounded.strokeRoundedChatGpt;
   static const HugeIconData alert = HugeIconsStrokeRounded.strokeRoundedAlert02;
   static const HugeIconData offline = HugeIconsStrokeRounded.strokeRoundedWifiDisconnected01;
   static const HugeIconData timer = HugeIconsStrokeRounded.strokeRoundedTimer02;
@@ -76,6 +79,15 @@ abstract final class AppIcons {
   static const HugeIconData moon = HugeIconsStrokeRounded.strokeRoundedMoon02;
   static const HugeIconData grid = HugeIconsStrokeRounded.strokeRoundedGridView;
   static const HugeIconData user = HugeIconsStrokeRounded.strokeRoundedUserCircle;
+  static const HugeIconData wallet = HugeIconsStrokeRounded.strokeRoundedWallet01;
+  static const HugeIconData inbox = HugeIconsStrokeRounded.strokeRoundedInbox;
+  static const HugeIconData device = HugeIconsStrokeRounded.strokeRoundedSmartPhone01;
+  static const HugeIconData sound = HugeIconsStrokeRounded.strokeRoundedVolumeHigh;
+  static const HugeIconData vibrate = HugeIconsStrokeRounded.strokeRoundedVibrate;
+  static const HugeIconData palette = HugeIconsStrokeRounded.strokeRoundedPaintBoard;
+  static const HugeIconData analytics = HugeIconsStrokeRounded.strokeRoundedAnalytics01;
+  static const HugeIconData feedback = HugeIconsStrokeRounded.strokeRoundedMessageEdit01;
+  static const HugeIconData document = HugeIconsStrokeRounded.strokeRoundedFile01;
   static const HugeIconData globe = HugeIconsStrokeRounded.strokeRoundedGlobe02;
   static const HugeIconData rocket = HugeIconsStrokeRounded.strokeRoundedRocket01;
   static const HugeIconData quiz = HugeIconsStrokeRounded.strokeRoundedQuiz01;
@@ -84,4 +96,6 @@ abstract final class AppIcons {
   static const HugeIconData graduation = HugeIconsStrokeRounded.strokeRoundedMortarboard02;
   static const HugeIconData leaf = HugeIconsStrokeRounded.strokeRoundedLeaf01;
   static const HugeIconData cube = HugeIconsStrokeRounded.strokeRoundedCube;
+  static const HugeIconData message = HugeIconsStrokeRounded.strokeRoundedMessage01;
+  static const HugeIconData image = HugeIconsStrokeRounded.strokeRoundedImage01;
 }

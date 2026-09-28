@@ -63,12 +63,15 @@ the returned `due_ms`.
 | `conn.lua` | A player connected or dropped. Sets `grace_until`, emits `opp.conn`, and pulls `due_ms` earlier if a grace deadline now comes first |
 | `forfeit.lua` | Voluntary forfeit → `finished` with `reason = forfeit` |
 | `emote.lua` | Emote rate limits (1 per 3 s, 10 per match), then emit |
+| `end.lua` | A tournament round's deadline: finish on the current score, or no-shows before question 1 |
 
 **`advance.lua` by phase**
 - `ready_wait` past its deadline:
   - quick games → `aborted`, and the refund is recorded in `final`;
-  - tournament games → no-show rules: a forfeit win for the player who showed up, or a double
-    no-show.
+  - tournament games → no-show rules: a forfeit win for the player who showed up (`finished`,
+    reason `no_show`, no rating change), or a double no-show (`aborted`, reason `no_show`).
+    A tournament player past their grace, or leaving, before question 1 is not ready; once
+    the others are ready that decides the game at once.
 - `countdown` → `q_open(1)`. It sets `shown_at = now + 400`, `deadline_at = shown_at + limit`,
   records `open_players` (the humans connected now), emits `q.show`, and sets
   `due = deadline_at + 250`.
@@ -171,6 +174,41 @@ are identical for every recipient.
   - Options are shuffled and given fresh random 5-character ids. The id → correct map lives only
     in Redis and `match_questions`.
 
+## Rooms (Play with Friend, Group Battle)
+
+- **Keys.** `room:{rid}` (hash: kind, code, host, status `lobby` | `starting` | `playing` |
+  `finished` | `closed`, locked, settings JSON, capacity, seq, active_ms, match, rematch JSON,
+  autostart_at and the room's timings), `room:{rid}:m` (member uid → JSON `{card, ready,
+  connected, away, joined_ms, disc_ms, spectator}`), `room:{rid}:k` (kicked), `room:{rid}:log`
+  (capped stream, like a match log), `room:code:<CODE>` → rid while the room is open, and
+  `rooms:timers` (zset rid → due ms). Events go out on `ev:r:{rid}`.
+- **Scripts** (`modules/rooms/lua/`, each is `lib.lua` + `room_lib.lua` + its body):
+  `room_create` (takes the host's busy slot and the code), `room_join` (kicks, lock, capacity,
+  busy slot), `room_leave` (handover or close), `room_op` (conn, away, ready, settings, lock,
+  transfer, rematch, started, unstart, end), `room_start` (claims a start: exactly one caller
+  gets the players), `room_tick` (the timer) and `room_read` (the snapshot).
+- **Timers.** Every rt node scans `rooms:timers` every 250 ms and runs `room_tick` for due rooms;
+  the script is idempotent, so a room ticked by two nodes acts once. It moves a room whose game
+  ended to `finished`, fires a friend duel's auto-start (returned to Python, which starts the
+  game), ends rematch and Play again windows, closes idle lobbies and does host handovers.
+- **Games.** A start claims the room (`starting`), writes the match rows with the room's
+  settings (`matches.creation.GameRules`: question count, time, chapters, difficulty) and runs
+  `create.lua` with extra hash fields: `room`, `room_ttl`, and for groups `rules = group`,
+  `short_ms`, `standings`, `late_join`. `create.lua` moves every player's busy slot to the match;
+  `finish` in `lib.lua` hands it back to the room (while the room is still `playing` and the
+  player a member) and pokes `rooms:timers`, so the room moves on at once.
+- **Group rules in the engine.** `conn.lua` never starts a forfeit grace for a group: it keeps
+  `short_until`, the deadline once fewer than 2 players are connected, which `schedule` and
+  `advance.lua` honour (the game then finishes on the current scores). `forfeit.lua` marks a group
+  player `left` (they can come back through `join.lua`). `ready.lua` waits only for connected
+  players, and a group at its ready deadline starts with at least 2 ready players. `join.lua`
+  adds a late joiner (`joined_q`; settlement skips the questions they never saw) or a spectator
+  (`m:{mid}:s`, allowed to follow the channel). `end.lua` finishes with `ended_by_host`. With
+  `standings = 1`, `reveal` adds `standings` (place and change since the last question, kept in
+  the hash as `places`). The gateway shuffles `q.show` options per viewer for group matches.
+- **Postgres** keeps `rooms` (code unique among open rooms), `room_members`, `room_kicks` and
+  `room_invites`; the rt node writes them as the live room changes.
+
 ## Settlement
 
 - **When.** `finished`, `aborted` and `voided` all end in `settle:q`. The owner settles at once,
@@ -209,3 +247,47 @@ are identical for every recipient.
   - heartbeat pings every `hb_s`: 30 s when idle, 10 s while queued or in a room, 5 s in a match,
     announced with `hb`. It keeps the last 10 round trips for the latency allowance (`lat_ms` in
     `m:{mid}:p`).
+
+## Implementation notes
+
+Where the pieces live in `backend/app`:
+
+| Piece | Code |
+|---|---|
+| Gateway, sockets, fan-out | `modules/realtime/gateway.py`, `connection.py`, `hub.py`, `node.py` |
+| Scripts | `modules/realtime/engine/lua/*.lua` (every match script is `lib.lua` plus its body), wrapped by `engine/scripts.py` |
+| Owners, timers, scanner, the bot's answers | `modules/realtime/engine/owner.py` |
+| Matchmaking | `modules/realtime/matchmaking/service.py` (join, cancel, respond, leaders), `tickets.py` |
+| Rematches | `modules/realtime/rematch.py` |
+| Match rows, questions, settlement | `modules/matches/creation.py`, `questions.py`, `settlement.py`, `jobs.py` |
+| Ratings | `modules/ratings/service.py` (Glicko-2 in `glicko2.py`) |
+
+Details the sections above leave open:
+
+- **Totals move at the reveal.** `answer.lua` scores and stores the answer, but the player's
+  score and correct count grow in the reveal, so a snapshot taken while a question is open never
+  tells an opponent whether an answer was right.
+- **Who may answer.** Anyone who hasn't left may answer an open question, including a player who
+  reconnected after it opened. `open_players` decides only the early reveal and who a speed
+  label compares with.
+- **End reasons.** A voluntary forfeit ends with `forfeit`, a player past their grace with
+  `disconnected`. A forfeit (or an expired grace) before question 1 aborts the match.
+- **Abort strikes.** A player who left before question 1, or who never got ready while away or
+  with the app in the background, gets a strike; three in an hour start the 5-minute cooldown.
+  One who simply missed the tap while using the app doesn't. Ready players of an aborted quick
+  match who are still online go back to the queue with their original `joined_ms` (and keep their
+  casual hold).
+- **Busy slots are freed as the match ends** (in `finish`), not at settlement, so "Play again"
+  never waits for Postgres.
+- **What other features plug in** (`modules/matches/ports.py`, connected in one place by
+  `modules/matches/wiring.py` at the start of every process): the `EscrowPort` (casual holds on
+  the coin ledger, captures, refunds and the pot), settlement hooks (each returns pieces of
+  `match.settled` and runs inside the settlement transaction: `progress_hooks` for XP,
+  missions, streak and achievements run before the escrow locks any wallet, then `hooks` for
+  rated coin rewards, inbox notices and analytics), the block and shadow-pool checks for
+  matchmaking, social presence, analytics and inbox writers, and readers for the wallet
+  balance, leaderboard leaders and relationships. A ban or an account deletion withdraws the
+  player through the outbox (`matches.withdraw`): the search is cancelled and refunded, or the
+  live match forfeited.
+- **Timings are settings.** `APP_RT_*`, `APP_MATCH_*` and `APP_MM_*` (see `backend/.env.example`);
+  the protocol tests play whole games in about two seconds with them.

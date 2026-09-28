@@ -335,3 +335,75 @@ class RowsSkeleton extends StatelessWidget {
     ),
   );
 }
+
+/// A small uppercase label above a group of settings in a sheet.
+class OverlineLabel extends StatelessWidget {
+  const OverlineLabel(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.fromLTRB(
+      AppSpacing.gutter,
+      AppSpacing.lg,
+      AppSpacing.gutter,
+      AppSpacing.sm,
+    ),
+    child: Text(text.toUpperCase(), style: context.text.overline),
+  );
+}
+
+/// Gives a 40 dp chip a 48 dp tall tap target without changing its look.
+class TallTapTarget extends StatelessWidget {
+  const TallTapTarget({super.key, required this.onTap, required this.child});
+
+  final VoidCallback onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+    behavior: HitTestBehavior.opaque,
+    excludeFromSemantics: true,
+    onTap: onTap,
+    child: ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: AppSizes.minTouch),
+      child: Center(widthFactor: 1, child: child),
+    ),
+  );
+}
+
+/// An error inside a sheet or form, read out when it appears.
+class InlineError extends StatelessWidget {
+  const InlineError({super.key, required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Semantics(
+      liveRegion: true,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(AppSpacing.md),
+        decoration: BoxDecoration(
+          color: colors.errorContainer,
+          borderRadius: BorderRadius.circular(AppRadii.md),
+        ),
+        child: Row(
+          children: [
+            HugeIcon(AppIcons.alert, size: 20, color: colors.onErrorContainer),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: Text(
+                message,
+                style: context.text.labelMedium.copyWith(color: colors.onErrorContainer),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

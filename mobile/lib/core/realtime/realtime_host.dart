@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/live/live_hub.dart';
 import '../../app/router.dart';
+import '../../features/rooms/rooms_controller.dart';
 import '../auth/session.dart';
 import 'live_controller.dart';
 import 'live_providers.dart';
@@ -61,13 +62,19 @@ class _RealtimeHostState extends ConsumerState<RealtimeHost> {
     for (final alert in state.alerts) {
       if (alert.id.startsWith(LiveAlertIds.prefix)) hub.dismiss(alert.id);
     }
-    if (state.status?.route == Routes.battleSearch) hub.setStatus(null);
+    final route = state.status?.route;
+    // The "Searching" and "Tournament live" pills.
+    if (route == Routes.battleSearch || (route?.startsWith('${Routes.arena}/') ?? false)) {
+      hub.setStatus(null);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     ref
       ..watch(liveControllerProvider)
+      // Rooms and invites ride on the live controller, from the first welcome on.
+      ..watch(roomsControllerProvider)
       ..listen(currentUserIdProvider, (previous, next) {
         if (previous != next) scheduleMicrotask(_clearLiveLayer);
       });

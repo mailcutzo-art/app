@@ -16,6 +16,7 @@ class AppEnv {
     required this.apiBaseUrl,
     required this.googleServerClientId,
     this.legalBaseUrl = '',
+    this.shareBaseUrl = '',
   });
 
   factory AppEnv.fromDefines() {
@@ -28,6 +29,8 @@ class AppEnv {
       // Read from --dart-define; the analyzer only sees the empty default.
       // ignore: avoid_redundant_argument_values
       legalBaseUrl: String.fromEnvironment('LEGAL_BASE_URL'),
+      // ignore: avoid_redundant_argument_values
+      shareBaseUrl: String.fromEnvironment('SHARE_BASE_URL'),
     );
   }
 
@@ -40,6 +43,10 @@ class AppEnv {
   /// Where the Terms (`/terms`) and Privacy policy (`/privacy`) live. Empty
   /// until they're published, and then the links stay hidden.
   final String legalBaseUrl;
+
+  /// A link added to the caption of cards shared to other apps (the app's
+  /// page). Empty until there is one, and then captions carry no link.
+  final String shareBaseUrl;
 
   bool get isDev => flavor == Flavor.dev;
 
@@ -56,6 +63,7 @@ class AppEnv {
     apiBaseUrl: apiBaseUrl ?? this.apiBaseUrl,
     googleServerClientId: googleServerClientId,
     legalBaseUrl: legalBaseUrl,
+    shareBaseUrl: shareBaseUrl,
   );
 }
 

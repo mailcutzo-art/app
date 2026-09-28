@@ -9,10 +9,16 @@ import 'package:realtime_client/realtime_client.dart';
 import '../../app/live/live_hub.dart';
 import '../../app/router.dart';
 import '../../core/auth/session.dart';
+import '../../core/network/app_failure.dart';
 import '../../core/realtime/live_providers.dart';
 import '../../core/realtime/live_text.dart';
 import '../../core/realtime/realtime_providers.dart';
 import '../../core/realtime/search_state.dart';
+import '../../core/utils/ids.dart';
+import '../rooms/data/room_models.dart' show RoomKind;
+import '../rooms/room_text.dart';
+import '../rooms/rooms_controller.dart';
+import '../rooms/widgets/room_widgets.dart' show defaultRoomSettings;
 import 'battle_screen.dart' show onlineLine;
 import 'data/battle_models.dart';
 
@@ -47,6 +53,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   /// opens by itself. Until then this screen says the game is starting.
   bool _botStarting = false;
   Timer? _botTimeout;
+
+  /// "Invite a friend" was chosen: a friend duel is being set up.
+  bool _inviting = false;
 
   @override
   void initState() {
@@ -105,13 +114,39 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final live = ref.read(liveControllerProvider);
     if (live == null) return;
     if (choice == 'bot') _startingBot(true);
+    final request = ref.read(searchProvider).request;
     try {
       await live.respond(choice);
       if (mounted && choice == 'cancel') _leave();
+      if (mounted && choice == 'invite') await _inviteFriend(request);
     } on RealtimeError {
       if (!mounted) return;
       if (choice == 'bot') _startingBot(false);
       showAppToast(context, 'That didn\'t go through. Please try again.');
+    }
+  }
+
+  /// "Invite a friend": the search has ended; a friend duel on the same subject and chapter
+  /// opens with the friends list up.
+  Future<void> _inviteFriend(SearchRequest? request) async {
+    final rooms = ref.read(roomsControllerProvider);
+    if (rooms == null) return;
+    setState(() => _inviting = true);
+    try {
+      final view = await rooms.create(
+        RoomKind.friend,
+        defaultRoomSettings(RoomKind.friend, subject: request?.subject, chapter: request?.chapter),
+        idempotencyKey: randomHexId(),
+      );
+      if (mounted) context.go(Routes.room(view.roomId, pick: true));
+    } on RealtimeError catch (error) {
+      if (mounted && error.code != RealtimeErrorCode.busy) {
+        showAppToast(context, RoomText.error(error), icon: AppIcons.alert);
+      }
+    } on AppFailure catch (failure) {
+      if (mounted) showAppToast(context, failure.message, icon: AppIcons.alert);
+    } finally {
+      if (mounted) setState(() => _inviting = false);
     }
   }
 
@@ -159,6 +194,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final Widget body;
     if (_botStarting) {
       body = const _Found(key: ValueKey('bot'), bot: true);
+    } else if (_inviting) {
+      body = const _OpeningRoom(key: ValueKey('room'));
     } else if (searching) {
       body = _Searching(key: const ValueKey('searching'), state: state);
     } else if (state.phase == SearchPhase.matched) {
@@ -449,7 +486,27 @@ class _Stopped extends StatelessWidget {
   }
 }
 
-/// The `mm.timeout` choices: keep searching, the Practice Bot, a friend (later) or cancel.
+/// Setting up a friend duel after "Invite a friend".
+class _OpeningRoom extends StatelessWidget {
+  const _OpeningRoom({super.key});
+
+  @override
+  Widget build(BuildContext context) => Center(
+    child: Semantics(
+      liveRegion: true,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox.square(dimension: 28, child: CircularProgressIndicator(strokeWidth: 2.5)),
+          const SizedBox(height: AppSpacing.lg),
+          Text('Setting up a room for you and a friend…', style: context.text.titleMedium),
+        ],
+      ),
+    ),
+  );
+}
+
+/// The `mm.timeout` choices: keep searching, the Practice Bot, a friend or cancel.
 class _OptionsSheet extends StatelessWidget {
   const _OptionsSheet({required this.state});
 
@@ -496,11 +553,20 @@ class _OptionsSheet extends StatelessWidget {
           ],
           if (options.contains('invite')) ...[
             const SizedBox(height: AppSpacing.sm),
-            const AppButton(
-              label: 'Invite a friend · Coming soon',
+            AppButton(
+              label: 'Invite a friend',
               variant: AppButtonVariant.secondary,
               leadingIcon: AppIcons.userAdd,
-              onPressed: null,
+              onPressed: () => Navigator.pop(context, 'invite'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(
+                casual
+                    ? 'A private 1v1, unrated and free · your 5 coins come back'
+                    : 'A private 1v1, unrated and free',
+                style: text.caption,
+              ),
             ),
           ],
           if (options.contains('cancel')) ...[

@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
+import 'package:quiz_app/features/practice/ask_ai.dart';
 import 'package:quiz_app/features/practice/data/answer_queue.dart';
 import 'package:quiz_app/features/practice/data/practice_models.dart';
 import 'package:quiz_app/features/practice/start_practice.dart';
@@ -139,6 +140,55 @@ void main() {
     expect(upload.selectedOption, isNull);
     expect(_state(tester, _correct(q).text), AnswerOptionState.correct);
     expect(find.text('Skipped · the answer is ${_letter(q)}'), findsOneWidget);
+  });
+
+  testWidgets('a skipped question offers ChatGPT beside Next, with the question filled in', (
+    tester,
+  ) async {
+    usePhoneViewport(tester, height: 900);
+    final opened = <Uri>[];
+    final copied = <String>[];
+    final container = await pumpApp(
+      tester,
+      prefs: await testPrefs(),
+      learn: learn,
+      location: Routes.learn,
+      overrides: [
+        askAiUrlOpenerProvider.overrideWithValue((uri, mode) async {
+          opened.add(uri);
+          return true;
+        }),
+        askAiClipboardProvider.overrideWithValue((text) async => copied.add(text)),
+      ],
+    );
+    final session = await container
+        .read(practiceStarterProvider)
+        .start(_kinematics, idempotencyKey: 'key-1');
+    await tester.runAsync(() async {});
+    unawaited(container.read(routerProvider).push(Routes.practiceSession(session.sessionId)));
+    await tester.pumpAndSettle();
+    final q = session.questions.first;
+    final ask = _iconButton('Ask ChatGPT to explain this question');
+
+    // Not before skipping, and not after a real answer.
+    expect(ask, findsNothing);
+    await tester.tap(find.text('Skip'));
+    await tester.pumpAndSettle();
+    expect(ask, findsOneWidget);
+    expect(find.text('Next'), findsOneWidget);
+
+    await tester.tap(ask);
+    await tester.pumpAndSettle();
+    final prompt = opened.single.queryParameters['q']!;
+    expect(opened.single.host, 'chatgpt.com');
+    expect(prompt, contains('Correct answer: ${_letter(q)}) ${_correct(q).text}'));
+    expect(copied, [prompt]);
+
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(_option(_correct(session.questions[1]).text));
+    await tester.pumpAndSettle();
+    expect(ask, findsNothing);
   });
 
   testWidgets('in timed mode, running out of time records timed_out and reveals', (tester) async {
