@@ -209,3 +209,41 @@ are identical for every recipient.
   - heartbeat pings every `hb_s`: 30 s when idle, 10 s while queued or in a room, 5 s in a match,
     announced with `hb`. It keeps the last 10 round trips for the latency allowance (`lat_ms` in
     `m:{mid}:p`).
+
+## Implementation notes
+
+Where the pieces live in `backend/app`:
+
+| Piece | Code |
+|---|---|
+| Gateway, sockets, fan-out | `modules/realtime/gateway.py`, `connection.py`, `hub.py`, `node.py` |
+| Scripts | `modules/realtime/engine/lua/*.lua` (every match script is `lib.lua` plus its body), wrapped by `engine/scripts.py` |
+| Owners, timers, scanner, the bot's answers | `modules/realtime/engine/owner.py` |
+| Matchmaking | `modules/realtime/matchmaking/service.py` (join, cancel, respond, leaders), `tickets.py` |
+| Rematches | `modules/realtime/rematch.py` |
+| Match rows, questions, settlement | `modules/matches/creation.py`, `questions.py`, `settlement.py`, `jobs.py` |
+| Ratings | `modules/ratings/service.py` (Glicko-2 in `glicko2.py`) |
+
+Details the sections above leave open:
+
+- **Totals move at the reveal.** `answer.lua` scores and stores the answer, but the player's
+  score and correct count grow in the reveal, so a snapshot taken while a question is open never
+  tells an opponent whether an answer was right.
+- **Who may answer.** Anyone who hasn't left may answer an open question, including a player who
+  reconnected after it opened. `open_players` decides only the early reveal and who a speed
+  label compares with.
+- **End reasons.** A voluntary forfeit ends with `forfeit`, a player past their grace with
+  `disconnected`. A forfeit (or an expired grace) before question 1 aborts the match.
+- **Abort strikes.** A player who left before question 1, or who never got ready while away or
+  with the app in the background, gets a strike; three in an hour start the 5-minute cooldown.
+  One who simply missed the tap while using the app doesn't. Ready players of an aborted quick
+  match who are still online go back to the queue with their original `joined_ms` (and keep their
+  casual hold).
+- **Busy slots are freed as the match ends** (in `finish`), not at settlement, so "Play again"
+  never waits for Postgres.
+- **What other features plug in** (`modules/matches/ports.py`): the `EscrowPort` (casual holds,
+  captures, refunds and the pot), `SettlementHooks` (each returns pieces of `match.settled` and
+  runs inside the settlement transaction; match XP is the default one), a block check for
+  matchmaking, and readers for the wallet balance, leaderboard leaders and relationships.
+- **Timings are settings.** `APP_RT_*`, `APP_MATCH_*` and `APP_MM_*` (see `backend/.env.example`);
+  the protocol tests play whole games in about two seconds with them.

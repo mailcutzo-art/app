@@ -168,7 +168,8 @@ async def request_deletion(
     for hook in _DELETED_HOOKS:
         await hook(db, user_id, now)
     await db.commit()
-    await mark_sessions_revoked(redis, ended, RevokeReason.ACCOUNT_DELETED)
+    # The account-wide revoke below closes every socket.
+    await mark_sessions_revoked(redis, ended, RevokeReason.ACCOUNT_DELETED, user_id=None)
     await invalidate_authz(redis, user_id)
     await clear_presence(redis, user_id)
     await publish_control(redis, user_id, ControlType.REVOKE, reason="account_deleted")

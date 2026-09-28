@@ -20,6 +20,13 @@ from app.modules.content.models import (
 )
 from app.modules.economy.models import CoinHold, LedgerEntry, Wallet
 from app.modules.feedback.models import Feedback
+from app.modules.matches.models import (
+    HeadToHead,
+    Match,
+    MatchAnswer,
+    MatchParticipant,
+    MatchQuestion,
+)
 from app.modules.moderation.models import ModerationAction, UserReport
 from app.modules.notifications.models import Notification, PushToken
 from app.modules.outbox.models import OutboxMessage
@@ -45,6 +52,7 @@ from app.modules.progression.models import (
     UserStreak,
     XpEvent,
 )
+from app.modules.ratings.models import Rating, RatingHistory
 from app.modules.social.models import ActivityEvent, Block, FriendRequest, Friendship
 from app.modules.system.models import AppConfig, AuditLog
 from app.modules.users.models import User, UserSettings
@@ -78,7 +86,12 @@ __all__ = [
     "FriendRequest",
     "Friendship",
     "GoalSubject",
+    "HeadToHead",
     "LedgerEntry",
+    "Match",
+    "MatchAnswer",
+    "MatchParticipant",
+    "MatchQuestion",
     "MissionDef",
     "ModerationAction",
     "Notification",
@@ -92,6 +105,8 @@ __all__ = [
     "QuestionAttempt",
     "QuestionReport",
     "QuestionStats",
+    "Rating",
+    "RatingHistory",
     "RefreshToken",
     "StreakDay",
     "Subject",

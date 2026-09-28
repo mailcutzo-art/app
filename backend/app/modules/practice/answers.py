@@ -18,8 +18,10 @@ Clients only report what was picked and when; the server decides whether it was 
 
 import uuid
 from collections import Counter
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, timedelta
+from typing import Protocol
 
 from sqlalchemy import ColumnElement, and_, case, func, select
 from sqlalchemy.dialects.postgresql import insert
@@ -64,6 +66,17 @@ ATTEMPT_MODES = {
     PracticeMode.CHALLENGE: AttemptMode.CHALLENGE,
     PracticeMode.PASSAGE: AttemptMode.FUN_LEARN,
 }
+
+
+class SeenAnswer(Protocol):
+    """An answer as ``update_user_questions`` needs it (practice and live games alike)."""
+
+    question: Question
+    outcome: Outcome
+    first_try: bool
+
+    @property
+    def answered_at(self) -> datetime: ...
 
 
 @dataclass(slots=True)
@@ -167,7 +180,7 @@ async def ingest_answers(
     await _fill_duplicate_outcomes(db, session, answers, results)
     xp = None
     if recorded:
-        await _update_user_questions(db, user_id, recorded)
+        await update_user_questions(db, user_id, recorded)
         facts = await _write_attempts(db, user_id, session, recorded)
         await add_to_totals(db, user_id, facts)
         # Positions are recorded once, so the batch's first position names it for good.
@@ -364,10 +377,12 @@ def _review_update(
     return new_box, new_due
 
 
-async def _update_user_questions(
-    db: AsyncSession, user_id: uuid.UUID, recorded: list[_Recorded]
+async def update_user_questions(
+    db: AsyncSession, user_id: uuid.UUID, recorded: Sequence[SeenAnswer]
 ) -> None:
     """Seen counts and review boxes; marks each answer that was the user's first try.
+
+    Each question may appear once. Live games record their answers through this too.
 
     Only chapter questions enter review: a passage question means little without its passage.
     """

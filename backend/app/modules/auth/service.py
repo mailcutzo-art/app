@@ -106,8 +106,8 @@ async def sign_in(
     user.last_seen_at = now
     tokens, _ = await _issue_tokens(db, settings, user, session, now)
     await db.commit()
-    await mark_sessions_revoked(redis, replaced, RevokeReason.REPLACED)
-    await mark_sessions_revoked(redis, over_limit, RevokeReason.SESSION_LIMIT)
+    await mark_sessions_revoked(redis, replaced, RevokeReason.REPLACED, user_id=user.id)
+    await mark_sessions_revoked(redis, over_limit, RevokeReason.SESSION_LIMIT, user_id=user.id)
     log.info("auth.signed_in", user_id=str(user.id), provider=account.provider, new=is_new_user)
     return SignInResult(user=user, tokens=tokens, is_new_user=is_new_user)
 
@@ -204,7 +204,7 @@ async def end_session(
         return False
     await forget_push_tokens(db, [ended])
     await db.commit()
-    await mark_sessions_revoked(redis, [session_id], reason)
+    await mark_sessions_revoked(redis, [session_id], reason, user_id=user_id)
     return True
 
 
@@ -213,7 +213,7 @@ async def end_other_sessions(
 ) -> None:
     ended = await _end_active_sessions(db, user_id, now, RevokeReason.SIGNED_OUT, keep=keep)
     await db.commit()
-    await mark_sessions_revoked(redis, ended, RevokeReason.SIGNED_OUT)
+    await mark_sessions_revoked(redis, ended, RevokeReason.SIGNED_OUT, user_id=user_id)
 
 
 async def active_sessions(db: AsyncSession, user_id: uuid.UUID) -> list[DeviceSession]:
@@ -359,7 +359,9 @@ async def _end_session_for_reuse(
     session.revoke_reason = RevokeReason.REFRESH_REUSE
     await forget_push_tokens(db, [session.id])
     await db.commit()
-    await mark_sessions_revoked(redis, [session.id], RevokeReason.REFRESH_REUSE)
+    await mark_sessions_revoked(
+        redis, [session.id], RevokeReason.REFRESH_REUSE, user_id=session.user_id
+    )
     log.warning(
         "auth.refresh_reuse_detected", user_id=str(session.user_id), session_id=str(session.id)
     )

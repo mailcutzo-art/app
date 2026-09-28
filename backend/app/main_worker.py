@@ -19,6 +19,7 @@ from app.core.resources import Resources, open_resources
 from app.modules.analytics.jobs import analytics_retention_job
 from app.modules.content.jobs import question_stats_job
 from app.modules.economy.jobs import hold_reaper_job
+from app.modules.matches.jobs import reconcile_matches_job, settle_pending_job
 from app.modules.moderation.jobs import moderation_expiry_job
 from app.modules.notifications.jobs import notifications_retention_job
 from app.modules.outbox.jobs import outbox_cleanup_job, outbox_dispatch_job
@@ -68,6 +69,10 @@ JOBS: tuple[PeriodicJob, ...] = (
     PeriodicJob("account_erasure", 3600.0, account_erasure_job),
     # Once a day: the friends' activity feed keeps 30 days.
     PeriodicJob("activity_retention", 3600.0, activity_retention_job),
+    # Matches the rt nodes didn't settle (a crash, Postgres down): retried every 5 s.
+    PeriodicJob("settle_pending", 5.0, settle_pending_job),
+    # Live matches Redis no longer knows, past their longest duration: voided and refunded.
+    PeriodicJob("reconcile_matches", 60.0, reconcile_matches_job),
 )
 
 

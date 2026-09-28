@@ -5,7 +5,7 @@ Python (FastAPI) backend for the quiz battle app. One codebase runs as three pro
 | Process  | Entry point                   | Role                                                   |
 |----------|-------------------------------|--------------------------------------------------------|
 | `api`    | `app.main_api:create_app`     | REST API under `/v1`, plus `/healthz` and `/readyz`    |
-| `rt`     | `app.main_rt:create_app`      | WebSocket gateway at `/v1/ws` (quiz engine later)      |
+| `rt`     | `app.main_rt:create_app`      | WebSocket gateway at `/v1/ws` and the live quiz engine  |
 | `worker` | `python -m app.main_worker`   | Periodic jobs: tournament ticks, outbox, reconcilers   |
 
 PostgreSQL 16 holds settled data; Redis 7 holds live state, queues and rate limits. The server is
@@ -60,13 +60,23 @@ sign-in needs `APP_GOOGLE_CLIENT_IDS`
 
 ```bash
 uv run uvicorn app.main_api:create_app --factory --port 8000 --no-proxy-headers
-uv run uvicorn app.main_rt:create_app --factory --port 8001 --no-proxy-headers --ws-max-size 65536
+uv run uvicorn app.main_rt:create_app --factory --port 8001 --no-proxy-headers --ws-max-size 65536 \
+  --timeout-graceful-shutdown 8
 uv run python -m app.main_worker
 ```
 
 Client IPs honour `X-Forwarded-For` only from `APP_TRUSTED_PROXIES`; `--no-proxy-headers` keeps
 uvicorn from rewriting them first. The worker stops on SIGTERM/SIGINT after in-flight jobs
 finish (10 s grace).
+
+**Realtime.** Any number of identical `rt` replicas can run behind one load balancer; they share
+Redis. On SIGTERM a replica closes its sockets with 1012 (players get extra grace and reconnect
+elsewhere) and hands its match leases back, so another replica adopts the matches at once. The
+worker settles anything an `rt` node left behind (`settle_pending`, every 5 s) and voids matches
+Redis lost (`reconcile_matches`). A client needs a ticket from the api
+(`POST /v1/rt/tickets`) and then `hello` on `ws://localhost:8001/v1/ws`; `docs/protocol.md` has
+the messages. Every live timing is an `APP_RT_*`, `APP_MATCH_*` or `APP_MM_*` setting
+(`.env.example`), so a local game can be made short.
 
 ## Migrations
 

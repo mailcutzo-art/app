@@ -396,11 +396,11 @@ adjustable in settings.
 | `GET /v1/me/friend-requests` | `{"incoming": [...], "outgoing": [...]}`: pending requests, newest first, each `{"id", "user": card, "direction", "status", "created_at"}` |
 | `POST /v1/friend-requests/{id}/accept` and `/decline` | Accept or decline a request sent to you (the request comes back). `DELETE /v1/friend-requests/{id}` cancels your own request (`204`). Someone else's request is `404 FRIEND_REQUEST_NOT_FOUND`; one already answered is `409 REQUEST_CLOSED` |
 | `DELETE /v1/me/friends/{user_id}` | Remove a friend (`204`) |
-| `GET /v1/me/rivals` | Opponents played 3+ times in 60 days, each with an `h2h` record |
+| `GET /v1/me/rivals` | Opponents played 3+ times in 60 days, each with an `h2h` record: `{"items": [{"user": card, "h2h": {"wins", "losses", "draws"}, "relationship", "games", "last_played_at"}]}` |
 | `GET /v1/me/activity?cursor=` | Friends' notable events from the last 7 days: `{"id", "user": card, "kind": "achievement" \| "podium" \| "level_up" \| "streak" \| "friend", "payload", "created_at"}`. A `friend` item's payload has the new friend's card as `friend` (never a minor you aren't friends with) |
 | `POST /v1/blocks` and `DELETE /v1/blocks/{user_id}` | Body `{"user_id"}` → `204`. Blocking ends the friendship and pending requests, and hides the two from each other everywhere (search, profiles, lists, pairing, invites). Unblocking doesn't bring the friendship back. `GET /v1/me/blocks?cursor=` lists `{"user": card, "created_at"}` |
 | `POST /v1/reports` | Body `{"user_id", "match_id"?, "reason": "cheating" \| "offensive_name" \| "harassment" \| "other", "note"?}` (note up to 500 characters) → `202`. The same report within a day is kept once. 10 an hour |
-| `GET /v1/me/opponents?days=30` | Recent opponents (people, not bots), each with an `h2h` record, `relationship` and **Add friend**, so a good game can turn into a friendship |
+| `GET /v1/me/opponents?days=30` | Recent opponents (people, not bots), each with an `h2h` record, `relationship` and **Add friend**, so a good game can turn into a friendship. Same item shape as `/me/rivals`, most recent first |
 | `GET /v1/me/settings/privacy` and `PUT` | `{"friend_requests": "everyone" \| "played_with" \| "nobody", "challenges": "friends" \| "everyone" \| "nobody", "presence": "friends" \| "nobody", "public_boards": true}`; the `GET` and the `PUT` answer add `is_minor`. Adults default to `everyone`, `everyone`, `friends`; minors to `played_with`, `friends` and `friends` (worked out from the birth year on every read, so they lift at 18). `PUT` sends all four; an under-18 choosing `"friend_requests": "everyone"` gets `422` with a field message. Explains any `NOT_ALLOWED` |
 
 ## Account

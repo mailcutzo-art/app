@@ -34,6 +34,7 @@ from app.main_api import create_app
 from app.modules.auth.google import GoogleIdTokenVerifier, JwksCache, get_google_verifier
 from app.modules.content.loader import load_content
 from app.modules.content.seed import seed_content
+from app.modules.matches.ports import Integrations, NoopEscrow, default_integrations
 from tests.helpers import (
     CONTENT_DIR,
     FakeClock,
@@ -42,6 +43,7 @@ from tests.helpers import (
     make_settings,
     serve,
 )
+from tests.rt_helpers import LockedSessions, RtServer, fast_settings, run_rt
 
 
 @pytest.fixture(scope="session")
@@ -142,3 +144,40 @@ async def client(
     app.dependency_overrides[get_sessionmaker] = lambda: session_factory
     async with serve(app) as http_client:
         yield http_client
+
+
+# Realtime: an rt server in-process, and a REST client whose sessions share its lock.
+
+
+@pytest.fixture
+def sessions(session_factory: async_sessionmaker[AsyncSession]) -> LockedSessions:
+    return LockedSessions(session_factory)
+
+
+@pytest.fixture
+async def api(app: FastAPI, sessions: LockedSessions, redis: Redis) -> AsyncIterator[AsyncClient]:
+    """Like ``client``, for tests that also run an rt server (Redis is flushed)."""
+    app.dependency_overrides[get_sessionmaker] = lambda: sessions
+    async with serve(app) as http_client:
+        yield http_client
+
+
+@pytest.fixture
+def rt_settings() -> Settings:
+    return fast_settings()
+
+
+@pytest.fixture
+def plugins() -> Integrations:
+    """Fresh integrations per test: in-memory escrow, match XP."""
+    integrations = default_integrations()
+    integrations.escrow = NoopEscrow()
+    return integrations
+
+
+@pytest.fixture
+async def rt(
+    rt_settings: Settings, sessions: LockedSessions, plugins: Integrations, api: AsyncClient
+) -> AsyncIterator[RtServer]:
+    async with run_rt(rt_settings, sessions, plugins) as server:
+        yield server
