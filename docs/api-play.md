@@ -300,11 +300,11 @@ adjustable in settings.
 | `GET /v1/me/friend-requests` | `{"incoming": [...], "outgoing": [...]}` |
 | `POST /v1/friend-requests/{id}/accept` and `/decline` | Accept or decline. `DELETE` cancels your own request |
 | `DELETE /v1/me/friends/{user_id}` | Remove a friend |
-| `GET /v1/me/rivals` | Opponents played 3+ times in 60 days, each with an `h2h` record |
+| `GET /v1/me/rivals` | Opponents played 3+ times in 60 days, each with an `h2h` record: `{"items": [{"user": card, "h2h": {"wins", "losses", "draws"}, "relationship", "games", "last_played_at"}]}` |
 | `GET /v1/me/activity?cursor=` | Friends' notable events from the last 7 days |
 | `POST /v1/blocks` and `DELETE /v1/blocks/{user_id}` | Block or unblock. `GET /v1/me/blocks` lists blocks |
 | `POST /v1/reports` | Body `{"user_id", "match_id"?, "reason": "cheating" \| "offensive_name" \| "harassment" \| "other", "note"?}` → `202` |
-| `GET /v1/me/opponents?days=30` | Recent opponents (people, not bots), each with an `h2h` record, `relationship` and **Add friend**, so a good game can turn into a friendship |
+| `GET /v1/me/opponents?days=30` | Recent opponents (people, not bots), each with an `h2h` record, `relationship` and **Add friend**, so a good game can turn into a friendship. Same item shape as `/me/rivals`, most recent first |
 | `GET /v1/me/settings/privacy` and `PUT` | `{"friend_requests": "everyone" \| "played_with" \| "nobody", "challenges": "friends" \| "everyone" \| "nobody", "presence": "friends" \| "nobody", "public_boards": true}`. Minors default to `played_with`, `friends` and `friends`. Explains any `NOT_ALLOWED` |
 
 ## Account

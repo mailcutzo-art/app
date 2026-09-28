@@ -206,6 +206,8 @@ class RtNode:
         if follow is None:
             follow = conn.matches[mid] = MatchFollow()
             await self.hub.subscribe(keys.match_events(mid), conn.on_match_event)
+            # The latency allowance measured so far on this socket applies to its answers.
+            await scripts.set_latency(self.redis, mid, conn.uid, conn.lat_ms)
         else:
             follow.buffering = True
         try:

@@ -89,6 +89,11 @@ local function emit(m, t, d, now)
   local seq = redis.call('HINCRBY', m.base, 'seq', 1)
   local env = encode({v = 1, t = t, ch = 'm:' .. m.id, seq = seq, ts = now, d = d})
   redis.call('XADD', m.base .. ':log', 'MAXLEN', '~', 300, '*', 'seq', seq, 'ev', env)
+  if seq == 1 then
+    -- The log is created by its first event: it expires with the match.
+    local ttl = redis.call('TTL', m.base)
+    if ttl > 0 then redis.call('EXPIRE', m.base .. ':log', ttl) end
+  end
   redis.call('PUBLISH', 'ev:m:' .. m.id, env)
   return seq
 end

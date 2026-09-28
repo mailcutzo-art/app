@@ -329,6 +329,7 @@ async def test_a_reconnect_before_the_grace_ends_keeps_the_game_going(
     assert noop.status == "noop"
     assert [e["d"]["state"] for e in log if e["t"] == "opp.conn"] == ["reconnecting", "connected"]
     assert [e["seq"] for e in log] == list(range(1, len(log) + 1))
+    assert await redis.ttl(keys.match_log(mid)) > 0  # the log expires with the match
 
 
 async def test_forfeiting_before_question_1_aborts(
