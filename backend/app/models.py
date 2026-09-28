@@ -17,6 +17,13 @@ from app.modules.content.models import (
     Topic,
     WordPuzzle,
 )
+from app.modules.matches.models import (
+    HeadToHead,
+    Match,
+    MatchAnswer,
+    MatchParticipant,
+    MatchQuestion,
+)
 from app.modules.practice.models import (
     AttemptKey,
     PracticeAnswer,
@@ -29,6 +36,7 @@ from app.modules.practice.models import (
     UserTopicStats,
 )
 from app.modules.progression.models import UserProgress, XpEvent
+from app.modules.ratings.models import Rating, RatingHistory
 from app.modules.system.models import AppConfig, AuditLog
 from app.modules.users.models import User
 
@@ -52,6 +60,11 @@ __all__ = [
     "DeviceSession",
     "ExamGoal",
     "GoalSubject",
+    "HeadToHead",
+    "Match",
+    "MatchAnswer",
+    "MatchParticipant",
+    "MatchQuestion",
     "Passage",
     "PracticeAnswer",
     "PracticeSession",
@@ -59,6 +72,8 @@ __all__ = [
     "QuestionAttempt",
     "QuestionReport",
     "QuestionStats",
+    "Rating",
+    "RatingHistory",
     "RefreshToken",
     "Subject",
     "Topic",

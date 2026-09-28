@@ -20,6 +20,8 @@ from app.modules.progression import levels
 from app.modules.progression.models import UserProgress, XpEvent, XpSource
 
 PRACTICE_DAILY_CAP = 300
+# Practice Bot games give half XP, at most this much a day.
+BOT_DAILY_CAP = 60
 
 
 @dataclass(frozen=True, slots=True)
@@ -115,6 +117,79 @@ async def award_practice_xp(
     progress.practice_xp_today = already + amount
     await db.flush()
     return _xp_out(rules, delta=amount, total=progress.xp, capped=amount < requested, now=now)
+
+
+@dataclass(frozen=True, slots=True)
+class GameXp:
+    """XP from one game, with the player's level after it (``match.settled.xp``)."""
+
+    delta: int
+    total: int
+    level: int
+    into_level: int
+    for_next: int
+    level_up: bool
+    capped: bool  # the daily Practice Bot cap cut this award
+
+
+async def award_game_xp(
+    db: AsyncSession,
+    user_id: uuid.UUID,
+    *,
+    match_id: uuid.UUID,
+    kind: levels.GameKind,
+    outcome: levels.GameOutcome | None,
+    now: datetime,
+) -> GameXp:
+    """Award XP for one game (``levels.game_xp``); ``outcome`` None earns nothing (a player who
+    left). Practice Bot games earn at most ``BOT_DAILY_CAP`` a day (IST). Idempotent per match.
+    """
+    rules = xp_rules()
+    today = now.astimezone(IST).date()
+    progress = await _locked_progress(db, user_id)
+    requested = levels.game_xp(kind, outcome) if outcome is not None else 0
+    amount = requested
+    prefix = "bot" if kind == levels.GameKind.BOT else "match"
+    if kind == levels.GameKind.BOT:
+        already = await db.scalar(
+            select(func.coalesce(func.sum(XpEvent.amount), 0)).where(
+                XpEvent.user_id == user_id,
+                XpEvent.source == XpSource.MATCH.value,
+                XpEvent.ist_day == today,
+                XpEvent.source_key.startswith("bot:"),
+            )
+        )
+        amount = rules.cap_daily(int(already or 0), requested, BOT_DAILY_CAP)
+    event_id = await db.scalar(
+        insert(XpEvent)
+        .values(
+            id=new_id(),
+            user_id=user_id,
+            source=XpSource.MATCH.value,
+            source_key=f"{prefix}:{match_id}",
+            amount=amount,
+            ref_id=match_id,
+            ist_day=today,
+        )
+        .on_conflict_do_nothing()
+        .returning(XpEvent.id)
+    )
+    before = rules.progress(progress.xp)
+    if event_id is None:  # this match was awarded before
+        amount = 0
+    else:
+        progress.xp += amount
+        await db.flush()
+    after = rules.progress(progress.xp)
+    return GameXp(
+        delta=amount,
+        total=progress.xp,
+        level=after.level,
+        into_level=after.into_level,
+        for_next=after.level_size,
+        level_up=after.level > before.level,
+        capped=amount < requested,
+    )
 
 
 async def session_xp(

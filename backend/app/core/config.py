@@ -97,6 +97,54 @@ class Settings(BaseSettings):
     # Question bank loaded by ``python -m app.modules.content.seed`` (relative to the working dir).
     content_dir: str = "../content"
 
+    # Realtime (docs/protocol.md, docs/realtime-engine.md). Every live timing is a setting so
+    # tests can run games in seconds; the defaults are the product rules.
+    # This rt node's id in leases and ``rt:conn``; generated per process when unset.
+    rt_node_id: str | None = None
+    rt_ticket_ttl_s: int = Field(default=30, ge=1)
+    # Heartbeat interval announced to clients (whole seconds) and the silence that ends a
+    # connection, by state: idle, queued (or in a room) and in a match.
+    rt_hb_idle_s: int = Field(default=30, ge=1)
+    rt_hb_queue_s: int = Field(default=10, ge=1)
+    rt_hb_match_s: int = Field(default=5, ge=1)
+    rt_stale_idle_s: float = Field(default=70.0, gt=0)
+    rt_stale_queue_s: float = Field(default=25.0, gt=0)
+    rt_stale_match_s: float = Field(default=12.0, gt=0)
+    # Owner leases, the failover scanner and the per-match timers.
+    rt_lease_ms: int = Field(default=4000, ge=100)
+    rt_lease_renew_s: float = Field(default=1.0, gt=0)
+    rt_scan_interval_s: float = Field(default=0.25, gt=0)
+    rt_overdue_ms: int = Field(default=1000, ge=0)
+    # Quick Battle and Practice Bot games.
+    match_questions: int = Field(default=7, ge=1, le=20)
+    match_limit_ms: int = Field(default=15_000, gt=1000)
+    match_reveal_ms: int = Field(default=3000, ge=0)
+    match_countdown_ms: int = Field(default=3000, ge=0)
+    match_ready_ms: int = Field(default=10_000, ge=100)
+    match_show_lead_ms: int = Field(default=400, ge=0)
+    match_answer_grace_ms: int = Field(default=250, ge=0)
+    match_grace_ms: int = Field(default=30_000, ge=100)
+    match_drain_grace_ms: int = Field(default=60_000, ge=0)
+    match_void_window_ms: int = Field(default=5000, ge=0)
+    match_rematch_window_ms: int = Field(default=15_000, ge=100)
+    match_rematch_max: int = Field(default=3, ge=0)
+    casual_fee: int = Field(default=5, ge=0)
+    # Scales the Practice Bot's answer times (tests shorten games; the model's median is 6 s).
+    match_bot_time_scale: float = Field(default=1.0, gt=0)
+    # Matchmaking: offers, automatic cancels, queue ticks and abort cooldowns.
+    mm_timeout_s: float = Field(default=45.0, gt=0)
+    mm_first_timeout_s: float = Field(default=20.0, gt=0)
+    mm_keep_s: float = Field(default=60.0, gt=0)
+    mm_max_wait_s: float = Field(default=105.0, gt=0)
+    mm_offline_s: float = Field(default=10.0, gt=0)
+    mm_background_s: float = Field(default=10.0, gt=0)
+    mm_tick_s: float = Field(default=0.5, gt=0)
+    mm_cooldown_s: int = Field(default=300, ge=1)
+    mm_abort_limit: int = Field(default=3, ge=1)
+    mm_rated_pair_limit: int = Field(default=3, ge=1)
+    # Settlement retries (worker) pick up matches waiting longer than this.
+    settle_retry_after_s: float = Field(default=10.0, ge=0)
+
     @field_validator("google_client_ids", "cors_origins", "trusted_proxies", mode="before")
     @classmethod
     def _split_comma_separated(cls, value: Any) -> Any:
