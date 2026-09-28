@@ -67,11 +67,25 @@ class ReportStatus(StrEnum):
     DISMISSED = "dismissed"
 
 
+class ReportResolution(StrEnum):
+    """How an admin closed a report (``resolved`` for fixed and retired, else ``dismissed``)."""
+
+    FIXED = "fixed"  # the question was corrected (a new version supersedes it)
+    REJECTED = "rejected"  # the question is right as it is
+    RETIRED = "retired"  # the question was taken out of circulation
+
+    @property
+    def status(self) -> ReportStatus:
+        if self is ReportResolution.REJECTED:
+            return ReportStatus.DISMISSED
+        return ReportStatus.RESOLVED
+
+
 class ContentSource(StrEnum):
     """Where a row came from, so the seed only retires what the content files own."""
 
     CONTENT = "content"  # the YAML files in content/, loaded by the seed command
-    IMPORT = "import"  # admin imports (later)
+    IMPORT = "import"  # the importer (scripts/import_questions.py, admin upload) and admin edits
 
 
 EXAMS = ("neet", "jee")
@@ -303,6 +317,14 @@ class QuestionReport(Base):
     __table_args__ = (
         CheckConstraint(one_of("reason", [reason.value for reason in ReportReason]), name="reason"),
         CheckConstraint(one_of("status", [status.value for status in ReportStatus]), name="status"),
+        CheckConstraint(
+            one_of("resolution", [resolution.value for resolution in ReportResolution]),
+            name="resolution",
+        ),
+        # Open reports have no outcome yet; closed ones always record theirs.
+        CheckConstraint(
+            "(status = 'open') = (resolution IS NULL AND resolved_at IS NULL)", name="resolved"
+        ),
         # One open report per player and question; reporting again changes nothing.
         Index(
             "uq_question_reports_open",
@@ -313,6 +335,12 @@ class QuestionReport(Base):
         ),
         Index("ix_question_reports_question_id", "question_id"),
         Index("ix_question_reports_user_created", "user_id", "created_at"),
+        # The admin review queue: open reports, oldest first.
+        Index(
+            "ix_question_reports_open_created",
+            "created_at",
+            postgresql_where=text("status = 'open'"),
+        ),
     )
 
     id: Mapped[UUIDv7Pk]
@@ -322,3 +350,10 @@ class QuestionReport(Base):
     note: Mapped[str | None]
     status: Mapped[str] = mapped_column(server_default=ReportStatus.OPEN.value)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    # Filled in when an admin closes the report from the review queue.
+    resolution: Mapped[str | None]
+    resolution_note: Mapped[str | None]
+    resolved_by: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("users.id", ondelete="SET NULL")
+    )
+    resolved_at: Mapped[datetime | None]

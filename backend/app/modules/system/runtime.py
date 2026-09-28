@@ -39,6 +39,19 @@ _ADAPTERS: dict[str, TypeAdapter[Any]] = {
 }
 
 
+def check_runtime_value(key: str, value: Any) -> str | None:
+    """Why ``value`` can't be stored under ``key`` in ``app_config``, or ``None`` if it can
+    (keys other than the runtime switches hold any JSON)."""
+    adapter = _ADAPTERS.get(key)
+    if adapter is None:
+        return None
+    try:
+        adapter.validate_python(value)
+    except ValidationError as exc:
+        return f"{key}: {exc.errors(include_url=False)[0]['msg']}"
+    return None
+
+
 @dataclass(frozen=True, slots=True)
 class RuntimeConfig:
     min_build: int
