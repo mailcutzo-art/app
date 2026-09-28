@@ -78,6 +78,21 @@ async def requeue(
     return True
 
 
+async def end_ticket(redis: Redis, uid: str, ticket_id: str) -> tuple[str, str]:
+    """Take a ticket out of its queue and free the player's busy slot: ("cancelled", hold id),
+    ("matched", match id) when a match was found first, or ("gone", "")."""
+    mode, subject = await rstr.hmget(redis, keys.ticket(ticket_id), ["mode", "subject"])
+    if mode is None or subject is None:
+        # The hash is gone (paired or expired): let the busy slot decide.
+        busy = await rstr.get(redis, keys.busy(uid))
+        if busy == f"q:{ticket_id}":
+            await redis.delete(keys.busy(uid))
+        if busy and busy.startswith("m:"):
+            return "matched", busy[2:]
+        return "gone", ""
+    return await scripts.mm_cancel(redis, uid, ticket_id, mode=mode, subject=subject)
+
+
 _REQUEUED_FIELDS = (
     "uid",
     "mode",
@@ -88,6 +103,7 @@ _REQUEUED_FIELDS = (
     "device",
     "hold_id",
     "first",
+    "shadow",
     "joined_ms",
     "deadline_ms",
 )

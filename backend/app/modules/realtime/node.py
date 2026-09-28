@@ -136,19 +136,40 @@ class RtNode:
         for mid in list(conn.matches):
             await self.hub.unsubscribe(keys.match_events(mid), conn.on_match_event)
         conn.matches.clear()
-        released = await _RELEASE_CONNECTION(
-            self.redis, keys=[keys.connection(conn.uid)], args=[self.connection_value(conn)]
+        released = bool(
+            await _RELEASE_CONNECTION(
+                self.redis, keys=[keys.connection(conn.uid)], args=[self.connection_value(conn)]
+            )
         )
-        return bool(released)
+        if released:
+            await self._presence(conn, None)
+        return released
+
+    @property
+    def presence_ttl_s(self) -> int:
+        """Presence outlives a heartbeat gap a little, like ``rt:conn``."""
+        return int(self.settings.rt_stale_idle_s) + 30
+
+    async def _presence(self, conn: Connection, state: str | None) -> None:
+        """Social presence: ``online``, ``in_battle``, or cleared (best effort)."""
+        try:
+            await self.integrations.presence(self.redis, conn.user_id, state, self.presence_ttl_s)
+        except RedisError:
+            log.warning("rt.presence_failed", exc_info=True)
+
+    @staticmethod
+    def presence_state(conn: Connection) -> str:
+        return "in_battle" if conn.state == "match" else "online"
 
     async def refresh_presence(self, conn: Connection) -> None:
-        """Keep ``rt:conn`` alive while the socket is (heartbeat)."""
+        """Keep ``rt:conn`` and the social presence alive while the socket is (heartbeat)."""
         try:
             current = await rstr.get(self.redis, keys.connection(conn.uid))
             if current == self.connection_value(conn):
                 await self.redis.expire(
                     keys.connection(conn.uid), int(self.settings.rt_stale_idle_s) + 30
                 )
+                await self._presence(conn, self.presence_state(conn))
         except RedisError:
             log.warning("rt.presence_failed", exc_info=True)
 
@@ -168,6 +189,8 @@ class RtNode:
             conn.set_state(state)
         else:
             conn.state = state
+        if not conn.closed:
+            await self._presence(conn, self.presence_state(conn))
 
     async def active(self, uid: str) -> list[dict[str, Any]]:
         """``welcome.active``: what the user is in right now."""

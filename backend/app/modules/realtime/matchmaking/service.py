@@ -8,9 +8,9 @@ subject and chapter, then for casual play a coin hold through the ``EscrowPort``
 drops tickets past their deadline (105 s, or 60 s after "keep searching"), offline or in the
 background for more than 10 s; pairs the oldest tickets first with the pure rules in
 ``rules.py`` plus the guards (never blocked pairs, never one device, at most 3 rated games a
-pair a day); creates the match (Postgres rows first, then ``create.lua``; ``mm_unpair.lua`` if
-that fails); and sends ``mm.status`` when a search widens and ``mm.timeout`` at 45 s (20 s on a
-first-ever search).
+pair a day, and players in the moderation shadow pool only with each other); creates the
+match (Postgres rows first, then ``create.lua``; ``mm_unpair.lua`` if that fails); and sends
+``mm.status`` when a search widens and ``mm.timeout`` at 45 s (20 s on a first-ever search).
 """
 
 import asyncio
@@ -34,7 +34,12 @@ from app.modules.content.catalog import MIN_BATTLE_QUESTIONS
 from app.modules.content.models import Chapter, Question, Subject
 from app.modules.matches.creation import Contender, MatchUnavailable, prepare_match
 from app.modules.matches.models import Match, MatchKind, MatchParticipant
-from app.modules.matches.ports import InsufficientCoins, never_blocked
+from app.modules.matches.ports import (
+    InsufficientCoins,
+    never_blocked,
+    never_shadowed,
+    no_tracking,
+)
 from app.modules.matches.questions import battle_pool
 from app.modules.ratings.service import load_ratings, to_glicko
 from app.modules.realtime import keys, protocol, rstr
@@ -270,6 +275,7 @@ class Matchmaker:
         hold_id = ""
         async with self.node.sessionmaker() as db:
             rating = (await load_ratings(db, [conn.user_id], subject)).get(conn.user_id)
+            shadow = await self._shadowed(db, conn.user_id)
             if mode == "casual":
                 try:
                     hold_id = await self.node.integrations.escrow.hold(
@@ -299,6 +305,7 @@ class Matchmaker:
             "device": conn.device,
             "hold_id": hold_id,
             "first": "1" if first else "0",
+            "shadow": "1" if shadow else "0",
             # The status sent below; the leader only sends changes from here on.
             "last_status": f"0:{window}",
         }
@@ -340,6 +347,11 @@ class Matchmaker:
             },
         )
         await self.node.refresh_state(conn)
+        await self._track(
+            "mm_join",
+            conn.uid,
+            {"mode": mode, "subject": subject, "chapter": chapter is not None, "online": online},
+        )
         log.info("mm.queued", user_id=conn.uid, mode=mode, subject=subject, chapter=chapter)
 
     @staticmethod
@@ -369,6 +381,22 @@ class Matchmaker:
         found = await rstr.get(self.redis, f"mm:found:{conn.uid}")
         if found is not None:
             conn.reply(None, "mm.found", orjson.loads(found))
+
+    async def _shadowed(self, db: AsyncSession, user_id: uuid.UUID) -> bool:
+        check = self.node.integrations.shadow_pool
+        return False if check is never_shadowed else await check(db, user_id)
+
+    async def _track(self, name: str, uid: str, props: Mapping[str, Any]) -> None:
+        """An analytics funnel event (best effort: a failure never stops the game)."""
+        tracker = self.node.integrations.track
+        if tracker is no_tracking:
+            return
+        try:
+            async with self.node.sessionmaker() as db:
+                await tracker(db, name, uuid.UUID(uid), props)
+                await db.commit()
+        except Exception:
+            log.warning("mm.track_failed", event_name=name, exc_info=True)
 
     async def _release(self, hold_id: str, *, key: str) -> int:
         if not hold_id:
@@ -407,19 +435,15 @@ class Matchmaker:
 
     async def cancel_ticket(self, uid: str, ticket_id: str, *, reason: str) -> str:
         """End a ticket, refund any hold and send ``mm.cancelled``; returns the script status."""
-        mode, subject = await rstr.hmget(self.redis, keys.ticket(ticket_id), ["mode", "subject"])
-        if mode is None or subject is None:
-            # The hash is gone (paired or expired): let the busy slot decide.
-            busy = await self.node.busy(uid)
-            if busy == f"q:{ticket_id}":
-                await self.redis.delete(keys.busy(uid))
-            return "matched" if busy and busy.startswith("m:") else "gone"
-        status, value = await scripts.mm_cancel(
-            self.redis, uid, ticket_id, mode=mode, subject=subject
-        )
+        joined_ms = await rstr.hget(self.redis, keys.ticket(ticket_id), "joined_ms")
+        status, value = await tickets.end_ticket(self.redis, uid, ticket_id)
         if status != "cancelled":
             return status
         refunded = await self._release(value, key=f"mm:{ticket_id}:refund")
+        waited_s = max(0, (self.node.clock.now_ms() - int(joined_ms or 0)) // 1000)
+        await self._track(
+            "mm_cancelled", uid, {"reason": reason, "waited_s": waited_s if joined_ms else 0}
+        )
         await protocol.publish_to_user(
             self.redis,
             uid,
@@ -594,10 +618,13 @@ class Matchmaker:
         """Compatible partners for ``a``, closest rating first (then longest waiting)."""
         rated = mode == "rated"
         ta = a.rules_ticket()
+        # The shadow pool (moderation) only ever plays itself.
+        shadow = a.fields.get("shadow", "0")
         found = [
             b
             for b in others
             if b.ticket_id not in paired
+            and b.fields.get("shadow", "0") == shadow
             and rules.compatible(ta, b.rules_ticket(), now, rated=rated)
         ]
         found.sort(key=lambda b: (abs(float(b.fields["rating"]) - ta.rating), b.joined_ms))
@@ -685,6 +712,12 @@ class Matchmaker:
             pipe.expire(waits, WAIT_TTL_S)
             await pipe.execute()
         await self.announce(prepared.found)
+        for ticket in (a, b):
+            await self._track(
+                "mm_found",
+                ticket.uid,
+                {"mode": mode, "subject": subject, "waited_s": (now - ticket.joined_ms) // 1000},
+            )
         log.info("mm.paired", match_id=str(mid), mode=mode, subject=subject)
         return True
 
