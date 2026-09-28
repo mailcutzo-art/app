@@ -24,6 +24,12 @@ class ActivityKind(StrEnum):
     LEVEL_UP = "level_up"
     STREAK = "streak"
     FRIEND = "friend"
+    # Posted by the player themself (POST /v1/me/activity/shares); built from real data.
+    SHARED_RESULT = "shared_result"
+    SHARED_PROGRESS = "shared_progress"
+
+
+SHARE_KINDS = (ActivityKind.SHARED_RESULT.value, ActivityKind.SHARED_PROGRESS.value)
 
 
 def _user_fk(column: str = "users.id") -> ForeignKey:

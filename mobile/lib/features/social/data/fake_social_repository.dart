@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import '../../../core/auth/user.dart';
 import '../../../core/network/app_failure.dart';
 import '../../battle/data/battle_models.dart' show RatingInfo;
+import '../../share/share_models.dart';
 import 'social_models.dart';
 import 'social_repository.dart';
 
@@ -20,6 +21,7 @@ enum FakeSocialOp {
   rivals,
   opponents,
   activity,
+  share,
   block,
   unblock,
   blocks,
@@ -66,7 +68,10 @@ class FakePlayer {
 /// requests to minors need a game played together (`NOT_ALLOWED` with
 /// `details.reason`), at most 20 requests go out a day (`LIMIT_REACHED`), two
 /// requests that meet become a friendship, and a minor who isn't a friend
-/// shows only their card on their profile.
+/// shows only their card on their profile. Shares follow the server's rules:
+/// a battle in [matchResults] is posted once (`ALREADY_SHARED`), any other is
+/// `NOT_FOUND`, and progress ([progress]) goes out 3 times a day
+/// (`LIMIT_REACHED`); the user's own shares show in their activity.
 class FakeSocialRepository implements SocialRepository {
   FakeSocialRepository({
     List<FakePlayer> players = const [],
@@ -76,9 +81,14 @@ class FakeSocialRepository implements SocialRepository {
     Iterable<String> blocked = const [],
     Iterable<String> blockedBy = const [],
     List<ActivityItem> activity = const [],
+    this.me = defaultMe,
+    Map<String, MatchShareData> matchResults = const {},
+    ProgressShareData? progress,
     this.latency = Duration.zero,
     this.pageSize = 20,
-  }) : _activity = [...activity] {
+  }) : _activity = [...activity],
+       matchResults = {...matchResults},
+       progress = progress ?? _sampleProgress(me) {
     for (final player in players) {
       _players[player.id] = player;
     }
@@ -229,6 +239,8 @@ class FakeSocialRepository implements SocialRepository {
     final rahul = players[0].card;
     final meera = players[1].card;
     final ishaan = players[3].card;
+    SharePlayer sharer(UserCard card) =>
+        SharePlayer(displayName: card.displayName, handle: card.handle, avatar: card.avatar);
     return FakeSocialRepository(
       players: players,
       friends: ['u-rahul', 'u-meera', 'u-kabir', 'u-ishaan'],
@@ -236,6 +248,36 @@ class FakeSocialRepository implements SocialRepository {
       outgoing: ['u-ananya'],
       blocked: ['u-sam'],
       activity: [
+        ActivityItem(
+          id: 'a0',
+          user: meera,
+          kind: ActivityKind.sharedResult,
+          text: 'shared a win',
+          createdAt: now.subtract(const Duration(minutes: 40)),
+          share: MatchShareData(
+            player: sharer(meera),
+            matchId: 'm-demo-meera',
+            outcome: ShareOutcome.win,
+            subject: 'Biology',
+            chapter: 'Human Physiology',
+            score: 910,
+            opponentScore: 640,
+            opponentName: 'Kabir',
+            opponentAvatar: const Avatar(tone: 'peach', symbol: 'flask').toData(),
+            answers: const [
+              ShareAnswer.correct,
+              ShareAnswer.correct,
+              ShareAnswer.wrong,
+              ShareAnswer.correct,
+              ShareAnswer.correct,
+              ShareAnswer.skipped,
+              ShareAnswer.correct,
+            ],
+            ratingChange: 16,
+            coins: 40,
+            xp: 30,
+          ),
+        ),
         ActivityItem(
           id: 'a1',
           user: meera,
@@ -258,6 +300,24 @@ class FakeSocialRepository implements SocialRepository {
           createdAt: now.subtract(const Duration(days: 2)),
         ),
         ActivityItem(
+          id: 'a3b',
+          user: rahul,
+          kind: ActivityKind.sharedProgress,
+          text: 'shared their progress',
+          createdAt: now.subtract(const Duration(days: 2, hours: 1)),
+          share: ProgressShareData(
+            player: sharer(rahul),
+            level: 7,
+            xpIntoLevel: 180,
+            xpForLevel: 450,
+            ratings: const [ShareRating(label: 'Physics', rating: '1523')],
+            accuracy: 0.74,
+            answered: 1240,
+            currentStreak: 12,
+            bestStreak: 15,
+          ),
+        ),
+        ActivityItem(
           id: 'a4',
           user: rahul,
           kind: ActivityKind.achievement,
@@ -268,6 +328,33 @@ class FakeSocialRepository implements SocialRepository {
       latency: latency,
     );
   }
+
+  /// The signed-in user, who owns the shares they post.
+  static const defaultMe = UserCard(id: 'u-me', handle: 'you', displayName: 'You', level: 6);
+
+  final UserCard me;
+
+  /// Ended battles the user may post, by match id.
+  final Map<String, MatchShareData> matchResults;
+
+  /// What a progress share posts.
+  ProgressShareData progress;
+
+  /// Every share posted, in order (retries with a used key included once).
+  final List<ShareTarget> posted = [];
+
+  static const dailyProgressShares = 3;
+
+  static ProgressShareData _sampleProgress(UserCard me) => ProgressShareData(
+    player: SharePlayer(displayName: me.displayName, handle: me.handle, avatar: me.avatar),
+    level: me.level ?? 1,
+    xpIntoLevel: 120,
+    xpForLevel: 400,
+    accuracy: 0.68,
+    answered: 540,
+    currentStreak: 4,
+    bestStreak: 9,
+  );
 
   /// Delay before every response, to see loading states.
   Duration latency;
@@ -300,6 +387,7 @@ class FakeSocialRepository implements SocialRepository {
   final _blocked = <String>{};
   final _blockedBy = <String>{};
   final List<ActivityItem> _activity;
+  final _shareKeys = <String, ActivityItem>{};
   var _requestCounter = 0;
 
   Set<String> get friendIds => Set.unmodifiable(_friends);
@@ -487,8 +575,8 @@ class FakeSocialRepository implements SocialRepository {
     final since = clock.now().subtract(const Duration(days: 7));
     final all = [
       for (final item in _activity)
-        if (_friends.contains(item.user.id) &&
-            _visible(item.user.id) &&
+        if ((_friends.contains(item.user.id) && _visible(item.user.id) ||
+                item.user.id == me.id && item.share != null) &&
             item.createdAt.isAfter(since))
           item,
     ]..sort((a, b) => b.createdAt.compareTo(a.createdAt));
@@ -498,6 +586,89 @@ class FakeSocialRepository implements SocialRepository {
       all.sublist(start.clamp(0, all.length), end),
       nextCursor: end < all.length ? '$end' : null,
     );
+  }
+
+  @override
+  Future<ActivityItem> share(ShareTarget target, {required String idempotencyKey}) async {
+    await _call(FakeSocialOp.share);
+    if (_shareKeys[idempotencyKey] case final replay?) return replay;
+    final player = SharePlayer(displayName: me.displayName, handle: me.handle, avatar: me.avatar);
+    final now = clock.now();
+    final ShareCardData data;
+    switch (target) {
+      case MatchShareTarget(:final matchId):
+        final result = matchResults[matchId];
+        if (result == null) {
+          throw const NotFoundFailure(
+            'That battle was not found, or it hasn\'t ended yet.',
+            code: 'NOT_FOUND',
+          );
+        }
+        final shared = _activity.where(
+          (item) =>
+              item.share is MatchShareData && (item.share! as MatchShareData).matchId == matchId,
+        );
+        if (shared.firstOrNull case final item?) {
+          throw ConflictFailure(
+            'You\'ve already posted this battle.',
+            code: 'ALREADY_SHARED',
+            details: {'activity_id': item.id},
+          );
+        }
+        data = MatchShareData(
+          player: player,
+          matchId: matchId,
+          outcome: result.outcome,
+          subject: result.subject,
+          chapter: result.chapter,
+          score: result.score,
+          opponentScore: result.opponentScore,
+          opponentName: result.opponentName,
+          opponentAvatar: result.opponentAvatar,
+          answers: result.answers,
+          ratingChange: result.ratingChange,
+          coins: result.coins,
+          xp: result.xp,
+        );
+      case ProgressShareTarget():
+        final today = DateTime(now.year, now.month, now.day);
+        final todays = _activity.where(
+          (item) =>
+              item.user.id == me.id &&
+              item.kind == ActivityKind.sharedProgress &&
+              !item.createdAt.isBefore(today),
+        );
+        if (todays.length >= dailyProgressShares) {
+          throw const ConflictFailure(
+            'You\'ve posted your progress 3 times today. Try again tomorrow.',
+            code: 'LIMIT_REACHED',
+            details: {'limit': 'daily', 'max': dailyProgressShares},
+          );
+        }
+        data = ProgressShareData(
+          player: player,
+          level: progress.level,
+          xpIntoLevel: progress.xpIntoLevel,
+          xpForLevel: progress.xpForLevel,
+          ratings: progress.ratings,
+          accuracy: progress.accuracy,
+          answered: progress.answered,
+          currentStreak: progress.currentStreak,
+          bestStreak: progress.bestStreak,
+        );
+    }
+    final item = ActivityItem(
+      id: 'share-${_shareKeys.length + 1}',
+      user: me,
+      kind: data is MatchShareData ? ActivityKind.sharedResult : ActivityKind.sharedProgress,
+      text: data is MatchShareData ? 'shared a battle' : 'shared their progress',
+      createdAt: now,
+      share: data,
+    );
+    _activity.add(item);
+    _shareKeys[idempotencyKey] = item;
+    posted.add(target);
+    return item;
   }
 
   // ---------------------------------------------------------------- blocks

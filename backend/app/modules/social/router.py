@@ -7,17 +7,20 @@ Every query is scoped to the caller: a request id or user id that isn't theirs a
 import uuid
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Path, Query
+from fastapi import APIRouter, Depends, Path, Query, Request
+from starlette.responses import Response
 
 from app.core.clock import ClockDep
 from app.core.db import SessionDep
+from app.core.idempotency import IDEMPOTENCY_KEY_HEADER, IdempotencyDep
 from app.core.ratelimit import rate_limit
 from app.core.redis import RedisDep
 from app.core.security import CurrentAuth
-from app.modules.social import activity, blocks, friends, profiles
+from app.modules.social import activity, blocks, friends, profiles, shares
 from app.modules.social.privacy import Privacy, is_minor_user, privacy_of, save_privacy
 from app.modules.social.schemas import (
     ActivityFeedOut,
+    ActivityOut,
     BlocksOut,
     FriendRequestOut,
     FriendRequestsOut,
@@ -40,6 +43,7 @@ _request_limit = rate_limit("friends.request", capacity=10, refill_per_sec=10 / 
 _search_limit = rate_limit("users.search", capacity=30, refill_per_sec=0.5, scope="user")
 _profile_limit = rate_limit("users.profile", capacity=60, refill_per_sec=1, scope="user")
 _block_limit = rate_limit("blocks.write", capacity=20, refill_per_sec=20 / 60, scope="user")
+_share_limit = rate_limit("activity.share", capacity=10, refill_per_sec=10 / 60, scope="user")
 _settings_limit = rate_limit("settings.write", capacity=30, refill_per_sec=30 / 60, scope="user")
 
 
@@ -115,10 +119,38 @@ async def friends_activity(
     cursor: CursorQuery = None,
     limit: LimitQuery = 30,
 ) -> ActivityFeedOut:
-    """Friends' achievements, podiums, level-ups, streaks and new friends from 7 days."""
+    """Friends' achievements, podiums, level-ups, streaks, new friends and shares, and your own
+    shares, from 7 days."""
     return await activity.friends_activity(
         db, auth.user_id, cursor=cursor, limit=limit, now=clock()
     )
+
+
+@router.post(
+    "/me/activity/shares",
+    status_code=201,
+    response_model=ActivityOut,
+    dependencies=[Depends(_share_limit)],
+    responses={
+        404: {"description": "NOT_FOUND: the match can't be shared"},
+        409: {"description": "ALREADY_SHARED or LIMIT_REACHED"},
+    },
+)
+async def share_to_friends(
+    body: shares.ShareIn,
+    request: Request,
+    auth: CurrentAuth,
+    db: SessionDep,
+    clock: ClockDep,
+    idem: IdempotencyDep,
+) -> Response:
+    """Post a battle result (``{"kind": "match_result", "match_id"}``) or your progress
+    (``{"kind": "progress"}``) to your friends' activity. The server fills in the details; no
+    text or pictures. Needs an ``Idempotency-Key``."""
+    item = await shares.share(
+        db, auth.user_id, body, request_key=request.headers[IDEMPOTENCY_KEY_HEADER], now=clock()
+    )
+    return await idem.complete(item, status_code=201)
 
 
 # --- Blocks ------------------------------------------------------------------------------------

@@ -96,4 +96,6 @@ abstract final class AppIcons {
   static const HugeIconData graduation = HugeIconsStrokeRounded.strokeRoundedMortarboard02;
   static const HugeIconData leaf = HugeIconsStrokeRounded.strokeRoundedLeaf01;
   static const HugeIconData cube = HugeIconsStrokeRounded.strokeRoundedCube;
+  static const HugeIconData message = HugeIconsStrokeRounded.strokeRoundedMessage01;
+  static const HugeIconData image = HugeIconsStrokeRounded.strokeRoundedImage01;
 }

@@ -1,7 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
+import 'package:quiz_app/features/share/share_models.dart';
 import 'package:quiz_app/features/social/data/fake_social_repository.dart';
 import 'package:quiz_app/features/social/data/social_models.dart';
+
+import '../../support/share_samples.dart';
 
 void main() {
   late FakeSocialRepository repo;
@@ -16,7 +19,12 @@ void main() {
     expect(requests.outgoing.single.user.handle, 'ananya');
     expect((await repo.rivals()).map((r) => r.user.handle), containsAll(['rahul_07', 'ananya']));
     expect((await repo.opponents()).length, greaterThanOrEqualTo(4));
-    expect((await repo.activity()).items, hasLength(4));
+    final activity = (await repo.activity()).items;
+    expect(activity, hasLength(6));
+    expect(activity.where((a) => a.share != null).map((a) => a.kind), [
+      ActivityKind.sharedResult,
+      ActivityKind.sharedProgress,
+    ]);
     expect((await repo.blocks()).single.handle, 'sam_x');
   });
 
@@ -117,5 +125,33 @@ void main() {
     await repo.report(userId: 'u-sam', reason: ReportReason.harassment, note: 'spam');
     expect(repo.reports.single.reason, ReportReason.harassment);
     expect(repo.calls[FakeSocialOp.friends], 1);
+  });
+
+  test('shares follow the server\'s rules and show in the user\'s own feed', () async {
+    final repo = FakeSocialRepository(matchResults: {'m-1': sampleWin});
+
+    final win = await repo.share(const MatchShareTarget('m-1'), idempotencyKey: 'a');
+    expect(await repo.share(const MatchShareTarget('m-1'), idempotencyKey: 'a'), same(win));
+    await expectLater(
+      repo.share(const MatchShareTarget('m-1'), idempotencyKey: 'b'),
+      throwsA(isA<ConflictFailure>().having((f) => f.code, 'code', 'ALREADY_SHARED')),
+    );
+    await expectLater(
+      repo.share(const MatchShareTarget('m-unknown'), idempotencyKey: 'c'),
+      throwsA(isA<NotFoundFailure>()),
+    );
+    for (var i = 0; i < 3; i++) {
+      await repo.share(const ProgressShareTarget(), idempotencyKey: 'p$i');
+    }
+    await expectLater(
+      repo.share(const ProgressShareTarget(), idempotencyKey: 'p3'),
+      throwsA(isA<ConflictFailure>().having((f) => f.code, 'code', 'LIMIT_REACHED')),
+    );
+
+    final feed = (await repo.activity()).items;
+    expect(feed, hasLength(4));
+    expect(feed.every((item) => item.user.id == FakeSocialRepository.defaultMe.id), isTrue);
+    expect((win.share! as MatchShareData).player.displayName, 'You');
+    expect(repo.posted, hasLength(4));
   });
 }

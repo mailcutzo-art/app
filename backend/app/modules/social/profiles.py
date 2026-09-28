@@ -59,6 +59,14 @@ def register_profile_section(name: str, provider: ProfileSection) -> None:
     _SECTIONS[name] = provider
 
 
+async def provided_section(
+    db: AsyncSession, viewer_id: uuid.UUID, target_id: uuid.UUID, name: str
+) -> Any | None:
+    """One section from its provider, or None while no provider is registered."""
+    provider = _SECTIONS.get(name)
+    return None if provider is None else await provider(db, viewer_id, target_id)
+
+
 async def _sections(
     db: AsyncSession, viewer_id: uuid.UUID, target_id: uuid.UUID, *, limited: bool
 ) -> dict[str, Any]:

@@ -7,15 +7,24 @@ import 'package:quiz_app/features/profile/data/fake_profile_repository.dart';
 import 'package:quiz_app/features/profile/data/profile_models.dart';
 import 'package:quiz_app/features/profile/widgets/history_rows.dart';
 import 'package:quiz_app/features/settings/settings_screen.dart';
+import 'package:quiz_app/features/share/share_models.dart';
+import 'package:quiz_app/features/social/data/fake_social_repository.dart';
 import 'package:quiz_app/features/wallet/data/wallet_repository.dart';
 import 'package:quiz_app/features/wallet/wallet_screen.dart';
 
 import '../../support/fakes.dart';
+import '../../support/share_samples.dart';
 
 void main() {
   late FakeProfileRepository profile;
+  late FakeSocialRepository social;
+  late ShareRecorder recorder;
 
-  setUp(() => profile = FakeProfileRepository.seeded());
+  setUp(() {
+    profile = FakeProfileRepository.seeded();
+    social = FakeSocialRepository();
+    recorder = ShareRecorder();
+  });
 
   Future<void> open(WidgetTester tester, {bool settle = true}) async {
     usePhoneViewport(tester, height: 2400);
@@ -24,8 +33,10 @@ void main() {
       prefs: await testPrefs(),
       profile: profile,
       wallet: FakeWalletRepository.seeded(),
+      social: social,
       location: Routes.profile,
       settle: settle,
+      overrides: recorder.overrides,
     );
   }
 
@@ -160,5 +171,50 @@ void main() {
     await tester.tap(find.text('Settings'));
     await tester.pumpAndSettle();
     expect(find.byType(SettingsScreen), findsOneWidget);
+  });
+
+  group('Share progress', () {
+    testWidgets('turns the stats into a card for other apps', (tester) async {
+      await open(tester);
+      await tester.tap(find.widgetWithText(AppButton, 'Share progress'));
+      await tester.pumpAndSettle();
+      expect(find.text('Share your progress'), findsOneWidget);
+      expect(find.text('Level 4'), findsOneWidget, reason: 'the preview');
+
+      await tester.tap(find.text('Share to other apps'));
+      await tester.pumpAndSettle();
+
+      final card = recorder.captured.single as ProgressShareData;
+      expect(card.player.displayName, 'Aarav Sharma');
+      expect(card.player.at, '@aarav');
+      expect((card.level, card.xpIntoLevel, card.xpForLevel), (4, 120, 250));
+      expect(card.accuracyLabel, '68%');
+      expect(card.answered, 1240);
+      expect((card.currentStreak, card.bestStreak), (4, 11));
+      expect(card.ratings.map((r) => '${r.label} ${r.rating}'), [
+        'Overall 1523',
+        'Physics 1548',
+        'Chemistry 1498?',
+      ]);
+      expect(recorder.shared.single.text, 'Level 4 on Quiz Arena with a 4-day streak! 📈');
+    });
+
+    testWidgets('posts progress to friends', (tester) async {
+      await open(tester);
+      await tester.tap(find.widgetWithText(AppButton, 'Share progress'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Post to friends'));
+      await tester.pumpAndSettle();
+
+      expect(social.posted, [const ProgressShareTarget()]);
+      expect(find.text('Posted to your friends'), findsOneWidget);
+    });
+
+    testWidgets('is not offered until the stats have loaded', (tester) async {
+      profile.failures[FakeProfileOp.stats] = const NetworkFailure();
+      await open(tester);
+
+      expect(find.widgetWithText(AppButton, 'Share progress'), findsNothing);
+    });
   });
 }

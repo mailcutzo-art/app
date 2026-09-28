@@ -152,6 +152,37 @@ async def test_a_casual_game_moves_real_coins_and_settles_every_reward(
     assert won["rating"] is None
 
 
+async def test_a_settled_win_can_be_shared_with_its_real_numbers(
+    rt: RtServer, api: AsyncClient, redis: Redis, sessions: LockedSessions
+) -> None:
+    for email in ("asha@example.com", "ravi@example.com"):
+        await fund(sessions, (await sign_in(api, email))["user"]["id"])
+    asha, ravi, mid = await pair(rt, api, "casual")
+    await ready_both(asha, ravi, mid)
+    await play(redis, asha, ravi, mid)
+    await asha.expect("match.settled")
+    await ravi.expect("match.settled")
+    token = (await sign_in(api, "asha@example.com"))["access_token"]
+
+    response = await api.post(
+        "/v1/me/activity/shares",
+        json={"kind": "match_result", "match_id": mid},
+        headers={**bearer(token), "Idempotency-Key": uuid.uuid4().hex},
+    )
+
+    assert response.status_code == 201, response.text
+    payload = response.json()["payload"]
+    assert payload["match_id"] == mid
+    assert (payload["mode"], payload["result"]) == ("quick_casual", "win")
+    assert payload["score"] > payload["opponent_score"]
+    assert payload["opponent"]["id"] == ravi.user_id
+    assert payload["coins"] == 10
+    assert payload["xp"] == 20
+    assert payload["rating_change"] is None
+    assert payload["questions"]
+    assert set(payload["questions"]) <= {"correct", "wrong", "skipped"}
+
+
 async def test_an_aborted_casual_match_refunds_both_entries_on_the_ledger(
     rt: RtServer, api: AsyncClient, sessions: LockedSessions
 ) -> None:

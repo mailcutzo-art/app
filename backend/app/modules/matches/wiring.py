@@ -35,12 +35,14 @@ from app.modules.economy.jobs import register_liveness
 from app.modules.economy.models import RefKind
 from app.modules.matches import escrow, profiles, rewards, withdraw
 from app.modules.matches.ports import Integrations, integrations
+from app.modules.matches.shares import match_share_source
 from app.modules.moderation.service import in_shadow_pool, register_ban_hook
 from app.modules.notifications.service import notify
 from app.modules.social import relations
 from app.modules.social.presence import clear_presence, set_presence
 from app.modules.social.privacy import register_have_played
 from app.modules.social.profiles import register_profile_section
+from app.modules.social.shares import register_share_source
 from app.modules.users.deletion import on_account_deleted
 
 
@@ -128,3 +130,4 @@ def install() -> None:
     register_profile_section("h2h", profiles.profile_h2h)
     register_ban_hook(withdraw.withdraw_on_ban)
     on_account_deleted(withdraw.withdraw_on_delete)
+    register_share_source("match_result", match_share_source)

@@ -13,6 +13,8 @@ import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/live_text.dart';
 import '../../learn/data/learn_models.dart' as learn;
 import '../../learn/widgets/learn_widgets.dart' show CoachTipCard;
+import '../../share/share_sheet.dart';
+import '../../share/share_sources.dart';
 import 'match_widgets.dart';
 
 /// The result dots: one per question, from the reveals this device saw.
@@ -103,6 +105,8 @@ class _ResultViewState extends ConsumerState<ResultView> {
     }
     final settlement = view.settlement;
     final tip = learnTipOf(settlement?.tip, view.matchId);
+    // Enabled once the result is known.
+    final share = matchShareData(view, ref.watch(meProvider));
     return ListView(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.gutter,
@@ -114,6 +118,14 @@ class _ResultViewState extends ConsumerState<ResultView> {
         Row(
           children: [
             AppIconButton(icon: AppIcons.close, semanticLabel: 'Close', onPressed: widget.onDone),
+            const Spacer(),
+            AppIconButton(
+              icon: AppIcons.share,
+              semanticLabel: 'Share result',
+              onPressed: share == null
+                  ? null
+                  : () => unawaited(showShareSheet(context, data: share)),
+            ),
           ],
         ),
         const SizedBox(height: AppSpacing.lg),

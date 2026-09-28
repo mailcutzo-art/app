@@ -7,6 +7,7 @@ import '../../core/network/app_failure.dart';
 import '../learn/bookmark_states.dart';
 import '../learn/data/learn_repository.dart';
 import '../learn/learn_providers.dart';
+import 'challenge_clock.dart';
 import 'data/answer_queue.dart';
 import 'data/practice_models.dart';
 import 'data/session_store.dart';
@@ -335,6 +336,8 @@ class PracticeController extends AsyncNotifier<PracticeState> {
       timedOut: timedOut,
       timeMs: timeMs,
       answerChanges: s.selectionChanges,
+      // The app's clock, so a challenge's deadline and its answers use the same time.
+      answeredAt: ref.read(practiceNowProvider)(),
     );
     final next = s.copyWith(
       answers: {...s.answers, question.position: _record(question, upload)},
