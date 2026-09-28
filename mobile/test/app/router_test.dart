@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quiz_app/app/app.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/auth/session.dart';
+import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/config/app_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -101,6 +102,38 @@ void main() {
         pending: '/t/abc',
       );
       expect(decision, (redirect: Routes.suspended, pending: null));
+    });
+  });
+
+  group('accounts awaiting deletion', () {
+    final pending = AsyncData<Session>(
+      PendingDeletion(Me.fromJson({...fakeUser().toJson(), 'status': 'pending_deletion'})),
+    );
+
+    test('only Restore (and debug) is reachable', () {
+      expect(_redirect(pending, Routes.home), Routes.restore);
+      expect(_redirect(pending, Routes.profile), Routes.restore);
+      expect(_redirect(pending, Routes.signIn), Routes.restore);
+      expect(_redirect(pending, Routes.restore), isNull);
+      expect(_redirect(pending, Routes.debug), isNull);
+    });
+
+    test('a link opened meanwhile opens after the restore', () {
+      final waiting = decideRoute(gate: _open, session: pending, location: '/j/K7M2QX');
+      expect(waiting, (redirect: Routes.restore, pending: '/j/K7M2QX'));
+
+      final restored = decideRoute(
+        gate: _open,
+        session: AsyncData<Session>(SignedIn(fakeUser())),
+        location: Routes.restore,
+        pending: waiting.pending,
+      );
+      expect(restored, (redirect: '/j/K7M2QX', pending: null));
+    });
+
+    test('once restored, the Restore screen is left for Home', () {
+      final ready = AsyncData<Session>(SignedIn(fakeUser()));
+      expect(_redirect(ready, Routes.restore), Routes.home);
     });
   });
 

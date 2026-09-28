@@ -159,6 +159,9 @@ class FakeAccountRepository with _Failing implements AccountRepository {
   final List<SignInProof> deletions = [];
   int restoreCalls = 0;
 
+  /// What `restore` answers with; null is a body-less answer.
+  Me? restored;
+
   @override
   Future<Me> updateProfile(ProfilePatch patch) async {
     patches.add(patch.toJson());
@@ -197,6 +200,6 @@ class FakeAccountRepository with _Failing implements AccountRepository {
   Future<Me?> restore() async {
     restoreCalls++;
     await wait(FakeSettingsOp.restore);
-    return null;
+    return restored;
   }
 }

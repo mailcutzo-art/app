@@ -40,7 +40,12 @@ void main() {
   testWidgets('signing out first tries to send answers; unsent ones are counted', (tester) async {
     usePhoneViewport(tester);
     learn.failures[FakeLearnOp.uploadAnswers] = const NetworkFailure();
-    await pumpApp(tester, prefs: await testPrefs(queued()), learn: learn, location: Routes.settings);
+    await pumpApp(
+      tester,
+      prefs: await testPrefs(queued()),
+      learn: learn,
+      location: Routes.settings,
+    );
 
     await tester.scrollUntilVisible(find.text('Sign out'), 300);
     await tester.tap(find.text('Sign out'));
@@ -55,7 +60,12 @@ void main() {
 
   testWidgets('when the answers go through, the usual confirmation shows', (tester) async {
     usePhoneViewport(tester);
-    await pumpApp(tester, prefs: await testPrefs(queued()), learn: learn, location: Routes.settings);
+    await pumpApp(
+      tester,
+      prefs: await testPrefs(queued()),
+      learn: learn,
+      location: Routes.settings,
+    );
 
     await tester.scrollUntilVisible(find.text('Sign out'), 300);
     await tester.tap(find.text('Sign out'));

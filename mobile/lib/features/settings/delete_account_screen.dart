@@ -10,8 +10,8 @@ import 'data/settings_repository.dart';
 import 'settings_providers.dart';
 import 'widgets/settings_widgets.dart';
 
-/// What the sign-in screen says after a delete.
-const deletedMessage = 'Your account will be deleted in 7 days. Sign in before then to restore it.';
+/// What the sign-in screen says after a delete (one short line: it sits in a chip).
+const deletedMessage = 'Deleted. Sign in within 7 days to undo.';
 
 /// Delete account (`/settings/delete-account`): what happens, type DELETE, sign in again, then
 /// `POST /v1/me/delete`. Every session ends and the app signs out.
