@@ -143,9 +143,42 @@ abstract final class Routes {
     return id == matchId;
   }
 
-  /// The Battle tab set up to challenge a friend: `/battle?friend=<user id>`.
+  /// The Battle tab set up to challenge a friend: `/battle?friend=<user id>`. It opens the Play
+  /// with Friend setup with that friend picked, to invite once the room exists.
   static String battleWithFriend(String userId) =>
       Uri(path: battle, queryParameters: {'friend': userId}).toString();
+
+  /// Setting up a room, full screen above the tabs: [kind] is `friend` or `group`. [friend] is
+  /// invited as soon as the room exists; [subject] and [chapter] are preselected.
+  static String roomSetup(String kind, {String? friend, String? subject, String? chapter}) {
+    final query = {'kind': kind, 'friend': ?friend, 'subject': ?subject, 'chapter': ?chapter};
+    return Uri(path: '$battle/room/new', queryParameters: query).toString();
+  }
+
+  /// A room's lobby, full screen above the tabs: `/battle/room/:roomId`. [invite] is a friend to
+  /// invite on arrival; [pick] opens the invite list at once.
+  static String room(String roomId, {String? invite, bool pick = false}) {
+    final query = {'invite': ?invite, if (pick) 'pick': '1'};
+    return Uri(
+      path: '$battle/room/${Uri.encodeComponent(roomId)}',
+      queryParameters: query.isEmpty ? null : query,
+    ).toString();
+  }
+
+  /// Whether [path] is a room's lobby, optionally a given room's.
+  static bool isRoom(String path, [String? roomId]) {
+    const prefix = '$battle/room/';
+    if (!path.startsWith(prefix) || path == '${prefix}new') return false;
+    return roomId == null || Uri.decodeComponent(path.substring(prefix.length)) == roomId;
+  }
+
+  /// Joining a room by code, full screen above the tabs, with the code filled in when known.
+  static const battleJoin = '$battle/join';
+
+  static String joinRoom([String? code]) => Uri(
+    path: battleJoin,
+    queryParameters: code == null || code.isEmpty ? null : {'code': code},
+  ).toString();
 
   /// A player's public profile, full screen above the tabs. The same path is the shared link.
   static String userProfile(String handle) => '/u/${Uri.encodeComponent(handle)}';

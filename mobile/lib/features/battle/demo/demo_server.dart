@@ -10,6 +10,9 @@ import '../../learn/data/fake_learn_repository.dart';
 import '../data/battle_models.dart';
 import 'demo_world.dart';
 
+part 'demo_match.dart';
+part 'demo_rooms.dart';
+
 /// How the demo opponent answers one question: right or wrong, after [ms]. A `null` plan entry
 /// means no answer.
 @immutable
@@ -95,6 +98,24 @@ class DemoRealtimeServer implements WebSocketConnector {
   /// When set, `hello` without `takeover` is answered `LIVE_ELSEWHERE` for this match.
   String? liveElsewhereMatchId;
 
+  /// Demo players join a room the user makes (Riya a friend room; Riya, Neha and Kabir a group),
+  /// the first after [guestJoinAfter] and then every 2 s.
+  bool guestsJoin = true;
+  Duration guestJoinAfter = const Duration(seconds: 4);
+
+  /// Demo players get ready this long after joining.
+  Duration guestReadyAfter = const Duration(milliseconds: 1500);
+
+  /// A friend duel starts this long after both are ready (docs/user-flows.md section 5); a room
+  /// hosted by a demo player starts this long after everyone is.
+  Duration roomAutoStartAfter = const Duration(seconds: 3);
+
+  /// Friends who accept an invite do so after this long.
+  Duration inviteAnswerAfter = const Duration(seconds: 2);
+
+  /// When set, Riya invites the user to a friend duel this long after the first `welcome`.
+  Duration? inviteAfterWelcome;
+
   // ------------------------------------------------------------------------------------------
   // State
 
@@ -112,6 +133,11 @@ class DemoRealtimeServer implements WebSocketConnector {
   String? _lastFoundId;
   int _lastFoundAt = 0;
   int _lastEmoteMs = 0;
+  final Map<String, DemoRoom> _rooms = {};
+  int _roomCount = 0;
+  final Map<String, _DemoInvite> _invites = {};
+  int _inviteCount = 0;
+  bool _welcomedOnce = false;
 
   /// Every message the app sent, decoded.
   final List<Map<String, Object?>> received = [];
@@ -165,6 +191,9 @@ class DemoRealtimeServer implements WebSocketConnector {
     _disconnectTimer?.cancel();
     for (final match in _matches.values) {
       match._cancelTimers();
+    }
+    for (final room in _rooms.values) {
+      room._cancelTimers();
     }
     _socket?.closeFromServer(1001, 'Server stopped');
   }
@@ -228,6 +257,7 @@ class DemoRealtimeServer implements WebSocketConnector {
   void _socketClosed(_DemoSocket socket) {
     if (!identical(socket, _socket)) return;
     _socket = null;
+    _roomPresence(connected: false, foreground: _foreground);
     // A queued search survives a disconnect for 10 s.
     if (_ticket != null) {
       _cancel(_disconnectTimer);
@@ -274,6 +304,8 @@ class DemoRealtimeServer implements WebSocketConnector {
         _withMatch(ref, data, (match) => _rematch(match, ref, accept: data['accept'] != false));
       case 'sync':
         _sync(ref, data);
+      case final String type when type.startsWith('room.'):
+        _roomMessage(type, ref, data);
       default:
         _error(ref, 'BAD_REQUEST', 'Unknown message type');
     }
@@ -328,6 +360,7 @@ class DemoRealtimeServer implements WebSocketConnector {
             if (_ticket case final ticket?) {'kind': 'queue', 'id': ticket.id, 'state': 'queued'},
             for (final match in _matches.values)
               if (!match.isOver) {'kind': 'match', 'ch': match.channel, 'state': match.phase},
+            if (currentRoom case final room?) {'kind': 'room', 'id': room.id, 'ch': room.channel},
           ],
         },
         ch: 'u',
@@ -340,14 +373,25 @@ class DemoRealtimeServer implements WebSocketConnector {
       for (final entry in resume) {
         if (entry is Map && entry['ch'] is String) {
           final lastSeq = entry['last_seq'] is int ? entry['last_seq']! as int : 0;
-          _matches[(entry['ch']! as String).replaceFirst('m:', '')]?._resume(lastSeq);
+          final channel = entry['ch']! as String;
+          if (channel.startsWith('r:')) {
+            _rooms[channel.substring(2)]?._resume(lastSeq);
+          } else {
+            _matches[channel.replaceFirst('m:', '')]?._resume(lastSeq);
+          }
         }
       }
     }
+    _roomPresence(connected: true, foreground: _foreground);
+    final inviteAfter = inviteAfterWelcome;
+    if (!_welcomedOnce && inviteAfter != null) _after(inviteAfter, sendInvite);
+    _welcomedOnce = true;
   }
 
   void _clientState(bool foreground) {
+    final changed = _foreground != foreground;
     _foreground = foreground;
+    if (changed) _roomPresence(connected: true, foreground: foreground);
     _cancel(_backgroundTimer);
     // A queued search stops after 10 s in the background, without a penalty.
     if (!foreground && _ticket != null) {
@@ -357,6 +401,15 @@ class DemoRealtimeServer implements WebSocketConnector {
 
   void _sync(String? ref, Map<String, Object?> data) {
     final channel = data['ch'];
+    if (channel is String && channel.startsWith('r:')) {
+      final room = _rooms[channel.substring(2)];
+      if (room == null || room.isClosed || !room.has(me.uid)) {
+        _error(ref, 'NOT_FOUND', 'That room is gone.');
+        return;
+      }
+      room._resume(data['last_seq'] is int ? data['last_seq']! as int : 0);
+      return;
+    }
     final match = channel is String ? _matches[channel.replaceFirst('m:', '')] : null;
     if (match == null) {
       _error(ref, 'NOT_FOUND', 'That game is gone.');
@@ -393,6 +446,17 @@ class DemoRealtimeServer implements WebSocketConnector {
           },
         );
       }
+      return;
+    }
+    if (currentRoom case final room?) {
+      _error(
+        ref,
+        'BUSY',
+        'You\'re in a room.',
+        details: {
+          'active': {'kind': 'room', 'id': room.id, 'title': 'Room ${room.code}'},
+        },
+      );
       return;
     }
     final live = _matches.values.where((m) => !m.isOver).firstOrNull;
@@ -569,7 +633,7 @@ class DemoRealtimeServer implements WebSocketConnector {
       mode: mode,
       subject: subject,
       chapter: chapter,
-      opponent: opponent,
+      opponents: [opponent],
       questions: questions,
       opponentNeverReady: neverReady,
       requeue: requeue,
@@ -595,13 +659,13 @@ class DemoRealtimeServer implements WebSocketConnector {
   }
 
   /// Seven questions: the chapter's first, then the rest of the subject, then anything.
-  List<_DemoQuestion> _pick(String subject, String? chapter, {required bool widened}) {
+  List<_DemoQuestion> _pick(String subject, String? chapter, {required bool widened, int? count}) {
     final ordered = <FakeQuestion>[
       ..._questions.where((q) => q.subject == subject && q.chapter.slug == chapter),
       ..._questions.where((q) => q.subject == subject && q.chapter.slug != chapter),
       ..._questions.where((q) => q.subject != subject),
     ];
-    final picked = [for (var i = 0; i < questionCount; i++) ordered[i % ordered.length]];
+    final picked = [for (var i = 0; i < (count ?? questionCount); i++) ordered[i % ordered.length]];
     return [for (final question in picked) _DemoQuestion(question, _random)];
   }
 
@@ -762,604 +826,6 @@ class _DemoQuestion {
 
   static String _optionId(Random random) =>
       String.fromCharCodes(List.generate(5, (_) => _alphabet.codeUnitAt(random.nextInt(52))));
-}
-
-class _Pick {
-  const _Pick({required this.opt, required this.ms, required this.status});
-
-  final String? opt;
-  final int ms;
-  final String status;
-}
-
-/// One demo match: the server side of the match state machine.
-class DemoMatch {
-  DemoMatch._(
-    this._server, {
-    required this.id,
-    required this.mode,
-    required this.subject,
-    required this.chapter,
-    required this.opponent,
-    required this._questions,
-    required this.opponentNeverReady,
-    required this._requeue,
-  }) : bot = opponent.isBot,
-       createdAt = _server.now;
-
-  final DemoRealtimeServer _server;
-  final String id;
-  final String mode;
-  final String subject;
-  final String? chapter;
-  final DemoPlayer opponent;
-  final List<_DemoQuestion> _questions;
-  final bool bot;
-  final bool opponentNeverReady;
-  final _Ticket? _requeue;
-  final int createdAt;
-
-  String get channel => 'm:$id';
-
-  String get kind => bot ? 'bot' : (mode == 'casual' ? 'quick_casual' : 'quick_rated');
-
-  int seq = 0;
-  final List<Map<String, Object?>> _log = [];
-  String phase = 'ready_wait';
-  int q = 0;
-  int? endsAt;
-  bool _meReady = false;
-  bool _opponentReady = false;
-  final Map<int, _Pick> _mine = {};
-  final Map<int, _Pick> _theirs = {};
-  final Map<int, Map<String, Object?>> _reveals = {};
-  final Map<int, int> _shownAt = {};
-  int myPoints = 0;
-  int myCorrect = 0;
-  int opponentPoints = 0;
-  int opponentCorrect = 0;
-  bool _opponentConnected = true;
-  int? _graceUntil;
-  Map<String, Object?>? _end;
-  Map<String, Object?>? _settlement;
-  bool settled = false;
-  final Set<Timer> _timers = {};
-
-  bool get isOver => phase == 'finished' || phase == 'aborted' || phase == 'voided';
-
-  String get _me => _server.me.uid;
-
-  int get _now => _server.now;
-
-  int get _limitMs => _server.questionLimit.inMilliseconds;
-
-  /// Where the questions come from: `[{chapter, name, count}]`.
-  List<Map<String, Object?>> get sources {
-    final counts = <String, (String, int)>{};
-    for (final question in _questions) {
-      final chapter = question.source.chapter;
-      final (name, count) = counts[chapter.slug] ?? (chapter.name, 0);
-      counts[chapter.slug] = (name, count + 1);
-    }
-    return [
-      for (final MapEntry(key: slug, value: (name, count)) in counts.entries)
-        {'chapter': slug, 'name': name, 'count': count},
-    ];
-  }
-
-  void _after(Duration delay, void Function() callback) {
-    late final Timer timer;
-    timer = _server._after(delay, () {
-      _timers.remove(timer);
-      callback();
-    });
-    _timers.add(timer);
-  }
-
-  void _cancelTimers() {
-    for (final timer in _timers) {
-      _server._cancel(timer);
-    }
-    _timers.clear();
-  }
-
-  /// A shared event: numbered and kept in the channel's log.
-  void _shared(String type, Map<String, Object?> data) {
-    final frame = DemoRealtimeServer._frame(type, data, ch: channel, seq: ++seq, ts: _now);
-    _log.add(frame);
-    _server._send(frame);
-  }
-
-  /// A message for this player only: no seq, never logged.
-  void _private(String type, Map<String, Object?> data) =>
-      _server._send(DemoRealtimeServer._frame(type, data, ch: channel, ts: _now));
-
-  void _sendSnapshot() => _server._send(
-    DemoRealtimeServer._frame('match.snapshot', _snapshot(), ch: channel, seq: seq, ts: _now),
-  );
-
-  /// Replays what the app missed, or sends a snapshot when the log can't.
-  void _resume(int lastSeq) {
-    if (lastSeq <= 0 || lastSeq > seq) {
-      _sendSnapshot();
-      return;
-    }
-    for (final frame in _log.where((f) => (f['seq']! as int) > lastSeq)) {
-      _server._send(frame);
-    }
-  }
-
-  Map<String, Object?> _card(DemoPlayer player) => player.card();
-
-  Map<String, Object?> _snapshot() {
-    final question = q == 0 ? null : _questions[q - 1];
-    return {
-      'match_id': id,
-      'kind': kind,
-      'phase': phase,
-      'ends_at': endsAt,
-      'q': q,
-      'total': _questions.length,
-      'limit_ms': _limitMs,
-      'players': [
-        {
-          ..._card(_server.me),
-          'connected': true,
-          'score': myPoints,
-          'correct': myCorrect,
-          'answered': _mine.containsKey(q) && q > 0,
-        },
-        {
-          ..._card(opponent),
-          'connected': _opponentConnected,
-          'grace_until': _graceUntil,
-          'score': opponentPoints,
-          'correct': opponentCorrect,
-          'answered': _theirs.containsKey(q) && q > 0,
-        },
-      ],
-      'question': question == null || (phase != 'q_open' && phase != 'q_reveal') ? null : _show(q),
-      'reveal': _reveals.isEmpty ? null : _reveals[_reveals.keys.reduce(max)],
-      'mine': [
-        for (final MapEntry(key: number, value: pick) in _mine.entries)
-          {'q': number, 'opt': pick.opt, 'status': pick.status},
-      ],
-      'end': _end,
-      'settled': settled,
-    };
-  }
-
-  Map<String, Object?> _show(int number) {
-    final question = _questions[number - 1];
-    final shownAt = _shownAt[number]!;
-    return {
-      'q': number,
-      'total': _questions.length,
-      'stem': question.source.stem,
-      'options': [
-        for (final (id, text, _) in question.options) {'id': id, 'text': text},
-      ],
-      'shown_at': shownAt,
-      'deadline_at': shownAt + _limitMs,
-      'limit_ms': _limitMs,
-      'chapter': question.source.chapter.name,
-    };
-  }
-
-  // ---------------------------------------------------------------------------------------
-  // Ready and countdown
-
-  void _startReadyWait() {
-    if (!opponentNeverReady) {
-      _after(bot ? Duration.zero : _server.opponentReadyAfter, () {
-        _opponentReady = true;
-        _maybeStart();
-      });
-    }
-    _after(_server.readyWait, () {
-      if (phase != 'ready_wait') return;
-      _abort();
-    });
-  }
-
-  void _ready(String? ref) {
-    _server._ack(ref);
-    _meReady = true;
-    _maybeStart();
-  }
-
-  void _maybeStart() {
-    if (phase != 'ready_wait' || !_meReady || !_opponentReady) return;
-    phase = 'countdown';
-    endsAt = _now + _server.countdown.inMilliseconds;
-    _shared('match.phase', {'phase': 'countdown', 'q': 0, 'ends_at': endsAt});
-    final shownAt = endsAt!;
-    _after(_server.countdown - const Duration(milliseconds: 400), () => _showQuestion(1, shownAt));
-  }
-
-  void _abort() {
-    phase = 'aborted';
-    endsAt = null;
-    _cancelTimers();
-    _end = {'result': 'draw', 'reason': 'aborted', 'totals': <String, Object?>{}, 'ranking': []};
-    _shared('match.end', _end!);
-    if (mode == 'casual') _server.world.coins += 5;
-    final ticket = _requeue;
-    if (_meReady && ticket != null) _server._requeue(ticket);
-  }
-
-  // ---------------------------------------------------------------------------------------
-  // Questions
-
-  void _showQuestion(int number, int shownAt) {
-    if (isOver) return;
-    q = number;
-    phase = 'q_open';
-    _shownAt[number] = shownAt;
-    endsAt = shownAt + _limitMs;
-    _shared('q.show', _show(number));
-
-    final plan = _server.opponentPlan;
-    final DemoAnswerPlan? answer;
-    if (plan != null) {
-      answer = number <= plan.length ? plan[number - 1] : null;
-    } else {
-      final random = _server._random;
-      final accuracy = bot ? 0.55 : 0.6;
-      // Log-normal around 6 s, never under 1.5 s.
-      final gaussian = sqrt(-2 * log(1 - random.nextDouble())) * cos(2 * pi * random.nextDouble());
-      final ms = (6000 * exp(0.35 * gaussian)).round().clamp(1500, _limitMs - 800);
-      answer = DemoAnswerPlan(correct: random.nextDouble() < accuracy, ms: ms);
-    }
-    if (answer != null) {
-      final plan = answer;
-      _after(
-        Duration(milliseconds: shownAt + plan.ms - _now),
-        () => _opponentAnswers(number, plan),
-      );
-    }
-    if (_server.opponentDropsAtQ == number && !bot) {
-      _after(Duration(milliseconds: shownAt + 2000 - _now), _opponentDrops);
-    }
-    _after(Duration(milliseconds: endsAt! + 250 - _now), () => _reveal(number));
-  }
-
-  void _opponentDrops() {
-    if (isOver) return;
-    _opponentConnected = false;
-    _graceUntil = _now + 30000;
-    _shared('opp.conn', {'uid': opponent.uid, 'state': 'reconnecting', 'grace_until': _graceUntil});
-    _after(_server.opponentAwayFor, () {
-      if (isOver) return;
-      _opponentConnected = true;
-      _graceUntil = null;
-      _shared('opp.conn', {'uid': opponent.uid, 'state': 'connected', 'grace_until': null});
-    });
-  }
-
-  void _opponentAnswers(int number, DemoAnswerPlan plan) {
-    if (phase != 'q_open' || q != number || !_opponentConnected || _theirs.containsKey(number)) {
-      return;
-    }
-    final question = _questions[number - 1];
-    final wrong = question.options.where((o) => o.$1 != question.correctId).toList();
-    final opt = plan.correct ? question.correctId : wrong[_server._random.nextInt(wrong.length)].$1;
-    _theirs[number] = _Pick(opt: opt, ms: plan.ms, status: 'accepted');
-    _progress(number);
-  }
-
-  void _progress(int number) {
-    _shared('q.progress', {
-      'q': number,
-      'answered': [
-        if (_mine[number]?.status == 'accepted') _me,
-        if (_theirs.containsKey(number)) opponent.uid,
-      ],
-    });
-    final everyone = _mine[number]?.status == 'accepted' && _theirs.containsKey(number);
-    if (everyone) _after(const Duration(milliseconds: 300), () => _reveal(number));
-  }
-
-  void _answer(String? ref, Map<String, Object?> data) {
-    final number = data['q'] is int ? data['q']! as int : 0;
-    final first = _mine[number];
-    if (first != null) {
-      _private('ans.ack', {'ref': ref, 'q': number, 'status': first.status, 'dup': true});
-      return;
-    }
-    if (phase != 'q_open' || number != q) {
-      _private('ans.ack', {'ref': ref, 'q': number, 'status': 'wrong_phase', 'dup': false});
-      return;
-    }
-    final opt = data['opt'];
-    final question = _questions[number - 1];
-    if (opt is! String || !question.options.any((o) => o.$1 == opt)) {
-      _private('ans.ack', {'ref': ref, 'q': number, 'status': 'invalid', 'dup': false});
-      return;
-    }
-    final raw = _now - _shownAt[number]!;
-    final elMs = data['el_ms'] is int ? data['el_ms']! as int : raw;
-    final effective = elMs.clamp(raw - 100, raw);
-    final status = raw < 0
-        ? 'too_early'
-        : (effective > _limitMs || raw > _limitMs + 100 ? 'late' : 'accepted');
-    _mine[number] = _Pick(opt: status == 'accepted' ? opt : null, ms: effective, status: status);
-    _private('ans.ack', {'ref': ref, 'q': number, 'status': status, 'dup': false});
-    if (status == 'accepted') _progress(number);
-  }
-
-  int _points(bool correct, int ms) {
-    if (!correct) return 0;
-    final t = ((ms - 1000) / (_limitMs - 1000)).clamp(0.0, 1.0);
-    return 100 + (50 * (1 - t)).round();
-  }
-
-  void _reveal(int number) {
-    if (isOver || _reveals.containsKey(number) || number != q) return;
-    phase = 'q_reveal';
-    endsAt = null;
-    final question = _questions[number - 1];
-    final mine = _mine[number];
-    final theirs = _theirs[number];
-    final myOpt = mine?.opt;
-    final theirOpt = theirs?.opt;
-    final iAmRight = myOpt == question.correctId;
-    final theyAreRight = theirOpt == question.correctId;
-    final myPts = _points(iAmRight, mine?.ms ?? 0);
-    final theirPts = _points(theyAreRight, theirs?.ms ?? 0);
-    myPoints += myPts;
-    opponentPoints += theirPts;
-    if (iAmRight) myCorrect++;
-    if (theyAreRight) opponentCorrect++;
-    String? speed(int? mineMs, int? otherMs) {
-      if (bot) return null;
-      if (mineMs == null && otherMs == null) return null;
-      if (mineMs == null) return 'slow';
-      if (otherMs == null) return 'fast';
-      if (mineMs < otherMs - 250) return 'fast';
-      if (mineMs > otherMs + 250) return 'slow';
-      return 'even';
-    }
-
-    final myMs = myOpt == null ? null : mine!.ms;
-    final theirMs = theirOpt == null ? null : theirs!.ms;
-    final reveal = {
-      'q': number,
-      'correct': question.correctId,
-      'players': {
-        _me: {
-          'opt': myOpt,
-          'correct': iAmRight,
-          'pts': myPts,
-          'time_ms': myMs,
-          'speed': speed(myMs, theirMs),
-        },
-        opponent.uid: {
-          'opt': theirOpt,
-          'correct': theyAreRight,
-          'pts': theirPts,
-          'time_ms': theirMs,
-          'speed': speed(theirMs, myMs),
-        },
-      },
-      'totals': _totals(),
-      'ref': question.source.ref,
-    };
-    _reveals[number] = reveal;
-    _shared('q.reveal', reveal);
-    if (number < _questions.length) {
-      final nextShown = _now + _server.revealFor.inMilliseconds;
-      _after(
-        _server.revealFor - const Duration(milliseconds: 400),
-        () => _showQuestion(number + 1, nextShown),
-      );
-    } else {
-      _after(const Duration(seconds: 2), () => _finish('normal'));
-    }
-  }
-
-  Map<String, Object?> _totals() => {
-    _me: {'points': myPoints, 'correct': myCorrect},
-    opponent.uid: {'points': opponentPoints, 'correct': opponentCorrect},
-  };
-
-  // ---------------------------------------------------------------------------------------
-  // The end
-
-  void _forfeit(String? ref) {
-    _server._ack(ref);
-    if (isOver) return;
-    if (q == 0) {
-      _abort();
-      return;
-    }
-    _finish('forfeit', forcedResult: 'loss');
-  }
-
-  String _result() {
-    if (myPoints != opponentPoints) return myPoints > opponentPoints ? 'win' : 'loss';
-    if (myCorrect != opponentCorrect) return myCorrect > opponentCorrect ? 'win' : 'loss';
-    int time(Map<int, _Pick> picks) => [
-      for (final MapEntry(key: number, value: pick) in picks.entries)
-        if (pick.opt == _questions[number - 1].correctId) pick.ms,
-    ].fold(0, (sum, ms) => sum + ms);
-    final mine = time(_mine);
-    final theirs = time(_theirs);
-    if (mine == theirs) return 'draw';
-    return mine < theirs ? 'win' : 'loss';
-  }
-
-  void _finish(String reason, {String? forcedResult}) {
-    if (isOver) return;
-    _cancelTimers();
-    phase = 'finished';
-    endsAt = null;
-    final result = forcedResult ?? _result();
-    _end = {
-      'result': result,
-      'reason': reason,
-      'totals': _totals(),
-      'ranking': switch (result) {
-        'win' => [
-          [_me],
-          [opponent.uid],
-        ],
-        'loss' => [
-          [opponent.uid],
-          [_me],
-        ],
-        _ => [
-          [_me, opponent.uid],
-        ],
-      },
-    };
-    _shared('match.end', _end!);
-    _after(_server.settleAfter, () {
-      _settlement = _settle(result);
-      settled = true;
-      if (!_server.withholdSettlement) _private('match.settled', {'match_id': id, ..._settlement!});
-    });
-  }
-
-  Map<String, Object?> _settle(String result) {
-    final world = _server.world;
-    final win = result == 'win';
-    final draw = result == 'draw';
-    Map<String, Object?>? rating;
-    Map<String, Object?>? rank;
-    if (mode == 'rated' && !bot) {
-      final subjectRating = world.rating(subject);
-      final before = subjectRating.display;
-      final delta = win ? 16 : (draw ? 2 : -12);
-      subjectRating.value = (subjectRating.value ?? 1500) + delta;
-      rating = {'scope': subject, 'before': before, 'after': subjectRating.display, 'delta': delta};
-      final position = subjectRating.position;
-      if (position != null) {
-        final after = (position + (win ? -5 : (draw ? 0 : 2))).clamp(1, 100000);
-        rank = {'board': 'rating:$subject', 'before': position, 'after': after};
-        subjectRating.position = after;
-      } else {
-        subjectRating.gamesToRank = max(0, subjectRating.gamesToRank - 1);
-        rank = {'board': 'rating:$subject', 'games_to_rank': subjectRating.gamesToRank};
-      }
-    }
-    final coins = bot ? 0 : (win ? 10 : (draw && mode == 'casual' ? 5 : 0));
-    world.coins += coins;
-    final xp = (win ? 30 : (draw ? 20 : 10)) ~/ (bot ? 2 : 1);
-    final levelUp = world.addXp(xp);
-    world.gamesToday++;
-    if (win) world.wins++;
-    final extended = !world.playedToday;
-    if (extended) world.streakDays++;
-    world.playedToday = true;
-    final slower = [
-      for (final reveal in _reveals.values)
-        if (((reveal['players']! as Map)[_me]! as Map)['speed'] == 'slow') reveal,
-    ].length;
-    final chapterName = _questions.first.source.chapter.name;
-    final chapterSlug = _questions.first.source.chapter.slug;
-    return {
-      'rating': rating,
-      'rank': rank,
-      'coins': {'delta': coins, 'balance': world.coins, 'capped': false},
-      'xp': {
-        'delta': xp,
-        'level': world.level,
-        'into_level': world.intoLevel,
-        'for_next': world.forNext,
-        'level_up': levelUp,
-        'capped': false,
-      },
-      'resets_at': DateTime.fromMillisecondsSinceEpoch(_now)
-          .add(const Duration(days: 1))
-          .copyWith(hour: 0, minute: 0, second: 0, millisecond: 0, microsecond: 0)
-          .millisecondsSinceEpoch,
-      'missions': [
-        {
-          'id': 'play-3',
-          'title': 'Play 3 battles',
-          'progress': min(world.gamesToday, 3),
-          'target': 3,
-          'done': world.gamesToday >= 3,
-        },
-        {
-          'id': 'win-1',
-          'title': 'Win a battle',
-          'progress': min(world.wins, 1),
-          'target': 1,
-          'done': world.wins >= 1,
-        },
-      ],
-      'streak': {'days': world.streakDays, 'extended': extended},
-      'achievements': [
-        if (win && world.wins == 1) {'id': 'first-win', 'title': 'First win'},
-      ],
-      'tip': slower >= 2
-          ? {
-              'message':
-                  'You were slower on $slower of ${_questions.length}. Try a timed set in $chapterName.',
-              'action': 'timed_practice',
-              'params': {'subject': subject, 'chapter': chapterSlug},
-            }
-          : {
-              'message': 'Keep it going: 10 more questions in $chapterName.',
-              'action': 'practice',
-              'params': {'subject': subject, 'chapter': chapterSlug, 'count': '10'},
-            },
-    };
-  }
-
-  Map<String, Object?> _summary() {
-    final end = _end;
-    final result = switch (phase) {
-      'aborted' => 'aborted',
-      'voided' => 'voided',
-      _ => end?['result'],
-    };
-    return {
-      'id': id,
-      'kind': kind,
-      'subject': subject,
-      'chapters': [for (final source in sources) source['name']],
-      'played_at': DateTime.fromMillisecondsSinceEpoch(createdAt, isUtc: true).toIso8601String(),
-      'result': result,
-      'reason': end?['reason'],
-      'score': {'me': myPoints, 'best_other': opponentPoints},
-      'opponents': [_card(opponent)..['id'] = opponent.uid],
-      'rating_delta': (_settlement?['rating'] as Map?)?['delta'],
-      'coins_delta': (_settlement?['coins'] as Map?)?['delta'],
-      'status': switch (phase) {
-        'aborted' => 'aborted',
-        'voided' => 'voided',
-        'finished' => settled ? 'settled' : 'settling',
-        _ => 'live',
-      },
-      'totals': _totals(),
-      'settlement': settled ? _settlement : null,
-    };
-  }
-
-  Map<String, Object?> _review(Set<String> bookmarks) => {
-    'questions': [
-      for (final (i, question) in _questions.indexed)
-        {
-          'q': i + 1,
-          'ref': question.source.ref,
-          'stem': question.source.stem,
-          'options': [
-            for (final (id, text, _) in question.options) {'id': id, 'text': text},
-          ],
-          'correct': question.correctId,
-          'explanation': question.source.explanation,
-          'chapter': question.source.chapter.name,
-          'topic': question.source.chapter.topicName(question.source.topic),
-          'players': {
-            if (_reveals[i + 1] case final reveal?) ...(reveal['players']! as Map<String, Object?>),
-          },
-          'bookmarked': bookmarks.contains(question.source.ref),
-        },
-    ],
-  };
 }
 
 /// The app's end of a demo connection.

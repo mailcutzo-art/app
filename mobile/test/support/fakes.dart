@@ -33,6 +33,8 @@ import 'package:quiz_app/features/onboarding/onboarding_repository.dart';
 import 'package:quiz_app/features/practice/practice_controller.dart';
 import 'package:quiz_app/features/profile/data/fake_profile_repository.dart';
 import 'package:quiz_app/features/profile/data/profile_repository.dart';
+import 'package:quiz_app/features/rooms/data/fake_rooms_repository.dart';
+import 'package:quiz_app/features/rooms/data/rooms_repository.dart';
 import 'package:quiz_app/features/settings/data/fake_settings_repository.dart';
 import 'package:quiz_app/features/settings/data/settings_repository.dart';
 import 'package:quiz_app/features/social/data/fake_social_repository.dart';
@@ -138,6 +140,7 @@ List<Override> testOverrides({
   SocialRepository? social,
   LeaderboardRepository? leaderboards,
   MissionsRepository? missions,
+  RoomsRepository? rooms,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -169,6 +172,7 @@ List<Override> testOverrides({
     leaderboards ?? FakeLeaderboardRepository.seeded(me: fakeUser()),
   ),
   missionsRepositoryProvider.overrideWithValue(missions ?? FakeMissionsRepository.seeded()),
+  roomsRepositoryProvider.overrideWithValue(rooms ?? FakeRoomsRepository()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -202,6 +206,7 @@ Future<ProviderContainer> pumpApp(
   SocialRepository? social,
   LeaderboardRepository? leaderboards,
   MissionsRepository? missions,
+  RoomsRepository? rooms,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -225,6 +230,7 @@ Future<ProviderContainer> pumpApp(
           social: social,
           leaderboards: leaderboards,
           missions: missions,
+          rooms: rooms,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,

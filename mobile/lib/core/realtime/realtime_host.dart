@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/live/live_hub.dart';
 import '../../app/router.dart';
+import '../../features/rooms/rooms_controller.dart';
 import '../auth/session.dart';
 import 'live_controller.dart';
 import 'live_providers.dart';
@@ -68,6 +69,8 @@ class _RealtimeHostState extends ConsumerState<RealtimeHost> {
   Widget build(BuildContext context) {
     ref
       ..watch(liveControllerProvider)
+      // Rooms and invites ride on the live controller, from the first welcome on.
+      ..watch(roomsControllerProvider)
       ..listen(currentUserIdProvider, (previous, next) {
         if (previous != next) scheduleMicrotask(_clearLiveLayer);
       });

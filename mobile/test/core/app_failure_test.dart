@@ -60,6 +60,10 @@ void main() {
       failureFromDio(_response(404, body: _envelope('NOT_FOUND', 'x'))),
       isA<NotFoundFailure>(),
     );
+    expect(
+      failureFromDio(_response(410, body: _envelope('INVITE_EXPIRED', 'x'))),
+      isA<NotFoundFailure>().having((f) => f.code, 'code', 'INVITE_EXPIRED'),
+    );
     expect(failureFromDio(_response(409, body: _envelope('TAKEN', 'x'))), isA<ConflictFailure>());
     expect(failureFromDio(_response(426)), isA<UpgradeRequiredFailure>());
     expect(
