@@ -74,6 +74,10 @@ SETTLED_TTL_S = 3600
 H2H_KINDS = frozenset(
     {MatchKind.QUICK_RATED, MatchKind.QUICK_CASUAL, MatchKind.FRIEND, MatchKind.TOURNAMENT}
 )
+# A cancelled bot or room game counts against nobody's queue cooldown.
+NO_STRIKE_KINDS = frozenset(
+    {MatchKind.BOT, MatchKind.FRIEND, MatchKind.GROUP, MatchKind.TOURNAMENT}
+)
 _STATUS = {
     "finished": MatchStatus.SETTLED,
     "aborted": MatchStatus.ABORTED,
@@ -335,6 +339,8 @@ async def _record_answers(
     asked = {mq.position: (mq, question) for mq, question in rows}
     bot = final.get("bot") or ""
     seats = {uid: seat for seat, uid in enumerate(final["players"], start=1)}
+    # Late joiners of a group battle never saw the questions before they came in.
+    joined: dict[str, int] = final.get("joined") or {}
     answer_rows: list[dict[str, Any]] = []
     attempts: dict[uuid.UUID, list[tuple[_Seen, dict[str, Any]]]] = {}
     answered: dict[uuid.UUID, int] = {}
@@ -347,6 +353,9 @@ async def _record_answers(
         limit = int(q["limit_ms"])
         for uid in final["players"]:
             a = q["answers"].get(uid)
+            first_q = joined.get(uid, 0)
+            if position < first_q or (position == first_q and a is None):
+                continue
             res = q.get("results", {}).get(uid) or {}
             accepted = a is not None and a["status"] == "accepted"
             selected = None
@@ -543,7 +552,7 @@ async def _after_settlement(
 ) -> None:
     """Once per match: requeue the ready players of an aborted quick match and count abort
     strikes against the players who caused it."""
-    if final["status"] != "aborted" or final.get("kind") in {MatchKind.BOT, MatchKind.TOURNAMENT}:
+    if final["status"] != "aborted" or final.get("kind") in NO_STRIKE_KINDS:
         return
     if not await deps.redis.set(keys.match_post(mid), 1, nx=True, ex=86_400):
         return

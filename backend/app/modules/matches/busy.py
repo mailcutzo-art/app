@@ -26,6 +26,11 @@ def register_busy_check(check: BusyCheck) -> None:
         _CHECKS.append(check)
 
 
+def unregister_busy_check(check: BusyCheck) -> None:
+    if check in _CHECKS:
+        _CHECKS.remove(check)
+
+
 async def check_busy(
     db: AsyncSession, redis: Redis, user_id: uuid.UUID, until_ms: int
 ) -> ActiveOut | None:

@@ -41,6 +41,8 @@ _MM_PAIR = _script("mm_pair")
 _MM_UNPAIR = _script("mm_unpair")
 _LEASES = _script("leases")
 _SNAPSHOT = _script("snapshot")
+_END = _script("end")
+_JOIN = _script("join")
 
 TERMINAL_PHASES = frozenset({"finished", "aborted", "voided"})
 
@@ -125,9 +127,26 @@ async def forfeit(redis: Redis, mid: str, uid: str) -> Step:
     return _step(await _FORFEIT(redis, keys=[keys.match(mid)], args=[uid]))
 
 
-async def end(redis: Redis, mid: str) -> Step:
-    """End a tournament game at its round's deadline (``end.lua``)."""
-    return _step(await _END(redis, keys=[keys.match(mid)], args=[]))
+async def end(redis: Redis, mid: str, *, by_host: bool = False) -> Step:
+    """End a running game: a tournament round's deadline passed, or (``by_host``) a group host
+    ends it on the current scores (``ended_by_host``)."""
+    return _step(
+        await _END(redis, keys=[keys.match(mid)], args=["host" if by_host else "deadline"])
+    )
+
+
+async def join(
+    redis: Redis, mid: str, uid: str, card: Mapping[str, Any], *, spectator: bool, busy_ttl_s: int
+) -> Step:
+    """A room member comes into a running group battle: ``joined`` (late), ``rejoined``,
+    ``spectating``, ``already``, ``busy`` or ``missing``."""
+    return _step(
+        await _JOIN(
+            redis,
+            keys=[keys.match(mid)],
+            args=[uid, _json(card), "spectator" if spectator else "player", busy_ttl_s],
+        )
+    )
 
 
 async def emote(redis: Redis, mid: str, uid: str, emote: str, *, gap_ms: int, limit: int) -> str:

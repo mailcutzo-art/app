@@ -3,6 +3,7 @@
 -- KEYS[1] match hash. ARGV: config JSON, questions JSON, key TTL (s).
 -- config: {id, kind, mode, subject, players, humans, bot, bot_acc, cards, meta, ready_ms,
 --   reveal_ms, countdown_ms, show_lead_ms, answer_grace_ms, grace_ms, void_window_ms}
+--   extra?: more hash fields (room games: room, rules, short_ms, standings, room_ttl)
 -- questions: [{stem, options: [{id, text}], correct, ref, limit_ms, chapter}]
 -- Returns {status, ver, due}.
 local base = KEYS[1]
@@ -24,6 +25,7 @@ redis.call('HSET', base,
   'cards', encode(c.cards), 'meta', encode(c.meta), 'bot_acc', c.bot_acc,
   'created_ms', now, 'started_ms', 0, 'finished_ms', 0, 'ends_at', ready_by,
   'settled', 0, 'reason', '')
+for k, v in pairs(c.extra or {}) do redis.call('HSET', base, k, v) end
 for _, uid in ipairs(c.players) do
   redis.call('HSET', base .. ':p', uid, cjson.encode({
     ready = uid == c.bot, connected = true, left = false, grace_until = 0, lat_ms = 100,

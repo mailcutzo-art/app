@@ -142,17 +142,30 @@ minute per user. See `docs/protocol.md` §1.
 Invite changes also arrive live on the `u` channel (`invite.received` and `invite.updated`,
 `docs/protocol.md` §8) and in the Inbox.
 
-- **Settings** in `POST /v1/rooms` are the object described in `docs/protocol.md` §8
-  (`subject`, `chapters`, `questions`, `seconds`, and for groups `difficulty`, `late_join`,
-  `leaderboard`, `join`); missing fields take the defaults. `link` is
-  `https://<domain>/j/<code>`.
-- **Preview.** `subject` and `chapters` are display names; `members` is the current count.
-- **Errors the app reads.** `POST /v1/rooms` answers `409 BUSY` (with `details.active`) when the
-  user is already in a room, match, queue or starting tournament. `POST /v1/invites` answers
-  `409 BUSY` with `details.reason` (`in_battle`, `in_tournament`, `in_room`) and `403
-  NOT_ALLOWED`. `accept` answers `410 INVITE_EXPIRED` for a lapsed or withdrawn invite.
-- **Links.** `/j/<code>` opens the app's join screen with the code filled in; `/battle?friend=<id>`
-  opens the duel set-up with that friend to invite once the room exists.
+- **Room settings** (`settings` in the body): `{"subject", "chapter" or "chapters", "questions",
+  "seconds", "difficulty", "late_join", "leaderboard", "join"}`; anything left out takes the
+  default. Friend duels: one chapter or All, 5/**7**/10 questions, 10/**15**/20/30 s. Group
+  battles: up to 12 chapters or All, 5/**10**/15/20 questions, the same times, difficulty
+  `mixed` (the rating mix) or one band, late join (default on, until halfway), leaderboard
+  between questions (default on) and `join` `friends` (friends of the host, or anyone whose invite
+  was accepted) or `anyone` (default). Chapters must be battle-ready. Bad values give `422` with
+  `details.fields`. `expires_at` is when an idle lobby would close (15 minutes; any activity
+  extends it). `409 BUSY` also covers a registered tournament the player is needed for before
+  the room's longest game could end; `503 UNAVAILABLE` during (and 10 minutes before) planned
+  maintenance. At most 10 rooms a minute per user.
+- **Previews** also give `reason: "kicked"`. The code is read forgivingly (case, spaces and
+  hyphens are ignored; O reads as 0, I and L as 1). Once over the guess limit, every lookup gets
+  `429` until the limit has passed.
+- **Invites**: `403 NOT_ALLOWED` with `details.reason` `not_friends`, `privacy` (their
+  `challenges` setting, or a block) or `full`; `409 ALREADY_IN_ROOM`; at most 15 per 5 minutes.
+  Only room members can invite. Inviting the same friend to the same room again while pending
+  returns the pending invite. `POST /v1/invites/{id}/accept` on an invite already accepted returns
+  the room again. A room that closes expires its pending invites (`invite.updated` to both).
+  Blocking cancels pending invites between the two.
+- **Room links**: `GET /j/{code}` (no `/v1`, no sign-in) is a small HTML page with the code, an
+  **Open app** Android intent link and the Play Store listing
+  (`APP_ANDROID_PACKAGE`) with `referrer=room_code%3D<CODE>` for the install referrer. It never
+  says whether the code is live.
 
 ## Leaderboards: who is leading where
 

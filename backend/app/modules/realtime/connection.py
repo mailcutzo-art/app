@@ -40,17 +40,19 @@ INBOUND_BURST = 30.0
 MAX_VIOLATIONS = 3
 RTT_SAMPLES = 10
 
-State = Literal["idle", "queue", "match"]
+State = Literal["idle", "queue", "room", "match"]
 
 
 @dataclass(slots=True)
 class MatchFollow:
-    """A match channel this socket follows: the last seq forwarded, and events held back
-    while the snapshot or replay is being sent."""
+    """A match (or room) channel this socket follows: the last seq forwarded, and events held
+    back while the snapshot or replay is being sent. ``shuffle`` gives this player their own
+    option order (group battles)."""
 
     last_seq: int = 0
     buffering: bool = True
     held: list[dict[str, Any]] = field(default_factory=list)
+    shuffle: bool = False
 
 
 class Connection:
@@ -78,6 +80,7 @@ class Connection:
         self.foreground = True
         self.matches: dict[str, MatchFollow] = {}
         self.tournaments: set[str] = set()  # ``t:<id>`` channels this socket subscribed to
+        self.rooms: dict[str, MatchFollow] = {}
         self.closed = False
         self._closing: tuple[int, str] | None = None
         self.close_code: int | None = None
@@ -207,6 +210,7 @@ class Connection:
         return {
             "idle": settings.rt_hb_idle_s,
             "queue": settings.rt_hb_queue_s,
+            "room": settings.rt_hb_queue_s,
             "match": settings.rt_hb_match_s,
         }[self.state]
 
@@ -216,6 +220,7 @@ class Connection:
         return {
             "idle": settings.rt_stale_idle_s,
             "queue": settings.rt_stale_queue_s,
+            "room": settings.rt_stale_queue_s,
             "match": settings.rt_stale_match_s,
         }[self.state]
 
@@ -272,9 +277,33 @@ class Connection:
         if seq <= follow.last_seq:
             return
         follow.last_seq = seq
-        self.send(views.for_viewer(envelope, self.uid))
+        self.send(views.for_viewer(envelope, self.uid, shuffle=follow.shuffle))
         if envelope.get("t") == "match.end":
             self.node.spawn(self.node.refresh_state(self))
+
+    def on_room_event(self, channel: str, message: str) -> None:
+        """Hub listener for ``ev:r:<rid>``."""
+        rid = channel.removeprefix("ev:r:")
+        follow = self.rooms.get(rid)
+        if follow is None:
+            return
+        envelope = orjson.loads(message)
+        if follow.buffering:
+            follow.held.append(envelope)
+            return
+        self.forward_room(rid, follow, envelope)
+
+    def forward_room(self, rid: str, follow: MatchFollow, envelope: dict[str, Any]) -> None:
+        seq = int(envelope.get("seq") or 0)
+        if seq <= follow.last_seq:
+            return
+        follow.last_seq = seq
+        self.send(envelope)
+        event_type = envelope.get("t")
+        if event_type == "room.started":
+            self.node.spawn(self.node.rooms.game_started(self, rid, str(envelope["d"]["match_id"])))
+        elif event_type == "room.closed":
+            self.node.spawn(self.node.rooms.unfollow(self, rid))
 
     def on_user_event(self, _channel: str, message: str) -> None:
         """Hub listener for ``ev:u:<uid>``: per-player events, forwarded as they are."""
@@ -286,6 +315,8 @@ class Connection:
             self.node.spawn(self.node.follow_match(self, mid, last_seq=None))
         if event_type in {"mm.found", "mm.cancelled", "mm.requeued", "mm.queued"}:
             self.node.spawn(self.node.refresh_state(self))
+        if event_type == "room.kicked":
+            self.node.spawn(self.node.rooms.unfollow(self, str(envelope["d"]["room_id"])))
 
     def on_tournament_event(self, channel: str, message: str) -> None:
         """Hub listener for ``ev:t:<id>``: standings and round updates. ``t.standings`` gets

@@ -1,6 +1,7 @@
 -- conn: a player's socket connected or dropped. A drop starts the grace period (plus
 -- ARGV[3] ms when the server itself is restarting) and pulls the timer earlier if the grace
--- deadline now comes first. The other players see opp.conn.
+-- deadline now comes first. The other players see opp.conn. In a group battle nobody forfeits:
+-- a drop only starts the "fewer than 2 connected" deadline.
 -- KEYS[1] match hash. ARGV: uid, "connected" | "dropped", extra grace ms.
 -- Returns {status, ver, due}.
 local m = load_match(KEYS[1])
@@ -17,6 +18,13 @@ if state == 'connected' then
   save_player(m, uid)
   bump(m)
   emit(m, 'opp.conn', {uid = uid, state = 'connected', grace_until = cjson.null}, now)
+elseif is_group(m) then
+  if not p.connected then return {'noop', m.ver, m.due} end
+  p.connected = false
+  p.grace_until = 0
+  save_player(m, uid)
+  bump(m)
+  emit(m, 'opp.conn', {uid = uid, state = 'reconnecting', grace_until = cjson.null}, now)
 else
   local until_ms = now + num(m.h.grace_ms) + extra
   -- Already away: only a restart can lengthen the grace.
@@ -29,5 +37,6 @@ else
   bump(m)
   emit(m, 'opp.conn', {uid = uid, state = 'reconnecting', grace_until = until_ms}, now)
 end
+track_short(m, now)
 schedule(m, m.pdue)
 return {'ok', m.ver, m.due}

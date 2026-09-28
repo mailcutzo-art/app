@@ -174,6 +174,41 @@ are identical for every recipient.
   - Options are shuffled and given fresh random 5-character ids. The id → correct map lives only
     in Redis and `match_questions`.
 
+## Rooms (Play with Friend, Group Battle)
+
+- **Keys.** `room:{rid}` (hash: kind, code, host, status `lobby` | `starting` | `playing` |
+  `finished` | `closed`, locked, settings JSON, capacity, seq, active_ms, match, rematch JSON,
+  autostart_at and the room's timings), `room:{rid}:m` (member uid → JSON `{card, ready,
+  connected, away, joined_ms, disc_ms, spectator}`), `room:{rid}:k` (kicked), `room:{rid}:log`
+  (capped stream, like a match log), `room:code:<CODE>` → rid while the room is open, and
+  `rooms:timers` (zset rid → due ms). Events go out on `ev:r:{rid}`.
+- **Scripts** (`modules/rooms/lua/`, each is `lib.lua` + `room_lib.lua` + its body):
+  `room_create` (takes the host's busy slot and the code), `room_join` (kicks, lock, capacity,
+  busy slot), `room_leave` (handover or close), `room_op` (conn, away, ready, settings, lock,
+  transfer, rematch, started, unstart, end), `room_start` (claims a start: exactly one caller
+  gets the players), `room_tick` (the timer) and `room_read` (the snapshot).
+- **Timers.** Every rt node scans `rooms:timers` every 250 ms and runs `room_tick` for due rooms;
+  the script is idempotent, so a room ticked by two nodes acts once. It moves a room whose game
+  ended to `finished`, fires a friend duel's auto-start (returned to Python, which starts the
+  game), ends rematch and Play again windows, closes idle lobbies and does host handovers.
+- **Games.** A start claims the room (`starting`), writes the match rows with the room's
+  settings (`matches.creation.GameRules`: question count, time, chapters, difficulty) and runs
+  `create.lua` with extra hash fields: `room`, `room_ttl`, and for groups `rules = group`,
+  `short_ms`, `standings`, `late_join`. `create.lua` moves every player's busy slot to the match;
+  `finish` in `lib.lua` hands it back to the room (while the room is still `playing` and the
+  player a member) and pokes `rooms:timers`, so the room moves on at once.
+- **Group rules in the engine.** `conn.lua` never starts a forfeit grace for a group: it keeps
+  `short_until`, the deadline once fewer than 2 players are connected, which `schedule` and
+  `advance.lua` honour (the game then finishes on the current scores). `forfeit.lua` marks a group
+  player `left` (they can come back through `join.lua`). `ready.lua` waits only for connected
+  players, and a group at its ready deadline starts with at least 2 ready players. `join.lua`
+  adds a late joiner (`joined_q`; settlement skips the questions they never saw) or a spectator
+  (`m:{mid}:s`, allowed to follow the channel). `end.lua` finishes with `ended_by_host`. With
+  `standings = 1`, `reveal` adds `standings` (place and change since the last question, kept in
+  the hash as `places`). The gateway shuffles `q.show` options per viewer for group matches.
+- **Postgres** keeps `rooms` (code unique among open rooms), `room_members`, `room_kicks` and
+  `room_invites`; the rt node writes them as the live room changes.
+
 ## Settlement
 
 - **When.** `finished`, `aborted` and `voided` all end in `settle:q`. The owner settles at once,

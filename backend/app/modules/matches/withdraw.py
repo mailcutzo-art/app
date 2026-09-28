@@ -16,6 +16,7 @@ import structlog
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.clock import utc_now
 from app.modules.matches import ports
 from app.modules.outbox.service import OutboxContext, enqueue, register
 from app.modules.realtime import keys, rstr
@@ -30,12 +31,24 @@ TOPIC = "matches.withdraw"
 async def withdraw_player(
     db: AsyncSession, redis: Redis, escrow: ports.EscrowPort, user_id: uuid.UUID
 ) -> str | None:
-    """End what the player is in: "cancelled" (a search), "forfeited" (a match) or None."""
+    """End what the player is in: "cancelled" (a search), "forfeited" (a match), "left" (a
+    room, and its game) or None."""
     uid = str(user_id)
     busy = await rstr.get(redis, keys.busy(uid))
     if busy is None:
         return None
     kind, _, ident = busy.partition(":")
+    room = ident if kind == "r" else None
+    if kind == "m":
+        room = await rstr.hget(redis, keys.match(ident), "room") or None
+    if room:
+        # Imported here: rooms build on this module.
+        from app.modules.rooms.service import leave_room
+
+        outcome, _ = await leave_room(db, redis, room, user_id, now=utc_now())
+        if outcome.status != "not_member":
+            log.info("matches.withdrawn", user_id=uid, room_id=room)
+            return "left"
     if kind == "q":
         status, value = await tickets.end_ticket(redis, uid, ident)
         if status == "cancelled":

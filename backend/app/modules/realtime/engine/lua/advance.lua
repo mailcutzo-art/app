@@ -71,6 +71,22 @@ if #expired > 0 then
   return {m.phase, m.ver, 0}
 end
 
+-- A group battle ends once fewer than 2 players have been connected for short_ms.
+local short = num(m.h.short_until)
+if is_group(m) and short > 0 and short <= now then
+  bump(m)
+  if m.q == 0 then
+    finish(m, 'aborted', 'aborted', {}, {}, now)
+  else
+    local reason = 'disconnected'
+    for _, uid in ipairs(m.humans) do
+      if m.p[uid].left then reason = 'left' end
+    end
+    finish(m, 'finished', reason, {}, {}, now)
+  end
+  return {m.phase, m.ver, 0}
+end
+
 if now < m.pdue then return {'early', m.ver, m.due} end
 bump(m)
 if m.phase == 'ready_wait' then
@@ -81,6 +97,11 @@ if m.phase == 'ready_wait' then
   if m.kind == 'tournament' then
     no_show(m, not_ready, now)
     return {m.phase, m.ver, 0}
+  end
+  -- A group battle starts with whoever is ready, if that is at least two players.
+  if is_group(m) and #ready >= 2 then
+    start_countdown(m, now)
+    return {m.phase, m.ver, m.due}
   end
   finish(m, 'aborted', 'aborted', {}, {not_ready = list(not_ready), ready = list(ready)}, now)
   return {m.phase, m.ver, 0}

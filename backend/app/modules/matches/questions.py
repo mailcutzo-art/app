@@ -28,7 +28,11 @@ from app.modules.content.models import (
 )
 from app.modules.content.queries import suits_goal
 from app.modules.practice.models import UserQuestion
-from app.modules.realtime.matchmaking.rules import DIFFICULTY_BANDS, difficulty_mix
+from app.modules.realtime.matchmaking.rules import (
+    DIFFICULTY_BANDS,
+    DifficultyBand,
+    difficulty_mix,
+)
 
 OPTION_ID_LENGTH = 5
 _OPTION_ALPHABET = string.ascii_letters + string.digits
@@ -84,8 +88,11 @@ async def pick_questions(
     user_ids: Collection[uuid.UUID],
     goals: Collection[str],
     avg_rating: float,
+    difficulty: DifficultyBand | None = None,
 ) -> list[PickedQuestion]:
-    """Questions for a match: ``sources`` is (chapter id or None for the subject, count)."""
+    """Questions for a match: ``sources`` is (chapter id or None for the subject, count).
+    ``difficulty`` asks for one band only (a room's setting) instead of the rating mix; other
+    questions fill in when the band runs short."""
     last_seen = (
         select(func.max(UserQuestion.last_at))
         .where(
@@ -116,7 +123,8 @@ async def pick_questions(
     for chapter_id, count in sources:
         scope = [] if chapter_id is None else [Question.chapter_id == chapter_id]
         start = len(chosen)
-        for band, wanted in difficulty_mix(avg_rating, count).items():
+        mix = {difficulty: count} if difficulty else difficulty_mix(avg_rating, count)
+        for band, wanted in mix.items():
             await take([*scope, Question.difficulty.in_(DIFFICULTY_BANDS[band])], wanted)
         await take(scope, count - (len(chosen) - start))  # any difficulty
         await take([], count - (len(chosen) - start))  # the whole subject

@@ -217,9 +217,14 @@ async def _resume(
             await node.match_connected(conn, item["id"])
         elif item["kind"] == "queue":
             await node.redis.hset(keys.ticket(item["id"]), "disc_ms", 0)
+        elif item["kind"] == "room":
+            wanted.setdefault(item["ch"], 0)
+            await node.rooms.connected(conn.uid, item["id"], connected=True)
     for channel, last_seq in wanted.items():
         if channel.startswith("m:"):
             await node.follow_match(conn, channel[2:], last_seq=last_seq)
+        elif channel.startswith("r:"):
+            await node.rooms.follow(conn, channel[2:], last_seq=last_seq)
 
 
 async def _read(node: RtNode, conn: Connection) -> bool:
@@ -275,6 +280,9 @@ async def _disconnected(node: RtNode, conn: Connection, *, restart: bool) -> Non
             await node.match_dropped(conn.uid, ident, restart=restart)
         elif kind == "q":
             await node.redis.hset(keys.ticket(ident), "disc_ms", node.clock.now_ms())
+        room = await node.rooms.room_of(busy)
+        if room is not None:
+            await node.rooms.connected(conn.uid, room, connected=False)
     except RedisError:
         log.warning("ws.disconnect_cleanup_failed", user_id=conn.uid, exc_info=True)
 
@@ -307,6 +315,9 @@ async def _client_state(node: RtNode, conn: Connection, ref: str | None, d: dict
     busy = await node.busy(conn.uid)
     if busy is not None and busy.startswith("q:"):
         await node.redis.hset(keys.ticket(busy[2:]), "bg_ms", 0 if conn.foreground else now)
+    room = await node.rooms.room_of(busy)
+    if room is not None:
+        await node.rooms.away(conn.uid, room, away=not conn.foreground)
 
 
 async def _sync(node: RtNode, conn: Connection, ref: str | None, d: dict[str, Any]) -> None:
@@ -314,6 +325,10 @@ async def _sync(node: RtNode, conn: Connection, ref: str | None, d: dict[str, An
     last_seq = d.get("last_seq")
     if not isinstance(channel, str) or not isinstance(last_seq, int):
         conn.error(ref, ErrorCode.BAD_REQUEST, "sync needs ch and last_seq.")
+        return
+    if channel.startswith("r:"):
+        if not await node.rooms.follow(conn, channel[2:], last_seq=last_seq):
+            conn.error(ref, ErrorCode.NOT_FOUND, "This room isn't available.", ch=channel)
         return
     if not channel.startswith("m:") or not await node.follow_match(
         conn, channel[2:], last_seq=last_seq
@@ -458,6 +473,28 @@ async def _mm_respond(node: RtNode, conn: Connection, ref: str | None, d: dict[s
     await node.matchmaker.respond(conn, ref, d)
 
 
+def _room_handler(event_type: str) -> Handler:
+    """Every ``room.*`` message goes to the node's rooms (``docs/protocol.md`` section 8)."""
+
+    async def handle(node: RtNode, conn: Connection, ref: str | None, d: dict[str, Any]) -> None:
+        await node.rooms.handle(conn, ref, event_type, d)
+
+    return handle
+
+
+ROOM_TYPES = (
+    "room.join",
+    "room.leave",
+    "room.ready",
+    "room.settings",
+    "room.start",
+    "room.kick",
+    "room.lock",
+    "room.transfer",
+    "room.end",
+    "room.rematch",
+)
+
 HANDLERS: dict[str, Handler] = {
     "clock.ping": _clock_ping,
     "pong": _pong,
@@ -473,4 +510,5 @@ HANDLERS: dict[str, Handler] = {
     "emote": _emote,
     "match.forfeit": _forfeit,
     "match.rematch": _rematch,
+    **{event_type: _room_handler(event_type) for event_type in ROOM_TYPES},
 }
