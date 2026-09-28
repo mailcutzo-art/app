@@ -81,9 +81,19 @@ questions.
 - `word_puzzles`: `id`, `external_id`, `subject_id`, `word` (`^[A-Z]{3,12}$`), `clue`,
   `difficulty` and `status`.
 
+### `question_reports`
+A player's report on a question (`reason`: wrong_answer, typo, unclear or other; optional
+`note`), at most one open per player and question. The admin review queue closes reports:
+`status` becomes `resolved` (outcome `fixed` or `retired`) or `dismissed` (outcome `rejected`),
+with `resolution`, `resolution_note` (internal), `resolved_by` and `resolved_at`; open reports
+have none of these (a CHECK enforces it). A partial index on `created_at` of open reports serves
+the queue.
+
 Test content is loaded from `content/` by the seed command, which runs the same checks as
 `content/tools/validate.py`. The seed upserts by `external_id`, and a changed question becomes a
-new row that supersedes the old one.
+new row that supersedes the old one. Imported questions (`source = import`, see
+`content-format.md`) and admin edits follow the same rule: a published question is never changed;
+an edit adds a new version with the next `seq` and retires the old row.
 
 ## Answers
 
