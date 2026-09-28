@@ -804,7 +804,10 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
   earn nothing, so skipping can't farm XP.
 - **Rated games:** 30 / 20 / 10 for a win, draw or loss.
 - **Casual games:** 20 / 15 / 8.
-- **Friend, group and bot games** earn half.
+- **Friend, group and bot games** earn half: friend and bot 10 / 7 / 4; group 20 for 1st place
+  and 10 for taking part.
+- **Tournament games:** 10 per round played.
+- **Daily caps (IST):** practice 300, group battles 200, Practice Bot games 60.
 - **Level curve:** cumulative XP `25·(L−1)·(L+2)`, so level 2 needs 100, level 10 needs 2,700, and the cap is level 100.
 
 **Daily missions** (matching the screenshots)

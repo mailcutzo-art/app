@@ -22,6 +22,7 @@ from app.modules.economy.jobs import hold_reaper_job
 from app.modules.notifications.jobs import notifications_retention_job
 from app.modules.outbox.jobs import outbox_cleanup_job, outbox_dispatch_job
 from app.modules.practice.jobs import attempt_partitions_job, practice_housekeeping_job
+from app.modules.progression.jobs import streaks_job
 
 SHUTDOWN_GRACE_S = 10.0
 
@@ -56,6 +57,8 @@ JOBS: tuple[PeriodicJob, ...] = (
     # Once a day: the inbox keeps 90 days, analytics 180.
     PeriodicJob("notifications_retention", 3600.0, notifications_retention_job),
     PeriodicJob("analytics_retention", 3600.0, analytics_retention_job),
+    # Streaks: settle yesterday after midnight IST, remind players at risk from 19:00 IST.
+    PeriodicJob("streaks", 300.0, streaks_job),
 )
 
 

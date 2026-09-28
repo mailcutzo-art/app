@@ -66,7 +66,7 @@ def test_curve_rejects_out_of_range_input() -> None:
     ("kind", "xp"),
     [
         (GameKind.QUICK_RATED, (30, 20, 10)),
-        (GameKind.TOURNAMENT, (30, 20, 10)),
+        (GameKind.TOURNAMENT, (10, 10, 10)),  # per round played
         (GameKind.QUICK_CASUAL, (20, 15, 8)),
         (GameKind.FRIEND, (10, 7, 4)),
         (GameKind.BOT, (10, 7, 4)),

@@ -33,7 +33,17 @@ from app.modules.practice.models import (
     UserQuestion,
     UserTopicStats,
 )
-from app.modules.progression.models import UserProgress, XpEvent
+from app.modules.progression.models import (
+    Achievement,
+    DailyMission,
+    MissionDef,
+    ProgressEventDedupe,
+    StreakDay,
+    UserAchievement,
+    UserProgress,
+    UserStreak,
+    XpEvent,
+)
 from app.modules.system.models import AppConfig, AuditLog
 from app.modules.users.models import User, UserSettings
 
@@ -48,6 +58,7 @@ def include_name(name: str | None, type_: str, _parent_names: object) -> bool:
 
 
 __all__ = [
+    "Achievement",
     "AnalyticsEvent",
     "AppConfig",
     "AttemptKey",
@@ -56,31 +67,37 @@ __all__ = [
     "Base",
     "Chapter",
     "CoinHold",
+    "DailyMission",
     "DeviceSession",
     "ExamGoal",
     "Feedback",
     "GoalSubject",
     "LedgerEntry",
+    "MissionDef",
     "Notification",
     "OutboxMessage",
     "Passage",
     "PracticeAnswer",
     "PracticeSession",
+    "ProgressEventDedupe",
     "PushToken",
     "Question",
     "QuestionAttempt",
     "QuestionReport",
     "QuestionStats",
     "RefreshToken",
+    "StreakDay",
     "Subject",
     "Topic",
     "User",
+    "UserAchievement",
     "UserCategoryStats",
     "UserChapterStats",
     "UserDailyStats",
     "UserProgress",
     "UserQuestion",
     "UserSettings",
+    "UserStreak",
     "UserTip",
     "UserTopicStats",
     "Wallet",
