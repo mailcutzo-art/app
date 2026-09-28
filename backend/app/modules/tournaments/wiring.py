@@ -10,23 +10,35 @@
 """
 
 import uuid
+from collections.abc import Sequence
 from datetime import datetime
+from typing import Any
 
 from redis.asyncio import Redis
-from sqlalchemy import select
+from sqlalchemy import and_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import Settings, get_settings
+from app.modules.content.models import Subject
 from app.modules.economy.jobs import HoldRef, register_liveness
 from app.modules.economy.models import RefKind
+from app.modules.home.service import HomeContext, register_home_section
+from app.modules.leaderboards.service import HallEntry, register_hall_of_fame
 from app.modules.matches.busy import register_busy_check
 from app.modules.matches.ports import Integrations, integrations
 from app.modules.moderation.service import register_ban_hook
 from app.modules.tournaments import service
-from app.modules.tournaments.models import TERMINAL, Tournament, TournamentEntry
+from app.modules.tournaments.models import (
+    TERMINAL,
+    Tournament,
+    TournamentEntry,
+    TournamentPrize,
+    TournamentStatus,
+)
 from app.modules.tournaments.results import settlement_hook
 from app.modules.tournaments.standings_view import standings_snapshot
 from app.modules.users.deletion import on_account_deleted
+from app.modules.users.models import User
 
 
 async def hold_live(db: AsyncSession, _redis: Redis, ref: HoldRef) -> bool:
@@ -83,7 +95,61 @@ def connect(target: Integrations, settings: Settings) -> Integrations:
     return target
 
 
+async def hall_entries(db: AsyncSession, subject: str, limit: int) -> Sequence[HallEntry]:
+    """Leaderboards' Hall of Fame: the latest winners of finished tournaments in ``subject``
+    (``""``: all-subject ones), newest first, valued by their points."""
+    statement = (
+        select(Tournament, TournamentPrize, TournamentEntry.points)
+        .join(
+            TournamentPrize,
+            and_(TournamentPrize.tournament_id == Tournament.id, TournamentPrize.place == 1),
+        )
+        .outerjoin(
+            TournamentEntry,
+            and_(
+                TournamentEntry.tournament_id == Tournament.id,
+                TournamentEntry.user_id == TournamentPrize.user_id,
+            ),
+        )
+        .where(Tournament.status == TournamentStatus.FINISHED)
+        .order_by(Tournament.finished_at.desc(), Tournament.id.desc())
+        .limit(limit)
+    )
+    if subject:
+        statement = statement.join(Subject, Subject.id == Tournament.subject_id).where(
+            Subject.slug == subject
+        )
+    else:
+        statement = statement.where(Tournament.subject_id.is_(None))
+    rows = (await db.execute(statement)).all()
+    return [
+        HallEntry(user_id=prize.user_id, value=round(points or 0), value_display=t.title)
+        for t, prize, points in rows
+    ]
+
+
+async def home_tournament(ctx: HomeContext) -> dict[str, Any] | None:
+    """Home's tournament card: the player's own live one, else the next open one."""
+    user = await ctx.db.get_one(User, ctx.user_id)
+    return await service.next_tournament(ctx.db, get_settings(), user, ctx.now)
+
+
+async def home_live(ctx: HomeContext) -> dict[str, Any] | None:
+    """Home's ``live``: a tournament that needs the player now (checked in and running, or
+    check-in closing)."""
+    found = await service.busy_check(
+        ctx.db, ctx.redis, ctx.user_id, int(ctx.now.timestamp() * 1000)
+    )
+    if found is None:
+        return None
+    out = found.model_dump(mode="json")
+    return {**out, "action": {"params": {}, **out["action"]}, "state": None, "until": None}
+
+
 def install() -> None:
+    register_hall_of_fame(hall_entries)
+    register_home_section("tournament", home_tournament)
+    register_home_section("live", home_live)
     connect(integrations, get_settings())
     register_busy_check(service.busy_check)
     register_liveness(RefKind.TOURNAMENT, hold_live)

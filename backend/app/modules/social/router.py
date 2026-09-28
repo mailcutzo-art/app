@@ -187,10 +187,14 @@ async def search_users(
 
 @router.get("/users/{handle}", dependencies=[Depends(_profile_limit)])
 async def public_profile(
-    handle: Annotated[str, Path(max_length=64)], auth: CurrentAuth, db: SessionDep, clock: ClockDep
+    handle: Annotated[str, Path(max_length=64)],
+    auth: CurrentAuth,
+    db: SessionDep,
+    redis: RedisDep,
+    clock: ClockDep,
 ) -> ProfileOut:
     """404 ``USER_NOT_FOUND`` if there is no such player or either of you blocked the other."""
-    return await profiles.public_profile(db, auth.user_id, handle, now=clock())
+    return await profiles.public_profile(db, auth.user_id, handle, now=clock(), redis=redis)
 
 
 # --- Privacy ------------------------------------------------------------------------------------

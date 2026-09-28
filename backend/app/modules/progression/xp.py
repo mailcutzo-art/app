@@ -24,12 +24,15 @@ from app.modules.analytics.service import track
 from app.modules.economy.models import CoinReason, RefKind
 from app.modules.economy.service import Ref, credit
 from app.modules.notifications.service import notify
+from app.modules.outbox.service import enqueue
 from app.modules.practice.schemas import XpOut
 from app.modules.progression import achievements, levels
 from app.modules.progression.levels import GameKind, GameOutcome
 from app.modules.progression.models import Metric, UserProgress, XpEvent, XpSource
 from app.modules.social.activity import record_activity
 
+# Queued with every award that gave XP; the leaderboards keep weekly XP from it.
+XP_AWARDED_TOPIC = "xp.awarded"
 PRACTICE_DAILY_CAP = 300
 GAME_DAILY_CAPS: Mapping[GameKind, int] = {GameKind.GROUP: 200, GameKind.BOT: 60}
 LEVEL_UP_COINS = 20
@@ -150,6 +153,18 @@ async def _grow(
     return True
 
 
+async def _announce(
+    db: AsyncSession, user_id: uuid.UUID, event_id: uuid.UUID, amount: int, day: date
+) -> None:
+    if amount > 0:
+        await enqueue(
+            db,
+            XP_AWARDED_TOPIC,
+            {"user_id": str(user_id), "ist_day": day.isoformat()},
+            key=f"{XP_AWARDED_TOPIC}:{event_id}",
+        )
+
+
 def _practice_today(progress: UserProgress | None, today: date) -> int:
     if progress is None or progress.practice_xp_day != today:
         return 0
@@ -194,6 +209,7 @@ async def award_practice_xp(
         return _xp_out(rules, delta=0, total=progress.xp, capped=False, now=now)
     progress.practice_xp_day = today
     progress.practice_xp_today = already + amount
+    await _announce(db, user_id, event_id, amount, today)
     await _grow(db, user_id, progress, amount, rules, now=now)
     return _xp_out(rules, delta=amount, total=progress.xp, capped=amount < requested, now=now)
 
@@ -297,9 +313,10 @@ async def award_game_xp(
         amount = rules.cap_daily(int(already or 0), requested, cap)
         if amount < requested:
             await track(db, "cap_reached", user_id, {"kind": f"xp_{kind.value}"}, now=now)
+    event_id = new_id()
     await db.execute(
         insert(XpEvent).values(
-            id=new_id(),
+            id=event_id,
             user_id=user_id,
             source=XpSource.MATCH.value,
             source_key=source_key,
@@ -310,6 +327,7 @@ async def award_game_xp(
             total_after=progress.xp + amount,
         )
     )
+    await _announce(db, user_id, event_id, amount, today)
     level_up = await _grow(db, user_id, progress, amount, rules, now=now)
     return _award(
         rules,
@@ -337,17 +355,20 @@ async def award_xp(
     earlier = await _earlier(db, user_id, source_key)
     if earlier is not None:
         return _replay(rules, earlier, requested=amount, now=now)
+    event_id = new_id()
+    day = now.astimezone(IST).date()
     await db.execute(
         insert(XpEvent).values(
-            id=new_id(),
+            id=event_id,
             user_id=user_id,
             source=source.value,
             source_key=source_key,
             amount=amount,
             ref_id=ref_id,
-            ist_day=now.astimezone(IST).date(),
+            ist_day=day,
             total_after=progress.xp + amount,
         )
     )
+    await _announce(db, user_id, event_id, amount, day)
     level_up = await _grow(db, user_id, progress, amount, rules, now=now)
     return _award(rules, delta=amount, total=progress.xp, level_up=level_up, capped=False, now=now)

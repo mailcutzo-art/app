@@ -148,14 +148,15 @@ class SettlementContext:
     questions: int  # questions asked
     finished_at: datetime
     now: datetime
+    redis: Redis | None = None  # for hooks that read Redis (leaderboard positions)
 
 
 SettlementHook = Callable[[SettlementContext], Awaitable[Mapping[uuid.UUID, Mapping[str, Any]]]]
 BlockCheck = Callable[[AsyncSession, uuid.UUID, uuid.UUID], Awaitable[bool]]
 WalletReader = Callable[[AsyncSession, uuid.UUID], Awaitable[int | None]]
-# (db, viewer, subject slugs) -> {subject: {"leader": row | None, "me": {...}}}
+# (db, redis, viewer, subject slugs) -> {subject: {"leader": row | None, "me": {...}}}
 LeadersReader = Callable[
-    [AsyncSession, uuid.UUID, Sequence[str]], Awaitable[Mapping[str, Mapping[str, Any]]]
+    [AsyncSession, Redis, uuid.UUID, Sequence[str]], Awaitable[Mapping[str, Mapping[str, Any]]]
 ]
 # (db, viewer, others) -> {other: "none" | "friend" | "requested" | "blocked"}
 RelationshipReader = Callable[
@@ -245,7 +246,7 @@ async def unknown_balance(_db: AsyncSession, _user_id: uuid.UUID) -> int | None:
 
 
 async def no_leaders(
-    _db: AsyncSession, _viewer: uuid.UUID, _subjects: Sequence[str]
+    _db: AsyncSession, _redis: Redis, _viewer: uuid.UUID, _subjects: Sequence[str]
 ) -> Mapping[str, Mapping[str, Any]]:
     return {}
 

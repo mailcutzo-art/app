@@ -134,13 +134,13 @@ async def battle_setup(
         stored = orjson.loads(last_raw)
         if stored.get("subject") in slugs and stored.get("mode") in {"rated", "casual"}:
             last = SelectionOut(**stored)
-    leaders = await integrations.leaders(db, user_id, slugs)
+    leaders = await integrations.leaders(db, redis, user_id, slugs)
     return BattleSetupOut(
         subjects=subjects,
         coins=await integrations.wallet(db, user_id),
         casual_fee=settings.casual_fee,
         cooldown_until=_ms_datetime(until) if until and until > now_ms else None,
-        active=await _active(redis, str(user_id))
+        active=await active_for(redis, str(user_id))
         or await check_busy(
             db,
             redis,
@@ -156,7 +156,8 @@ async def battle_setup(
     )
 
 
-async def _active(redis: Redis, uid: str) -> ActiveOut | None:
+async def active_for(redis: Redis, uid: str) -> ActiveOut | None:
+    """What the player is busy with (a search, a match, a room or a tournament), if anything."""
     # Imported here: rooms build on this module.
     from app.modules.rooms.busy import active_of
 

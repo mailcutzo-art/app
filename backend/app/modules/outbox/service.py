@@ -48,6 +48,7 @@ HANDLER_MODULES: tuple[str, ...] = (
     "app.modules.matches.withdraw",
     "app.modules.tournaments.events",
     "app.modules.rooms.invites",
+    "app.modules.leaderboards.events",
 )
 
 
