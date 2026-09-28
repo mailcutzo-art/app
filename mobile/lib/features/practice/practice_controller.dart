@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/network/app_failure.dart';
+import '../learn/bookmark_states.dart';
 import '../learn/data/learn_repository.dart';
 import '../learn/learn_providers.dart';
 import 'data/answer_queue.dart';
@@ -28,6 +29,7 @@ class PracticeState {
     this.summary,
     this.syncing = false,
     this.refusals = const [],
+    this.timeUp = false,
   });
 
   final PracticeSession session;
@@ -62,6 +64,9 @@ class PracticeState {
   /// [AnswerQueue.refusals]).
   final List<String> refusals;
 
+  /// A challenge that ended because its time ran out.
+  final bool timeUp;
+
   PracticeQuestion get question => session.questions[index];
 
   SessionAnswer? get answer => answers[question.position];
@@ -89,6 +94,7 @@ class PracticeState {
     SessionSummary? summary,
     bool? syncing,
     List<String>? refusals,
+    bool? timeUp,
   }) => PracticeState(
     session: session,
     index: index ?? this.index,
@@ -101,6 +107,7 @@ class PracticeState {
     summary: summary ?? this.summary,
     syncing: syncing ?? this.syncing,
     refusals: refusals ?? this.refusals,
+    timeUp: timeUp ?? this.timeUp,
   );
 }
 
@@ -231,14 +238,23 @@ class PracticeController extends AsyncNotifier<PracticeState> {
   /// Uploads what's left, then ends the session. If that can't happen now
   /// (offline), the summary is worked out here and the queue keeps retrying
   /// the finish in the background.
-  Future<void> finish({int timeMs = 0}) async {
+  ///
+  /// [timeUp] ends a challenge whose time ran out, wherever the user is: a
+  /// pick on the current question still counts, and questions not reached
+  /// stay unanswered (the server refuses answers after the limit anyway).
+  Future<void> finish({int timeMs = 0, bool timeUp = false}) async {
     var s = state.value;
     if (s == null || s.done || s.finishing) return;
     if (s.answer == null) {
-      if (s.session.instantFeedback) return;
-      s = _submitSelection(s, timeMs);
+      if (timeUp) {
+        if (s.selection != null) s = _submitSelection(s, timeMs);
+      } else if (s.session.instantFeedback) {
+        return;
+      } else {
+        s = _submitSelection(s, timeMs);
+      }
     }
-    state = AsyncData(s.copyWith(finishing: true));
+    state = AsyncData(s.copyWith(finishing: true, timeUp: timeUp));
     final queue = _queue;
     SessionSummary summary;
     var syncing = false;
@@ -279,6 +295,10 @@ class PracticeController extends AsyncNotifier<PracticeState> {
     _bookmarkWrites = write.then((_) {}, onError: (Object _) {});
     try {
       await write;
+      // The bookmarks list shows it as last set.
+      if (ref.mounted) {
+        ref.read(bookmarkStatesProvider.notifier).remember(questionRef, bookmarked: bookmarked);
+      }
       return null;
     } on AppFailure catch (failure) {
       // Put it back, unless it has been flipped again since.

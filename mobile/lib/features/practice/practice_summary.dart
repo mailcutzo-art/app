@@ -24,13 +24,29 @@ String formatDuration(int ms) {
   return rest == 0 ? '${minutes ~/ 60} h' : '${minutes ~/ 60} h $rest min';
 }
 
+/// "72%" of answers given that were right; "—" with none given.
+String accuracyLabel(SessionSummary summary) =>
+    summary.answered == 0 ? '—' : '${(summary.correct * 100 / summary.answered).round()}%';
+
+/// Average time per question reached (answered or skipped), e.g. "32 s".
+String perQuestionLabel(SessionSummary summary) {
+  final reached = summary.answered + summary.skipped;
+  return reached == 0 ? '—' : formatDuration(summary.timeMs ~/ reached);
+}
+
 /// The result of a finished session: score, time, XP, a short per-topic
 /// list (plain rows, no charts) and the coach tip for this session.
+///
+/// A Self Challenge leads with its +4/−1 score, accuracy and time per
+/// question, since its answers were hidden until now.
 class PracticeSummaryView extends ConsumerStatefulWidget {
-  const PracticeSummaryView({super.key, required this.state, required this.onDone});
+  const PracticeSummaryView({super.key, required this.state, required this.onDone, this.onReview});
 
   final PracticeState state;
   final VoidCallback onDone;
+
+  /// Shows every question with the answers and explanations.
+  final VoidCallback? onReview;
 
   @override
   ConsumerState<PracticeSummaryView> createState() => _PracticeSummaryViewState();
@@ -66,6 +82,10 @@ class _PracticeSummaryViewState extends ConsumerState<PracticeSummaryView> {
     final score = summary.score;
     final maxScore = summary.maxScore;
     final refused = refusalNotice(state.refusals);
+    final challenge =
+        state.session.mode == PracticeMode.challenge || !state.session.instantFeedback;
+    final wrong = summary.answered - summary.correct;
+    final notReached = state.total - summary.answered - summary.skipped;
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(
@@ -81,55 +101,120 @@ class _PracticeSummaryViewState extends ConsumerState<PracticeSummaryView> {
           ],
         ),
         const SizedBox(height: AppSpacing.lg),
-        Text('Practice complete', style: text.headlineLarge),
+        Text(switch ((challenge, state.timeUp)) {
+          (true, true) => 'Time\'s up',
+          (true, false) => 'Challenge complete',
+          _ => 'Practice complete',
+        }, style: text.headlineLarge),
         if (state.session.title.isNotEmpty) ...[
           const SizedBox(height: AppSpacing.xs),
           Text(state.session.title, style: text.bodyMedium),
         ],
         const SizedBox(height: AppSpacing.xl),
-        HeroStatCard(
-          label: 'Correct',
-          tone: PastelTone.mint,
-          trailing: state.syncing
-              ? InfoChip(
-                  icon: AppIcons.refresh,
-                  label: 'Syncing…',
-                  background: colors.surface.withValues(alpha: 0.7),
-                )
-              : null,
-          value: Semantics(
-            label: '${summary.correct} of ${summary.answered} correct',
-            excludeSemantics: true,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              textBaseline: TextBaseline.alphabetic,
-              children: [
-                NumberTicker(value: summary.correct),
-                Text(' / ${summary.answered}', style: text.numericLarge),
-              ],
-            ),
-          ),
-          caption: summary.skipped == 0
-              ? 'correct answers'
-              : 'correct answers · ${summary.skipped} skipped',
-          stats: [
-            HeroStat(
-              label: 'Time taken',
-              value: formatDuration(summary.timeMs),
-              icon: AppIcons.clock,
-            ),
-            // A capped day explains itself below instead of a small number.
-            if (!capped)
+        if (challenge)
+          HeroStatCard(
+            label: score != null && maxScore != null ? 'Score' : 'Correct',
+            tone: PastelTone.lavender,
+            trailing: state.syncing
+                ? InfoChip(
+                    icon: AppIcons.refresh,
+                    label: 'Syncing…',
+                    background: colors.surface.withValues(alpha: 0.7),
+                  )
+                : null,
+            value: score != null && maxScore != null
+                ? Semantics(
+                    label: 'Score $score out of $maxScore',
+                    excludeSemantics: true,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        NumberTicker(value: score),
+                        Text(' / $maxScore', style: text.numericLarge),
+                      ],
+                    ),
+                  )
+                : Semantics(
+                    label: '${summary.correct} of ${state.total} correct',
+                    excludeSemantics: true,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        NumberTicker(value: summary.correct),
+                        Text(' / ${state.total}', style: text.numericLarge),
+                      ],
+                    ),
+                  ),
+            caption: [
+              '${summary.correct} right',
+              '$wrong wrong',
+              if (summary.skipped > 0) '${summary.skipped} skipped',
+              if (notReached > 0) '$notReached not answered',
+              formatDuration(summary.timeMs),
+            ].join(' · '),
+            stats: [
+              HeroStat(label: 'Accuracy', value: accuracyLabel(summary), icon: AppIcons.target),
               HeroStat(
-                label: 'XP gained',
-                value: xp == null ? '—' : '+${xp.delta}',
-                icon: AppIcons.flash,
+                label: 'Per question',
+                value: perQuestionLabel(summary),
+                icon: AppIcons.clock,
               ),
-            if (score != null && maxScore != null)
-              HeroStat(label: 'Score', value: '$score/$maxScore'),
-          ],
-        ),
+              if (!capped)
+                HeroStat(
+                  label: 'XP gained',
+                  value: xp == null ? '—' : '+${xp.delta}',
+                  icon: AppIcons.flash,
+                ),
+            ],
+          )
+        else
+          HeroStatCard(
+            label: 'Correct',
+            tone: PastelTone.mint,
+            trailing: state.syncing
+                ? InfoChip(
+                    icon: AppIcons.refresh,
+                    label: 'Syncing…',
+                    background: colors.surface.withValues(alpha: 0.7),
+                  )
+                : null,
+            value: Semantics(
+              label: '${summary.correct} of ${summary.answered} correct',
+              excludeSemantics: true,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  NumberTicker(value: summary.correct),
+                  Text(' / ${summary.answered}', style: text.numericLarge),
+                ],
+              ),
+            ),
+            caption: summary.skipped == 0
+                ? 'correct answers'
+                : 'correct answers · ${summary.skipped} skipped',
+            stats: [
+              HeroStat(
+                label: 'Time taken',
+                value: formatDuration(summary.timeMs),
+                icon: AppIcons.clock,
+              ),
+              // A capped day explains itself below instead of a small number.
+              if (!capped)
+                HeroStat(
+                  label: 'XP gained',
+                  value: xp == null ? '—' : '+${xp.delta}',
+                  icon: AppIcons.flash,
+                ),
+              if (score != null && maxScore != null)
+                HeroStat(label: 'Score', value: '$score/$maxScore'),
+            ],
+          ),
         if (capped) ...[
           const SizedBox(height: AppSpacing.md),
           _Notice(
@@ -188,6 +273,15 @@ class _PracticeSummaryViewState extends ConsumerState<PracticeSummaryView> {
           CoachTipCard(tip: tip, replaceRoute: true),
         ],
         const SizedBox(height: AppSpacing.xxl),
+        if (widget.onReview case final onReview?) ...[
+          AppButton(
+            label: 'Review answers',
+            leadingIcon: AppIcons.checklist,
+            variant: challenge ? AppButtonVariant.ink : AppButtonVariant.secondary,
+            onPressed: onReview,
+          ),
+          const SizedBox(height: AppSpacing.sm),
+        ],
         if (settings != null) ...[
           AppButton(
             label: 'Practise again',
