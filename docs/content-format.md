@@ -1,8 +1,8 @@
 # Content format
 
 Question content lives in `content/` as YAML and is loaded into PostgreSQL by the backend seed
-script. Admins can later import more through the admin panel using the same schema (CSV rows map
-1:1 to the question fields below).
+script. More questions can be imported from CSV or JSON, with the command-line importer or the
+admin panel's upload (see [Importing questions](#importing-questions)).
 
 > **Physics and Chemistry** are being filled with the real NEET bank: every chapter in
 > `syllabus.yaml` (50 in all) gets about 500 questions. **Biology and Maths** still hold the small
@@ -171,6 +171,99 @@ exports and a seed script can upsert on them.
 ```bash
 uv run --with pyyaml python content/tools/export_seed.py     # → content/build/seed/*.json
 ```
+
+## Importing questions
+
+Questions that don't live in `content/` (the real bank, batches from question writers) are
+imported from a CSV or JSON file, either on the command line or through the admin panel
+(**Content → Import questions**, at `/admin/import-questions`). Both do the same thing.
+
+```bash
+cd backend
+uv run python scripts/import_questions.py bank.csv                  # dry run: a report per row
+uv run python scripts/import_questions.py bank.csv --commit --as you@example.com
+uv run python scripts/import_questions.py bank.json --commit --publish --report report.json
+```
+
+**Fields.** One question per CSV row or JSON object. Subjects, chapters and topics are named by
+their slugs and must already exist (they come from `content/`); a topic must belong to the
+chapter.
+
+| Field | Required | Value |
+|---|---|---|
+| `subject` | yes | Subject slug: `physics`, `chemistry`, `biology`, `maths` |
+| `chapter` | yes | Chapter slug within the subject, e.g. `kinematics` |
+| `topic` | yes | Topic slug within the chapter, e.g. `kinematic-equations` |
+| `category` | yes | `concept`, `numerical`, `factual` or `application` |
+| `difficulty` | yes | 1–5 (1–2 easy, 3 medium, 4–5 hard) |
+| `stem` | yes | 10–700 characters of [text markup](#text-markup) |
+| options | yes | CSV: four columns `option_a` … `option_d`. JSON: `"options"`, a list of 4. Each 1–160 characters of markup, all different, never pointing at another option |
+| `answer` | yes | The single correct option. CSV: the letter `A`–`D`. JSON: the letter, or the 0-based index `0`–`3` |
+| `explanation` | yes | 10–1500 characters of markup |
+| `exams` | no | Exams the question suits, from those that include the subject. CSV: `neet\|jee`. JSON: a list. Empty means every exam of the subject |
+| `battle_pool` | no | `none` (practice only, the default), `shared` (practice and battles) or `reserved` (battles only). Battle questions have stems of at most 180 characters |
+| `tags` | no | Free labels for search. CSV: `vectors\|sign-convention`. JSON: a list |
+| `id` | no | A stable id (`[a-z0-9-]`, up to 64 characters), e.g. `phy-kin-501`. Without one the importer derives `imp-<subj>-<hash>` from the content |
+
+CSV files are UTF-8 (a BOM is fine) with a header row; column order doesn't matter, unknown
+columns are refused, and blank lines are skipped. List cells separate items with `|` (or `;`).
+The metadata of the YAML files (`format`, `diagram`, `formula`, …) isn't stored in the database,
+so it isn't imported: questions that need a figure stay in `content/`. The same rules as
+`content/tools/validate.py` apply to each question (option count and distinctness, lengths, markup
+and no LaTeX, no cross-referencing options, battle stem length, exams of the subject). At most
+5000 questions and 5 MB per file.
+
+```csv
+subject,chapter,topic,category,difficulty,exams,battle_pool,stem,option_a,option_b,option_c,option_d,answer,explanation,tags
+biology,cell,organelles,factual,2,,shared,Which organelle is called the powerhouse of the cell?,Ribosome,Mitochondrion,Golgi body,Lysosome,B,"Mitochondria make most of the cell's ATP by aerobic respiration, so they are called its powerhouse.",organelles|atp
+biology,cell,cell-types,concept,3,neet,none,"Which feature is found in prokaryotic cells but not in eukaryotic cells?",A nucleoid,A nuclear envelope,Mitochondria,An endoplasmic reticulum,A,"Prokaryotes keep their DNA in a nucleoid region with no membrane around it; the other three are eukaryotic features.",
+```
+
+```json
+[
+  {
+    "id": "mat-trig-501",
+    "subject": "maths",
+    "chapter": "trigonometry",
+    "topic": "identities",
+    "category": "application",
+    "difficulty": 3,
+    "exams": ["jee"],
+    "battle_pool": "shared",
+    "stem": "If sin θ = 3/5 and θ is acute, what is cos 2θ?",
+    "options": ["7/25", "24/25", "−7/25", "9/25"],
+    "answer": 0,
+    "explanation": "cos 2θ = 1 − 2 sin^2 θ = 1 − 2 × 9/25 = 7/25.",
+    "tags": ["double-angle"]
+  }
+]
+```
+
+A JSON file is a list of question objects, or `{"questions": [...]}`.
+
+**The report.** Every row gets one outcome (the CSV line number, or the position in the JSON
+list, identifies it):
+
+| Outcome | Meaning |
+|---|---|
+| `ok` | Valid and new. Imported unless it's a dry run |
+| `error` | Breaks a rule, or names an unknown subject, chapter or topic, or an id already in use; the report says why |
+| `duplicate` | The same question is already in the bank, or earlier in the file. Two questions are the same when their stems and their sets of options match after normalizing (markup removed, case, Unicode width and spacing ignored; option order doesn't matter). Duplicates are skipped |
+| `near_duplicate` | A question of the same subject has the same stem with other options, or a pg_trgm similarity of stem plus options above 0.9 |
+
+**Writing.** A dry run (the default) writes nothing. Otherwise the import is one transaction, and
+nothing is written if any row is an `error` or a `near_duplicate`, unless `--skip-invalid`
+(import the `ok` rows anyway) or `--allow-near-duplicates` (import near duplicates as well) is
+given; the panel has the same switches. Because duplicates are skipped, importing a file again
+adds nothing. New questions get `source = import`, the next dense `seq` of their subject, and the
+status `review` (players don't see them) or, with `--publish`, `published`. The import is written
+to the audit log (`questions.imported`: the file's name and SHA-256, the admin, the counts and the
+ids of the new questions).
+
+Imported questions are edited in the admin panel. Editing a published question never changes it:
+the panel adds a new version (same id, next `seq`, `supersedes_id` pointing back) and retires the
+old one. Questions that come from `content/` can be edited the same way, but the files stay their
+source of truth: correct the YAML as well, or the next seed run restores the file's version.
 
 ## Passages (Fun & Learn)
 
