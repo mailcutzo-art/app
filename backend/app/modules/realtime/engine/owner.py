@@ -30,6 +30,7 @@ from app.modules.realtime import keys, rstr
 from app.modules.realtime.bots.model import bot_answer
 from app.modules.realtime.clock import SharedClock
 from app.modules.realtime.engine import scripts
+from app.modules.realtime.loops import every, stop_all
 
 log = structlog.stdlib.get_logger(__name__)
 
@@ -45,6 +46,12 @@ class _Owned:
     firing: bool = False
     bot: str | None = None  # the bot's uid, "" for a human-only match, None until read
     bot_q: int = 0  # the last question the bot's answer was scheduled for
+    bot_timer: asyncio.TimerHandle | None = None
+
+    def cancel_timers(self) -> None:
+        for handle in (self.timer, self.bot_timer):
+            if handle is not None:
+                handle.cancel()
 
 
 class MatchEngine:
@@ -65,6 +72,8 @@ class MatchEngine:
         self._owned: dict[str, _Owned] = {}
         self._tasks: set[asyncio.Task[Any]] = set()
         self._loops: list[asyncio.Task[None]] = []
+        self._stop = asyncio.Event()
+        self._stopped = False
 
     @property
     def owned(self) -> set[str]:
@@ -72,21 +81,27 @@ class MatchEngine:
 
     async def start(self) -> None:
         await self.clock.sync(self.redis)
+        self._stop = asyncio.Event()
+        self._stopped = False
         self._loops = [
-            asyncio.create_task(self._renew_loop(), name="rt:leases"),
-            asyncio.create_task(self._scan_loop(), name="rt:scanner"),
+            asyncio.create_task(
+                every(self.settings.rt_lease_renew_s, self._stop, self._renew, name="leases"),
+                name="rt:leases",
+            ),
+            asyncio.create_task(
+                every(self.settings.rt_scan_interval_s, self._stop, self.scan, name="scanner"),
+                name="rt:scanner",
+            ),
         ]
 
     async def stop(self, *, release: bool = True) -> None:
         """Stop timers and loops. ``release`` hands the leases back so other nodes adopt the
         matches at once (a graceful shutdown); without it they wait for the leases to lapse."""
-        for task in self._loops:
-            task.cancel()
-        await asyncio.gather(*self._loops, return_exceptions=True)
+        self._stopped = True  # no new timers or tasks from here on
+        await stop_all(self._stop, self._loops)
         self._loops = []
         for owned in self._owned.values():
-            if owned.timer is not None:
-                owned.timer.cancel()
+            owned.cancel_timers()
         mids = list(self._owned)
         self._owned.clear()
         if self._tasks:
@@ -134,21 +149,24 @@ class MatchEngine:
 
     def _disown(self, mid: str) -> None:
         owned = self._owned.pop(mid, None)
-        if owned is not None and owned.timer is not None:
-            owned.timer.cancel()
+        if owned is not None:
+            owned.cancel_timers()
 
     def _arm(self, mid: str) -> None:
         owned = self._owned[mid]
         if owned.timer is not None:
             owned.timer.cancel()
             owned.timer = None
-        if owned.due > 0:
+        if owned.due > 0 and not self._stopped:
             loop = asyncio.get_running_loop()
             owned.timer = loop.call_later(
                 self.clock.delay_s(owned.due), lambda: self._spawn(self._fire(mid))
             )
 
     def _spawn(self, coroutine: Coroutine[Any, Any, Any]) -> None:
+        if self._stopped:
+            coroutine.close()
+            return
         task = asyncio.create_task(coroutine)
         self._tasks.add(task)
         task.add_done_callback(self._tasks.discard)
@@ -224,7 +242,9 @@ class MatchEngine:
         ids = [option["id"] for option in orjson.loads(options)]
         option = correct if right else rng.choice([i for i in ids if i != correct])
         delay = self.clock.delay_s(int(shown_at) + time_ms)
-        asyncio.get_running_loop().call_later(
+        if owned.bot_timer is not None:
+            owned.bot_timer.cancel()
+        owned.bot_timer = asyncio.get_running_loop().call_later(
             delay, lambda: self._spawn(self._bot_answers(mid, bot, q, option, time_ms))
         )
 
@@ -249,31 +269,18 @@ class MatchEngine:
 
     # Leases and failover
 
-    async def _renew_loop(self) -> None:
-        while True:
-            await asyncio.sleep(self.settings.rt_lease_renew_s)
-            try:
-                await self.clock.sync(self.redis)
-                mids = list(self._owned)
-                lost = await scripts.renew_leases(
-                    self.redis,
-                    [keys.match_lease(mid) for mid in mids],
-                    self.node_id,
-                    self.settings.rt_lease_ms,
-                )
-                for index in lost:
-                    log.warning("rt.lease_lost", match_id=mids[index])
-                    self._disown(mids[index])
-            except RedisError:
-                log.warning("rt.lease_renew_failed", exc_info=True)
-
-    async def _scan_loop(self) -> None:
-        while True:
-            await asyncio.sleep(self.settings.rt_scan_interval_s)
-            try:
-                await self.scan()
-            except RedisError:
-                log.warning("rt.scan_failed", exc_info=True)
+    async def _renew(self) -> None:
+        await self.clock.sync(self.redis)
+        mids = list(self._owned)
+        lost = await scripts.renew_leases(
+            self.redis,
+            [keys.match_lease(mid) for mid in mids],
+            self.node_id,
+            self.settings.rt_lease_ms,
+        )
+        for index in lost:
+            log.warning("rt.lease_lost", match_id=mids[index])
+            self._disown(mids[index])
 
     async def scan(self) -> None:
         """Fire owned matches that are due and adopt overdue ones nobody owns."""

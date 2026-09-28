@@ -20,7 +20,7 @@ redis.call('HSET', ticket_key,
   'uid', f.uid, 'mode', f.mode, 'subject', f.subject, 'chapter', f.chapter,
   'rating', f.rating, 'rd', f.rd, 'device', f.device, 'hold_id', f.hold_id,
   'first', f.first, 'joined_ms', joined, 'deadline_ms', deadline,
-  'last_status', '', 'timeouts', 0, 'bg_ms', 0, 'disc_ms', 0)
+  'last_status', f.last_status or '', 'timeouts', 0, 'bg_ms', 0, 'disc_ms', 0)
 redis.call('EXPIRE', ticket_key, ARGV[3])
 redis.call('ZADD', queue, f.rating, ticket)
 redis.call('SADD', 'mm:queues', f.mode .. ':' .. f.subject)

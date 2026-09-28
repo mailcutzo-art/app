@@ -68,6 +68,7 @@ class RtNode:
         self.runtime_config = RuntimeConfigCache()
         self.connections: dict[str, Connection] = {}
         self.draining = False
+        self._stopped = False
         self._tasks: set[asyncio.Task[Any]] = set()
         # Imported here: the matchmaker and rematches use the node's other parts.
         from app.modules.realtime.matchmaking.service import Matchmaker
@@ -84,8 +85,10 @@ class RtNode:
 
     async def stop(self) -> None:
         self.draining = True
+        self.rematches.stop()
         await self.matchmaker.stop()
         await self.engine.stop(release=True)
+        self._stopped = True
         if self._tasks:
             _, pending = await asyncio.wait(self._tasks, timeout=3)
             for task in pending:
@@ -94,6 +97,9 @@ class RtNode:
         log.info("rt.node_stopped", node_id=self.node_id)
 
     def spawn(self, coroutine: Coroutine[Any, Any, Any]) -> None:
+        if self._stopped:
+            coroutine.close()
+            return
         task = asyncio.create_task(coroutine)
         self._tasks.add(task)
         task.add_done_callback(self._tasks.discard)

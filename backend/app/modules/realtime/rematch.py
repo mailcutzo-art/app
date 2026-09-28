@@ -35,6 +35,7 @@ class Rematches:
         self.node = node
         self.redis = node.redis
         self.settings = node.settings
+        self._timers: dict[str, asyncio.TimerHandle] = {}
 
     async def respond(self, conn: "Connection", ref: str | None, mid: str, *, accept: bool) -> None:
         kind, phase, finished_ms, humans_raw, meta_raw = await rstr.hmget(
@@ -70,7 +71,7 @@ class Rematches:
         if len(accepted) < len(humans):
             if first_accept:
                 await self._status(mid, "offered", conn.uid, None)
-                asyncio.get_running_loop().call_later(
+                self._timers[mid] = asyncio.get_running_loop().call_later(
                     max(0.0, (until - now) / 1000),
                     lambda: self.node.spawn(self._expire(mid)),
                 )
@@ -80,7 +81,13 @@ class Rematches:
             return
         await self._start(mid, humans, chain, by=conn.uid)
 
+    def stop(self) -> None:
+        for handle in self._timers.values():
+            handle.cancel()
+        self._timers.clear()
+
     async def _expire(self, mid: str) -> None:
+        self._timers.pop(mid, None)
         if await rstr.hget(self.redis, keys.match_rematch(mid), "state") == "open":
             await self._close(mid, "expired", None, None)
 

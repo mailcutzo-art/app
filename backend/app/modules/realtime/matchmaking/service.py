@@ -14,7 +14,6 @@ first-ever search).
 """
 
 import asyncio
-import contextlib
 import math
 import statistics
 import uuid
@@ -25,7 +24,6 @@ from typing import TYPE_CHECKING, Any
 
 import orjson
 import structlog
-from redis.exceptions import RedisError
 from sqlalchemy import exists, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -41,6 +39,7 @@ from app.modules.matches.questions import battle_pool
 from app.modules.ratings.service import load_ratings, to_glicko
 from app.modules.realtime import keys, protocol, rstr
 from app.modules.realtime.engine import scripts
+from app.modules.realtime.loops import every, stop_all
 from app.modules.realtime.matchmaking import rules, tickets
 from app.modules.realtime.protocol import ErrorCode
 from app.modules.system.runtime import RuntimeConfig
@@ -159,15 +158,17 @@ class Matchmaker:
         self.redis = node.redis
         self.settings = node.settings
         self._leader: asyncio.Task[None] | None = None
+        self._stop = asyncio.Event()
 
     def start(self) -> None:
-        self._leader = asyncio.create_task(self._lead(), name="rt:matchmaking")
+        self._stop = asyncio.Event()
+        self._leader = asyncio.create_task(
+            every(self.settings.mm_tick_s, self._stop, self._lead, name="matchmaking"),
+            name="rt:matchmaking",
+        )
 
     async def stop(self) -> None:
-        if self._leader is not None:
-            self._leader.cancel()
-            with contextlib.suppress(asyncio.CancelledError):
-                await self._leader
+        await stop_all(self._stop, [self._leader] if self._leader else [])
 
     # mm.join
 
@@ -287,16 +288,19 @@ class Matchmaker:
                     return
                 await db.commit()
         glicko = to_glicko(rating)
+        window = self._window(0, mode, glicko.rd)
         fields = {
             "uid": conn.uid,
             "mode": mode,
             "subject": subject,
             "chapter": chapter or tickets.ALL_CHAPTERS,
             "rating": glicko.rating,
-            "rd": glicko.rd if rating is not None and rating.games > 0 else 350.0,
+            "rd": glicko.rd,
             "device": conn.device,
             "hold_id": hold_id,
             "first": "1" if first else "0",
+            # The status sent below; the leader only sends changes from here on.
+            "last_status": f"0:{window}",
         }
         ok, value = await tickets.queue_ticket(self.redis, self.settings, ticket_id, fields)
         if not ok:
@@ -330,7 +334,7 @@ class Matchmaker:
             {
                 "waited_s": 0,
                 "widened": False,
-                "window": self._window(0, mode, fields["rd"]),
+                "window": window,
                 "online": online,
                 "p50_wait_s": p50,
             },
@@ -515,17 +519,12 @@ class Matchmaker:
     # Queue leaders
 
     async def _lead(self) -> None:
-        while True:
-            await asyncio.sleep(self.settings.mm_tick_s)
-            try:
-                for queue in sorted(rstr.as_str(q) for q in await self.redis.smembers(keys.QUEUES)):
-                    mode, _, subject = queue.partition(":")
-                    if mode in QUEUED_MODES and await self._leads(mode, subject):
-                        await self.tick(mode, subject)
-            except (RedisError, OSError):
-                log.warning("mm.tick_failed", exc_info=True)
-            except Exception:
-                log.exception("mm.tick_crashed")
+        """Tick every queue this node leads."""
+        queues = sorted(rstr.as_str(q) for q in await self.redis.smembers(keys.QUEUES))
+        for queue in queues:
+            mode, _, subject = queue.partition(":")
+            if mode in QUEUED_MODES and await self._leads(mode, subject):
+                await self.tick(mode, subject)
 
     async def _leads(self, mode: str, subject: str) -> bool:
         key = keys.queue_leader(mode, subject)

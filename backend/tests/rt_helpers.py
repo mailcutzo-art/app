@@ -114,8 +114,21 @@ async def run_rt(
                 await task
         except TimeoutError:
             for stuck in asyncio.all_tasks():
-                stuck.print_stack()
+                print(stuck.get_name(), " <- ".join(_awaiting(stuck.get_coro())))  # noqa: T201
             raise
+
+
+def _awaiting(coroutine: Any) -> list[str]:
+    """Where a stuck task waits: its chain of awaited coroutines (for debugging teardown)."""
+    chain = []
+    while coroutine is not None:
+        frame = getattr(coroutine, "cr_frame", None) or getattr(coroutine, "ag_frame", None)
+        if frame is None:
+            chain.append(repr(coroutine))
+            break
+        chain.append(f"{frame.f_code.co_qualname}:{frame.f_lineno}")
+        coroutine = getattr(coroutine, "cr_await", None) or getattr(coroutine, "ag_await", None)
+    return chain
 
 
 class Bot:

@@ -62,6 +62,7 @@ async def test_a_search_widens_to_the_whole_subject_at_15_s(
     await backdate(redis, asha.user_id, 16)
     widened = await asha.expect("mm.status")
 
+    assert len(asha.seen("mm.status")) == 2  # a status only when something changes
     assert widened["d"]["widened"] is True
     assert widened["d"]["waited_s"] >= 15
     assert widened["d"]["window"] == 350  # never narrower than a new player's RD

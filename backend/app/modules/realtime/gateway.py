@@ -26,7 +26,7 @@ from starlette.websockets import WebSocketDisconnect
 from app.core.clock import utc_now
 from app.modules.auth.access import revoked_session_key
 from app.modules.realtime import keys, protocol, rstr
-from app.modules.realtime.connection import Connection
+from app.modules.realtime.connection import MAX_VIOLATIONS, Connection
 from app.modules.realtime.engine import scripts
 from app.modules.realtime.node import RtNode
 from app.modules.realtime.protocol import CloseCode, ErrorCode
@@ -193,8 +193,7 @@ async def _serve(node: RtNode, conn: Connection, hello: dict[str, Any]) -> None:
         await _resume(node, conn, hello["d"].get("resume"), active)
         restart = await _read(node, conn)
     finally:
-        conn.closed = True
-        conn._wake.set()
+        conn.stop()
         if heartbeat is not None:
             heartbeat.cancel()
         writer.cancel()
@@ -224,16 +223,21 @@ async def _resume(
 
 
 async def _read(node: RtNode, conn: Connection) -> bool:
-    """Reads client frames until the socket closes; True if the server is restarting."""
-    while not conn.closed:
+    """Reads client frames until the socket closes; True if the server is restarting.
+
+    After a close was requested it keeps reading (and ignoring) until the close handshake ends.
+    """
+    while True:
         message = await conn.websocket.receive()
         if message["type"] == "websocket.disconnect":
             return message.get("code") == CloseCode.SERVER_RESTART
+        if conn.closed:
+            continue
         try:
             frame = parse_frame(message.get("text"))
         except BadMessage:
-            await conn.close(CloseCode.BAD_MESSAGE, "bad message")
-            return False
+            conn.close_soon(CloseCode.BAD_MESSAGE, "bad message")
+            continue
         if not conn.allow_frame():
             conn.error(
                 frame.get("id"),
@@ -242,6 +246,8 @@ async def _read(node: RtNode, conn: Connection) -> bool:
                 details={"retry_after_s": 1},
                 retryable=True,
             )
+            if conn.violations >= MAX_VIOLATIONS:
+                conn.close_soon(CloseCode.RATE_LIMITED, "rate limited")
             continue
         handler = HANDLERS.get(frame["t"])
         if handler is None:
@@ -254,7 +260,6 @@ async def _read(node: RtNode, conn: Connection) -> bool:
         except Exception:
             log.exception("ws.handler_failed", type=frame["t"])
             conn.error(frame.get("id"), ErrorCode.UNAVAILABLE, "Please try again.", retryable=True)
-    return False
 
 
 async def _disconnected(node: RtNode, conn: Connection, *, restart: bool) -> None:

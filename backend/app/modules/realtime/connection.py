@@ -78,12 +78,13 @@ class Connection:
         self.foreground = True
         self.matches: dict[str, MatchFollow] = {}
         self.closed = False
+        self._closing: tuple[int, str] | None = None
         self.close_code: int | None = None
         self._outbound: deque[tuple[str, bool]] = deque()
         self._wake = asyncio.Event()
         self._tokens = INBOUND_BURST
         self._tokens_at = time.monotonic()
-        self._violations = 0
+        self.violations = 0
         self._pings: dict[int, float] = {}
         self._ping_n = 0
         self._last_ping = time.monotonic()
@@ -143,45 +144,50 @@ class Connection:
         )
 
     async def writer(self) -> None:
-        """Sends queued frames until the socket closes."""
+        """Sends queued frames; once a close is requested, sends what is queued and closes."""
         try:
-            while not self.closed:
-                if not self._outbound:
+            while True:
+                if self._outbound:
+                    text, _ = self._outbound.popleft()
+                    await self.websocket.send_text(text)
+                elif self._closing is not None:
+                    await self._close(*self._closing)
+                    return
+                elif self.closed:
+                    return
+                else:
                     self._wake.clear()
                     await self._wake.wait()
-                    continue
-                text, _ = self._outbound.popleft()
-                await self.websocket.send_text(text)
         except (RuntimeError, OSError, WebSocketDisconnect):  # the reader sees the disconnect
             self.closed = True
 
     def close_soon(self, code: int, reason: str) -> None:
-        """Close from a callback (pub/sub, a full queue) without awaiting."""
+        """Ask the writer to close the socket after the frames already queued (the error that
+        explains the close goes out first). Nothing more is queued from now on."""
         if self.closed:
             return
         self.closed = True
         self.close_code = code
+        if code == CloseCode.TRY_AGAIN_LATER:
+            self._outbound.clear()  # too slow to catch up: it resumes on reconnect instead
+        self._closing = (code, reason)
         self._wake.set()
-        asyncio.get_running_loop().create_task(self._close(code, reason))
 
-    async def close(self, code: int, reason: str) -> None:
-        if self.closed and self.close_code is not None:
-            return
+    def stop(self) -> None:
+        """The socket is gone: stop the writer and heartbeat."""
         self.closed = True
-        self.close_code = code
         self._wake.set()
-        await self._close(code, reason)
 
     async def _close(self, code: int, reason: str) -> None:
         log.info("ws.closed", code=code, reason=reason, user_id=self.uid)
         if self.websocket.application_state != WebSocketState.DISCONNECTED:
-            with contextlib.suppress(Exception):
+            with contextlib.suppress(RuntimeError, OSError, WebSocketDisconnect):
                 await self.websocket.close(code=code, reason=reason)
 
     # Inbound limits
 
     def allow_frame(self) -> bool:
-        """Spend a token; False when over the limit (and closes on the third violation)."""
+        """Spend a token; False (a violation) when over the limit."""
         now = time.monotonic()
         self.last_frame_at = now
         self._tokens = min(INBOUND_BURST, self._tokens + (now - self._tokens_at) * INBOUND_RATE)
@@ -189,9 +195,7 @@ class Connection:
         if self._tokens >= 1:
             self._tokens -= 1
             return True
-        self._violations += 1
-        if self._violations >= MAX_VIOLATIONS:
-            self.close_soon(CloseCode.RATE_LIMITED, "rate limited")
+        self.violations += 1
         return False
 
     # Heartbeat
@@ -225,7 +229,7 @@ class Connection:
             await asyncio.sleep(min(0.5, self.hb_s / 4))
             now = time.monotonic()
             if now - self.last_frame_at > self.stale_s:
-                await self.close(CloseCode.NORMAL, "stale")
+                self.close_soon(CloseCode.NORMAL, "stale")
                 return
             if now - self._last_ping >= self.hb_s:
                 self._last_ping = now
