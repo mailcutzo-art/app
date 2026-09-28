@@ -110,7 +110,7 @@ void main() {
   ) async {
     await pump(tester, Routes.tournament(SeededTournaments.checkIn));
     expect(find.text('CHECK-IN OPEN'), findsOneWidget);
-    final closes = arena.find(SeededTournaments.checkIn)!.card.checkInClosesAt!;
+    final closes = arena.find(SeededTournaments.checkIn)!.card.checkInClosesAt;
     expect(find.textContaining('Check in by ${clockTime(closes)}'), findsOneWidget);
 
     await tester.tap(find.text('Can\'t make it'));
