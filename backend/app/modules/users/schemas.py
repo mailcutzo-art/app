@@ -2,9 +2,9 @@
 
 import uuid
 from datetime import datetime
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
-from pydantic import BeforeValidator
+from pydantic import BeforeValidator, StringConstraints
 
 from app.core.clock import utc_now
 from app.core.schemas import ApiModel, field_error
@@ -80,9 +80,10 @@ class OnboardingIn(ApiModel):
 
 
 class ProfilePatchIn(ApiModel):
-    """Any subset of the editable fields. Handle changes come in a later phase."""
+    """Any subset of the editable fields. The handle can change once every 30 days."""
 
     display_name: DisplayName | None = None
+    handle: Handle | None = None
     avatar: AvatarIn | None = None
     goal: GoalName | None = None
 
@@ -108,6 +109,12 @@ class MeOut(ApiModel):
     onboarding_completed: bool
     roles: list[str]
     created_at: datetime
+    # "active", "restricted" (social features paused) or "pending_deletion" (a restricted
+    # session: only restore or sign out, until ``restore_until``).
+    status: str
+    restore_until: datetime | None
+    # When the handle may change again (null: now).
+    next_handle_change_at: datetime | None
 
     @classmethod
     def from_user(cls, user: User, *, now: datetime) -> "MeOut":
@@ -123,7 +130,27 @@ class MeOut(ApiModel):
             onboarding_completed=user.onboarding_completed_at is not None,
             roles=sorted(user.roles),
             created_at=user.created_at,
+            status=user.status,
+            restore_until=user.restore_until,
+            next_handle_change_at=rules.next_handle_change(user.handle_changed_at, now=now),
         )
+
+
+class ProofIn(ApiModel):
+    """A fresh sign-in: a Google ID token for this account, or (dev login only) ``dev``."""
+
+    provider: Literal["google", "dev"]
+    id_token: Annotated[str | None, StringConstraints(min_length=1, max_length=8192)] = None
+
+
+class DeleteAccountIn(ApiModel):
+    confirm: Literal["DELETE"]
+    proof: ProofIn
+
+
+class DeletionOut(ApiModel):
+    status: str
+    restore_until: datetime | None
 
 
 class HandleCheckOut(ApiModel):

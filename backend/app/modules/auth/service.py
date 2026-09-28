@@ -83,7 +83,8 @@ async def sign_in(
     user, is_new_user = await _find_or_create_user(db, account)
     if user.ban_in_force(now):
         raise account_banned(user.ban_reason, user.banned_until, appeal=settings.appeal_contact)
-    if user.status in CLOSED_STATUSES:
+    # Within 7 days of a delete, signing in gives a restricted session: restore or sign out.
+    if user.status in CLOSED_STATUSES and not user.restorable(now):
         raise Forbidden("This account has been closed.", code="ACCOUNT_CLOSED")
 
     replaced = await _end_active_sessions(
@@ -128,7 +129,16 @@ async def rotate_refresh_token(
     if current is None:
         raise _invalid_refresh_token()
     session = await db.get(DeviceSession, current.session_id, with_for_update=True)
-    if session is None or session.revoked_at is not None:
+    if session is None:
+        raise _invalid_refresh_token()
+    if session.revoked_at is not None:
+        if session.revoke_reason == RevokeReason.BANNED:
+            # Say why, so the app shows the Suspended screen rather than Sign-in.
+            banned = await db.get_one(User, session.user_id)
+            if banned.ban_in_force(now):
+                raise account_banned(
+                    banned.ban_reason, banned.banned_until, appeal=settings.appeal_contact
+                )
         raise _invalid_refresh_token()
 
     if current.used_at is not None:
@@ -148,7 +158,7 @@ async def rotate_refresh_token(
     user = await db.get_one(User, session.user_id)
     if user.ban_in_force(now):
         raise account_banned(user.ban_reason, user.banned_until, appeal=settings.appeal_contact)
-    if user.status in CLOSED_STATUSES:
+    if user.status in CLOSED_STATUSES and not user.restorable(now):
         raise Unauthorized("This account has been closed.", code="ACCOUNT_CLOSED")
 
     tokens, successor = await _issue_tokens(

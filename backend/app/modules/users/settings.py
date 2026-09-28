@@ -27,6 +27,12 @@ class Preferences:
     notification_kinds: dict[str, bool] = field(default_factory=dict)
     quiet_start: time | None = DEFAULT_QUIET_START
     quiet_end: time | None = DEFAULT_QUIET_END
+    # Privacy choices as stored; ``None`` means the default (``app.modules.social.privacy``
+    # fills it in, since the defaults depend on whether the player is a minor today).
+    friend_requests: str | None = None
+    challenges: str | None = None
+    presence: str | None = None
+    public_boards: bool | None = None
 
     def category_enabled(self, category: str) -> bool:
         return self.notification_kinds.get(category, True)
@@ -41,6 +47,10 @@ def _preferences(row: UserSettings | None) -> Preferences:
         notification_kinds={key: value for key, value in kinds.items() if isinstance(value, bool)},
         quiet_start=row.quiet_start,
         quiet_end=row.quiet_end,
+        friend_requests=row.friend_requests,
+        challenges=row.challenges,
+        presence=row.presence,
+        public_boards=row.public_boards,
     )
 
 

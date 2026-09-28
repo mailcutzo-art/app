@@ -20,6 +20,7 @@ from app.modules.content.models import (
 )
 from app.modules.economy.models import CoinHold, LedgerEntry, Wallet
 from app.modules.feedback.models import Feedback
+from app.modules.moderation.models import ModerationAction, UserReport
 from app.modules.notifications.models import Notification, PushToken
 from app.modules.outbox.models import OutboxMessage
 from app.modules.practice.models import (
@@ -34,6 +35,7 @@ from app.modules.practice.models import (
     UserTopicStats,
 )
 from app.modules.progression.models import UserProgress, XpEvent
+from app.modules.social.models import ActivityEvent, Block, FriendRequest, Friendship
 from app.modules.system.models import AppConfig, AuditLog
 from app.modules.users.models import User, UserSettings
 
@@ -48,19 +50,24 @@ def include_name(name: str | None, type_: str, _parent_names: object) -> bool:
 
 
 __all__ = [
+    "ActivityEvent",
     "AnalyticsEvent",
     "AppConfig",
     "AttemptKey",
     "AuditLog",
     "AuthIdentity",
     "Base",
+    "Block",
     "Chapter",
     "CoinHold",
     "DeviceSession",
     "ExamGoal",
     "Feedback",
+    "FriendRequest",
+    "Friendship",
     "GoalSubject",
     "LedgerEntry",
+    "ModerationAction",
     "Notification",
     "OutboxMessage",
     "Passage",
@@ -80,6 +87,7 @@ __all__ = [
     "UserDailyStats",
     "UserProgress",
     "UserQuestion",
+    "UserReport",
     "UserSettings",
     "UserTip",
     "UserTopicStats",

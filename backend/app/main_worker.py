@@ -19,9 +19,12 @@ from app.core.resources import Resources, open_resources
 from app.modules.analytics.jobs import analytics_retention_job
 from app.modules.content.jobs import question_stats_job
 from app.modules.economy.jobs import hold_reaper_job
+from app.modules.moderation.jobs import moderation_expiry_job
 from app.modules.notifications.jobs import notifications_retention_job
 from app.modules.outbox.jobs import outbox_cleanup_job, outbox_dispatch_job
 from app.modules.practice.jobs import attempt_partitions_job, practice_housekeeping_job
+from app.modules.social.jobs import activity_retention_job
+from app.modules.users.jobs import account_erasure_job
 
 SHUTDOWN_GRACE_S = 10.0
 
@@ -56,6 +59,12 @@ JOBS: tuple[PeriodicJob, ...] = (
     # Once a day: the inbox keeps 90 days, analytics 180.
     PeriodicJob("notifications_retention", 3600.0, notifications_retention_job),
     PeriodicJob("analytics_retention", 3600.0, analytics_retention_job),
+    # Lift social restrictions and temporary bans whose time is up.
+    PeriodicJob("moderation_expiry", 60.0, moderation_expiry_job),
+    # Erase accounts 30 days after deletion (tombstone the user, drop personal data).
+    PeriodicJob("account_erasure", 3600.0, account_erasure_job),
+    # Once a day: the friends' activity feed keeps 30 days.
+    PeriodicJob("activity_retention", 3600.0, activity_retention_job),
 )
 
 

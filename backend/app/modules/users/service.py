@@ -8,6 +8,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.clock import iso_utc
 from app.core.db import violated_constraint
 from app.core.errors import Conflict, Unauthorized
 from app.modules.analytics.service import track
@@ -22,6 +23,7 @@ from app.modules.users.validation import (
     current_year,
     handle_problem,
     is_minor,
+    next_handle_change,
     normalize_handle,
 )
 
@@ -63,8 +65,12 @@ async def complete_onboarding(
     return user
 
 
-async def update_profile(db: AsyncSession, user_id: uuid.UUID, data: ProfilePatchIn) -> User:
+async def update_profile(
+    db: AsyncSession, user_id: uuid.UUID, data: ProfilePatchIn, *, now: datetime
+) -> User:
     user = await get_user(db, user_id)
+    if data.handle is not None and data.handle != user.handle:
+        await _change_handle(db, user, data.handle, now=now)
     if data.display_name is not None:
         user.display_name = data.display_name
     if data.avatar is not None:
@@ -74,6 +80,30 @@ async def update_profile(db: AsyncSession, user_id: uuid.UUID, data: ProfilePatc
         user.goal = data.goal
     await db.flush()
     return user
+
+
+async def _change_handle(db: AsyncSession, user: User, handle: str, *, now: datetime) -> None:
+    """Once every 30 days (the handle picked at onboarding doesn't count)."""
+    if user.handle is None:
+        raise Conflict("Finish setting up your profile first.", code="ONBOARDING_REQUIRED")
+    next_change = next_handle_change(user.handle_changed_at, now=now)
+    if next_change is not None:
+        raise Conflict(
+            "You can change your username once every 30 days.",
+            code="HANDLE_CHANGE_TOO_SOON",
+            details={"next_change_at": iso_utc(next_change)},
+        )
+    if await _handle_owner(db, handle) not in (None, user.id):
+        raise _handle_taken()
+    user.handle = handle
+    user.handle_changed_at = now
+    try:
+        async with db.begin_nested():
+            await db.flush()
+    except IntegrityError as exc:
+        if violated_constraint(exc) == _HANDLE_CONSTRAINT:
+            raise _handle_taken() from exc
+        raise
 
 
 async def handle_availability(
