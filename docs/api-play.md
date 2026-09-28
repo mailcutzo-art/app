@@ -265,6 +265,46 @@ Missions are written so they can always be done:
 - "Play 1 rated battle or tournament game", never "win".
 - A brand-new player's review mission becomes "10 questions in any chapter".
 
+**Missions.** `GET /v1/me/missions` (and Home's `missions.data`) returns:
+
+```json
+{"day": "2026-09-28",
+ "items": [{"id": "…", "slot": "practice", "title": "Answer 20 practice questions", "progress": 12, "target": 20, "xp": 20, "done": false, "swapped": false, "action": {"route": "/learn", "params": {}}}],
+ "bonus": {"xp": 100, "coins": 25, "done": false},
+ "swap_available": true,
+ "streak": {"days": 4, "today_done": false, "freezes": 1}}
+```
+
+- Items come in slot order: `practice`, `play`, `review`. Practice missions count answers given
+  (not skips or timeouts); the review mission counts answers in review sessions; the chapter
+  fallbacks count answers in that chapter (or any chapter).
+- `action` routes: `/learn`, `/learn` with `{"mode": "review"}`, `/learn/{subject}` with
+  `{"chapter"}`, `/battle` with `{"mode": "rated"}`, or `/battle`.
+- **Swap** returns the same shape. Errors: `404 MISSION_NOT_FOUND` (not one of today's),
+  `409 SWAP_USED`, `409 MISSION_DONE`, `409 NO_SWAP`. The play mission swaps to "Finish 1 battle
+  of any kind"; progress starts again.
+
+**Streak.** `GET /v1/me/streak?days=30` (1–90) and `POST /v1/me/streak/freezes` return:
+
+```json
+{"days": 4, "best": 9, "today_done": false, "freezes": 1, "max_freezes": 2, "freeze_price": 50,
+ "calendar": [{"day": "2026-09-27", "state": "active"}, {"day": "2026-09-28", "state": null}],
+ "freezes_used": ["2026-09-25"]}
+```
+
+- `calendar` runs oldest first up to today (IST); `state` is `active`, `frozen` or `null`.
+- A day counts with 10 answers or 1 finished battle. Missed days use a held freeze
+  automatically; without one the streak ends (`streak_freeze_used` / `streak_lost` in the inbox,
+  sent by the nightly rollover or on the next visit). Players with a live streak who have done
+  nothing by 19:00 IST get `streak_risk`.
+- Day 7 pays 30 coins and day 30 pays 100. Buying a freeze: `409 FREEZE_LIMIT` when holding 2,
+  `409 INSUFFICIENT_COINS`.
+
+**Achievements.** `GET /v1/me/achievements` returns `{"earned", "total", "items": [{"id", "title",
+"description", "icon", "coins", "progress", "target", "earned", "earned_at"}]}`, earned ones first
+(newest first), then the rest in catalogue order. Each pays 10–200 coins once, with an
+`achievement` inbox item.
+
 ## Inbox and push
 
 | Endpoint | Does |

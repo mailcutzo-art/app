@@ -42,7 +42,10 @@ MAX_BACKOFF_S = 3600
 ERROR_MAX_CHARS = 500
 
 # Modules whose import registers outbox handlers; the dispatcher imports them first.
-HANDLER_MODULES: tuple[str, ...] = ("app.modules.notifications.delivery",)
+HANDLER_MODULES: tuple[str, ...] = (
+    "app.modules.notifications.delivery",
+    "app.modules.progression.achievements",
+)
 
 
 @dataclass(frozen=True, slots=True)
