@@ -397,7 +397,25 @@ adjustable in settings.
 | `POST /v1/friend-requests/{id}/accept` and `/decline` | Accept or decline a request sent to you (the request comes back). `DELETE /v1/friend-requests/{id}` cancels your own request (`204`). Someone else's request is `404 FRIEND_REQUEST_NOT_FOUND`; one already answered is `409 REQUEST_CLOSED` |
 | `DELETE /v1/me/friends/{user_id}` | Remove a friend (`204`) |
 | `GET /v1/me/rivals` | Opponents played 3+ times in 60 days, each with an `h2h` record |
-| `GET /v1/me/activity?cursor=` | Friends' notable events from the last 7 days: `{"id", "user": card, "kind": "achievement" \| "podium" \| "level_up" \| "streak" \| "friend", "payload", "created_at"}`. A `friend` item's payload has the new friend's card as `friend` (never a minor you aren't friends with) |
+| `GET /v1/me/activity?cursor=` | Friends' notable events, and your own shares, from the last 7 days: `{"id", "user": card, "kind": "achievement" \| "podium" \| "level_up" \| "streak" \| "friend" \| "shared_result" \| "shared_progress", "payload", "created_at"}`. A `friend` item's payload has the new friend's card as `friend` (never a minor you aren't friends with). Share payloads are below |
+| `POST /v1/me/activity/shares` | Post to your friends' activity. Body `{"kind": "match_result", "match_id"}` or `{"kind": "progress"}` and nothing else (no text or pictures: any other field is `422`); needs an `Idempotency-Key`. `201` with the new activity item. The server builds the payload from its own records. A match must be your own and ended: otherwise (or while the realtime engine hasn't plugged in results) `404 NOT_FOUND`; each match can be posted once (`409 ALREADY_SHARED` with `details.activity_id`). Progress can be posted 3 times per IST day (`409 LIMIT_REACHED`, `details {"limit": "daily", "max": 3}`). Rate-limited |
+
+**Share payloads.** `shared_result`: `{"match_id", "mode", "result": "win" \| "draw" \| "loss",
+"subject", "chapter" (or null), "score", "opponent_score", "opponent": card or null,
+"opponent_name", "questions": ["correct" \| "wrong" \| "skipped", ...], "rating_change", "coins",
+"xp"}`. In a group battle the opponent is the best other player. `opponent` is null for a bot and
+for a player the viewer may not see (blocked, or a minor who isn't the viewer's friend); then
+`opponent_name` is the bot's name or "Another player". The settlement fields are null when the
+match hadn't settled or they don't apply. `shared_progress`: `{"level", "xp", "xp_into_level",
+"xp_for_level" (0 at the top level), "streak": {"current", "best"}, "answered", "correct",
+"accuracy" (whole percent, null before the first answer), "ratings": [{"scope", "rating"}]}`
+(`ratings` is empty until the ratings feature supplies the profile's ratings section).
+
+For the realtime engine: results reach shares through
+`app.modules.social.shares.register_share_source("match_result", source)`, where
+`async source(db, user_id, match_id: str) -> dict | None` returns the fields above (with
+`opponent_id` for a person or `opponent_name` for a bot, instead of `opponent`) for the user's own
+ended match, and None otherwise.
 | `POST /v1/blocks` and `DELETE /v1/blocks/{user_id}` | Body `{"user_id"}` → `204`. Blocking ends the friendship and pending requests, and hides the two from each other everywhere (search, profiles, lists, pairing, invites). Unblocking doesn't bring the friendship back. `GET /v1/me/blocks?cursor=` lists `{"user": card, "created_at"}` |
 | `POST /v1/reports` | Body `{"user_id", "match_id"?, "reason": "cheating" \| "offensive_name" \| "harassment" \| "other", "note"?}` (note up to 500 characters) → `202`. The same report within a day is kept once. 10 an hour |
 | `GET /v1/me/opponents?days=30` | Recent opponents (people, not bots), each with an `h2h` record, `relationship` and **Add friend**, so a good game can turn into a friendship |
