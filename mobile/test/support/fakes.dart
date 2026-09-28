@@ -21,6 +21,7 @@ import 'package:quiz_app/features/battle/data/battle_repository.dart';
 import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
 import 'package:quiz_app/features/battle/demo/demo_server.dart';
 import 'package:quiz_app/features/battle/match/screen_guard.dart';
+import 'package:quiz_app/features/home/data/home_repository.dart';
 import 'package:quiz_app/features/inbox/data/fake_inbox_repository.dart';
 import 'package:quiz_app/features/inbox/data/inbox_repository.dart';
 import 'package:quiz_app/features/leaderboards/data/fake_leaderboard_repository.dart';
@@ -138,6 +139,7 @@ List<Override> testOverrides({
   SocialRepository? social,
   LeaderboardRepository? leaderboards,
   MissionsRepository? missions,
+  HomeRepository? home,
 }) => [
   appEnvProvider.overrideWithValue(testEnv),
   sessionProvider.overrideWith(sessionController ?? () => FakeSessionController(session)),
@@ -169,6 +171,7 @@ List<Override> testOverrides({
     leaderboards ?? FakeLeaderboardRepository.seeded(me: fakeUser()),
   ),
   missionsRepositoryProvider.overrideWithValue(missions ?? FakeMissionsRepository.seeded()),
+  homeRepositoryProvider.overrideWithValue(home ?? FakeHomeRepository.seeded()),
 ];
 
 /// A phone-sized, tall viewport so screens need little scrolling.
@@ -202,6 +205,7 @@ Future<ProviderContainer> pumpApp(
   SocialRepository? social,
   LeaderboardRepository? leaderboards,
   MissionsRepository? missions,
+  HomeRepository? home,
   List<Override> overrides = const [],
 }) async {
   await tester.pumpWidget(
@@ -225,6 +229,7 @@ Future<ProviderContainer> pumpApp(
           social: social,
           leaderboards: leaderboards,
           missions: missions,
+          home: home,
         ),
         if (stopwatch != null) practiceStopwatchProvider.overrideWithValue(stopwatch),
         ...overrides,
