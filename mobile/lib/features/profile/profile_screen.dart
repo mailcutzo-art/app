@@ -10,6 +10,8 @@ import '../../core/auth/session.dart';
 import '../../core/network/paging.dart';
 import '../common/paged_list.dart';
 import '../learn/widgets/learn_widgets.dart' show CardSkeleton, RowsSkeleton, failureMessage;
+import '../share/share_sheet.dart';
+import '../share/share_sources.dart';
 import '../wallet/wallet_providers.dart';
 import 'data/profile_models.dart';
 import 'profile_providers.dart';
@@ -179,7 +181,23 @@ class _Stats extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(statsProvider(StatsRange.days30));
     return switch (stats) {
-      AsyncValue(:final value?) => StatsCard(stats: value),
+      AsyncValue(:final value?) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          StatsCard(stats: value),
+          const SizedBox(height: AppSpacing.md),
+          switch (progressShareData(value, ref.watch(meProvider))) {
+            final share? => AppButton(
+              label: 'Share progress',
+              leadingIcon: AppIcons.share,
+              variant: AppButtonVariant.secondary,
+              size: AppButtonSize.medium,
+              onPressed: () => unawaited(showShareSheet(context, data: share)),
+            ),
+            null => const SizedBox.shrink(),
+          },
+        ],
+      ),
       AsyncValue(:final error?) => ErrorState(
         compact: true,
         title: 'Couldn\'t load your stats',

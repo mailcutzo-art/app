@@ -9,8 +9,14 @@ import 'package:go_router/go_router.dart';
 import '../../app/router.dart';
 import '../../app/shell.dart';
 import '../../core/auth/session.dart';
+import '../../core/network/app_failure.dart';
 import '../../core/network/connectivity.dart';
 import '../learn/widgets/learn_widgets.dart' show failureMessage;
+import '../profile/data/profile_models.dart' show StatsRange;
+import '../profile/profile_providers.dart' show statsProvider;
+import '../share/share_card.dart';
+import '../share/share_sheet.dart';
+import '../share/share_sources.dart';
 import 'data/social_models.dart';
 import 'social_providers.dart';
 import 'widgets/presence_poller.dart';
@@ -572,6 +578,8 @@ class _ActivitySection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SocialSectionHeader(title: 'Activity', subtitle: 'Your friends this week'),
+        const Gutter(child: PostBox()),
+        const SizedBox(height: AppSpacing.md),
         Gutter(
           child: switch (activity) {
             AsyncValue(:final value?) => () {
@@ -585,7 +593,7 @@ class _ActivitySection extends ConsumerWidget {
                   icon: AppIcons.sparkles,
                   tone: PastelTone.lemon,
                   title: 'Quiet week',
-                  message: 'Friends\' level-ups, streaks and podiums show up here.',
+                  message: 'Friends\' level-ups, streaks, podiums and shared wins show up here.',
                   actionLabel: 'Find friends',
                   onAction: onFindFriends,
                 );
@@ -635,13 +643,163 @@ class _ActivityRow extends StatelessWidget {
       ActivityKind.podium => AppIcons.medal,
       ActivityKind.levelUp => AppIcons.star,
       ActivityKind.streak => AppIcons.fire,
-      ActivityKind.win => AppIcons.arena,
+      ActivityKind.win || ActivityKind.sharedResult => AppIcons.arena,
+      ActivityKind.sharedProgress => AppIcons.chart,
       ActivityKind.other => AppIcons.sparkles,
     };
-    return PlayerRow(
+    final row = PlayerRow(
       user: item.user,
       subtitle: '${item.text} · ${timeAgo(item.createdAt)}',
       trailing: HugeIcon(icon, size: 22, color: colors.inkMuted),
+    );
+    final share = item.share;
+    if (share == null) return row;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        row,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(AppSpacing.lg, 0, AppSpacing.lg, AppSpacing.md),
+          child: ShareCard.compact(data: share),
+        ),
+      ],
+    );
+  }
+}
+
+/// The top of the activity section: what can be posted. Messages and photos are turned off for
+/// now (the field and its buttons show as disabled); progress can be shared from here, and a win
+/// from any battle's result.
+class PostBox extends ConsumerStatefulWidget {
+  const PostBox({super.key});
+
+  static const offMessage = 'Messages and photos are turned off for now';
+
+  @override
+  ConsumerState<PostBox> createState() => _PostBoxState();
+}
+
+class _PostBoxState extends ConsumerState<PostBox> {
+  bool _loading = false;
+
+  Future<void> _shareProgress() async {
+    setState(() => _loading = true);
+    final provider = statsProvider(StatsRange.days30);
+    // Keeps the (auto-disposed) stats alive while they load.
+    final keepAlive = ref.listenManual(provider, (_, _) {});
+    try {
+      final stats = await ref.read(provider.future);
+      if (!mounted) return;
+      final data = progressShareData(stats, ref.read(meProvider));
+      setState(() => _loading = false);
+      if (data == null) {
+        showAppToast(context, 'Your progress isn\'t ready yet. Try again soon.');
+        return;
+      }
+      await showShareSheet(context, data: data);
+    } on AppFailure catch (failure) {
+      if (!mounted) return;
+      setState(() => _loading = false);
+      showAppToast(context, failure.message, icon: AppIcons.alert);
+    } finally {
+      keepAlive.close();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = context.text;
+    final me = ref.watch(meProvider);
+    return SurfaceCard(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              AppAvatar(data: me.avatar.toData(), size: 36),
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                // A text field that can't be used: it looks and reads as disabled.
+                child: Semantics(
+                  textField: true,
+                  enabled: false,
+                  readOnly: true,
+                  label: 'Message',
+                  hint: PostBox.offMessage,
+                  excludeSemantics: true,
+                  child: Container(
+                    height: 44,
+                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                      color: colors.surfaceMuted,
+                      borderRadius: AppRadii.pillAll,
+                      border: Border.all(color: colors.outline),
+                    ),
+                    child: Row(
+                      children: [
+                        HugeIcon(AppIcons.lock, size: 16, color: colors.inkSubtle),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: Text(
+                            PostBox.offMessage,
+                            style: text.bodySmall.copyWith(color: colors.inkSubtle),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.xs),
+              const AppIconButton(
+                icon: AppIcons.message,
+                semanticLabel: 'Send a message (turned off)',
+                size: 40,
+                variant: AppIconButtonVariant.ghost,
+                onPressed: null,
+              ),
+              const AppIconButton(
+                icon: AppIcons.image,
+                semanticLabel: 'Add a photo (turned off)',
+                size: 40,
+                variant: AppIconButtonVariant.ghost,
+                onPressed: null,
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.md),
+          Wrap(
+            spacing: AppSpacing.md,
+            runSpacing: AppSpacing.sm,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              AppButton(
+                label: 'Share progress',
+                leadingIcon: AppIcons.share,
+                variant: AppButtonVariant.tonal,
+                tone: PastelTone.lavender,
+                size: AppButtonSize.small,
+                expand: false,
+                loading: _loading,
+                onPressed: _loading ? null : _shareProgress,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HugeIcon(AppIcons.battle, size: 16, color: colors.inkMuted),
+                  const SizedBox(width: AppSpacing.xs),
+                  Text('Share a win from any battle result', style: text.caption),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

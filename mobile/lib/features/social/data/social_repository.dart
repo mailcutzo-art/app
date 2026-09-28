@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/network/api_client.dart';
 import '../../../core/network/app_failure.dart';
 import '../../learn/data/learn_repository.dart' show demoDataProvider;
+import '../../share/share_models.dart';
 import 'fake_social_repository.dart';
 import 'social_models.dart';
 
@@ -43,8 +44,16 @@ abstract interface class SocialRepository {
   /// `GET /v1/me/opponents?days=`: recent opponents (people, not bots).
   Future<List<Opponent>> opponents({int days = 30});
 
-  /// `GET /v1/me/activity?cursor=`: friends' events from the last 7 days.
+  /// `GET /v1/me/activity?cursor=`: friends' events, and the user's own
+  /// shares, from the last 7 days.
   Future<CursorPage<ActivityItem>> activity({String? cursor});
+
+  /// `POST /v1/me/activity/shares`: posts a battle result or the user's
+  /// progress to their friends' activity, and returns the new item. Throws
+  /// [NotFoundFailure] (the battle can't be shared), or [ConflictFailure]
+  /// with code `ALREADY_SHARED` (a battle is posted once) or `LIMIT_REACHED`
+  /// (progress 3 times a day).
+  Future<ActivityItem> share(ShareTarget target, {required String idempotencyKey});
 
   /// `POST /v1/blocks`.
   Future<void> block(String userId);
@@ -140,6 +149,16 @@ class ApiSocialRepository implements SocialRepository {
   Future<CursorPage<ActivityItem>> activity({String? cursor}) async {
     final data = await _api.get('/v1/me/activity', query: {'cursor': ?cursor});
     return _parse(() => CursorPage.fromJson(data, ActivityItem.fromJson));
+  }
+
+  @override
+  Future<ActivityItem> share(ShareTarget target, {required String idempotencyKey}) async {
+    final data = await _api.post(
+      '/v1/me/activity/shares',
+      body: target.toJson(),
+      idempotencyKey: idempotencyKey,
+    );
+    return _parse(() => ActivityItem.fromJson(data));
   }
 
   @override

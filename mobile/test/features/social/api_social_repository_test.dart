@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
+import 'package:quiz_app/features/share/share_models.dart';
 import 'package:quiz_app/features/social/data/social_models.dart';
 import 'package:quiz_app/features/social/data/social_repository.dart';
 import 'package:quiz_app/features/social/widgets/social_widgets.dart';
@@ -171,6 +172,56 @@ void main() {
     expect(activity.items.single.text, 'reached level 5');
     expect(adapter.requests[2].path, '/v1/me/activity');
     expect(adapter.requests[2].queryParameters, {'cursor': 'c9'});
+  });
+
+  test('a share POSTs only what to share, with an idempotency key', () async {
+    final (repo, adapter) = build(
+      (_) => jsonBody({
+        'id': 'a1',
+        'user': _card('u1'),
+        'kind': 'shared_progress',
+        'payload': {
+          'level': 5,
+          'xp': 700,
+          'xp_into_level': 0,
+          'xp_for_level': 350,
+          'streak': {'current': 2, 'best': 3},
+          'answered': 40,
+          'correct': 30,
+          'accuracy': 75,
+          'ratings': <Object?>[],
+        },
+        'created_at': '2026-09-28T10:00:00Z',
+      }, status: 201),
+    );
+
+    final item = await repo.share(const ProgressShareTarget(), idempotencyKey: 'k1');
+    await repo.share(const MatchShareTarget('m-7'), idempotencyKey: 'k2');
+
+    final [progress, match] = adapter.requests;
+    expect(progress.method, 'POST');
+    expect(progress.path, '/v1/me/activity/shares');
+    expect(body(progress), {'kind': 'progress'});
+    expect(progress.headers['Idempotency-Key'], 'k1');
+    expect(body(match), {'kind': 'match_result', 'match_id': 'm-7'});
+    expect(match.headers['Idempotency-Key'], 'k2');
+    expect(item.kind, ActivityKind.sharedProgress);
+    expect((item.share! as ProgressShareData).accuracyLabel, '75%');
+  });
+
+  test('a share over the daily limit or of a battle posted before is a conflict', () async {
+    for (final code in ['LIMIT_REACHED', 'ALREADY_SHARED']) {
+      final (repo, _) = build((_) => jsonBody(_error(code), status: 409));
+      await expectLater(
+        repo.share(const ProgressShareTarget(), idempotencyKey: 'k'),
+        throwsA(isA<ConflictFailure>().having((f) => f.code, 'code', code)),
+      );
+    }
+    final (repo, _) = build((_) => jsonBody(_error('NOT_FOUND'), status: 404));
+    await expectLater(
+      repo.share(const MatchShareTarget('m-x'), idempotencyKey: 'k'),
+      throwsA(isA<NotFoundFailure>()),
+    );
   });
 
   test('block, unblock, blocks and reports', () async {

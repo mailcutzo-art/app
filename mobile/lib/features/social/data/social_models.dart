@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../../../core/auth/user.dart';
 import '../../../core/network/json.dart';
 import '../../battle/data/battle_models.dart' show RatingInfo;
+import '../../share/share_models.dart';
 
 /// Another player, as every social list shows them (the "user card" shape in
 /// `docs/api-play.md`).
@@ -289,6 +290,12 @@ enum ActivityKind {
   levelUp('level_up'),
   streak('streak'),
   win('win'),
+
+  /// A battle result the player posted (`POST /v1/me/activity/shares`).
+  sharedResult('shared_result'),
+
+  /// The player's progress, posted by them.
+  sharedProgress('shared_progress'),
   other('other');
 
   const ActivityKind(this.wire);
@@ -308,21 +315,36 @@ class ActivityItem {
     required this.kind,
     required this.text,
     required this.createdAt,
+    this.share,
   });
 
   /// The server may send the sentence (`title`); otherwise it is written from
-  /// the kind and its `data` (`level`, `days`, `position`, `name`).
+  /// the kind and its `payload` (`level`, `days`, `rank`, `name`). A shared
+  /// result or progress whose payload can't be read throws [FormatException],
+  /// so the feed skips it.
   factory ActivityItem.fromJson(Object? json) {
     final r = JsonReader(json, 'activity item');
     final kind = ActivityKind.parse(r['kind']);
-    final data = r['data'] is Map ? r['data']! as Map : const <String, Object?>{};
+    final payload = r['payload'] ?? r['data'];
+    final data = payload is Map ? payload : const <String, Object?>{};
     final title = r['title'] ?? r['text'];
+    final user = UserCard.fromJson(r['user']);
+    final player = SharePlayer(
+      displayName: user.displayName,
+      handle: user.handle,
+      avatar: user.avatar,
+    );
     return ActivityItem(
       id: r.string('id'),
-      user: UserCard.fromJson(r['user']),
+      user: user,
       kind: kind,
       text: title is String && title.isNotEmpty ? title : _describe(kind, data),
       createdAt: r.dateTime('created_at'),
+      share: switch (kind) {
+        ActivityKind.sharedResult => MatchShareData.fromPayload(payload, player: player),
+        ActivityKind.sharedProgress => ProgressShareData.fromPayload(payload, player: player),
+        _ => null,
+      },
     );
   }
 
@@ -334,8 +356,13 @@ class ActivityItem {
   final String text;
   final DateTime createdAt;
 
+  /// What a [ActivityKind.sharedResult] or [ActivityKind.sharedProgress] item
+  /// shows as a card; null for other kinds.
+  final ShareCardData? share;
+
   static String _describe(ActivityKind kind, Map<dynamic, dynamic> data) {
     final name = data['name'] is String ? data['name'] as String : null;
+    final position = _int(data['position']) ?? _int(data['rank']);
     return switch (kind) {
       ActivityKind.levelUp when _int(data['level']) != null =>
         'reached level ${_int(data['level'])}',
@@ -343,13 +370,18 @@ class ActivityItem {
       ActivityKind.streak when _int(data['days']) != null =>
         'is on a ${_int(data['days'])}-day streak',
       ActivityKind.streak => 'is on a streak',
-      ActivityKind.podium when _int(data['position']) != null && name != null =>
-        'finished #${_int(data['position'])} in $name',
+      ActivityKind.podium when position != null && name != null => 'finished #$position in $name',
       ActivityKind.podium => 'finished on the podium',
       ActivityKind.achievement when name != null => 'earned “$name”',
       ActivityKind.achievement => 'earned an achievement',
       ActivityKind.win when name != null => 'won $name',
       ActivityKind.win => 'won a battle',
+      ActivityKind.sharedResult => switch (ShareOutcome.tryParse(data['result'])) {
+        ShareOutcome.win => 'shared a win',
+        ShareOutcome.draw => 'shared a draw',
+        _ => 'shared a battle',
+      },
+      ActivityKind.sharedProgress => 'shared their progress',
       ActivityKind.other => 'did something great',
     };
   }

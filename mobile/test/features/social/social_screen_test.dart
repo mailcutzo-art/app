@@ -4,10 +4,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
+import 'package:quiz_app/features/profile/data/fake_profile_repository.dart';
+import 'package:quiz_app/features/share/share_card.dart';
+import 'package:quiz_app/features/share/share_models.dart';
 import 'package:quiz_app/features/social/data/fake_social_repository.dart';
 import 'package:quiz_app/features/social/data/social_models.dart';
+import 'package:quiz_app/features/social/social_screen.dart';
 
 import '../../support/fakes.dart';
+import '../../support/share_samples.dart';
 
 void main() {
   late FakeSocialRepository social;
@@ -288,5 +293,101 @@ void main() {
     GoRouter.of(tester.element(find.byType(Scaffold).first)).go(Routes.social);
     await tester.pumpAndSettle();
     expect(social.calls[FakeSocialOp.friends], 3);
+  });
+
+  group('posting', () {
+    late ShareRecorder recorder;
+
+    setUp(() => recorder = ShareRecorder());
+
+    Future<void> openWithStats(WidgetTester tester) async {
+      usePhoneViewport(tester, height: 3200);
+      await pumpApp(
+        tester,
+        prefs: await testPrefs(),
+        social: social,
+        profile: FakeProfileRepository.seeded(),
+        location: Routes.social,
+        overrides: recorder.overrides,
+      );
+    }
+
+    testWidgets('shared wins and progress show as small cards in the feed', (tester) async {
+      await open(tester);
+
+      expect(find.byType(ShareCard), findsNWidgets(2));
+      expect(find.textContaining('shared a win'), findsOneWidget);
+      expect(find.text('Victory! · Biology · Human Physiology'), findsOneWidget);
+      expect(find.text('910 – 640 vs Kabir'), findsOneWidget);
+      expect(find.textContaining('shared their progress'), findsOneWidget);
+      expect(find.text('Level 7'), findsOneWidget);
+      expect(find.text('12-day streak'), findsOneWidget);
+      final compact = tester.widgetList<ShareCard>(find.byType(ShareCard));
+      expect(compact.every((card) => card.compact), isTrue);
+    });
+
+    testWidgets('messages and photos are turned off and read as disabled', (tester) async {
+      final semantics = tester.ensureSemantics();
+      await open(tester);
+
+      expect(find.byType(PostBox), findsOneWidget);
+      expect(find.text(PostBox.offMessage), findsOneWidget);
+      expect(
+        tester.getSemantics(find.bySemanticsLabel('Message')),
+        isSemantics(
+          isTextField: true,
+          hasEnabledState: true,
+          isEnabled: false,
+          isReadOnly: true,
+          hint: PostBox.offMessage,
+        ),
+      );
+      for (final label in ['Send a message (turned off)', 'Add a photo (turned off)']) {
+        expect(
+          tester.getSemantics(find.bySemanticsLabel(label)),
+          isSemantics(isButton: true, hasEnabledState: true, isEnabled: false),
+          reason: label,
+        );
+        final button = tester.widget<AppIconButton>(
+          find.byWidgetPredicate((w) => w is AppIconButton && w.semanticLabel == label),
+        );
+        expect(button.onPressed, isNull);
+      }
+      await tester.tap(find.text(PostBox.offMessage));
+      await tester.pumpAndSettle();
+      expect(find.byType(EditableText), findsOneWidget, reason: 'only the search field');
+      expect(find.text('Share a win from any battle result'), findsOneWidget);
+      semantics.dispose();
+    });
+
+    testWidgets('Share progress opens the sheet; a post shows in the user\'s own feed', (
+      tester,
+    ) async {
+      await openWithStats(tester);
+      await tester.tap(find.widgetWithText(AppButton, 'Share progress'));
+      await tester.pumpAndSettle();
+      expect(find.text('Share your progress'), findsOneWidget);
+
+      await tester.tap(find.text('Post to friends'));
+      await tester.pumpAndSettle();
+
+      expect(social.posted, [const ProgressShareTarget()]);
+      expect(find.text('Posted to your friends'), findsOneWidget);
+      expect(find.byType(ShareCard), findsNWidgets(3), reason: 'the feed reloaded');
+      expect(find.text('Level 6'), findsOneWidget, reason: 'the user\'s own progress');
+    });
+
+    testWidgets('Share progress to other apps uses the profile\'s stats', (tester) async {
+      await openWithStats(tester);
+      await tester.tap(find.widgetWithText(AppButton, 'Share progress'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Share to other apps'));
+      await tester.pumpAndSettle();
+
+      final card = recorder.captured.single as ProgressShareData;
+      expect(card.level, 4);
+      expect(card.player.displayName, 'Aarav Sharma');
+      expect(recorder.shared, hasLength(1));
+    });
   });
 }

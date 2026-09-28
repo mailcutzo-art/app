@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart' hide Presence;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
@@ -8,11 +9,14 @@ import 'package:quiz_app/features/battle/data/battle_models.dart';
 import 'package:quiz_app/features/battle/data/fake_battle_repository.dart';
 import 'package:quiz_app/features/battle/data/match_models.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
+import 'package:quiz_app/features/share/share_models.dart';
+import 'package:quiz_app/features/social/data/fake_social_repository.dart';
 
 import '../../support/battle.dart';
 import '../../support/fakes.dart';
 import '../../support/match_frames.dart';
 import '../../support/rt_server.dart';
+import '../../support/share_samples.dart';
 
 /// A server that queues searches, acks what a match sends, and answers `match.rematch` with
 /// [onRematch] (none: no answer).
@@ -58,6 +62,8 @@ Future<ProviderContainer> _finish(
   bool search = false,
   FakeMatchRepository? matches,
   FakeLearnRepository? learn,
+  FakeSocialRepository? social,
+  List<Override> overrides = const [],
 }) async {
   final container = await pumpApp(
     tester,
@@ -65,6 +71,8 @@ Future<ProviderContainer> _finish(
     realtime: server,
     matches: matches,
     learn: learn,
+    social: social,
+    overrides: overrides,
     battle: FakeBattleRepository(
       setup: (goal) => sampleBattleSetup(
         goal,
@@ -181,6 +189,55 @@ void main() {
     for (final label in ['Play again', 'Review answers', 'Done']) {
       expect(find.widgetWithText(AppButton, label), findsOneWidget);
     }
+  });
+
+  group('share', () {
+    testWidgets('the result becomes a card for other apps', (tester) async {
+      usePhoneViewport(tester, height: 2600);
+      reduceMotion(tester);
+      final recorder = ShareRecorder();
+      final match = MatchFrames();
+      await _finish(
+        tester,
+        _server(),
+        match,
+        search: true,
+        settled: _settled(match),
+        overrides: recorder.overrides,
+      );
+
+      await tester.tap(find.bySemanticsLabel('Share result'));
+      await tester.pumpAndSettle();
+      expect(find.text('Share this battle'), findsOneWidget);
+      await tester.tap(find.text('Share to other apps'));
+      await tester.pumpAndSettle();
+
+      final card = recorder.captured.single as MatchShareData;
+      expect(card.matchId, match.matchId);
+      expect(card.outcome, ShareOutcome.win);
+      expect((card.subject, card.chapter), ('Physics', 'Motion in a Straight Line'));
+      expect((card.score, card.opponentScore), (139, 135));
+      expect(card.player.displayName, 'Aarav Sharma');
+      expect(card.answers.take(2), [ShareAnswer.correct, ShareAnswer.wrong]);
+      expect((card.ratingChange, card.coins, card.xp), (16, 10, 30));
+      expect(recorder.shared.single.text, 'I won a Physics battle on Quiz Arena! 🏆');
+    });
+
+    testWidgets('Post to friends sends the match id', (tester) async {
+      usePhoneViewport(tester, height: 2600);
+      reduceMotion(tester);
+      final match = MatchFrames();
+      final social = FakeSocialRepository(matchResults: {match.matchId: sampleWin});
+      await _finish(tester, _server(), match, result: 'draw', social: social);
+
+      await tester.tap(find.bySemanticsLabel('Share result'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Post to friends'));
+      await tester.pumpAndSettle();
+
+      expect(social.posted, [MatchShareTarget(match.matchId)]);
+      expect(find.text('Posted to your friends'), findsOneWidget);
+    });
   });
 
   testWidgets('a level up is celebrated', (tester) async {
