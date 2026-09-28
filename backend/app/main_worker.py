@@ -16,7 +16,11 @@ import structlog
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.resources import Resources, open_resources
+from app.modules.analytics.jobs import analytics_retention_job
 from app.modules.content.jobs import question_stats_job
+from app.modules.economy.jobs import hold_reaper_job
+from app.modules.notifications.jobs import notifications_retention_job
+from app.modules.outbox.jobs import outbox_cleanup_job, outbox_dispatch_job
 from app.modules.practice.jobs import attempt_partitions_job, practice_housekeeping_job
 
 SHUTDOWN_GRACE_S = 10.0
@@ -43,6 +47,15 @@ JOBS: tuple[PeriodicJob, ...] = (
     PeriodicJob("attempt_partitions", 3600.0, attempt_partitions_job),
     # Once a night (after 02:00 IST): per-question attempts, share correct and typical time.
     PeriodicJob("question_stats", 600.0, question_stats_job),
+    # Deliver outbox messages (live inbox events, push, ...); replicas share via SKIP LOCKED.
+    PeriodicJob("outbox_dispatch", 1.0, outbox_dispatch_job),
+    # Once a day: drop delivered outbox rows after 7 days, dead ones after 30.
+    PeriodicJob("outbox_cleanup", 3600.0, outbox_cleanup_job),
+    # Refund coin holds stuck for 30 minutes whose match or tournament is gone.
+    PeriodicJob("hold_reaper", 60.0, hold_reaper_job),
+    # Once a day: the inbox keeps 90 days, analytics 180.
+    PeriodicJob("notifications_retention", 3600.0, notifications_retention_job),
+    PeriodicJob("analytics_retention", 3600.0, analytics_retention_job),
 )
 
 

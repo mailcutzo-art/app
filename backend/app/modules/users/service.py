@@ -10,6 +10,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.db import violated_constraint
 from app.core.errors import Conflict, Unauthorized
+from app.modules.analytics.service import track
+from app.modules.economy.service import grant_welcome_bonus
 from app.modules.system.models import AuditLog
 from app.modules.users.authz import invalidate_authz
 from app.modules.users.models import Role, User
@@ -56,6 +58,8 @@ async def complete_onboarding(
         if violated_constraint(exc) == _HANDLE_CONSTRAINT:
             raise _handle_taken() from exc
         raise
+    await grant_welcome_bonus(db, user_id)
+    await track(db, "onboarding_done", user_id, {"goal": data.goal}, now=now)
     return user
 
 

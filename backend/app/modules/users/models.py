@@ -1,9 +1,11 @@
 """Player accounts."""
 
-from datetime import datetime
+import uuid
+from datetime import datetime, time
 from enum import StrEnum
+from typing import Any
 
-from sqlalchemy import CheckConstraint, Text, false, text
+from sqlalchemy import CheckConstraint, ForeignKey, Text, false, func, text, true
 from sqlalchemy.dialects.postgresql import ARRAY, CITEXT
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -79,3 +81,29 @@ class User(TimestampMixin, Base):
 def ban_in_force(status: str, banned_until: datetime | None, now: datetime) -> bool:
     """Whether a ban applies now: status "banned", and permanent or not yet over."""
     return status == UserStatus.BANNED and (banned_until is None or banned_until > now)
+
+
+class UserSettings(Base):
+    """Per-user preferences: one row per user, created on first change.
+
+    A missing row means every default. Later features add their own columns here (privacy,
+    sound, theme); read and write through ``app.modules.users.settings``.
+    """
+
+    __tablename__ = "user_settings"
+    __table_args__ = (
+        CheckConstraint("(quiet_start IS NULL) = (quiet_end IS NULL)", name="quiet_hours"),
+    )
+
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("users.id", ondelete="CASCADE"), primary_key=True
+    )
+    # Product analytics (docs/user-flows.md §15). Off: nothing is recorded for the user.
+    analytics_enabled: Mapped[bool] = mapped_column(server_default=true())
+    # Push on or off per notification category (``invites``, ``tournaments``, ...); a category
+    # missing from the object is on.
+    notification_kinds: Mapped[dict[str, Any]] = mapped_column(server_default=text("'{}'"))
+    # Push is held back between these IST wall-clock times (both NULL: no quiet hours).
+    quiet_start: Mapped[time | None] = mapped_column(server_default=text("'22:30'"))
+    quiet_end: Mapped[time | None] = mapped_column(server_default=text("'07:00'"))
+    updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())

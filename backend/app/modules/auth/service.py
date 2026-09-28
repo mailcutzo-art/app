@@ -36,6 +36,7 @@ from app.modules.auth.refresh import (
     new_refresh_token,
 )
 from app.modules.auth.schemas import DeviceIn
+from app.modules.notifications.service import forget_push_tokens
 from app.modules.users.authz import account_banned
 from app.modules.users.models import User, UserStatus
 from app.modules.users.validation import (
@@ -191,6 +192,7 @@ async def end_session(
     )
     if ended is None:
         return False
+    await forget_push_tokens(db, [ended])
     await db.commit()
     await mark_sessions_revoked(redis, [session_id], reason)
     return True
@@ -275,7 +277,9 @@ async def _end_active_sessions(
     result = await db.scalars(
         statement.values(revoked_at=now, revoke_reason=reason).returning(DeviceSession.id)
     )
-    return list(result)
+    ended = list(result)
+    await forget_push_tokens(db, ended)
+    return ended
 
 
 async def _enforce_session_limit(
@@ -297,7 +301,9 @@ async def _enforce_session_limit(
         .values(revoked_at=now, revoke_reason=RevokeReason.SESSION_LIMIT)
         .returning(DeviceSession.id)
     )
-    return list(result)
+    ended = list(result)
+    await forget_push_tokens(db, ended)
+    return ended
 
 
 async def _issue_tokens(
@@ -341,6 +347,7 @@ async def _end_session_for_reuse(
 ) -> None:
     session.revoked_at = now
     session.revoke_reason = RevokeReason.REFRESH_REUSE
+    await forget_push_tokens(db, [session.id])
     await db.commit()
     await mark_sessions_revoked(redis, [session.id], RevokeReason.REFRESH_REUSE)
     log.warning(

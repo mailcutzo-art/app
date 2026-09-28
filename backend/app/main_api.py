@@ -8,10 +8,14 @@ from app.core.config import Settings, get_settings
 from app.core.factory import create_base_app
 from app.core.idempotency import IDEMPOTENCY_KEY_HEADER, REPLAYED_HEADER
 from app.core.middleware import REQUEST_ID_HEADER
+from app.modules.analytics import router as analytics
 from app.modules.auth import router as auth
 from app.modules.auth.google import JwksCache
 from app.modules.coach import router as coach
 from app.modules.content import router as content
+from app.modules.economy import router as economy
+from app.modules.feedback import router as feedback
+from app.modules.notifications import router as notifications
 from app.modules.practice import router as practice
 from app.modules.system import router as system
 from app.modules.system.runtime import APP_BUILD_HEADER, ClientGates, RuntimeConfigCache
@@ -54,6 +58,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         content.router,
         practice.router,
         coach.router,
+        economy.router,
+        notifications.router,
+        analytics.router,
+        feedback.router,
     ):
         app.include_router(router, prefix="/v1", dependencies=[ClientGates])
     return app

@@ -94,6 +94,12 @@ class Settings(BaseSettings):
     appeal_contact: str = "support@example.com"
     feature_flags: dict[str, bool] = {}
 
+    # Push notifications through Firebase Cloud Messaging: the path of a service-account JSON
+    # key with the "Firebase Cloud Messaging API Admin" role. Unset: push is off (the inbox
+    # still works). The project id defaults to the key file's ``project_id``.
+    fcm_service_account_file: str | None = None
+    fcm_project_id: str | None = None
+
     # Question bank loaded by ``python -m app.modules.content.seed`` (relative to the working dir).
     content_dir: str = "../content"
 
@@ -151,6 +157,10 @@ class Settings(BaseSettings):
     @property
     def is_prod(self) -> bool:
         return self.env is Environment.PROD
+
+    @property
+    def push_enabled(self) -> bool:
+        return bool(self.fcm_service_account_file)
 
     @property
     def jwt_keys(self) -> JwtKeys:

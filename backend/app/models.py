@@ -3,6 +3,7 @@
 import re
 
 from app.core.db import Base
+from app.modules.analytics.models import AnalyticsEvent
 from app.modules.auth.models import AuthIdentity, DeviceSession, RefreshToken
 from app.modules.coach.models import UserTip
 from app.modules.content.models import (
@@ -17,6 +18,10 @@ from app.modules.content.models import (
     Topic,
     WordPuzzle,
 )
+from app.modules.economy.models import CoinHold, LedgerEntry, Wallet
+from app.modules.feedback.models import Feedback
+from app.modules.notifications.models import Notification, PushToken
+from app.modules.outbox.models import OutboxMessage
 from app.modules.practice.models import (
     AttemptKey,
     PracticeAnswer,
@@ -30,7 +35,7 @@ from app.modules.practice.models import (
 )
 from app.modules.progression.models import UserProgress, XpEvent
 from app.modules.system.models import AppConfig, AuditLog
-from app.modules.users.models import User
+from app.modules.users.models import User, UserSettings
 
 # Monthly partitions of question_attempts are created at runtime by ensure_attempt_partitions();
 # they are not models, so migration autogenerate and the drift check skip them.
@@ -43,18 +48,25 @@ def include_name(name: str | None, type_: str, _parent_names: object) -> bool:
 
 
 __all__ = [
+    "AnalyticsEvent",
     "AppConfig",
     "AttemptKey",
     "AuditLog",
     "AuthIdentity",
     "Base",
     "Chapter",
+    "CoinHold",
     "DeviceSession",
     "ExamGoal",
+    "Feedback",
     "GoalSubject",
+    "LedgerEntry",
+    "Notification",
+    "OutboxMessage",
     "Passage",
     "PracticeAnswer",
     "PracticeSession",
+    "PushToken",
     "Question",
     "QuestionAttempt",
     "QuestionReport",
@@ -68,8 +80,10 @@ __all__ = [
     "UserDailyStats",
     "UserProgress",
     "UserQuestion",
+    "UserSettings",
     "UserTip",
     "UserTopicStats",
+    "Wallet",
     "WordPuzzle",
     "XpEvent",
     "include_name",
