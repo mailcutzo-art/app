@@ -78,7 +78,7 @@ def load_subject(subject: str, syllabus: dict) -> dict[str, list[dict]]:
     out = {}
     for entry in syllabus[subject]:
         p = ROOT / "questions" / subject / f"{entry['slug']}.yaml"
-        out[entry["slug"]] = yaml.safe_load(p.read_text())["questions"] if p.exists() else []
+        out[entry["slug"]] = (yaml.safe_load(p.read_text())["questions"] or []) if p.exists() else []
     return out
 
 
