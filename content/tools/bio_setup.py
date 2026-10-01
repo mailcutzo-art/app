@@ -148,6 +148,24 @@ def cmd_status(plan: list[dict]) -> int:
     return 0
 
 
+def cmd_queue(plan: list[dict], limit: int) -> int:
+    """Topics still to write: merged / file written (in progress or ready to merge) / not started."""
+    gen = Path("/tmp/claude-0/-home-user-app/e4ab6a93-22ed-5393-9b24-bcd6f28ab419/scratchpad/gen")
+    todo = []
+    for ch in plan:
+        c = Counter(q["topic"] for q in existing(ch["slug"]))
+        for t in ch["topics"]:
+            if c[t["slug"]] >= t["c"]:
+                continue
+            f = gen / f"bio_{ch['slug']}__{t['s']}.yaml"
+            todo.append((ch["slug"], t["s"], "written" if f.exists() else "new", t["c"] - c[t["slug"]]))
+    new = [x for x in todo if x[2] == "new"]
+    print(f"{len(todo)} topics unmerged: {sum(x[2] == 'written' for x in todo)} written, {len(new)} not started")
+    for ch, t, st, n in new[:limit]:
+        print(f"  {ch} {t}  ({n})")
+    return 0
+
+
 def main() -> int:
     plan = load_plan()
     cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
@@ -161,6 +179,8 @@ def main() -> int:
         return cmd_assign(plan, sys.argv[2], sys.argv[3])
     if cmd == "status":
         return cmd_status(plan)
+    if cmd == "queue":
+        return cmd_queue(plan, int(sys.argv[2]) if len(sys.argv) > 2 else 20)
     return 2
 
 
