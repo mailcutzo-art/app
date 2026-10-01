@@ -4917,7 +4917,7 @@ questions:
     stem: |-
       Consider these statements about the physical properties of amines.
       I. Trimethylamine is soluble in water because water molecules hydrogen bond to the lone pair on its nitrogen.
-      II. A tertiary amine has a boiling point close to that of an alkane of similar molar mass.
+      II. A tertiary amine boils at a lower temperature than a primary amine of comparable molar mass.
       III. Higher amines are essentially insoluble in water.
       IV. Alcohols are less polar than amines of comparable molar mass.
       Which of these statements are correct?
@@ -4927,7 +4927,7 @@ questions:
       - I and III only
       - I, II and IV only
     answer: 1
-    explanation: A tertiary amine cannot hydrogen bond with itself, so its boiling point is near that of a comparable alkane (II), yet its lone pair accepts hydrogen bonds from water (I), and higher amines are insoluble (III). IV is wrong, since NCERT notes that alcohols are more polar than amines.
+    explanation: A tertiary amine has no N–H bond and cannot hydrogen bond with itself, so it boils lower than a primary amine of comparable molar mass (II), yet its lone pair accepts hydrogen bonds from water (I), and higher amines are insoluble (III). IV is wrong, since NCERT notes that alcohols are more polar than amines.
   - id: che-amine-241
     topic: amine-physical-properties
     subtopic: Boiling points of isomers
@@ -9470,27 +9470,6 @@ questions:
       - ethanamine
     answer: 3
     explanation: C_2H_5NO_2 + 3H_2 → C_2H_5NH_2 + 2H_2O; the carbon skeleton is unchanged.
-  - id: che-amine-460
-    topic: preparation-reduction
-    subtopic: Ammonolysis
-    concept: Ammonolysis is an S_N2 nucleophilic substitution by NH_3
-    category: concept
-    format: assertion-reason
-    difficulty: 3
-    time: 50
-    ncert: true
-    battle: false
-    tags: [ammonolysis]
-    stem: |-
-      Assertion (A): Ammonolysis of an alkyl halide gives a mixture of primary, secondary and tertiary amines and the quaternary salt.
-      Reason (R): The primary amine formed is a stronger nucleophile than ammonia and reacts further with the alkyl halide.
-    options:
-      - Both A and R are true and R is the correct explanation of A
-      - Both A and R are true but R is not the correct explanation of A
-      - A is true but R is false
-      - A is false but R is true
-    answer: 0
-    explanation: Each amine formed attacks more RX, so successive alkylation gives a mixture; R explains A.
   - id: che-amine-461
     topic: preparation-reduction
     subtopic: Choosing a method
@@ -10287,3 +10266,33 @@ questions:
       - I and II only
     answer: 1
     explanation: Aniline (pK_b 9.38) is weaker than NH_3 (4.75), so II is wrong; the others are NCERT facts.
+  - id: che-amine-501
+    topic: nitrous-acid-hinsberg
+    subtopic: Nitrous acid with different classes of amines
+    concept: Primary aliphatic, secondary, tertiary aliphatic and primary aromatic amines behave differently towards NaNO_2/HCl
+    category: application
+    format: match
+    difficulty: 4
+    time: 85
+    ncert: false
+    battle: false
+    tags: [nitrous-acid, nitrosoamine, distinguishing-amines]
+    stem: |-
+      Match each amine (List I), treated with NaNO_2 and HCl at 273–278 K, with the observation (List II).
+      List I
+      P. CH_3CH_2NH_2
+      Q. (CH_3)_2NH
+      R. (CH_3)_3N
+      S. C_6H_5NH_2
+      List II
+      1. A yellow oily liquid (an N-nitrosoamine) separates
+      2. A stable solution of a diazonium salt that couples with 2-naphthol
+      3. Brisk effervescence of N_2 and an alcohol is formed
+      4. A clear solution of the ammonium nitrite salt, with no gas evolved
+    options:
+      - P-3, Q-1, R-2, S-4
+      - P-3, Q-1, R-4, S-2
+      - P-1, Q-3, R-4, S-2
+      - P-3, Q-4, R-1, S-2
+    answer: 1
+    explanation: Ethanamine gives an unstable aliphatic diazonium ion that loses N_2 at once to form ethanol. Dimethylamine, a secondary amine, gives yellow oily N-nitrosodimethylamine. Trimethylamine has no N–H, so it only forms the soluble trimethylammonium nitrite. Aniline gives a stable benzenediazonium salt in the cold, which couples with 2-naphthol.

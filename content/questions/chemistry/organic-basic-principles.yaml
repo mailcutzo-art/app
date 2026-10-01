@@ -1349,25 +1349,6 @@ questions:
       - Statement I is incorrect but Statement II is correct
     answer: 0
     explanation: Halogens are electronegative (−I), yet their lone pairs can conjugate with the ring (+R). Both statements are correct; the two effects oppose each other.
-  - id: che-goc-070
-    topic: electronic-effects
-    subtopic: Resonance
-    concept: Equal C–O bond lengths in the carboxylate ion
-    category: concept
-    format: direct
-    difficulty: 3
-    time: 50
-    ncert: true
-    battle: true
-    tags: [resonance, bond-length]
-    stem: In the acetate ion (CH_3COO^−), the two carbon–oxygen bonds are
-    options:
-      - one single and one double, of different lengths
-      - of equal length, between a single and a double bond
-      - both pure double bonds
-      - both pure single bonds
-    answer: 1
-    explanation: The negative charge and the π bond are delocalised over both oxygens by resonance, so both C–O bonds are identical, with lengths intermediate between C–O and C=O.
   - id: che-goc-071
     topic: electronic-effects
     subtopic: Acidity of phenol
@@ -8551,25 +8532,6 @@ questions:
       - III and IV only
     answer: 0
     explanation: 3-Methylbutane should be numbered from the other end (2-methylbutane), and 2-ethylpropane is really 2-methylbutane (longest chain missed). I and III are correct.
-  - id: che-goc-434
-    topic: iupac-nomenclature
-    subtopic: Alcohols
-    concept: Branched secondary alcohol naming
-    category: application
-    format: direct
-    difficulty: 3
-    time: 60
-    ncert: false
-    battle: true
-    tags: [iupac, alcohol]
-    stem: The IUPAC name of CH_3–CH(OH)–CH_2–CH(CH_3)–CH_3 is
-    options:
-      - 2-methylpentan-4-ol
-      - 4-methylpentan-2-ol
-      - 1,3-dimethylbutan-1-ol
-      - 4-methylpentan-1-ol
-    answer: 1
-    explanation: "The –OH must get the lowest locant, so numbering starts from the left end: –OH on C2 and methyl on C4, giving 4-methylpentan-2-ol."
   - id: che-goc-435
     topic: iupac-nomenclature
     subtopic: Unsaturated alcohols
@@ -9899,3 +9861,115 @@ questions:
       - C_5H_{12}O
     answer: 2
     explanation: Moles - C 4.54, H 9.1, O 2.275; ratio 2:4:1, empirical C_2H_4O (44). Molar mass = 2 × 44 = 88, so n = 2 and the formula is C_4H_8O_2.
+  - id: che-goc-501
+    topic: classification-functional-groups
+    subtopic: Polyfunctional compounds
+    concept: Aspirin carries a carboxylic acid and an ester, not a free phenol or ketone
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: false
+    battle: true
+    tags: [functional-groups, aspirin]
+    stem: Aspirin (2-acetoxybenzoic acid) contains which pair of functional groups?
+    options:
+      - Carboxylic acid and ester
+      - Phenolic –OH and carboxylic acid
+      - Ester and ketone
+      - Carboxylic acid and ether
+    answer: 0
+    explanation: Aspirin has a –COOH group and an acetoxy group, –OCOCH_3, on adjacent ring carbons. The acetoxy group is an ester because the phenolic –OH of salicylic acid has been acetylated; the acetyl C=O is part of the ester, not a separate ketone, and no free phenolic –OH remains.
+  - id: che-goc-502
+    topic: structural-representation
+    subtopic: Molecular formula and unsaturation
+    concept: Degree of unsaturation from a formula that contains nitrogen
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: false
+    battle: true
+    formula: DU = (2C + 2 + N − H − X)/2
+    tags: [degree-of-unsaturation, molecular-formula]
+    stem: The degree of unsaturation (rings plus π bonds) of paracetamol, C_8H_9NO_2, is
+    options:
+      - '4'
+      - '5'
+      - '6'
+      - '3'
+    answer: 1
+    explanation: DU = (2C + 2 + N − H)/2 = (16 + 2 + 1 − 9)/2 = 5. Oxygen does not change the count, but each trivalent N adds one. This matches the structure, a benzene ring (1 ring + 3 π bonds = 4) plus one C=O π bond. Ignoring N would give a non-integer 4.5, a warning that something was left out.
+  - id: che-goc-503
+    topic: carbon-tetravalence
+    subtopic: Hybrid orbital overlap
+    concept: Hybrid orbitals overlapping in each C–C σ bond of a conjugated enyne
+    category: application
+    format: match
+    difficulty: 3
+    time: 70
+    ncert: false
+    battle: false
+    tags: [hybridisation, sigma-bond, enyne]
+    stem: |-
+      For pent-3-en-1-yne, HC≡C–CH=CH–CH_3 (numbered from the alkyne end), match each C–C σ bond (List I) with the hybrid orbitals that overlap to form it (List II).
+      List I
+      P. C1–C2
+      Q. C2–C3
+      R. C3–C4
+      S. C4–C5
+      List II
+      1. sp^2–sp^3
+      2. sp^2–sp^2
+      3. sp–sp
+      4. sp–sp^2
+    options:
+      - P-3, Q-4, R-1, S-2
+      - P-4, Q-3, R-2, S-1
+      - P-3, Q-4, R-2, S-1
+      - P-3, Q-2, R-4, S-1
+    answer: 2
+    explanation: C1 and C2 are sp (triple bond), C3 and C4 are sp^2 (double bond) and C5 is sp^3. So the σ bonds are C1–C2 sp–sp, C2–C3 sp–sp^2, C3–C4 sp^2–sp^2 and C4–C5 sp^2–sp^3. The π bonds in the multiple bonds come from unhybridised p orbitals and are not counted here.
+  - id: che-goc-504
+    topic: electronic-effects
+    subtopic: Resonance and hyperconjugation in alkenes
+    concept: A +R or hyperconjugating group makes the terminal alkene carbon δ−, a −R group makes it δ+
+    category: application
+    format: multi-statement
+    difficulty: 4
+    time: 85
+    ncert: false
+    battle: false
+    tags: [mesomeric-effect, polarisation, hyperconjugation]
+    stem: |-
+      Considering only the resonance (mesomeric) and hyperconjugation effects, which of the following statements about the terminal =CH_2 carbon of CH_2=CH–X are correct?
+      I. In CH_2=CH–Cl it carries a partial negative charge.
+      II. In CH_2=CH–CHO it carries a partial positive charge.
+      III. In CH_2=CH–NO_2 it carries a partial negative charge.
+      IV. In CH_2=CH–CH_3 it carries a partial negative charge.
+    options:
+      - I, II and III only
+      - II, III and IV only
+      - I, III and IV only
+      - I, II and IV only
+    answer: 3
+    explanation: The lone pair of Cl (+R) is pushed towards the C=C, giving CH_2^−–CH=Cl^+, so I is correct. –CHO and –NO_2 are −R groups that pull the π electrons towards themselves (CH_2^+–CH=CH–O^−), leaving the terminal carbon δ+; II is correct and III is wrong. In propene, hyperconjugation shifts σ C–H electrons of the methyl group into the C=C, making the terminal carbon δ−, so IV is correct.
+  - id: che-goc-505
+    topic: isomerism
+    subtopic: Counting stereoisomers
+    concept: A symmetrical molecule with two stereocentres has a meso form, so it has fewer than 2^n stereoisomers
+    category: application
+    format: direct
+    difficulty: 5
+    time: 120
+    ncert: false
+    battle: false
+    tags: [meso, stereoisomers, trap]
+    stem: How many stereoisomers (each enantiomer and any meso form counted separately) exist for (i) CH_3CHBrCHBrCH_3 and (ii) CH_3CHBrCHClCH_3, respectively?
+    options:
+      - 3 and 4
+      - 4 and 4
+      - 2 and 4
+      - 3 and 3
+    answer: 0
+    explanation: Both molecules have two stereocentres, but 2^n holds only when the centres differ. In (ii) they differ, so there are two enantiomeric pairs, 4 stereoisomers. In (i) the two ends are identical, so (2R,3R) and (2S,3S) are enantiomers while (2R,3S) is a meso compound (internal mirror plane) identical to (2S,3R), giving 3 stereoisomers. Applying 2^n to both is the trap.

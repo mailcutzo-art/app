@@ -2632,26 +2632,6 @@ questions:
     answer: 1
     explanation: ΔrH° = 3(−393.5) − [−824 + 3(−110.5)] = −1180.5 − (−1155.5) = −25 kJ. Iron in its reference state has ΔfH° = 0.
 
-  - id: che-thermo-126
-    topic: hess-law
-    subtopic: Combining three equations
-    concept: ΔfH of ethyne from combustion data
-    category: numerical
-    format: direct
-    difficulty: 4
-    time: 100
-    ncert: false
-    battle: false
-    tags: [hess-law, combustion, multi-concept]
-    stem: ΔcH° of C(graphite), H_2(g) and C_2H_2(g) are −393.5, −285.8 and −1299.6 kJ mol^{-1}. Find ΔfH° of C_2H_2(g).
-    options:
-      - −1072.8 kJ mol^{-1}
-      - +620.3 kJ mol^{-1}
-      - −226.8 kJ mol^{-1}
-      - +226.8 kJ mol^{-1}
-    answer: 3
-    explanation: 2C + H_2 → C_2H_2. ΔfH° = 2(−393.5) + (−285.8) − (−1299.6) = −1072.8 + 1299.6 = +226.8 kJ mol^{-1}. Ethyne is an endothermic compound.
-
   - id: che-thermo-127
     topic: hess-law
     subtopic: Enthalpy diagram
@@ -7228,26 +7208,6 @@ questions:
     answer: 1
     explanation: ΔS_{sys} = −6010/273 = −22.0 J K^{-1} and the surroundings gain 6010 J, so ΔS_{surr} = +22.0 J K^{-1}. The total is zero because this is an equilibrium process at the melting point.
 
-  - id: che-thermo-349
-    topic: gibbs-spontaneity
-    subtopic: Gibbs equation calculation
-    concept: ΔG when both ΔH and −TΔS are negative
-    category: numerical
-    format: direct
-    difficulty: 2
-    time: 30
-    ncert: true
-    battle: true
-    tags: [gibbs-energy]
-    stem: For a reaction ΔH = −100 kJ mol^{-1} and ΔS = +50 J K^{-1} mol^{-1}. What is ΔG at 400 K?
-    options:
-      - "+100 kJ mol^{-1}"
-      - −120 kJ mol^{-1}
-      - −100 kJ mol^{-1}
-      - "−80 kJ mol^{-1}"
-    answer: 1
-    explanation: TΔS = 400 × 50 = 20 000 J = 20 kJ. ΔG = −100 − 20 = −120 kJ mol^{-1}.
-
   - id: che-thermo-350
     topic: gibbs-spontaneity
     subtopic: Finding ΔS from ΔG
@@ -10391,3 +10351,42 @@ questions:
     answer: 1
     explanation: ΔfH° of CO_2 equals ΔcH° of graphite, −393.5. Burning CO releases 283.0 and forming CO from graphite releases 110.5. Diamond, being higher in enthalpy than graphite by 1.9, releases 395.4 on combustion.
 
+  - id: che-thermo-501
+    topic: pv-work
+    subtopic: Cyclic process on a p–V diagram
+    concept: Net work over a cycle is the enclosed area, with sign set by the direction; ΔU = 0 does not make w = 0
+    category: numerical
+    format: graph
+    difficulty: 3
+    time: 55
+    ncert: false
+    battle: false
+    diagram: 'p–V diagram with volume V (L) on the x-axis marked at 1 and 4, and pressure p (bar) on the y-axis marked at 1 and 3. Four points form a rectangle: A (1 L, 3 bar) top-left, B (1 L, 1 bar) bottom-left, C (4 L, 1 bar) bottom-right, D (4 L, 3 bar) top-right. Arrows run A to B down the left edge, B to C right along the bottom edge, C to D up the right edge and D to A left along the top edge, so the cycle is traversed anticlockwise.'
+    tags: [pv-diagram, cyclic-process, sign-of-work]
+    stem: 'An ideal gas is taken round the cycle A → B → C → D → A on a p–V diagram: A (1 L, 3 bar) to B (1 L, 1 bar), B to C (4 L, 1 bar), C to D (4 L, 3 bar) and D back to A. The net work w for the cycle, in the IUPAC sign convention, is (1 L bar = 100 J)'
+    options:
+      - +600 J
+      - −600 J
+      - 0 J
+      - +900 J
+    answer: 0
+    explanation: 'Only the constant-pressure steps do work. B → C is an expansion at 1 bar: w = −1 × 3 = −3 L bar. D → A is a compression at 3 bar: w = +3 × 3 = +9 L bar. Net w = +6 L bar = +600 J, the enclosed area, positive because the cycle runs anticlockwise (work is done on the gas). ΔU = 0 for a cycle, so q = −600 J, but w itself is not zero.'
+  - id: che-thermo-502
+    topic: hess-law
+    subtopic: Enthalpy of freezing below 0 °C
+    concept: ΔH of freezing at −10 °C differs from −ΔfusH(0 °C) and is found from a thermochemical cycle using both heat capacities
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 60
+    ncert: true
+    battle: false
+    tags: [phase-change, thermochemical-cycle, heat-capacity]
+    stem: Supercooled liquid water at −10 °C freezes to ice at −10 °C. Given ΔfusH(0 °C) = +6.03 kJ mol^{-1}, C_p(liquid) = 75.3 J K^{-1} mol^{-1} and C_p(ice) = 36.8 J K^{-1} mol^{-1} (assumed constant), the ΔH of freezing 1 mol at −10 °C is about
+    options:
+      - −6.0 kJ
+      - −5.6 kJ
+      - −6.4 kJ
+      - −5.3 kJ
+    answer: 1
+    explanation: 'H is a state function, so go by a path: warm the liquid from −10 °C to 0 °C (+75.3 × 10 = +753 J), freeze it at 0 °C (−6030 J), then cool the ice to −10 °C (−36.8 × 10 = −368 J). The sum is −5645 J ≈ −5.6 kJ. Ignoring the heat-capacity steps gives −6.0 kJ, and omitting the ice-cooling step gives −5.3 kJ.'

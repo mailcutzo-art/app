@@ -246,27 +246,6 @@ questions:
     answer: 1
     explanation: "Moles of NaOH = 4/40 = 0.1 mol. Molarity = 0.1 ÷ 0.250 L = 0.4 M. Using 250 mL as if it were 1 L gives the wrong 0.1 M."
 
-  - id: che-sol-011
-    topic: concentration-terms
-    subtopic: Molality
-    concept: Molality from mass of solute and mass of solvent
-    category: numerical
-    format: direct
-    difficulty: 2
-    time: 40
-    ncert: true
-    battle: true
-    formula: m = (w_2/M_2) ÷ w_1(kg)
-    tags: [molality]
-    stem: 9 g of glucose (molar mass 180 g mol^{-1}) is dissolved in 500 g of water. The molality of the solution is
-    options:
-      - 0.01 m
-      - 0.05 m
-      - 0.1 m
-      - 0.2 m
-    answer: 2
-    explanation: "Moles of glucose = 9/180 = 0.05 mol. Molality = 0.05 ÷ 0.500 kg = 0.1 mol kg^{-1}. Forgetting to divide by the mass in kg gives 0.05."
-
   - id: che-sol-012
     topic: concentration-terms
     subtopic: Mole fraction
@@ -2319,27 +2298,6 @@ questions:
       - parts per million
     answer: 2
     explanation: "Mass by volume percentage is the mass of solute dissolved in 100 mL of solution, and NCERT notes it is commonly used in medicine and pharmacy, for example 0.9% (w/V) saline."
-
-  - id: che-sol-112
-    topic: concentration-terms
-    subtopic: Mole fraction to molality
-    concept: Molality from mole fraction of solute in water
-    category: numerical
-    format: direct
-    difficulty: 4
-    time: 90
-    ncert: false
-    battle: false
-    formula: m = 1000 x_2/(x_1 M_1)
-    tags: [molality, mole-fraction, multi-concept]
-    stem: The mole fraction of a solute in an aqueous solution is 0.2. The molality of the solution is about
-    options:
-      - 11.1 m
-      - 13.9 m
-      - 0.2 m
-      - 12.5 m
-    answer: 1
-    explanation: "Take 1 mol of solution: 0.2 mol solute and 0.8 mol water = 14.4 g = 0.0144 kg. m = 0.2/0.0144 ≈ 13.9 mol kg^{-1}. Using the total 18 g as solvent mass gives the trap 11.1 m."
 
   - id: che-sol-113
     topic: concentration-terms
@@ -10670,3 +10628,62 @@ questions:
       - Its volume is greater than the sum of the volumes of the components
     answer: 2
     explanation: "CS_2 and acetone show positive deviation: weaker dipolar interactions between them mean heat is absorbed (Δ_{mix}H > 0), volume expands and vapour pressure exceeds the Raoult value. Heat evolution would indicate negative deviation."
+  - id: che-sol-501
+    topic: types-of-solutions
+    subtopic: Physical states of solute and solvent
+    concept: A solution takes the state of its solvent, so it differs from the solute's state in six of the nine combinations
+    category: application
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    tags: [binary-solutions, solvent-state]
+    stem: The physical state of a binary solution is that of its solvent. Of the nine possible solute–solvent combinations, in how many does the solution's state differ from the solute's?
+    options:
+      - '3'
+      - '8'
+      - '6'
+      - '9'
+    answer: 2
+    explanation: Each of the three solvent states can be paired with three solute states, giving nine types. The solution has the solvent's state, so it matches the solute's state only when both are the same (gas–gas, liquid–liquid, solid–solid), which is 3 cases. In the other 9 − 3 = 6 cases the states differ, e.g. a gas in a liquid gives a liquid solution.
+  - id: che-sol-502
+    topic: osmotic-pressure
+    subtopic: Reverse osmosis
+    concept: Reverse osmosis needs an applied pressure larger than π = iCRT, and the van't Hoff factor of the salt must be included
+    category: numerical
+    format: case
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: false
+    formula: π = iCRT
+    tags: [reverse-osmosis, van-t-hoff-factor, osmotic-pressure]
+    stem: Sea water, modelled as 0.60 M NaCl (fully dissociated) at 300 K, is separated from pure water by a semipermeable membrane. A pressure of 20 bar is applied on the sea water side. (R = 0.083 L bar K^{-1} mol^{-1}) What happens?
+    options:
+      - Pure water is forced out of the sea water (reverse osmosis), because 20 bar exceeds its osmotic pressure of about 15 bar
+      - There is no net flow of water, because the applied 20 bar balances the osmotic pressure
+      - Water flows from the pure water into the sea water faster than without the applied pressure
+      - Water still flows from the pure water into the sea water, but more slowly, because π is about 30 bar and exceeds 20 bar
+    answer: 3
+    explanation: For NaCl i = 2, so π = iCRT = 2 × 0.60 × 0.083 × 300 ≈ 29.9 bar. The applied 20 bar is smaller than π, so the net driving pressure of about 10 bar still favours flow into the sea water; pressure on that side opposes it and only slows it. Reverse osmosis needs P > π. Ignoring i gives π ≈ 15 bar and the wrong conclusion that 20 bar reverses the flow.
+  - id: che-sol-503
+    topic: vant-hoff-factor
+    subtopic: Weak electrolyte from colligative data
+    concept: The degree of dissociation from ΔT_f gives K_a through K_a = Cα^2/(1 − α) for a monobasic acid
+    category: numerical
+    format: direct
+    difficulty: 5
+    time: 120
+    ncert: false
+    battle: false
+    formula: i = ΔT_f/(K_f m) = 1 + α; K_a = Cα^2/(1 − α)
+    tags: [van-t-hoff-factor, degree-of-dissociation, ionisation-constant]
+    stem: A 0.10 molal aqueous solution of a weak monobasic acid HA freezes at −0.223 °C (K_f = 1.86 K kg mol^{-1}). Treating it as 0.10 mol L^{-1} for the equilibrium HA ⇌ H^+ + A^−, the K_a of HA is about
+    options:
+      - 4.9 × 10^{-3}
+      - 4.0 × 10^{-3}
+      - 4.9 × 10^{-2}
+      - 2.0 × 10^{-2}
+    answer: 0
+    explanation: i = ΔT_f/(K_f m) = 0.223/(1.86 × 0.10) ≈ 1.20. HA gives two particles, so i = 1 + α and α ≈ 0.20. K_a = Cα^2/(1 − α) = 0.10 × (0.199)^2/0.801 ≈ 4.9 × 10^{-3}. Dropping 1 − α gives 4.0 × 10^{-3}, omitting C gives 4.9 × 10^{-2}, and Cα gives 2.0 × 10^{-2}.

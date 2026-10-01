@@ -1,0 +1,471 @@
+# Biology chapter and topic plan (NEET UG syllabus, NCERT Class 11-12 Biology, rationalised edition).
+# 34 chapters x 500 questions; only chapters marked `active: true` are being written (the first five). Digestion and Absorption, Strategies for Enhancement in Food
+# Production, Reproduction in Organisms and Environmental Issues are not in the NEET syllabus.
+# Each topic: s = slug (prefixed with the chapter prefix in the bank), n = name (<= 60 chars),
+# c = questions planned, k = scope hint for writers. bio_setup.py checks every chapter sums to 500.
+# Existing test questions keep their slugs (keep: true) so they stay valid.
+
+- slug: living-world
+  active: true
+  prefix: living
+  name: The Living World
+  classes: [11]
+  topics:
+    - {s: what-is-living, n: What is living, c: 60, k: "growth, reproduction, metabolism, cellular organisation, consciousness as the defining feature; isolated metabolic reactions in vitro; why growth and reproduction are not universal criteria"}
+    - {s: diversity-nomenclature, n: Diversity and binomial nomenclature, c: 110, k: "biodiversity, need for classification, ICBN/ICZN rules of binomial nomenclature, writing scientific names, author citation, examples from NCERT"}
+    - {s: taxonomic-hierarchy, n: Taxonomic categories and hierarchy, c: 140, k: "species, genus, family, order, class, phylum/division, kingdom; examples of man, housefly, mango, wheat; each category with its definition; units of classification"}
+    - {s: taxonomical-aids, n: Taxonomical aids, c: 100, k: "herbarium, botanical gardens, museum, zoological parks, key, flora, manual, monograph, catalogue; what each provides"}
+    - {s: systematics-concepts, n: Taxonomy, systematics and concepts, c: 90, k: "taxonomy vs systematics, characterisation, identification, classification, nomenclature; species concept; Linnaeus; contributions of Whittaker/Haeckel where NCERT gives them"}
+
+- slug: biological-classification
+  active: true
+  prefix: bioclass
+  name: Biological Classification
+  classes: [11]
+  topics:
+    - {s: classification-history, n: History of classification, c: 60, k: "Linnaeus two kingdoms, Whittaker five kingdoms and the criteria used, Woese three domains"}
+    - {s: monera, n: Kingdom Monera, c: 80, k: "archaebacteria, eubacteria, cyanobacteria, mycoplasma; shape, nutrition, reproduction, examples, extremophiles"}
+    - {s: protista, n: Kingdom Protista, c: 70, k: "chrysophytes, dinoflagellates, euglenoids, slime moulds, protozoans; structure and examples"}
+    - {s: fungi, n: Kingdom Fungi, c: 90, k: "structure, nutrition, reproduction; Phycomycetes, Ascomycetes, Basidiomycetes, Deuteromycetes; examples"}
+    - {s: plantae-animalia, n: Kingdoms Plantae and Animalia, c: 40, k: "five-kingdom placement; alternation of generations as NCERT states it; Whittaker's criteria"}
+    - {s: lichens-mycorrhiza, n: Lichens and mycorrhiza, c: 30, k: "symbiosis, partners, roles, indicators"}
+    - {s: viruses-viroids-prions, n: Viruses, viroids and prions, c: 80, k: "structure of virus, bacteriophage, TMV, nucleic acid, capsid, diseases, viroid, prion; Ivanowsky, Beijerinck, Stanley"}
+    - {s: kingdom-comparisons, n: Comparisons across kingdoms, c: 50, k: "cell type, cell wall, nutrition, mode of reproduction comparisons across kingdoms; exceptions"}
+
+- slug: plant-kingdom
+  active: true
+  prefix: plantk
+  name: Plant Kingdom
+  classes: [11]
+  topics:
+    - {s: classification-systems, n: Systems of plant classification, c: 40, k: "artificial, natural, phylogenetic systems; criteria"}
+    - {s: algae, n: Algae, c: 90, k: "Chlorophyceae, Phaeophyceae, Rhodophyceae; pigments, food reserve, cell wall, flagella, reproduction, examples, economic importance"}
+    - {s: bryophytes, n: Bryophytes, c: 70, k: "liverworts and mosses; gametophyte and sporophyte, life cycle, examples, ecological importance"}
+    - {s: pteridophytes, n: Pteridophytes, c: 70, k: "classes, sporophyll, heterospory, prothallus, life cycle, examples"}
+    - {s: gymnosperms, n: Gymnosperms, c: 70, k: "naked seeds, Cycas, Pinus, Ginkgo, Cedrus, life cycle, features"}
+    - {s: angiosperms, n: Angiosperms, c: 50, k: "monocots vs dicots, flower, double fertilisation outline, seed enclosed in fruit"}
+    - {s: life-cycles, n: Plant life cycles, c: 59, k: "alternation of generations, haplontic, diplontic and haplo-diplontic cycles, ploidy at each stage, examples"}
+    - {s: plant-group-comparisons, n: Comparisons of plant groups, c: 51, k: "algae vs bryophytes vs pteridophytes vs gymnosperms vs angiosperms; sequence"}
+
+- slug: animal-kingdom
+  active: true
+  prefix: animk
+  name: Animal Kingdom
+  classes: [11]
+  topics:
+    - {s: classification-basis, n: Basis of classification, c: 61, k: "levels of organisation, symmetry, diploblastic/triploblastic, coelom types, segmentation, notochord, digestive and circulatory systems"}
+    - {s: porifera-coelenterata, n: Porifera and Coelenterata, c: 60, k: "sponges (canal system, spicules) and Cnidaria (polyp, medusa, cnidoblasts), examples"}
+    - {s: platyhelminthes-aschelminthes, n: Ctenophora, Platyhelminthes, Aschelminthes, c: 60, k: "comb plates, flame cells, parasites, pseudocoelom, examples"}
+    - {s: annelida-arthropoda, n: Annelida and Arthropoda, c: 70, k: "metameric segmentation, parapodia, jointed appendages, exoskeleton, examples, organs"}
+    - {s: mollusca-echinodermata, n: Mollusca, Echinodermata, Hemichordata, c: 59, k: "mantle, radula, water-vascular system, Aristotle's lantern, proboscis gland, examples"}
+    - {s: chordata-vertebrates, n: Chordata and Cyclostomata, c: 40, k: "protochordates, vertebrate features, Cyclostomata, jawless fish"}
+    - {s: pisces, n: Pisces, c: 50, k: "Chondrichthyes and Osteichthyes, fins, scales, gills, swim bladder, examples"}
+    - {s: amphibia-reptilia, n: Amphibia and Reptilia, c: 50, k: "skin, heart, respiration, eggs, examples"}
+    - {s: aves-mammalia, n: Aves and Mammalia, c: 50, k: "flight adaptations, pneumatic bones, mammary glands, diaphragm, examples"}
+
+- slug: morphology-flowering-plants
+  active: true
+  prefix: morph
+  name: Morphology of Flowering Plants
+  classes: [11]
+  topics:
+    - {s: root, n: The root, c: 60, k: "regions, tap and fibrous roots, adventitious roots, modifications (storage, prop, stilt, pneumatophores)"}
+    - {s: stem, n: The stem, c: 50, k: "nodes, internodes, modifications (tendril, thorn, runner, rhizome, tuber, bulb)"}
+    - {s: leaf, n: The leaf, c: 60, k: "parts, venation, simple and compound leaves, phyllotaxy, modifications"}
+    - {s: inflorescence, n: Inflorescence, c: 40, k: "racemose and cymose types, examples"}
+    - {s: flower, n: The flower, c: 90, k: "parts, symmetry, position of ovary, aestivation, placentation, calyx, corolla, androecium, gynoecium"}
+    - {s: fruit-seed, n: The fruit and the seed, c: 60, k: "fruit types, parts of the seed, dicot and monocot seed structure"}
+    - {s: families, n: Semi-technical description of families, c: 70, k: "Fabaceae, Solanaceae, Liliaceae: floral characters, floral formula, floral diagram, examples"}
+    - {s: morphology-comparisons, n: Morphology comparisons, c: 70, k: "dicot vs monocot features, modifications by function, examples"}
+
+- slug: anatomy-flowering-plants
+  prefix: anat
+  name: Anatomy of Flowering Plants
+  classes: [11]
+  topics:
+    - {s: meristems, n: Meristematic tissues, c: 50, k: "apical, intercalary, lateral meristems"}
+    - {s: permanent-tissues, n: Permanent tissues, c: 90, k: "simple (parenchyma, collenchyma, sclerenchyma) and complex (xylem, phloem) tissues, cell types, functions"}
+    - {s: tissue-systems, n: The tissue systems, c: 70, k: "epidermal, ground and vascular tissue systems, stomata, trichomes, vascular bundle types"}
+    - {s: dicot-anatomy, n: Dicot root and stem anatomy, c: 90, k: "tissues in transverse section, arrangement, vascular bundles, differences"}
+    - {s: monocot-anatomy, n: Monocot root and stem anatomy, c: 60, k: "tissues in transverse section, scattered bundles, comparison with dicot"}
+    - {s: leaf-anatomy, n: Anatomy of the leaf, c: 40, k: "dorsiventral and isobilateral leaves, mesophyll, bulliform cells"}
+    - {s: secondary-growth, n: Secondary growth, c: 100, k: "vascular cambium, cork cambium, annual rings, heartwood and sapwood, bark, lenticels"}
+
+- slug: structural-organisation-animals
+  prefix: soa
+  name: Structural Organisation in Animals
+  classes: [11]
+  topics:
+    - {s: epithelial-tissue, n: Epithelial tissue, c: 70, k: "types, location, functions, cell junctions"}
+    - {s: connective-tissue, n: Connective tissue, c: 90, k: "loose, dense, specialised: cartilage, bone, blood; fibres and cells"}
+    - {s: muscle-neural-tissue, n: Muscular and neural tissue, c: 70, k: "skeletal, smooth, cardiac muscle; neurons, neuroglia"}
+    - {s: cockroach, n: Cockroach, c: 100, k: "morphology, anatomy, digestive, circulatory, respiratory, excretory, nervous, reproductive systems as NCERT gives them"}
+    - {s: earthworm, n: Earthworm, c: 70, k: "morphology, anatomy, systems, clitellum, typhlosole, nephridia"}
+    - {s: frog, n: Frog, c: 70, k: "morphology, anatomy, systems, reproduction, development"}
+    - {s: tissue-comparisons, n: Comparisons of tissues and animals, c: 30, k: "comparisons across tissue types and across the three animals"}
+
+- slug: cell
+  prefix: cell
+  name: "Cell: The Unit of Life"
+  classes: [11]
+  topics:
+    - {s: cell-theory, n: Cell theory and discovery, c: 40, k: "Schleiden, Schwann, Virchow; cell as a unit; microscopy"}
+    - {s: cell-types, n: Prokaryotic and eukaryotic cells, c: 60, keep: true, k: "bacteria, mycoplasma, cyanobacteria structure; mesosome, nucleoid, plasmid, 70S; eukaryotic differences"}
+    - {s: envelope-membrane, n: Cell envelope and cell membrane, c: 70, k: "fluid mosaic model, lipids and proteins, transport across membrane, cell wall of plants and bacteria"}
+    - {s: endomembrane-system, n: Endomembrane system, c: 70, k: "ER, Golgi, lysosomes, vacuoles; functions and relationships"}
+    - {s: organelles, n: Cell organelles, c: 100, keep: true, k: "mitochondria, plastids, ribosomes, peroxisomes, glyoxysomes; structure and function"}
+    - {s: cytoskeleton-centrioles, n: Cytoskeleton, cilia, flagella, centrioles, c: 40, k: "microtubules, filaments, 9+2 arrangement, basal body, centrosome"}
+    - {s: nucleus-chromosomes, n: Nucleus and chromosomes, c: 70, k: "nuclear envelope, pores, nucleolus, chromatin, centromere, chromosome types"}
+    - {s: cell-comparisons, n: Plant vs animal cell comparisons, c: 50, k: "comparison tables, diagrams, exceptions"}
+
+- slug: biomolecules
+  prefix: biomol
+  name: Biomolecules
+  classes: [11]
+  topics:
+    - {s: chemical-composition, n: Chemical composition of living tissue, c: 50, k: "acid-insoluble and acid-soluble pools, elements, primary and secondary metabolites, biomacromolecules"}
+    - {s: amino-acids-proteins, n: Amino acids and proteins, c: 60, k: "amino acid structure and classes, zwitterion, peptide bond, protein types and roles"}
+    - {s: protein-structure, n: Levels of protein structure, c: 60, k: "primary to quaternary; haemoglobin; diagrams"}
+    - {s: carbs-lipids, n: Carbohydrates and lipids, c: 80, k: "mono-, di-, polysaccharides, glycosidic bond; fatty acids, glycerol, phospholipids, lecithin"}
+    - {s: nucleic-acids, n: Nucleic acids, c: 60, k: "nucleotides, nitrogenous bases, sugars, phosphodiester bond; DNA vs RNA as NCERT states"}
+    - {s: enzyme-nature, n: Enzymes - nature and classification, c: 70, k: "chemical nature, ribozymes, cofactors, prosthetic group, coenzyme, metal ions, six classes of enzymes, active site"}
+    - {s: enzyme-action, n: Enzyme action and factors, c: 70, k: "transition state, activation energy, temperature, pH, substrate concentration, Km, inhibition (competitive), graphs"}
+    - {s: metabolism, n: Metabolism and the living state, c: 50, k: "metabolic pathways, anabolic and catabolic, dynamic state, ATP, free energy as NCERT gives them"}
+
+- slug: cell-cycle
+  prefix: cellcycle
+  name: Cell Cycle and Cell Division
+  classes: [11]
+  topics:
+    - {s: phases, n: Phases of the cell cycle, c: 70, k: "interphase G1, S, G2, G0, M phase, checkpoints as NCERT states"}
+    - {s: mitosis, n: Mitosis, c: 120, k: "prophase, metaphase, anaphase, telophase, cytokinesis, events, spindle, significance, diagrams"}
+    - {s: meiosis-one, n: Meiosis I, c: 110, k: "prophase I substages, synapsis, crossing over, chiasmata, metaphase I, anaphase I, diagrams"}
+    - {s: meiosis-two-significance, n: Meiosis II and significance, c: 70, k: "events, results, genetic variation, comparison with mitosis II"}
+    - {s: mitosis-meiosis-comparison, n: Mitosis vs meiosis, c: 60, k: "side-by-side comparisons, occurrence, products, ploidy"}
+    - {s: dna-chromosome-counting, n: DNA and chromosome counting, c: 70, k: "DNA content and chromosome number at each stage; gametes; numerical reasoning with 2C, 4C, 2n, n"}
+
+- slug: transport-in-plants
+  prefix: transport
+  name: Transport in Plants
+  classes: [11]
+  topics:
+    - {s: means-of-transport, n: Means of transport, c: 80, k: "diffusion, facilitated diffusion, porins, aquaporins, active transport, symport, antiport, uniport"}
+    - {s: water-relations, n: Plant-water relations, c: 90, k: "water potential, osmosis, osmotic and pressure potential, plasmolysis, imbibition, numericals on water potential"}
+    - {s: long-distance-water, n: Long-distance water transport, c: 80, k: "apoplast, symplast, root pressure, transpiration pull, cohesion-tension"}
+    - {s: transpiration, n: Transpiration, c: 80, k: "stomata, guard cells, factors, transpiration and photosynthesis, guttation"}
+    - {s: mineral-uptake, n: Uptake and translocation of mineral ions, c: 50, k: "active uptake, xylem translocation, phloem export"}
+    - {s: phloem-transport, n: Phloem transport, c: 70, k: "pressure-flow hypothesis, source and sink"}
+    - {s: transport-comparisons, n: Transport comparisons, c: 50, k: "xylem vs phloem, apoplast vs symplast, passive vs active"}
+
+- slug: mineral-nutrition
+  prefix: mineral
+  name: Mineral Nutrition
+  classes: [11]
+  topics:
+    - {s: essential-elements, n: Essential mineral elements, c: 90, k: "criteria, macro- and micronutrients, categories by function"}
+    - {s: deficiency-symptoms, n: Deficiency symptoms, c: 100, k: "chlorosis, necrosis, stunted growth, mobile and immobile elements, diagnostic patterns"}
+    - {s: element-roles, n: Roles of mineral elements, c: 90, k: "role of N, P, K, Ca, Mg, S, Fe, Mn, Zn, Cu, B, Mo, Cl, Ni in the plant"}
+    - {s: toxicity-hydroponics, n: Toxicity and hydroponics, c: 50, k: "toxicity of micronutrients, Hoagland solution, soilless culture"}
+    - {s: nitrogen-metabolism, n: Nitrogen metabolism, c: 100, k: "nitrogen cycle, biological fixation, nitrogenase, nodule formation, leghaemoglobin, ammonification, nitrification, denitrification"}
+    - {s: amino-acid-synthesis, n: Amino acid synthesis, c: 40, k: "reductive amination, transamination, amides, ureides"}
+    - {s: nutrition-comparisons, n: Nutrition comparisons, c: 30, k: "element vs symptom matches; free-living vs symbiotic fixers"}
+
+- slug: photosynthesis
+  prefix: photo
+  name: Photosynthesis in Higher Plants
+  classes: [11]
+  topics:
+    - {s: early-experiments, n: Early experiments, c: 50, k: "Priestley, Ingenhousz, Sachs, Engelmann, Blackman, van Niel, Hill, Calvin; what each showed"}
+    - {s: pigments-site, n: Site and pigments, c: 70, k: "chloroplast structure, pigments, absorption and action spectra, chlorophyll a and b, carotenoids"}
+    - {s: light-reaction, n: Light reaction, c: 100, k: "photosystems I and II, reaction centre, Z-scheme, photolysis of water, cyclic and non-cyclic photophosphorylation"}
+    - {s: chemiosmosis, n: ATP synthesis by chemiosmosis, c: 40, k: "proton gradient, ATP synthase, location in thylakoid"}
+    - {s: calvin-cycle, n: Calvin cycle, c: 80, k: "carboxylation, reduction, regeneration, RuBisCO, ATP and NADPH counts"}
+    - {s: c4-pathway, n: C4 pathway, c: 70, k: "Hatch-Slack, Kranz anatomy, PEP carboxylase, bundle sheath, adaptation"}
+    - {s: photorespiration, n: Photorespiration, c: 40, k: "RuBisCO oxygenase activity, organelles involved, C3 vs C4"}
+    - {s: limiting-factors, n: Factors affecting photosynthesis, c: 50, k: "Blackman's law of limiting factors, light, CO2, temperature, water, graphs"}
+
+- slug: respiration-in-plants
+  prefix: resp
+  name: Respiration in Plants
+  classes: [11]
+  topics:
+    - {s: glycolysis, n: Glycolysis, c: 70, k: "steps, ATP and NADH yield, location, substrate-level phosphorylation"}
+    - {s: fermentation, n: Fermentation and anaerobic respiration, c: 50, k: "alcoholic and lactic acid fermentation, yield, organisms"}
+    - {s: pyruvate-tca, n: Aerobic respiration and the TCA cycle, c: 90, k: "oxidative decarboxylation, Krebs cycle, products, location, key enzymes as NCERT gives them"}
+    - {s: etc-oxphos, n: Electron transport and oxidative phosphorylation, c: 90, k: "complexes, cytochromes, oxygen as final acceptor, ATP synthase, chemiosmosis"}
+    - {s: balance-sheet-rq, n: Respiratory balance sheet and RQ, c: 80, k: "ATP yield per glucose, respiratory quotient values for substrates, numericals"}
+    - {s: amphibolic-pathway, n: The amphibolic pathway, c: 50, k: "entry of fats and proteins, anabolic and catabolic roles"}
+    - {s: respiration-comparisons, n: Respiration overview and comparisons, c: 70, k: "aerobic vs anaerobic, respiration vs photosynthesis, location of each step"}
+
+- slug: plant-growth-development
+  prefix: growth
+  name: Plant Growth and Development
+  classes: [11]
+  topics:
+    - {s: growth-phases, n: Growth, phases and rates, c: 70, k: "meristematic, elongation, maturation zones; arithmetic and geometric growth; relative growth rate; sigmoid curve; numericals"}
+    - {s: differentiation-conditions, n: Differentiation and conditions for growth, c: 40, k: "differentiation, dedifferentiation, redifferentiation, plasticity, requirements"}
+    - {s: pgr-overview, n: Plant growth regulators overview, c: 30, k: "promoters and inhibitors, general features, discovery"}
+    - {s: auxins, n: Auxins, c: 60, k: "IAA, IBA, NAA, 2,4-D, apical dominance, rooting, parthenocarpy, weed control"}
+    - {s: gibberellins, n: Gibberellins, c: 50, k: "GA3, bolting, malting, fruit elongation, sugarcane"}
+    - {s: cytokinins, n: Cytokinins, c: 40, k: "zeatin, cell division, tissue culture, delay of senescence"}
+    - {s: ethylene, n: Ethylene, c: 50, k: "fruit ripening, abscission, flowering in pineapple, triple response"}
+    - {s: aba, n: Abscisic acid, c: 40, k: "stress hormone, stomatal closure, dormancy, seed maturation"}
+    - {s: photoperiod-vernalisation, n: Photoperiodism and vernalisation, c: 70, k: "short-day, long-day, day-neutral plants, critical period, vernalisation, phytochrome"}
+    - {s: pgr-comparisons, n: Hormone comparisons and matches, c: 50, k: "hormone-function matches, synergistic and antagonistic actions"}
+
+- slug: breathing-gas-exchange
+  prefix: breath
+  name: Breathing and Exchange of Gases
+  classes: [11]
+  topics:
+    - {s: respiratory-system, n: The human respiratory system, c: 70, k: "organs, structure of lungs, alveoli, pleura, conducting and exchange parts"}
+    - {s: mechanism-breathing, n: Mechanism of breathing, c: 80, k: "inspiration and expiration, diaphragm, intercostal muscles, pressure changes"}
+    - {s: lung-volumes, n: Lung volumes and capacities, c: 80, k: "TV, IRV, ERV, RV, VC, TLC, IC, FRC; numerical problems"}
+    - {s: gas-exchange, n: Exchange of gases, c: 70, k: "partial pressures, diffusion membrane, factors, solubility of CO2 and O2"}
+    - {s: oxygen-transport, n: Transport of oxygen, c: 80, k: "haemoglobin, oxygen dissociation curve, shifts, percentage saturation"}
+    - {s: co2-transport, n: Transport of carbon dioxide, c: 50, k: "bicarbonate, carbamino-haemoglobin, carbonic anhydrase, percentages"}
+    - {s: regulation-disorders, n: Regulation and disorders, c: 70, k: "respiratory rhythm centre, pneumotaxic, chemosensitive area, asthma, emphysema, occupational disorders"}
+
+- slug: body-fluids-circulation
+  prefix: circ
+  name: Body Fluids and Circulation
+  classes: [11]
+  topics:
+    - {s: blood-composition, n: Blood composition, c: 90, k: "plasma, RBC, WBC types, platelets, counts, functions"}
+    - {s: groups-coagulation, n: Blood groups and coagulation, c: 90, k: "ABO, Rh, erythroblastosis fetalis, coagulation cascade, clotting factors"}
+    - {s: lymph, n: Lymph and tissue fluid, c: 30, k: "composition, lymphatic system, function"}
+    - {s: heart-structure, n: Structure of the heart, c: 70, k: "chambers, valves, nodal tissue, circulation types in animals"}
+    - {s: cardiac-cycle, n: Cardiac cycle, c: 100, k: "systole, diastole, sounds, ECG waves, cardiac output, stroke volume, numericals"}
+    - {s: double-circulation, n: Double circulation and regulation, c: 50, k: "pulmonary and systemic circuits, hepatic portal, neural and hormonal regulation"}
+    - {s: circulatory-disorders, n: Disorders of the circulatory system, c: 70, k: "hypertension, coronary artery disease, angina, heart failure, ECG interpretation"}
+
+- slug: excretory-products
+  prefix: excr
+  name: Excretory Products and their Elimination
+  classes: [11]
+  topics:
+    - {s: modes-of-excretion, n: Modes of excretion, c: 50, k: "ammonotelism, ureotelism, uricotelism; organs in different animals"}
+    - {s: excretory-system, n: Human excretory system, c: 80, k: "kidney, nephron, structure, cortical and juxtamedullary nephrons"}
+    - {s: urine-formation, n: Urine formation, c: 110, k: "glomerular filtration, GFR, reabsorption, tubular secretion; numerical problems"}
+    - {s: concentrating-mechanism, n: Mechanism of concentrating urine, c: 70, k: "loop of Henle, vasa recta, counter-current, osmolarity gradient"}
+    - {s: kidney-regulation, n: Regulation of kidney function, c: 70, k: "ADH, RAAS, ANF, juxtaglomerular apparatus"}
+    - {s: micturition-organs, n: Micturition and other excretory organs, c: 30, k: "micturition reflex, lungs, liver, skin"}
+    - {s: excretory-disorders, n: Disorders and dialysis, c: 50, k: "uremia, calculi, glomerulonephritis, haemodialysis, kidney transplant"}
+    - {s: excretion-comparisons, n: Excretion comparisons, c: 40, k: "nitrogenous wastes matches, structure-function matches"}
+
+- slug: locomotion-movement
+  prefix: loco
+  name: Locomotion and Movement
+  classes: [11]
+  topics:
+    - {s: types-of-movement, n: Types of movement, c: 30, k: "amoeboid, ciliary, muscular movement; locomotion"}
+    - {s: muscle-types, n: Types and structure of muscle, c: 70, k: "skeletal, visceral, cardiac muscle; structure of a muscle fibre"}
+    - {s: sliding-filament, n: Contractile proteins and sliding filament theory, c: 120, k: "actin, myosin, troponin, tropomyosin, cross-bridge cycle, sarcomere, A, I, H bands, Z line, diagrams"}
+    - {s: contraction-physiology, n: Physiology of muscle contraction, c: 70, k: "neuromuscular junction, calcium, ATP, red and white fibres, muscle fatigue"}
+    - {s: axial-skeleton, n: Axial skeleton, c: 80, k: "skull, vertebral column, ribs, sternum; bone counts"}
+    - {s: appendicular-joints, n: Appendicular skeleton and joints, c: 80, k: "girdles, limb bones, fibrous, cartilaginous, synovial joints"}
+    - {s: locomotion-disorders, n: Disorders of the muscular and skeletal systems, c: 50, k: "myasthenia gravis, tetany, muscular dystrophy, arthritis, osteoporosis, gout"}
+
+- slug: neural-control
+  prefix: neural
+  name: Neural Control and Coordination
+  classes: [11]
+  topics:
+    - {s: neural-organisation, n: Neural system and neurons, c: 60, k: "neuron structure, types, CNS, PNS, somatic and autonomic systems"}
+    - {s: nerve-impulse, n: Generation and conduction of the nerve impulse, c: 100, k: "resting potential, action potential, ion movements, depolarisation, repolarisation, conduction, graphs"}
+    - {s: synapse, n: Transmission across a synapse, c: 60, k: "electrical and chemical synapses, neurotransmitters, synaptic cleft"}
+    - {s: human-brain, n: Human brain, c: 100, k: "forebrain, midbrain, hindbrain, cerebrum, corpus callosum, hypothalamus, cerebellum, medulla; functions"}
+    - {s: reflex-arc, n: Reflex action and reflex arc, c: 40, k: "reflex arc, sensory and motor neurons, example"}
+    - {s: eye, n: Sensory reception - the eye, c: 70, k: "parts of the eye, retina, rods and cones, photoreception, vision, diagrams"}
+    - {s: ear, n: The ear, c: 70, k: "parts, cochlea, organ of Corti, hearing, balance, diagrams"}
+
+- slug: chemical-coordination
+  prefix: chemco
+  name: Chemical Coordination and Integration
+  classes: [11]
+  topics:
+    - {s: endocrine-overview, n: Endocrine glands and hormones overview, c: 40, k: "endocrine glands of the body, hormones as chemical messengers"}
+    - {s: hypothalamus-pituitary, n: Hypothalamus and pituitary, c: 80, k: "releasing and inhibiting hormones, GH, PRL, TSH, ACTH, LH, FSH, MSH, oxytocin, vasopressin"}
+    - {s: pineal-thyroid-parathyroid, n: Pineal, thyroid and parathyroid, c: 80, k: "melatonin, T3, T4, thyrocalcitonin, PTH, calcium homeostasis"}
+    - {s: thymus-adrenal, n: Thymus and adrenal gland, c: 70, k: "thymosin, adrenaline, noradrenaline, cortisol, aldosterone"}
+    - {s: pancreas-gonads, n: Pancreas and gonads, c: 70, k: "insulin, glucagon, testosterone, oestrogen, progesterone"}
+    - {s: other-hormones, n: Hormones of heart, kidney and gastrointestinal tract, c: 30, k: "ANF, erythropoietin, gastrin, secretin, CCK, GIP"}
+    - {s: hormone-mechanism, n: Mechanism of hormone action, c: 60, k: "membrane-bound and intracellular receptors, cyclic AMP, second messengers"}
+    - {s: endocrine-disorders, n: Endocrine disorders, c: 70, k: "gigantism, dwarfism, acromegaly, goitre, cretinism, Graves' disease, diabetes, Cushing's, Addison's"}
+
+- slug: sexual-reproduction-plants
+  prefix: sexplant
+  name: Sexual Reproduction in Flowering Plants
+  classes: [12]
+  topics:
+    - {s: flower-structure, n: Flower - structure before fertilisation, c: 40, k: "male and female parts, pre-fertilisation events"}
+    - {s: male-gametophyte, n: Stamen, microsporangium and pollen grain, c: 90, k: "anther structure, microsporogenesis, tapetum, pollen grain wall, sporopollenin, male gametophyte"}
+    - {s: female-gametophyte, n: Pistil, megasporangium and embryo sac, c: 80, k: "ovule structure, megasporogenesis, 7-celled 8-nucleate embryo sac"}
+    - {s: pollination, n: Pollination, c: 80, k: "autogamy, geitonogamy, xenogamy, agents, adaptations, chasmogamous and cleistogamous flowers"}
+    - {s: pollen-pistil, n: Outbreeding devices and pollen-pistil interaction, c: 50, k: "self-incompatibility, dicliny, artificial hybridisation, emasculation, bagging"}
+    - {s: double-fertilisation, n: Double fertilisation, c: 60, k: "pollen tube, syngamy, triple fusion, products"}
+    - {s: embryo-endosperm, n: Post-fertilisation events, c: 60, k: "endosperm types, embryo development, dicot and monocot embryo, seed formation"}
+    - {s: apomixis-seed-fruit, n: Apomixis, polyembryony and fruit formation, c: 40, k: "apomixis, parthenocarpy, polyembryony, seed dormancy, fruit development"}
+
+- slug: human-reproduction
+  prefix: humrep
+  name: Human Reproduction
+  classes: [12]
+  topics:
+    - {s: male-system, n: Male reproductive system, c: 70, k: "testis, seminiferous tubules, accessory ducts and glands, penis, semen"}
+    - {s: female-system, n: Female reproductive system, c: 70, k: "ovaries, oviducts, uterus, vagina, accessory glands, mammary gland"}
+    - {s: gametogenesis, n: Gametogenesis, c: 90, k: "spermatogenesis, spermiogenesis, oogenesis, structure of sperm and ovum, hormonal control"}
+    - {s: menstrual-cycle, n: Menstrual cycle, c: 80, k: "phases, hormones, ovulation, graph reading, menarche, menopause"}
+    - {s: fertilisation-implantation, n: Fertilisation and implantation, c: 60, k: "sperm entry, zona pellucida, cleavage, morula, blastocyst, implantation"}
+    - {s: pregnancy-development, n: Pregnancy and embryonic development, c: 70, k: "placenta, hormones, organogenesis timeline, fetal development by month"}
+    - {s: parturition-lactation, n: Parturition and lactation, c: 60, k: "fetal ejection reflex, oxytocin, relaxin, colostrum"}
+
+- slug: reproductive-health
+  prefix: reprohealth
+  name: Reproductive Health
+  classes: [12]
+  topics:
+    - {s: rch-strategies, n: Reproductive health problems and strategies, c: 50, k: "meaning of reproductive health, RCH programmes, education, awareness"}
+    - {s: population-birth-control, n: Population explosion and birth control, c: 60, k: "causes and effects, characteristics of an ideal contraceptive"}
+    - {s: contraceptives, n: Contraceptive methods, c: 120, k: "natural, barrier, IUDs, oral pills, injectables, implants, surgical methods; mode of action; examples"}
+    - {s: mtp-sti, n: MTP and sexually transmitted infections, c: 80, k: "MTP act, conditions, safe period, STIs, prevention"}
+    - {s: infertility-art, n: Infertility and assisted reproduction, c: 90, k: "IVF, ET, ZIFT, GIFT, ICSI, IUI, AI, causes"}
+    - {s: amniocentesis, n: Amniocentesis and sex determination, c: 60, k: "prenatal diagnosis, misuse, statutory ban, genetic disorders"}
+    - {s: reproductive-comparisons, n: Reproductive health comparisons, c: 40, k: "method vs mechanism matches, acronym matches"}
+
+- slug: genetics
+  prefix: gen
+  name: Principles of Inheritance and Variation
+  classes: [12]
+  topics:
+    - {s: mendels-laws, n: "Mendel's laws", c: 100, keep: true, k: "monohybrid and dihybrid crosses, dominance, segregation, independent assortment, test cross, Punnett square, ratios"}
+    - {s: non-mendelian, n: Non-Mendelian inheritance, c: 80, keep: true, k: "incomplete dominance, codominance, multiple alleles (ABO), pleiotropy, polygenic inheritance, epistasis as NCERT gives it"}
+    - {s: chromosomal-theory, n: Chromosomal theory, linkage and recombination, c: 70, k: "Sutton and Boveri, linkage, Morgan's experiments, recombination frequency, gene mapping"}
+    - {s: sex-determination, n: Sex determination, c: 50, k: "XX-XY, XX-XO, ZW-ZZ, honeybee haplodiploidy"}
+    - {s: mutations, n: Mutations, c: 40, k: "point mutation, frameshift, chromosomal aberrations, mutagens, sickle-cell as example"}
+    - {s: pedigree-analysis, n: Pedigree analysis, c: 50, k: "symbols, inheritance patterns, autosomal and sex-linked traits; pedigree diagrams"}
+    - {s: genetic-disorders, n: Genetic disorders, c: 70, k: "haemophilia, colour blindness, sickle-cell anaemia, thalassemia, PKU, Down, Turner, Klinefelter"}
+    - {s: genetics-problems, n: Genetics numericals and problem solving, c: 40, k: "cross ratios, probabilities, genotype counts, ABO inheritance problems"}
+
+- slug: molecular-basis-inheritance
+  prefix: molbasis
+  name: Molecular Basis of Inheritance
+  classes: [12]
+  topics:
+    - {s: dna-structure, n: Structure of DNA and packaging, c: 70, k: "polynucleotide chain, Chargaff's rules, double helix, nucleosome, chromatin packaging, base composition numericals"}
+    - {s: genetic-material, n: Search for genetic material, c: 60, k: "Griffith, Avery-MacLeod-McCarty, Hershey-Chase; what each showed"}
+    - {s: replication, n: DNA replication, c: 70, k: "semi-conservative, Meselson-Stahl, enzymes, leading and lagging strand, Okazaki fragments"}
+    - {s: transcription, n: Transcription, c: 70, k: "template and coding strand, RNA polymerase, promoter, terminator, hnRNA processing in eukaryotes"}
+    - {s: genetic-code, n: The genetic code, c: 50, k: "triplet code, degeneracy, start and stop codons, universal, unambiguous; mutations and the code"}
+    - {s: translation, n: Translation, c: 70, k: "ribosome, tRNA, aminoacylation, initiation, elongation, termination, polysome"}
+    - {s: lac-operon, n: Regulation of gene expression, c: 60, k: "lac operon, inducer, repressor, regulation levels"}
+    - {s: hgp-fingerprinting, n: Human Genome Project and DNA fingerprinting, c: 50, k: "goals, methods, salient features, VNTR, applications"}
+
+- slug: evolution
+  prefix: evol
+  name: Evolution
+  classes: [12]
+  topics:
+    - {s: origin-of-life, n: Origin of life, c: 50, k: "big bang, Oparin-Haldane, Miller's experiment, chemical evolution, first life"}
+    - {s: evidences, n: Evidences of evolution, c: 70, k: "fossils, comparative anatomy (homologous and analogous organs), embryology, biochemical similarities, adaptive evidence"}
+    - {s: darwinism-adaptive-radiation, n: Adaptive radiation and theories, c: 70, k: "Darwin's finches, Australian marsupials, convergent evolution, Lamarck, natural selection"}
+    - {s: hardy-weinberg, n: Hardy-Weinberg principle, c: 60, k: "allele frequency, p2 + 2pq + q2, factors affecting equilibrium, numericals"}
+    - {s: mechanism-evolution, n: Mechanism of evolution, c: 80, k: "mutation, gene flow, genetic drift, founder effect, natural selection types (stabilising, directional, disruptive), speciation"}
+    - {s: evolution-history, n: A brief account of evolution, c: 60, k: "geological time scale, fossils, evolution of plants and animals as NCERT gives them"}
+    - {s: human-evolution, n: Origin and evolution of man, c: 60, k: "Dryopithecus, Ramapithecus, Australopithecus, Homo habilis, erectus, Neanderthal, sapiens; brain capacity"}
+    - {s: evolution-comparisons, n: Evolution comparisons and problem solving, c: 50, k: "homology vs analogy matches, evidence matches, numerical frequency problems"}
+
+- slug: human-health-disease
+  prefix: health
+  name: Human Health and Disease
+  classes: [12]
+  topics:
+    - {s: health-basics, n: Health and common disease concepts, c: 40, k: "health, infectious vs non-infectious, pathogens"}
+    - {s: pathogens-diseases, n: Common diseases of humans, c: 100, k: "typhoid, pneumonia, common cold, malaria, amoebiasis, ascariasis, filariasis, ringworm, dengue; pathogens, symptoms, vectors"}
+    - {s: immunity, n: Immunity, c: 100, k: "innate and acquired, primary and secondary response, antibodies, B and T cells, active and passive immunity, vaccination"}
+    - {s: allergy-autoimmunity, n: Allergies and autoimmunity, c: 30, k: "allergens, histamine, rheumatoid arthritis, tissue transplant"}
+    - {s: aids, n: AIDS, c: 70, k: "HIV structure, replication, transmission, symptoms, helper T cells, prevention, ELISA"}
+    - {s: cancer, n: Cancer, c: 70, k: "causes, carcinogens, oncogenes, metastasis, detection, treatment"}
+    - {s: drugs-alcohol, n: Adolescence, drug and alcohol abuse, c: 90, k: "opioids, cannabinoids, coca alkaloids, tobacco, effects, prevention"}
+
+- slug: microbes-human-welfare
+  prefix: microbes
+  name: Microbes in Human Welfare
+  classes: [12]
+  topics:
+    - {s: household-products, n: Microbes in household products, c: 60, k: "curd, dough, toddy, fermentation, cheese varieties"}
+    - {s: industrial-products, n: Microbes in industrial products, c: 90, k: "fermented beverages, antibiotics, organic acids, enzymes, bioactive molecules; microbes and products"}
+    - {s: sewage-treatment, n: Sewage treatment, c: 80, k: "primary and secondary treatment, BOD, flocs, activated sludge, anaerobic digester"}
+    - {s: biogas, n: Biogas production, c: 60, k: "methanogens, cattle dung, composition"}
+    - {s: biocontrol, n: Microbes as biocontrol agents, c: 60, k: "Bacillus thuringiensis, Trichoderma, baculoviruses, integrated pest management"}
+    - {s: biofertilisers, n: Microbes as biofertilisers, c: 80, k: "Rhizobium, Azospirillum, Azotobacter, cyanobacteria, mycorrhiza"}
+    - {s: microbe-comparisons, n: Microbe-product matches and comparisons, c: 70, k: "microbe-to-product, role comparisons, exceptions"}
+
+- slug: biotechnology-principles
+  prefix: biotech1
+  name: Biotechnology - Principles and Processes
+  classes: [12]
+  topics:
+    - {s: principles, n: Principles of biotechnology, c: 40, k: "genetic engineering, rDNA technology, tools, Cohen and Boyer"}
+    - {s: enzymes-vectors, n: Restriction enzymes and cloning vectors, c: 100, k: "restriction endonucleases, palindromic sequences, sticky ends, ligases, plasmids, pBR322, features of vectors"}
+    - {s: rdna-steps, n: Steps in recombinant DNA technology, c: 70, k: "isolation of DNA, cutting, amplification, insertion, selection, product recovery"}
+    - {s: pcr-electrophoresis, n: PCR and gel electrophoresis, c: 70, k: "steps of PCR, Taq polymerase, agarose gel, ethidium bromide, elution"}
+    - {s: host-transformation, n: Competent host and transformation, c: 60, k: "chemical treatment, heat shock, microinjection, gene gun, Agrobacterium"}
+    - {s: bioreactors, n: Bioreactors and downstream processing, c: 50, k: "stirred-tank, sparged, scale up, product formulation"}
+    - {s: selectable-markers, n: Selectable markers and insertional inactivation, c: 60, k: "antibiotic resistance, blue-white screening, beta-galactosidase, reporter"}
+    - {s: biotech-comparisons, n: Biotechnology comparisons and matches, c: 50, k: "enzyme-function matches, vector comparisons, process sequencing"}
+
+- slug: biotechnology-applications
+  prefix: biotech2
+  name: Biotechnology and its Applications
+  classes: [12]
+  topics:
+    - {s: agriculture, n: Applications in agriculture, c: 90, k: "GM crops, Bt toxin, pest resistance, RNA interference, golden rice, Meloidogyne"}
+    - {s: medicine, n: Applications in medicine, c: 100, k: "recombinant insulin, human insulin production, gene therapy, ADA deficiency"}
+    - {s: molecular-diagnosis, n: Molecular diagnosis and vaccines, c: 50, k: "PCR, ELISA, probes, recombinant vaccines"}
+    - {s: transgenic-animals, n: Transgenic animals, c: 60, k: "uses, examples, rosie, alpha-lactalbumin, safety"}
+    - {s: biosafety-biopiracy, n: Biosafety, biopiracy and patents, c: 60, k: "GEAC, ethical issues, basmati, neem, turmeric"}
+    - {s: biotech-application-comparisons, n: Application comparisons and matches, c: 80, k: "technique-application matches, organism-product matches, sequencing"}
+    - {s: gene-therapy-expression, n: Gene therapy and expression systems, c: 60, k: "ex vivo and in vivo, vectors, expression in host"}
+
+- slug: organisms-populations
+  prefix: orgpop
+  name: Organisms and Populations
+  classes: [12]
+  topics:
+    - {s: levels-environment, n: Ecology levels and the environment, c: 40, k: "organism, population, community, ecosystem, biome, biosphere; major biomes"}
+    - {s: abiotic-adaptations, n: Abiotic factors and adaptations, c: 90, k: "temperature, water, light, soil; adaptations of animals and plants; Allen's rule"}
+    - {s: responses-regulation, n: Responses to abiotic factors, c: 40, k: "regulate, conform, migrate, suspend; hibernation, aestivation, diapause"}
+    - {s: population-attributes, n: Population attributes, c: 70, k: "natality, mortality, immigration, emigration, density, age pyramids, sex ratio; numericals"}
+    - {s: growth-models, n: Population growth models, c: 90, k: "exponential and logistic growth, carrying capacity, r, Verhulst-Pearl, numericals, graphs"}
+    - {s: life-history, n: Life history variation, c: 30, k: "reproduction patterns, evolution of life history traits"}
+    - {s: interactions, n: Population interactions, c: 100, k: "predation, competition, parasitism, commensalism, mutualism, amensalism; examples; Gause's principle"}
+    - {s: ecology-comparisons, n: Ecology comparisons, c: 40, k: "interaction matches, adaptation matches, graph-based items"}
+
+- slug: ecosystem
+  prefix: ecosys
+  name: Ecosystem
+  classes: [12]
+  topics:
+    - {s: structure-function, n: Ecosystem structure and function, c: 40, k: "components, stratification, productivity, decomposition, energy flow, nutrient cycling"}
+    - {s: productivity, n: Productivity, c: 70, k: "GPP, NPP, secondary productivity, factors, global values; numericals"}
+    - {s: decomposition, n: Decomposition, c: 60, k: "detritus, fragmentation, leaching, catabolism, humification, mineralisation, factors"}
+    - {s: energy-flow, n: Energy flow, c: 90, k: "trophic levels, food chains, food web, 10 per cent law, grazing and detritus food chains, numericals"}
+    - {s: ecological-pyramids, n: Ecological pyramids, c: 70, k: "pyramids of number, biomass, energy; upright and inverted; examples; diagrams"}
+    - {s: succession, n: Ecological succession, c: 60, k: "primary, secondary, hydrarch, xerarch, pioneer, climax, seral stages"}
+    - {s: nutrient-cycling, n: Nutrient cycling, c: 60, k: "carbon cycle, phosphorus cycle, reservoirs, differences"}
+    - {s: ecosystem-services, n: Ecosystem services, c: 50, k: "services, valuation, Costanza"}
+
+- slug: biodiversity-conservation
+  prefix: biodiv
+  name: Biodiversity and Conservation
+  classes: [12]
+  topics:
+    - {s: concept-levels, n: Concept and levels of biodiversity, c: 50, k: "genetic, species, ecological diversity; numbers of species"}
+    - {s: patterns, n: Patterns of biodiversity, c: 80, k: "latitudinal gradient, species-area relationship, log-log, regression, numericals"}
+    - {s: biodiversity-loss, n: Loss of biodiversity, c: 70, k: "causes, the evil quartet, extinctions"}
+    - {s: conservation-methods, n: In situ and ex situ conservation, c: 90, k: "national parks, sanctuaries, biosphere reserves, sacred groves, zoos, gene banks, cryopreservation"}
+    - {s: hotspots-endemism, n: Hotspots and endemism, c: 60, k: "criteria, Indian hotspots, endemic species"}
+    - {s: threatened-species, n: Threatened and extinct species, c: 60, k: "Red List categories, recent extinctions, examples"}
+    - {s: protected-areas, n: Protected areas and conventions, c: 50, k: "Ramsar, Earth Summit, Biodiversity Act, CITES as NCERT states"}
+    - {s: conservation-comparisons, n: Conservation comparisons, c: 40, k: "in situ vs ex situ matches, hotspot matches, concept pairs"}
