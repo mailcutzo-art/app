@@ -88,21 +88,38 @@ def _dump(q: dict) -> str:
     return "".join("  " + line if line.strip() else line for line in text.splitlines(True))
 
 
+def _dirs(subject: str) -> list[Path]:
+    """Validated chapters live in questions/, chapters still being written in wip/ (not validated)."""
+    return [d for d in (ROOT / "questions" / subject, ROOT / "wip" / subject) if d.is_dir()]
+
+
+def _chapter_path(subject: str, chapter: str) -> Path:
+    for d in _dirs(subject):
+        if (d / f"{chapter}.yaml").exists():
+            return d / f"{chapter}.yaml"
+    raise SystemExit(f"no chapter file for {subject}/{chapter} in questions/ or wip/")
+
+
 def _subject_questions(subject: str) -> list[dict]:
     out = []
-    for path in sorted((ROOT / "questions" / subject).glob("*.yaml")):
-        out.extend(yaml.safe_load(path.read_text())["questions"] or [])
+    for d in _dirs(subject):
+        for path in sorted(d.glob("*.yaml")):
+            out.extend(yaml.safe_load(path.read_text())["questions"] or [])
     return out
 
 
 def _prefix(subject: str, slug: str) -> str:
-    syllabus = yaml.safe_load((ROOT / "syllabus.yaml").read_text())
-    entry = next(c for c in syllabus[subject] if c["slug"] == slug)
+    """The id prefix of a chapter: from syllabus.yaml, or from the Biology plan while it is in wip/."""
+    syllabus = yaml.safe_load((ROOT / "syllabus.yaml").read_text()) or {}
+    entry = next((c for c in syllabus.get(subject, []) if c["slug"] == slug), None)
+    if entry is None:
+        plan = yaml.safe_load((ROOT / "tools" / "biology_plan.yaml").read_text())
+        entry = next(c for c in plan if c["slug"] == slug)
     return f"{subject[:3]}-{entry['prefix']}-"
 
 
 def cmd_add(args: argparse.Namespace) -> int:
-    path = ROOT / "questions" / args.subject / f"{args.chapter}.yaml"
+    path = _chapter_path(args.subject, args.chapter)
     batch_path = Path(args.batch)
     chapter = yaml.safe_load(path.read_text())
     chapter["questions"] = chapter["questions"] or []
@@ -194,7 +211,7 @@ def cmd_add(args: argparse.Namespace) -> int:
 
 
 def cmd_remove(args: argparse.Namespace) -> int:
-    path = ROOT / "questions" / args.subject / f"{args.chapter}.yaml"
+    path = _chapter_path(args.subject, args.chapter)
     lines = path.read_text().splitlines(True)
     drop, removed, i = set(args.ids), [], 0
     out = []

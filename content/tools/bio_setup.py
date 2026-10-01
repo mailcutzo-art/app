@@ -1,13 +1,14 @@
 """Biology plan tooling.
 
     uv run --with pyyaml python content/tools/bio_setup.py check            # validate the plan
-    uv run --with pyyaml python content/tools/bio_setup.py setup            # syllabus + chapter files
+    uv run --with pyyaml python content/tools/bio_setup.py setup            # wip/ skeletons (active chapters)
+    uv run --with pyyaml python content/tools/bio_setup.py promote <chapter>  # finished chapter -> questions/
     uv run --with pyyaml python content/tools/bio_setup.py assign <chapter> <topic>   # a writer's brief
     uv run --with pyyaml python content/tools/bio_setup.py status           # topic progress
 
-``setup`` is idempotent: it adds the ``biology:`` section to syllabus.yaml once, creates missing chapter
-files with their topics and no questions, and rewrites the header of an existing chapter file (keeping
-its questions) so it matches the plan. Topic slugs are ``<chapter prefix>-<slug>`` unless the plan marks
+``setup`` creates content/wip/biology/<chapter>.yaml skeletons for the chapters marked ``active: true``
+in the plan. Work in wip/ is not validated or seeded. ``promote <chapter>`` moves a finished (500)
+chapter into questions/biology/ and updates the ``biology:`` section of syllabus.yaml. Topic slugs are ``<chapter prefix>-<slug>`` unless the plan marks
 ``keep: true`` (the four slugs the original test questions use).
 """
 
@@ -21,7 +22,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PLAN = ROOT / "tools" / "biology_plan.yaml"
-QDIR = ROOT / "questions" / "biology"
+QDIR = ROOT / "questions" / "biology"  # validated chapters
+WIP = ROOT / "wip" / "biology"  # chapters being written (not validated, not seeded)
 TARGET = 500
 MIX = (0.20, 0.45, 0.25, 0.10)  # easy (1-2), standard (3), hard (4), NEET+ (5)
 
@@ -57,9 +59,16 @@ def problems(plan: list[dict]) -> list[str]:
     return out
 
 
+def chapter_file(slug: str) -> Path | None:
+    for d in (QDIR, WIP):
+        if (d / f"{slug}.yaml").exists():
+            return d / f"{slug}.yaml"
+    return None
+
+
 def existing(slug: str) -> list[dict]:
-    p = QDIR / f"{slug}.yaml"
-    return (yaml.safe_load(p.read_text())["questions"] or []) if p.exists() else []
+    p = chapter_file(slug)
+    return (yaml.safe_load(p.read_text())["questions"] or []) if p else []
 
 
 def header(ch: dict, order: int) -> str:
@@ -73,31 +82,61 @@ def header(ch: dict, order: int) -> str:
 
 
 def cmd_setup(plan: list[dict]) -> int:
+    """Create wip/ skeletons for the chapters marked `active: true` in the plan (idempotent)."""
     bad = problems(plan)
     if bad:
         print("\n".join(bad))
         return 1
-    syl_path = ROOT / "syllabus.yaml"
-    text = syl_path.read_text()
-    if "\nbiology:" not in text:
-        lines = ["", "biology:"]
-        for n, ch in enumerate(plan, 1):
+    WIP.mkdir(parents=True, exist_ok=True)
+    for n, ch in enumerate(plan, 1):
+        if not ch.get("active") or chapter_file(ch["slug"]):
+            continue
+        (WIP / f"{ch['slug']}.yaml").write_text(header(ch, n) + "\n")
+        print(f"created wip/biology/{ch['slug']}.yaml")
+    return 0
+
+
+def syllabus_section(plan: list[dict]) -> str:
+    lines = ["biology:"]
+    for n, ch in enumerate(plan, 1):
+        f = QDIR / f"{ch['slug']}.yaml"
+        if f.exists():
             lines.append(
                 f"  - {{slug: {ch['slug']}, prefix: {ch['prefix']}, order: {n}, classes: {ch['classes']}, "
                 f"name: {json.dumps(ch['name'], ensure_ascii=False)}}}"
             )
-        syl_path.write_text(text.rstrip("\n") + "\n" + "\n".join(lines) + "\n")
-        print("syllabus.yaml: added biology section")
+    return "\n".join(lines) + "\n"
+
+
+def cmd_promote(plan: list[dict], chapter: str) -> int:
+    """Move a finished chapter from wip/ into questions/ and list it in syllabus.yaml."""
+    n, ch = next((i, c) for i, c in enumerate(plan, 1) if c["slug"] == chapter)
+    src = WIP / f"{chapter}.yaml"
+    if not src.exists():
+        print(f"{src} not found")
+        return 1
+    have = Counter(q["topic"] for q in existing(chapter))
+    short = [f"{t['slug']} {have[t['slug']]}/{t['c']}" for t in ch["topics"] if have[t["slug"]] != t["c"]]
+    if short:
+        print("not complete, nothing moved: " + ", ".join(short))
+        return 1
     QDIR.mkdir(parents=True, exist_ok=True)
-    for n, ch in enumerate(plan, 1):
-        p = QDIR / f"{ch['slug']}.yaml"
-        if p.exists():
-            body = p.read_text()
-            body = body[body.index("\nquestions:") + len("\nquestions:") :]
-            p.write_text(header(ch, n) + body)
-            print(f"rewrote header of {p.name}")
-        else:
-            p.write_text(header(ch, n) + "\n")
+    src.rename(QDIR / f"{chapter}.yaml")
+    # the two original test chapters must match their syllabus entry (name, order, classes)
+    for tc in plan:
+        f = QDIR / f"{tc['slug']}.yaml"
+        if f.exists() and tc["slug"] != chapter:
+            text = f.read_text()
+            text = re.sub(r"(?m)^  order: \d+$", f"  order: {plan.index(tc) + 1}", text, count=1)
+            if "\n  classes:" not in text.split("\n  topics:")[0]:
+                text = text.replace(f"  order: {plan.index(tc) + 1}\n", f"  order: {plan.index(tc) + 1}\n  classes: {tc['classes']}\n", 1)
+            f.write_text(text)
+    syl = ROOT / "syllabus.yaml"
+    text = syl.read_text()
+    text = text[: text.index("\nbiology:") + 1] if "\nbiology:" in text else text.rstrip("\n") + "\n\n"
+    syl.write_text(text + syllabus_section(plan))
+    print(f"promoted {chapter} (order {n}); syllabus.yaml lists "
+          f"{sum(1 for c in plan if (QDIR / (c['slug'] + '.yaml')).exists())} biology chapters")
     return 0
 
 
@@ -175,6 +214,8 @@ def main() -> int:
         return 1 if bad else 0
     if cmd == "setup":
         return cmd_setup(plan)
+    if cmd == "promote":
+        return cmd_promote(plan, sys.argv[2])
     if cmd == "assign":
         return cmd_assign(plan, sys.argv[2], sys.argv[3])
     if cmd == "status":
