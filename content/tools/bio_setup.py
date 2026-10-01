@@ -178,6 +178,7 @@ def cmd_assign(plan: list[dict], chapter: str, topic: str) -> int:
 
 def cmd_status(plan: list[dict]) -> int:
     done = 0
+    plan = [c for c in plan if c.get("active")]
     for ch in plan:
         c = Counter(q["topic"] for q in existing(ch["slug"]))
         total = sum(c.values())
@@ -191,7 +192,7 @@ def cmd_queue(plan: list[dict], limit: int) -> int:
     """Topics still to write: merged / file written (in progress or ready to merge) / not started."""
     gen = Path("/tmp/claude-0/-home-user-app/e4ab6a93-22ed-5393-9b24-bcd6f28ab419/scratchpad/gen")
     todo = []
-    for ch in plan:
+    for ch in [c for c in plan if c.get("active")]:
         c = Counter(q["topic"] for q in existing(ch["slug"]))
         for t in ch["topics"]:
             if c[t["slug"]] >= t["c"]:
