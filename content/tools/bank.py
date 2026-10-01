@@ -126,7 +126,11 @@ def cmd_add(args: argparse.Namespace) -> int:
     topics = {t["slug"] for t in chapter["chapter"]["topics"]}
     prefix = _prefix(args.subject, args.chapter)
     existing = _subject_questions(args.subject)
+    # validate.py requires stems to be unique across every subject, so compare against all of them
     stems = {_stem_key(q["stem"]) for q in existing}
+    for other in sorted(p.name for p in (ROOT / "questions").iterdir() if p.is_dir()):
+        if other != args.subject:
+            stems |= {_stem_key(q["stem"]) for q in _subject_questions(other)}
     index = [(q["id"], _shingles(q)) for q in existing]
     inv: dict[str, list[int]] = {}
     for i, (_, s) in enumerate(index):
