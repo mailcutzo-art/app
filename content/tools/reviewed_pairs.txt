@@ -1,0 +1,17 @@
+# Near-duplicate pairs (audit.py --pairs) that were read side by side and judged to test different
+# ideas, so the audit stops flagging them. One pair per line: <id> <id>   # why
+che-basic-008 che-basic-009   # leading zeros vs trailing zero in scientific notation
+che-basic-012 che-basic-058   # addition (decimal places) vs multiplication (sig figs)
+che-basic-012 che-basic-159   # addition vs mixed multiply/divide
+che-basic-012 che-basic-459   # addition vs subtract-then-multiply
+che-basic-058 che-basic-208   # product vs difference
+che-basic-159 che-basic-459   # division rule vs two-stage rule
+che-atom-121 che-atom-428     # cm^-1 to m^-1 unit trap
+che-per-130 che-per-238       # Cu (d-block, period 4) vs Fr (group 1, period 7)
+che-per-065 che-per-445       # position of the large IE jump differs (group 13 vs 14)
+che-bond-177 che-goc-007      # different structures, different carbon types
+che-kin-071 che-kin-241       # first order vs zero order
+che-kin-107 che-kin-309       # different stoichiometry traps (2A->B vs A->3B)
+che-dfb-196 che-dfb-297       # Cm (6d1) vs Am (no 6d)
+che-ape-122 che-ape-217       # no rearrangement vs hydride shift
+che-goc-238 che-carb-269      # isomer counts for C4H8O2 vs C3H6O2
