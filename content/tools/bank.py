@@ -54,7 +54,8 @@ def _stem_key(stem: str) -> str:
 
 
 class _Dumper(yaml.SafeDumper):
-    pass
+    def increase_indent(self, flow=False, indentless=False):  # indent list items under their key
+        return super().increase_indent(flow, False)
 
 
 def _str(dumper: yaml.SafeDumper, s: str):  # literal block for multi-line stems, as in the bank
@@ -66,11 +67,23 @@ def _str(dumper: yaml.SafeDumper, s: str):  # literal block for multi-line stems
 _Dumper.add_representer(str, _str)
 
 
+class _Flow(list):
+    """Short lists kept inline (`tags: [a, b]`), as in the existing chapter files."""
+
+
+_Dumper.add_representer(
+    _Flow, lambda d, v: d.represent_sequence("tag:yaml.org,2002:seq", list(v), flow_style=True)
+)
+
+
 def _dump(q: dict) -> str:
     ordered = {k: q[k] for k in KEY_ORDER if k in q}
+    for k in ("tags", "exams"):
+        if k in ordered:
+            ordered[k] = _Flow(ordered[k])
     text = yaml.dump(
         [ordered], Dumper=_Dumper, allow_unicode=True, sort_keys=False, width=10_000,
-        default_flow_style=None, indent=2,
+        default_flow_style=False, indent=2,
     )  # fmt: skip
     return "".join("  " + line if line.strip() else line for line in text.splitlines(True))
 
@@ -78,7 +91,7 @@ def _dump(q: dict) -> str:
 def _subject_questions(subject: str) -> list[dict]:
     out = []
     for path in sorted((ROOT / "questions" / subject).glob("*.yaml")):
-        out.extend(yaml.safe_load(path.read_text())["questions"])
+        out.extend(yaml.safe_load(path.read_text())["questions"] or [])
     return out
 
 
@@ -92,6 +105,7 @@ def cmd_add(args: argparse.Namespace) -> int:
     path = ROOT / "questions" / args.subject / f"{args.chapter}.yaml"
     batch_path = Path(args.batch)
     chapter = yaml.safe_load(path.read_text())
+    chapter["questions"] = chapter["questions"] or []
     topics = {t["slug"] for t in chapter["chapter"]["topics"]}
     prefix = _prefix(args.subject, args.chapter)
     existing = _subject_questions(args.subject)
@@ -106,7 +120,11 @@ def cmd_add(args: argparse.Namespace) -> int:
         default=0,
     ) + 1
 
-    batch = yaml.safe_load(batch_path.read_text())
+    try:
+        batch = yaml.safe_load(batch_path.read_text())
+    except yaml.YAMLError as e:
+        print(f"{batch_path}: not valid YAML, fix and re-run:\n{e}")
+        return 2
     if not isinstance(batch, list):
         print("batch must be a YAML list of questions")
         return 2
@@ -167,7 +185,7 @@ def cmd_add(args: argparse.Namespace) -> int:
         out.write_text(yaml.dump(rejected, allow_unicode=True, sort_keys=False, width=10_000))
         print(f"  rejects written to {out}")
     if accepted and not args.dry_run:
-        text = path.read_text()
+        text = re.sub(r"^questions:[ ]*(\[\])?[ ]*$", "questions:", path.read_text(), flags=re.M)
         if not text.endswith("\n"):
             text += "\n"
         path.write_text(text + "".join(_dump(q) for q in accepted))
