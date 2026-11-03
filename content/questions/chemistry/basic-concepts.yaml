@@ -4273,26 +4273,6 @@ questions:
     answer: 2
     explanation: "25.6 − 3.842 = 21.758. 25.6 has one decimal place, so the difference is rounded to one decimal place: 21.8."
 
-  - id: che-basic-209
-    topic: uncertainty-sig-figs
-    subtopic: Rounding off
-    concept: When the dropped digit is 5, an odd preceding digit is increased
-    category: application
-    format: direct
-    difficulty: 3
-    time: 35
-    ncert: true
-    battle: true
-    tags: [rounding]
-    stem: Using the NCERT rounding rule, 3.555 rounded off to three significant figures is
-    options:
-      - "3.55"
-      - "3.56"
-      - "3.6"
-      - "3.50"
-    answer: 1
-    explanation: "The digit to be removed is 5 and the preceding digit is 5, which is odd, so it is increased by one: 3.56. Had the preceding digit been even, it would stay unchanged."
-
   - id: che-basic-210
     topic: uncertainty-sig-figs
     subtopic: Uncertainty in measurement
@@ -6396,26 +6376,6 @@ questions:
     answer: 3
     explanation: "Precision means the dots are close to each other; accuracy means they are close to the true value. Target 4 has a tight cluster (precise) away from the bullseye (not accurate). Target 2 is both precise and accurate."
 
-  - id: che-basic-310
-    topic: uncertainty-sig-figs
-    subtopic: Addition in scientific notation
-    concept: Adding exponential numbers with different powers of ten
-    category: numerical
-    format: direct
-    difficulty: 3
-    time: 50
-    ncert: true
-    battle: false
-    tags: [scientific-notation, addition]
-    stem: The sum (5.0 × 10^{4}) + (3.2 × 10^{3}), reported correctly, is
-    options:
-      - 8.2 × 10^{4}
-      - 5.32 × 10^{4}
-      - 5.3 × 10^{4}
-      - 8.2 × 10^{7}
-    answer: 2
-    explanation: "Convert to the same power: 5.0 × 10^4 + 0.32 × 10^4 = 5.32 × 10^4. 5.0 × 10^4 is known only to the thousands place, so the sum is 5.3 × 10^4. Adding coefficients directly gives the wrong 8.2 × 10^4."
-
   - id: che-basic-311
     topic: uncertainty-sig-figs
     subtopic: Exact numbers
@@ -6835,26 +6795,6 @@ questions:
       - A is false but R is true
     answer: 0
     explanation: "1 mol of formula units, each containing 2 ions, gives 1 mol Na^+ + 1 mol Cl^- = 2 mol of ions. R explains A."
-
-  - id: che-basic-331
-    topic: empirical-molecular-formula
-    subtopic: Molecular formula from composition
-    concept: Molecular formula of vitamin C from composition and molar mass
-    category: numerical
-    format: direct
-    difficulty: 4
-    time: 120
-    ncert: false
-    battle: false
-    tags: [molecular-formula, multi-concept]
-    stem: Vitamin C contains 40.92% C, 4.58% H and 54.50% O by mass, and its molar mass is 176 g mol^{-1}. Its molecular formula is
-    options:
-      - C_3H_4O_3
-      - C_6H_8O_6
-      - C_3H_4O_2
-      - C_6H_6O_6
-    answer: 1
-    explanation: "Moles: C = 3.41, H = 4.54, O = 3.41; ratio 1 : 1.33 : 1, which × 3 gives C_3H_4O_3 (88). n = 176/88 = 2, so C_6H_8O_6. C_3H_4O_3 is only the empirical formula."
 
   - id: che-basic-332
     topic: empirical-molecular-formula
@@ -8491,26 +8431,6 @@ questions:
       - P-1, Q-4, R-3, S-2
     answer: 2
     explanation: "0.0020 has 2 (the leading zeros do not count, the trailing zero does); 200.0 has 4; 2.02 has 3; 2 × 10^{-3} has 1."
-
-  - id: che-basic-410
-    topic: uncertainty-sig-figs
-    subtopic: Mixed operations
-    concept: Rounding the result of a multiply-divide calculation
-    category: numerical
-    format: direct
-    difficulty: 3
-    time: 60
-    ncert: true
-    battle: false
-    tags: [significant-figures]
-    stem: The value of (3.24 × 0.08666) / 5.006, reported to the correct number of significant figures, is
-    options:
-      - "0.0561"
-      - "0.05609"
-      - "0.056"
-      - "0.05"
-    answer: 0
-    explanation: "3.24 × 0.08666 = 0.28078; ÷ 5.006 = 0.056088. 3.24 has the fewest significant figures (three), so the answer is 0.0561."
 
   - id: che-basic-411
     topic: uncertainty-sig-figs
@@ -10447,3 +10367,127 @@ questions:
     answer: 2
     explanation: "n = 0.1 × 0.100 = 0.01 mol. Adding water does not add solute, so the moles stay 0.01; only the molarity halves to 0.05 M."
 
+  - id: che-basic-501
+    topic: uncertainty-sig-figs
+    subtopic: Dimensional analysis
+    concept: Distance = speed × time, with a nano prefix converted by a unit factor
+    category: numerical
+    format: direct
+    difficulty: 2
+    time: 30
+    ncert: true
+    battle: true
+    formula: d = v × t
+    tags: [dimensional-analysis, si-prefixes, sig-figs]
+    stem: If the speed of light is 3.0 × 10^8 m s^{-1}, the distance covered by light in 2.00 ns is
+    options:
+      - 6.0 m
+      - 0.60 m
+      - 0.060 m
+      - 60 m
+    answer: 1
+    explanation: 1 ns = 10^{-9} s, so d = 3.0 × 10^8 m s^{-1} × 2.00 × 10^{-9} s = 0.60 m. The speed has two significant figures, so the answer is reported as 0.60 m. The other values come from using 10^{-8}, 10^{-10} or 10^{-7} for the nano prefix.
+  - id: che-basic-502
+    topic: measurement-units
+    subtopic: Pressure and its SI unit
+    concept: Pressure = force/area; the weight of an air column per cm^2 converted to pascal
+    category: numerical
+    format: direct
+    difficulty: 3
+    time: 50
+    ncert: true
+    battle: true
+    formula: P = F/A = mg/A
+    tags: [pressure, pascal, unit-conversion]
+    stem: At sea level the air above each square centimetre of the Earth's surface has a mass of about 1034 g. Taking g = 9.8 m s^{-2}, the pressure in pascal (1 Pa = 1 N m^{-2}) is about
+    options:
+      - 1.01 × 10^5 Pa
+      - 1.01 × 10^3 Pa
+      - 1.01 × 10^8 Pa
+      - 1.03 × 10^4 Pa
+    answer: 0
+    explanation: 'Convert first: m = 1034 g = 1.034 kg and A = 1 cm^2 = 10^{-4} m^2. F = mg = 1.034 × 9.8 = 10.13 N, so P = F/A = 10.13/10^{-4} = 1.01 × 10^5 Pa, about 1 atm. Using 10^{-2} m^2 for 1 cm^2 gives 10^3 Pa, leaving the mass in grams gives 10^8 Pa, and omitting g gives 1.03 × 10^4.'
+  - id: che-basic-503
+    topic: laws-of-combination
+    subtopic: Avogadro's law
+    concept: Equal volumes of gases hold equal numbers of molecules, so atom counts follow atomicity and masses follow molar masses
+    category: application
+    format: multi-statement
+    difficulty: 3
+    time: 55
+    ncert: true
+    battle: false
+    tags: [avogadro-law, atomicity, trap]
+    stem: |-
+      At the same temperature and pressure, 1 L each of helium, hydrogen and ozone are taken. Consider the statements:
+      I. They contain the same number of molecules.
+      II. They contain the same number of atoms.
+      III. The numbers of atoms are in the ratio He : H_2 : O_3 = 1 : 2 : 3.
+      IV. Their masses are in the ratio He : H_2 : O_3 ≈ 4 : 2 : 48.
+      Which statements are correct?
+    options:
+      - I and III only
+      - I and II only
+      - I, III and IV only
+      - II, III and IV only
+    answer: 2
+    explanation: 'By Avogadro''s law equal volumes at the same T and P hold equal numbers of molecules (I is correct). Atoms per molecule are 1 (He), 2 (H_2) and 3 (O_3), so atoms are in the ratio 1 : 2 : 3 and II is wrong while III is right. Equal moles mean masses are proportional to molar masses, about 4 : 2 : 48, so IV is correct.'
+  - id: che-basic-504
+    topic: stoichiometry-limiting
+    subtopic: Gas volume analysis (eudiometry)
+    concept: Contraction on cooling and the CO_2 absorbed by KOH fix x and y of a hydrocarbon C_xH_y
+    category: numerical
+    format: case
+    difficulty: 4
+    time: 85
+    ncert: false
+    battle: false
+    formula: C_xH_y + (x + y/4)O_2 → xCO_2 + (y/2)H_2O(l)
+    tags: [eudiometry, gaseous-volumes, hydrocarbon-formula]
+    stem: 10 mL of a gaseous hydrocarbon is exploded with excess oxygen. After cooling to the original temperature and pressure (water condenses), the gas volume has decreased by 25 mL, and passing the residual gas through KOH solution decreases it by a further 30 mL. The hydrocarbon is
+    options:
+      - C_3H_8
+      - C_2H_6
+      - C_4H_6
+      - C_3H_6
+    answer: 3
+    explanation: KOH absorbs only CO_2, so 10x mL = 30 mL and x = 3. With liquid water, the contraction on cooling is 10[1 + (x + y/4) − x] = 10(1 + y/4) = 25 mL, so y = 6. The hydrocarbon is C_3H_6. C_2H_6 and C_4H_6 fit only the 25 mL contraction, and C_3H_8 fits only the 30 mL of CO_2.
+  - id: che-basic-505
+    topic: stoichiometry-limiting
+    subtopic: Analysing a mixture
+    concept: Two reactive metals with acid give two equations in mass and moles of H_2
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 85
+    ncert: false
+    battle: false
+    tags: [mixture-analysis, simultaneous-equations, metal-acid]
+    stem: A 7.8 g mixture of Mg and Al reacts completely with excess dilute HCl and gives 8.96 L of H_2 at STP. The mass of Al in the mixture is (Mg = 24, Al = 27)
+    options:
+      - 2.4 g
+      - 5.4 g
+      - 2.7 g
+      - 4.5 g
+    answer: 1
+    explanation: 'Mg + 2HCl → MgCl_2 + H_2 gives 1 mol H_2 per mol Mg, and 2Al + 6HCl → 2AlCl_3 + 3H_2 gives 1.5 mol H_2 per mol Al. Let a mol Mg and b mol Al: 24a + 27b = 7.8 and a + 1.5b = 8.96/22.4 = 0.40. Solving gives b = 0.20 and a = 0.10, so the mass of Al = 0.20 × 27 = 5.4 g (Mg is 2.4 g).'
+  - id: che-basic-506
+    topic: solution-concentration
+    subtopic: Back titration in solution stoichiometry
+    concept: 'Excess HCl found with Ba(OH)_2 is subtracted from the total HCl to get acid used by CaCO_3 (2 : 1)'
+    category: numerical
+    format: case
+    difficulty: 5
+    time: 120
+    ncert: false
+    battle: false
+    formula: CaCO_3 + 2HCl → CaCl_2 + H_2O + CO_2
+    tags: [back-titration, purity, multi-concept]
+    stem: A 10.0 g sample of impure limestone (the impurity is inert) is treated with 100 mL of 1.0 M HCl. After the reaction is complete, the excess acid is neutralised by 20.0 mL of 0.50 M Ba(OH)_2. The percentage of CaCO_3 in the sample is (Ca = 40, C = 12, O = 16)
+    options:
+      - 40%
+      - 45%
+      - 80%
+      - 90%
+    answer: 0
+    explanation: 'Total HCl = 0.100 mol. Ba(OH)_2 = 0.0200 L × 0.50 = 0.0100 mol, and each mole gives 2 mol OH^-, so excess HCl = 0.0200 mol. HCl used = 0.080 mol. CaCO_3 + 2HCl needs 2 mol HCl per mol, so CaCO_3 = 0.040 mol = 4.0 g, which is 40%. Treating Ba(OH)_2 as monoacidic gives 45%, a 1 : 1 ratio gives 80%, and both slips give 90%.'

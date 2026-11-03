@@ -7446,25 +7446,6 @@ questions:
       - 8.0 × 10^{-2} mol L^{-1} min^{-1}
     answer: 0
     explanation: A four-fold fall in 30 min is two half-lives, so t_{1/2} = 15 min, k = 0.693/15 = 0.0462 min^{-1} and [R]_0 = 2 × 0.60 = 1.20 mol L^{-1}. The initial rate is k[R]_0 = 0.0462 × 1.20 ≈ 5.5 × 10^{-2} mol L^{-1} min^{-1}. Using 0.60 mol L^{-1} as [R]_0 gives 2.8 × 10^{-2}.
-  - id: che-kin-363
-    topic: first-order
-    subtopic: Equal fractions in equal times
-    concept: 51% completion means 0.49 = 0.70^2 remains, i.e. two equal intervals
-    category: numerical
-    format: direct
-    difficulty: 4
-    time: 70
-    ncert: false
-    battle: false
-    tags: [first-order, trap]
-    stem: A first order reaction is 30% complete in 10 min. How long will it take to be 51% complete?
-    options:
-      - 17 min
-      - 20 min
-      - 15 min
-      - 30 min
-    answer: 1
-    explanation: After 10 min 70% remains, and in the next 10 min another 30% of that reacts, leaving 0.70 × 0.70 = 0.49, i.e. 51% complete after 20 min. Scaling linearly (51/30 × 10 ≈ 17 min) ignores that equal times remove equal fractions.
   - id: che-kin-364
     topic: half-life
     subtopic: Time for a given extent from the half-life
@@ -10245,3 +10226,23 @@ questions:
       - P-4, Q-2, R-1, S-3
     answer: 2
     explanation: Order is experimental and may be zero or fractional; molecularity is a whole number; the slowest step is rate-determining; an intermediate is formed and then used up.
+  - id: che-kin-501
+    topic: pseudo-first-order
+    subtopic: Conditions for pseudo first order kinetics
+    concept: Stoichiometry fixes how large the excess of B must be for [B] to stay nearly constant
+    category: numerical
+    format: direct
+    difficulty: 4
+    time: 85
+    ncert: false
+    battle: false
+    formula: t_{1/2} = 0.693/(k[B]_0)
+    tags: [pseudo-first-order, excess-reactant, stoichiometry]
+    stem: For A + 2B → products, −d[A]/dt = k[A][B] with k = 0.50 L mol^{-1} s^{-1}. With [A]_0 = 0.010 M, [B] must not fall by more than 2% of [B]_0 even after all A has reacted. For the smallest such [B]_0, the half-life of A is about
+    options:
+      - 13.9 s
+      - 1.39 s
+      - 2.77 s
+      - 0.693 s
+    answer: 1
+    explanation: Complete reaction of A uses 2 × 0.010 = 0.020 M of B, and this must be at most 2% of [B]_0, so [B]_0 ≥ 0.020/0.02 = 1.0 M. Then k′ = k[B]_0 = 0.50 s^{-1} and t_{1/2} = 0.693/0.50 ≈ 1.39 s. Forgetting the coefficient 2 gives [B]_0 = 0.50 M and 2.77 s, and the 10-fold rule of thumb gives 0.10 M and 13.9 s.
