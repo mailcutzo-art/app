@@ -13,6 +13,7 @@ chapter into questions/biology/ and updates the ``biology:`` section of syllabus
 """
 
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -25,6 +26,7 @@ PLAN = ROOT / "tools" / "biology_plan.yaml"
 QDIR = ROOT / "questions" / "biology"  # validated chapters
 WIP = ROOT / "wip" / "biology"  # chapters being written (not validated, not seeded)
 TARGET = 500
+GEN = Path(os.environ.get("BIO_GEN_DIR", "/tmp/bio_gen"))  # where writers put batch files (outside the repo)
 MIX = (0.20, 0.45, 0.25, 0.10)  # easy (1-2), standard (3), hard (4), NEET+ (5)
 
 
@@ -157,7 +159,7 @@ def cmd_assign(plan: list[dict], chapter: str, topic: str) -> int:
     d = split(n)
     base, extra = divmod(n, 4)
     pos = [base + (1 if i < extra else 0) for i in range(4)]
-    out = Path("/tmp/claude-0/-home-user-app/e4ab6a93-22ed-5393-9b24-bcd6f28ab419/scratchpad/gen")
+    out = GEN
     f = out / f"bio_{chapter}__{t['s']}.yaml"
     print(f"""ASSIGNMENT: write exactly {n} NEW questions
  Subject: biology. Chapter: {ch['name']} (slug `{chapter}`, NCERT Class {'/'.join(map(str, ch['classes']))} Biology).
@@ -190,7 +192,7 @@ def cmd_status(plan: list[dict]) -> int:
 
 def cmd_queue(plan: list[dict], limit: int) -> int:
     """Topics still to write: merged / file written (in progress or ready to merge) / not started."""
-    gen = Path("/tmp/claude-0/-home-user-app/e4ab6a93-22ed-5393-9b24-bcd6f28ab419/scratchpad/gen")
+    gen = GEN
     todo = []
     for ch in [c for c in plan if c.get("active")]:
         c = Counter(q["topic"] for q in existing(ch["slug"]))
