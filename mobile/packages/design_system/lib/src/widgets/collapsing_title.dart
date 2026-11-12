@@ -1,11 +1,14 @@
+import 'dart:async';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../icons/app_icons.dart';
 import '../theme/app_theme.dart';
 import '../tokens/app_dimens.dart';
+import '../tokens/app_motion.dart';
 import 'app_icon_button.dart';
 
 /// What a pinned header paints behind itself: the page's own background, exactly, so the header
@@ -38,7 +41,7 @@ class PageBackdrop extends InheritedWidget {
 ///
 /// With reduced motion the header still follows the finger (it is tied to the scroll position,
 /// not animated on its own).
-class SliverCollapsingTitle extends StatelessWidget {
+class SliverCollapsingTitle extends StatefulWidget {
   const SliverCollapsingTitle({
     super.key,
     required this.title,
@@ -76,49 +79,7 @@ class SliverCollapsingTitle extends StatelessWidget {
   static const double trailingSize = 56;
 
   @override
-  Widget build(BuildContext context) {
-    final back = showBack ?? (onBack != null || (Navigator.maybeOf(context)?.canPop() ?? false));
-    final text = context.text;
-    final scaler = MediaQuery.textScalerOf(context);
-    return SliverLayoutBuilder(
-      builder: (context, constraints) {
-        final width = constraints.crossAxisExtent;
-        final hasBar = back || actions.isNotEmpty;
-        final reserve = trailing == null ? 0.0 : trailingSize + AppSpacing.md;
-        final textWidth = math.max(0.0, width - 2 * AppSpacing.gutter - reserve);
-        final titleHeight = _measure(title, text.headlineLarge, textWidth, 2, scaler);
-        final subtitle = this.subtitle;
-        final subtitleHeight = subtitle == null || subtitle.isEmpty
-            ? 0.0
-            : AppSpacing.xs +
-                  _measure(subtitle, text.bodyMedium, textWidth, subtitleMaxLines, scaler);
-        final block = math.max(titleHeight + subtitleHeight, trailing == null ? 0 : trailingSize);
-        final top = hasBar ? barHeight : AppSpacing.lg;
-        final minExtent = hasBar
-            ? barHeight
-            : math.max(compactHeight, scaler.scale(text.titleLarge.fontSize!) * 1.3 + 2 * 17);
-        final maxExtent = math.max(minExtent, top + block + AppSpacing.md);
-        return SliverPersistentHeader(
-          pinned: true,
-          delegate: _CollapsingDelegate(
-            title: title,
-            subtitle: subtitle,
-            subtitleMaxLines: subtitleMaxLines,
-            trailing: trailing,
-            back: back,
-            onBack: onBack,
-            actions: actions,
-            backdrop: PageBackdrop.of(context),
-            hasBar: hasBar,
-            top: top,
-            titleHeight: titleHeight,
-            minHeight: minExtent,
-            maxHeight: maxExtent,
-          ),
-        );
-      },
-    );
-  }
+  State<SliverCollapsingTitle> createState() => _SliverCollapsingTitleState();
 
   static double _measure(String text, TextStyle style, double width, int lines, TextScaler s) {
     final painter = TextPainter(
@@ -134,6 +95,89 @@ class SliverCollapsingTitle extends StatelessWidget {
   }
 }
 
+class _SliverCollapsingTitleState extends State<SliverCollapsingTitle> {
+  /// The width the [SliverCollapsingTitle.actions] really take, once laid out; the collapsed
+  /// title stops short of them (a wide chip, a large text size).
+  final _actionsWidth = ValueNotifier<double?>(null);
+
+  @override
+  void dispose() {
+    _actionsWidth.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final SliverCollapsingTitle(
+      :title,
+      :subtitleMaxLines,
+      :trailing,
+      :onBack,
+      :showBack,
+      :actions,
+    ) = widget;
+    final back = showBack ?? (onBack != null || (Navigator.maybeOf(context)?.canPop() ?? false));
+    final text = context.text;
+    final scaler = MediaQuery.textScalerOf(context);
+    return SliverLayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.crossAxisExtent;
+        final hasBar = back || actions.isNotEmpty;
+        const trailingSize = SliverCollapsingTitle.trailingSize;
+        final reserve = trailing == null ? 0.0 : trailingSize + AppSpacing.md;
+        final textWidth = math.max(0.0, width - 2 * AppSpacing.gutter - reserve);
+        final titleHeight = SliverCollapsingTitle._measure(
+          title,
+          text.headlineLarge,
+          textWidth,
+          2,
+          scaler,
+        );
+        final subtitle = widget.subtitle;
+        final subtitleHeight = subtitle == null || subtitle.isEmpty
+            ? 0.0
+            : AppSpacing.xs +
+                  SliverCollapsingTitle._measure(
+                    subtitle,
+                    text.bodyMedium,
+                    textWidth,
+                    subtitleMaxLines,
+                    scaler,
+                  );
+        final block = math.max(titleHeight + subtitleHeight, trailing == null ? 0 : trailingSize);
+        const barHeight = SliverCollapsingTitle.barHeight;
+        final top = hasBar ? barHeight : AppSpacing.lg;
+        final minExtent = hasBar
+            ? barHeight
+            : math.max(
+                SliverCollapsingTitle.compactHeight,
+                scaler.scale(text.titleLarge.fontSize!) * 1.3 + 2 * 17,
+              );
+        final maxExtent = math.max(minExtent, top + block + AppSpacing.md);
+        return SliverPersistentHeader(
+          pinned: true,
+          delegate: _CollapsingDelegate(
+            title: title,
+            subtitle: subtitle,
+            subtitleMaxLines: subtitleMaxLines,
+            trailing: trailing,
+            back: back,
+            onBack: onBack,
+            actions: actions,
+            actionsWidth: _actionsWidth,
+            backdrop: PageBackdrop.of(context),
+            hasBar: hasBar,
+            top: top,
+            titleHeight: titleHeight,
+            minHeight: minExtent,
+            maxHeight: maxExtent,
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _CollapsingDelegate extends SliverPersistentHeaderDelegate {
   _CollapsingDelegate({
     required this.title,
@@ -143,6 +187,7 @@ class _CollapsingDelegate extends SliverPersistentHeaderDelegate {
     required this.back,
     required this.onBack,
     required this.actions,
+    required this.actionsWidth,
     required this.backdrop,
     required this.hasBar,
     required this.top,
@@ -158,6 +203,7 @@ class _CollapsingDelegate extends SliverPersistentHeaderDelegate {
   final bool back;
   final VoidCallback? onBack;
   final List<Widget> actions;
+  final ValueNotifier<double?> actionsWidth;
   final Widget backdrop;
   final bool hasBar;
   final double top;
@@ -172,7 +218,15 @@ class _CollapsingDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => maxHeight;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) => _SnapWhenResting(
+    range: maxHeight - minHeight,
+    child: ValueListenableBuilder<double?>(
+      valueListenable: actionsWidth,
+      builder: (context, measured, _) => _header(context, shrinkOffset, measured),
+    ),
+  );
+
+  Widget _header(BuildContext context, double shrinkOffset, double? measuredActions) {
     final text = context.text;
     final range = maxHeight - minHeight;
     final t = range <= 0 ? 1.0 : (shrinkOffset / range).clamp(0.0, 1.0);
@@ -192,9 +246,10 @@ class _CollapsingDelegate extends SliverPersistentHeaderDelegate {
     // Sideways first, then up: the title clears the back button before it rises into its row.
     final sideways = Curves.easeOut.transform((t / 0.22).clamp(0.0, 1.0));
     final titleLeft = ui.lerpDouble(leftOpen, leftShut, sideways)!;
+    // Measured once laid out; until then, round buttons.
     final actionsWidth = actions.isEmpty
         ? 0.0
-        : actions.length * AppSizes.iconButton + actions.length * AppSpacing.sm;
+        : (measuredActions ?? actions.length * AppSizes.iconButton) + AppSpacing.sm;
     final trailingShut = trailing != null && actions.isEmpty;
     final rightOpen =
         AppSpacing.gutter +
@@ -230,10 +285,21 @@ class _CollapsingDelegate extends SliverPersistentHeaderDelegate {
                       onPressed: onBack ?? () => Navigator.maybePop(context),
                     ),
                   const Spacer(),
-                  for (var i = 0; i < actions.length; i++) ...[
-                    if (i > 0) const SizedBox(width: AppSpacing.sm),
-                    actions[i],
-                  ],
+                  if (actions.isNotEmpty)
+                    _SizeReporter(
+                      onWidth: (width) {
+                        if (this.actionsWidth.value != width) this.actionsWidth.value = width;
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for (var i = 0; i < actions.length; i++) ...[
+                            if (i > 0) const SizedBox(width: AppSpacing.sm),
+                            actions[i],
+                          ],
+                        ],
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -312,10 +378,97 @@ class _CollapsingDelegate extends SliverPersistentHeaderDelegate {
       old.back != back ||
       old.onBack != onBack ||
       old.actions != actions ||
+      old.actionsWidth != actionsWidth ||
       old.backdrop != backdrop ||
       old.hasBar != hasBar ||
       old.top != top ||
       old.titleHeight != titleHeight ||
       old.minHeight != minHeight ||
       old.maxHeight != maxHeight;
+}
+
+/// Reports its child's width after each layout that changes it.
+class _SizeReporter extends SingleChildRenderObjectWidget {
+  const _SizeReporter({required this.onWidth, required super.child});
+
+  final ValueChanged<double> onWidth;
+
+  @override
+  RenderObject createRenderObject(BuildContext context) => _RenderSizeReporter(onWidth);
+
+  @override
+  void updateRenderObject(BuildContext context, _RenderSizeReporter renderObject) =>
+      renderObject.onWidth = onWidth;
+}
+
+class _RenderSizeReporter extends RenderProxyBox {
+  _RenderSizeReporter(this.onWidth);
+
+  ValueChanged<double> onWidth;
+  double? _reported;
+
+  @override
+  void performLayout() {
+    super.performLayout();
+    final width = size.width;
+    if (width == _reported) return;
+    _reported = width;
+    // Not during layout: the listener rebuilds the header.
+    WidgetsBinding.instance.addPostFrameCallback((_) => onWidth(width));
+  }
+}
+
+/// A header left part-way collapsed when scrolling stops settles open or shut, whichever is
+/// nearer, so it never rests half-shrunk. [range] is how far it collapses.
+class _SnapWhenResting extends StatefulWidget {
+  const _SnapWhenResting({required this.range, required this.child});
+
+  final double range;
+  final Widget child;
+
+  @override
+  State<_SnapWhenResting> createState() => _SnapWhenRestingState();
+}
+
+class _SnapWhenRestingState extends State<_SnapWhenResting> {
+  ScrollPosition? _position;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final position = Scrollable.maybeOf(context)?.position;
+    if (position == _position) return;
+    _position?.isScrollingNotifier.removeListener(_onScrolling);
+    _position = position?..isScrollingNotifier.addListener(_onScrolling);
+  }
+
+  @override
+  void dispose() {
+    _position?.isScrollingNotifier.removeListener(_onScrolling);
+    super.dispose();
+  }
+
+  void _onScrolling() {
+    final position = _position;
+    if (!mounted || position == null || position.isScrollingNotifier.value) return;
+    if (!position.hasPixels || !position.hasContentDimensions) return;
+    final pixels = position.pixels;
+    final range = widget.range;
+    if (range <= 0 || pixels <= 0 || pixels >= range) return;
+    // A short page may not scroll far enough to collapse fully: shut is as far as it goes.
+    final shut = math.min(range, position.maxScrollExtent);
+    if (shut <= 0) return;
+    final target = pixels < shut / 2 ? 0.0 : shut;
+    if ((target - pixels).abs() < 0.5) return;
+    if (AppMotion.reduced(context)) {
+      position.jumpTo(target);
+    } else {
+      unawaited(
+        position.animateTo(target, duration: AppMotion.medium, curve: AppMotion.emphasized),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }

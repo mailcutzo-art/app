@@ -155,4 +155,49 @@ void main() {
       expect(title.overlaps(back), isFalse, reason: 'step $step: $title vs $back');
     }
   });
+
+  testWidgets('let go part-way and it settles open or shut', (tester) async {
+    await _pump(tester);
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -6));
+    await tester.pumpAndSettle();
+    expect(_titleSize(tester), 32, reason: 'a little scroll settles back open');
+
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -25));
+    await tester.pumpAndSettle();
+    expect(_titleSize(tester), 20, reason: 'most of the way settles shut');
+  });
+
+  testWidgets('a wide action never runs into the collapsed title', (tester) async {
+    tester.view
+      ..physicalSize = const Size(390, 844)
+      ..devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    const chip = ValueKey('chip');
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.light(),
+        home: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverCollapsingTitle(
+                title: 'A very long screen title that needs room',
+                onBack: () {},
+                actions: const [SizedBox(key: chip, width: 140, height: 40)],
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  for (var i = 0; i < 40; i++) const SizedBox(height: 60),
+                ]),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -400));
+    await tester.pumpAndSettle();
+    final title = tester.getRect(find.text('A very long screen title that needs room'));
+    expect(title.right, lessThanOrEqualTo(tester.getRect(find.byKey(chip)).left));
+  });
 }
