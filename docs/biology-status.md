@@ -1,8 +1,8 @@
 # Biology status
 
 The plan for all 34 NEET chapters is in `content/tools/biology_plan.yaml` (500 questions each).
-**21 chapters are complete (10,500 questions)**, promoted into `content/questions/biology/` and validated.
-The other 13 are empty skeletons in `content/wip/biology/`, which the validator and seed export do not
+**26 chapters are complete (13,000 questions)**, promoted into `content/questions/biology/` and validated.
+The other 8 are empty skeletons in `content/wip/biology/`, which the validator and seed export do not
 read. `bio_setup.py promote <chapter>` moves a chapter into the validated bank once every topic reaches its
 planned count; `bio_setup.py status` shows progress.
 
@@ -13,26 +13,37 @@ Anatomy of Flowering Plants, Structural Organisation in Animals, **Cell: The Uni
 Cell Cycle and Cell Division, Transport in Plants, Mineral Nutrition, Photosynthesis in Higher Plants,
 Respiration in Plants, Plant Growth and Development, Breathing and Exchange of Gases, Body Fluids and
 Circulation, Excretory Products and their Elimination, **Locomotion and Movement**, **Neural Control and
-Coordination**, **Principles of Inheritance and Variation**.
+Coordination**, **Principles of Inheritance and Variation**, **Chemical Coordination and Integration**,
+**Sexual Reproduction in Flowering Plants**, **Human Reproduction**, **Reproductive Health**, **Molecular Basis
+of Inheritance**.
 
-## Still to write (empty skeletons in `wip/biology/`)
+## Still to write (empty skeletons in `wip/biology/`): 8 chapters, 4,000 questions
 
-Chemical Coordination, Sexual Reproduction in Flowering Plants, Human Reproduction, Reproductive Health,
-Molecular Basis of Inheritance, Evolution, Human Health and Disease, Microbes in Human Welfare,
-Biotechnology: Principles, Biotechnology: Applications, Organisms and Populations, Ecosystem,
-Biodiversity and Conservation.
+Evolution, Human Health and Disease, Microbes in Human Welfare, Biotechnology: Principles and Processes,
+Biotechnology and its Applications, Organisms and Populations, Ecosystem, Biodiversity and Conservation.
 
-## Checks run on Cell, Inheritance, Locomotion and Neural Control (added together)
+## Difficulty
+
+The first 21 chapters were written to 20 / 45 / 25 / 10 % for levels 1-5, which is harder than Physics and
+Chemistry (about 27 / 50 / 23 / 1 %). From Chemical Coordination onward the mix is 27 / 50 / 22 / 1 %
+(`bio_setup.py` `MIX`), matching the other subjects.
+
+## Checks run on the newest nine chapters
 
 - `validate.py` passes; every batch went through `bank.py` (schema, duplicate and near-duplicate checks).
 - Mix per chapter: difficulty 8 / 12 / 45 / 25 / 10 % for levels 1-5, answer positions within one point of 25 %
   each, about 38 % battle questions, 84-90 % marked as resting directly on NCERT, 31-33 % statement-type
   questions, 10-11 % diagram and graph questions.
-- **Blind review:** 520 of the new questions (weighted toward hard and numerical ones) were answered by
+- **Blind review (Cell, Inheritance, Locomotion, Neural Control):** 520 of the new questions (weighted toward hard and numerical ones) were answered by
   independent reviewers who saw only the stems and options. 518 matched the key (99.6 %). One
   assertion-reason item (`bio-gen-456`) was ambiguous and was rewritten; the other disagreement
   (`bio-neural-255`) is NCERT's own wording and was left alone. The remaining ~1,100 new questions were
   not independently re-solved.
+- **Blind review (Chemical Coordination, Sexual Reproduction in Flowering Plants, Human Reproduction,
+  Reproductive Health, Molecular Basis of Inheritance):** 500 questions, weighted toward hard and numerical
+  ones, were answered blind; 499 matched the key (99.8 %). The one mismatch (`bio-reprohealth-302`) follows
+  NCERT's own MTP Act box; the reviewer used the later 2021 amendment. One figure description
+  (`bio-molbasis-196`) was corrected. About 2,000 of these 2,500 questions were not independently re-solved.
 
 ## Scope notes
 
