@@ -42,18 +42,19 @@ class LearnScreen extends ConsumerWidget {
     final showingSaved = catalog.value?.fromCache ?? false;
     return TabPage(
       onRefresh: () => _refresh(context, ref, goal),
+      title: SliverCollapsingTitle(
+        title: 'Learn',
+        subtitle: chosen
+            ? '${goal.label} · Practise by subject, chapter and topic.'
+            : 'Practise by subject, chapter and topic.',
+      ),
       children: [
         OfflineBanner(
           visible: !online || showingSaved,
           message: online ? 'Couldn\'t reach the server — showing saved subjects' : null,
         ),
-        LargeTitle(
-          title: 'Learn',
-          subtitle: chosen
-              ? '${goal.label} · Practise by subject, chapter and topic.'
-              : 'Practise by subject, chapter and topic.',
-        ),
-        const SizedBox(height: AppSpacing.lg),
+        const SizedBox(height: AppSpacing.sm),
+        // Search scrolls away with the page; the title stays.
         const Gutter(child: _SearchEntry()),
         // The exam chosen at sign-up decides what is browsed; only an account without one
         // (an older profile) picks it here.

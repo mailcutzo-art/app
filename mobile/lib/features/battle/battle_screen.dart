@@ -102,18 +102,18 @@ class BattleScreen extends ConsumerWidget {
           // The section shows its own error.
         }
       },
+      title: SliverCollapsingTitle(
+        title: 'Battle',
+        subtitle: 'Pick a chapter, find an opponent, play live.',
+        trailing: Pressable(
+          onPressed: () => context.push(Routes.profile),
+          semanticLabel: 'Your profile',
+          child: AppAvatar(data: me.avatar.toData(), ring: true),
+        ),
+      ),
       children: [
         OfflineBanner(visible: !online, message: 'You\'re offline · battles need a connection'),
-        LargeTitle(
-          title: 'Battle',
-          subtitle: 'Pick a chapter, find an opponent, play live.',
-          trailing: Pressable(
-            onPressed: () => context.push(Routes.profile),
-            semanticLabel: 'Your profile',
-            child: AppAvatar(data: me.avatar.toData(), ring: true),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.xl),
+        const SizedBox(height: AppSpacing.md),
         Gutter(
           child: _QuickBattleSection(
             goal: goal,

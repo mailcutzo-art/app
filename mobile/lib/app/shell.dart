@@ -100,26 +100,28 @@ class _FadeIndexedStackState extends State<FadeIndexedStack> with SingleTickerPr
   }
 }
 
-/// Standard tab page: soft gradient wash behind a scrolling list that ends
-/// above the floating nav bar.
+/// Standard tab page: soft gradient wash behind scrolling content that ends above the floating
+/// nav bar.
+///
+/// The top is one of:
+/// * [title]: a [SliverCollapsingTitle] that shrinks as the page scrolls (most tabs);
+/// * [header]: a header that stays put while the content scrolls under it (Home);
+/// * neither: [children] start at the top.
 class TabPage extends StatelessWidget {
-  const TabPage({super.key, required this.children, this.onRefresh});
+  const TabPage({super.key, required this.children, this.onRefresh, this.title, this.header})
+    : assert(title == null || header == null, 'A page has a collapsing title or a fixed header');
 
   final List<Widget> children;
   final Future<void> Function()? onRefresh;
+  final SliverCollapsingTitle? title;
+  final Widget? header;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final list = ListView(
-      // Room for the floating tab bar (and the gap under it), so the last item scrolls clear.
-      padding: EdgeInsets.only(
-        bottom: AppSizes.navBar + AppSpacing.sm + AppSpacing.bottomAction(context) + AppSpacing.xxl,
-      ),
-      physics: const AlwaysScrollableScrollPhysics(),
-      children: children,
-    );
-    return DecoratedBox(
+    final title = this.title;
+    final header = this.header;
+    final wash = DecoratedBox(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -128,19 +130,86 @@ class TabPage extends StatelessWidget {
           stops: const [0, 0.22, 0.42],
         ),
       ),
-      child: SafeArea(
-        bottom: false,
-        child: onRefresh == null
-            ? list
-            : RefreshIndicator(
-                onRefresh: onRefresh!,
-                color: colors.ink,
-                backgroundColor: colors.surface,
-                child: list,
+    );
+    Widget scroll = CustomScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      slivers: [
+        ?title,
+        SliverPadding(
+          // Room for the floating tab bar (and the gap under it), so the last item scrolls clear.
+          padding: EdgeInsets.only(
+            bottom:
+                AppSizes.navBar + AppSpacing.sm + AppSpacing.bottomAction(context) + AppSpacing.xxl,
+          ),
+          sliver: SliverList(delegate: SliverChildListDelegate(children)),
+        ),
+      ],
+    );
+    if (onRefresh case final refresh?) {
+      scroll = RefreshIndicator(
+        onRefresh: refresh,
+        color: colors.ink,
+        backgroundColor: colors.surface,
+        child: scroll,
+      );
+    }
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // The header shows the very slice of the wash behind it, so it's never a separate band.
+        final top = MediaQuery.paddingOf(context).top;
+        final backdrop = _WashSlice(height: constraints.maxHeight, top: top, child: wash);
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            wash,
+            SafeArea(
+              bottom: false,
+              child: PageBackdrop(
+                backdrop: backdrop,
+                child: header == null
+                    ? scroll
+                    : Column(
+                        children: [
+                          ClipRect(
+                            child: Stack(
+                              children: [
+                                Positioned.fill(child: backdrop),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                                  child: header,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(child: scroll),
+                        ],
+                      ),
               ),
-      ),
+            ),
+          ],
+        );
+      },
     );
   }
+}
+
+/// The part of a page-sized [child] that sits behind a header [top] below the page's top edge.
+class _WashSlice extends StatelessWidget {
+  const _WashSlice({required this.height, required this.top, required this.child});
+
+  final double height;
+  final double top;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => ClipRect(
+    child: OverflowBox(
+      alignment: Alignment.topCenter,
+      minHeight: height,
+      maxHeight: height,
+      child: Transform.translate(offset: Offset(0, -top), child: child),
+    ),
+  );
 }
 
 /// Horizontal gutter padding.

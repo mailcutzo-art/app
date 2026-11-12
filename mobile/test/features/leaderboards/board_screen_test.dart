@@ -42,7 +42,7 @@ void main() {
     expect(boards.calls.first, 'weekly_xp:neet:null');
 
     for (var i = 0; i < 2; i++) {
-      await tester.drag(find.byType(ListView), const Offset(0, -3000));
+      await tester.drag(find.byType(CustomScrollView), const Offset(0, -3000));
       await tester.pumpAndSettle();
     }
     expect(boards.calls, contains('weekly_xp:neet:50'));
@@ -60,7 +60,7 @@ void main() {
     await pumpBoard(tester, 'weekly_xp');
 
     // Scrolling loads the rest of the top 100; then come the players around the viewer.
-    await tester.drag(find.byType(ListView), const Offset(0, -3000));
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -3000));
     await tester.pumpAndSettle();
     expect(boards.calls, contains('weekly_xp:neet:50'));
 

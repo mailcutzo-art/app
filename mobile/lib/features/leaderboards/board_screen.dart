@@ -99,43 +99,51 @@ class _BoardScreenState extends ConsumerState<BoardScreen> {
     final footer = view == null ? null : _footer(context, view);
 
     return Scaffold(
-      appBar: AppTopBar(
-        onBack: () => context.canPop() ? context.pop() : context.go(Routes.leaderboards),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: NotificationListener<ScrollNotification>(
-              onNotification: _onScroll,
-              child: RefreshIndicator(
-                color: context.colors.ink,
-                backgroundColor: context.colors.surface,
-                onRefresh: () async {
-                  ref.invalidate(boardProvider(query));
-                  try {
-                    await ref.read(boardProvider(query).future);
-                  } on Object {
-                    // The screen shows the error.
-                  }
-                },
-                child: ListView(
-                  controller: _scroll,
-                  padding: const EdgeInsets.only(bottom: AppSpacing.xxl),
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  children: [
-                    LargeTitle(
-                      title: view?.first.title ?? 'Leaderboard',
-                      subtitle: view == null ? null : _subtitle(view, scope, now),
-                    ),
-                    const SizedBox(height: AppSpacing.lg),
-                    ...content,
-                  ],
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            Expanded(
+              child: NotificationListener<ScrollNotification>(
+                onNotification: _onScroll,
+                child: RefreshIndicator(
+                  color: context.colors.ink,
+                  backgroundColor: context.colors.surface,
+                  onRefresh: () async {
+                    ref.invalidate(boardProvider(query));
+                    try {
+                      await ref.read(boardProvider(query).future);
+                    } on Object {
+                      // The screen shows the error.
+                    }
+                  },
+                  child: CustomScrollView(
+                    controller: _scroll,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      SliverCollapsingTitle(
+                        title: view?.first.title ?? 'Leaderboard',
+                        subtitle: view == null ? null : _subtitle(view, scope, now),
+                        onBack: () =>
+                            context.canPop() ? context.pop() : context.go(Routes.leaderboards),
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.only(bottom: AppSpacing.xxl),
+                        sliver: SliverList(
+                          delegate: SliverChildListDelegate([
+                            const SizedBox(height: AppSpacing.sm),
+                            ...content,
+                          ]),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          ?footer,
-        ],
+            ?footer,
+          ],
+        ),
       ),
     );
   }

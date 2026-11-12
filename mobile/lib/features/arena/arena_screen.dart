@@ -76,18 +76,18 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
           unawaited(ref.read(arenaListProvider(_filters.last).notifier).autoLoadMore()),
       child: TabPage(
         onRefresh: _refresh,
+        title: SliverCollapsingTitle(
+          title: 'Arena',
+          subtitle: 'Swiss tournaments · live standings · coin prizes',
+          subtitleMaxLines: 1,
+          trailing: Pressable(
+            onPressed: () => context.push(Routes.profile),
+            semanticLabel: 'Your profile',
+            child: AppAvatar(data: me.avatar.toData(), ring: true),
+          ),
+        ),
         children: [
           OfflineBanner(visible: !online, message: 'You\'re offline · showing what was loaded'),
-          LargeTitle(
-            title: 'Arena',
-            subtitle: 'Swiss tournaments · live standings · coin prizes',
-            subtitleMaxLines: 1,
-            trailing: Pressable(
-              onPressed: () => context.push(Routes.profile),
-              semanticLabel: 'Your profile',
-              child: AppAvatar(data: me.avatar.toData(), ring: true),
-            ),
-          ),
           const _MyTournaments(),
           const SizedBox(height: AppSpacing.xl),
           Gutter(

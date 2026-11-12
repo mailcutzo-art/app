@@ -181,7 +181,7 @@ void main() {
       expect(find.text('Share your progress'), findsOneWidget);
       expect(find.text('Level 4'), findsOneWidget, reason: 'the preview');
 
-      await tester.tap(find.text('Share to other apps'));
+      await tester.tap(find.text('Share globally'));
       await tester.pumpAndSettle();
 
       final card = recorder.captured.single as ProgressShareData;
@@ -203,11 +203,11 @@ void main() {
       await open(tester);
       await tester.tap(find.widgetWithText(AppButton, 'Share progress'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Post to friends'));
+      await tester.tap(find.text('Share with friends'));
       await tester.pumpAndSettle();
 
       expect(social.posted, [const ProgressShareTarget()]);
-      expect(find.text('Posted to your friends'), findsOneWidget);
+      expect(find.text('Shared with your friends'), findsOneWidget);
     });
 
     testWidgets('is not offered until the stats have loaded', (tester) async {
