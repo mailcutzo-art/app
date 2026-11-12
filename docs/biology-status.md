@@ -1,8 +1,8 @@
 # Biology status
 
 The plan for all 34 NEET chapters is in `content/tools/biology_plan.yaml` (500 questions each).
-**26 chapters are complete (13,000 questions)**, promoted into `content/questions/biology/` and validated.
-The other 8 are empty skeletons in `content/wip/biology/`, which the validator and seed export do not
+**31 chapters are complete (15,500 questions)**, promoted into `content/questions/biology/` and validated.
+The other 3 are empty skeletons in `content/wip/biology/`, which the validator and seed export do not
 read. `bio_setup.py promote <chapter>` moves a chapter into the validated bank once every topic reaches its
 planned count; `bio_setup.py status` shows progress.
 
@@ -15,20 +15,20 @@ Respiration in Plants, Plant Growth and Development, Breathing and Exchange of G
 Circulation, Excretory Products and their Elimination, **Locomotion and Movement**, **Neural Control and
 Coordination**, **Principles of Inheritance and Variation**, **Chemical Coordination and Integration**,
 **Sexual Reproduction in Flowering Plants**, **Human Reproduction**, **Reproductive Health**, **Molecular Basis
-of Inheritance**.
+of Inheritance**, **Evolution**, **Human Health and Disease**, **Microbes in Human Welfare**,
+**Biotechnology: Principles and Processes**, **Biotechnology and its Applications**.
 
-## Still to write (empty skeletons in `wip/biology/`): 8 chapters, 4,000 questions
+## Still to write (empty skeletons in `wip/biology/`): 3 chapters, 1,500 questions
 
-Evolution, Human Health and Disease, Microbes in Human Welfare, Biotechnology: Principles and Processes,
-Biotechnology and its Applications, Organisms and Populations, Ecosystem, Biodiversity and Conservation.
+Organisms and Populations, Ecosystem, Biodiversity and Conservation.
 
 ## Difficulty
 
 The first 21 chapters were written to 20 / 45 / 25 / 10 % for levels 1-5, which is harder than Physics and
-Chemistry (about 27 / 50 / 23 / 1 %). From Chemical Coordination onward the mix is 27 / 50 / 22 / 1 %
+Chemistry (about 27 / 50 / 23 / 1 %). From Chemical Coordination onward (the last ten chapters) the mix is 27 / 50 / 22 / 1 %
 (`bio_setup.py` `MIX`), matching the other subjects.
 
-## Checks run on the newest nine chapters
+## Checks run on the newest fourteen chapters
 
 - `validate.py` passes; every batch went through `bank.py` (schema, duplicate and near-duplicate checks).
 - Mix per chapter: difficulty 8 / 12 / 45 / 25 / 10 % for levels 1-5, answer positions within one point of 25 %
@@ -44,6 +44,12 @@ Chemistry (about 27 / 50 / 23 / 1 %). From Chemical Coordination onward the mix 
   ones, were answered blind; 499 matched the key (99.8 %). The one mismatch (`bio-reprohealth-302`) follows
   NCERT's own MTP Act box; the reviewer used the later 2021 amendment. One figure description
   (`bio-molbasis-196`) was corrected. About 2,000 of these 2,500 questions were not independently re-solved.
+- **Blind review (Evolution, Human Health and Disease, Microbes in Human Welfare, Biotechnology: Principles,
+  Biotechnology: Applications):** 500 questions, weighted toward hard and numerical ones, were answered blind;
+  499 matched the key (99.8 %). The one mismatch (`bio-biotech2-365`, "gene targeting involves gene
+  amplification") rested on a line that could not be confirmed in NCERT, so it was replaced, as was
+  `bio-health-254` (a parenting-style claim not found in NCERT). About 2,000 of these 2,500 questions were not
+  independently re-solved.
 
 ## Scope notes
 
