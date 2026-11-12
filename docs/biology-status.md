@@ -1,9 +1,8 @@
 # Biology status
 
 The plan for all 34 NEET chapters is in `content/tools/biology_plan.yaml` (500 questions each).
-**31 chapters are complete (15,500 questions)**, promoted into `content/questions/biology/` and validated.
-The other 3 are empty skeletons in `content/wip/biology/`, which the validator and seed export do not
-read. `bio_setup.py promote <chapter>` moves a chapter into the validated bank once every topic reaches its
+**All 34 chapters are complete (17,000 questions)**, promoted into `content/questions/biology/` and validated.
+`bio_setup.py promote <chapter>` moves a chapter into the validated bank once every topic reaches its
 planned count; `bio_setup.py status` shows progress.
 
 ## Complete
@@ -13,14 +12,16 @@ Anatomy of Flowering Plants, Structural Organisation in Animals, **Cell: The Uni
 Cell Cycle and Cell Division, Transport in Plants, Mineral Nutrition, Photosynthesis in Higher Plants,
 Respiration in Plants, Plant Growth and Development, Breathing and Exchange of Gases, Body Fluids and
 Circulation, Excretory Products and their Elimination, **Locomotion and Movement**, **Neural Control and
-Coordination**, **Principles of Inheritance and Variation**, **Chemical Coordination and Integration**,
+Coordination**, **Principles of Inheritance and Variation**, **Organisms and Populations**, **Ecosystem**, **Biodiversity and Conservation**, **Chemical Coordination and Integration**,
 **Sexual Reproduction in Flowering Plants**, **Human Reproduction**, **Reproductive Health**, **Molecular Basis
 of Inheritance**, **Evolution**, **Human Health and Disease**, **Microbes in Human Welfare**,
 **Biotechnology: Principles and Processes**, **Biotechnology and its Applications**.
 
-## Still to write (empty skeletons in `wip/biology/`): 3 chapters, 1,500 questions
+## Still to write
 
-Organisms and Populations, Ecosystem, Biodiversity and Conservation.
+Nothing: all 34 planned chapters are in `content/questions/biology/`. The last three (Organisms and
+Populations, Ecosystem, Biodiversity and Conservation) were written at the original 20 / 45 / 25 / 10 % mix,
+at a high NEET level.
 
 ## Difficulty
 
@@ -28,7 +29,7 @@ The first 21 chapters were written to 20 / 45 / 25 / 10 % for levels 1-5, which 
 Chemistry (about 27 / 50 / 23 / 1 %). From Chemical Coordination onward (the last ten chapters) the mix is 27 / 50 / 22 / 1 %
 (`bio_setup.py` `MIX`), matching the other subjects.
 
-## Checks run on the newest fourteen chapters
+## Checks run on the newest seventeen chapters
 
 - `validate.py` passes; every batch went through `bank.py` (schema, duplicate and near-duplicate checks).
 - Mix per chapter: difficulty 8 / 12 / 45 / 25 / 10 % for levels 1-5, answer positions within one point of 25 %
@@ -50,8 +51,17 @@ Chemistry (about 27 / 50 / 23 / 1 %). From Chemical Coordination onward (the las
   amplification") rested on a line that could not be confirmed in NCERT, so it was replaced, as was
   `bio-health-254` (a parenting-style claim not found in NCERT). About 2,000 of these 2,500 questions were not
   independently re-solved.
+- **Blind review (Organisms and Populations, Ecosystem, Biodiversity and Conservation):** 510 questions, weighted
+  toward hard and numerical ones, were answered blind; 507 matched the key (99.4 %). The three that did not
+  (`bio-orgpop-258`, `bio-orgpop-377`, `bio-ecosys-117`) were genuinely ambiguous (a loosely worded Gause
+  assertion, an individual-vs-population statement, and a trophic-level match where fishes and lions can sit at
+  two levels) and were replaced with unambiguous questions.
 
 ## Scope notes
+
+- The current rationalised NCERT has dropped several ecology sections (abiotic factors and adaptations, biomes,
+  the body text on nutrient cycling). The writers used the earlier edition for those, so a few questions in
+  Organisms and Populations and Ecosystem are marked `ncert: false`; NEET still lists these topics.
 
 - Four questions in Neural Control (nerve impulse, saltatory conduction in myelinated fibres) go slightly
   beyond what NCERT states and are marked `ncert: false`.

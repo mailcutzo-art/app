@@ -17,8 +17,8 @@ Live quiz battles, Swiss tournaments and practice for NEET and JEE aspirants.
   (`mobile/packages/design_system/example/test/goldens/`).
 - **Phase 2 (foundations):** backend core in progress.
 - **Content:** the NEET Physics and Chemistry bank (50 chapters from
-  [`content/syllabus.yaml`](content/syllabus.yaml), about 500 questions each), 31 Biology chapters at
-  500 questions each (15,500; status in [`docs/biology-status.md`](docs/biology-status.md)) and a
+  [`content/syllabus.yaml`](content/syllabus.yaml), about 500 questions each), all 34 Biology chapters at
+  500 questions each (17,000; status in [`docs/biology-status.md`](docs/biology-status.md)) and a
   small Maths test set ([`content/`](content/), format in
   [`docs/content-format.md`](docs/content-format.md)), validated in CI.
   `content/tools/export_seed.py` writes database-ready seed JSON with stable ids.
