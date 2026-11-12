@@ -33,6 +33,10 @@ class SessionIn(ApiModel):
     time_limit_s: Literal[300, 600, 900, 1800, 3600] | None = None
     marking: Literal["none", "neet"] = "none"
     unseen_only: bool = False
+    # How chapter, topic and Self Challenge sessions pick questions (default ``recommended``):
+    # ``recommended`` covers the topics' core questions first, at the student's level, with due
+    # reviews mixed in; ``unseen_first`` is a random draw, unseen questions first.
+    selection: Literal["recommended", "unseen_first"] | None = None
     passage_id: Lax[uuid.UUID] | None = None
 
 
@@ -150,6 +154,7 @@ class ChapterProgressOut(ApiModel):
     answered: int
     correct: int
     seen: int
+    core_done: int  # core questions answered correctly at least once (of the catalog's core_count)
     label: Literal["strong", "needs_work"] | None
 
 

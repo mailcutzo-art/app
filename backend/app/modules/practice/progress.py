@@ -12,13 +12,15 @@ from app.core.pagination import decode_cursor, encode_cursor
 from app.core.schemas import ApiModel, Lax
 from app.modules.coach.service import top_tip
 from app.modules.content.catalog import goal_subjects
-from app.modules.content.models import Chapter
+from app.modules.content.models import Chapter, Question, Tier
+from app.modules.content.queries import practice_pool, suits_goal
 from app.modules.practice.models import (
     Outcome,
     PracticeAnswer,
     PracticeSession,
     UserCategoryStats,
     UserChapterStats,
+    UserQuestion,
 )
 from app.modules.practice.reviews import review_counts
 from app.modules.practice.schemas import (
@@ -102,6 +104,24 @@ async def build_progress(
             )
         )
     }
+    # Core questions got right at least once, counted like the catalog's core_count.
+    core_done: dict[int, int] = {
+        chapter_id: done
+        for chapter_id, done in await db.execute(
+            select(Question.chapter_id, func.count())
+            .join(UserQuestion, UserQuestion.question_id == Question.id)
+            .where(
+                UserQuestion.user_id == user_id,
+                UserQuestion.correct > 0,
+                Question.tier == Tier.CORE.value,
+                Question.chapter_id.in_([chapter.id for chapter in chapters]),
+                practice_pool(),
+                suits_goal(goal),
+            )
+            .group_by(Question.chapter_id)
+        )
+        if chapter_id is not None
+    }
     # Every answer in a subject counts, passage questions included.
     subject_totals = {
         subject_id: (answered, correct)
@@ -132,6 +152,7 @@ async def build_progress(
                     answered=answered,
                     correct=correct,
                     seen=stats.seen if stats else 0,
+                    core_done=core_done.get(chapter.id, 0),
                     label=chapter_label(answered, correct),
                 )
             )

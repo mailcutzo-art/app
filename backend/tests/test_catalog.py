@@ -85,10 +85,21 @@ async def test_the_catalog_of_the_players_exam(
         "name": "Motion in a Straight Line",
         "order": 1,
         "question_count": 8,
+        "core_count": 6,  # at least 3 per topic (about 20% in a full-size topic)
         "battle_ready": True,
         "topics": [
-            {"slug": "speed-velocity", "name": "Speed and velocity", "question_count": 4},
-            {"slug": "equations-of-motion", "name": "Equations of motion", "question_count": 4},
+            {
+                "slug": "speed-velocity",
+                "name": "Speed and velocity",
+                "question_count": 4,
+                "core_count": 3,
+            },
+            {
+                "slug": "equations-of-motion",
+                "name": "Equations of motion",
+                "question_count": 4,
+                "core_count": 3,
+            },
         ],
     }
 

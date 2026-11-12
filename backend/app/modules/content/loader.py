@@ -85,6 +85,13 @@ class QuestionSpec:
     options: tuple[str, ...]
     answer: int
     explanation: str
+    # Metadata of the real bank, used to rank questions (``app.modules.content.priority``).
+    subtopic: str | None = None
+    concept: str | None = None
+    format: str | None = None
+    ncert: bool | None = None
+    time_s: int | None = None  # typical seconds to answer, as authored
+    has_diagram: bool = False
 
     @property
     def content_hash(self) -> str:
@@ -185,6 +192,12 @@ def _bundle(content: Any) -> ContentBundle:
                 options=tuple(q.options),
                 answer=q.answer,
                 explanation=q.explanation,
+                subtopic=q.subtopic,
+                concept=q.concept,
+                format=str(q.format.value),
+                ncert=q.ncert,
+                time_s=q.time,
+                has_diagram=q.diagram is not None,
             )
             for q in file.questions
         )

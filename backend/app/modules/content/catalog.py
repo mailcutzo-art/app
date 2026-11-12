@@ -20,6 +20,7 @@ from app.modules.content.models import (
     Question,
     QuestionKind,
     Subject,
+    Tier,
     Topic,
 )
 from app.modules.content.queries import suits_goal
@@ -91,11 +92,14 @@ async def build_catalog(db: AsyncSession, goal: str, version: str) -> CatalogOut
             .order_by(Topic.sort, Topic.id)
         )
     ).all()
-    # Questions this exam's players can get in practice, and the battle pool per chapter.
+    # Questions this exam's players can get in practice, the core ones among them, and the
+    # battle pool per chapter.
+    practice = Question.battle_pool != BattlePool.RESERVED.value
     counts = await db.execute(
         select(
             Question.topic_id,
-            func.count().filter(Question.battle_pool != BattlePool.RESERVED.value),
+            func.count().filter(practice),
+            func.count().filter(practice, Question.tier == Tier.CORE.value),
             func.count().filter(Question.battle_pool != BattlePool.NONE.value),
         )
         .where(
@@ -106,11 +110,13 @@ async def build_catalog(db: AsyncSession, goal: str, version: str) -> CatalogOut
         .group_by(Question.topic_id)
     )
     practice_by_topic: dict[int, int] = {}
+    core_by_topic: dict[int, int] = {}
     battle_by_topic: dict[int, int] = {}
-    for topic_id, practice, battle in counts:
+    for topic_id, in_practice, core, battle in counts:
         if topic_id is None:  # chapter questions always have a topic; this is for mypy
             continue
-        practice_by_topic[topic_id] = practice
+        practice_by_topic[topic_id] = in_practice
+        core_by_topic[topic_id] = core
         battle_by_topic[topic_id] = battle
 
     topics_by_chapter: dict[int, list[Topic]] = defaultdict(list)
@@ -125,6 +131,7 @@ async def build_catalog(db: AsyncSession, goal: str, version: str) -> CatalogOut
                 name=chapter.name,
                 order=chapter.sort,
                 question_count=sum(practice_by_topic.get(t.id, 0) for t in chapter_topics),
+                core_count=sum(core_by_topic.get(t.id, 0) for t in chapter_topics),
                 battle_ready=sum(battle_by_topic.get(t.id, 0) for t in chapter_topics)
                 >= MIN_BATTLE_QUESTIONS,
                 topics=[
@@ -132,6 +139,7 @@ async def build_catalog(db: AsyncSession, goal: str, version: str) -> CatalogOut
                         slug=topic.slug,
                         name=topic.name,
                         question_count=practice_by_topic.get(topic.id, 0),
+                        core_count=core_by_topic.get(topic.id, 0),
                     )
                     for topic in chapter_topics
                 ],
