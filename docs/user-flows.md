@@ -145,7 +145,8 @@ state.
    - **You never get ready**, for example because the app was in the background: the match is
      cancelled and Casual coins are refunded. It counts toward the cooldown, and the inbox says so.
 10. **Countdown** 3-2-1.
-11. **Questions**, 7 × 15 s. For each one:
+11. **Questions**, 7 of them, timed by difficulty: easy 20 s, medium 30 s, hard 45 s (the VS
+    screen says "7 questions · 20–45 s each"). For each one:
     - The question appears at the same moment for both players. The timer ring counts down from
       the server deadline.
     - You tap an option, and it locks as "Answered".
@@ -252,7 +253,7 @@ It works like a friend room, but **the host controls the room**:
      start countdown;
    - **My tournaments** pinned at the top.
 2. **Tournament detail.** It has three tabs:
-   - **Overview:** rules (rounds, 10 questions × 15 s, rated), schedule, entry fee, prize table for
+   - **Overview:** rules (rounds, 10 questions timed by difficulty, rated), schedule, entry fee, prize table for
      the current player count, and registered count;
    - **Standings**;
    - **My games**.

@@ -78,7 +78,7 @@ void main() {
             ],
           ),
         ),
-        size: const Size(390, 420),
+        size: const Size(390, 500),
         theme: brightness == Brightness.light ? AppTheme.light() : AppTheme.dark(),
       );
       await expectLater(

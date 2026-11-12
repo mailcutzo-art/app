@@ -468,13 +468,13 @@ Every transition is a Lua compare-and-set on `ver`.
 |---|---|---|
 | READY_WAIT | all players `match.ready` | Quick: 10 s → ABORTED. Tournament: 90 s → no-show rules |
 | COUNTDOWN | timer | 3 s |
-| Q_OPEN(i) | everyone answered (early advance) **or** deadline + 250 ms | D = 15 s (rooms: host-set) |
+| Q_OPEN(i) | everyone answered (early advance) **or** deadline + 250 ms | D = 20 / 30 / 45 s by difficulty (rooms: host-set) |
 | Q_REVEAL(i) | timer → Q_OPEN(i+1) or FINISHED | 3 s (group: 4 s with a mini leaderboard) |
 | FINISHED → SETTLED | the settlement commit | retried until it commits |
 | ABORTED / VOIDED | terminal | holds released, ratings unchanged |
 
 - A forfeit, or exceeding the grace period after Q1, moves the match straight to FINISHED with `reason=forfeit`.
-- **Formats:** Quick Battle is 7 questions of 15 s each (about 2.5 minutes). A tournament game is 10 of 15 s.
+- **Formats:** Quick Battle is 7 questions timed by difficulty, 20 s easy, 30 s medium and 45 s hard (about 3–4 minutes; most rounds end early, once both have answered). A tournament game is 10, timed the same way.
 
 **Question delivery without leaking answers**
 - **When the match is created:**
@@ -702,7 +702,7 @@ A worker ticks every second, picking up due tournaments with `SELECT … WHERE n
   - If only one player shows, that player gets a forfeit win: 1 point, no rating change.
   - If neither shows, both get 0.
   - Missing two rounds in a row withdraws the player automatically.
-  - Games are **10 questions × 15 s, rated** (overall and subject).
+  - Games are **10 questions, timed by difficulty (20–45 s), rated** (overall and subject).
   - A draw is worth 0.5 points.
 
 **Pairing** (`swiss_pairing.py`, a pure function)

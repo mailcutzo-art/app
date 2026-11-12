@@ -9,9 +9,10 @@ import 'share_card.dart';
 import 'share_models.dart';
 import 'share_providers.dart';
 
-/// Opens the share sheet for [data]: a preview of the card, **Post to friends** (the in-app
-/// activity feed) and **Share to other apps** (the system share sheet with the card as an
-/// image). Resolves once the sheet is closed.
+/// Opens the share sheet for [data]: a preview of the card, **Share with friends** (the big
+/// button: the in-app activity feed) and, smaller under it, **Share globally** (the system share
+/// sheet with the card as an image, for WhatsApp, Instagram and the rest). Resolves once the
+/// sheet is closed.
 Future<void> showShareSheet(BuildContext context, {required ShareCardData data}) =>
     showAppSheet<void>(
       context,
@@ -60,7 +61,7 @@ class _ShareSheetState extends ConsumerState<_ShareSheet> {
     if (!mounted) return;
     Navigator.of(context).pop();
     if (widget.host.mounted) {
-      showAppToast(widget.host, 'Posted to your friends', icon: AppIcons.checkCircle);
+      showAppToast(widget.host, 'Shared with your friends', icon: AppIcons.checkCircle);
     }
   }
 
@@ -102,7 +103,7 @@ class _ShareSheetState extends ConsumerState<_ShareSheet> {
     final idle = _busy == _Busy.none;
     return SheetScaffold(
       title: data is MatchShareData ? 'Share this battle' : 'Share your progress',
-      subtitle: 'Post it to your friends, or send the card to other apps.',
+      subtitle: 'Show your friends here, or share the card anywhere.',
       footer: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -122,23 +123,31 @@ class _ShareSheetState extends ConsumerState<_ShareSheet> {
             const SizedBox(height: AppSpacing.md),
           ],
           AppButton(
-            label: 'Post to friends',
+            label: 'Share with friends',
             leadingIcon: AppIcons.social,
             loading: _busy == _Busy.posting,
             onPressed: idle ? _post : null,
           ),
           const SizedBox(height: AppSpacing.sm),
-          AppButton(
-            key: _shareButtonKey,
-            label: 'Share to other apps',
-            leadingIcon: AppIcons.share,
-            variant: AppButtonVariant.secondary,
-            loading: _busy == _Busy.sharing,
-            onPressed: idle ? _shareToApps : null,
+          Center(
+            child: AppButton(
+              key: _shareButtonKey,
+              label: 'Share globally',
+              leadingIcon: AppIcons.share,
+              variant: AppButtonVariant.ghost,
+              size: AppButtonSize.medium,
+              expand: false,
+              loading: _busy == _Busy.sharing,
+              onPressed: idle ? _shareToApps : null,
+            ),
           ),
         ],
       ),
-      child: Center(child: SharePreview(data: data)),
+      // As tall as the preview, so the sheet hugs its content.
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: AppSpacing.md),
+        child: Center(heightFactor: 1, child: SharePreview(data: data, height: 300)),
+      ),
     );
   }
 }

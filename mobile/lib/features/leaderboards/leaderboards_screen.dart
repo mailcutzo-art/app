@@ -64,43 +64,55 @@ class _LeaderboardsScreenState extends ConsumerState<LeaderboardsScreen> {
     };
 
     return Scaffold(
-      appBar: AppTopBar(onBack: () => context.canPop() ? context.pop() : context.go(Routes.home)),
-      body: RefreshIndicator(
-        color: context.colors.ink,
-        backgroundColor: context.colors.surface,
-        onRefresh: () async {
-          ref.invalidate(leaderboardHubProvider(scope));
-          try {
-            await ref.read(leaderboardHubProvider(scope).future);
-          } on Object {
-            // The screen shows the error.
-          }
-        },
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: AppSpacing.huge),
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
-            LargeTitle(
-              title: 'Leaderboards',
-              subtitle: switch (hub.value) {
-                final value? when hubHeadline(value.boards).isNotEmpty => hubHeadline(value.boards),
-                _ => 'Who is leading where',
-              },
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            Gutter(
-              child: AppSegmentedControl<ExamScope>(
-                segments: [
-                  for (final option in _scopes(ref)) AppSegment(value: option, label: option.label),
-                ],
-                selected: scope,
-                onChanged: (value) => ref.read(examScopeProvider.notifier).select(value),
-                height: AppSizes.buttonSmall + 4,
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          color: context.colors.ink,
+          backgroundColor: context.colors.surface,
+          onRefresh: () async {
+            ref.invalidate(leaderboardHubProvider(scope));
+            try {
+              await ref.read(leaderboardHubProvider(scope).future);
+            } on Object {
+              // The screen shows the error.
+            }
+          },
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverCollapsingTitle(
+                title: 'Leaderboards',
+                subtitle: switch (hub.value) {
+                  final value? when hubHeadline(value.boards).isNotEmpty => hubHeadline(
+                    value.boards,
+                  ),
+                  _ => 'Who is leading where',
+                },
+                onBack: () => context.canPop() ? context.pop() : context.go(Routes.home),
               ),
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            ...content,
-          ],
+              SliverPadding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.huge),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    const SizedBox(height: AppSpacing.sm),
+                    Gutter(
+                      child: AppSegmentedControl<ExamScope>(
+                        segments: [
+                          for (final option in _scopes(ref))
+                            AppSegment(value: option, label: option.label),
+                        ],
+                        selected: scope,
+                        onChanged: (value) => ref.read(examScopeProvider.notifier).select(value),
+                        height: AppSizes.buttonSmall + 4,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    ...content,
+                  ]),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

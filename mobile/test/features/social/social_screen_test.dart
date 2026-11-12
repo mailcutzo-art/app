@@ -321,7 +321,8 @@ void main() {
       expect(find.text('910 – 640 vs Kabir'), findsOneWidget);
       expect(find.textContaining('shared their progress'), findsOneWidget);
       expect(find.text('Level 7'), findsOneWidget);
-      expect(find.text('12-day streak'), findsOneWidget);
+      expect(find.text('Day streak'), findsOneWidget);
+      expect(find.text('Accuracy'), findsOneWidget);
       final compact = tester.widgetList<ShareCard>(find.byType(ShareCard));
       expect(compact.every((card) => card.compact), isTrue);
     });
@@ -368,11 +369,11 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Share your progress'), findsOneWidget);
 
-      await tester.tap(find.text('Post to friends'));
+      await tester.tap(find.text('Share with friends'));
       await tester.pumpAndSettle();
 
       expect(social.posted, [const ProgressShareTarget()]);
-      expect(find.text('Posted to your friends'), findsOneWidget);
+      expect(find.text('Shared with your friends'), findsOneWidget);
       expect(find.byType(ShareCard), findsNWidgets(3), reason: 'the feed reloaded');
       expect(find.text('Level 6'), findsOneWidget, reason: 'the user\'s own progress');
     });
@@ -381,7 +382,7 @@ void main() {
       await openWithStats(tester);
       await tester.tap(find.widgetWithText(AppButton, 'Share progress'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Share to other apps'));
+      await tester.tap(find.text('Share globally'));
       await tester.pumpAndSettle();
 
       final card = recorder.captured.single as ProgressShareData;

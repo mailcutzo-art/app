@@ -92,6 +92,7 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
   "count": 10,
   "difficulty": "mixed",
   "timed": false,
+  "timing": "fixed",
   "per_question_s": null,
   "time_limit_s": null,
   "marking": "none",
@@ -117,7 +118,8 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
 |---|---|
 | `count` | 5–50. The app offers 10/20/30, plus 50 for challenge |
 | `difficulty` | `mixed`, `easy` (1–2), `medium` (3) or `hard` (4–5) |
-| `timed` | Adds a per-question limit, `per_question_s`: 20, 30, 45 or 60. The app uses it for "Try a timed practice set" tips |
+| `timed` | Adds a time limit to every question. How long depends on `timing` |
+| `timing` | `fixed` (default): every question gets `per_question_s` (20, 30, 45 or 60). `by_difficulty`: easy questions get 30 s, medium 60 s and hard 90 s, and `per_question_s` must be null. The app's Timed practice and the "Try a timed practice set" tips use `by_difficulty`. Only with `timed` |
 | `time_limit_s` | Challenge only: 300, 600, 900, 1800 or 3600 |
 | `marking` | `none`, or `neet` (+4 / −1 for challenge) |
 | `unseen_only` | Only questions the user has never answered |
@@ -140,6 +142,7 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
   "created_at": "2026-09-27T15:00:00Z",
   "expires_at": "2026-09-28T15:00:00Z",
   "per_question_ms": null,
+  "timing": null,
   "time_limit_ms": null,
   "marking": "none",
   "short": false,
@@ -155,7 +158,8 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
       "category": "numerical",
       "chapter": {"slug": "kinematics", "name": "Motion in a Straight Line"},
       "topic": {"slug": "equations-of-motion", "name": "Equations of motion"},
-      "bookmarked": false
+      "bookmarked": false,
+      "limit_ms": null
     }
   ]
 }
@@ -164,6 +168,12 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
 - Options come in shuffled display order. Each option's `id` is its position as authored, and
   `answer` is the `id` of the correct option. Practice answers are shipped with the questions so
   feedback is instant and sessions work offline. Battles never do this (see `docs/protocol.md`).
+- In timed practice each question carries its own `limit_ms`; `per_question_ms` is only set for
+  `fixed` timing, and `timing` is null for untimed sessions. When a question's time runs out the
+  app sends a `timed_out` answer and shows the next question a moment later.
+- Every answer carries `time_ms`, the time the question was on screen (paused while the app is in
+  the background or a sheet is open). The server caps it at the question's limit (10 minutes
+  untimed) and stores it with that limit in `question_attempts.time_limit_ms`.
 - Text fields use the quiz markup (`^{}`, `_{}`, `*italic*`, `**bold**`).
 - Sessions expire 24 h after creation. A challenge also ends at `created_at + time_limit` (plus
   60 s of grace).
@@ -289,7 +299,7 @@ Idempotent. It ends the session; answers not yet uploaded should be sent first.
 | `action` | Opens |
 |---|---|
 | `practice` | A practice session for `params.topic` or `params.chapter` |
-| `timed_practice` | A timed session (`per_question_s: 30`) for that topic or chapter |
+| `timed_practice` | A timed session (`timing: by_difficulty`) for that topic or chapter |
 | `practice_category` | Category mode for `params.subject` and `params.category` |
 | `review` | Review mode |
 | `start_chapter` | Chapter practice with `difficulty: easy` |

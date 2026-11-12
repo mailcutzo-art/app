@@ -10,6 +10,8 @@ import '../../../core/network/app_failure.dart';
 import '../../../core/realtime/live_providers.dart';
 import '../../learn/data/learn_repository.dart';
 import '../../learn/widgets/learn_widgets.dart' show failureMessage;
+import '../../practice/ask_ai.dart';
+import '../../practice/data/practice_models.dart';
 import '../data/battle_repository.dart';
 import '../data/match_models.dart';
 import 'match_widgets.dart';
@@ -131,7 +133,39 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   }
 }
 
-class _ReviewCard extends StatelessWidget {
+/// [question] in the shape the ChatGPT prompt reads, with what [mine] says happened.
+({PracticeQuestion question, AnswerOutcome outcome, int? picked}) askAiInput(
+  ReviewQuestion question,
+  PlayerReveal? mine,
+) {
+  final options = [
+    for (final (i, option) in question.options.indexed) PracticeOption(id: i, text: option.text),
+  ];
+  int? indexOf(String? id) {
+    final i = question.options.indexWhere((o) => o.id == id);
+    return i < 0 ? null : i;
+  }
+
+  final picked = indexOf(mine?.opt);
+  return (
+    question: PracticeQuestion(
+      ref: question.ref,
+      position: question.q,
+      stem: question.stem,
+      options: options,
+      answer: indexOf(question.correct) ?? 0,
+      explanation: question.explanation,
+      chapter: question.chapter == null ? null : NamedRef(slug: '', name: question.chapter!),
+      topic: question.topic == null ? null : NamedRef(slug: '', name: question.topic!),
+    ),
+    outcome: mine == null || picked == null
+        ? AnswerOutcome.timeout
+        : (mine.correct ? AnswerOutcome.correct : AnswerOutcome.wrong),
+    picked: picked,
+  );
+}
+
+class _ReviewCard extends ConsumerWidget {
   const _ReviewCard({
     required this.question,
     required this.total,
@@ -150,8 +184,21 @@ class _ReviewCard extends StatelessWidget {
   final bool bookmarked;
   final VoidCallback onBookmark;
 
+  Future<void> _askAi(BuildContext context, WidgetRef ref, PlayerReveal? mine) async {
+    final input = askAiInput(question, mine);
+    final target = await askAiAbout(
+      ref,
+      input.question,
+      goal: ref.read(meProvider).goal,
+      outcome: input.outcome,
+      picked: input.picked,
+    );
+    final message = askAiMessage(target);
+    if (message != null && context.mounted) showAppToast(context, message, icon: AppIcons.info);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.colors;
     final text = context.text;
     final mine = question.players[me];
@@ -170,6 +217,14 @@ class _ReviewCard extends StatelessWidget {
                   child: OverlineBadge(label: tag, tone: PastelTone.sky),
                 ),
               const Spacer(),
+              AppIconButton(
+                icon: AppIcons.chatGpt,
+                semanticLabel: 'Ask ChatGPT to explain this question',
+                variant: AppIconButtonVariant.tonal,
+                size: AppSizes.iconButtonSmall,
+                onPressed: () => _askAi(context, ref, mine),
+              ),
+              const SizedBox(width: AppSpacing.sm),
               AppIconButton(
                 icon: AppIcons.bookmark,
                 semanticLabel: bookmarked ? 'Remove bookmark' : 'Bookmark question',

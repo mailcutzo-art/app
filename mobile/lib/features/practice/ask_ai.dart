@@ -43,20 +43,44 @@ final askAiClipboardProvider = Provider<Future<void> Function(String)>(
 );
 
 /// Browsers and chat apps cut long links short; prompts stay well under this.
-const _maxPromptLength = 1800;
+const _maxPromptLength = 2000;
 
-/// The tutor prompt for [question]: the question, its options, the correct one, and a request
-/// for a short explanation pitched at a [goal] aspirant.
-String buildAskAiPrompt(PracticeQuestion question, {Goal? goal}) {
+/// The tutor prompt for [question]: the question, its options, the correct one, what the
+/// student did ([outcome], with their [picked] option when they got it wrong) and a request for
+/// an explanation in a fixed structure, pitched at a [goal] aspirant. Students don't need to
+/// know how to write a good prompt.
+String buildAskAiPrompt(
+  PracticeQuestion question, {
+  Goal? goal,
+  AnswerOutcome? outcome,
+  int? picked,
+}) {
+  String letter(int index) => String.fromCharCode(65 + index);
   final correct = question.options.indexWhere((o) => o.id == question.answer);
+  final mine = picked == null ? -1 : question.options.indexWhere((o) => o.id == picked);
+  final wrongPick = outcome == AnswerOutcome.wrong && mine >= 0 && mine != correct;
   final exam = goal == null ? 'NEET/JEE' : goal.label;
   final where = [question.chapter?.name, question.topic?.name].whereType<String>().join(' · ');
   final options = [
     for (var i = 0; i < question.options.length; i++)
-      '${String.fromCharCode(65 + i)}) ${_plain(question.options[i].text)}',
+      '${letter(i)}) ${_plain(question.options[i].text)}',
+  ];
+  final situation = switch (outcome) {
+    AnswerOutcome.correct => 'I got this question right, but I want to be sure I understand it.',
+    AnswerOutcome.wrong => 'I got this question wrong. Please help me understand it.',
+    AnswerOutcome.timeout => 'I ran out of time on this question. Please help me solve it faster.',
+    _ => 'I skipped this question. Please help me understand it.',
+  };
+  final steps = [
+    'Correct answer: one line on why it is right.',
+    'Solution: short numbered steps (show the formula and the working for a numerical).',
+    'Why each other option is wrong: one line each.',
+    if (wrongPick) 'My mistake: why someone picks ${letter(mine)} and how to avoid it.',
+    'Key concept: the rule or formula to remember, in one or two lines.',
+    'Exam tip: a quick way to solve questions like this faster.',
   ];
   String compose(String stem) => [
-    'I am preparing for $exam and skipped this question. Please help me understand it.',
+    'I am preparing for $exam. $situation',
     if (where.isNotEmpty) 'Topic: $where',
     '',
     'Question: $stem',
@@ -64,11 +88,12 @@ String buildAskAiPrompt(PracticeQuestion question, {Goal? goal}) {
     'Options:',
     ...options,
     '',
-    'Correct answer: ${String.fromCharCode(65 + correct)}) ${_plain(question.options[correct].text)}',
+    'Correct answer: ${letter(correct)}) ${_plain(question.options[correct].text)}',
+    if (wrongPick) 'My answer: ${letter(mine)}) ${_plain(question.options[mine].text)}',
     '',
-    'Explain briefly why this answer is correct and why each of the other options is wrong. '
-        'Then give me the key concept or formula to remember, and a quick tip to solve '
-        'similar questions faster in the exam. Keep it short and simple.',
+    'Explain it with these headings:',
+    for (var i = 0; i < steps.length; i++) '${i + 1}. ${steps[i]}',
+    'Keep it short, in simple language.',
   ].join('\n');
 
   final stem = _plain(question.stem);
@@ -109,8 +134,14 @@ Future<AskAiTarget> openAskAi(
 }
 
 /// [openAskAi] about [question], with the app's opener and clipboard.
-Future<AskAiTarget> askAiAbout(WidgetRef ref, PracticeQuestion question, {Goal? goal}) => openAskAi(
-  buildAskAiPrompt(question, goal: goal),
+Future<AskAiTarget> askAiAbout(
+  WidgetRef ref,
+  PracticeQuestion question, {
+  Goal? goal,
+  AnswerOutcome? outcome,
+  int? picked,
+}) => openAskAi(
+  buildAskAiPrompt(question, goal: goal, outcome: outcome, picked: picked),
   open: ref.read(askAiUrlOpenerProvider),
   copy: ref.read(askAiClipboardProvider),
 );

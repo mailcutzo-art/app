@@ -11,6 +11,7 @@ import '../../../core/auth/session.dart';
 import '../../../core/realtime/live_match.dart';
 import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/live_text.dart';
+import '../../../core/sound/sound_effects.dart';
 import '../../arena/tournament_live.dart' show isTournamentGame;
 import '../../learn/data/learn_models.dart' as learn;
 import '../../learn/widgets/learn_widgets.dart' show CoachTipCard;
@@ -190,11 +191,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
           ),
         ] else ...[
           const SizedBox(height: AppSpacing.sm),
-          AppButton(
-            label: 'Done',
-            variant: AppButtonVariant.ghost,
-            onPressed: widget.onDone,
-          ),
+          AppButton(label: 'Done', variant: AppButtonVariant.ghost, onPressed: widget.onDone),
         ],
       ],
     );
@@ -696,10 +693,34 @@ class _MissionRow extends StatelessWidget {
   }
 }
 
-class _LevelUp extends StatelessWidget {
+class _LevelUp extends ConsumerStatefulWidget {
   const _LevelUp({required this.level});
 
   final int level;
+
+  @override
+  ConsumerState<_LevelUp> createState() => _LevelUpState();
+}
+
+class _LevelUpState extends ConsumerState<_LevelUp> {
+  Timer? _chime;
+
+  @override
+  void initState() {
+    super.initState();
+    // After the result's own sound has settled.
+    _chime = Timer(const Duration(milliseconds: 900), () {
+      if (mounted) playSfx(ref, Sfx.reward);
+    });
+  }
+
+  @override
+  void dispose() {
+    _chime?.cancel();
+    super.dispose();
+  }
+
+  int get level => widget.level;
 
   @override
   Widget build(BuildContext context) {

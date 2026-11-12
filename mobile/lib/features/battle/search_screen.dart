@@ -19,19 +19,20 @@ import '../rooms/data/room_models.dart' show RoomKind;
 import '../rooms/room_text.dart';
 import '../rooms/rooms_controller.dart';
 import '../rooms/widgets/room_widgets.dart' show defaultRoomSettings;
-import 'battle_screen.dart' show onlineLine;
-import 'data/battle_models.dart';
 
-/// "Looking for a Physics player in Kinematics…", then "Widened to all of Physics".
+/// "Rated · Physics · Kinematics", then "Widened to all of Physics": the one line under the
+/// title that says what is being searched.
 String searchStatusLine(SearchState state) {
   final request = state.request;
-  if (request == null) return 'Looking for an opponent…';
+  if (request == null) return 'Any opponent';
   final subject = request.subjectLabel;
   if (state.widened) return 'Widened to all of $subject';
-  final chapter = request.chapterLabel;
-  return chapter == null
-      ? 'Looking for a $subject player…'
-      : 'Looking for a $subject player in $chapter…';
+  final mode = switch (request.mode) {
+    'casual' => 'Casual',
+    'bot' => 'Practice',
+    _ => 'Rated',
+  };
+  return '$mode · $subject · ${request.chapterLabel ?? 'All chapters'}';
 }
 
 /// The matchmaking screen (`/battle/search`). Leaving it keeps the search going, with the
@@ -217,10 +218,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             AppTopBar(
               onBack: _leave,
               actions: [
+                // The search goes on in the background, with the pill on every screen.
                 if (searching)
-                  Text(
-                    'Keep browsing',
-                    style: context.text.labelMedium.copyWith(color: context.colors.inkMuted),
+                  AppButton(
+                    label: 'Keep browsing',
+                    variant: AppButtonVariant.ghost,
+                    size: AppButtonSize.small,
+                    expand: false,
+                    onPressed: _leave,
                   ),
               ],
             ),
@@ -262,95 +267,127 @@ class _Searching extends ConsumerWidget {
     final colors = context.colors;
     final text = context.text;
     final me = ref.watch(meProvider);
-    final request = state.request;
-    final online = state.online;
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.gutter),
-      children: [
-        const SizedBox(height: AppSpacing.xl),
-        Center(
-          child: SearchingPulse(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: AppShadows.floating(colors),
-              ),
-              child: AppAvatar(data: me.avatar.toData(), size: 96, ring: true),
-            ),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.xxl),
-        Text(
-          switch (state) {
-            SearchState(phase: SearchPhase.joining) => 'Starting your search…',
-            SearchState(requeued: true) => 'Searching again…',
-            _ => 'Finding an opponent…',
-          },
-          style: text.headlineMedium,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: AppSpacing.xs),
-        Center(child: _Elapsed(joinedAt: state.joinedAt)),
-        const SizedBox(height: AppSpacing.lg),
-        if (request != null)
-          Wrap(
-            alignment: WrapAlignment.center,
-            spacing: AppSpacing.sm,
-            runSpacing: AppSpacing.sm,
-            children: [
-              OverlineBadge(
-                label: switch (request.mode) {
-                  'casual' => 'Casual',
-                  'bot' => 'Practice',
-                  _ => 'Rated',
+    // Only what matters while waiting: who is searching, for how long, and for what.
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.gutter),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SearchingPulse(child: AppAvatar(data: me.avatar.toData(), size: 96, ring: true)),
+            const SizedBox(height: AppSpacing.lg),
+            AnimatedSwitcher(
+              duration: AppMotion.of(context, AppMotion.medium),
+              child: _Ellipsis(
+                key: ValueKey(state.phase == SearchPhase.joining ? 'join' : state.requeued),
+                text: switch (state) {
+                  SearchState(phase: SearchPhase.joining) => 'Starting your search',
+                  SearchState(requeued: true) => 'Searching again',
+                  _ => 'Finding an opponent',
                 },
-                solid: true,
-                icon: request.isCasual ? AppIcons.coins : AppIcons.flash,
+                style: text.headlineMedium,
               ),
-              OverlineBadge(label: request.subjectLabel, tone: PastelTone.sky),
-              OverlineBadge(label: request.chapterLabel ?? 'All chapters', tone: PastelTone.sky),
+            ),
+            const SizedBox(height: AppSpacing.xs),
+            _Elapsed(joinedAt: state.joinedAt),
+            const SizedBox(height: AppSpacing.md),
+            Semantics(
+              liveRegion: true,
+              child: AnimatedSwitcher(
+                duration: AppMotion.of(context, AppMotion.medium),
+                child: Text(
+                  searchStatusLine(state),
+                  key: ValueKey(state.widened),
+                  style: text.bodyMedium.copyWith(color: colors.inkMuted),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            if (state.requeued) ...[
+              const SizedBox(height: AppSpacing.lg),
+              InfoChip(
+                icon: AppIcons.info,
+                label: 'Your opponent didn\'t join. You\'re first in line.',
+                background: colors.lemon.container,
+                foreground: colors.lemon.onContainer,
+              ),
             ],
-          ),
-        const SizedBox(height: AppSpacing.lg),
-        Semantics(
-          liveRegion: true,
-          child: AnimatedSwitcher(
-            duration: AppMotion.of(context, AppMotion.medium),
-            child: Text(
-              searchStatusLine(state),
-              key: ValueKey(state.widened),
-              style: text.bodyLarge.copyWith(fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
-            ),
-          ),
+            const SizedBox(height: AppSpacing.xl),
+          ],
         ),
-        if (online != null) ...[
-          const SizedBox(height: AppSpacing.xs),
-          Text(
-            onlineLine(OnlineStat(searching: online, p50WaitS: state.p50WaitS)),
-            style: text.bodySmall,
-            textAlign: TextAlign.center,
+      ),
+    );
+  }
+}
+
+/// [text] followed by dots that fill in one by one ("Finding an opponent..."), in a fixed width so
+/// the line never shifts. Still with reduced motion.
+class _Ellipsis extends StatefulWidget {
+  const _Ellipsis({super.key, required this.text, required this.style});
+
+  final String text;
+  final TextStyle style;
+
+  @override
+  State<_Ellipsis> createState() => _EllipsisState();
+}
+
+class _EllipsisState extends State<_Ellipsis> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 1500),
+  );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (AppMotion.reduced(context)) {
+      _controller
+        ..stop()
+        ..value = 1;
+    } else if (!_controller.isAnimating) {
+      unawaited(_controller.repeat());
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: '${widget.text}…',
+      excludeSemantics: true,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          Flexible(
+            child: Text(widget.text, style: widget.style, textAlign: TextAlign.center),
+          ),
+          AnimatedBuilder(
+            animation: _controller,
+            builder: (context, _) {
+              // 0, 1, 2, 3 dots, each fading in.
+              final step = _controller.value * 4;
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (var i = 0; i < 3; i++)
+                    Opacity(
+                      opacity: (step - i).clamp(0.0, 1.0),
+                      child: Text('.', style: widget.style),
+                    ),
+                ],
+              );
+            },
           ),
         ],
-        if (state.requeued) ...[
-          const SizedBox(height: AppSpacing.lg),
-          Center(
-            child: InfoChip(
-              icon: AppIcons.info,
-              label: 'Your opponent didn\'t join. You\'re first in line.',
-              background: colors.lemon.container,
-              foreground: colors.lemon.onContainer,
-            ),
-          ),
-        ],
-        const SizedBox(height: AppSpacing.xl),
-        Text(
-          'You can leave this screen. We\'ll keep looking and call you back.',
-          style: text.caption,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: AppSpacing.lg),
-      ],
+      ),
     );
   }
 }
@@ -405,7 +442,7 @@ class _ElapsedState extends ConsumerState<_Elapsed> {
     final label = LiveText.mmss(_now().difference(since));
     return Text(
       label,
-      style: context.text.numericLarge.copyWith(color: context.colors.inkMuted),
+      style: context.text.numericMedium.copyWith(color: context.colors.inkMuted),
       semanticsLabel: 'Searching for $label',
     );
   }

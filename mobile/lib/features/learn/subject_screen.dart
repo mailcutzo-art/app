@@ -52,18 +52,12 @@ class SubjectScreen extends ConsumerWidget {
           ),
         ),
       ],
+      // The header already names the subject; the counts line under it is still loading.
       _ => const [
-        Padding(
-          padding: EdgeInsets.fromLTRB(AppSpacing.gutter, AppSpacing.lg, AppSpacing.gutter, 0),
-          child: Shimmer(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SkeletonBox(width: 180, height: 34),
-                SizedBox(height: AppSpacing.sm),
-                SkeletonBox(width: 140, height: 16),
-              ],
-            ),
+        Gutter(
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Shimmer(child: SkeletonBox(width: 140, height: 16)),
           ),
         ),
         SizedBox(height: AppSpacing.xxl),
@@ -71,31 +65,55 @@ class SubjectScreen extends ConsumerWidget {
       ],
     };
 
+    void back() => context.canPop() ? context.pop() : context.go(Routes.learn);
+    final header = subject == null
+        // Loading, failed or not in this syllabus: the slug is all there is, and the back button
+        // is always there.
+        ? SliverCollapsingTitle(title: _nameFromSlug(slug), onBack: back)
+        : SliverCollapsingTitle(
+            title: subject.name,
+            subtitle: subjectCounts(subject),
+            trailing: _SubjectBadge(subject: subject),
+            onBack: back,
+          );
+
     return Scaffold(
-      appBar: AppTopBar(
-        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
-      ),
-      body: RefreshIndicator(
-        color: context.colors.ink,
-        backgroundColor: context.colors.surface,
-        onRefresh: () async {
-          ref
-            ..invalidate(catalogProvider(goal))
-            ..invalidate(progressProvider(goal));
-          try {
-            await ref.read(catalogProvider(goal).future);
-          } on Object {
-            // The screen shows the error.
-          }
-        },
-        child: ListView(
-          // Clears the floating nav bar.
-          padding: const EdgeInsets.only(bottom: 128),
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: children,
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          color: context.colors.ink,
+          backgroundColor: context.colors.surface,
+          onRefresh: () async {
+            ref
+              ..invalidate(catalogProvider(goal))
+              ..invalidate(progressProvider(goal));
+            try {
+              await ref.read(catalogProvider(goal).future);
+            } on Object {
+              // The screen shows the error.
+            }
+          },
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              header,
+              SliverPadding(
+                // Clears the floating nav bar.
+                padding: const EdgeInsets.only(bottom: 128),
+                sliver: SliverList(delegate: SliverChildListDelegate(children)),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  /// "Physics", from the route's slug, until the catalogue says what the subject is called.
+  static String _nameFromSlug(String slug) {
+    final words = slug.replaceAll('-', ' ').replaceAll('_', ' ').trim();
+    if (words.isEmpty) return 'Subject';
+    return words[0].toUpperCase() + words.substring(1);
   }
 
   List<Widget> _subject(
@@ -104,21 +122,8 @@ class SubjectScreen extends ConsumerWidget {
     CatalogSubject subject,
     AsyncValue<Progress> progress,
   ) {
-    final colors = context.colors;
-    final pair = colors.pastel(subjectTone(subject.tone));
     final goal = ref.read(learnGoalProvider);
     return [
-      LargeTitle(
-        title: subject.name,
-        subtitle: subjectCounts(subject),
-        trailing: Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(color: pair.container, shape: BoxShape.circle),
-          alignment: Alignment.center,
-          child: HugeIcon(subjectIcon(subject.icon), size: 26, color: pair.onContainer),
-        ),
-      ),
       if (progress case AsyncValue(hasValue: false, :final error?))
         Padding(
           padding: const EdgeInsets.fromLTRB(
@@ -178,6 +183,25 @@ class SubjectScreen extends ConsumerWidget {
   }
 }
 
+/// The subject's icon on its pastel, beside the title.
+class _SubjectBadge extends StatelessWidget {
+  const _SubjectBadge({required this.subject});
+
+  final CatalogSubject subject;
+
+  @override
+  Widget build(BuildContext context) {
+    final pair = context.colors.pastel(subjectTone(subject.tone));
+    return Container(
+      width: 56,
+      height: 56,
+      decoration: BoxDecoration(color: pair.container, shape: BoxShape.circle),
+      alignment: Alignment.center,
+      child: HugeIcon(subjectIcon(subject.icon), size: 26, color: pair.onContainer),
+    );
+  }
+}
+
 class _ChapterRow extends StatelessWidget {
   const _ChapterRow({
     required this.number,
@@ -199,15 +223,15 @@ class _ChapterRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final pair = colors.pastel(tone);
-    final questions = plural(chapter.questionCount, 'question');
+    final topics = chapter.topics.isEmpty ? null : plural(chapter.topics.length, 'topic');
     final seen = progress?.seen ?? 0;
     final label = progress?.label;
     return ListRowCard(
       title: chapter.name,
       subtitle: switch ((progressKnown, seen)) {
-        (false, _) => questions,
-        (true, 0) => '$questions · Not started',
-        _ => '$questions · $seen seen',
+        (false, _) => topics,
+        (true, 0) => topics == null ? 'Not started' : '$topics · Not started',
+        _ => '${plural(seen, 'question')} practised',
       },
       leading: Container(
         width: 40,

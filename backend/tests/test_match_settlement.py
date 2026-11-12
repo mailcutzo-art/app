@@ -441,3 +441,32 @@ async def test_options_get_fresh_ids_and_the_answer_stays_on_the_server(
             == (mq.option_map["correct"])
         )
     assert subject is not None
+
+
+async def test_harder_questions_get_more_time(
+    api: AsyncClient, redis: Redis, sessions: LockedSessions, rt_settings: Settings
+) -> None:
+    settings = rt_settings.model_copy(update={"match_questions": 7})
+    asha, ravi = await two_users(api)
+    mid = await new_match(sessions, redis, settings, (asha, ravi))
+    async with sessions() as db:
+        asked = list(
+            await db.execute(
+                select(MatchQuestion.position, Question.difficulty)
+                .join(Question, Question.id == MatchQuestion.question_id)
+                .where(MatchQuestion.match_id == uuid.UUID(mid))
+            )
+        )
+        match = await db.get(Match, uuid.UUID(mid))
+
+    base = settings.match_limit_ms
+    scale = {1: 1.0, 2: 1.0, 3: settings.match_medium_scale, 4: settings.match_hard_scale}
+    scale[5] = settings.match_hard_scale
+    limits = []
+    for position, difficulty in asked:
+        limit = int(await redis.hget(keys.match_question(mid, position), "limit_ms"))
+        assert limit == round(base * scale[difficulty])
+        limits.append((position, limit))
+    assert match is not None
+    assert match.config["paced"] is True
+    assert match.config["limits_ms"] == [limit for _, limit in sorted(limits)]

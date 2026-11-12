@@ -37,6 +37,26 @@ enum Marking {
   static Marking parse(Object? value) => value == 'neet' ? neet : none;
 }
 
+/// How timed practice is timed: one time for every question, or more time for harder ones.
+enum Timing {
+  fixed('fixed'),
+  byDifficulty('by_difficulty');
+
+  const Timing(this.wire);
+
+  final String wire;
+
+  static Timing? parse(Object? value) => values.where((t) => t.wire == value).firstOrNull;
+}
+
+/// The seconds a timed question gets with [Timing.byDifficulty] (the server's own table):
+/// difficulty 1–2 is easy, 3 medium, 4–5 hard.
+int byDifficultySeconds(int difficulty) => switch (difficulty) {
+  <= 2 => 30,
+  3 => 60,
+  _ => 90,
+};
+
 /// When the correct answers are shown: after each question, or at the end
 /// (Self Challenge).
 enum FeedbackTiming { instant, atEnd }
@@ -71,6 +91,7 @@ class SessionSettings {
     this.count = 10,
     this.difficulty = Difficulty.mixed,
     this.timed = false,
+    this.timing = Timing.fixed,
     this.perQuestionS,
     this.timeLimitS,
     this.marking = Marking.none,
@@ -90,6 +111,7 @@ class SessionSettings {
       count: r.integer('count'),
       difficulty: Difficulty.parse(r.optString('difficulty')) ?? Difficulty.mixed,
       timed: r.flag('timed'),
+      timing: Timing.parse(r['timing']) ?? Timing.fixed,
       perQuestionS: r.optInt('per_question_s'),
       timeLimitS: r.optInt('time_limit_s'),
       marking: Marking.parse(r['marking']),
@@ -113,6 +135,9 @@ class SessionSettings {
   final int count;
   final Difficulty difficulty;
   final bool timed;
+
+  /// Only for [timed] practice.
+  final Timing timing;
   final int? perQuestionS;
   final int? timeLimitS;
   final Marking marking;
@@ -130,7 +155,10 @@ class SessionSettings {
     'count': count,
     'difficulty': difficulty.name,
     'timed': timed,
-    'per_question_s': timed ? (perQuestionS ?? defaultPerQuestionS) : null,
+    'timing': timed ? timing.wire : Timing.fixed.wire,
+    'per_question_s': timed && timing == Timing.fixed
+        ? (perQuestionS ?? defaultPerQuestionS)
+        : null,
     'time_limit_s': timeLimitS,
     'marking': marking.name,
     'unseen_only': unseenOnly,
@@ -148,6 +176,7 @@ class SessionSettings {
       other.count == count &&
       other.difficulty == difficulty &&
       other.timed == timed &&
+      other.timing == timing &&
       other.perQuestionS == perQuestionS &&
       other.timeLimitS == timeLimitS &&
       other.marking == marking &&
@@ -164,6 +193,7 @@ class SessionSettings {
     count,
     difficulty,
     timed,
+    timing,
     perQuestionS,
     timeLimitS,
     marking,
@@ -235,6 +265,7 @@ class PracticeQuestion {
     this.chapter,
     this.topic,
     this.bookmarked = false,
+    this.limitMs,
   });
 
   factory PracticeQuestion.fromJson(Object? json) {
@@ -260,6 +291,7 @@ class PracticeQuestion {
       chapter: r.optObject('chapter', NamedRef.fromJson),
       topic: r.optObject('topic', NamedRef.fromJson),
       bookmarked: r.flag('bookmarked'),
+      limitMs: r.optInt('limit_ms'),
     );
   }
 
@@ -284,6 +316,9 @@ class PracticeQuestion {
   final NamedRef? topic;
   final bool bookmarked;
 
+  /// This question's own time in timed practice (harder questions get more).
+  final int? limitMs;
+
   Map<String, Object?> toJson() => {
     'ref': ref,
     'position': position,
@@ -296,6 +331,7 @@ class PracticeQuestion {
     'chapter': chapter?.toJson(),
     'topic': topic?.toJson(),
     'bookmarked': bookmarked,
+    'limit_ms': limitMs,
   };
 }
 
@@ -440,7 +476,17 @@ class PracticeSession {
 
   bool get instantFeedback => feedback == FeedbackTiming.instant;
 
-  bool get timed => perQuestionMs != null && perQuestionMs! > 0;
+  bool get timed =>
+      (perQuestionMs != null && perQuestionMs! > 0) || questions.any((q) => (q.limitMs ?? 0) > 0);
+
+  /// The time [question] has, or null when untimed. A question's own limit comes first; older
+  /// sessions only have one limit for all.
+  int? limitFor(PracticeQuestion question) {
+    final own = question.limitMs;
+    if (own != null && own > 0) return own;
+    final all = perQuestionMs;
+    return all != null && all > 0 ? all : null;
+  }
 
   /// Expired sessions no longer take answers; resuming one is pointless.
   bool isExpired(DateTime now) => expiresAt != null && !now.isBefore(expiresAt!);

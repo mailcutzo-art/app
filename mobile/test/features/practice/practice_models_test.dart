@@ -21,6 +21,7 @@ void main() {
         'count': 10,
         'difficulty': 'mixed',
         'timed': false,
+        'timing': 'fixed',
         'per_question_s': null,
         'time_limit_s': null,
         'marking': 'none',
@@ -44,6 +45,50 @@ void main() {
         containsPair('passage_id', 'p1'),
       );
       expect(timed.toJson().containsKey('passage_id'), isFalse);
+    });
+
+    test('timing by difficulty sends no fixed limit', () {
+      const paced = SessionSettings(
+        mode: PracticeMode.chapter,
+        subject: 'physics',
+        timed: true,
+        timing: Timing.byDifficulty,
+      );
+      expect(paced.toJson(), containsPair('timing', 'by_difficulty'));
+      expect(paced.toJson(), containsPair('per_question_s', null));
+      expect(SessionSettings.fromJson(paced.toJson()), paced);
+    });
+
+    test('a question\'s own limit comes before the session\'s', () {
+      PracticeQuestion question({int? limitMs}) => PracticeQuestion(
+        ref: 'q',
+        position: 1,
+        stem: 's',
+        options: const [
+          PracticeOption(id: 0, text: 'a'),
+          PracticeOption(id: 1, text: 'b'),
+        ],
+        answer: 0,
+        explanation: '',
+        limitMs: limitMs,
+      );
+      final paced = PracticeSession(
+        sessionId: 's',
+        title: 't',
+        questions: [question(limitMs: 90000)],
+      );
+      expect(paced.timed, isTrue);
+      expect(paced.limitFor(paced.questions.single), 90000);
+      final fixed = PracticeSession(
+        sessionId: 's',
+        title: 't',
+        perQuestionMs: 30000,
+        questions: [question()],
+      );
+      expect(fixed.limitFor(fixed.questions.single), 30000);
+      expect(byDifficultySeconds(1), 30);
+      expect(byDifficultySeconds(3), 60);
+      expect(byDifficultySeconds(5), 90);
     });
 
     test('round-trips through JSON (the settings store keeps them)', () {

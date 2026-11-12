@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/network/app_failure.dart';
+import '../../practice/data/practice_models.dart' show byDifficultySeconds;
 import '../data/learn_models.dart';
 import '../tip_actions.dart';
 
@@ -22,9 +23,9 @@ HugeIconData subjectIcon(String name) => switch (name) {
 /// "1 question", "16 questions".
 String plural(int count, String noun) => count == 1 ? '1 $noun' : '$count ${noun}s';
 
-/// "2 chapters · 16 questions".
-String subjectCounts(CatalogSubject subject) =>
-    '${plural(subject.chapters.length, 'chapter')} · ${plural(subject.questionCount, 'question')}';
+/// "12 chapters". The size of the question bank is never shown: it isn't something to compete
+/// on, and it changes as content is added.
+String subjectCounts(CatalogSubject subject) => plural(subject.chapters.length, 'chapter');
 
 /// The text to show for a failed load. Only [AppFailure] messages are written
 /// for people; anything else gets a generic line.
@@ -404,6 +405,49 @@ class InlineError extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// "Untimed" or "Timed" practice, with a line on what each means. Timed practice gives harder
+/// questions more time, and moves on when a question's time runs out.
+class PaceChoice extends StatelessWidget {
+  const PaceChoice({super.key, required this.timed, required this.onChanged});
+
+  final bool timed;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = context.text;
+    final colors = context.colors;
+    final note = timed
+        ? 'Easy ${byDifficultySeconds(1)} s · Medium ${byDifficultySeconds(3)} s · '
+              'Hard ${byDifficultySeconds(5)} s. When time runs out, the next question comes up.'
+        : 'Take as long as you need on every question.';
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        AppSegmentedControl<bool>(
+          segments: const [
+            AppSegment(value: false, label: 'Untimed', icon: AppIcons.learn),
+            AppSegment(value: true, label: 'Timed', icon: AppIcons.timer),
+          ],
+          selected: timed,
+          onChanged: onChanged,
+        ),
+        const SizedBox(height: AppSpacing.sm),
+        AnimatedSwitcher(
+          duration: AppMotion.of(context, AppMotion.fast),
+          layoutBuilder: (current, previous) =>
+              Stack(alignment: Alignment.topLeft, children: [...previous, ?current]),
+          child: Padding(
+            key: ValueKey(timed),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+            child: Text(note, style: text.bodySmall.copyWith(color: colors.inkMuted)),
+          ),
+        ),
+      ],
     );
   }
 }
