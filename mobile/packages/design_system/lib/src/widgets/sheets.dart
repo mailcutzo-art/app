@@ -69,16 +69,20 @@ class SheetScaffold extends StatelessWidget {
             ),
           ),
           Flexible(child: child),
+          // Modal sheets are only kept clear of the top inset: the bottom one is handled here,
+          // so footer buttons never sit on the gesture bar.
           if (footer != null)
             Padding(
-              padding: const EdgeInsets.fromLTRB(
+              padding: EdgeInsets.fromLTRB(
                 AppSpacing.gutter,
                 AppSpacing.md,
                 AppSpacing.gutter,
-                AppSpacing.lg,
+                AppSpacing.bottomAction(context),
               ),
               child: footer,
-            ),
+            )
+          else
+            SizedBox(height: MediaQuery.paddingOf(context).bottom),
         ],
       ),
     );

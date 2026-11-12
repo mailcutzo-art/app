@@ -234,7 +234,7 @@ class _ChallengeScreenState extends ConsumerState<ChallengeScreen> {
               const OverlineLabel('Chapters'),
               SelectableRow(
                 title: 'All chapters',
-                subtitle: plural(subject.questionCount, 'question'),
+                subtitle: 'Questions from the whole subject',
                 icon: AppIcons.allChapters,
                 selected: chapters.isEmpty,
                 onTap: () => _change(setup.copyWith(chapters: {})),
@@ -242,7 +242,6 @@ class _ChallengeScreenState extends ConsumerState<ChallengeScreen> {
               for (final chapter in subject.chapters)
                 SelectableRow(
                   title: chapter.name,
-                  subtitle: plural(chapter.questionCount, 'question'),
                   selected: chapters.contains(chapter.slug),
                   onTap: () => _change(
                     setup.copyWith(

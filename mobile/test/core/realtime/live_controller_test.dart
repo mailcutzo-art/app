@@ -146,7 +146,7 @@ void main() {
     await advance(tester, const Duration(milliseconds: 500));
     expect(location(container), Routes.battleSearch);
     expect(find.textContaining('Searching ·'), findsNothing);
-    expect(find.text('Finding an opponent…'), findsOneWidget);
+    expect(find.text('Finding an opponent'), findsOneWidget);
   });
 
   testWidgets('mm.timeout elsewhere: "No one found yet" with Play the bot and Keep searching', (

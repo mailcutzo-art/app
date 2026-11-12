@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart' show CustomScrollView;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/core/network/api_client.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
@@ -170,7 +171,8 @@ void main() {
       expect(find.text('Welcome to Quiz Arena!'), findsNothing);
 
       // Pull to refresh: the server doesn't send it again.
-      await tester.fling(find.text('Hi, Aarav!'), const Offset(0, 400), 1200);
+      // The greeting stays put (a fixed header): the pull starts on the content.
+      await tester.fling(find.byType(CustomScrollView).first, const Offset(0, 400), 1200);
       for (var i = 0; i < 20; i++) {
         await tester.pump(const Duration(milliseconds: 100));
       }

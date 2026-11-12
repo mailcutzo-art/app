@@ -14,6 +14,17 @@ abstract final class AppSpacing {
 
   /// Horizontal screen gutter.
   static const double gutter = 20;
+
+  /// The gap kept between a bottom action (a button, the tab bar) and the system's bottom
+  /// inset (the gesture bar or home indicator), so nothing sits on it.
+  static const double bottomGap = 12;
+
+  /// Bottom padding for an action at the very bottom of the screen: the system inset plus
+  /// [bottomGap], or [lg] on phones without an inset.
+  static double bottomAction(BuildContext context) {
+    final inset = MediaQuery.paddingOf(context).bottom;
+    return inset > 0 ? inset + bottomGap : lg;
+  }
 }
 
 /// Corner radii. Cards use [xl]–[xxl]; controls are pill-shaped.

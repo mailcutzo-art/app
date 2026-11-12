@@ -221,7 +221,7 @@ class PracticeController extends AsyncNotifier<PracticeState> {
   /// The per-question limit ran out. A timeout records the full limit.
   void timeOut() {
     final s = _open();
-    if (s != null) _submit(s, timedOut: true, timeMs: s.session.perQuestionMs ?? 0);
+    if (s != null) _submit(s, timedOut: true, timeMs: s.session.limitFor(s.question) ?? 0);
   }
 
   /// Shows the next question. With end-of-session feedback this first

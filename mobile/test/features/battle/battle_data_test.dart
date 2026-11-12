@@ -376,7 +376,7 @@ void main() {
     });
   });
 
-  test('chapter subtitles carry the count and the Strong/Needs work word', () {
+  test('chapter subtitles carry the Strong/Needs work word, never the bank size', () {
     const ready = BattleChapter(
       slug: 'k',
       name: 'K',
@@ -384,7 +384,8 @@ void main() {
       questionCount: 48,
       label: ChapterLabel.needsWork,
     );
-    expect(chapterSubtitle(ready), '48 questions · Needs work');
+    expect(chapterSubtitle(ready), 'Needs work');
+    expect(chapterSubtitle(const BattleChapter(slug: 'n', name: 'N', battleReady: true)), isNull);
     expect(
       chapterSubtitle(const BattleChapter(slug: 'w', name: 'W', questionCount: 4)),
       'Coming soon',

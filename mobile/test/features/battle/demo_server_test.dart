@@ -225,7 +225,10 @@ void main() {
         expect(show['options'], hasLength(4));
         expect(show.containsKey('correct'), isFalse, reason: 'nothing leaks early');
         final shownAt = show['shown_at']! as int;
-        expect(show['deadline_at'], shownAt + 15000);
+        // An easy question has the base 20 s; harder ones more (×1.5, ×2.25).
+        final limit = show['limit_ms']! as int;
+        expect(const [20000, 30000, 45000], contains(limit));
+        expect(show['deadline_at'], shownAt + limit);
         async.elapse(Duration(milliseconds: shownAt - server.now + 1000));
         final id = client.send('ans.submit', {
           'match_id': matchId,

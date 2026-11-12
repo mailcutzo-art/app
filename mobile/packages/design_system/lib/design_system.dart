@@ -17,6 +17,7 @@ export 'src/widgets/avatar.dart';
 export 'src/widgets/battle_widgets.dart';
 export 'src/widgets/cards.dart';
 export 'src/widgets/chips.dart';
+export 'src/widgets/collapsing_title.dart';
 export 'src/widgets/competition_widgets.dart';
 export 'src/widgets/dot_matrix_chart.dart';
 export 'src/widgets/headers.dart';

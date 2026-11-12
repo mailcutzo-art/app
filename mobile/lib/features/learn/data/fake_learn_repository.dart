@@ -343,7 +343,7 @@ class FakeLearnRepository implements LearnRepository {
           : answer.selectedOption == question.answer
           ? AnswerOutcome.correct
           : AnswerOutcome.wrong;
-      final limit = session.perQuestionMs;
+      final limit = session.limitFor(entry.$2.difficulty);
       final timeMs = min(answer.timeMs, limit ?? 10 * 60 * 1000);
       session.answers[answer.position] = SessionAnswer(
         position: answer.position,
@@ -766,8 +766,17 @@ class _FakeSession {
   var expired = false;
   var xp = 0;
 
-  int? get perQuestionMs =>
-      settings.timed ? (settings.perQuestionS ?? SessionSettings.defaultPerQuestionS) * 1000 : null;
+  /// Fixed timing: one limit for every question.
+  int? get perQuestionMs => settings.timed && settings.timing == Timing.fixed
+      ? (settings.perQuestionS ?? SessionSettings.defaultPerQuestionS) * 1000
+      : null;
+
+  /// What a question of [difficulty] gets, like the server does.
+  int? limitFor(int difficulty) => !settings.timed
+      ? null
+      : settings.timing == Timing.byDifficulty
+      ? byDifficultySeconds(difficulty) * 1000
+      : perQuestionMs;
 
   String? get subjectSlug => settings.subject ?? questions.firstOrNull?.$1.subject;
 
@@ -803,6 +812,7 @@ class _FakeSession {
           chapter: q.chapter,
           topic: q.topic,
           bookmarked: bookmarks.contains(q.ref),
+          limitMs: limitFor(q.difficulty),
         ),
     ],
     answers: List.unmodifiable(answers.values),

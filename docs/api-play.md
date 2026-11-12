@@ -301,7 +301,8 @@ mobile app parses (unknown fields are ignored, and fields marked optional may be
 
 // GET /v1/tournaments/{id}: the card plus
 {"description": "…",
- "rules": {"questions": 10, "seconds_per_question": 15, "rated": true, "ready_s": 90,
+ "rules": {"questions": 10, "seconds_per_question": 20,
+  "seconds_by_difficulty": {"easy": 20, "medium": 30, "hard": 45}, "rated": true, "ready_s": 90,
            "draw_points": 0.5, "bye_points": 1},
  "schedule": [{"round": 1, "starts_at": "…", "status": "upcoming | pairing | live | done"}],
  "prizes": [{"from": 1, "to": 1, "coins": 195}, {"from": 6, "to": 10, "coins": 18}],

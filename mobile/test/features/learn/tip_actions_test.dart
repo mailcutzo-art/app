@@ -40,7 +40,7 @@ void main() {
             subject: 'physics',
             chapters: ['kinematics'],
             timed: true,
-            perQuestionS: 30,
+            timing: Timing.byDifficulty,
           ),
         ),
       );

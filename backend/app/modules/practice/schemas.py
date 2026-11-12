@@ -26,6 +26,9 @@ class SessionIn(ApiModel):
     count: int = Field(default=10, ge=5, le=50)
     difficulty: Literal["mixed", "easy", "medium", "hard"] = "mixed"
     timed: bool = False
+    # ``fixed`` uses ``per_question_s`` for every question; ``by_difficulty`` gives easy, medium
+    # and hard questions 30, 60 and 90 s (``app.modules.content.pacing``).
+    timing: Literal["fixed", "by_difficulty"] = "fixed"
     per_question_s: Literal[20, 30, 45, 60] | None = None
     time_limit_s: Literal[300, 600, 900, 1800, 3600] | None = None
     marking: Literal["none", "neet"] = "none"
@@ -41,6 +44,7 @@ class PassageOut(ApiModel):
 
 class SessionQuestionOut(QuestionOut):
     position: int  # from 1
+    limit_ms: int | None  # this question's time in timed practice
 
 
 class SessionOut(ApiModel):
@@ -50,7 +54,8 @@ class SessionOut(ApiModel):
     feedback: Literal["instant", "end"]  # challenge shows answers at the end
     created_at: datetime
     expires_at: datetime
-    per_question_ms: int | None
+    per_question_ms: int | None  # fixed timing; each question also carries its ``limit_ms``
+    timing: Literal["fixed", "by_difficulty"] | None  # None when untimed
     time_limit_ms: int | None
     marking: str
     short: bool  # fewer questions matched than were asked for

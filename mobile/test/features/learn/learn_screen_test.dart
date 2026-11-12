@@ -1,7 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/router.dart';
-import 'package:quiz_app/core/auth/session.dart';
 import 'package:quiz_app/core/auth/user.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
@@ -77,7 +76,7 @@ void main() {
 
     expect(find.byType(Shimmer), findsNothing);
     expect(find.text('Physics'), findsOneWidget);
-    expect(find.text('2 chapters · 6 questions'), findsOneWidget);
+    expect(find.text('2 chapters'), findsOneWidget);
     expect(find.text('Biology'), findsOneWidget);
     expect(find.text('Physics · Motion in a Straight Line'), findsOneWidget);
     expect(find.text('12/20'), findsOneWidget);
@@ -129,7 +128,9 @@ void main() {
     expect(find.text('Physics'), findsOneWidget);
   });
 
-  testWidgets('the exam switcher changes what is browsed, not the profile goal', (tester) async {
+  testWidgets('the exam chosen at sign-up decides what is browsed, with no switcher', (
+    tester,
+  ) async {
     usePhoneViewport(tester);
     final container = await pumpApp(
       tester,
@@ -137,16 +138,10 @@ void main() {
       learn: learn,
       location: Routes.learn,
     );
-    expect(container.read(learnGoalProvider), Goal.neet, reason: 'starts at the user\'s goal');
+    expect(container.read(learnGoalProvider), Goal.neet, reason: 'the user\'s goal');
     expect(find.text('Biology'), findsOneWidget);
-
-    await tester.tap(find.text('JEE'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Biology'), findsNothing);
-    expect(find.text('Physics'), findsOneWidget);
-    expect(container.read(learnGoalProvider), Goal.jee);
-    expect(container.read(meProvider).goal, Goal.neet);
+    expect(find.text('JEE'), findsNothing);
+    expect(find.textContaining('NEET · Practise'), findsOneWidget);
   });
 
   testWidgets('reviewing with nothing due explains why instead of opening an empty set', (

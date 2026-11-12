@@ -101,10 +101,14 @@ def _mode_problems(body: SessionIn) -> dict[str, str]:
         problems["time_limit_s"] = "A total time limit is only used for Self Challenge."
     if mode == PracticeMode.CHALLENGE and body.timed:
         problems["timed"] = "Self Challenge has one time limit for the whole set."
-    elif body.timed and body.per_question_s is None:
+    elif body.timed and body.timing == "fixed" and body.per_question_s is None:
         problems["per_question_s"] = "Choose the time per question."
+    elif body.timing == "by_difficulty" and body.per_question_s is not None:
+        problems["per_question_s"] = "Timing by difficulty sets the time for each question."
     elif not body.timed and body.per_question_s is not None:
         problems["per_question_s"] = "Turn on timed practice to set a time per question."
+    if not body.timed and body.timing != "fixed":
+        problems["timing"] = "Turn on timed practice to choose how it's timed."
     if mode == PracticeMode.PASSAGE and body.passage_id is None:
         problems["passage_id"] = "Choose a passage."
     elif mode != PracticeMode.PASSAGE and body.passage_id is not None:

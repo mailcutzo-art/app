@@ -80,31 +80,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final banner = home.value?.maintenanceBanner;
     return TabPage(
       onRefresh: _refresh,
+      // The greeting stays at the top; everything below scrolls under it.
+      header: GreetingHeader(
+        avatar: AppAvatar(data: me.avatar.toData(), ring: true, semanticLabel: 'Your avatar'),
+        greeting: 'Hi, $firstName!',
+        subtitle: [
+          if (me.goal != null) me.goal!.label,
+          if (me.handle != null) '@${me.handle}',
+        ].join(' · '),
+        onAvatarTap: () => context.push(Routes.profile),
+        actions: [
+          AppIconButton(
+            icon: AppIcons.arena,
+            semanticLabel: 'Leaderboards',
+            motion: IconMotions.trophy,
+            onPressed: () => context.push(Routes.leaderboards),
+          ),
+          const InboxBell(),
+        ],
+      ),
       children: [
         OfflineBanner(visible: offline),
-        GreetingHeader(
-          avatar: AppAvatar(data: me.avatar.toData(), ring: true, semanticLabel: 'Your avatar'),
-          greeting: 'Hi, $firstName!',
-          subtitle: [
-            if (me.goal != null) me.goal!.label,
-            if (me.handle != null) '@${me.handle}',
-          ].join(' · '),
-          onAvatarTap: () => context.push(Routes.profile),
-          actions: [
-            AppIconButton(
-              icon: AppIcons.arena,
-              semanticLabel: 'Leaderboards',
-              motion: IconMotions.trophy,
-              onPressed: () => context.push(Routes.leaderboards),
-            ),
-            const InboxBell(),
-          ],
-        ),
         if (banner != null) ...[
           const SizedBox(height: AppSpacing.lg),
           Gutter(child: _MaintenanceBanner(message: banner)),
         ],
-        const SizedBox(height: AppSpacing.xl),
+        const SizedBox(height: AppSpacing.md),
         Gutter(child: _Hero(home: home)),
         _Optional(
           home: home,
@@ -354,10 +355,7 @@ void _showRatingInfo(BuildContext context) {
     builder: (context) => SheetScaffold(
       title: 'About Rating',
       subtitle: 'Your competitive skill score in Quiz Arena',
-      footer: AppButton(
-        label: 'Got it',
-        onPressed: () => Navigator.pop(context),
-      ),
+      footer: AppButton(label: 'Got it', onPressed: () => Navigator.pop(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

@@ -11,6 +11,7 @@ import 'package:realtime_client/realtime_client.dart' hide AnswerOption;
 import '../../../core/auth/user.dart';
 import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/realtime_providers.dart';
+import '../../../core/sound/sound_effects.dart';
 
 /// Server time now, from the synced clock (the device clock if there's no connection).
 int serverNowOf(WidgetRef ref) =>
@@ -149,10 +150,14 @@ class _CountdownDigitsState extends ConsumerState<CountdownDigits> {
   @override
   void initState() {
     super.initState();
+    if (_n > 0) playSfx(ref, Sfx.tick);
     _timer = Timer.periodic(const Duration(milliseconds: 100), (_) {
       if (!mounted) return;
       final n = _digit();
-      if (n != _n) setState(() => _n = n);
+      if (n == _n) return;
+      // A soft tick each second, a warmer note on "Go!".
+      playSfx(ref, n <= 0 ? Sfx.go : Sfx.tick);
+      setState(() => _n = n);
     });
   }
 

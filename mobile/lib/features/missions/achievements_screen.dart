@@ -77,31 +77,35 @@ class AchievementsScreen extends ConsumerWidget {
 
     final value = achievements.value;
     return Scaffold(
-      appBar: AppTopBar(onBack: () => context.canPop() ? context.pop() : context.go(Routes.home)),
-      body: RefreshIndicator(
-        color: context.colors.ink,
-        backgroundColor: context.colors.surface,
-        onRefresh: () async {
-          ref.invalidate(achievementsProvider);
-          try {
-            await ref.read(achievementsProvider.future);
-          } on Object {
-            // The screen shows the error.
-          }
-        },
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: AppSpacing.huge),
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
-            LargeTitle(
-              title: 'Achievements',
-              subtitle: value == null || value.items.isEmpty
-                  ? 'Milestones that earn badges and coins'
-                  : '${value.earned.length} of ${value.items.length} earned',
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            ...content,
-          ],
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          color: context.colors.ink,
+          backgroundColor: context.colors.surface,
+          onRefresh: () async {
+            ref.invalidate(achievementsProvider);
+            try {
+              await ref.read(achievementsProvider.future);
+            } on Object {
+              // The screen shows the error.
+            }
+          },
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverCollapsingTitle(
+                title: 'Achievements',
+                subtitle: value == null || value.items.isEmpty
+                    ? 'Milestones that earn badges and coins'
+                    : '${value.earned.length} of ${value.items.length} earned',
+                onBack: () => context.canPop() ? context.pop() : context.go(Routes.home),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.only(top: AppSpacing.sm, bottom: AppSpacing.huge),
+                sliver: SliverList(delegate: SliverChildListDelegate(content)),
+              ),
+            ],
+          ),
         ),
       ),
     );
