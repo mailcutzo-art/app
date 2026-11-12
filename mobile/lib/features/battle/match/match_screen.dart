@@ -12,6 +12,7 @@ import '../../../core/auth/user.dart';
 import '../../../core/realtime/live_match.dart';
 import '../../../core/realtime/live_providers.dart';
 import '../../../core/realtime/live_text.dart';
+import '../../../core/sound/sound_effects.dart';
 import '../../arena/tournament_live.dart' show tournamentRouteFor;
 import '../../rooms/room_text.dart';
 import '../../rooms/rooms_controller.dart' show roomViewProvider, roomsOf;
@@ -55,6 +56,30 @@ class _MatchScreenState extends ConsumerState<MatchScreen> {
     super.initState();
     _guard = ref.read(screenGuardProvider);
     unawaited(_guard.protect());
+    ref.listenManual<MatchView?>(matchViewProvider(widget.matchId), _sound);
+  }
+
+  /// A soft sound for my verdict on each reveal, and for the result.
+  void _sound(MatchView? before, MatchView? now) {
+    if (now == null || before == null || now.isSpectator) return;
+    final reveal = now.state.currentReveal;
+    if (reveal != null && reveal.q != before.state.currentReveal?.q) {
+      final mine = reveal.players[now.me];
+      playSfx(
+        ref,
+        mine?.correct ?? false ? Sfx.correct : (mine?.opt == null ? Sfx.timeout : Sfx.wrong),
+      );
+    }
+    final outcome = now.outcome;
+    if (now.isOver && !before.isOver && outcome != null) {
+      final sfx = switch (outcome.result) {
+        MatchResult.win => Sfx.win,
+        MatchResult.loss => Sfx.lose,
+        MatchResult.draw => Sfx.draw,
+        MatchResult.unknown => null,
+      };
+      if (sfx != null) playSfx(ref, sfx);
+    }
   }
 
   @override
@@ -282,6 +307,11 @@ class _VersusViewState extends ConsumerState<_VersusView> {
     final sources = sourcesLine(view.intro?.sources ?? const []);
     final total = view.state.total > 0 ? view.state.total : 7;
     final seconds = ((view.state.limitMs ?? 15000) / 1000).round();
+    final time = switch (view.intro?.timeS) {
+      (final lo, final hi) when hi > lo => '$total questions · $lo–$hi s each',
+      (final lo, _) => '$total questions · $lo s each',
+      null => '$total questions · $seconds s each',
+    };
     final mode = switch (view.mode) {
       'bot' => 'Practice game · not rated',
       'casual' => 'Casual · winner takes 10 coins',
@@ -356,11 +386,7 @@ class _VersusViewState extends ConsumerState<_VersusView> {
                 runSpacing: AppSpacing.sm,
                 children: [
                   InfoChip(icon: AppIcons.flash, label: mode, background: colors.surfaceMuted),
-                  InfoChip(
-                    icon: AppIcons.timer,
-                    label: '$total questions · $seconds s each',
-                    background: colors.surfaceMuted,
-                  ),
+                  InfoChip(icon: AppIcons.timer, label: time, background: colors.surfaceMuted),
                 ],
               ),
               const SizedBox(height: AppSpacing.xxl),

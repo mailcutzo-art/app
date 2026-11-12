@@ -42,7 +42,7 @@ from app.modules.practice.models import (
     UserQuestion,
 )
 from app.modules.practice.schemas import AnswerIn, AnswerResultOut, AnswersOut
-from app.modules.practice.sessions import challenge_deadline, owned_session, per_question_ms
+from app.modules.practice.sessions import challenge_deadline, owned_session, question_limit_ms
 from app.modules.practice.speed import typical_speed
 from app.modules.practice.totals import AnswerFacts, add_to_totals
 from app.modules.progression import streaks
@@ -280,13 +280,14 @@ async def _record_first_answers(
             select(Question).where(Question.id.in_([c.question_id for c in fresh]))
         )
     }
-    limit_ms = per_question_ms(session)
     pending = [
         _Recorded(
             candidate=c,
             question=questions[c.question_id],
             outcome=_outcome(c.answer, questions[c.question_id]),
-            time_ms=_time_ms(c.answer, limit_ms),
+            time_ms=_time_ms(
+                c.answer, question_limit_ms(session, questions[c.question_id].difficulty)
+            ),
         )
         for c in fresh
     ]
@@ -446,7 +447,6 @@ async def _write_attempts(
 ) -> list[AnswerFacts]:
     """One ``question_attempts`` row per recorded answer, with the question's details copied."""
     mode = ATTEMPT_MODES[PracticeMode(session.mode)].value
-    limit_ms = per_question_ms(session)
     stats = {
         row.question_id: row
         for row in await db.scalars(
@@ -478,7 +478,7 @@ async def _write_attempts(
                 "selected_option": r.answer.selected_option,
                 "outcome": r.outcome.value,
                 "time_ms": r.time_ms,
-                "time_limit_ms": limit_ms,
+                "time_limit_ms": question_limit_ms(session, q.difficulty),
                 "speed": speed.speed,
                 "speed_basis": speed.basis,
                 "peer_time_ms": speed.peer_time_ms,

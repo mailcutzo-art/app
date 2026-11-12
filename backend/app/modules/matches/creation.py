@@ -16,6 +16,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import Settings
+from app.modules.content import pacing
 from app.modules.content.models import Chapter, Subject
 from app.modules.content.refs import question_ref
 from app.modules.matches.models import HeadToHead, Match, MatchKind, MatchQuestion
@@ -67,6 +68,7 @@ class GameRules:
     grace_ms: int
     sources: list[tuple[str | None, int]]
     difficulty: DifficultyBand | None = None
+    paced: bool = False  # scale ``limit_ms`` by each question's difficulty
     extra: dict[str, Any] = field(default_factory=dict)
     config: dict[str, Any] = field(default_factory=dict)
 
@@ -90,18 +92,25 @@ def max_duration_ms(
     limit_ms: int | None = None,
     reveal_ms: int | None = None,
     grace_ms: int | None = None,
+    limits: Sequence[int] | None = None,
 ) -> int:
-    """The longest a match can run: ready, countdown, every question, and a last grace."""
+    """The longest a match can run: ready, countdown, every question, and a last grace.
+
+    ``limits`` gives each question's own time (difficulty-paced games); otherwise every one
+    of the ``total`` questions has ``limit_ms``."""
     per_question = (
         settings.match_show_lead_ms
-        + (settings.match_limit_ms if limit_ms is None else limit_ms)
         + settings.match_answer_grace_ms
         + (settings.match_reveal_ms if reveal_ms is None else reveal_ms)
     )
+    if limits is None:
+        limit = settings.match_limit_ms if limit_ms is None else limit_ms
+        limits = [limit] * total
     return (
         (settings.match_ready_ms if ready_ms is None else ready_ms)
         + settings.match_countdown_ms
-        + total * per_question
+        + len(limits) * per_question
+        + sum(limits)
         + (settings.match_grace_ms if grace_ms is None else grace_ms)
         + settings.match_drain_grace_ms
         + settings.match_void_window_ms
@@ -182,6 +191,9 @@ async def prepare_match(
     limit_ms = settings.match_limit_ms
     reveal_ms = settings.match_reveal_ms
     grace_ms = settings.match_grace_ms if grace_ms is None else grace_ms
+    # Quick Battle, Practice Bot and tournament games give harder questions more time; a room
+    # keeps the one time its host picked.
+    paced = rules_in is None or rules_in.paced
     if rules_in is not None:
         total, limit_ms = rules_in.total, rules_in.limit_ms
         reveal_ms, grace_ms = rules_in.reveal_ms, rules_in.grace_ms
@@ -241,7 +253,14 @@ async def prepare_match(
         accuracy = bot_accuracy(await expected_accuracy(db, humans[0], scope_ids))
 
     live_questions = []
+    limits: list[int] = []
     for position, item in enumerate(picked, start=1):
+        limit = (
+            pacing.battle_limit_ms(settings, item.question.difficulty, limit_ms)
+            if paced
+            else limit_ms
+        )
+        limits.append(limit)
         options = shuffle_options(item.question)
         db.add(
             MatchQuestion(
@@ -260,7 +279,7 @@ async def prepare_match(
                 ],
                 "correct": options.correct,
                 "ref": question_ref(item.question.id),
-                "limit_ms": limit_ms,
+                "limit_ms": limit,
                 "chapter": item.chapter.name,
             }
         )
@@ -272,9 +291,9 @@ async def prepare_match(
         settings,
         len(picked),
         ready_ms=ready_ms,
-        limit_ms=limit_ms,
         reveal_ms=reveal_ms,
         grace_ms=grace_ms,
+        limits=limits,
     )
     db.add(
         Match(
@@ -287,6 +306,8 @@ async def prepare_match(
                 "mode": MODES.get(kind, kind.value),
                 "total": len(picked),
                 "limit_ms": limit_ms,
+                "limits_ms": limits,
+                "paced": paced,
                 "reveal_ms": reveal_ms,
                 "grace_ms": grace_ms,
                 "max_duration_ms": longest,
@@ -326,6 +347,8 @@ async def prepare_match(
                 for s in shown_sources
             ],
             "bot": with_bot,
+            # Seconds per question, shortest and longest (difficulty-paced games differ).
+            "time_s": [round(min(limits) / 1000), round(max(limits) / 1000)],
         }
     return PreparedMatch(
         match_id=match_id,

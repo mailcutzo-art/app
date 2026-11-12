@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/router.dart';
 import '../../app/shell.dart';
+import '../../core/auth/session.dart';
 import '../../core/auth/user.dart';
 import '../../core/network/app_failure.dart';
 import '../../core/network/connectivity.dart';
@@ -18,7 +19,7 @@ import 'data/learn_models.dart';
 import 'learn_providers.dart';
 import 'widgets/learn_widgets.dart';
 
-/// The Learn tab: exam switcher, continue practice, coach tip, subjects and
+/// The Learn tab: continue practice, coach tip, subjects and
 /// practice tools. Catalog and progress load and fail independently.
 class LearnScreen extends ConsumerWidget {
   const LearnScreen({super.key});
@@ -26,6 +27,7 @@ class LearnScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final goal = ref.watch(learnGoalProvider);
+    final chosen = ref.watch(meProvider.select((me) => me.goal)) != null;
     final catalog = ref.watch(catalogProvider(goal));
     final progress = ref.watch(progressProvider(goal));
     final online = ref.watch(isOnlineProvider);
@@ -45,20 +47,29 @@ class LearnScreen extends ConsumerWidget {
           visible: !online || showingSaved,
           message: online ? 'Couldn\'t reach the server — showing saved subjects' : null,
         ),
-        const LargeTitle(title: 'Learn', subtitle: 'Practise by subject, chapter and topic.'),
+        LargeTitle(
+          title: 'Learn',
+          subtitle: chosen
+              ? '${goal.label} · Practise by subject, chapter and topic.'
+              : 'Practise by subject, chapter and topic.',
+        ),
         const SizedBox(height: AppSpacing.lg),
         const Gutter(child: _SearchEntry()),
-        const SizedBox(height: AppSpacing.md),
-        Gutter(
-          child: AppSegmentedControl<Goal>(
-            segments: const [
-              AppSegment(value: Goal.neet, label: 'NEET', icon: AppIcons.biology),
-              AppSegment(value: Goal.jee, label: 'JEE', icon: AppIcons.maths),
-            ],
-            selected: goal,
-            onChanged: ref.read(learnGoalProvider.notifier).select,
+        // The exam chosen at sign-up decides what is browsed; only an account without one
+        // (an older profile) picks it here.
+        if (!chosen) ...[
+          const SizedBox(height: AppSpacing.md),
+          Gutter(
+            child: AppSegmentedControl<Goal>(
+              segments: const [
+                AppSegment(value: Goal.neet, label: 'NEET', icon: AppIcons.biology),
+                AppSegment(value: Goal.jee, label: 'JEE', icon: AppIcons.maths),
+              ],
+              selected: goal,
+              onChanged: ref.read(learnGoalProvider.notifier).select,
+            ),
           ),
-        ),
+        ],
         _ProgressCards(goal: goal, progress: progress),
         const SectionHeader(title: 'Subjects'),
         Gutter(

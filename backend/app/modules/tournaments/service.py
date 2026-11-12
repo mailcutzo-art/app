@@ -19,6 +19,7 @@ from app.core.config import Settings
 from app.core.errors import Conflict, Forbidden, NotFound
 from app.core.pagination import decode_cursor, encode_cursor
 from app.core.schemas import ApiModel, Lax
+from app.modules.content import pacing
 from app.modules.content.catalog import DEFAULT_GOAL
 from app.modules.content.models import Subject
 from app.modules.economy.models import CoinReason, HoldStatus, RefKind
@@ -418,7 +419,9 @@ async def detail(
         description=t.description,
         rules={
             "questions": settings.tournament_questions,
+            # Easy questions; medium and hard ones get more (seconds_by_difficulty).
             "seconds_per_question": settings.match_limit_ms // 1000,
+            "seconds_by_difficulty": pacing.battle_limits_s(settings),
             "rated": True,
             "ready_s": settings.tournament_ready_ms // 1000,
             "draw_points": 0.5,

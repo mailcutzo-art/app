@@ -72,9 +72,7 @@ class SubjectScreen extends ConsumerWidget {
     };
 
     return Scaffold(
-      appBar: AppTopBar(
-        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
-      ),
+      appBar: AppTopBar(onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn)),
       body: RefreshIndicator(
         color: context.colors.ink,
         backgroundColor: context.colors.surface,
@@ -199,15 +197,15 @@ class _ChapterRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final pair = colors.pastel(tone);
-    final questions = plural(chapter.questionCount, 'question');
+    final topics = chapter.topics.isEmpty ? null : plural(chapter.topics.length, 'topic');
     final seen = progress?.seen ?? 0;
     final label = progress?.label;
     return ListRowCard(
       title: chapter.name,
       subtitle: switch ((progressKnown, seen)) {
-        (false, _) => questions,
-        (true, 0) => '$questions · Not started',
-        _ => '$questions · $seen seen',
+        (false, _) => topics,
+        (true, 0) => topics == null ? 'Not started' : '$topics · Not started',
+        _ => '${plural(seen, 'question')} practised',
       },
       leading: Container(
         width: 40,

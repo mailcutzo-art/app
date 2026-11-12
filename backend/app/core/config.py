@@ -140,7 +140,11 @@ class Settings(BaseSettings):
     rt_overdue_ms: int = Field(default=1000, ge=0)
     # Quick Battle and Practice Bot games.
     match_questions: int = Field(default=7, ge=1, le=20)
-    match_limit_ms: int = Field(default=15_000, gt=1000)
+    # The time for an easy question; medium and hard ones get this times their scale
+    # (20 s, 30 s and 45 s by default; app.modules.content.pacing). Rooms use the host's time.
+    match_limit_ms: int = Field(default=20_000, gt=1000)
+    match_medium_scale: float = Field(default=1.5, ge=1.0, le=5.0)
+    match_hard_scale: float = Field(default=2.25, ge=1.0, le=5.0)
     match_reveal_ms: int = Field(default=3000, ge=0)
     match_countdown_ms: int = Field(default=3000, ge=0)
     match_ready_ms: int = Field(default=10_000, ge=100)

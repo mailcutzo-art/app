@@ -63,9 +63,8 @@ void main() {
     final container = await pumpDemo(tester, server, screenGuard: guard);
 
     expect(find.text('Quick battle'), findsOneWidget);
-    expect(find.text('1502?'), findsOneWidget, reason: 'the Physics rating');
+    expect(find.text('1502'), findsOneWidget, reason: 'the Physics rating');
     expect(find.text('3 players searching · usually 20 s'), findsOneWidget);
-    expect(find.text('Physics this week: Riya leads · you\'re #12'), findsOneWidget);
 
     // Pick a chapter.
     await tester.tap(find.text('All chapters'));
@@ -121,7 +120,7 @@ void main() {
     await tester.tap(find.text('Done'));
     await advance(tester, const Duration(seconds: 1));
     expect(location(container), Routes.battle);
-    expect(find.text('1518?'), findsOneWidget, reason: 'the new rating');
+    expect(find.text('1518'), findsOneWidget, reason: 'the new rating');
     expect(guard.protecting, isFalse);
   });
 

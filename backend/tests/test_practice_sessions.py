@@ -122,6 +122,20 @@ async def test_another_players_session_is_not_found(
             {"per_question_s": "Choose the time per question."},
         ),
         (
+            {
+                "mode": "chapter",
+                "subject": "physics",
+                "timed": True,
+                "timing": "by_difficulty",
+                "per_question_s": 30,
+            },
+            {"per_question_s": "Timing by difficulty sets the time for each question."},
+        ),
+        (
+            {"mode": "chapter", "subject": "physics", "timing": "by_difficulty"},
+            {"timing": "Turn on timed practice to choose how it's timed."},
+        ),
+        (
             {"mode": "review", "chapters": ["kinematics"]},
             {"chapters": "Chapters are only used for chapter practice and Self Challenge."},
         ),
@@ -224,6 +238,33 @@ async def test_timed_practice_has_a_limit_per_question(
     session = await start(client, asha, timed=True, per_question_s=30)
 
     assert session["per_question_ms"] == 30_000
+    assert session["timing"] == "fixed"
+    assert {q["limit_ms"] for q in session["questions"]} == {30_000}
+
+
+async def test_untimed_practice_has_no_limits(client: AsyncClient, asha: dict[str, str]) -> None:
+    session = await start(client, asha)
+
+    assert session["timing"] is None
+    assert {q["limit_ms"] for q in session["questions"]} == {None}
+
+
+async def test_timing_by_difficulty_gives_harder_questions_more_time(
+    client: AsyncClient, asha: dict[str, str]
+) -> None:
+    session = await start(client, asha, timed=True, timing="by_difficulty")
+
+    assert (session["per_question_ms"], session["timing"]) == (None, "by_difficulty")
+    expected = {1: 30_000, 2: 30_000, 3: 60_000, 4: 90_000, 5: 90_000}
+    for question in session["questions"]:
+        assert question["limit_ms"] == expected[question["difficulty"]]
+    # Resuming shows the same limits.
+    detail = (
+        await client.get(f"/v1/practice/sessions/{session['session_id']}", headers=asha)
+    ).json()
+    assert [q["limit_ms"] for q in detail["questions"]] == [
+        q["limit_ms"] for q in session["questions"]
+    ]
 
 
 async def test_fun_and_learn_passages(client: AsyncClient, asha: dict[str, str]) -> None:
