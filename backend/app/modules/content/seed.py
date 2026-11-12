@@ -48,9 +48,11 @@ from app.modules.content.models import (
     Passage,
     Question,
     Subject,
+    Tier,
     Topic,
     WordPuzzle,
 )
+from app.modules.content.priority import Priority, PriorityInput, plan_priorities
 from app.modules.system.models import AppConfig
 
 # pg_advisory_xact_lock key: one seed at a time.
@@ -291,6 +293,7 @@ async def _sync_questions(
     last_seq: dict[int, int] = dict(max_seqs.all())
     chapter_specs = {(spec.subject, spec.slug): spec for spec in bundle.chapters}
     passage_titles = {spec.external_id: spec.title for spec in bundle.passages}
+    priorities = rank_questions(bundle.questions)
 
     for spec in bundle.questions:
         subject_id = subjects[spec.subject].id
@@ -318,6 +321,12 @@ async def _sync_questions(
             ),
             "status": ContentStatus.PUBLISHED.value,
             "source": ContentSource.CONTENT.value,
+            "subtopic": spec.subtopic,
+            "concept": spec.concept,
+            "format": spec.format,
+            "ncert": spec.ncert,
+            "time_s": spec.time_s,
+            **_priority_values(priorities.get(spec.external_id)),
         }
         if current is not None and current.content_hash == spec.content_hash:
             if _assign(current, values):
@@ -345,6 +354,36 @@ async def _sync_questions(
         )
     _retire_missing(live.values(), "questions", report)
     await db.flush()
+
+
+def rank_questions(questions: Iterable[QuestionSpec]) -> dict[str, Priority]:
+    """Importance, tier and study order of every chapter question, ranked within its topic."""
+    return plan_priorities(
+        PriorityInput(
+            key=spec.external_id,
+            group=f"{spec.subject}/{spec.topic}",
+            subtopic=spec.subtopic,
+            difficulty=spec.difficulty,
+            category=spec.category,
+            format=spec.format,
+            ncert=spec.ncert,
+            has_diagram=spec.has_diagram,
+            tags=spec.tags,
+        )
+        for spec in questions
+        if spec.topic is not None
+    )
+
+
+def _priority_values(priority: Priority | None) -> dict[str, int | str | None]:
+    if priority is None:  # passage questions aren't ranked
+        return {"importance": 50, "tier": Tier.EXTRA.value, "topic_rank": None, "cluster": None}
+    return {
+        "importance": priority.importance,
+        "tier": priority.tier,
+        "topic_rank": priority.rank,
+        "cluster": priority.cluster or None,
+    }
 
 
 def _battle_pool(spec: QuestionSpec, current: Question | None) -> str:

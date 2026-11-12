@@ -9,7 +9,7 @@ from httpx import AsyncClient
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.modules.content.models import Question
+from app.modules.content.models import Question, Tier
 from app.modules.content.refs import parse_ref
 from tests.helpers import FakeClock
 from tests.learn_helpers import answer, player, signin, start, upload
@@ -491,3 +491,75 @@ async def test_history_keeps_sessions_for_90_days(
     old = await client.get(f"/v1/practice/sessions/{session['session_id']}", headers=asha)
     assert history["items"] == []
     assert old.status_code == 404
+
+
+async def test_a_recommended_session_covers_each_topics_core_questions(
+    client: AsyncClient, asha: dict[str, str], db_session: AsyncSession
+) -> None:
+    catalog = (await client.get("/v1/catalog", headers=asha)).json()
+    kinematics = catalog["subjects"][0]["chapters"][0]
+
+    session = await start(client, asha, count=kinematics["core_count"])
+
+    questions = session["questions"]
+    rows = await questions_by_ref(db_session, [q["ref"] for q in questions])
+    assert {q["topic"]["slug"] for q in questions} == {"speed-velocity", "equations-of-motion"}
+    assert {row.tier for row in rows.values()} == {Tier.CORE}
+    difficulties = [q["difficulty"] for q in questions]
+    assert difficulties == sorted(difficulties)  # easy to hard
+
+
+async def test_due_mistakes_come_back_in_recommended_sessions(
+    client: AsyncClient, asha: dict[str, str], clock: FakeClock
+) -> None:
+    first = await start(client, asha, count=5)
+    missed = first["questions"][0]
+    await upload(client, asha, first["session_id"], [answer(missed, correct=False, at=clock())])
+    clock.advance(days=2)
+    asha = await signin(client, "asha")
+
+    recommended = await start(client, asha, count=5)
+    random_draw = await start(client, asha, count=5, selection="unseen_first")
+
+    assert [q["ref"] for q in recommended["questions"]][-1] == missed["ref"]  # after new ones
+    assert missed["ref"] not in {q["ref"] for q in random_draw["questions"]}
+
+
+async def test_only_chapter_topic_and_challenge_sessions_choose_a_selection(
+    client: AsyncClient, asha: dict[str, str]
+) -> None:
+    response = await client.post(
+        "/v1/practice/sessions",
+        json={"mode": "review", "selection": "recommended"},
+        headers={**asha, "Idempotency-Key": secrets.token_hex(8)},
+    )
+    topic = await start(
+        client, asha, mode="topic", chapters=[], topic="speed-velocity", selection="unseen_first"
+    )
+
+    assert response.status_code == 422
+    assert set(response.json()["error"]["details"]["fields"]) == {"selection"}
+    assert {q["topic"]["slug"] for q in topic["questions"]} == {"speed-velocity"}
+
+
+async def test_progress_counts_core_questions_got_right(
+    client: AsyncClient, asha: dict[str, str], clock: FakeClock
+) -> None:
+    session = await start(client, asha, count=5)
+    right, wrong = session["questions"][:2], session["questions"][2]
+    await upload(
+        client,
+        asha,
+        session["session_id"],
+        [
+            answer(right[0], at=clock()),
+            answer(right[1], at=clock()),
+            answer(wrong, correct=False, at=clock()),
+        ],
+    )
+
+    progress = (await client.get("/v1/me/progress", headers=asha)).json()
+
+    chapters = {c["slug"]: c for s in progress["subjects"] for c in s["chapters"]}
+    assert chapters["kinematics"]["core_done"] == 2
+    assert chapters["laws-of-motion"]["core_done"] == 0

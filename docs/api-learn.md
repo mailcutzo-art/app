@@ -32,10 +32,10 @@ questions this exam's players can get. It is the same for every user of that exa
       "chapters": [
         {
           "slug": "kinematics", "name": "Motion in a Straight Line", "order": 1,
-          "question_count": 8, "battle_ready": true,
+          "question_count": 8, "core_count": 6, "battle_ready": true,
           "topics": [
-            {"slug": "speed-velocity", "name": "Speed and velocity", "question_count": 4},
-            {"slug": "equations-of-motion", "name": "Equations of motion", "question_count": 4}
+            {"slug": "speed-velocity", "name": "Speed and velocity", "question_count": 4, "core_count": 3},
+            {"slug": "equations-of-motion", "name": "Equations of motion", "question_count": 4, "core_count": 3}
           ]
         }
       ]
@@ -45,7 +45,8 @@ questions this exam's players can get. It is the same for every user of that exa
 ```
 
 `battle_ready` means the chapter has enough battle questions (at least 7) to be offered for
-battles.
+battles. `core_count` is the size of the recommended must-do set: about 20% of each topic
+(at least 3 questions), covering its subtopics (see `docs/recommendation.md`).
 
 ### `GET /v1/me/progress?goal=neet`
 The user's own progress for the Learn tab. It is small and never cached by the server.
@@ -56,7 +57,7 @@ The user's own progress for the Learn tab. It is small and never cached by the s
     {
       "slug": "physics", "answered": 23, "correct": 15,
       "chapters": [
-        {"slug": "kinematics", "answered": 12, "correct": 7, "seen": 6, "label": "needs_work"}
+        {"slug": "kinematics", "answered": 12, "correct": 7, "seen": 6, "core_done": 4, "label": "needs_work"}
       ]
     }
   ],
@@ -67,6 +68,8 @@ The user's own progress for the Learn tab. It is small and never cached by the s
 ```
 
 - `answered` and `correct` count all answers. `seen` counts distinct questions.
+- `core_done` counts the chapter's core questions answered correctly at least once, out of the
+  catalog's `core_count` ("Core 4 / 6").
 - `continue.answered` counts the questions done in that session, skips included, so the app can
   show "12/20" and resume at question 13.
 - `label` is a single word for the chapter list, never a chart:
@@ -96,7 +99,8 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
   "per_question_s": null,
   "time_limit_s": null,
   "marking": "none",
-  "unseen_only": false
+  "unseen_only": false,
+  "selection": null
 }
 ```
 
@@ -123,10 +127,19 @@ Needs an `Idempotency-Key` header: a retry with the same key returns the same se
 | `time_limit_s` | Challenge only: 300, 600, 900, 1800 or 3600 |
 | `marking` | `none`, or `neet` (+4 / −1 for challenge) |
 | `unseen_only` | Only questions the user has never answered |
+| `selection` | Chapter, topic and challenge only: `recommended` (the default when null) or `unseen_first`. Other modes must leave it null |
 
 **Question selection**
 - It uses only questions suited to the user's exam, never ones reserved for battles.
-- Unseen questions come first, then those seen longest ago.
+- `recommended` (chapter, topic and challenge; see `docs/recommendation.md`):
+  - mistakes due for review take up to 20% of the session;
+  - the rest is spread over the topics in scope, weighted by their size, the core questions
+    the user hasn't got right yet, their weakness there and how long ago they practised it;
+  - within a topic, unseen core questions come first, then standard, then extra, nearest the
+    user's level and varying the subtopics;
+  - the session runs from easy to hard, then the reviews, then any refreshers.
+- `unseen_first` and the other modes: unseen questions come first (in random order), then those
+  seen longest ago.
 - If fewer questions match than requested, the session is shorter and `"short": true`. If none
   match, the response is `409 NO_QUESTIONS`.
 - Users can create at most 30 sessions an hour (`429`).

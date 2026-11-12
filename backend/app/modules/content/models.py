@@ -7,7 +7,7 @@ asked. See ``docs/data-model.md``.
 
 import uuid
 from datetime import datetime
-from enum import StrEnum
+from enum import IntEnum, StrEnum
 
 from sqlalchemy import (
     CheckConstraint,
@@ -92,6 +92,14 @@ EXAMS = ("neet", "jee")
 TONES = ("sky", "mint", "lemon", "lavender", "peach", "rose", "lime")
 # Difficulty 1-2 counts as easy, 3 as medium and 4-5 as hard.
 EASY_MAX_DIFFICULTY = 2
+
+
+class Tier(IntEnum):
+    """How much a question matters within its topic (``app.modules.content.priority``)."""
+
+    CORE = 1  # the must-do set: about 20% of the topic, covering it
+    STANDARD = 2  # the next 20%
+    EXTRA = 3  # extra practice; also every question the ranking hasn't seen (imports)
 
 
 class ExamGoal(Base):
@@ -190,6 +198,8 @@ class Question(TimestampMixin, Base):
         CheckConstraint(_STATUS_CHECK, name="status"),
         CheckConstraint(_SOURCE_CHECK, name="source"),
         CheckConstraint("difficulty BETWEEN 1 AND 5", name="difficulty"),
+        CheckConstraint("importance BETWEEN 0 AND 100", name="importance"),
+        CheckConstraint("tier BETWEEN 1 AND 3", name="tier"),
         CheckConstraint("cardinality(options) = 4", name="options"),
         CheckConstraint("answer BETWEEN 0 AND 3", name="answer"),
         CheckConstraint(
@@ -220,6 +230,14 @@ class Question(TimestampMixin, Base):
         Index(
             "ix_questions_topic_published",
             "topic_id",
+            postgresql_where=text("status = 'published'"),
+        ),
+        # Recommended practice: a topic's questions in study order.
+        Index(
+            "ix_questions_topic_rank_published",
+            "topic_id",
+            "tier",
+            "topic_rank",
             postgresql_where=text("status = 'published'"),
         ),
         Index(
@@ -270,6 +288,17 @@ class Question(TimestampMixin, Base):
     supersedes_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("questions.id"))
     seq: Mapped[int]  # dense per subject
     source: Mapped[str]
+    # Metadata from the content files (NULL for imported questions).
+    subtopic: Mapped[str | None]  # finer area within the topic
+    concept: Mapped[str | None]  # the single idea tested
+    format: Mapped[str | None]  # direct, assertion-reason, match... (docs/content-format.md)
+    ncert: Mapped[bool | None]  # rests directly on NCERT text
+    time_s: Mapped[int | None] = mapped_column(SmallInteger)  # typical seconds, as authored
+    # Ranking within the topic, computed by the seed (``app.modules.content.priority``).
+    importance: Mapped[int] = mapped_column(SmallInteger, server_default=text("50"))  # 0-100
+    tier: Mapped[int] = mapped_column(SmallInteger, server_default=text("3"))  # Tier
+    topic_rank: Mapped[int | None]  # 1.. study order within the topic
+    cluster: Mapped[str | None]  # the idea it tests: its subtopic, or a tag where those are unique
 
 
 class QuestionStats(Base):

@@ -109,6 +109,12 @@ questions:
     explanation: Starting from rest (u = 0), s = ut + ½at^2 = ½ × 2 × 5^2 = 25 m.
 ```
 
+The seed stores `subtopic`, `concept`, `format`, `ncert` and `time` with each question and ranks
+every topic from them: an importance score, a tier (core, standard, extra) and a study order,
+which recommended practice uses ([`recommendation.md`](recommendation.md)). Good subtopics make
+good recommendations: give questions on the same idea the same `subtopic` name, so a topic has
+a handful of subtopics with several questions each rather than one per question.
+
 A question that needs a figure adds `diagram:`, a description precise enough to draw it from
 (every label, value and arrow). The app has no images yet, so these are practice-only
 (`battle: false`) and the description is what an illustrator or SVG generator works from; the

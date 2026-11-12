@@ -57,10 +57,16 @@ goals ──< goal_subjects >── subjects ──< chapters ──< topics
 | `content_hash` | text | SHA-256 of stem, options and answer, so imports are idempotent |
 | `supersedes_id` | uuid, null | Published questions are never edited. A correction creates a new row pointing at the old one, and the old row is retired, so past answers still point at exactly what was asked |
 | `seq` | int | Dense number per subject. `UNIQUE (subject_id, seq)` |
+| `subtopic`, `concept`, `format`, `ncert`, `time_s` | | Metadata from the content files (`content-format.md`); null for imported questions |
+| `importance` | smallint | 0–100, computed by the seed from the metadata (`recommendation.md`). 50 when unranked |
+| `tier` | smallint | 1 core (the must-do ~20% of a topic), 2 standard (the next ~20%), 3 extra. Unranked questions are 3 |
+| `topic_rank` | int, null | Study order within the topic (1 first); null for unranked questions |
+| `cluster` | text, null | The idea the question tests: its subtopic, or its first idea tag where a topic's subtopics are unique per question. Recommended sessions vary clusters |
 | `created_at`, `updated_at` | timestamptz | |
 
 Indexes:
-- partial indexes on `(chapter_id, difficulty)` and `(topic_id)` for published questions;
+- partial indexes on `(chapter_id, difficulty)`, `(topic_id)` and `(topic_id, tier, topic_rank)`
+  for published questions;
 - a partial index on published battle questions (`battle_pool <> 'none'`);
 - GIN trigram and `simple` full-text indexes on `search_text`.
 

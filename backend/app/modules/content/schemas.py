@@ -14,6 +14,7 @@ class TopicOut(ApiModel):
     slug: str
     name: str
     question_count: int
+    core_count: int  # the recommended must-do set (about 20%), see docs/recommendation.md
 
 
 class ChapterOut(ApiModel):
@@ -21,6 +22,7 @@ class ChapterOut(ApiModel):
     name: str
     order: int
     question_count: int
+    core_count: int  # the recommended must-do set: its topics' core questions
     battle_ready: bool  # enough battle questions (7) to be offered for battles
     topics: list[TopicOut]
 

@@ -1,10 +1,14 @@
 """Choosing a practice session's questions.
 
 Every mode serves only questions suited to the player's exam and never those reserved for
-battles. Within what matches, questions the player has never answered come first (in random
-order), then those answered longest ago.
+battles. Chapter, topic and Self Challenge sessions are **recommended** by default
+(``recommend.py``): due reviews, then each topic's core questions at the player's level, spread
+over the topics in scope. Other modes, and ``selection: unseen_first``, serve questions the player
+has never answered first (in random order), then those answered longest ago.
 """
 
+import random
+import secrets
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -21,10 +25,12 @@ from app.modules.content.models import (
     Question,
     QuestionKind,
     Subject,
+    Tier,
     Topic,
 )
 from app.modules.content.queries import difficulty_filter, practice_pool, suits_goal
-from app.modules.practice.models import PracticeMode, UserQuestion
+from app.modules.practice import recommend
+from app.modules.practice.models import PracticeMode, UserQuestion, UserTopicStats
 from app.modules.practice.schemas import SessionIn
 
 CATEGORY_LABELS = {
@@ -39,6 +45,11 @@ _SUBJECT_MODES = {
     PracticeMode.CATEGORY,
     PracticeMode.CHALLENGE,
 }
+# Modes that can be recommended (``selection``); recommended is their default.
+RECOMMENDED_MODES = {PracticeMode.CHAPTER, PracticeMode.TOPIC, PracticeMode.CHALLENGE}
+
+_random = secrets.SystemRandom()
+UNRANKED = 1_000_000  # questions the seed hasn't ranked (imports) come after ranked ones
 
 
 @dataclass(frozen=True, slots=True)
@@ -109,6 +120,8 @@ def _mode_problems(body: SessionIn) -> dict[str, str]:
         problems["per_question_s"] = "Turn on timed practice to set a time per question."
     if not body.timed and body.timing != "fixed":
         problems["timing"] = "Turn on timed practice to choose how it's timed."
+    if mode not in RECOMMENDED_MODES and body.selection is not None:
+        problems["selection"] = "Only chapter, topic and Self Challenge practice can choose this."
     if mode == PracticeMode.PASSAGE and body.passage_id is None:
         problems["passage_id"] = "Choose a passage."
     elif mode != PracticeMode.PASSAGE and body.passage_id is not None:
@@ -213,6 +226,10 @@ async def select_questions(
     if scope.category is not None:
         conditions.append(Question.category == scope.category)
 
+    if scope.mode in RECOMMENDED_MODES and (body.selection or "recommended") == "recommended":
+        return await _recommended(
+            db, user_id=user_id, conditions=conditions, body=body, now=now, rng=_random
+        )
     if scope.mode == PracticeMode.REVIEW:
         statement = (
             select(Question.id)
@@ -237,3 +254,118 @@ async def select_questions(
         if body.unseen_only:
             statement = statement.where(func.coalesce(UserQuestion.attempts, 0) == 0)
     return list(await db.scalars(statement.limit(body.count)))
+
+
+async def _recommended(
+    db: AsyncSession,
+    *,
+    user_id: uuid.UUID,
+    conditions: list[ColumnElement[bool]],
+    body: SessionIn,
+    now: datetime,
+    rng: random.Random,
+) -> list[uuid.UUID]:
+    """Due reviews, then questions spread over the topics in scope (see ``recommend``)."""
+    mine = and_(UserQuestion.question_id == Question.id, UserQuestion.user_id == user_id)
+    reviews: list[uuid.UUID] = []
+    if not body.unseen_only:
+        reviews = list(
+            await db.scalars(
+                select(Question.id)
+                .join(UserQuestion, mine)
+                .where(
+                    *conditions,
+                    UserQuestion.review_box.is_not(None),
+                    UserQuestion.review_due_at <= now,
+                )
+                .order_by(UserQuestion.review_due_at, Question.id)
+                .limit(recommend.review_slots(body.count, body.count))
+            )
+        )
+    rest = list(conditions)
+    if reviews:
+        rest.append(Question.id.not_in(reviews))
+    attempts = func.coalesce(UserQuestion.attempts, 0)
+    if body.unseen_only:
+        rest.append(attempts == 0)
+    core = Question.tier == Tier.CORE.value
+    rows = (
+        await db.execute(
+            select(
+                Question.topic_id,
+                func.count(),
+                func.count().filter(attempts == 0),
+                func.count().filter(core),
+                func.count().filter(core, func.coalesce(UserQuestion.correct, 0) == 0),
+            )
+            .outerjoin(UserQuestion, mine)
+            .where(*rest)
+            .group_by(Question.topic_id)
+        )
+    ).all()
+    totals = {
+        stats.topic_id: stats
+        for stats in await db.scalars(
+            select(UserTopicStats).where(
+                UserTopicStats.user_id == user_id,
+                UserTopicStats.topic_id.in_([row[0] for row in rows if row[0] is not None]),
+            )
+        )
+    }
+    states: dict[int, recommend.TopicState] = {}
+    for topic_id, available, unseen, core_total, core_left in rows:
+        if topic_id is None:
+            continue
+        mine_stats = totals.get(topic_id)
+        states[topic_id] = recommend.TopicState(
+            topic_id=topic_id,
+            available=available,
+            unseen=unseen,
+            core_total=core_total,
+            core_left=core_left,
+            attempts=mine_stats.attempts if mine_stats else 0,
+            correct=mine_stats.correct if mine_stats else 0,
+            last_at=mine_stats.last_at if mine_stats else None,
+        )
+    allocation = recommend.allocate(
+        list(states.values()), body.count - len(reviews), now=now, rng=rng
+    )
+    candidates = []
+    if allocation:
+        result = await db.execute(
+            select(
+                Question.id,
+                Question.topic_id,
+                Question.cluster,
+                Question.difficulty,
+                Question.category,
+                Question.tier,
+                Question.topic_rank,
+                Question.importance,
+                attempts.label("attempts"),
+                func.coalesce(UserQuestion.correct, 0).label("correct"),
+                UserQuestion.last_at,
+                UserQuestion.last_outcome,
+            )
+            .outerjoin(UserQuestion, mine)
+            .where(*rest, Question.topic_id.in_(list(allocation)))
+        )
+        for row in result.mappings():
+            candidates.append(
+                recommend.Candidate(
+                    id=row["id"],
+                    topic_id=row["topic_id"],
+                    cluster=row["cluster"],
+                    difficulty=row["difficulty"],
+                    category=row["category"],
+                    tier=row["tier"],
+                    rank=row["topic_rank"] if row["topic_rank"] is not None else UNRANKED,
+                    importance=row["importance"],
+                    attempts=row["attempts"],
+                    correct=row["correct"],
+                    last_at=row["last_at"],
+                    last_outcome=row["last_outcome"],
+                )
+            )
+    picks = recommend.choose(allocation, candidates, states, rng=rng)
+    return recommend.order_session(picks, reviews)
