@@ -17,6 +17,19 @@ workflow). These rules add to it and come from what went wrong in Chemistry.
   defensible from NCERT text.
 - Names: use the scientific and common names, examples and numbers that NCERT itself uses.
 
+## Difficulty (last three chapters: high NEET level)
+
+Organisms and Populations, Ecosystem and Biodiversity and Conservation use the original brief's mix again:
+20% easy, 45% standard, 25% hard, 10% NEET+. Hard means hard *within NCERT* (very similar options, combined
+statements, traps, data and graph reading, cause and effect), never JEE or Olympiad material. The assignment
+printed by `bio_setup.py assign` uses this mix.
+
+## Difficulty (chapters written from Chemical Coordination to Biotechnology)
+
+Match Physics and Chemistry: about 27% easy (levels 1-2), 50% standard (3), 22% hard (4) and 1% NEET+ (5).
+The first 21 Biology chapters used 20 / 45 / 25 / 10 and are harder than the other subjects. The assignment
+printed by `bio_setup.py assign` already uses the new mix.
+
 ## Mix (per topic, as the assignment prints it)
 
 NEET Biology is NCERT-statement heavy. Aim for: `direct` about 35–40%; statement family
