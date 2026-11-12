@@ -367,7 +367,11 @@ class _Stats extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (h2h != null) ...[
-          const SectionHeader(title: 'Your record', padding: header),
+          SectionHeader(
+            title: 'Your record',
+            subtitle: 'Head-to-head with ${profile.user.displayName}',
+            padding: header,
+          ),
           SurfaceCard(
             padding: const EdgeInsets.all(AppSpacing.lg),
             child: Row(
@@ -402,7 +406,13 @@ class _Stats extends StatelessWidget {
             ),
         ],
         if (ratings != null) ...[
-          const SectionHeader(title: 'Ratings', padding: header),
+          SectionHeader(
+            title: 'Ratings',
+            subtitle: 'Competitive skill score (starts at 1500)',
+            actionLabel: 'Explain',
+            onAction: () => _showRatingHelp(context),
+            padding: header,
+          ),
           if (ratings.isEmpty)
             Text('No rated games yet.', style: text.bodyMedium)
           else
@@ -411,8 +421,11 @@ class _Stats extends StatelessWidget {
                 for (final rating in ratings)
                   ListRowCard(
                     title: rating.label,
-                    subtitle: rating.position == null ? null : 'Rank #${rating.position}',
+                    subtitle: rating.position == null
+                        ? (rating.rating.provisional ? 'Provisional score' : 'Unranked')
+                        : 'Rank #${rating.position}',
                     trailing: Text(rating.rating.display, style: text.numericMedium),
+                    onTap: () => _showRatingHelp(context),
                   ),
               ],
             ),
@@ -420,6 +433,34 @@ class _Stats extends StatelessWidget {
       ],
     );
   }
+}
+
+void _showRatingHelp(BuildContext context) {
+  showAppSheet<void>(
+    context,
+    builder: (context) => SheetScaffold(
+      title: 'About Ratings',
+      subtitle: 'Competitive skill score in Quiz Arena',
+      footer: AppButton(
+        label: 'Got it',
+        onPressed: () => Navigator.pop(context),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '• Ratings represent competitive skill score (starting at 1,500 points), not the total number of games played.\n'
+            '• A question mark "?" indicates a provisional rating while completing placement matches.\n'
+            '• Ratings adjust up or down after each rated battle based on opponent strength and match outcome.\n'
+            '• After completing 10 rated games, the provisional status is removed and global ranking is unlocked.',
+            style: context.text.bodyMedium,
+          ),
+          const SizedBox(height: AppSpacing.lg),
+        ],
+      ),
+    ),
+  );
 }
 
 class _Count extends StatelessWidget {

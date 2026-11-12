@@ -18,7 +18,10 @@ class BlockedUsersScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final blocked = ref.watch(blockedUsersProvider);
     return Scaffold(
-      appBar: const AppTopBar(title: 'Blocked players'),
+      appBar: AppTopBar(
+        title: 'Blocked players',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.settingsPrivacy),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           ref.invalidate(blockedUsersProvider);

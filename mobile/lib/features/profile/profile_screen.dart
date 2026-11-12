@@ -57,6 +57,7 @@ class ProfileScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppTopBar(
         title: 'Profile',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.home),
         actions: [
           AppIconButton(
             icon: AppIcons.settings,

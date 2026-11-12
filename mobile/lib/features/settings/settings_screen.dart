@@ -133,6 +133,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
     return SettingsPage(
       title: 'Settings',
+      onBack: () => context.canPop() ? context.pop() : context.go(Routes.profile),
       children: [
         const SettingsHeader('Account'),
         SettingsLink(

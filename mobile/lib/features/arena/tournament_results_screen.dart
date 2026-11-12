@@ -34,7 +34,10 @@ class TournamentResultsScreen extends ConsumerWidget {
     final detail = ref.watch(tournamentDetailProvider(id));
     final live = ref.watch(tournamentLiveProvider)[id];
     return Scaffold(
-      appBar: AppTopBar(title: detail.value?.tournament.title ?? 'Results'),
+      appBar: AppTopBar(
+        title: detail.value?.tournament.title ?? 'Results',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.tournament(id)),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           ref

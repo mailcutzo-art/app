@@ -4,9 +4,22 @@
 -- KEYS[1] room hash. ARGV: uid, "1" when kicked.
 -- Returns {status, detail}: left (the host now), closed (the reason) or not_member.
 local r = load_room(KEYS[1])
-if not r or r.status == 'closed' then return {'not_member', ''} end
 local uid = ARGV[1]
-if not r.members[uid] then return {'not_member', ''} end
+if not r or r.status == 'closed' then
+  local busy = redis.call('GET', 'busy:' .. uid)
+  local rid = string.match(KEYS[1], '{(.*)}') or ''
+  if busy == 'r:' .. rid then
+    redis.call('DEL', 'busy:' .. uid)
+  end
+  return {'not_member', ''}
+end
+if not r.members[uid] then
+  local busy = redis.call('GET', 'busy:' .. uid)
+  if busy == 'r:' .. r.id then
+    redis.call('DEL', 'busy:' .. uid)
+  end
+  return {'not_member', ''}
+end
 local now = now_ms()
 if ARGV[2] == '1' then
   redis.call('SADD', r.base .. ':k', uid)

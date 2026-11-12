@@ -131,6 +131,7 @@ class _SocialScreenState extends ConsumerState<SocialScreen> {
               controller: _search,
               focusNode: _searchFocus,
               hint: 'Find players by username',
+              onTapOutside: (_) => _searchFocus.unfocus(),
               onChanged: ref.read(userSearchProvider.notifier).setQuery,
             ),
           ),
@@ -647,22 +648,53 @@ class _ActivityRow extends StatelessWidget {
       ActivityKind.sharedProgress => AppIcons.chart,
       ActivityKind.other => AppIcons.sparkles,
     };
-    final row = PlayerRow(
-      user: item.user,
-      subtitle: '${item.text} · ${timeAgo(item.createdAt)}',
-      trailing: HugeIcon(icon, size: 22, color: colors.inkMuted),
-    );
     final share = item.share;
-    if (share == null) return row;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        row,
-        Padding(
-          padding: const EdgeInsets.fromLTRB(AppSpacing.lg, 0, AppSpacing.lg, AppSpacing.md),
-          child: ShareCard.compact(data: share),
-        ),
-      ],
+    if (share == null) {
+      return PlayerRow(
+        user: item.user,
+        subtitle: '${item.text} · ${timeAgo(item.createdAt)}',
+        trailing: HugeIcon(icon, size: 22, color: colors.inkMuted),
+      );
+    }
+
+    final text = context.text;
+    return SurfaceCard(
+      onTap: () => context.push(Routes.userProfile(item.user.handle)),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: 14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              PlayerAvatar(user: item.user),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.user.displayName,
+                      style: text.titleMedium,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      '${item.text} · ${timeAgo(item.createdAt)}',
+                      style: text.bodySmall,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: AppSpacing.md),
+              HugeIcon(icon, size: 22, color: colors.inkMuted),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.md),
+          ShareCard.compact(data: share),
+        ],
+      ),
     );
   }
 }

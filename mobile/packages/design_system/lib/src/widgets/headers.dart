@@ -67,10 +67,17 @@ class GreetingHeader extends StatelessWidget {
 
 /// Big bold page title with tight tracking (reference 2).
 class LargeTitle extends StatelessWidget {
-  const LargeTitle({super.key, required this.title, this.subtitle, this.trailing});
+  const LargeTitle({
+    super.key,
+    required this.title,
+    this.subtitle,
+    this.subtitleMaxLines,
+    this.trailing,
+  });
 
   final String title;
   final String? subtitle;
+  final int? subtitleMaxLines;
   final Widget? trailing;
 
   @override
@@ -88,7 +95,12 @@ class LargeTitle extends StatelessWidget {
                 Text(title, style: text.headlineLarge),
                 if (subtitle != null) ...[
                   const SizedBox(height: AppSpacing.xs),
-                  Text(subtitle!, style: text.bodyMedium),
+                  Text(
+                    subtitle!,
+                    style: text.bodyMedium,
+                    maxLines: subtitleMaxLines,
+                    overflow: subtitleMaxLines == null ? null : TextOverflow.ellipsis,
+                  ),
                 ],
               ],
             ),

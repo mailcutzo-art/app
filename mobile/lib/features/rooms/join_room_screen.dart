@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realtime_client/realtime_client.dart';
 
+import '../../app/router.dart';
 import '../../core/network/app_failure.dart';
 import '../../core/network/connectivity.dart';
 import 'data/room_models.dart';
@@ -109,7 +110,10 @@ class _JoinRoomScreenState extends ConsumerState<JoinRoomScreen> {
     final code = _code;
     final online = ref.watch(isOnlineProvider);
     return Scaffold(
-      appBar: const AppTopBar(title: 'Join a room'),
+      appBar: AppTopBar(
+        title: 'Join a room',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.battle),
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
           AppSpacing.gutter,

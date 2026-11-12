@@ -81,6 +81,7 @@ class _ArenaScreenState extends ConsumerState<ArenaScreen> {
           LargeTitle(
             title: 'Arena',
             subtitle: 'Swiss tournaments · live standings · coin prizes',
+            subtitleMaxLines: 1,
             trailing: Pressable(
               onPressed: () => context.push(Routes.profile),
               semanticLabel: 'Your profile',

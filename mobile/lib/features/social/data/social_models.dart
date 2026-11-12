@@ -134,9 +134,12 @@ class HeadToHead {
   /// "3W · 1L · 0D".
   String get short => '${wins}W · ${losses}L · ${draws}D';
 
-  /// "You lead 3–1", "They lead 2–1" or "Level at 2–2".
+  /// "You lead 3–1", "They lead 2–1", "Tied (1 draw)" or "Level at 2–2".
   String get summary {
     if (played == 0) return 'No games yet';
+    if (wins == 0 && losses == 0 && draws > 0) {
+      return draws == 1 ? 'Tied (1 draw)' : 'Tied ($draws draws)';
+    }
     if (wins > losses) return 'You lead $wins–$losses';
     if (losses > wins) return 'They lead $losses–$wins';
     return 'Level at $wins–$losses';

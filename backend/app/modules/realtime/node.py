@@ -225,6 +225,12 @@ class RtNode:
         if kind == "q":
             return [{"kind": "queue", "id": ident, "title": "Quick Battle"}]
         if kind == "r":
+            status = await rstr.hget(self.redis, keys.room(ident), "status")
+            is_member = await self.redis.hexists(keys.room_members(ident), uid)
+            if status is None or status == "closed" or not is_member:
+                if await rstr.get(self.redis, keys.busy(uid)) == busy:
+                    await self.redis.delete(keys.busy(uid))
+                return []
             return [await self._room_active(ident)]
         return []
 

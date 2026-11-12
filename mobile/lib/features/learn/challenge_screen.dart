@@ -155,7 +155,10 @@ class _ChallengeScreenState extends ConsumerState<ChallengeScreen> {
     final goal = ref.watch(learnGoalProvider);
     final catalog = ref.watch(catalogProvider(goal));
     return Scaffold(
-      appBar: const AppTopBar(title: 'Self Challenge'),
+      appBar: AppTopBar(
+        title: 'Self Challenge',
+        onBack: () => context.canPop() ? context.pop() : context.go(Routes.learn),
+      ),
       body: switch (catalog) {
         AsyncValue(:final value?) when value.subjects.isEmpty => ListView(
           padding: const EdgeInsets.all(AppSpacing.gutter),

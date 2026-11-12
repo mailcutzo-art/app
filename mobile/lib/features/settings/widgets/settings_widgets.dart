@@ -1,6 +1,8 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../app/router.dart';
 import '../../common/paged_list.dart' show RowIcon;
 import '../../learn/widgets/learn_widgets.dart' show failureMessage;
 
@@ -11,15 +13,21 @@ class SettingsPage extends StatelessWidget {
     required this.title,
     required this.children,
     this.actions = const [],
+    this.onBack,
   });
 
   final String title;
   final List<Widget> children;
   final List<Widget> actions;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppTopBar(title: title, actions: actions),
+    appBar: AppTopBar(
+      title: title,
+      actions: actions,
+      onBack: onBack ?? () => context.canPop() ? context.pop() : context.go(Routes.settings),
+    ),
     body: ListView(
       padding: const EdgeInsets.only(top: AppSpacing.sm, bottom: AppSpacing.xxxl),
       children: children,

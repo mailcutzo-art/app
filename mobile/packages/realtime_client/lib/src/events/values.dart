@@ -949,9 +949,18 @@ final class RoomSettings {
       questions: asInt(json['questions']),
       seconds: asInt(json['seconds']),
       difficulty: json['difficulty'] is String ? json['difficulty']! as String : null,
-      lateJoin: json['late_join'] is String ? json['late_join']! as String : null,
+      lateJoin: switch (json['late_join']) {
+        true => 'halfway',
+        false => 'off',
+        final String value => value,
+        _ => null,
+      },
       leaderboard: json['leaderboard'] is bool ? json['leaderboard']! as bool : null,
-      join: json['join'] is String ? json['join']! as String : null,
+      join: switch (json['join']) {
+        'anyone' => 'code',
+        final String value => value,
+        _ => null,
+      },
       raw: Map.unmodifiable(json),
     );
   }
@@ -994,6 +1003,15 @@ final class RoomSettings {
     'leaderboard': ?leaderboard,
     'join': ?join,
   };
+
+  /// The backend's REST and realtime schema uses booleans for `late_join` and `anyone` for
+  /// unrestricted `join`; the app form uses `halfway`/`off` and `code`.
+  Map<String, Object?> toServerJson() {
+    final json = toJson();
+    if (lateJoin != null) json['late_join'] = lateJoin != 'off';
+    if (join == 'code') json['join'] = 'anyone';
+    return json;
+  }
 
   RoomSettings copyWith({
     String? subject,

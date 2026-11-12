@@ -306,6 +306,8 @@ class _FewPlayers extends StatelessWidget {
             child: Text(
               'Be one of the first on this board',
               style: text.titleMedium.copyWith(color: colors.lemon.onContainer),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           if (onAllIndia != null)

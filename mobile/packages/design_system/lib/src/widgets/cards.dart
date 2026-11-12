@@ -215,7 +215,12 @@ class HeroStatCard extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   DefaultTextStyle.merge(
-                    style: text.numericDisplay.copyWith(color: colors.ink),
+                    style: text.numericDisplay.copyWith(
+                      fontSize: 38,
+                      height: 42 / 38,
+                      fontWeight: FontWeight.w700,
+                      color: colors.ink,
+                    ),
                     child: value,
                   ),
                   if (caption != null) ...[
@@ -405,7 +410,14 @@ class SectionHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: text.titleLarge),
+                Text(
+                  title,
+                  style: text.titleLarge.copyWith(
+                    fontSize: 18,
+                    height: 24 / 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 if (subtitle != null) ...[
                   const SizedBox(height: 2),
                   Text(subtitle!, style: text.bodySmall),

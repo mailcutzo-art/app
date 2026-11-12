@@ -308,6 +308,13 @@ class _HeroCard extends StatelessWidget {
     };
     return HeroStatCard(
       label: 'Rating',
+      trailing: AppIconButton(
+        icon: AppIcons.info,
+        size: 32,
+        variant: AppIconButtonVariant.ghost,
+        semanticLabel: 'About rating',
+        onPressed: () => _showRatingInfo(context),
+      ),
       value: Text(hero.rating.display),
       caption: caption,
       stats: [
@@ -339,6 +346,34 @@ class _HeroCard extends StatelessWidget {
       ],
     );
   }
+}
+
+void _showRatingInfo(BuildContext context) {
+  showAppSheet<void>(
+    context,
+    builder: (context) => SheetScaffold(
+      title: 'About Rating',
+      subtitle: 'Your competitive skill score in Quiz Arena',
+      footer: AppButton(
+        label: 'Got it',
+        onPressed: () => Navigator.pop(context),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '• All players start at 1,500 rating points.\n'
+            '• Winning rated games increases your rating; losing decreases it.\n'
+            '• The "?" mark indicates a provisional rating while you are in placement matches.\n'
+            '• Play 10 rated games to settle your rating and unlock your global rank.',
+            style: context.text.bodyMedium,
+          ),
+          const SizedBox(height: AppSpacing.lg),
+        ],
+      ),
+    ),
+  );
 }
 
 /// Play 1v1, with a friend, or in a group: all set up on the Battle tab.
@@ -451,22 +486,21 @@ class _LeadersCard extends StatelessWidget {
         ),
       );
     }
-    return SurfaceCard(
-      padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-      child: Column(
-        children: [
-          for (final row in leaders.top)
-            BoardRowTile(
-              row: row,
-              mine: isMine(row, myId) || row.user.id == me?.user.id,
-              onTap: open,
-            ),
-          if (me != null && !meInTop) ...[
-            const Divider(height: AppSpacing.md),
-            BoardRowTile(row: me, mine: true, onTap: open),
-          ],
+    return Column(
+      children: [
+        for (final (index, row) in leaders.top.indexed) ...[
+          if (index > 0) const SizedBox(height: AppSpacing.sm),
+          BoardRowTile(
+            row: row,
+            mine: isMine(row, myId) || row.user.id == me?.user.id,
+            onTap: open,
+          ),
         ],
-      ),
+        if (me != null && !meInTop) ...[
+          if (leaders.top.isNotEmpty) const SizedBox(height: AppSpacing.sm),
+          BoardRowTile(row: me, mine: true, onTap: open),
+        ],
+      ],
     );
   }
 }
@@ -488,7 +522,7 @@ class _TournamentCard extends StatelessWidget {
       if ((t.players, t.capacity) case (final players?, final capacity?))
         '$players/$capacity players',
     ];
-    void open() => context.go(Uri(path: Routes.arena, queryParameters: {'t': t.id}).toString());
+    void open() => unawaited(context.push(Routes.tournament(t.id)));
     return SurfaceCard(
       onTap: open,
       semanticLabel: t.title,

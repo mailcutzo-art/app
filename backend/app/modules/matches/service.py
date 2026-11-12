@@ -162,7 +162,21 @@ async def active_for(redis: Redis, uid: str) -> ActiveOut | None:
     from app.modules.rooms.busy import active_of
 
     busy = await rstr.get(redis, keys.busy(uid))
-    return None if busy is None else await active_of(redis, busy)
+    if busy is None:
+        return None
+    kind, _, ident = busy.partition(":")
+    if kind == "r":
+        status = await rstr.hget(redis, keys.room(ident), "status")
+        is_member = await redis.hexists(keys.room_members(ident), uid)
+        if status is None or status == "closed" or not is_member:
+            await redis.delete(keys.busy(uid))
+            return None
+    elif kind == "m":
+        phase = await rstr.hget(redis, keys.match(ident), "phase")
+        if phase is None or phase in {"finished", "settled", "aborted", "voided"}:
+            await redis.delete(keys.busy(uid))
+            return None
+    return await active_of(redis, busy)
 
 
 # History and results

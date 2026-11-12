@@ -10,8 +10,21 @@ import '../data/missions_models.dart';
 /// Follows an [AppAction]: a tab is switched to, anything else opens on top.
 void openAction(BuildContext context, AppAction action) {
   final location = action.location;
-  final path = Uri.parse(location).path;
-  if (Routes.tabs.contains(path)) {
+  final uri = Uri.parse(location);
+  if (action.route == Routes.leaderboards && action.params['board'] != null) {
+    unawaited(context.push(Routes.board(action.params['board']!)));
+    return;
+  }
+  if (action.route == '/rooms/invite' || action.route == '/rooms') {
+    final roomId = action.params['room_id'];
+    if (roomId != null && roomId.isNotEmpty) {
+      unawaited(context.push(Routes.room(roomId)));
+      return;
+    }
+    context.go(Routes.battle);
+    return;
+  }
+  if (Routes.tabs.contains(uri.path)) {
     context.go(location);
   } else {
     unawaited(context.push(location));
