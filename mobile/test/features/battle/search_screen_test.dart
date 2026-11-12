@@ -83,7 +83,7 @@ AppButton _button(WidgetTester tester, String label) =>
     tester.widget<AppButton>(find.widgetWithText(AppButton, label));
 
 void main() {
-  testWidgets('shows who it looks for, how long it has been, and how busy it is', (tester) async {
+  testWidgets('shows who it looks for and how long it has been, nothing more', (tester) async {
     usePhoneViewport(tester);
     reduceMotion(tester);
     final server = _server();
@@ -97,13 +97,10 @@ void main() {
     });
 
     expect(find.byType(SearchingPulse), findsOneWidget);
-    expect(find.text('Finding an opponent…'), findsOneWidget);
+    expect(find.text('Finding an opponent'), findsOneWidget);
     expect(find.text('0:00'), findsOneWidget);
-    for (final badge in ['RATED', 'PHYSICS', 'MOTION IN A STRAIGHT LINE']) {
-      expect(find.text(badge), findsOneWidget);
-    }
-    expect(find.text('Looking for a Physics player in Motion in a Straight Line…'), findsOneWidget);
-    expect(find.text('3 players searching · usually 20 s'), findsOneWidget);
+    expect(find.text('Rated · Physics · Motion in a Straight Line'), findsOneWidget);
+    expect(find.textContaining('players searching'), findsNothing, reason: 'kept off this screen');
     expect(find.text('Keep browsing'), findsOneWidget);
     expect(find.textContaining('Searching ·'), findsNothing, reason: 'no pill on its own screen');
 
@@ -115,7 +112,6 @@ void main() {
     );
     await advance(tester, const Duration(milliseconds: 300));
     expect(find.text('Widened to all of Physics'), findsOneWidget);
-    expect(find.text('4 players searching · usually 18 s'), findsOneWidget);
     expect(find.text('0:05'), findsOneWidget, reason: 'the clock keeps its start');
   });
 
@@ -125,7 +121,7 @@ void main() {
     final server = _server();
     await _search(tester, server, mode: 'Casual');
     expect((server.sentOfType('mm.join').single['d']! as Map)['mode'], 'casual');
-    expect(find.text('CASUAL'), findsOneWidget);
+    expect(find.text('Casual · Physics · Motion in a Straight Line'), findsOneWidget);
   });
 
   testWidgets('Cancel stops the search and goes back to the Battle tab', (tester) async {
@@ -200,7 +196,7 @@ void main() {
     await advance(tester, const Duration(milliseconds: 600));
     expect(server.sentOfType('mm.respond').single['d'], {'choice': 'keep'});
     expect(find.text('No one found yet'), findsNothing);
-    expect(find.text('Finding an opponent…'), findsOneWidget);
+    expect(find.text('Finding an opponent'), findsOneWidget);
     expect(container.read(searchProvider).phase, SearchPhase.queued);
   });
 
@@ -340,7 +336,7 @@ void main() {
     expect(joins, hasLength(2));
     expect(joins.last['d'], containsPair('mode', 'casual'));
     expect(joins.last['d'], containsPair('chapter', 'kinematics'));
-    expect(find.text('Finding an opponent…'), findsOneWidget);
+    expect(find.text('Finding an opponent'), findsOneWidget);
   });
 
   testWidgets('after a stopped search, the Practice Bot is one tap away', (tester) async {
@@ -385,7 +381,7 @@ void main() {
     server.push(frame('mm.requeued', {'reason': 'opponent_not_ready', 'waited_s': 31}, 'u'));
     await advance(tester, const Duration(milliseconds: 600));
     expect(location(container), Routes.battleSearch);
-    expect(find.text('Searching again…'), findsWidgets);
+    expect(find.textContaining('Searching again'), findsWidgets);
     expect(find.text('Your opponent didn\'t join. You\'re first in line.'), findsOneWidget);
     expect(find.text('0:31'), findsOneWidget, reason: 'the waiting time is kept');
     expect(container.read(liveControllerProvider)!.match('m1'), isNull);
@@ -414,14 +410,14 @@ void main() {
     const kinematics = SearchRequest(mode: 'rated', subject: 'physics', chapter: 'kinematics');
 
     test('names the subject and chapter', () {
-      expect(searchStatusLine(const SearchState()), 'Looking for an opponent…');
+      expect(searchStatusLine(const SearchState()), 'Any opponent');
       expect(
         searchStatusLine(const SearchState(phase: SearchPhase.queued, request: physics)),
-        'Looking for a Physics player…',
+        'Rated · Physics · All chapters',
       );
       expect(
         searchStatusLine(const SearchState(phase: SearchPhase.queued, request: kinematics)),
-        'Looking for a Physics player in Kinematics…',
+        'Rated · Physics · Kinematics',
       );
     });
 

@@ -36,13 +36,12 @@ class FloatingNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
     return Padding(
       padding: EdgeInsets.fromLTRB(
         AppSpacing.lg,
         AppSpacing.sm,
         AppSpacing.lg,
-        bottomInset > 0 ? bottomInset : AppSpacing.lg,
+        AppSpacing.bottomAction(context),
       ),
       child: Center(
         heightFactor: 1,

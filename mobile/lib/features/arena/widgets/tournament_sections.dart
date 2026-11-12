@@ -271,7 +271,7 @@ class OverviewSection extends StatelessWidget {
               const SizedBox(height: AppSpacing.sm),
               line(
                 AppIcons.quiz,
-                '${rules.questions} questions × ${rules.secondsPerQuestion} s per game'
+                '${rules.questions} questions × ${rules.timeLabel} per game'
                 '${rules.rated ? ', rated (overall and subject)' : ''}',
               ),
               line(

@@ -604,7 +604,7 @@ void main() {
       expect(joins.last['d'], containsPair('chapter', 'kinematics'));
       expect(joins.last['d'], containsPair('mode', 'rated'));
       expect(location(container), Routes.battleSearch);
-      expect(find.text('Finding an opponent…'), findsOneWidget);
+      expect(find.text('Finding an opponent'), findsOneWidget);
       expect(container.read(liveControllerProvider)!.match('m1'), isNull, reason: 'let go');
     });
 

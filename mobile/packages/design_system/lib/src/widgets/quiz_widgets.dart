@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../icons/app_icons.dart';
@@ -482,7 +483,7 @@ class SearchingPulse extends StatefulWidget {
 class _SearchingPulseState extends State<SearchingPulse> with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 2400),
+    duration: const Duration(milliseconds: 3200),
   );
 
   @override
@@ -510,7 +511,15 @@ class _SearchingPulseState extends State<SearchingPulse> with SingleTickerProvid
       dimension: widget.size,
       child: RepaintBoundary(
         child: CustomPaint(
-          painter: _PulsePainter(animation: _controller, color: color),
+          painter: _PulsePainter(
+            animation: _controller,
+            color: color,
+            orbitColors: [
+              context.colors.sky.onContainer,
+              context.colors.lavender.onContainer,
+              context.colors.peach.onContainer,
+            ],
+          ),
           child: Center(child: widget.child),
         ),
       ),
@@ -519,24 +528,67 @@ class _SearchingPulseState extends State<SearchingPulse> with SingleTickerProvid
 }
 
 class _PulsePainter extends CustomPainter {
-  _PulsePainter({required this.animation, required this.color}) : super(repaint: animation);
+  _PulsePainter({required this.animation, required this.color, required this.orbitColors})
+    : super(repaint: animation);
 
   final Animation<double> animation;
   final Color color;
+
+  /// The small "players" circling the centre, in turn.
+  final List<Color> orbitColors;
 
   @override
   void paint(Canvas canvas, Size size) {
     final center = size.center(Offset.zero);
     final maxRadius = size.shortestSide / 2;
-    final minRadius = maxRadius * 0.3;
+    final minRadius = maxRadius * 0.34;
+    final v = animation.value;
+
+    // A soft glow that breathes with the cycle.
+    final breathe = 0.5 + 0.5 * math.sin(v * 2 * math.pi);
+    final glowRadius = minRadius * (1.18 + 0.08 * breathe);
+    canvas.drawCircle(
+      center,
+      glowRadius * 1.6,
+      Paint()
+        ..shader = RadialGradient(
+          colors: [color.withValues(alpha: 0.32), color.withValues(alpha: 0)],
+        ).createShader(Rect.fromCircle(center: center, radius: glowRadius * 1.6)),
+    );
+
+    // Rings that leave the centre and fade as they grow: a thin line with a whisper of fill.
     for (var i = 0; i < 3; i++) {
-      final t = (animation.value + i / 3) % 1;
-      final radius = minRadius + (maxRadius - minRadius) * Curves.easeOut.transform(t);
-      final paint = Paint()..color = color.withValues(alpha: 0.55 * (1 - t));
-      canvas.drawCircle(center, radius, paint);
+      final t = (v + i / 3) % 1;
+      final eased = Curves.easeOutCubic.transform(t);
+      final radius = minRadius + (maxRadius - minRadius) * eased;
+      final fade = (1 - t) * (1 - t);
+      canvas
+        ..drawCircle(center, radius, Paint()..color = color.withValues(alpha: 0.10 * fade))
+        ..drawCircle(
+          center,
+          radius,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.5
+            ..color = color.withValues(alpha: 0.65 * fade),
+        );
+    }
+
+    // Three small dots orbit at their own pace, like players being looked over.
+    final orbit = maxRadius * 0.7;
+    for (var i = 0; i < 3; i++) {
+      final speed = 1 + i * 0.5;
+      final a = (v * speed + i / 3) * 2 * math.pi;
+      final pulse = 0.5 + 0.5 * math.sin((v * 2 + i / 3) * 2 * math.pi);
+      final dot = center + Offset(math.cos(a), math.sin(a)) * (orbit - i * maxRadius * 0.07);
+      final c = orbitColors.isEmpty ? color : orbitColors[i % orbitColors.length];
+      canvas
+        ..drawCircle(dot, 9 + 2 * pulse, Paint()..color = c.withValues(alpha: 0.18))
+        ..drawCircle(dot, 4.5 + pulse, Paint()..color = c.withValues(alpha: 0.85));
     }
   }
 
   @override
-  bool shouldRepaint(covariant _PulsePainter old) => old.color != color;
+  bool shouldRepaint(covariant _PulsePainter old) =>
+      old.color != color || !listEquals(old.orbitColors, orbitColors);
 }

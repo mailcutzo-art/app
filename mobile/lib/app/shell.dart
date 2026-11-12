@@ -112,7 +112,10 @@ class TabPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final list = ListView(
-      padding: const EdgeInsets.only(bottom: 128),
+      // Room for the floating tab bar (and the gap under it), so the last item scrolls clear.
+      padding: EdgeInsets.only(
+        bottom: AppSizes.navBar + AppSpacing.sm + AppSpacing.bottomAction(context) + AppSpacing.xxl,
+      ),
       physics: const AlwaysScrollableScrollPhysics(),
       children: children,
     );

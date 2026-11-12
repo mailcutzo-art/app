@@ -75,9 +75,9 @@ void main() {
     await advance(tester, const Duration(milliseconds: 500));
 
     await tester.tap(find.text('Find opponent'));
-    await pumpUntil(tester, find.text('Finding an opponent…'));
+    await pumpUntil(tester, find.text('Finding an opponent'));
     expect(location(container), Routes.battleSearch);
-    expect(find.text('Looking for a Physics player in Motion in a Straight Line…'), findsOneWidget);
+    expect(find.text('Rated · Physics · Motion in a Straight Line'), findsOneWidget);
     expect(server.receivedOfType('mm.join').single['d'], containsPair('chapter', 'kinematics'));
 
     await advance(tester, const Duration(seconds: 15));
@@ -131,7 +131,7 @@ void main() {
     reduceMotion(tester);
     await pumpDemo(tester, server);
     await tester.tap(find.text('Find opponent'));
-    await pumpUntil(tester, find.text('Finding an opponent…'));
+    await pumpUntil(tester, find.text('Finding an opponent'));
 
     await advance(tester, const Duration(seconds: 19));
     expect(find.text('No one found yet'), findsNothing);
@@ -164,7 +164,7 @@ void main() {
       ..findAfter = const Duration(seconds: 30);
     final container = await pumpDemo(tester, server);
     await tester.tap(find.text('Find opponent'));
-    await pumpUntil(tester, find.text('Finding an opponent…'));
+    await pumpUntil(tester, find.text('Finding an opponent'));
     expect(server.searching, isTrue);
 
     await tester.tap(find.widgetWithText(AppButton, 'Cancel'));
@@ -185,7 +185,7 @@ void main() {
       ..findAfter = const Duration(seconds: 12);
     final container = await pumpDemo(tester, server);
     await tester.tap(find.text('Find opponent'));
-    await pumpUntil(tester, find.text('Finding an opponent…'));
+    await pumpUntil(tester, find.text('Finding an opponent'));
     expect(
       find.textContaining('Searching ·'),
       findsNothing,
