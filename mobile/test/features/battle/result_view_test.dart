@@ -209,7 +209,7 @@ void main() {
       await tester.tap(find.bySemanticsLabel('Share result'));
       await tester.pumpAndSettle();
       expect(find.text('Share this battle'), findsOneWidget);
-      await tester.tap(find.text('Share to other apps'));
+      await tester.tap(find.text('Share globally'));
       await tester.pumpAndSettle();
 
       final card = recorder.captured.single as MatchShareData;
@@ -232,11 +232,11 @@ void main() {
 
       await tester.tap(find.bySemanticsLabel('Share result'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Post to friends'));
+      await tester.tap(find.text('Share with friends'));
       await tester.pumpAndSettle();
 
       expect(social.posted, [MatchShareTarget(match.matchId)]);
-      expect(find.text('Posted to your friends'), findsOneWidget);
+      expect(find.text('Shared with your friends'), findsOneWidget);
     });
   });
 
@@ -604,7 +604,7 @@ void main() {
       expect(joins.last['d'], containsPair('chapter', 'kinematics'));
       expect(joins.last['d'], containsPair('mode', 'rated'));
       expect(location(container), Routes.battleSearch);
-      expect(find.text('Finding an opponent…'), findsOneWidget);
+      expect(find.text('Finding an opponent'), findsOneWidget);
       expect(container.read(liveControllerProvider)!.match('m1'), isNull, reason: 'let go');
     });
 

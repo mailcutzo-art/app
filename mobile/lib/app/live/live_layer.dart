@@ -4,6 +4,9 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/realtime/live_providers.dart' show searchProvider;
+import '../../core/realtime/search_state.dart';
+import '../../core/sound/sound_effects.dart';
 import '../router.dart';
 import 'live_hub.dart';
 
@@ -25,6 +28,20 @@ class _LiveLayerState extends ConsumerState<LiveLayer> {
   Timer? _autoRun;
   String? _autoRunFor;
   bool _busy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // A match found (wherever the user is) gets a soft chord. Practice Bot games start at once,
+    // so they don't.
+    ref.listenManual(searchProvider, (before, now) {
+      if (now.phase == SearchPhase.matched &&
+          before?.phase != SearchPhase.matched &&
+          !(now.request?.isBot ?? false)) {
+        playSfx(ref, Sfx.found);
+      }
+    });
+  }
 
   @override
   void dispose() {

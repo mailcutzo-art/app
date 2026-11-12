@@ -441,10 +441,7 @@ void _showRatingHelp(BuildContext context) {
     builder: (context) => SheetScaffold(
       title: 'About Ratings',
       subtitle: 'Competitive skill score in Quiz Arena',
-      footer: AppButton(
-        label: 'Got it',
-        onPressed: () => Navigator.pop(context),
-      ),
+      footer: AppButton(label: 'Got it', onPressed: () => Navigator.pop(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

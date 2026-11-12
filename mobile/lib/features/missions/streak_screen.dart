@@ -166,29 +166,34 @@ class _StreakScreenState extends ConsumerState<StreakScreen> {
     };
 
     return Scaffold(
-      appBar: AppTopBar(onBack: () => context.canPop() ? context.pop() : context.go(Routes.home)),
-      body: RefreshIndicator(
-        color: context.colors.ink,
-        backgroundColor: context.colors.surface,
-        onRefresh: () async {
-          ref.invalidate(streakProvider);
-          try {
-            await ref.read(streakProvider.future);
-          } on Object {
-            // The screen shows the error.
-          }
-        },
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: AppSpacing.huge),
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
-            const LargeTitle(
-              title: 'Your streak',
-              subtitle: 'A day counts with 10 answers or 1 finished battle',
-            ),
-            const SizedBox(height: AppSpacing.xl),
-            ...content,
-          ],
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          color: context.colors.ink,
+          backgroundColor: context.colors.surface,
+          onRefresh: () async {
+            ref.invalidate(streakProvider);
+            try {
+              await ref.read(streakProvider.future);
+            } on Object {
+              // The screen shows the error.
+            }
+          },
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverCollapsingTitle(
+                title: 'Your streak',
+                subtitle: 'A day counts with 10 answers or 1 finished battle',
+                onBack: () => context.canPop() ? context.pop() : context.go(Routes.home),
+              ),
+              SliverPadding(
+                // The header ends with its own small gap; together they keep the old spacing.
+                padding: const EdgeInsets.only(top: AppSpacing.sm, bottom: AppSpacing.huge),
+                sliver: SliverList(delegate: SliverChildListDelegate(content)),
+              ),
+            ],
+          ),
         ),
       ),
     );

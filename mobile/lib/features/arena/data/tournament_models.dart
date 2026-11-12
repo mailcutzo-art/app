@@ -325,6 +325,7 @@ class TournamentRules {
     this.readySeconds = 90,
     this.drawPoints = 0.5,
     this.byePoints = 1,
+    this.longestSeconds,
   });
 
   factory TournamentRules.fromJson(Object? json) {
@@ -336,11 +337,26 @@ class TournamentRules {
       readySeconds: r.optInt('ready_s') ?? 90,
       drawPoints: (r['draw_points'] as num?) ?? 0.5,
       byePoints: (r['bye_points'] as num?) ?? 1,
+      longestSeconds: switch (r['seconds_by_difficulty']) {
+        {'hard': final num hard} => hard.round(),
+        _ => null,
+      },
     );
   }
 
   final int questions;
+
+  /// The time of an easy question (all of them, from servers without [longestSeconds]).
   final int secondsPerQuestion;
+
+  /// A hard question's time, when harder questions get more.
+  final int? longestSeconds;
+
+  /// "15 s", or "20–45 s" when harder questions get more time.
+  String get timeLabel => switch (longestSeconds) {
+    final hi? when hi > secondsPerQuestion => '$secondsPerQuestion–$hi s',
+    _ => '$secondsPerQuestion s',
+  };
   final bool rated;
 
   /// How long a player has to join each round's game.
@@ -355,6 +371,8 @@ class TournamentRules {
     'ready_s': readySeconds,
     'draw_points': drawPoints,
     'bye_points': byePoints,
+    if (longestSeconds case final hi?)
+      'seconds_by_difficulty': {'easy': secondsPerQuestion, 'hard': hi},
   };
 }
 

@@ -262,6 +262,37 @@ async def test_times_are_clamped(
     assert (timeout.time_ms, timeout.outcome) == (20_000, "timeout")
 
 
+async def test_times_are_clamped_to_each_questions_own_limit(
+    client: AsyncClient, asha: dict[str, str], clock: FakeClock, db_session: AsyncSession
+) -> None:
+    session = await start(client, asha, timed=True, timing="by_difficulty")
+    questions = session["questions"]
+    clock.advance(minutes=5)
+
+    await upload(
+        client,
+        asha,
+        session["session_id"],
+        [
+            answer(questions[0], at=clock(), time_ms=500_000),
+            answer(questions[1], at=clock(), time_ms=1_000, selected_option=None, timed_out=True),
+        ],
+    )
+
+    rows = (
+        await db_session.execute(
+            select(
+                QuestionAttempt.position, QuestionAttempt.time_ms, QuestionAttempt.time_limit_ms
+            ).order_by(QuestionAttempt.position)
+        )
+    ).all()
+    limits = [questions[0]["limit_ms"], questions[1]["limit_ms"]]
+    assert [(row.time_ms, row.time_limit_ms) for row in rows] == [
+        (limits[0], limits[0]),
+        (limits[1], limits[1]),
+    ]
+
+
 @pytest.mark.parametrize(
     ("change", "field", "message"),
     [

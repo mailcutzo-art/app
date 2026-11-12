@@ -40,7 +40,7 @@ void main() {
 
   setUp(() => learn = FakeLearnRepository.seeded());
 
-  testWidgets('chapters show counts, how many were seen, and a Strong / Needs work word', (
+  testWidgets('chapters show topics, how many were practised, and a Strong / Needs work word', (
     tester,
   ) async {
     usePhoneViewport(tester);
@@ -53,10 +53,10 @@ void main() {
     );
 
     expect(find.text('Physics'), findsOneWidget);
-    expect(find.text('2 chapters · 6 questions'), findsOneWidget);
+    expect(find.text('2 chapters'), findsOneWidget);
     expect(find.text('Motion in a Straight Line'), findsOneWidget);
-    expect(find.text('4 questions · 4 seen'), findsOneWidget);
-    expect(find.text('2 questions · 2 seen'), findsOneWidget);
+    expect(find.text('4 questions practised'), findsOneWidget);
+    expect(find.text('2 questions practised'), findsOneWidget);
 
     final strong = tester.widget<InfoChip>(find.widgetWithText(InfoChip, 'Strong'));
     expect(strong.background, AppColors.light.successContainer);
@@ -75,7 +75,7 @@ void main() {
       location: Routes.subject('physics'),
     );
 
-    expect(find.text('4 questions · Not started'), findsOneWidget);
+    expect(find.text('2 topics · Not started'), findsNWidgets(2));
     expect(find.byType(InfoChip), findsNothing);
   });
 
@@ -90,7 +90,7 @@ void main() {
     );
 
     expect(find.text('Couldn\'t load your progress'), findsOneWidget);
-    expect(find.text('4 questions'), findsOneWidget);
+    expect(find.text('2 topics'), findsNWidgets(2));
     expect(find.text('Laws of Motion'), findsOneWidget);
   });
 
@@ -126,7 +126,7 @@ void main() {
         count: 20,
         difficulty: Difficulty.medium,
         timed: true,
-        perQuestionS: 30,
+        timing: Timing.byDifficulty,
       ),
     );
     expect(key, matches(RegExp(r'^[0-9a-f]{32}$')));

@@ -20,6 +20,7 @@ class MatchIntro {
     this.mode,
     this.request,
     this.roomId,
+    this.timeS,
   });
 
   /// A game started in a room (`room.started`): [kind] is `friend` or `group`.
@@ -28,7 +29,8 @@ class MatchIntro {
       sources = const [],
       bot = false,
       mode = kind,
-      request = null;
+      request = null,
+      timeS = null;
 
   factory MatchIntro.fromFound(MmFoundEvent event, {SearchRequest? request}) {
     final bot = event.bot || event.opponent.isBot;
@@ -39,6 +41,7 @@ class MatchIntro {
       bot: bot,
       mode: bot ? 'bot' : (event.mode ?? request?.mode),
       request: request == null ? null : (bot ? request.withMode('bot') : request),
+      timeS: event.timeS,
     );
   }
 
@@ -55,6 +58,9 @@ class MatchIntro {
 
   /// The room the game was started in, for Play with Friend and Group Battle.
   final String? roomId;
+
+  /// Seconds per question, shortest and longest (from `mm.found`).
+  final (int, int)? timeS;
 }
 
 /// Where the rewards of a finished game stand.

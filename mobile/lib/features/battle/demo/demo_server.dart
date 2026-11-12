@@ -67,7 +67,9 @@ class DemoRealtimeServer implements WebSocketConnector {
   Duration opponentReadyAfter = const Duration(milliseconds: 800);
   Duration readyWait = const Duration(seconds: 10);
   Duration countdown = const Duration(seconds: 3);
-  Duration questionLimit = const Duration(seconds: 15);
+
+  /// An easy question's time; harder ones get more (see `DemoMatch`).
+  Duration questionLimit = const Duration(seconds: 20);
   Duration revealFor = const Duration(seconds: 3);
   Duration settleAfter = const Duration(milliseconds: 1500);
   int questionCount = 7;
@@ -711,6 +713,7 @@ class DemoRealtimeServer implements WebSocketConnector {
       },
       'sources': match.sources,
       'bot': bot,
+      'time_s': match.timeRangeS,
     });
     // The first frame on the match channel.
     _after(latency * 2 + const Duration(milliseconds: 40), match._sendSnapshot);

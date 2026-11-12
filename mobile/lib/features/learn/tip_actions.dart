@@ -64,7 +64,7 @@ TipDestination? tipDestination(Tip tip) {
       topic: topic,
       count: count,
       timed: timed,
-      perQuestionS: timed ? SessionSettings.defaultPerQuestionS : null,
+      timing: timed ? Timing.byDifficulty : Timing.fixed,
     );
   }
 

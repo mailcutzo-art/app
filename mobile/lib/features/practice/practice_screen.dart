@@ -10,6 +10,7 @@ import '../../app/router.dart';
 import '../../core/auth/session.dart';
 import '../../core/network/app_failure.dart';
 import '../../core/network/connectivity.dart';
+import '../../core/sound/sound_effects.dart';
 import '../learn/learn_providers.dart';
 import '../learn/report_sheet.dart';
 import '../learn/widgets/learn_widgets.dart';
@@ -65,6 +66,14 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   /// The finished session's answers are on screen instead of its summary.
   bool _reviewing = false;
 
+  /// After a timeout the next question follows by itself: the time left until it does, or null
+  /// when nothing is pending (the student chose to stay, or moved on).
+  final _autoNext = ValueNotifier<Duration?>(null);
+  Timer? _autoNextTicker;
+  String? _autoNextFor;
+
+  static const _autoNextAfter = Duration(seconds: 3);
+
   bool get _paused => _hidden || _sheetOpen || _reading;
 
   late final _provider = practiceControllerProvider(widget.sessionId);
@@ -90,7 +99,10 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
         _tickChallenge();
       },
     );
-    ref.listenManual(_provider, (_, next) => _follow(next.value), fireImmediately: true);
+    ref.listenManual(_provider, (before, next) {
+      _sound(before?.value, next.value);
+      _follow(next.value);
+    }, fireImmediately: true);
   }
 
   @override
@@ -98,9 +110,31 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     _lifecycle.dispose();
     _ticker?.cancel();
     _challengeTicker?.cancel();
+    _autoNextTicker?.cancel();
+    _autoNext.dispose();
     _left.dispose();
     _challengeLeft.dispose();
     super.dispose();
+  }
+
+  /// A soft sound for each verdict (when shown right away) and for finishing the set.
+  void _sound(PracticeState? before, PracticeState? now) {
+    if (before == null || now == null) return;
+    if (now.done && !before.done) {
+      playSfx(ref, Sfx.complete);
+      return;
+    }
+    final answer = now.answer;
+    final fresh =
+        answer != null && (before.answer == null || before.question.ref != now.question.ref);
+    if (!fresh || !now.session.instantFeedback) return;
+    final sfx = switch (answer.outcome) {
+      AnswerOutcome.correct => Sfx.correct,
+      AnswerOutcome.wrong => Sfx.wrong,
+      AnswerOutcome.timeout => Sfx.timeout,
+      AnswerOutcome.skipped => null,
+    };
+    if (sfx != null) playSfx(ref, sfx);
   }
 
   /// Starts timing a question when it appears and stops once it's answered.
@@ -117,17 +151,53 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     }
     if (s == null || s.done || s.answer != null) {
       _pauseClock();
+      if (s != null && !s.done && s.answer?.outcome == AnswerOutcome.timeout) _scheduleNext(s);
+      if (s == null || s.done) _stopAutoNext();
       return;
     }
+    _stopAutoNext();
     if (_timing == s.question.ref) return;
     _timing = s.question.ref;
     _clock
       ..reset()
       ..start();
-    final limit = s.session.perQuestionMs;
+    final limit = s.session.limitFor(s.question);
     _left.value = limit == null ? null : Duration(milliseconds: limit);
     if (limit != null) _startTicker(limit);
     if (_paused) _pauseClock();
+  }
+
+  /// A question ran out of time: show the answer for a moment, then move on by itself.
+  void _scheduleNext(PracticeState s) {
+    if (!s.session.instantFeedback || _autoNextFor == s.question.ref) return;
+    _autoNextFor = s.question.ref;
+    const step = Duration(milliseconds: 100);
+    var left = _autoNextAfter;
+    _autoNext.value = left;
+    _autoNextTicker?.cancel();
+    _autoNextTicker = Timer.periodic(step, (_) {
+      if (!mounted || _paused) return; // a sheet or the background holds it
+      left -= step;
+      if (left > Duration.zero) {
+        _autoNext.value = left;
+        return;
+      }
+      _stopAutoNext();
+      final now = _state;
+      if (now == null || now.done || now.question.ref != _autoNextFor) return;
+      if (now.isLast) {
+        unawaited(_finish());
+      } else {
+        _next();
+      }
+    });
+  }
+
+  /// "Stay": the student wants to read the answer; Next is theirs to tap.
+  void _stopAutoNext() {
+    _autoNextTicker?.cancel();
+    _autoNextTicker = null;
+    _autoNext.value = null;
   }
 
   void _startChallenge(PracticeSession session) {
@@ -164,7 +234,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     final s = _state;
     if (s == null || s.done || s.answer != null || _timing != s.question.ref) return;
     _clock.start();
-    if (s.session.perQuestionMs case final limit?) _startTicker(limit);
+    if (s.session.limitFor(s.question) case final limit?) _startTicker(limit);
   }
 
   void _startTicker(int limitMs) {
@@ -214,6 +284,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
 
   /// Opens a sheet with the question clock paused.
   Future<T> _withSheet<T>(Future<T> Function() open) async {
+    _stopAutoNext();
     _sheetOpen = true;
     _pauseClock();
     try {
@@ -423,7 +494,14 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             ),
           ),
         ),
-        _BottomBar(state: s, onSkip: _skip, onNext: _next, onFinish: _finish),
+        _BottomBar(
+          state: s,
+          autoNext: _autoNext,
+          onStay: _stopAutoNext,
+          onSkip: _skip,
+          onNext: _next,
+          onFinish: _finish,
+        ),
       ],
     );
   }
@@ -458,7 +536,7 @@ class _TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = context.text;
     final colors = context.colors;
-    final limit = state.session.perQuestionMs;
+    final limit = state.session.limitFor(state.question);
     final bookmarked = state.bookmarked;
     return Padding(
       padding: const EdgeInsets.fromLTRB(AppSpacing.gutter, AppSpacing.md, AppSpacing.gutter, 0),
@@ -737,12 +815,16 @@ class _QuestionBody extends StatelessWidget {
 class _BottomBar extends StatelessWidget {
   const _BottomBar({
     required this.state,
+    required this.autoNext,
+    required this.onStay,
     required this.onSkip,
     required this.onNext,
     required this.onFinish,
   });
 
   final PracticeState state;
+  final ValueListenable<Duration?> autoNext;
+  final VoidCallback onStay;
   final VoidCallback onSkip;
   final VoidCallback onNext;
   final Future<void> Function() onFinish;
@@ -756,6 +838,8 @@ class _BottomBar extends StatelessWidget {
       child = _FeedbackPanel(
         key: ValueKey('feedback-${s.question.ref}'),
         state: s,
+        autoNext: autoNext,
+        onStay: onStay,
         onNext: onNext,
         onFinish: onFinish,
       );
@@ -820,17 +904,27 @@ class _FeedbackPanel extends ConsumerWidget {
   const _FeedbackPanel({
     super.key,
     required this.state,
+    required this.autoNext,
+    required this.onStay,
     required this.onNext,
     required this.onFinish,
   });
 
   final PracticeState state;
+  final ValueListenable<Duration?> autoNext;
+  final VoidCallback onStay;
   final VoidCallback onNext;
   final Future<void> Function() onFinish;
 
   Future<void> _askAi(BuildContext context, WidgetRef ref) async {
     final goal = ref.read(meProvider).goal;
-    final target = await askAiAbout(ref, state.question, goal: goal);
+    final target = await askAiAbout(
+      ref,
+      state.question,
+      goal: goal,
+      outcome: state.answer?.outcome,
+      picked: state.answer?.selectedOption,
+    );
     final message = askAiMessage(target);
     if (message != null && context.mounted) showAppToast(context, message, icon: AppIcons.info);
   }
@@ -901,14 +995,26 @@ class _FeedbackPanel extends ConsumerWidget {
               ),
             ),
           ],
+          ValueListenableBuilder<Duration?>(
+            valueListenable: autoNext,
+            builder: (context, left, _) => _AutoNextStrip(
+              left: left,
+              total: _PracticeScreenState._autoNextAfter,
+              last: state.isLast,
+              onStay: onStay,
+            ),
+          ),
           const SizedBox(height: AppSpacing.lg),
           Row(
             children: [
-              // A skipped question gets a way to learn it: an AI tutor with the question ready.
-              if (answer.outcome == AnswerOutcome.skipped) ...[
-                AskAiButton(onPressed: () => _askAi(context, ref)),
-                const SizedBox(width: AppSpacing.md),
-              ],
+              // Every answered question can be explained: an AI tutor with the question ready.
+              AskAiButton(
+                onPressed: () {
+                  onStay();
+                  unawaited(_askAi(context, ref));
+                },
+              ),
+              const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: AppButton(
                   label: state.isLast ? 'Finish' : 'Next',
@@ -922,6 +1028,76 @@ class _FeedbackPanel extends ConsumerWidget {
         ],
       ),
     );
+  }
+}
+
+/// "Next question in 3 s · Stay" after a timeout, with a bar running down. Collapses once the
+/// student stays or moves on.
+class _AutoNextStrip extends StatelessWidget {
+  const _AutoNextStrip({
+    required this.left,
+    required this.total,
+    required this.last,
+    required this.onStay,
+  });
+
+  final Duration? left;
+  final Duration total;
+  final bool last;
+  final VoidCallback onStay;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final text = context.text;
+    final left = this.left;
+    final duration = AppMotion.of(context, AppMotion.medium);
+    final Widget child;
+    if (left == null) {
+      child = const SizedBox(key: ValueKey('none'), width: double.infinity);
+    } else {
+      final seconds = (left.inMilliseconds / 1000).ceil();
+      child = Padding(
+        key: const ValueKey('auto'),
+        padding: const EdgeInsets.only(top: AppSpacing.md),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    last ? 'Finishing in $seconds s' : 'Next question in $seconds s',
+                    style: text.labelMedium.copyWith(color: colors.inkMuted),
+                  ),
+                  const SizedBox(height: AppSpacing.xs),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(AppRadii.pill),
+                    child: LinearProgressIndicator(
+                      value: (left.inMilliseconds / total.inMilliseconds).clamp(0.0, 1.0),
+                      minHeight: 4,
+                      backgroundColor: colors.surfaceMuted,
+                      color: colors.onWarningContainer,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: AppSpacing.md),
+            AppButton(
+              label: 'Stay',
+              variant: AppButtonVariant.ghost,
+              size: AppButtonSize.small,
+              expand: false,
+              onPressed: onStay,
+            ),
+          ],
+        ),
+      );
+    }
+    final switcher = AnimatedSwitcher(duration: duration, child: child);
+    if (duration == Duration.zero) return switcher;
+    return AnimatedSize(duration: duration, curve: AppMotion.emphasized, child: switcher);
   }
 }
 

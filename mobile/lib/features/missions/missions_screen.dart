@@ -82,37 +82,39 @@ class _MissionsScreenState extends ConsumerState<MissionsScreen> {
     };
 
     return Scaffold(
-      appBar: AppTopBar(onBack: () => context.canPop() ? context.pop() : context.go(Routes.home)),
-      body: RefreshIndicator(
-        color: context.colors.ink,
-        backgroundColor: context.colors.surface,
-        onRefresh: () async {
-          ref.invalidate(missionsProvider);
-          try {
-            await ref.read(missionsProvider.future);
-          } on Object {
-            // The screen shows the error.
-          }
-        },
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: AppSpacing.huge),
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
-            LargeTitle(
-              title: 'Today\'s missions',
-              subtitle: switch (missions.value) {
-                final day? when day.items.isNotEmpty =>
-                  '${day.doneCount} of ${day.items.length} done · New ones at midnight',
-                _ => 'New ones at midnight',
-              },
-              trailing: switch (missions.value) {
-                final day? => StreakChip(streak: day.streak),
-                _ => null,
-              },
-            ),
-            const SizedBox(height: AppSpacing.xl),
-            ...content,
-          ],
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          color: context.colors.ink,
+          backgroundColor: context.colors.surface,
+          onRefresh: () async {
+            ref.invalidate(missionsProvider);
+            try {
+              await ref.read(missionsProvider.future);
+            } on Object {
+              // The screen shows the error.
+            }
+          },
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverCollapsingTitle(
+                title: 'Today\'s missions',
+                subtitle: switch (missions.value) {
+                  final day? when day.items.isNotEmpty =>
+                    '${day.doneCount} of ${day.items.length} done · New ones at midnight',
+                  _ => 'New ones at midnight',
+                },
+                onBack: () => context.canPop() ? context.pop() : context.go(Routes.home),
+                // The streak pill is wider than a title badge, so it sits in the top row.
+                actions: [if (missions.value case final day?) StreakChip(streak: day.streak)],
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.only(top: AppSpacing.lg, bottom: AppSpacing.huge),
+                sliver: SliverList(delegate: SliverChildListDelegate(content)),
+              ),
+            ],
+          ),
         ),
       ),
     );

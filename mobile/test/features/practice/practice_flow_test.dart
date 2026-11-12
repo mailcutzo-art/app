@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/router.dart';
 import 'package:quiz_app/core/network/app_failure.dart';
+import 'package:quiz_app/core/sound/sound_effects.dart';
 import 'package:quiz_app/features/learn/data/fake_learn_repository.dart';
 import 'package:quiz_app/features/practice/ask_ai.dart';
 import 'package:quiz_app/features/practice/data/answer_queue.dart';
@@ -52,6 +53,7 @@ Future<(ProviderContainer, PracticeSession)> _open(
   SessionSettings settings = _kinematics,
   FakeStopwatch? clock,
   SharedPreferences? prefs,
+  SoundEffects? sounds,
 }) async {
   final container = await pumpApp(
     tester,
@@ -59,6 +61,7 @@ Future<(ProviderContainer, PracticeSession)> _open(
     learn: learn,
     stopwatch: clock == null ? null : () => clock,
     location: Routes.learn,
+    overrides: [if (sounds != null) soundEffectsProvider.overrideWithValue(sounds)],
   );
   final session = await container
       .read(practiceStarterProvider)
@@ -69,10 +72,37 @@ Future<(ProviderContainer, PracticeSession)> _open(
   return (container, session);
 }
 
+/// Records what would play.
+class _Sounds implements SoundEffects {
+  final played = <Sfx>[];
+
+  @override
+  void play(Sfx sfx) => played.add(sfx);
+}
+
 void main() {
   late FakeLearnRepository learn;
 
   setUp(() => learn = FakeLearnRepository.seeded());
+
+  testWidgets('each verdict and the finish get a soft sound', (tester) async {
+    usePhoneViewport(tester, height: 1100);
+    final sounds = _Sounds();
+    final (_, session) = await _open(tester, learn, settings: _lawsOfMotion, sounds: sounds);
+    final [first, second] = session.questions;
+
+    await tester.tap(_option(_correct(first).text));
+    await tester.pumpAndSettle();
+    expect(sounds.played, [Sfx.correct]);
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(_option(_wrong(second).text));
+    await tester.pumpAndSettle();
+    expect(sounds.played, [Sfx.correct, Sfx.wrong]);
+    await tester.tap(find.text('Finish'));
+    await tester.pumpAndSettle();
+    expect(sounds.played, [Sfx.correct, Sfx.wrong, Sfx.complete]);
+  });
 
   testWidgets('a correct answer turns mint, shows the explanation, then Next', (tester) async {
     usePhoneViewport(tester, height: 900);
@@ -142,7 +172,7 @@ void main() {
     expect(find.text('Skipped · the answer is ${_letter(q)}'), findsOneWidget);
   });
 
-  testWidgets('a skipped question offers ChatGPT beside Next, with the question filled in', (
+  testWidgets('every revealed question offers ChatGPT beside Next, with the question filled in', (
     tester,
   ) async {
     usePhoneViewport(tester, height: 900);
@@ -170,7 +200,7 @@ void main() {
     final q = session.questions.first;
     final ask = _iconButton('Ask ChatGPT to explain this question');
 
-    // Not before skipping, and not after a real answer.
+    // Not while the question is open: it would give the answer away.
     expect(ask, findsNothing);
     await tester.tap(find.text('Skip'));
     await tester.pumpAndSettle();
@@ -184,11 +214,22 @@ void main() {
     expect(prompt, contains('Correct answer: ${_letter(q)}) ${_correct(q).text}'));
     expect(copied, [prompt]);
 
+    expect(prompt, contains('I skipped this question.'));
+
+    // A wrong answer gets it too, with the student's pick in the prompt.
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
-    await tester.tap(_option(_correct(session.questions[1]).text));
-    await tester.pumpAndSettle();
     expect(ask, findsNothing);
+    final second = session.questions[1];
+    final wrong = second.options.firstWhere((o) => o.id != second.answer);
+    await tester.tap(_option(wrong.text));
+    await tester.pumpAndSettle();
+    expect(ask, findsOneWidget);
+    await tester.tap(ask);
+    await tester.pumpAndSettle();
+    final again = opened.last.queryParameters['q']!;
+    expect(again, contains('I got this question wrong.'));
+    expect(again, contains('My answer: '));
   });
 
   testWidgets('in timed mode, running out of time records timed_out and reveals', (tester) async {
@@ -225,6 +266,47 @@ void main() {
     expect(find.text('Time\'s up · the answer is ${_letter(q)}'), findsOneWidget);
     expect(_state(tester, _correct(q).text), AnswerOptionState.correct);
     expect(ring().label, '0');
+
+    // The next question follows by itself after a moment.
+    expect(find.text('Next question in 3 s'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.text('Next question in 2 s'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 2100));
+    await tester.pumpAndSettle();
+    expect(find.text('Next question in 1 s'), findsNothing);
+    expect(find.byWidgetPredicate((w) => w is QuestionCard && w.number == 2), findsOneWidget);
+    expect(ring().label, '30');
+  });
+
+  testWidgets('after a timeout, Stay keeps the answer on screen', (tester) async {
+    usePhoneViewport(tester, height: 900);
+    final clock = FakeStopwatch();
+    final (_, session) = await _open(
+      tester,
+      learn,
+      clock: clock,
+      settings: const SessionSettings(
+        mode: PracticeMode.chapter,
+        subject: 'physics',
+        chapters: ['kinematics'],
+        timed: true,
+        timing: Timing.byDifficulty,
+      ),
+    );
+    final q = session.questions.first;
+    final limit = session.limitFor(q)!;
+    CountdownRing ring() => tester.widget<CountdownRing>(find.byType(CountdownRing));
+    expect(ring().label, '${limit ~/ 1000}');
+
+    clock.advance(Duration(milliseconds: limit + 100));
+    await tester.pump(const Duration(milliseconds: 150));
+    await tester.pumpAndSettle();
+    expect(learn.uploadedAnswers.single.timeMs, limit);
+    await tester.tap(find.text('Stay'));
+    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle();
+    expect(find.text('Time\'s up · the answer is ${_letter(q)}'), findsOneWidget);
+    expect(find.text('Next'), findsOneWidget);
   });
 
   testWidgets('time_ms is the time the question was on screen, paused in the background', (

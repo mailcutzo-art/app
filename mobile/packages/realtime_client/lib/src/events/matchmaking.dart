@@ -136,6 +136,7 @@ final class MmFoundEvent extends ServerEvent {
     required this.opponent,
     required this.sources,
     required this.bot,
+    this.timeS,
   });
 
   factory MmFoundEvent.fromEnvelope(Envelope envelope) {
@@ -149,8 +150,20 @@ final class MmFoundEvent extends ServerEvent {
       opponent: _readCard(d.object('opponent')),
       sources: d.optObjects('sources', _readSource) ?? const [],
       bot: d.optBool('bot') ?? false,
+      timeS: _range(d.optList('time_s')),
     );
   }
+
+  /// `[shortest, longest]` seconds per question; they differ when harder questions get more
+  /// time. Null from servers that don't send it.
+  static (int, int)? _range(List<Object?>? values) {
+    if (values == null || values.length != 2) return null;
+    final [lo, hi] = values;
+    if (lo is! num || hi is! num || lo <= 0 || hi < lo) return null;
+    return (lo.round(), hi.round());
+  }
+
+  final (int, int)? timeS;
 
   final String matchId;
 

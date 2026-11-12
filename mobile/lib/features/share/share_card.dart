@@ -529,15 +529,16 @@ class _Bar extends StatelessWidget {
 // ---------------------------------------------------------------- compact (the feed)
 
 class _CompactFrame extends StatelessWidget {
-  const _CompactFrame({required this.tone, required this.child});
+  const _CompactFrame({required this.tone, required this.child, this.padding = AppSpacing.md});
 
   final PastelTone tone;
   final Widget child;
+  final double padding;
 
   @override
   Widget build(BuildContext context) => Container(
     width: double.infinity,
-    padding: const EdgeInsets.all(AppSpacing.md),
+    padding: EdgeInsets.all(padding),
     decoration: BoxDecoration(
       color: context.colors.pastel(tone).container,
       borderRadius: BorderRadius.circular(AppRadii.lg),
@@ -609,48 +610,129 @@ class _CompactProgress extends StatelessWidget {
     final colors = context.colors;
     final text = context.text;
     final pair = colors.lavender;
+    final rating = data.ratings.firstOrNull;
     return _CompactFrame(
       tone: PastelTone.lavender,
+      padding: AppSpacing.lg,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
             children: [
-              HugeIcon(AppIcons.star, size: 18, color: pair.onContainer),
-              const SizedBox(width: AppSpacing.xs),
-              Text('Level ${data.level}', style: text.titleMedium),
-              const Spacer(),
-              if (data.ratings.firstOrNull case final rating?)
-                Text('${rating.label} ${rating.rating}', style: text.labelMedium),
+              Container(
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(color: colors.surface, shape: BoxShape.circle),
+                child: HugeIcon(AppIcons.star, size: 20, color: pair.onContainer),
+              ),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Level ${data.level}', style: text.titleLarge),
+                    if (data.xpForLevel > 0)
+                      Text(
+                        '${formatCount(data.xpIntoLevel)} / ${formatCount(data.xpForLevel)} XP',
+                        style: text.caption.copyWith(color: pair.onContainer),
+                      ),
+                  ],
+                ),
+              ),
+              if (rating != null)
+                _Pill(
+                  icon: AppIcons.chart,
+                  label: '${rating.label} ${rating.rating}',
+                  pair: colors.sky,
+                  small: true,
+                ),
             ],
           ),
-          const SizedBox(height: AppSpacing.sm),
-          _Bar(value: data.levelProgress, color: pair.onContainer, height: 6),
-          const SizedBox(height: AppSpacing.sm),
-          Wrap(
-            spacing: AppSpacing.xs,
-            runSpacing: AppSpacing.xs,
+          const SizedBox(height: AppSpacing.md),
+          _Bar(value: data.levelProgress, color: pair.onContainer),
+          const SizedBox(height: AppSpacing.md),
+          Row(
             children: [
-              _Pill(
-                icon: AppIcons.target,
-                label: '${data.accuracyLabel} accuracy',
-                pair: colors.mint,
-                small: true,
+              Expanded(
+                child: _CompactStat(
+                  icon: AppIcons.target,
+                  value: data.accuracyLabel,
+                  label: 'Accuracy',
+                  pair: colors.mint,
+                ),
               ),
-              _Pill(
-                icon: AppIcons.quiz,
-                label: '${formatCount(data.answered)} answered',
-                pair: colors.sky,
-                small: true,
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: _CompactStat(
+                  icon: AppIcons.quiz,
+                  value: formatCount(data.answered),
+                  label: 'Answered',
+                  pair: colors.sky,
+                ),
               ),
-              _Pill(
-                icon: AppIcons.fire,
-                label: '${data.currentStreak}-day streak',
-                pair: colors.peach,
-                small: true,
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: _CompactStat(
+                  icon: AppIcons.fire,
+                  value: '${data.currentStreak}',
+                  label: 'Day streak',
+                  pair: colors.peach,
+                ),
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+/// One number of the feed's progress card: an icon, the value, and what it is.
+class _CompactStat extends StatelessWidget {
+  const _CompactStat({
+    required this.icon,
+    required this.value,
+    required this.label,
+    required this.pair,
+  });
+
+  final HugeIconData icon;
+  final String value;
+  final String label;
+  final PastelPair pair;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = context.text;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.md,
+        AppSpacing.md,
+        AppSpacing.sm,
+        AppSpacing.md,
+      ),
+      decoration: BoxDecoration(
+        color: context.colors.surface.withValues(alpha: 0.72),
+        borderRadius: BorderRadius.circular(AppRadii.md),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 28,
+            height: 28,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: pair.container, shape: BoxShape.circle),
+            child: HugeIcon(icon, size: 15, color: pair.onContainer),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(value, style: text.numericMedium, maxLines: 1),
+          ),
+          Text(label, style: text.caption, maxLines: 1, overflow: TextOverflow.ellipsis),
         ],
       ),
     );

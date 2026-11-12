@@ -60,18 +60,18 @@ void main() {
     expect(find.text('Victory!'), findsOneWidget);
     expect(find.text('Quiz Arena'), findsOneWidget);
     expect(find.bySemanticsLabel(RegExp('Victory! Physics battle')), findsOneWidget);
-    expect(find.widgetWithText(AppButton, 'Post to friends'), findsOneWidget);
-    expect(find.widgetWithText(AppButton, 'Share to other apps'), findsOneWidget);
+    expect(find.widgetWithText(AppButton, 'Share with friends'), findsOneWidget);
+    expect(find.widgetWithText(AppButton, 'Share globally'), findsOneWidget);
   });
 
-  testWidgets('Post to friends posts the battle, closes and says so', (tester) async {
+  testWidgets('Share with friends posts the battle, closes and says so', (tester) async {
     await open(tester, sampleWin);
-    await tester.tap(find.text('Post to friends'));
+    await tester.tap(find.text('Share with friends'));
     await tester.pumpAndSettle();
 
     expect(social.posted, [const MatchShareTarget('m-1')]);
     expect(find.text('Share this battle'), findsNothing);
-    expect(find.text('Posted to your friends'), findsOneWidget);
+    expect(find.text('Shared with your friends'), findsOneWidget);
     final feed = await social.activity();
     expect(feed.items.single.user.id, FakeSocialRepository.defaultMe.id);
     expect(recorder.shared, isEmpty);
@@ -84,7 +84,7 @@ void main() {
     await open(tester, sampleProgress);
     expect(find.text('Share your progress'), findsOneWidget);
 
-    await tester.tap(find.text('Post to friends'));
+    await tester.tap(find.text('Share with friends'));
     await tester.pumpAndSettle();
 
     expect(
@@ -92,18 +92,18 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Share your progress'), findsOneWidget, reason: 'the sheet stays open');
-    expect(find.text('Posted to your friends'), findsNothing);
+    expect(find.text('Shared with your friends'), findsNothing);
   });
 
   testWidgets('a battle posted before, and a failed post that can be retried', (tester) async {
     await social.share(const MatchShareTarget('m-1'), idempotencyKey: 'first');
     await open(tester, sampleWin);
-    await tester.tap(find.text('Post to friends'));
+    await tester.tap(find.text('Share with friends'));
     await tester.pumpAndSettle();
     expect(find.text('You\'ve already posted this battle to your friends.'), findsOneWidget);
 
     social.failures[FakeSocialOp.share] = const NetworkFailure();
-    await tester.tap(find.text('Post to friends'));
+    await tester.tap(find.text('Share with friends'));
     await tester.pumpAndSettle();
     expect(find.text(const NetworkFailure().message), findsOneWidget);
     expect(social.posted, hasLength(1));
@@ -113,7 +113,7 @@ void main() {
     tester,
   ) async {
     await open(tester, sampleWin);
-    await tester.tap(find.text('Share to other apps'));
+    await tester.tap(find.text('Share globally'));
     await tester.pumpAndSettle();
 
     expect(recorder.captured, [sampleWin]);
@@ -131,7 +131,7 @@ void main() {
       shareBaseUrl: 'https://quizarena.app',
     );
     await open(tester, sampleProgress, env: env);
-    await tester.tap(find.text('Share to other apps'));
+    await tester.tap(find.text('Share globally'));
     await tester.pumpAndSettle();
 
     expect(
@@ -143,14 +143,14 @@ void main() {
   testWidgets('a capture that fails says so and can be tried again', (tester) async {
     recorder.captureError = StateError('no frame');
     await open(tester, sampleWin);
-    await tester.tap(find.text('Share to other apps'));
+    await tester.tap(find.text('Share globally'));
     await tester.pumpAndSettle();
 
     expect(find.text('Couldn\'t share the image. Please try again.'), findsOneWidget);
     expect(recorder.shared, isEmpty);
 
     recorder.captureError = null;
-    await tester.tap(find.text('Share to other apps'));
+    await tester.tap(find.text('Share globally'));
     await tester.pumpAndSettle();
     expect(recorder.shared, hasLength(1));
   });

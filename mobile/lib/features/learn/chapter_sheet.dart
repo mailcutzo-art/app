@@ -55,7 +55,7 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
     count: _count,
     difficulty: _difficulty,
     timed: _timed,
-    perQuestionS: _timed ? SessionSettings.defaultPerQuestionS : null,
+    timing: _timed ? Timing.byDifficulty : Timing.fixed,
   );
 
   void _change(VoidCallback change) => setState(() {
@@ -90,7 +90,7 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
     final chapter = widget.chapter;
     return SheetScaffold(
       title: chapter.name,
-      subtitle: '${widget.subject.name} · ${plural(chapter.questionCount, 'question')}',
+      subtitle: widget.subject.name,
       footer: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -113,7 +113,9 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
             const OverlineLabel('Topic'),
             SelectableRow(
               title: 'Whole chapter',
-              subtitle: plural(chapter.questionCount, 'question'),
+              subtitle: chapter.topics.isEmpty
+                  ? null
+                  : 'All ${plural(chapter.topics.length, 'topic')}',
               icon: AppIcons.allChapters,
               selected: _topic == null,
               onTap: () => _change(() => _topic = null),
@@ -121,7 +123,6 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
             for (final topic in chapter.topics)
               SelectableRow(
                 title: topic.name,
-                subtitle: plural(topic.questionCount, 'question'),
                 selected: _topic == topic.slug,
                 onTap: () => _change(() => _topic = topic.slug),
               ),
@@ -150,13 +151,9 @@ class _ChapterSheetState extends ConsumerState<ChapterSheet> {
                 ],
               ),
             ),
-            const SizedBox(height: AppSpacing.md),
-            ToggleRow(
-              title: 'Timed',
-              subtitle: '${SessionSettings.defaultPerQuestionS} s per question',
-              icon: AppIcons.timer,
-              value: _timed,
-              onChanged: (on) => _change(() => _timed = on),
+            const OverlineLabel('Pace'),
+            Gutter(
+              child: PaceChoice(timed: _timed, onChanged: (on) => _change(() => _timed = on)),
             ),
           ],
         ),

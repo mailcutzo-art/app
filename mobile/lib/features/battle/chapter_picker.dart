@@ -2,7 +2,6 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 import '../learn/data/learn_models.dart' show ChapterLabel;
-import '../learn/widgets/learn_widgets.dart' show plural;
 import 'data/battle_models.dart';
 
 /// The pick from [showChapterPicker]: a chapter slug, or `null` for all chapters.
@@ -24,14 +23,13 @@ Future<ChapterChoice?> showChapterPicker(
   builder: (_) => ChapterPicker(subject: subject, selected: selected),
 );
 
-/// "48 questions · Needs work", or "Coming soon".
-String chapterSubtitle(BattleChapter chapter) {
+/// "Strong", "Needs work", or "Coming soon" (no bank sizes: they aren't shown to players).
+String? chapterSubtitle(BattleChapter chapter) {
   if (!chapter.battleReady) return 'Coming soon';
-  final count = plural(chapter.questionCount, 'question');
   return switch (chapter.label) {
-    ChapterLabel.strong => '$count · Strong',
-    ChapterLabel.needsWork => '$count · Needs work',
-    null => count,
+    ChapterLabel.strong => 'Strong',
+    ChapterLabel.needsWork => 'Needs work',
+    null => null,
   };
 }
 
@@ -44,9 +42,6 @@ class ChapterPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final total = subject.chapters
-        .where((c) => c.battleReady)
-        .fold(0, (sum, c) => sum + c.questionCount);
     return SheetScaffold(
       title: 'Choose a chapter',
       subtitle: '${subject.name} · questions come from here',
@@ -60,7 +55,6 @@ class ChapterPicker extends StatelessWidget {
             icon: AppIcons.allChapters,
             iconBackground: colors.lemon.container,
             iconColor: colors.lemon.onContainer,
-            trailingText: total > 0 ? '$total Qs' : null,
             selected: selected == null,
             onTap: () => Navigator.pop(context, const ChapterChoice(null)),
           ),

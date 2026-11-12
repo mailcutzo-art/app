@@ -108,7 +108,25 @@ class DemoMatch {
 
   int get _now => _server.now;
 
-  int get _limitMs => _limit ?? _server.questionLimit.inMilliseconds;
+  /// Question [number]'s time: a room's one time, or, like the server's quick games, the base
+  /// time scaled by difficulty (easy ×1, medium ×1.5, hard ×2.25).
+  int _limitOf(int number) {
+    if (_limit case final limit?) return limit;
+    final base = _server.questionLimit.inMilliseconds;
+    if (number < 1 || number > _questions.length) return base;
+    final scale = switch (_questions[number - 1].source.difficulty) {
+      <= 2 => 1.0,
+      3 => 1.5,
+      _ => 2.25,
+    };
+    return (base * scale).round();
+  }
+
+  /// `[shortest, longest]` seconds per question, for `mm.found`.
+  List<int> get timeRangeS {
+    final limits = [for (var i = 1; i <= _questions.length; i++) _limitOf(i)];
+    return [(limits.reduce(min) / 1000).round(), (limits.reduce(max) / 1000).round()];
+  }
 
   /// Where the questions come from: `[{chapter, name, count}]`.
   List<Map<String, Object?>> get sources {
@@ -175,7 +193,7 @@ class DemoMatch {
       'ends_at': endsAt,
       'q': q,
       'total': _questions.length,
-      'limit_ms': _limitMs,
+      'limit_ms': _limitOf(q < 1 ? 1 : q),
       'players': [
         {
           ..._server.me.card(),
@@ -216,8 +234,8 @@ class DemoMatch {
         for (final (id, text, _) in question.options) {'id': id, 'text': text},
       ],
       'shown_at': shownAt,
-      'deadline_at': shownAt + _limitMs,
-      'limit_ms': _limitMs,
+      'deadline_at': shownAt + _limitOf(number),
+      'limit_ms': _limitOf(number),
       'chapter': question.source.chapter.name,
     };
   }
@@ -280,7 +298,7 @@ class DemoMatch {
     q = number;
     phase = 'q_open';
     _shownAt[number] = shownAt;
-    endsAt = shownAt + _limitMs;
+    endsAt = shownAt + _limitOf(number);
     _shared('q.show', _show(number));
 
     for (final (index, player) in opponents.indexed) {
@@ -294,7 +312,7 @@ class DemoMatch {
         // Log-normal around 6 s, never under 1.5 s.
         final gaussian =
             sqrt(-2 * log(1 - random.nextDouble())) * cos(2 * pi * random.nextDouble());
-        final ms = (6000 * exp(0.35 * gaussian)).round().clamp(1500, _limitMs - 800);
+        final ms = (6000 * exp(0.35 * gaussian)).round().clamp(1500, _limitOf(number) - 800);
         answer = DemoAnswerPlan(correct: random.nextDouble() < accuracy, ms: ms);
       }
       if (answer != null) {
@@ -376,15 +394,15 @@ class DemoMatch {
     final effective = elMs.clamp(raw - 100, raw);
     final status = raw < 0
         ? 'too_early'
-        : (effective > _limitMs || raw > _limitMs + 100 ? 'late' : 'accepted');
+        : (effective > _limitOf(number) || raw > _limitOf(number) + 100 ? 'late' : 'accepted');
     _mine[number] = _Pick(opt: status == 'accepted' ? opt : null, ms: effective, status: status);
     _private('ans.ack', {'ref': ref, 'q': number, 'status': status, 'dup': false});
     if (status == 'accepted') _progress(number);
   }
 
-  int _pointsFor(bool correct, int ms) {
+  int _pointsFor(bool correct, int ms, int limitMs) {
     if (!correct) return 0;
-    final t = ((ms - 1000) / (_limitMs - 1000)).clamp(0.0, 1.0);
+    final t = ((ms - 1000) / (limitMs - 1000)).clamp(0.0, 1.0);
     return 100 + (50 * (1 - t)).round();
   }
 
@@ -426,7 +444,7 @@ class DemoMatch {
     for (final MapEntry(key: uid, value: pick) in picks.entries) {
       final opt = pick?.opt;
       final right = opt == question.correctId;
-      final pts = _pointsFor(right, pick?.ms ?? 0);
+      final pts = _pointsFor(right, pick?.ms ?? 0, _limitOf(number));
       if (uid == _me) {
         myPoints += pts;
         if (right) myCorrect++;

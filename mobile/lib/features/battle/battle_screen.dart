@@ -15,7 +15,7 @@ import '../../core/network/connectivity.dart';
 import '../../core/realtime/live_providers.dart';
 import '../../core/realtime/live_text.dart';
 import '../../core/realtime/search_state.dart';
-import '../learn/widgets/learn_widgets.dart' show failureMessage, subjectTone;
+import '../learn/widgets/learn_widgets.dart' show failureMessage;
 import '../rooms/data/room_models.dart' show RoomKind;
 import '../rooms/rooms_controller.dart' show roomViewProvider, roomsControllerProvider;
 import 'battle_selection.dart';
@@ -102,18 +102,18 @@ class BattleScreen extends ConsumerWidget {
           // The section shows its own error.
         }
       },
+      title: SliverCollapsingTitle(
+        title: 'Battle',
+        subtitle: 'Pick a chapter, find an opponent, play live.',
+        trailing: Pressable(
+          onPressed: () => context.push(Routes.profile),
+          semanticLabel: 'Your profile',
+          child: AppAvatar(data: me.avatar.toData(), ring: true),
+        ),
+      ),
       children: [
         OfflineBanner(visible: !online, message: 'You\'re offline · battles need a connection'),
-        LargeTitle(
-          title: 'Battle',
-          subtitle: 'Pick a chapter, find an opponent, play live.',
-          trailing: Pressable(
-            onPressed: () => context.push(Routes.profile),
-            semanticLabel: 'Your profile',
-            child: AppAvatar(data: me.avatar.toData(), ring: true),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.xl),
+        const SizedBox(height: AppSpacing.md),
         Gutter(
           child: _QuickBattleSection(
             goal: goal,
@@ -277,7 +277,6 @@ class _QuickBattleCardState extends ConsumerState<_QuickBattleCard> {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     final text = context.text;
     final setup = _setup;
     final selection = resolveSelection(setup, ref.watch(battleSelectionProvider));
@@ -286,7 +285,6 @@ class _QuickBattleCardState extends ConsumerState<_QuickBattleCard> {
     final online = ref.watch(isOnlineProvider);
     final searching = ref.watch(searchProvider.select((s) => s.isSearching));
     final canAffordCasual = setup.canAffordCasual;
-    final leader = leaderLine(subject.name, setup.leaders[subject.slug]);
     final busy = _joining != null;
 
     return SurfaceCard(
@@ -296,39 +294,40 @@ class _QuickBattleCardState extends ConsumerState<_QuickBattleCard> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 4, top: 2),
-                  child: Text('Quick battle', style: text.titleLarge),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Quick battle', style: text.titleLarge),
+                    const SizedBox(height: 2),
+                    Text('Live 1v1 against a real player', style: text.bodySmall),
+                  ],
                 ),
               ),
+              const SizedBox(width: AppSpacing.sm),
               _RatingBadge(subject: subject),
             ],
           ),
-          const SizedBox(height: AppSpacing.md),
-          Wrap(
-            spacing: AppSpacing.sm,
-            runSpacing: AppSpacing.sm,
-            children: [
-              for (final s in setup.subjects)
-                AppChip(
-                  label: s.name,
-                  dotColor: colors.pastel(subjectTone(s.tone)).onContainer,
-                  selected: s.slug == subject.slug,
-                  onSelected: busy
-                      ? null
-                      : (_) => _pick(selection.copyWith(subject: s.slug, chapter: null)),
-                ),
-            ],
-          ),
           const SizedBox(height: AppSpacing.lg),
+          // Equal-width segments: every subject fits on one line, however many there are.
+          AppSegmentedControl<String>(
+            segments: [for (final s in setup.subjects) AppSegment(value: s.slug, label: s.name)],
+            selected: subject.slug,
+            onChanged: busy
+                ? null
+                : (slug) {
+                    if (slug != subject.slug) {
+                      _pick(selection.copyWith(subject: slug, chapter: null));
+                    }
+                  },
+          ),
+          const SizedBox(height: AppSpacing.md),
           _ChapterField(
             name: chapter?.name ?? 'All chapters',
             onTap: busy ? null : () => _chooseChapter(selection, subject),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           AppSegmentedControl<BattleMode>(
             segments: [
               const AppSegment(value: BattleMode.rated, label: 'Rated', icon: AppIcons.flash),
@@ -343,14 +342,8 @@ class _QuickBattleCardState extends ConsumerState<_QuickBattleCard> {
             onChanged: busy ? null : (mode) => _pick(selection.copyWith(mode: mode)),
           ),
           const SizedBox(height: AppSpacing.sm),
-          _ModeNote(mode: selection.mode, setup: setup, subject: subject),
+          _ModeNote(mode: selection.mode, setup: setup),
           const SizedBox(height: AppSpacing.lg),
-          _InfoLine(icon: AppIcons.social, text: onlineLine(setup.online[subject.slug])),
-          if (leader != null) ...[
-            const SizedBox(height: AppSpacing.sm),
-            _InfoLine(icon: AppIcons.crown, text: leader),
-          ],
-          const SizedBox(height: AppSpacing.xl),
           if (setup.active case final active?) ...[
             Text(activeLine(active), style: text.labelMedium, textAlign: TextAlign.center),
             const SizedBox(height: AppSpacing.sm),
@@ -400,6 +393,10 @@ class _QuickBattleCardState extends ConsumerState<_QuickBattleCard> {
                 ? () => _play(selection, subject, BattleMode.bot)
                 : null,
           ),
+          if (online) ...[
+            const SizedBox(height: AppSpacing.md),
+            _InfoLine(icon: AppIcons.social, text: onlineLine(setup.online[subject.slug])),
+          ],
           if (!online) ...[
             const SizedBox(height: AppSpacing.sm),
             Text(
@@ -425,20 +422,21 @@ class _RatingBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = context.text;
+    final colors = context.colors;
     final rating = subject.rating;
+    // A provisional rating ends in "?"; the pill shows the number alone.
+    final shown = rating.isNew ? 'New' : rating.display.replaceAll('?', '');
     return Semantics(
       label: '${subject.name} rating ${rating.isNew ? 'not set yet' : rating.display}',
       excludeSemantics: true,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(rating.display, style: text.numericMedium),
-          Text(
-            rating.isNew ? 'New · ${subject.name}' : '${subject.name} rating',
-            style: text.caption,
-          ),
-        ],
+      child: AnimatedSwitcher(
+        duration: AppMotion.of(context, AppMotion.medium),
+        child: InfoChip(
+          key: ValueKey('${subject.slug}-$shown'),
+          icon: AppIcons.flash,
+          label: shown,
+          background: colors.surfaceMuted,
+        ),
       ),
     );
   }
@@ -486,57 +484,52 @@ class _ChapterField extends StatelessWidget {
 }
 
 class _ModeNote extends StatelessWidget {
-  const _ModeNote({required this.mode, required this.setup, required this.subject});
+  const _ModeNote({required this.mode, required this.setup});
 
   final BattleMode mode;
   final BattleSetup setup;
-  final BattleSubject subject;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final text = context.text;
     final coins = setup.coins;
+    final String note;
     if (!setup.canAffordCasual) {
-      return Row(
+      note = 'Free · Casual needs ${setup.casualFee} coins from missions';
+    } else if (mode == BattleMode.rated) {
+      note = 'Free · counts toward your rating';
+    } else {
+      note = '${setup.casualFee} coins to enter · winner takes ${setup.casualFee * 2}';
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+      child: Row(
         children: [
           Expanded(
-            child: Text(
-              mode == BattleMode.rated
-                  ? 'Free · changes your ${subject.name} rating'
-                  : 'Casual costs ${setup.casualFee} coins',
-              style: text.bodySmall,
+            child: AnimatedSwitcher(
+              duration: AppMotion.of(context, AppMotion.fast),
+              layoutBuilder: (current, previous) =>
+                  Stack(alignment: Alignment.centerLeft, children: [...previous, ?current]),
+              child: Text(note, key: ValueKey(note), style: text.bodySmall),
             ),
           ),
-          InfoChip(
-            icon: AppIcons.coins,
-            iconColor: colors.coin,
-            label: 'Earn coins from missions',
-            background: colors.warningContainer,
-            foreground: colors.onWarningContainer,
-          ),
+          if (coins != null) ...[
+            const SizedBox(width: AppSpacing.sm),
+            Semantics(
+              label: 'You have ${formatCount(coins)} coins',
+              excludeSemantics: true,
+              child: CoinAmount(
+                amount: coins,
+                style: text.labelMedium.copyWith(
+                  color: setup.canAffordCasual ? null : colors.onWarningContainer,
+                ),
+                iconSize: 16,
+              ),
+            ),
+          ],
         ],
-      );
-    }
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            mode == BattleMode.rated
-                ? 'Free · changes your ${subject.name} rating'
-                : '${setup.casualFee} coins to enter · winner takes ${setup.casualFee * 2}',
-            style: text.bodySmall,
-          ),
-        ),
-        if (coins != null) ...[
-          const SizedBox(width: AppSpacing.sm),
-          Semantics(
-            label: 'You have ${formatCount(coins)} coins',
-            excludeSemantics: true,
-            child: CoinAmount(amount: coins, style: text.labelMedium, iconSize: 16),
-          ),
-        ],
-      ],
+      ),
     );
   }
 }

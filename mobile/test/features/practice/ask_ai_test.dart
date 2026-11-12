@@ -43,8 +43,32 @@ void main() {
       expect(prompt, contains('Question: The unit of force is equivalent to kg m s^{-2}.'));
       expect(prompt, contains('A) Joule\nB) Newton\nC) Watt\nD) Pascal'));
       expect(prompt, contains('Correct answer: B) Newton'));
-      expect(prompt, contains('why this answer is correct'));
+      expect(prompt, contains('1. Correct answer: one line on why it is right.'));
+      expect(prompt, contains('Why each other option is wrong'));
+      expect(prompt, contains('Key concept'));
       expect(prompt, isNot(contains('**')));
+    });
+
+    test('says what the student did, and asks about a wrong pick', () {
+      final wrong = buildAskAiPrompt(
+        _question,
+        goal: Goal.neet,
+        outcome: AnswerOutcome.wrong,
+        picked: 1, // Watt, shown as C
+      );
+      expect(wrong, contains('I got this question wrong.'));
+      expect(wrong, contains('My answer: C) Watt'));
+      expect(wrong, contains('why someone picks C'));
+
+      final timedOut = buildAskAiPrompt(_question, outcome: AnswerOutcome.timeout);
+      expect(timedOut, contains('I ran out of time'));
+      expect(timedOut, isNot(contains('My answer')));
+
+      final right = buildAskAiPrompt(_question, outcome: AnswerOutcome.correct, picked: 0);
+      expect(right, contains('I got this question right'));
+      expect(right, isNot(contains('My mistake')));
+
+      expect(buildAskAiPrompt(_question), contains('I skipped this question.'));
     });
 
     test('without a goal it says NEET/JEE', () {
@@ -61,7 +85,7 @@ void main() {
         explanation: '',
       );
       final prompt = buildAskAiPrompt(long);
-      expect(prompt.length, lessThanOrEqualTo(1800));
+      expect(prompt.length, lessThanOrEqualTo(2000));
       expect(prompt, contains('x…'));
       expect(prompt, contains('Correct answer: B) Newton'));
     });

@@ -10,6 +10,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.errors import Conflict, NotFound
+from app.modules.content import pacing
 from app.modules.content.catalog import DEFAULT_GOAL
 from app.modules.content.models import Passage, Question, Topic
 from app.modules.content.views import bookmarked_ids, load_views
@@ -55,8 +56,23 @@ def challenge_deadline(session: PracticeSession) -> datetime | None:
 
 
 def per_question_ms(session: PracticeSession) -> int | None:
+    """The one time every question has, for fixed timing."""
     seconds = session.settings.get("per_question_s")
     return seconds * 1000 if session.settings.get("timed") and isinstance(seconds, int) else None
+
+
+def timing(session: PracticeSession) -> str | None:
+    """``fixed``, ``by_difficulty``, or None for untimed practice."""
+    if not session.settings.get("timed"):
+        return None
+    return "by_difficulty" if session.settings.get("timing") == "by_difficulty" else "fixed"
+
+
+def question_limit_ms(session: PracticeSession, difficulty: int) -> int | None:
+    """The time one question of ``difficulty`` has, or None when untimed."""
+    if timing(session) == "by_difficulty":
+        return pacing.practice_limit_ms(difficulty)
+    return per_question_ms(session)
 
 
 async def create_session(
@@ -127,6 +143,7 @@ async def _session_fields(
         "created_at": session.created_at,
         "expires_at": session.expires_at,
         "per_question_ms": per_question_ms(session),
+        "timing": timing(session),
         "time_limit_ms": limit_s * 1000 if isinstance(limit_s, int) else None,
         "marking": settings.get("marking", "none"),
         "short": session.mode != PracticeMode.PASSAGE
@@ -138,6 +155,7 @@ async def _session_fields(
         "questions": [
             SessionQuestionOut(
                 position=index + 1,
+                limit_ms=question_limit_ms(session, views[question_id].question.difficulty),
                 **views[question_id].fields(
                     bookmarked=question_id in bookmarked, order=session.option_orders[index]
                 ),

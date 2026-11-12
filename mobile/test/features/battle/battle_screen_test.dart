@@ -40,8 +40,16 @@ Future<ProviderContainer> _pump(
   return container;
 }
 
-bool _chipSelected(WidgetTester tester, String label) =>
-    tester.widget<AppChip>(find.widgetWithText(AppChip, label)).selected;
+/// The subject segment labelled [label] (subjects are a segmented control).
+Finder _subject(String label) =>
+    find.descendant(of: find.byType(AppSegmentedControl<String>), matching: find.text(label));
+
+bool _chipSelected(WidgetTester tester, String label) {
+  final control = tester.widget<AppSegmentedControl<String>>(
+    find.byType(AppSegmentedControl<String>),
+  );
+  return control.segments.firstWhere((s) => s.label == label).value == control.selected;
+}
 
 AppButton _button(WidgetTester tester, String label) =>
     tester.widget<AppButton>(find.widgetWithText(AppButton, label));
@@ -59,13 +67,14 @@ void main() {
     expect(find.text('Quick battle'), findsOneWidget);
     expect(find.text('Pick a chapter, find an opponent, play live.'), findsOneWidget);
     for (final subject in ['Physics', 'Chemistry', 'Biology']) {
-      expect(find.widgetWithText(AppChip, subject), findsOneWidget);
+      expect(_subject(subject), findsOneWidget);
     }
-    expect(find.widgetWithText(AppChip, 'Maths'), findsNothing);
+    expect(_subject('Maths'), findsNothing);
     expect(battle.calls, [Goal.neet]);
-    expect(find.text('1502?'), findsOneWidget);
-    expect(find.text('Physics rating'), findsOneWidget);
-    expect(find.text('Free · changes your Physics rating'), findsOneWidget);
+    expect(find.text('1502'), findsOneWidget, reason: 'the rating pill, without the "?"');
+    expect(find.text('Free · counts toward your rating'), findsOneWidget);
+    expect(find.text('3 players searching · usually 20 s'), findsOneWidget);
+    expect(find.textContaining('this week'), findsNothing, reason: 'kept off the card');
     expect(find.widgetWithText(AppButton, 'Find opponent'), findsOneWidget);
     expect(find.widgetWithText(AppButton, 'Practice vs Bot'), findsOneWidget);
   });
@@ -97,8 +106,8 @@ void main() {
         .read(routerProvider)
         .go(Routes.battle);
     await advance(tester, const Duration(milliseconds: 500));
-    expect(find.widgetWithText(AppChip, 'Maths'), findsOneWidget);
-    expect(find.widgetWithText(AppChip, 'Biology'), findsNothing);
+    expect(_subject('Maths'), findsOneWidget);
+    expect(_subject('Biology'), findsNothing);
     expect(battle.calls, [Goal.jee]);
   });
 
@@ -140,23 +149,27 @@ void main() {
     usePhoneViewport(tester);
     reduceMotion(tester);
     await _pump(tester, battle: FakeBattleRepository(setup: (g) => sampleBattleSetup(g, coins: 3)));
-    expect(find.text('Earn coins from missions'), findsOneWidget);
+    expect(find.text('Free · Casual needs 5 coins from missions'), findsOneWidget);
     await tester.tap(find.text('Casual'), warnIfMissed: false);
     await advance(tester, const Duration(milliseconds: 300));
-    expect(find.text('Free · changes your Physics rating'), findsOneWidget, reason: 'still Rated');
+    expect(
+      tester
+          .widget<AppSegmentedControl<BattleMode>>(find.byType(AppSegmentedControl<BattleMode>))
+          .selected,
+      BattleMode.rated,
+      reason: 'still Rated',
+    );
   });
 
-  testWidgets('a subject without games shows "—" and New', (tester) async {
+  testWidgets('a subject without games shows New', (tester) async {
     usePhoneViewport(tester);
     reduceMotion(tester);
     await _pump(tester);
-    await tester.tap(find.widgetWithText(AppChip, 'Chemistry'));
+    await tester.tap(_subject('Chemistry'));
     await advance(tester, const Duration(milliseconds: 300));
     expect(_chipSelected(tester, 'Chemistry'), isTrue);
-    expect(find.text('—'), findsOneWidget);
-    expect(find.text('New · Chemistry'), findsOneWidget);
+    expect(find.text('New'), findsOneWidget);
     expect(find.text('2 players searching · usually 25 s'), findsOneWidget);
-    expect(find.text('Chemistry this week: Kabir leads'), findsOneWidget);
   });
 
   testWidgets('the choice is remembered on the device', (tester) async {
@@ -164,7 +177,7 @@ void main() {
     reduceMotion(tester);
     final prefs = await testPrefs();
     await _pump(tester, prefs: prefs);
-    await tester.tap(find.widgetWithText(AppChip, 'Biology'));
+    await tester.tap(_subject('Biology'));
     await advance(tester, const Duration(milliseconds: 300));
     expect(prefs.getString(BattleSelectionController.key('u1')), contains('biology'));
 

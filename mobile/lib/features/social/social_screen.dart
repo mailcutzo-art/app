@@ -114,18 +114,18 @@ class _SocialScreenState extends ConsumerState<SocialScreen> {
       onPoll: _poll,
       child: TabPage(
         onRefresh: _refresh,
+        title: SliverCollapsingTitle(
+          title: 'Social',
+          subtitle: 'Friends, rivals and challenges.',
+          trailing: Pressable(
+            onPressed: () => context.push(Routes.profile),
+            semanticLabel: 'Your profile',
+            child: AppAvatar(data: me.avatar.toData(), ring: true),
+          ),
+        ),
         children: [
           OfflineBanner(visible: !online),
-          LargeTitle(
-            title: 'Social',
-            subtitle: 'Friends, rivals and challenges.',
-            trailing: Pressable(
-              onPressed: () => context.push(Routes.profile),
-              semanticLabel: 'Your profile',
-              child: AppAvatar(data: me.avatar.toData(), ring: true),
-            ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.sm),
           Gutter(
             child: AppSearchField(
               controller: _search,

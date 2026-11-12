@@ -280,7 +280,7 @@ async def test_a_single_question(
     assert [o["id"] for o in question["options"]] == [0, 1, 2, 3]  # authored order
     assert question["answer"] == listed["answer"]
     assert {k: v for k, v in question.items() if k != "options"} == {
-        k: v for k, v in listed.items() if k not in {"options", "position"}
+        k: v for k, v in listed.items() if k not in {"options", "position", "limit_ms"}
     }
 
     # A version retired after the player met it stays readable for them.
