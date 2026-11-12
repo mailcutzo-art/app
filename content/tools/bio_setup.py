@@ -27,8 +27,8 @@ QDIR = ROOT / "questions" / "biology"  # validated chapters
 WIP = ROOT / "wip" / "biology"  # chapters being written (not validated, not seeded)
 TARGET = 500
 GEN = Path(os.environ.get("BIO_GEN_DIR", "/tmp/bio_gen"))  # where writers put batch files (outside the repo)
-MIX = (0.27, 0.50, 0.22, 0.01)  # easy (1-2), standard (3), hard (4), NEET+ (5): the Physics/Chemistry mix
-EASY_SPLIT = 0.26  # share of the easy questions written at difficulty 1 (the rest are difficulty 2)
+MIX = (0.20, 0.45, 0.25, 0.10)  # easy (1-2), standard (3), hard (4), NEET+ (5): the original brief, used for the last three chapters
+EASY_SPLIT = 0.40  # share of the easy questions written at difficulty 1 (the rest are difficulty 2)
 
 
 def load_plan() -> list[dict]:
