@@ -1,11 +1,11 @@
 import 'package:design_system/design_system.dart' show AvatarData;
 import 'package:flutter/foundation.dart';
 
+import '../../app/brand.dart';
 import '../../core/auth/user.dart';
 import '../../core/network/json.dart';
 
-/// The app's name as share cards and captions spell it.
-const appName = 'Quiz Arena';
+export '../../app/brand.dart' show appName;
 
 /// What a share is about, as `POST /v1/me/activity/shares` takes it. There is no text or
 /// picture: the server builds the post from its own records.
@@ -102,7 +102,7 @@ sealed class ShareCardData {
   /// What to post to friends in the app.
   ShareTarget get target;
 
-  /// The text that goes with the image to other apps: "I won a Physics battle on Quiz Arena! 🏆".
+  /// The text that goes with the image to other apps: "I won a Physics battle on PrepCue! 🏆".
   String get caption;
 
   /// The card in words, for screen readers.

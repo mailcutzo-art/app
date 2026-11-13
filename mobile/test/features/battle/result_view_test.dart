@@ -220,7 +220,7 @@ void main() {
       expect(card.player.displayName, 'Aarav Sharma');
       expect(card.answers.take(2), [ShareAnswer.correct, ShareAnswer.wrong]);
       expect((card.ratingChange, card.coins, card.xp), (16, 10, 30));
-      expect(recorder.shared.single.text, 'I won a Physics battle on Quiz Arena! 🏆');
+      expect(recorder.shared.single.text, 'I won a Physics battle on PrepCue! 🏆');
     });
 
     testWidgets('Post to friends sends the match id', (tester) async {

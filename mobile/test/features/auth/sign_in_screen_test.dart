@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/app/env.dart';
@@ -15,6 +16,7 @@ const prodEnv = AppEnv(
   flavor: Flavor.prod,
   apiBaseUrl: 'http://api.test',
   googleServerClientId: 'web-client-id',
+  legalBaseUrl: 'https://www.autometa.in/products/prepcue',
 );
 
 /// Counts Google sign-ins instead of opening the account picker.
@@ -91,6 +93,29 @@ void expectGoogleOnScreen(WidgetTester tester, Phone phone) {
 }
 
 void main() {
+  testWidgets('opens the PrepCue Terms and privacy pages before sign-in', (tester) async {
+    const channel = MethodChannel('plugins.flutter.io/url_launcher');
+    final opened = <String>[];
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(channel, (call) async {
+      if (call.method == 'launch') opened.add((call.arguments as Map)['url'] as String);
+      return true;
+    });
+    addTearDown(
+      () => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(channel, null),
+    );
+    usePhone(tester, phones[1]);
+    await pumpWelcome(tester);
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(TextButton, 'Terms'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(TextButton, 'Privacy policy'));
+    await tester.pumpAndSettle();
+    expect(opened, [
+      'https://www.autometa.in/products/prepcue/terms',
+      'https://www.autometa.in/products/prepcue/privacy',
+    ]);
+  });
+
   group('fits', () {
     for (final phone in phones) {
       for (final scale in [1.0, 1.3]) {
@@ -189,7 +214,7 @@ void main() {
     await pumpWelcome(tester);
     await tester.pumpAndSettle();
     expect(find.bySemanticsLabel('?'), findsNothing);
-    expect(find.bySemanticsLabel('Quiz Arena'), findsOneWidget);
+    expect(find.bySemanticsLabel('PrepCue'), findsOneWidget);
     expect(find.bySemanticsLabel('Continue with Google'), findsOneWidget);
     semantics.dispose();
   });

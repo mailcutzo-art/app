@@ -463,7 +463,7 @@ class _UnderAge extends StatelessWidget {
           const EmptyState(
             icon: AppIcons.graduation,
             tone: PastelTone.lavender,
-            title: 'Quiz Arena is for students aged 10 and up',
+            title: 'PrepCue is for students aged 10 and up',
             message: 'Come back when you\'re a little older. Keep learning till then!',
           ),
           AppButton(label: 'Sign out', variant: AppButtonVariant.ink, onPressed: onSignOut),

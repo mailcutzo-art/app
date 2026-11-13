@@ -132,12 +132,12 @@ void main() {
 
   group('captions', () {
     test('say what happened, with a link only when one is configured', () {
-      expect(sampleWin.caption, 'I won a Physics battle on Quiz Arena! 🏆');
-      expect(sampleProgress.caption, 'Level 12 on Quiz Arena with a 7-day streak! 📈');
+      expect(sampleWin.caption, 'I won a Physics battle on PrepCue! 🏆');
+      expect(sampleProgress.caption, 'Level 12 on PrepCue with a 7-day streak! 📈');
       expect(sampleWin.captionWithLink(''), sampleWin.caption);
       expect(
         sampleWin.captionWithLink('https://quizarena.app/'),
-        'I won a Physics battle on Quiz Arena! 🏆 https://quizarena.app',
+        'I won a Physics battle on PrepCue! 🏆 https://quizarena.app',
       );
     });
 

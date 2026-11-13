@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/brand.dart';
 import 'share_models.dart';
 
 /// The share image's size in logical pixels; captured at [ShareCard.pixelRatio] it is
@@ -154,20 +155,10 @@ class _BrandMark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 30,
-          height: 30,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: colors.accent,
-            borderRadius: BorderRadius.circular(AppRadii.xs),
-          ),
-          child: HugeIcon(AppIcons.arena, size: 18, color: colors.onAccent),
-        ),
+        const AppLogo(size: 30, semanticLabel: null),
         const SizedBox(width: AppSpacing.sm),
         Text(appName, style: context.text.titleMedium.copyWith(fontWeight: FontWeight.w800)),
       ],

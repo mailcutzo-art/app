@@ -60,7 +60,7 @@ class RoomView {
   /// What the room's invitation says when shared.
   String shareText() {
     final code = state.code ?? '';
-    final what = kind == RoomKind.friend ? 'a Quiz Arena battle' : 'my Quiz Arena group battle';
+    final what = kind == RoomKind.friend ? 'a PrepCue battle' : 'my PrepCue group battle';
     final link = this.link;
     return link == null ? 'Join $what with code $code.' : 'Join $what with code $code: $link';
   }

@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../app/brand.dart';
 import '../../core/auth/session.dart';
 import '../../core/network/app_failure.dart';
 
@@ -19,7 +20,7 @@ class SplashScreen extends ConsumerWidget {
         child: error == null
             ? const _Logo()
             : ErrorState(
-                title: 'Couldn\'t reach Quiz Arena',
+                title: 'Couldn\'t reach PrepCue',
                 message: error is AppFailure ? error.message : 'Please try again.',
                 retrying: session.isLoading,
                 onRetry: () => ref.invalidate(sessionProvider),
@@ -34,16 +35,6 @@ class _Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-    return Semantics(
-      label: 'Loading Quiz Arena',
-      child: Container(
-        width: 88,
-        height: 88,
-        decoration: BoxDecoration(color: colors.accent, shape: BoxShape.circle),
-        alignment: Alignment.center,
-        child: HugeIcon(AppIcons.rocket, size: 40, color: colors.onAccent),
-      ),
-    );
+    return const AppLogo(size: 88, semanticLabel: 'Loading PrepCue');
   }
 }

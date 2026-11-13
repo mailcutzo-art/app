@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quiz_app/app/brand.dart';
 import 'package:quiz_app/app/env.dart';
 import 'package:quiz_app/core/auth/session.dart';
 import 'package:quiz_app/features/auth/sign_in_screen.dart';
@@ -45,6 +46,7 @@ void main() {
                 flavor: Flavor.prod,
                 apiBaseUrl: 'http://api.test',
                 googleServerClientId: 'web-client-id',
+                legalBaseUrl: 'https://www.autometa.in/products/prepcue',
               ),
             ),
             sessionProvider.overrideWith(() => FakeSessionController(const SignedOut())),
@@ -55,6 +57,12 @@ void main() {
             darkTheme: AppTheme.dark(),
             home: const SignInScreen(),
           ),
+        ),
+      );
+      await tester.runAsync(
+        () => precacheImage(
+          const AssetImage(appLogoAsset),
+          tester.element(find.byType(SignInScreen)),
         ),
       );
       await tester.pumpAndSettle();

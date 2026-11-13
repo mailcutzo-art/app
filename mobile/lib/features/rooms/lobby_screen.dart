@@ -90,7 +90,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
 
   Future<void> _share(RoomView view) async {
     try {
-      await ref.read(roomShareProvider)(view.shareText(), subject: 'Join my Quiz Arena room');
+      await ref.read(roomShareProvider)(view.shareText(), subject: 'Join my PrepCue room');
     } on Object catch (error) {
       debugPrint('Share failed: $error');
       if (mounted) showAppToast(context, 'Couldn\'t open sharing. Copy the code instead.');

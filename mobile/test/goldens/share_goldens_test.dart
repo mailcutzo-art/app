@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quiz_app/app/brand.dart';
 import 'package:quiz_app/features/share/share_card.dart';
 import 'package:quiz_app/features/share/share_models.dart';
 
@@ -21,18 +22,29 @@ void main() {
     }
   });
 
-  Future<void> pump(WidgetTester tester, Widget child, {required Size size, ThemeData? theme}) {
+  Future<void> pump(
+    WidgetTester tester,
+    Widget child, {
+    required Size size,
+    ThemeData? theme,
+  }) async {
     tester.view
       ..physicalSize = size * 3
       ..devicePixelRatio = 3;
     addTearDown(tester.view.reset);
-    return tester.pumpWidget(
+    await tester.pumpWidget(
       MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: theme ?? AppTheme.light(),
         home: Scaffold(body: child),
       ),
     );
+    if (find.byType(AppLogo).evaluate().isNotEmpty) {
+      await tester.runAsync(
+        () => precacheImage(const AssetImage(appLogoAsset), tester.element(find.byType(Scaffold))),
+      );
+      await tester.pumpAndSettle();
+    }
   }
 
   final cards = <String, ShareCardData>{

@@ -6,6 +6,7 @@ import '../core/realtime/realtime_host.dart';
 import '../features/arena/tournament_reminders.dart' show reminderTapsProvider;
 import '../features/practice/data/answer_queue.dart';
 import '../features/settings/settings_providers.dart';
+import 'brand.dart';
 import 'live/live_layer.dart';
 import 'router.dart';
 
@@ -21,7 +22,7 @@ class QuizApp extends ConsumerWidget {
       ..watch(reminderTapsProvider);
     final touch = ref.watch(touchPrefsProvider);
     return MaterialApp.router(
-      title: 'Quiz Arena',
+      title: appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),

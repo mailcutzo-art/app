@@ -49,7 +49,7 @@ void main() {
     await tester.tap(find.text('Finish'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Quiz Arena is for students aged 10 and up'), findsOneWidget);
+    expect(find.text('PrepCue is for students aged 10 and up'), findsOneWidget);
     expect(find.text('Sign out'), findsOneWidget);
     expect(find.text('Finish'), findsNothing);
 

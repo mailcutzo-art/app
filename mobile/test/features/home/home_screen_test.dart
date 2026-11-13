@@ -163,12 +163,12 @@ void main() {
       usePhoneViewport(tester);
       final home = FakeHomeRepository.seeded(welcomeCoins: 100);
       await pumpApp(tester, prefs: await testPrefs(), home: home);
-      expect(find.text('Welcome to Quiz Arena!'), findsOneWidget);
+      expect(find.text('Welcome to PrepCue!'), findsOneWidget);
       expect(find.text('+100 coins'), findsOneWidget);
 
       await tester.tap(find.text('Let\'s play'));
       await tester.pumpAndSettle();
-      expect(find.text('Welcome to Quiz Arena!'), findsNothing);
+      expect(find.text('Welcome to PrepCue!'), findsNothing);
 
       // Pull to refresh: the server doesn't send it again.
       // The greeting stays put (a fixed header): the pull starts on the content.
@@ -177,7 +177,7 @@ void main() {
         await tester.pump(const Duration(milliseconds: 100));
       }
       expect(home.calls, 2);
-      expect(find.text('Welcome to Quiz Arena!'), findsNothing);
+      expect(find.text('Welcome to PrepCue!'), findsNothing);
     });
   });
 }

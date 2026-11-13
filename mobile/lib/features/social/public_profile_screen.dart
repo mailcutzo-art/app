@@ -440,7 +440,7 @@ void _showRatingHelp(BuildContext context) {
     context,
     builder: (context) => SheetScaffold(
       title: 'About Ratings',
-      subtitle: 'Competitive skill score in Quiz Arena',
+      subtitle: 'Competitive skill score in PrepCue',
       footer: AppButton(label: 'Got it', onPressed: () => Navigator.pop(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

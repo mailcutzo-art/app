@@ -57,7 +57,7 @@ class _MaintenanceScreenState extends ConsumerState<MaintenanceScreen> {
               title: 'Quick maintenance',
               message:
                   message ??
-                  'We\'re making Quiz Arena better. This usually takes a few minutes. '
+                  'We\'re making PrepCue better. This usually takes a few minutes. '
                       'Your progress is safe.',
               actionLabel: _checking ? 'Checking…' : 'Try again',
               onAction: _checking ? null : _check,

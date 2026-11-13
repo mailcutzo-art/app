@@ -354,7 +354,7 @@ void _showRatingInfo(BuildContext context) {
     context,
     builder: (context) => SheetScaffold(
       title: 'About Rating',
-      subtitle: 'Your competitive skill score in Quiz Arena',
+      subtitle: 'Your competitive skill score in PrepCue',
       footer: AppButton(label: 'Got it', onPressed: () => Navigator.pop(context)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -581,7 +581,7 @@ Future<void> showWelcomeSheet(BuildContext context, {required int coins}) => sho
     final colors = sheetContext.colors;
     final text = sheetContext.text;
     return SheetScaffold(
-      title: 'Welcome to Quiz Arena!',
+      title: 'Welcome to PrepCue!',
       subtitle: 'Here are some coins to get you started.',
       footer: AppButton(label: 'Let\'s play', onPressed: () => Navigator.of(sheetContext).pop()),
       child: Padding(

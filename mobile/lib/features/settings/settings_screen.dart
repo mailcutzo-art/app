@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../app/brand.dart';
 import '../../app/env.dart';
 import '../../app/router.dart';
 import '../../app/shell.dart' show Gutter;
@@ -65,7 +66,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     if (!mounted) return;
     showAboutDialog(
       context: context,
-      applicationName: 'Quiz Arena',
+      applicationName: 'PrepCue',
+      applicationIcon: const AppLogo(),
       applicationVersion: info == null ? null : '${info.version} (${info.buildNumber})',
       applicationLegalese: 'Live quiz battles for NEET and JEE aspirants.',
     );
@@ -232,7 +234,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         ],
         const SettingsHeader('About'),
         SettingsLink(
-          title: 'About Quiz Arena',
+          title: 'About PrepCue',
           subtitle: version == null ? null : 'Version ${version.version} (${version.buildNumber})',
           icon: AppIcons.info,
           onTap: () => unawaited(_about()),
@@ -242,7 +244,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           icon: AppIcons.document,
           onTap: () => showLicensePage(
             context: context,
-            applicationName: 'Quiz Arena',
+            applicationName: 'PrepCue',
+            applicationIcon: const AppLogo(),
             applicationVersion: version?.version,
           ),
         ),

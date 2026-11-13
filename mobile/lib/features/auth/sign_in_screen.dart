@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../app/env.dart';
 import '../../app/router.dart';
@@ -13,7 +16,7 @@ import 'dev_login_sheet.dart';
 import 'welcome/arena_hero.dart';
 import 'welcome/welcome_widgets.dart';
 
-/// The welcome screen: the Quiz Arena entrance and the one way in, Continue
+/// The welcome screen: the PrepCue entrance and the one way in, Continue
 /// with Google (plus developer login in dev builds).
 ///
 /// It always wears the dark theme, whatever the system setting, since it's a
@@ -43,6 +46,19 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
     }
   }
 
+  Future<void> _openLegal(String page) async {
+    final base = ref.read(appEnvProvider).legalBaseUrl;
+    var opened = false;
+    try {
+      opened = await launchUrl(Uri.parse('$base/$page'), mode: LaunchMode.externalApplication);
+    } on Object {
+      opened = false;
+    }
+    if (!opened && mounted) {
+      showAppToast(context, 'Couldn\'t open that page.', icon: AppIcons.alert);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final env = ref.watch(appEnvProvider);
@@ -63,6 +79,8 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             // The screen's own context, outside the dark theme.
             onDevLogin: env.devLoginAvailable ? () => showDevLoginSheet(context) : null,
             onDebug: env.devLoginAvailable ? () => context.push(Routes.debug) : null,
+            onTerms: env.legalBaseUrl.isEmpty ? null : () => unawaited(_openLegal('terms')),
+            onPrivacy: env.legalBaseUrl.isEmpty ? null : () => unawaited(_openLegal('privacy')),
           ),
         ),
       ),
@@ -176,16 +194,25 @@ class _WelcomeActions extends StatelessWidget {
     required this.onGoogle,
     required this.onDevLogin,
     required this.onDebug,
+    this.onTerms,
+    this.onPrivacy,
   });
 
   final bool busy;
   final VoidCallback? onGoogle;
   final VoidCallback? onDevLogin;
   final VoidCallback? onDebug;
+  final VoidCallback? onTerms;
+  final VoidCallback? onPrivacy;
 
   @override
   Widget build(BuildContext context) {
     final text = context.text;
+    final legalStyle = TextButton.styleFrom(
+      foregroundColor: text.caption.color,
+      textStyle: text.caption.copyWith(decoration: TextDecoration.underline),
+      minimumSize: const Size(48, 48),
+    );
     return Column(
       children: [
         // On narrow phones the label stops growing at 1.2× so it never gets cut off.
@@ -216,11 +243,27 @@ class _WelcomeActions extends StatelessWidget {
             child: Text('Debug settings', style: text.caption),
           ),
         const SizedBox(height: AppSpacing.sm),
-        Text(
-          'By continuing you agree to our Terms and Privacy Policy.',
-          textAlign: TextAlign.center,
-          style: text.caption,
-        ),
+        if (onTerms != null && onPrivacy != null) ...[
+          Text('By continuing you agree to our', textAlign: TextAlign.center, style: text.caption),
+          Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              TextButton(onPressed: onTerms, style: legalStyle, child: const Text('Terms')),
+              Text('and', style: text.caption),
+              TextButton(
+                onPressed: onPrivacy,
+                style: legalStyle,
+                child: const Text('Privacy policy'),
+              ),
+            ],
+          ),
+        ] else
+          Text(
+            'By continuing you agree to our Terms and Privacy Policy.',
+            textAlign: TextAlign.center,
+            style: text.caption,
+          ),
       ],
     );
   }

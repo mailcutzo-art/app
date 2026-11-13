@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../app/brand.dart';
 import '../social/data/social_models.dart';
 import '../social/data/social_repository.dart';
 import '../social/social_providers.dart';
@@ -57,6 +58,7 @@ class ShareActions {
 Future<Uint8List> captureShareCard(BuildContext context, ShareCardData data) async {
   final overlay = Overlay.of(context, rootOverlay: true);
   final media = MediaQuery.of(context);
+  await precacheImage(const AssetImage(appLogoAsset), context);
   final boundaryKey = GlobalKey();
   final entry = OverlayEntry(
     builder: (_) => Positioned(
@@ -112,11 +114,11 @@ Future<void> shareImageToApps({
   Rect? origin,
 }) async {
   final directory = await getTemporaryDirectory();
-  final file = File('${directory.path}/quiz-arena-${DateTime.now().millisecondsSinceEpoch}.png');
+  final file = File('${directory.path}/prepcue-${DateTime.now().millisecondsSinceEpoch}.png');
   await file.writeAsBytes(image, flush: true);
   await SharePlus.instance.share(
     ShareParams(
-      files: [XFile(file.path, mimeType: 'image/png', name: 'quiz-arena.png')],
+      files: [XFile(file.path, mimeType: 'image/png', name: 'prepcue.png')],
       text: text,
       sharePositionOrigin: origin,
     ),

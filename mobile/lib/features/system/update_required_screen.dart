@@ -14,7 +14,7 @@ class UpdateRequiredScreen extends StatelessWidget {
     final web = Uri.https('play.google.com', '/store/apps/details', {'id': package});
     final opened = await _launch(market) || await _launch(web);
     if (!opened && context.mounted) {
-      showAppToast(context, 'Open the Play Store and update Quiz Arena.', icon: AppIcons.alert);
+      showAppToast(context, 'Open the Play Store and update PrepCue.', icon: AppIcons.alert);
     }
   }
 
@@ -39,7 +39,7 @@ class UpdateRequiredScreen extends StatelessWidget {
               tone: PastelTone.lime,
               title: 'Time for an update',
               message:
-                  'This version of Quiz Arena is no longer supported. Update to keep playing '
+                  'This version of PrepCue is no longer supported. Update to keep playing '
                   'with everyone else.',
               actionLabel: 'Update on Play Store',
               onAction: () => _openStore(context),

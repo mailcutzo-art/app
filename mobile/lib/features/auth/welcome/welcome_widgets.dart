@@ -4,6 +4,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../../../app/brand.dart';
+
 /// The small pieces around the arena on the welcome screen.
 
 /// Fades and lifts [child] in once, between [begin] and [end] of
@@ -45,20 +47,13 @@ class WelcomeBrand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(color: colors.accent, shape: BoxShape.circle),
-          alignment: Alignment.center,
-          child: HugeIcon(AppIcons.rocket, size: 20, color: colors.onAccent),
-        ),
+        const AppLogo(size: 36, semanticLabel: null),
         const SizedBox(width: AppSpacing.sm),
         Flexible(
-          child: Semantics(header: true, child: Text('Quiz Arena', style: context.text.titleLarge)),
+          child: Semantics(header: true, child: Text(appName, style: context.text.titleLarge)),
         ),
       ],
     );

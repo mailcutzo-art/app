@@ -81,7 +81,7 @@ class TournamentReminders {
         tournament.endsAtEstimate ??
         tournament.startsAt.add(Duration(minutes: 5 * tournament.rounds + 5)),
     description:
-        'Quiz Arena tournament: ${tournament.rounds} rounds of 10 questions. Check in from '
+        'PrepCue tournament: ${tournament.rounds} rounds of 10 questions. Check in from '
         '15 to 2 minutes before the start. quizarena://open/t/${tournament.id}',
   );
 }

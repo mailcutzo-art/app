@@ -58,7 +58,7 @@ void main() {
     expect(find.byType(SharePreview), findsOneWidget);
     expect(find.byType(ShareCard), findsOneWidget);
     expect(find.text('Victory!'), findsOneWidget);
-    expect(find.text('Quiz Arena'), findsOneWidget);
+    expect(find.text('PrepCue'), findsOneWidget);
     expect(find.bySemanticsLabel(RegExp('Victory! Physics battle')), findsOneWidget);
     expect(find.widgetWithText(AppButton, 'Share with friends'), findsOneWidget);
     expect(find.widgetWithText(AppButton, 'Share globally'), findsOneWidget);
@@ -118,7 +118,7 @@ void main() {
 
     expect(recorder.captured, [sampleWin]);
     expect(recorder.shared.single.image, ShareRecorder.image);
-    expect(recorder.shared.single.text, 'I won a Physics battle on Quiz Arena! 🏆');
+    expect(recorder.shared.single.text, 'I won a Physics battle on PrepCue! 🏆');
     expect(find.text('Share this battle'), findsNothing);
     expect(social.posted, isEmpty, reason: 'nothing is posted in the app');
   });
@@ -136,7 +136,7 @@ void main() {
 
     expect(
       recorder.shared.single.text,
-      'Level 12 on Quiz Arena with a 7-day streak! 📈 https://quizarena.app',
+      'Level 12 on PrepCue with a 7-day streak! 📈 https://quizarena.app',
     );
   });
 

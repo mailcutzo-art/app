@@ -196,7 +196,7 @@ void main() {
         'Physics 1548',
         'Chemistry 1498?',
       ]);
-      expect(recorder.shared.single.text, 'Level 4 on Quiz Arena with a 4-day streak! 📈');
+      expect(recorder.shared.single.text, 'Level 4 on PrepCue with a 4-day streak! 📈');
     });
 
     testWidgets('posts progress to friends', (tester) async {

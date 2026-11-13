@@ -29,9 +29,11 @@ class AppEnv {
         'GOOGLE_SERVER_CLIENT_ID',
         defaultValue: '229263281230-8n5u3f3dgrpelo98ibsb4mnhiaf8poi1.apps.googleusercontent.com',
       ),
-      // Read from --dart-define; the analyzer only sees the empty default.
-      // ignore: avoid_redundant_argument_values
-      legalBaseUrl: String.fromEnvironment('LEGAL_BASE_URL'),
+      // The product pages must be published before a store release uses them.
+      legalBaseUrl: String.fromEnvironment(
+        'LEGAL_BASE_URL',
+        defaultValue: 'https://www.autometa.in/products/prepcue',
+      ),
       // ignore: avoid_redundant_argument_values
       shareBaseUrl: String.fromEnvironment('SHARE_BASE_URL'),
     );
@@ -43,8 +45,7 @@ class AppEnv {
   /// OAuth *web* client id; Google puts it in the ID token's audience.
   final String googleServerClientId;
 
-  /// Where the Terms (`/terms`) and Privacy policy (`/privacy`) live. Empty
-  /// until they're published, and then the links stay hidden.
+  /// Base URL for the product's Terms (`/terms`) and Privacy policy (`/privacy`).
   final String legalBaseUrl;
 
   /// A link added to the caption of cards shared to other apps (the app's

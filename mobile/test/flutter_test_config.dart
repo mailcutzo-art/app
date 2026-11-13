@@ -18,7 +18,7 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   await jakarta.load();
   // About and the version row read the app's package info.
   PackageInfo.setMockInitialValues(
-    appName: 'Quiz Arena',
+    appName: 'PrepCue',
     packageName: 'app.quiz',
     version: '1.0.0',
     buildNumber: '1',

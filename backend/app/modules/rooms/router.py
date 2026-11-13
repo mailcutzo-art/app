@@ -127,7 +127,7 @@ _PAGE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Join my Quiz Arena room</title>
+<title>Join my PrepCue room</title>
 <style>
   body {{ margin: 0; font-family: system-ui, sans-serif; background: #0f1222; color: #f4f5fb;
          display: flex; min-height: 100vh; align-items: center; justify-content: center; }}

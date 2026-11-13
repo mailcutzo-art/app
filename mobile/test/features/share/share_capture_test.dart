@@ -4,13 +4,14 @@ import 'dart:ui' as ui;
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quiz_app/app/brand.dart';
 import 'package:quiz_app/features/share/share_card.dart';
 import 'package:quiz_app/features/share/share_providers.dart';
 
 import '../../support/share_samples.dart';
 
 void main() {
-  testWidgets('the card is captured off-screen as a 1080 × 1350 PNG and then removed', (
+  testWidgets('the exported PNG includes the logo and removes the off-screen card', (
     tester,
   ) async {
     await tester.pumpWidget(
@@ -20,6 +21,9 @@ void main() {
       ),
     );
     final context = tester.element(find.text('Result'));
+    await tester.runAsync(
+      () => precacheImage(const AssetImage(appLogoAsset), tester.element(find.text('Result'))),
+    );
 
     final capture = captureShareCard(context, sampleWin);
     await tester.pump();
@@ -36,6 +40,19 @@ void main() {
       return (await codec.getNextFrame()).image;
     }))!;
     expect((image.width, image.height), (1080, 1350));
+    final pixels = (await tester.runAsync(image.toByteData))!;
+    var inkPixels = 0;
+    for (var y = 60; y < 150; y++) {
+      for (var x = 60; x < 150; x++) {
+        final offset = (y * image.width + x) * 4;
+        if (pixels.getUint8(offset) < 60 &&
+            pixels.getUint8(offset + 1) < 60 &&
+            pixels.getUint8(offset + 2) < 60) {
+          inkPixels++;
+        }
+      }
+    }
+    expect(inkPixels, greaterThan(100), reason: 'the exported image includes the logo');
     image.dispose();
   });
 }
